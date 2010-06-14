@@ -18,6 +18,7 @@ package org.jboss.shrinkwrap.descriptor.api;
 
 import org.jboss.shrinkwrap.descriptor.spec.beans.BeansDef;
 import org.jboss.shrinkwrap.descriptor.spec.persistence.PersistenceDef;
+import org.jboss.shrinkwrap.descriptor.spec.web.WebAppDef;
 
 /**
  * @author Dan Allen
@@ -34,6 +35,10 @@ public class Descriptors
       else if (type.equals(BeansDef.class))
       {
          return (T) new BeansDef();
+      }
+      else if (type.equals(WebAppDef.class))
+      {
+         return (T) new WebAppDef();
       }
       return null;
    }

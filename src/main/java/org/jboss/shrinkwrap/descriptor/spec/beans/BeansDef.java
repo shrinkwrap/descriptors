@@ -131,7 +131,7 @@ public class BeansDef implements Asset
       }
       catch (Exception e)
       {
-         throw new RuntimeException(e);
+         throw new RuntimeException("Could not convert descriptor to XML", e);
       }
    }
 }
