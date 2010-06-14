@@ -52,12 +52,22 @@ public class WebAppDef
       return this;
    }
    
-   public WebAppDef filter(String name, Class<? extends javax.servlet.Filter> clazz, String... urlPatterns)
+   public WebAppDef filter(Class<? extends javax.servlet.Filter> clazz, String... urlPatterns)
+   {
+     return filter(clazz.getSimpleName(), clazz.getName(), urlPatterns);
+   }
+   
+   public FilterDef filter(String clazz, String... urlPatterns)
+   {
+      return filter(getSimpleName(clazz), clazz, urlPatterns);
+   }
+   
+   public WebAppDef filter(String name, Class<? extends javax.servlet.Filter> clazz, String[] urlPatterns)
    {
      return filter(name, clazz.getName(), urlPatterns);
    }
    
-   public FilterDef filter(String name, String clazz, String... urlPatterns)
+   public FilterDef filter(String name, String clazz, String[] urlPatterns)
    {
       Filter filter = new Filter(name, clazz);
       webApp.getFilters().add(filter);
@@ -66,13 +76,23 @@ public class WebAppDef
       }
       return new FilterDef(webApp, filter);
    }
+
+   public WebAppDef servlet(Class<? extends javax.servlet.Servlet> clazz, String... urlPatterns)
+   {
+      return servlet(clazz.getSimpleName(), clazz.getName(), urlPatterns);
+   }
    
-   public WebAppDef servlet(String name, Class<? extends javax.servlet.Servlet> clazz, String... urlPatterns)
+   public WebAppDef servlet(String clazz, String... urlPatterns)
+   {
+      return servlet(getSimpleName(clazz), clazz, urlPatterns);
+   }
+   
+   public WebAppDef servlet(String name, Class<? extends javax.servlet.Servlet> clazz, String[] urlPatterns)
    {
       return servlet(name, clazz.getName(), urlPatterns);
    }
    
-   public WebAppDef servlet(String name, String clazz, String... urlPatterns)
+   public WebAppDef servlet(String name, String clazz, String[] urlPatterns)
    {
       webApp.getServlets().add(new Servlet(name, clazz));
       webApp.getServletMappings().add(new ServletMapping(name, urlPatterns));
@@ -164,5 +184,14 @@ public class WebAppDef
    public WebApp descriptor()
    {
       return webApp;
+   }
+   
+   private String getSimpleName(String fqcn)
+   {
+      if (fqcn.indexOf('.') >= 0)
+      {
+         return fqcn.substring(fqcn.lastIndexOf('.') + 1);
+      }
+      return fqcn;
    }
 }
