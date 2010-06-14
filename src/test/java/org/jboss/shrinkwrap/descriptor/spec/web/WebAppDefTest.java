@@ -69,7 +69,7 @@ public class WebAppDefTest
    public void testDefaultServletName() throws Exception
    {
       WebApp webApp = new WebAppDef()
-            .filter("javax.faces.webapp.FacesServlet", "*.jsf")
+            .servlet("javax.faces.webapp.FacesServlet", "*.jsf")
             .descriptor();
       
       ByteArrayOutputStream actual = marshal(webApp);

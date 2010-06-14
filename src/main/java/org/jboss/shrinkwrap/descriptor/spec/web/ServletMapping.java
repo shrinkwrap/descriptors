@@ -15,9 +15,10 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class ServletMapping
 {
+   @XmlElement(name = "servlet-name", required = true)
    protected String servletName;
 
-   @XmlElement(name = "url-pattern")
+   @XmlElement(name = "url-pattern", required = true)
    protected List<String> urlPatterns;
 
    public ServletMapping() {}
