@@ -37,6 +37,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
+      "moduleName",
       "descriptions",
       "displayNames",
       // "icons",
@@ -63,12 +64,12 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
       // "serviceRefs",
       // "resourceRefs",
       // "resourceEnvRefs",
+      // "messageDestination",
       // "messageDestinationRefs",
       // "persistenceContextRefs",
       // "persistenceUnitRefs",
       // "postConstruct",
       // "preDestroy",
-      // "messageDestination",
 })
 @XmlRootElement(name = "web-app")
 public class WebApp
@@ -81,6 +82,9 @@ public class WebApp
    
    @XmlAttribute(name = "metadata-complete")
    protected Boolean metadataComplete;
+   
+   @XmlElement(name = "module-name")
+   protected String moduleName;
    
    @XmlElement(name = "description")
    protected List<LocalizedText> descriptions;
@@ -133,6 +137,7 @@ public class WebApp
       return WebApp.class.getPackage().getAnnotation(XmlSchema.class).namespace();
    }
    
+   // TODO validate?
    public String getVersion()
    {
       return version;
@@ -151,6 +156,16 @@ public class WebApp
    public void setMetadataComplete(Boolean metadataComplete)
    {
       this.metadataComplete = metadataComplete;
+   }
+
+   public String getModuleName()
+   {
+      return moduleName;
+   }
+
+   public void setModuleName(String moduleName)
+   {
+      this.moduleName = moduleName;
    }
 
    public List<LocalizedText> getDescriptions()

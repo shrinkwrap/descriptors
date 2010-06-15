@@ -44,6 +44,24 @@ public class WebAppDef implements Asset
       this.webApp = webApp;
    }
    
+   public WebAppDef version(String version)
+   {
+      webApp.setVersion(version);
+      return this;
+   }
+   
+   public WebAppDef metadataComplete()
+   {
+      webApp.setMetadataComplete(true);
+      return this;
+   }
+   
+   public WebAppDef moduleName(String name)
+   {
+      webApp.setModuleName(name);
+      return this;
+   }
+   
    public WebAppDef description(String description)
    {
       webApp.getDescriptions().add(new LocalizedText(description));
