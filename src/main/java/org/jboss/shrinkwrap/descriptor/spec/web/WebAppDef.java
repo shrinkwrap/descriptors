@@ -170,6 +170,11 @@ public class WebAppDef implements Asset
       return this;
    }
    
+   public WebAppDef facesServlet()
+   {
+      return servlet(FacesServlet.class, "*.jsf");
+   }
+   
    public WebAppDef welcomeFiles(String... servletPaths)
    {
       for (String p : servletPaths)
