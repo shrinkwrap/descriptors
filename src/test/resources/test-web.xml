@@ -32,12 +32,20 @@
         <filter-name>UrlRewriteFilter</filter-name>
     </filter-mapping>
     <servlet>
-        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-name>FacesServlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Download Servlet</servlet-name>
+        <servlet-class>com.acme.webapp.DownloadServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-name>FacesServlet</servlet-name>
         <url-pattern>*.jsf</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Download Servlet</servlet-name>
+        <url-pattern>/file/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>60</session-timeout>
