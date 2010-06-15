@@ -30,9 +30,9 @@ public class FilterDef extends WebAppDef
       this.filter = filter;
    }
    
-   public FilterDef initParam(String name, String value)
+   public FilterDef initParam(String name, Object value)
    {
-      filter.getInitParams().add(new Param(name, value));
+      filter.getInitParams().add(new Param(name, value.toString()));
       return this;
    }
 }
