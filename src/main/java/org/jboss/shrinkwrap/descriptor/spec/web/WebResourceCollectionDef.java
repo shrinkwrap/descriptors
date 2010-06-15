@@ -16,6 +16,8 @@
  */
 package org.jboss.shrinkwrap.descriptor.spec.web;
 
+import org.jboss.shrinkwrap.descriptor.spec.web.WebResourceCollection.HttpMethodType;
+
 /**
  * @author Dan Allen
  */
@@ -38,11 +40,23 @@ public class WebResourceCollectionDef extends SecurityConstraintDef
       return this;
    }
    
-   public WebResourceCollectionDef httpMethods(String... httpMethods)
+   public WebResourceCollectionDef httpMethods(HttpMethodType... httpMethods)
    {
-      for (String m : httpMethods)
+      return httpMethods(false, httpMethods);
+   }
+   
+   public WebResourceCollectionDef httpMethods(boolean omissions, HttpMethodType... httpMethods)
+   {
+      for (HttpMethodType m : httpMethods)
       {
-         webResourceCollection.getHttpMethods().add(m);
+         if (omissions)
+         {
+            webResourceCollection.getHttpMethodOmissions().add(m);
+         }
+         else
+         {
+            webResourceCollection.getHttpMethods().add(m);
+         }
       }
       return this;
    }

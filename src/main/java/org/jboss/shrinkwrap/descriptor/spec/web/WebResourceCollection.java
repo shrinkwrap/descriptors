@@ -22,6 +22,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlType;
 
 /**
@@ -32,10 +33,26 @@ import javax.xml.bind.annotation.XmlType;
       "name",
       "descriptions",
       "urlPatterns",
-      "httpMethods"
+      "httpMethods",
+      "httpMethodOmissions"
 })
 public class WebResourceCollection
 {
+   @XmlEnum
+   public enum HttpMethodType {
+      GET, POST, PUT, DELETE, OPTIONS, HEAD, TRACE;
+      
+      public String value()
+      {
+         return name();
+      }
+      
+      public static HttpMethodType fromValue(String v)
+      {
+         return valueOf(v);
+      }
+   }
+   
    @XmlElement(name = "web-resource-name", required = true)
    protected String name;
    
@@ -46,21 +63,24 @@ public class WebResourceCollection
    protected List<String> urlPatterns;
    
    @XmlElement(name = "http-method")
-   protected List<String> httpMethods;
-
+   protected List<HttpMethodType> httpMethods;
+   
+   @XmlElement(name = "http-method-omission")
+   protected List<HttpMethodType> httpMethodOmissions;
+   
    public WebResourceCollection() {}
    
    public WebResourceCollection(String name) {
       this.name = name;
    }
    
-   public WebResourceCollection(String name, String[] urlPatterns, String... httpMethods)
+   public WebResourceCollection(String name, String[] urlPatterns, HttpMethodType... httpMethods)
    {
       this.name = name;
       for (String p : urlPatterns) {
          getUrlPatterns().add(p);
       }
-      for (String m : httpMethods) {
+      for (HttpMethodType m : httpMethods) {
          getHttpMethods().add(m);
       }
    }
@@ -92,12 +112,22 @@ public class WebResourceCollection
       return urlPatterns;
    }
 
-   public List<String> getHttpMethods()
+   public List<HttpMethodType> getHttpMethods()
    {
       if (httpMethods == null) {
-         httpMethods = new ArrayList<String>();
+         httpMethods = new ArrayList<HttpMethodType>();
+         httpMethodOmissions = null;
       }
       return httpMethods;
+   }
+   
+   public List<HttpMethodType> getHttpMethodOmissions()
+   {
+      if (httpMethodOmissions == null) {
+         httpMethodOmissions = new ArrayList<HttpMethodType>();
+         httpMethods = null;
+      }
+      return httpMethodOmissions;
    }
 
 }

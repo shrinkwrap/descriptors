@@ -16,6 +16,9 @@
  */
 package org.jboss.shrinkwrap.descriptor.spec.web;
 
+import org.jboss.shrinkwrap.descriptor.spec.web.UserDataConstraint.TransportGuaranteeType;
+import org.jboss.shrinkwrap.descriptor.spec.web.WebResourceCollection.HttpMethodType;
+
 /**
  * @author Dan Allen
  */
@@ -44,14 +47,14 @@ public class SecurityConstraintDef extends WebAppDef
    }
    
    // TODO maybe remove this
-   public SecurityConstraintDef webResourceCollection(String name, String urlPattern, String... httpMethods)
+   public SecurityConstraintDef webResourceCollection(String name, String urlPattern, HttpMethodType... httpMethods)
    {
       securityConstraint.getWebResourceCollections().add(new WebResourceCollection(name, new String[] { urlPattern }, httpMethods));
       return this;
    }
    
    // TODO maybe remove this
-   public SecurityConstraintDef webResourceCollection(String name, String[] urlPatterns, String... httpMethods)
+   public SecurityConstraintDef webResourceCollection(String name, String[] urlPatterns, HttpMethodType... httpMethods)
    {
       securityConstraint.getWebResourceCollections().add(new WebResourceCollection(name, urlPatterns, httpMethods));
       return this;
@@ -63,7 +66,7 @@ public class SecurityConstraintDef extends WebAppDef
       return this;
    }
    
-   public SecurityConstraintDef userDataConstraint(String transportGuarantee)
+   public SecurityConstraintDef userDataConstraint(TransportGuaranteeType transportGuarantee)
    {
       securityConstraint.setUserDataConstraint(new UserDataConstraint(transportGuarantee));
       return this;

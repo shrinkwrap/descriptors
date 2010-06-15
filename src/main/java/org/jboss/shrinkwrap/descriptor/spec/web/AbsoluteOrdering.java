@@ -16,51 +16,68 @@
  */
 package org.jboss.shrinkwrap.descriptor.spec.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlType;
 
 /**
  * @author Dan Allen
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "user-data-constraintType")
-public class UserDataConstraint extends Describable
+@XmlType(name = "absolute-orderingType", propOrder = {
+      "names",
+      "others"
+})
+public class AbsoluteOrdering
 {
-   @XmlEnum
-   public enum TransportGuaranteeType {
-      NONE, CONFIDENTIAL, INTEGRAL;
-      
-      public String value()
+   @XmlElement(name = "name")
+   protected List<String> names;
+   
+   protected EmptyType others;
+   
+   public AbsoluteOrdering() {}
+   
+   public AbsoluteOrdering(String... names)
+   {
+      for (String n : names)
       {
-         return name();
+         getNames().add(n);
       }
-
-      public static TransportGuaranteeType fromValue(String v)
+   }
+   
+   public AbsoluteOrdering(boolean others, String... names)
+   {
+      this(names);
+      setOthers(others);
+   }
+   
+   public List<String> getNames()
+   {
+      if (names == null)
       {
-         return valueOf(v);
+         names = new ArrayList<String>();
       }
+      return names;
    }
    
-   @XmlElement(name = "transport-guarantee")
-   protected TransportGuaranteeType transportGuarnatee;
-
-   public UserDataConstraint() {}
-   
-   public UserDataConstraint(TransportGuaranteeType transportGuarnatee)
+   public boolean isOthers()
    {
-      this.transportGuarnatee = transportGuarnatee;
+      return others != null;
    }
    
-   public TransportGuaranteeType getTransportGuarnatee()
+   public void setOthers(boolean others)
    {
-      return transportGuarnatee;
-   }
-
-   public void setTransportGuarnatee(TransportGuaranteeType transportGuarnatee)
-   {
-      this.transportGuarnatee = transportGuarnatee;
+      if (others)
+      {
+         this.others = new EmptyType();
+      }
+      else
+      {
+         this.others = null;
+      }
    }
 }

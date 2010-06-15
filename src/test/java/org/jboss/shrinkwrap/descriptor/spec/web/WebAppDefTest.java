@@ -20,9 +20,15 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.faces.application.StateManager;
+import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
+import org.jboss.shrinkwrap.descriptor.spec.web.LoginConfig.AuthMethodType;
+import org.jboss.shrinkwrap.descriptor.spec.web.SessionConfig.TrackingModeType;
+import org.jboss.shrinkwrap.descriptor.spec.web.UserDataConstraint.TransportGuaranteeType;
+import org.jboss.shrinkwrap.descriptor.spec.web.WebResourceCollection.HttpMethodType;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -39,27 +45,35 @@ public class WebAppDefTest
             .description("A description of my webapp")
             .displayName("Sample")
             .distributable()
-            .contextParam("javax.faces.PROJECT_STAGE", "Development")
+            .contextParam("com.sun.faces.validateXml", true)
+            .facesDevelopmentMode()
+            .facesStateSavingMethod(StateManager.STATE_SAVING_METHOD_CLIENT)
             .listener("org.jboss.seam.servlet.SeamListener")
             .filter("UrlRewriteFilter", "org.tuckey.web.filters.urlrewrite.UrlRewriteFilter", new String[] {"/*"}).initParam("one", "two")
             .servlet("Faces Servlet", "javax.faces.webapp.FacesServlet", new String[] {"*.jsf"})
             .welcomeFile("/index.jsf")
             .sessionTimeout(60)
-            .errorPage(500, "/500.jsp")
+            .sessionTrackingModes(TrackingModeType.URL)
+            .errorPage(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "/500.jsp")
             .errorPage(IOException.class, "/outputError.jsp")
+            .loginConfig(AuthMethodType.BASIC, "Cool App")
             .formLoginConfig("/login.jsp", "/invalidLogin.jsp")
             .securityConstraint()
-                  .webResourceCollection("All Access", "/public/*", "DELETE", "PUT", "HEAD", "OPTIONS", "TRACE", "GET", "POST")
-                  .userDataConstraint("NONE")
+                  .webResourceCollection("All Access")
+                        .urlPatterns("/public/*")
+                        .httpMethods(HttpMethodType.DELETE, HttpMethodType.PUT, HttpMethodType.HEAD, HttpMethodType.OPTIONS,
+                                 HttpMethodType.TRACE, HttpMethodType.GET, HttpMethodType.POST)
+                  .userDataConstraint(TransportGuaranteeType.NONE)
             .securityConstraint("Restricted GET To Employees")
-                  .webResourceCollection("Restricted Access - Get Only", "/restricted/employee/*", "GET")
+                  .webResourceCollection("Restricted Access - Get Only", "/restricted/employee/*", HttpMethodType.GET)
                   .authConstraint("Employee")
-                  .userDataConstraint("NONE")
-            .securityConstraint("excluded")
-                   .webResourceCollection("No Access").urlPatterns("/protected/*", "/templates/*")
-                   .authConstraint()
-                   .userDataConstraint("NONE")
+                  .userDataConstraint(TransportGuaranteeType.NONE)
+            .securityConstraint("Restrict access to Facelets templates (XHTML files)")
+                  .webResourceCollection("Facelets templates").urlPatterns("*.xhtml").httpMethods(true, HttpMethodType.HEAD)
+                  .authConstraint()
+                  .userDataConstraint(TransportGuaranteeType.NONE)
             .securityRole("Employee", "Employees of the company")
+            .absoluteOrdering("one", "two", "three")
             .descriptor();
       
       ByteArrayOutputStream actual = marshal(webApp);
@@ -112,6 +126,23 @@ public class WebAppDefTest
       System.out.println(actual.toString());
       
       ByteArrayOutputStream expected = getResourceContents("/test-attributes-web.xml");
+      
+      Assert.assertEquals(expected.toString(), actual.toString());
+   }
+   
+   @Test
+   public void testSessionCookieConfig() throws Exception
+   {
+      WebApp webApp = new WebAppDef()
+            .sessionTimeout(3600)
+            .sessionCookieConfig().name("SESSIONID").domain("example.com").path("/").maxAge(3600)
+            .sessionTrackingModes(TrackingModeType.COOKIE)
+            .descriptor();
+
+      ByteArrayOutputStream actual = marshal(webApp);
+      System.out.println(actual.toString());
+      
+      ByteArrayOutputStream expected = getResourceContents("/test-session-config-web.xml");
       
       Assert.assertEquals(expected.toString(), actual.toString());
    }

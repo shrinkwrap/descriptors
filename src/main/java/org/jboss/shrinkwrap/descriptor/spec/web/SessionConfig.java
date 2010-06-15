@@ -16,6 +16,9 @@
  */
 package org.jboss.shrinkwrap.descriptor.spec.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -26,41 +29,65 @@ import javax.xml.bind.annotation.XmlType;
  * @author Dan Allen
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "user-data-constraintType")
-public class UserDataConstraint extends Describable
+@XmlType(name = "session-configType", propOrder = {
+      "timeout",
+      "cookieConfig",
+      "trackingModes"
+})
+public class SessionConfig
 {
    @XmlEnum
-   public enum TransportGuaranteeType {
-      NONE, CONFIDENTIAL, INTEGRAL;
+   public enum TrackingModeType {
+      COOKIE, URL, SSL;
       
       public String value()
       {
          return name();
       }
 
-      public static TransportGuaranteeType fromValue(String v)
+      public static TrackingModeType fromValue(String v)
       {
          return valueOf(v);
       }
    }
    
-   @XmlElement(name = "transport-guarantee")
-   protected TransportGuaranteeType transportGuarnatee;
-
-   public UserDataConstraint() {}
+   @XmlElement(name = "session-timeout")
+   protected Integer timeout;
    
-   public UserDataConstraint(TransportGuaranteeType transportGuarnatee)
-   {
-      this.transportGuarnatee = transportGuarnatee;
-   }
+   @XmlElement(name = "cookie-config")
+   protected CookieConfig cookieConfig;
    
-   public TransportGuaranteeType getTransportGuarnatee()
+   @XmlElement(name = "tracking-mode")
+   protected List<TrackingModeType> trackingModes;
+
+   public Integer getTimeout()
    {
-      return transportGuarnatee;
+      return timeout;
    }
 
-   public void setTransportGuarnatee(TransportGuaranteeType transportGuarnatee)
+   public void setTimeout(Integer timeout)
    {
-      this.transportGuarnatee = transportGuarnatee;
+      this.timeout = timeout;
+   }
+
+   public CookieConfig getCookieConfig()
+   {
+      if (cookieConfig == null) {
+         cookieConfig = new CookieConfig();
+      }
+      return cookieConfig;
+   }
+
+   public void setCookieConfig(CookieConfig cookieConfig)
+   {
+      this.cookieConfig = cookieConfig;
+   }
+
+   public List<TrackingModeType> getTrackingModes()
+   {
+      if (trackingModes == null) {
+         trackingModes = new ArrayList<TrackingModeType>();
+      }
+      return trackingModes;
    }
 }

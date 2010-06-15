@@ -16,9 +16,7 @@
  */
 package org.jboss.shrinkwrap.descriptor.spec.web;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -56,7 +54,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
       // "jspConfig",
       "securityConstraints",
       "loginConfig",
-      "securityRoles"
+      "securityRoles",
       // "localEncodingMappingList",
       //"envEntries",
       // "ejbRefs",
@@ -70,6 +68,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
       // "persistenceUnitRefs",
       // "postConstruct",
       // "preDestroy",
+      "absoluteOrdering"
 })
 @XmlRootElement(name = "web-app")
 public class WebApp
@@ -116,9 +115,8 @@ public class WebApp
    @XmlElement(name = "welcome-file")
    protected List<String> welcomeFiles;
    
-   @XmlElementWrapper(name = "session-config")
-   @XmlElement(name = "session-timeout")
-   protected List<BigInteger> sessionConfig;
+   @XmlElement(name = "session-config")
+   protected SessionConfig sessionConfig;
    
    @XmlElement(name = "error-page")
    protected List<ErrorPage> errorPages;
@@ -131,6 +129,9 @@ public class WebApp
    
    @XmlElement(name = "security-role")
    protected List<SecurityRole> securityRoles;
+   
+   @XmlElement(name = "absolute-ordering")
+   protected List<AbsoluteOrdering> absoluteOrdering;
    
    public static String getNamespace()
    {
@@ -268,14 +269,18 @@ public class WebApp
       return welcomeFiles;
    }
    
-   public BigInteger getSessionTimeout()
+   public SessionConfig getSessionConfig()
    {
-      return sessionConfig != null ? sessionConfig.get(0) : null;
+      if (sessionConfig == null)
+      {
+         sessionConfig = new SessionConfig();
+      }
+      return sessionConfig;
    }
 
-   public void setSessionTimeout(BigInteger sessionTimeout)
+   public void setSessionConfig(SessionConfig sessionConfig)
    {
-      this.sessionConfig = new ArrayList<BigInteger>(Arrays.asList(sessionTimeout));
+      this.sessionConfig = sessionConfig;
    }
    
    public List<ErrorPage> getErrorPages()
@@ -313,6 +318,15 @@ public class WebApp
          securityRoles = new ArrayList<SecurityRole>();
       }
       return securityRoles;
+   }
+   
+   public List<AbsoluteOrdering> getAbsoluteOrdering()
+   {
+      if (absoluteOrdering == null)
+      {
+         absoluteOrdering = new ArrayList<AbsoluteOrdering>();
+      }
+      return absoluteOrdering;
    }
    
    public String getSchemaLocation()

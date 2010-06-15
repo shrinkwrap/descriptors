@@ -19,13 +19,17 @@ package org.jboss.shrinkwrap.descriptor.spec.web;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.EventListener;
 
+import javax.faces.application.ProjectStage;
+import javax.faces.application.StateManager;
+import javax.faces.webapp.FacesServlet;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
 import org.jboss.shrinkwrap.api.Asset;
+import org.jboss.shrinkwrap.descriptor.spec.web.LoginConfig.AuthMethodType;
 
 /**
  * @author Dan Allen
@@ -80,10 +84,32 @@ public class WebAppDef implements Asset
       return this;
    }
    
-   public WebAppDef contextParam(String name, String value)
+   public WebAppDef contextParam(String name, Object value)
    {
-      webApp.getContextParams().add(new Param(name, value));
+      webApp.getContextParams().add(new Param(name, value.toString()));
       return this;
+   }
+   
+   public WebAppDef facesDevelopmentMode()
+   {
+      return contextParam(ProjectStage.PROJECT_STAGE_PARAM_NAME, ProjectStage.Development.toString());
+   }
+   
+   // TODO continue with other known parameters
+   public WebAppDef facesStateSavingMethod(String value)
+   {
+      return contextParam(StateManager.STATE_SAVING_METHOD_PARAM_NAME, value);
+   }
+   
+   public WebAppDef facesConfigFiles(String... paths)
+   {
+      // poor man's way of doing join
+      String v = Arrays.asList(paths).toString();
+      if (v.length() == 2)
+      {
+         return this;
+      }
+      return contextParam(FacesServlet.CONFIG_FILES_ATTR, v.substring(0, v.length() - 1));
    }
    
    public WebAppDef listener(Class<? extends EventListener> clazz)
@@ -158,15 +184,24 @@ public class WebAppDef implements Asset
       return welcomeFiles(servletPath);
    }
    
-   public WebAppDef sessionTimeout(long timeout)
+   public WebAppDef sessionTimeout(int timeout)
    {
-      return sessionTimeout(BigInteger.valueOf(timeout));
+      webApp.getSessionConfig().setTimeout(timeout);
+      return this;
    }
    
-   public WebAppDef sessionTimeout(BigInteger timeout)
+   public WebAppDef sessionTrackingModes(SessionConfig.TrackingModeType... sessionTrackingModes)
    {
-      webApp.setSessionTimeout(timeout);
+      for (SessionConfig.TrackingModeType m : sessionTrackingModes)
+      {
+         webApp.getSessionConfig().getTrackingModes().add(m);
+      }
       return this;
+   }
+   
+   public CookieConfigDef sessionCookieConfig()
+   {
+      return new CookieConfigDef(webApp);
    }
    
    public WebAppDef errorPage(int errorCode, String location)
@@ -186,6 +221,11 @@ public class WebAppDef implements Asset
       return errorPage(exceptionClass.getName(), location);
    }
    
+   public WebAppDef loginConfig(AuthMethodType authMethod, String realmName)
+   {
+      return loginConfig(authMethod.toString(), realmName);
+   }
+   
    public WebAppDef loginConfig(String authMethod, String realmName)
    {
       webApp.getLoginConfig().add(new LoginConfig(authMethod, realmName));
@@ -194,7 +234,7 @@ public class WebAppDef implements Asset
    
    public WebAppDef formLoginConfig(String loginPage, String errorPage)
    {
-      webApp.getLoginConfig().add(new LoginConfig("FORM", new FormLoginConfig(loginPage, errorPage)));
+      webApp.getLoginConfig().add(new LoginConfig(AuthMethodType.FORM.toString(), new FormLoginConfig(loginPage, errorPage)));
       return this;
    }
    
@@ -223,6 +263,18 @@ public class WebAppDef implements Asset
    public WebAppDef securityRole(String roleName, String description)
    {
       webApp.getSecurityRoles().add(new SecurityRole(roleName, description));
+      return this;
+   }
+   
+   public WebAppDef absoluteOrdering(boolean others, String... names)
+   {
+      webApp.getAbsoluteOrdering().add(new AbsoluteOrdering(others, names));
+      return this;
+   }
+   
+   public WebAppDef absoluteOrdering(String... names)
+   {
+      webApp.getAbsoluteOrdering().add(new AbsoluteOrdering(names));
       return this;
    }
    

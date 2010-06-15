@@ -5,8 +5,16 @@
     <display-name>Sample</display-name>
     <distributable/>
     <context-param>
+        <param-name>com.sun.faces.validateXml</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>client</param-value>
     </context-param>
     <listener>
         <listener-class>org.jboss.seam.servlet.SeamListener</listener-class>
@@ -33,6 +41,7 @@
     </servlet-mapping>
     <session-config>
         <session-timeout>60</session-timeout>
+        <tracking-mode>URL</tracking-mode>
     </session-config>
     <welcome-file-list>
         <welcome-file>/index.jsf</welcome-file>
@@ -76,17 +85,21 @@
         </user-data-constraint>
     </security-constraint>
     <security-constraint>
-        <display-name>excluded</display-name>
+        <display-name>Restrict access to Facelets templates (XHTML files)</display-name>
         <web-resource-collection>
-            <web-resource-name>No Access</web-resource-name>
-            <url-pattern>/protected/*</url-pattern>
-            <url-pattern>/templates/*</url-pattern>
+            <web-resource-name>Facelets templates</web-resource-name>
+            <url-pattern>*.xhtml</url-pattern>
+            <http-method-omission>HEAD</http-method-omission>
         </web-resource-collection>
         <auth-constraint/>
         <user-data-constraint>
             <transport-guarantee>NONE</transport-guarantee>
         </user-data-constraint>
     </security-constraint>
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>Cool App</realm-name>
+    </login-config>
     <login-config>
         <auth-method>FORM</auth-method>
         <form-login-config>
@@ -98,4 +111,9 @@
         <description>Employees of the company</description>
         <role-name>Employee</role-name>
     </security-role>
+    <absolute-ordering>
+        <name>one</name>
+        <name>two</name>
+        <name>three</name>
+    </absolute-ordering>
 </web-app>
