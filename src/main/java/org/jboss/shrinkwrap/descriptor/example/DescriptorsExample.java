@@ -45,7 +45,7 @@ public class DescriptorsExample
       // simple empty descriptor
       //beans = Descriptors.create(BeansDef.class);
       
-      JavaArchive jar = ShrinkWrap.create("test.jar", JavaArchive.class)
+      JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "test.jar")
             .addManifestResource(persistence, "persistence.xml")
             .addManifestResource(beans, "beans.xml");
       jar.as(ZipExporter.class).exportZip(new File("/tmp/test.jar"), true);

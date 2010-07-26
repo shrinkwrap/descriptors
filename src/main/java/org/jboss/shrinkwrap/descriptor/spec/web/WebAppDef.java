@@ -28,7 +28,7 @@ import javax.faces.webapp.FacesServlet;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
-import org.jboss.shrinkwrap.api.Asset;
+import org.jboss.shrinkwrap.api.asset.Asset;
 import org.jboss.shrinkwrap.descriptor.spec.web.LoginConfig.AuthMethodType;
 
 /**

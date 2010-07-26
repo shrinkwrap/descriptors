@@ -6,6 +6,13 @@
 	<packaging>jar</packaging>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>ShrinkWrap descriptors prototype</name>
+	
+	<properties>
+	
+	  <version.org.jboss.shrinkwrap>1.0.0-alpha-11</version.org.jboss.shrinkwrap>
+	
+	</properties>
+	
 	<repositories>
 		<repository>
 			<id>jboss-public-repository</id>
@@ -45,12 +52,12 @@
 		<dependency>
 			<groupId>org.jboss.shrinkwrap</groupId>
 			<artifactId>shrinkwrap-spi</artifactId>
-			<version>1.0.0-alpha-9</version>
+			<version>${version.org.jboss.shrinkwrap}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.shrinkwrap</groupId>
 			<artifactId>shrinkwrap-impl-base</artifactId>
-			<version>1.0.0-alpha-9</version>
+			<version>${version.org.jboss.shrinkwrap}</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
