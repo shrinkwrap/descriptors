@@ -30,6 +30,8 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import org.jboss.shrinkwrap.descriptor.api.Descriptor;
+
 /**
  * @author Dan Allen
  */
@@ -71,10 +73,14 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
       "absoluteOrdering"
 })
 @XmlRootElement(name = "web-app")
-public class WebApp
+public class WebApp implements Descriptor
 {
    public static final String DEFAULT_VERSION = "3.0";
-   
+
+   //-------------------------------------------------------------------------------------||
+   // Instance Members -------------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
    @XmlAttribute(required = true)
    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
    protected String version = DEFAULT_VERSION;
@@ -133,15 +139,12 @@ public class WebApp
    @XmlElement(name = "absolute-ordering")
    protected List<AbsoluteOrdering> absoluteOrdering;
    
-   public static String getNamespace()
+   //-------------------------------------------------------------------------------------||
+   // Constructor ------------------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
+   public WebApp()
    {
-      return WebApp.class.getPackage().getAnnotation(XmlSchema.class).namespace();
-   }
-   
-   // TODO validate?
-   public String getVersion()
-   {
-      return version;
    }
 
    public void setVersion(String version)
@@ -328,11 +331,29 @@ public class WebApp
       }
       return absoluteOrdering;
    }
+
+   //-------------------------------------------------------------------------------------||
+   // Required Implementations - Descriptor ----------------------------------------------||
+   //-------------------------------------------------------------------------------------||
    
+   @Override
+   public String getVersion()
+   {
+      return version;
+   }
+
+   @Override
+   public String getNamespace()
+   {
+      return WebApp.class.getPackage().getAnnotation(XmlSchema.class).namespace();
+   }
+   
+   @Override
    public String getSchemaLocation()
    {
-      String namespace = WebApp.getNamespace();
-      return new StringBuilder().append(namespace)
+      String namespace = getNamespace();
+      return new StringBuilder()
+            .append(namespace)
             .append(" ")
             .append(namespace)
             .append("/web-app_")

@@ -28,6 +28,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchema;
 import javax.xml.bind.annotation.XmlType;
 
+import org.jboss.shrinkwrap.descriptor.api.Descriptor;
+
 /**
  * CDI bean descriptor
  * 
@@ -40,7 +42,7 @@ import javax.xml.bind.annotation.XmlType;
       "alternatives",
       "extensions" })
 @XmlRootElement(name = "beans")
-public class Beans
+public class Beans implements Descriptor
 {
    @XmlAnyElement(lax = true)
    protected List<Object> extensions;
@@ -54,11 +56,6 @@ public class Beans
    protected List<String> decorators;
 
    protected Alternatives alternatives;
-
-   public static String getNamespace()
-   {
-      return Beans.class.getPackage().getAnnotation(XmlSchema.class).namespace();
-   }
 
    public List<Object> getExtensions()
    {
@@ -96,9 +93,41 @@ public class Beans
       return this.alternatives;
    }
 
+   //-------------------------------------------------------------------------------------||
+   // Required Implementations - Descriptor ----------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
+   /* (non-Javadoc)
+    * @see org.jboss.shrinkwrap.descriptor.api.Descriptor#getVersion()
+    */
+   @Override
+   public String getVersion()
+   {
+      return "1.0";
+   }
+   
+   /* (non-Javadoc)
+    * @see org.jboss.shrinkwrap.descriptor.api.Descriptor#getNamespace()
+    */
+   @Override
+   public String getNamespace()
+   {
+      return Beans.class.getPackage().getAnnotation(XmlSchema.class).namespace();
+   }
+
+   /* (non-Javadoc)
+    * @see org.jboss.shrinkwrap.descriptor.api.Descriptor#getSchemaLocation()
+    */
+   @Override
    public String getSchemaLocation()
    {
-      String namespace = Beans.getNamespace();
-      return new StringBuilder().append(namespace).append(" ").append(namespace).append("/beans_1_0.xsd").toString();
+      String namespace = getNamespace();
+      return new StringBuilder()
+               .append(namespace)
+               .append(" ")
+               .append(namespace)
+               .append("/beans")
+               .append(getVersion().replace('.', '_'))
+               .append(".xsd").toString();
    }
 }

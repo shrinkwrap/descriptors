@@ -29,6 +29,8 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import org.jboss.shrinkwrap.descriptor.api.Descriptor;
+
 /**
  * Represents a JPA deployment descriptor
  *
@@ -37,8 +39,12 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = "persistenceUnits")
 @XmlRootElement(name = "persistence")
-public class Persistence
+public class Persistence implements Descriptor
 {
+   //-------------------------------------------------------------------------------------||
+   // Instance Members -------------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
    @XmlElement(name = "persistence-unit", required = true)
    protected List<PersistenceUnit> persistenceUnits;
 
@@ -46,9 +52,12 @@ public class Persistence
    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
    protected String version;
 
-   public static String getNamespace()
+   //-------------------------------------------------------------------------------------||
+   // Constructor ------------------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
+   public Persistence()
    {
-      return Persistence.class.getPackage().getAnnotation(XmlSchema.class).namespace();
    }
    
    /**
@@ -102,10 +111,22 @@ public class Persistence
       this.version = value;
    }
 
+   //-------------------------------------------------------------------------------------||
+   // Required Implementations - Descriptor ----------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
+   @Override
+   public String getNamespace()
+   {
+      return Persistence.class.getPackage().getAnnotation(XmlSchema.class).namespace();
+   }
+
+   @Override
    public String getSchemaLocation()
    {
-      String namespace = Persistence.getNamespace();
-      return new StringBuilder().append(namespace)
+      String namespace = getNamespace();
+      return new StringBuilder()
+            .append(namespace)
             .append(" ")
             .append(namespace)
             .append("/persistence_")
