@@ -25,11 +25,10 @@ import java.util.EventListener;
 import javax.faces.application.ProjectStage;
 import javax.faces.application.StateManager;
 import javax.faces.webapp.FacesServlet;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
 
 import org.jboss.shrinkwrap.api.asset.Asset;
 import org.jboss.shrinkwrap.descriptor.api.DescriptorDef;
+import org.jboss.shrinkwrap.descriptor.api.DescriptorExporter;
 import org.jboss.shrinkwrap.descriptor.spec.web.LoginConfig.AuthMethodType;
 
 /**
@@ -313,21 +312,9 @@ public class WebAppDef implements DescriptorDef<WebApp>, Asset
    @Override
    public InputStream openStream()
    {
-      try
-      {
-         JAXBContext context = JAXBContext.newInstance(WebApp.class);
-         Marshaller m = context.createMarshaller();
-         m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, webApp.getSchemaLocation());
-         m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
-         m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-         ByteArrayOutputStream os = new ByteArrayOutputStream();
-         m.marshal(webApp, os);
-         return new ByteArrayInputStream(os.toByteArray());
-      }
-      catch (Exception e)
-      {
-         throw new RuntimeException("Could not convert descriptor to XML", e);
-      }
+      ByteArrayOutputStream out = new ByteArrayOutputStream();
+      DescriptorExporter.to(descriptor(), out);
+      return new ByteArrayInputStream(out.toByteArray());
    }
    
    //-------------------------------------------------------------------------------------||

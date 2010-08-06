@@ -20,11 +20,9 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
-
 import org.jboss.shrinkwrap.api.asset.Asset;
 import org.jboss.shrinkwrap.descriptor.api.DescriptorDef;
+import org.jboss.shrinkwrap.descriptor.api.DescriptorExporter;
 
 /**
  * @author Dan Allen
@@ -90,20 +88,8 @@ public class PersistenceDef implements DescriptorDef<Persistence>, Asset
    @Override
    public InputStream openStream()
    {
-      try
-      {
-         JAXBContext context = JAXBContext.newInstance(Persistence.class);
-         Marshaller m = context.createMarshaller();
-         m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, persistence.getSchemaLocation());
-         m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
-         m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-         ByteArrayOutputStream os = new ByteArrayOutputStream();
-         m.marshal(persistence, os);
-         return new ByteArrayInputStream(os.toByteArray());
-      }
-      catch (Exception e)
-      {
-         throw new RuntimeException("Could not convert descriptor to XML", e);
-      }
+      ByteArrayOutputStream out = new ByteArrayOutputStream();
+      DescriptorExporter.to(descriptor(), out);
+      return new ByteArrayInputStream(out.toByteArray());
    }
 }
