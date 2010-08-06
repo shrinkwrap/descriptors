@@ -16,29 +16,72 @@
  */
 package org.jboss.shrinkwrap.descriptor.api;
 
-import org.jboss.shrinkwrap.descriptor.spec.beans.BeansDef;
-import org.jboss.shrinkwrap.descriptor.spec.persistence.PersistenceDef;
-import org.jboss.shrinkwrap.descriptor.spec.web.WebAppDef;
+import java.io.InputStream;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
 /**
  * @author Dan Allen
+ * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  */
 public class Descriptors
 {
-   // FIXME total hack...we need to do what ShrinkWrap does w/ archives
    public static <T extends DescriptorDef<?>> T create(Class<T> type)
    {
-      if (type.equals(PersistenceDef.class))
+      return (T)createInstance((Class<DescriptorDef<?>>)type);
+   }
+   
+   public static <T extends Descriptor, X extends DescriptorDef<T>> X create(Class<X> defType, InputStream xmlStream)
+   {
+      Class<T> descriptorClass = (Class<T>)getDescriptorType(defType);
+      return create(defType, descriptorClass, xmlStream);
+   }
+
+   static <T extends Descriptor, X extends DescriptorDef<T>> X create(Class<X> defType, Class<T> type, InputStream xmlStream)
+   {
+      T descriptor = DescriptorImporter.from(type, xmlStream);
+      return defType.cast(createInstance((Class<DescriptorDef<T>>)defType, descriptor));
+   }
+   
+   static <T extends Descriptor> DescriptorDef<T> createInstance(Class<DescriptorDef<T>> type, T descriptor)
+   {
+      try
       {
-         return (T) new PersistenceDef();
+         return type.getConstructor(descriptor.getClass()).newInstance(descriptor);
       }
-      else if (type.equals(BeansDef.class))
+      catch (Exception e) 
       {
-         return (T) new BeansDef();
+         throw new DescriptorException(
+               "Could not create DescriptorDef " + type.getName() + 
+               " using descriptor " + descriptor.getClass().getName());
       }
-      else if (type.equals(WebAppDef.class))
+   }
+   
+   static DescriptorDef<?> createInstance(Class<DescriptorDef<?>> type)
+   {
+      try
       {
-         return (T) new WebAppDef();
+         return type.getConstructor().newInstance();
+      }
+      catch (Exception e) 
+      {
+         throw new DescriptorException(
+               "Could not create DescriptorDef " + type.getName());
+      }
+   }
+
+   static <T extends Descriptor> Class<? extends Descriptor> getDescriptorType(Class<? extends DescriptorDef<T>> descriptorDefType)
+   {
+      for(Type type : descriptorDefType.getGenericInterfaces())
+      {
+         if (type instanceof ParameterizedType)
+         {
+            ParameterizedType paramType = (ParameterizedType) type;
+            for(Type actualType : paramType.getActualTypeArguments())
+            {
+               return (Class<T>)actualType;
+            }
+         }
       }
       return null;
    }
