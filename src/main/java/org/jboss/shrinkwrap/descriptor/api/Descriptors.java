@@ -26,7 +26,7 @@ import org.jboss.shrinkwrap.descriptor.spec.web.WebAppDef;
 public class Descriptors
 {
    // FIXME total hack...we need to do what ShrinkWrap does w/ archives
-   public static <T> T create(Class<T> type)
+   public static <T extends DescriptorDef<?>> T create(Class<T> type)
    {
       if (type.equals(PersistenceDef.class))
       {

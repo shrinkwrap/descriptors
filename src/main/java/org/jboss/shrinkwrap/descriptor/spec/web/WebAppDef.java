@@ -29,15 +29,25 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
 import org.jboss.shrinkwrap.api.asset.Asset;
+import org.jboss.shrinkwrap.descriptor.api.DescriptorDef;
 import org.jboss.shrinkwrap.descriptor.spec.web.LoginConfig.AuthMethodType;
 
 /**
  * @author Dan Allen
+ * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  */
-public class WebAppDef implements Asset
+public class WebAppDef implements DescriptorDef<WebApp>, Asset
 {
+   //-------------------------------------------------------------------------------------||
+   // Instance Members -------------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
    protected WebApp webApp;
    
+   //-------------------------------------------------------------------------------------||
+   // Constructor ------------------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
    public WebAppDef()
    {
       this(new WebApp());
@@ -47,7 +57,11 @@ public class WebAppDef implements Asset
    {
       this.webApp = webApp;
    }
-   
+
+   //-------------------------------------------------------------------------------------||
+   // API --------------------------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
    public WebAppDef version(String version)
    {
       webApp.setVersion(version);
@@ -282,12 +296,20 @@ public class WebAppDef implements Asset
       webApp.getAbsoluteOrdering().add(new AbsoluteOrdering(names));
       return this;
    }
-   
+
+   //-------------------------------------------------------------------------------------||
+   // Required Implementations - DescriptorDef -------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
    public WebApp descriptor()
    {
       return webApp;
    }
-   
+
+   //-------------------------------------------------------------------------------------||
+   // Required Implementations - Asset ---------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
    @Override
    public InputStream openStream()
    {
@@ -308,6 +330,13 @@ public class WebAppDef implements Asset
       }
    }
    
+   //-------------------------------------------------------------------------------------||
+   // Internal Helper Methods ------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
+   /*
+    * org.test.MyClass -> MyClass
+    */
    private String getSimpleName(String fqcn)
    {
       if (fqcn.indexOf('.') >= 0)

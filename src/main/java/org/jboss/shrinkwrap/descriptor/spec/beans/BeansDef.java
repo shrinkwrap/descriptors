@@ -29,14 +29,24 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
 import org.jboss.shrinkwrap.api.asset.Asset;
+import org.jboss.shrinkwrap.descriptor.api.DescriptorDef;
 
 /**
  * @author Dan Allen
+ * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  */
-public class BeansDef implements Asset
+public class BeansDef implements DescriptorDef<Beans>, Asset
 {
+   //-------------------------------------------------------------------------------------||
+   // Instance Members -------------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
    private Beans beans;
    
+   //-------------------------------------------------------------------------------------||
+   // Constructor ------------------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
    public BeansDef()
    {
       this(new Beans());
@@ -47,6 +57,10 @@ public class BeansDef implements Asset
       this.beans = beans;
    }
    
+   //-------------------------------------------------------------------------------------||
+   // API --------------------------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
    public BeansDef interceptors(Class<?>... classes)
    {
       for (Class<?> c : classes)
@@ -129,10 +143,19 @@ public class BeansDef implements Asset
       return alternativeStereotypes(clazz);
    }
    
+   //-------------------------------------------------------------------------------------||
+   // Required Implementations - DescriptorDef -------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
+   @Override
    public Beans descriptor()
    {
       return beans;
    }
+
+   //-------------------------------------------------------------------------------------||
+   // Required Implementations - Asset ---------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
 
    @Override
    public InputStream openStream()

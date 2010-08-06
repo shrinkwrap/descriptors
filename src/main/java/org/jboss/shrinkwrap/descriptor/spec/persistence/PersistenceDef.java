@@ -24,14 +24,24 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
 import org.jboss.shrinkwrap.api.asset.Asset;
+import org.jboss.shrinkwrap.descriptor.api.DescriptorDef;
 
 /**
  * @author Dan Allen
+ * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  */
-public class PersistenceDef implements Asset
+public class PersistenceDef implements DescriptorDef<Persistence>, Asset
 {
+   //-------------------------------------------------------------------------------------||
+   // Instance Members -------------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
    private Persistence persistence;
    
+   //-------------------------------------------------------------------------------------||
+   // Constructor ------------------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
    public PersistenceDef()
    {
       this(new Persistence());
@@ -42,6 +52,10 @@ public class PersistenceDef implements Asset
       this.persistence = persistence;
    }
    
+   //-------------------------------------------------------------------------------------||
+   // API --------------------------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
    // QUESTION should we even offer this method?
    public PersistenceUnitDef persistenceUnit()
    {
@@ -59,10 +73,19 @@ public class PersistenceDef implements Asset
       return new PersistenceUnitDef(persistence, pu);
    }
    
+   //-------------------------------------------------------------------------------------||
+   // Required Implementations - DescriptorDef -------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
+   @Override
    public Persistence descriptor()
    {
       return persistence;
    }
+
+   //-------------------------------------------------------------------------------------||
+   // Required Implementations - Asset ---------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
 
    @Override
    public InputStream openStream()
