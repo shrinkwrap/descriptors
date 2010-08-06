@@ -54,7 +54,7 @@ public final class DescriptorExporter
       {
          JAXBContext context = JAXBContext.newInstance(descriptor.getClass());
          Marshaller m = context.createMarshaller();
-         m.setProperty(Marshaller.JAXB_ENCODING, Charset.UTF8);
+         m.setProperty(Marshaller.JAXB_ENCODING, Charset.UTF8.name());
          m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
          m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, descriptor.getSchemaLocation());
          m.marshal(descriptor, output);
