@@ -36,9 +36,9 @@ import org.junit.Test;
 /**
  * @author Dan Allen
  */
-public class WebAppDefTest
+public class WebAppDefTestCase
 {
-   private final Logger log = Logger.getLogger(WebAppDefTest.class.getName());
+   private final Logger log = Logger.getLogger(WebAppDefTestCase.class.getName());
    
    @Test
    public void testValidDef() throws Exception
