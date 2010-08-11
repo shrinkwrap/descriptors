@@ -24,7 +24,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.PropertyException;
 
 /**
- * DescriptorExporter
+ * Helper class for exporting a given {@link Descriptor}. 
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
@@ -45,10 +45,16 @@ public final class DescriptorExporter
    //-------------------------------------------------------------------------------------||
 
    /**
-    * @param descriptor
-    * @param output
+    * Exports the given {@link Descriptor} to the given {@link OutputStream}.
+    * 
+    * @param descriptor What to export
+    * @param output Where to export it
+    * @throws DescriptorExportException if problems exporting descriptor
+    * @throws IllegalArgumentException if descriptor is null
+    * @throws IllegalArgumentException if output is null
     */
-   public static void to(final Descriptor descriptor, final OutputStream output) 
+   public static void to(final Descriptor descriptor, final OutputStream output)
+      throws DescriptorExportException, IllegalArgumentException
    {
       if(descriptor == null)
       {

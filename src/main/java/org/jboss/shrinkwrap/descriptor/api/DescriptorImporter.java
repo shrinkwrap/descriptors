@@ -23,7 +23,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
 /**
- * DescriptorImporter
+ * Helper class for importing a given {@link Descriptor}.
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
@@ -43,13 +43,26 @@ public final class DescriptorImporter
    // API --------------------------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||
 
-   public static <T extends Descriptor> T from(Class<T> descriptorClass, InputStream xml)
+   /**
+    * Imports the content of given {@link InputStream} as the given {@link Class}.
+    * 
+    * @param <T>
+    * @param descriptorClass How to import it
+    * @param input What to import
+    * @return The imported {@link Descriptor}
+    * @throws DescriptorImportException if given descriptorClass does not match loaded type
+    * @throws DescriptorImportException if problems loading content
+    * @throws IllegalArgumentException if descriptorClass is null
+    * @throws IllegalArgumentException if output is null
+    */
+   public static <T extends Descriptor> T from(Class<T> descriptorClass, InputStream input) 
+      throws DescriptorImportException, IllegalArgumentException
    {
       if(descriptorClass == null)
       {
          throw new IllegalArgumentException("DescriptorClass must be specified");
       }
-      if(xml == null)
+      if(input == null)
       {
          throw new IllegalArgumentException("InputStream must be specified");
       }
@@ -58,7 +71,7 @@ public final class DescriptorImporter
       {
          JAXBContext context = JAXBContext.newInstance(descriptorClass);
          Unmarshaller u = context.createUnmarshaller();
-         Object descriptor = u.unmarshal(xml);
+         Object descriptor = u.unmarshal(input);
          
          if(!descriptorClass.isInstance(descriptor))
          {
