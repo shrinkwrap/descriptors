@@ -16,19 +16,17 @@
  */
 package org.jboss.shrinkwrap.descriptor.spec.persistence;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
+import java.io.OutputStream;
 
-import org.jboss.shrinkwrap.api.asset.Asset;
 import org.jboss.shrinkwrap.descriptor.api.DescriptorDef;
+import org.jboss.shrinkwrap.descriptor.api.DescriptorExportException;
 import org.jboss.shrinkwrap.descriptor.api.DescriptorExporter;
 
 /**
  * @author Dan Allen
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  */
-public class PersistenceDef implements DescriptorDef<Persistence>, Asset
+public class PersistenceDef implements DescriptorDef<Persistence>
 {
    //-------------------------------------------------------------------------------------||
    // Instance Members -------------------------------------------------------------------||
@@ -75,21 +73,21 @@ public class PersistenceDef implements DescriptorDef<Persistence>, Asset
    // Required Implementations - DescriptorDef -------------------------------------------||
    //-------------------------------------------------------------------------------------||
 
+   /* (non-Javadoc)
+    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorDef#descriptor()
+    */
    @Override
    public Persistence descriptor()
    {
       return persistence;
    }
 
-   //-------------------------------------------------------------------------------------||
-   // Required Implementations - Asset ---------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
-
+   /* (non-Javadoc)
+    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorDef#exportTo(java.io.OutputStream)
+    */
    @Override
-   public InputStream openStream()
+   public void exportTo(OutputStream output) throws DescriptorExportException, IllegalArgumentException
    {
-      ByteArrayOutputStream out = new ByteArrayOutputStream();
-      DescriptorExporter.to(descriptor(), out);
-      return new ByteArrayInputStream(out.toByteArray());
+      DescriptorExporter.to(descriptor(), output);  
    }
 }

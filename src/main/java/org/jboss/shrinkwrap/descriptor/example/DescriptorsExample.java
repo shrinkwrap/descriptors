@@ -1,13 +1,8 @@
 package org.jboss.shrinkwrap.descriptor.example;
 
-import java.io.File;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.exporter.ZipExporter;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.spec.beans.Beans;
 import org.jboss.shrinkwrap.descriptor.spec.beans.BeansDef;
@@ -45,10 +40,13 @@ public class DescriptorsExample
       // simple empty descriptor
       //beans = Descriptors.create(BeansDef.class);
       
+      /*
       JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "test.jar")
             .addManifestResource(persistence, "persistence.xml")
             .addManifestResource(beans, "beans.xml");
       jar.as(ZipExporter.class).exportZip(new File("/tmp/test.jar"), true);
+
+       */
       
       JAXBContext context;
       Marshaller m;

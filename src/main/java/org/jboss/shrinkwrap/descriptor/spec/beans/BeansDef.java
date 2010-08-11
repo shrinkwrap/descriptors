@@ -16,9 +16,7 @@
  */
 package org.jboss.shrinkwrap.descriptor.spec.beans;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
+import java.io.OutputStream;
 import java.lang.annotation.Annotation;
 
 import javax.decorator.Decorator;
@@ -26,15 +24,15 @@ import javax.enterprise.inject.Alternative;
 import javax.enterprise.inject.Stereotype;
 import javax.interceptor.Interceptor;
 
-import org.jboss.shrinkwrap.api.asset.Asset;
 import org.jboss.shrinkwrap.descriptor.api.DescriptorDef;
+import org.jboss.shrinkwrap.descriptor.api.DescriptorExportException;
 import org.jboss.shrinkwrap.descriptor.api.DescriptorExporter;
 
 /**
  * @author Dan Allen
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  */
-public class BeansDef implements DescriptorDef<Beans>, Asset
+public class BeansDef implements DescriptorDef<Beans>
 {
    //-------------------------------------------------------------------------------------||
    // Instance Members -------------------------------------------------------------------||
@@ -146,21 +144,21 @@ public class BeansDef implements DescriptorDef<Beans>, Asset
    // Required Implementations - DescriptorDef -------------------------------------------||
    //-------------------------------------------------------------------------------------||
 
+   /* (non-Javadoc)
+    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorDef#descriptor()
+    */
    @Override
    public Beans descriptor()
    {
       return beans;
    }
 
-   //-------------------------------------------------------------------------------------||
-   // Required Implementations - Asset ---------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
-
+   /* (non-Javadoc)
+    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorDef#exportTo(java.io.OutputStream)
+    */
    @Override
-   public InputStream openStream()
+   public void exportTo(OutputStream output) throws DescriptorExportException, IllegalArgumentException
    {
-      ByteArrayOutputStream out = new ByteArrayOutputStream();
-      DescriptorExporter.to(descriptor(), out);
-      return new ByteArrayInputStream(out.toByteArray());
+      DescriptorExporter.to(descriptor(), output);  
    }
 }

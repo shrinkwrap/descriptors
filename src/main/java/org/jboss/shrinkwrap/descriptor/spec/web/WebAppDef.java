@@ -16,9 +16,7 @@
  */
 package org.jboss.shrinkwrap.descriptor.spec.web;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.EventListener;
 
@@ -26,8 +24,8 @@ import javax.faces.application.ProjectStage;
 import javax.faces.application.StateManager;
 import javax.faces.webapp.FacesServlet;
 
-import org.jboss.shrinkwrap.api.asset.Asset;
 import org.jboss.shrinkwrap.descriptor.api.DescriptorDef;
+import org.jboss.shrinkwrap.descriptor.api.DescriptorExportException;
 import org.jboss.shrinkwrap.descriptor.api.DescriptorExporter;
 import org.jboss.shrinkwrap.descriptor.spec.web.LoginConfig.AuthMethodType;
 
@@ -35,7 +33,7 @@ import org.jboss.shrinkwrap.descriptor.spec.web.LoginConfig.AuthMethodType;
  * @author Dan Allen
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  */
-public class WebAppDef implements DescriptorDef<WebApp>, Asset
+public class WebAppDef implements DescriptorDef<WebApp>
 {
    //-------------------------------------------------------------------------------------||
    // Instance Members -------------------------------------------------------------------||
@@ -300,21 +298,22 @@ public class WebAppDef implements DescriptorDef<WebApp>, Asset
    // Required Implementations - DescriptorDef -------------------------------------------||
    //-------------------------------------------------------------------------------------||
 
+   /* (non-Javadoc)
+    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorDef#descriptor()
+    */
+   @Override
    public WebApp descriptor()
    {
       return webApp;
    }
 
-   //-------------------------------------------------------------------------------------||
-   // Required Implementations - Asset ---------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
-
+   /* (non-Javadoc)
+    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorDef#exportTo(java.io.OutputStream)
+    */
    @Override
-   public InputStream openStream()
+   public void exportTo(OutputStream output) throws DescriptorExportException, IllegalArgumentException
    {
-      ByteArrayOutputStream out = new ByteArrayOutputStream();
-      DescriptorExporter.to(descriptor(), out);
-      return new ByteArrayInputStream(out.toByteArray());
+      DescriptorExporter.to(descriptor(), output);  
    }
    
    //-------------------------------------------------------------------------------------||

@@ -16,6 +16,8 @@
  */
 package org.jboss.shrinkwrap.descriptor.api;
 
+import java.io.OutputStream;
+
 /**
  * 
  *
@@ -30,4 +32,15 @@ public interface DescriptorDef<T extends Descriptor>
     * @return The backing Descriptor  
     */
    T descriptor();
+   
+   /**
+    * Export the backing {@link Descriptor} to given {@link OutputStream}.
+    * 
+    * Short cut for {@link DescriptorExporter#to(Descriptor, OutputStream)}
+    * 
+    * @param output Where to export
+    * @throws IllegalArgumentException if output is null
+    * @throws DescriptorExportException if problems exporting
+    */
+   void exportTo(OutputStream output) throws DescriptorExportException, IllegalArgumentException;
 }
