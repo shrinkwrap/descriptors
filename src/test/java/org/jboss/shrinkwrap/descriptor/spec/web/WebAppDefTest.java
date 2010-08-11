@@ -19,6 +19,7 @@ package org.jboss.shrinkwrap.descriptor.spec.web;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Logger;
 
 import javax.faces.application.StateManager;
 import javax.servlet.http.HttpServletResponse;
@@ -37,6 +38,8 @@ import org.junit.Test;
  */
 public class WebAppDefTest
 {
+   private final Logger log = Logger.getLogger(WebAppDefTest.class.getName());
+   
    @Test
    public void testValidDef() throws Exception
    {
@@ -79,7 +82,7 @@ public class WebAppDefTest
             .descriptor();
       
       ByteArrayOutputStream actual = marshal(webApp);
-      System.out.println(actual.toString());
+      log.fine(actual.toString());
 
       ByteArrayOutputStream expected = getResourceContents("/test-web.xml");
       
@@ -94,7 +97,7 @@ public class WebAppDefTest
             .descriptor();
       
       ByteArrayOutputStream actual = marshal(webApp);
-      System.out.println(actual.toString());
+      log.fine(actual.toString());
       
       ByteArrayOutputStream expected = getResourceContents("/test-filter-web.xml");
       
@@ -109,7 +112,7 @@ public class WebAppDefTest
             .descriptor();
       
       ByteArrayOutputStream actual = marshal(webApp);
-      System.out.println(actual.toString());
+      log.fine(actual.toString());
       
       ByteArrayOutputStream expected = getResourceContents("/test-servlet-web.xml");
       
@@ -125,7 +128,7 @@ public class WebAppDefTest
             .descriptor();
       
       ByteArrayOutputStream actual = marshal(webApp);
-      System.out.println(actual.toString());
+      log.fine(actual.toString());
       
       ByteArrayOutputStream expected = getResourceContents("/test-attributes-web.xml");
       
@@ -142,7 +145,7 @@ public class WebAppDefTest
             .descriptor();
 
       ByteArrayOutputStream actual = marshal(webApp);
-      System.out.println(actual.toString());
+      log.fine(actual.toString());
       
       ByteArrayOutputStream expected = getResourceContents("/test-session-config-web.xml");
       
