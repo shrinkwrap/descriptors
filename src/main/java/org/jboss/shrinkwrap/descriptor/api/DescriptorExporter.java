@@ -50,6 +50,14 @@ public final class DescriptorExporter
     */
    public static void to(final Descriptor descriptor, final OutputStream output) 
    {
+      if(descriptor == null)
+      {
+         throw new IllegalArgumentException("Descriptor must be specified");
+      }
+      if(output == null)
+      {
+         throw new IllegalArgumentException("OutputStream must be specified");
+      }
       try
       {
          JAXBContext context = JAXBContext.newInstance(descriptor.getClass());

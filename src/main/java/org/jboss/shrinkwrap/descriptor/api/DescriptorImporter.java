@@ -45,6 +45,15 @@ public final class DescriptorImporter
 
    public static <T extends Descriptor> T from(Class<T> descriptorClass, InputStream xml)
    {
+      if(descriptorClass == null)
+      {
+         throw new IllegalArgumentException("DescriptorClass must be specified");
+      }
+      if(xml == null)
+      {
+         throw new IllegalArgumentException("InputStream must be specified");
+      }
+
       try
       {
          JAXBContext context = JAXBContext.newInstance(descriptorClass);
