@@ -1,6 +1,6 @@
 /*
  * JBoss, Home of Professional Open Source
- * Copyright 2009, Red Hat Middleware LLC, and individual contributors
+ * Copyright 2010, Red Hat Middleware LLC, and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
  *
@@ -14,33 +14,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.api;
-
-import java.io.OutputStream;
+package org.jboss.shrinkwrap.descriptor.spi;
 
 /**
- * End-user domain-specific language (DSL) view of an XML Descriptor.
- *
+ * SPI for a backing object model representing some schema
+ * 
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public interface Descriptor
+public interface SchemaModel
 {
-   /**
-    * Exports the descriptor XML as a {@link String}
-    * @return
-    * @throws DescriptorExportException
-    */
-   String exportAsString() throws DescriptorExportException;
 
    /**
-    * Export the descriptor XML to a given {@link OutputStream}.
-    * The {@link OutputStream} will not be flushed or closed by this operation.
+    * Get the XSD version.
     * 
-    * @param output Where to export
-    * @throws IllegalArgumentException if output is null
-    * @throws DescriptorExportException if problems exporting
+    * @return String representation of the descriptor version
     */
-   void exportTo(OutputStream output) throws DescriptorExportException, IllegalArgumentException;
+   String getVersion();
+
+   /**
+    * Get the XSD NameSpace.
+    * 
+    * @return The Schema NameSpace
+    */
+   String getNamespace();
+
+   /**
+    * Get the XSD SchemaLocation for this descriptor.
+    * 
+    * @return XSD SchemaLocation
+    */
+   String getSchemaLocation();
 
 }

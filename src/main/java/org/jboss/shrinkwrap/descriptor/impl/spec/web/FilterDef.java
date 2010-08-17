@@ -1,6 +1,6 @@
 /*
  * JBoss, Home of Professional Open Source
- * Copyright 2009, Red Hat Middleware LLC, and individual contributors
+ * Copyright 2010, Red Hat Middleware LLC, and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
  *
@@ -14,32 +14,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.api;
-
+package org.jboss.shrinkwrap.descriptor.impl.spec.web;
 
 /**
- * Exception used by the {@link SchemaDescriptorImporter} on Import problems.
- *
- * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
- * @version $Revision: $
+ * @author Dan Allen
  */
-public class DescriptorImportException extends RuntimeException
+// TODO could be generic since servlet can use it too
+public class FilterDef extends WebAppDescriptorImpl
 {
-   private static final long serialVersionUID = 1L;
-
-   /**
-    * 
-    */
-   public DescriptorImportException(String message, Throwable cause)
+   protected Filter filter;
+   
+   public FilterDef(WebAppModel webApp, Filter filter)
    {
-      super(message, cause);
+      super(webApp);
+      this.filter = filter;
    }
    
-   /**
-    * 
-    */
-   public DescriptorImportException(final String message)
+   public FilterDef initParam(String name, Object value)
    {
-      super(message);
+      filter.getInitParams().add(new Param(name, value.toString()));
+      return this;
    }
 }

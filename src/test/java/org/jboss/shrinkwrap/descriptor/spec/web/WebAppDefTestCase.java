@@ -23,13 +23,12 @@ import java.util.logging.Logger;
 
 import javax.faces.application.StateManager;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
 
-import org.jboss.shrinkwrap.descriptor.spec.web.LoginConfig.AuthMethodType;
-import org.jboss.shrinkwrap.descriptor.spec.web.SessionConfig.TrackingModeType;
-import org.jboss.shrinkwrap.descriptor.spec.web.UserDataConstraint.TransportGuaranteeType;
-import org.jboss.shrinkwrap.descriptor.spec.web.WebResourceCollection.HttpMethodType;
+import org.jboss.shrinkwrap.descriptor.impl.spec.web.WebAppDescriptorImpl;
+import org.jboss.shrinkwrap.descriptor.impl.spec.web.LoginConfig.AuthMethodType;
+import org.jboss.shrinkwrap.descriptor.impl.spec.web.SessionConfig.TrackingModeType;
+import org.jboss.shrinkwrap.descriptor.impl.spec.web.UserDataConstraint.TransportGuaranteeType;
+import org.jboss.shrinkwrap.descriptor.impl.spec.web.WebResourceCollection.HttpMethodType;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -39,11 +38,11 @@ import org.junit.Test;
 public class WebAppDefTestCase
 {
    private final Logger log = Logger.getLogger(WebAppDefTestCase.class.getName());
-   
+
    @Test
    public void testValidDef() throws Exception
    {
-      WebApp webApp = new WebAppDef()
+      final String webApp = new WebAppDescriptorImpl()
             .moduleName("test")
             .description("A description of my webapp")
             .displayName("Sample")
@@ -52,10 +51,12 @@ public class WebAppDefTestCase
             .facesDevelopmentMode()
             .facesStateSavingMethod(StateManager.STATE_SAVING_METHOD_CLIENT)
             .listener("org.jboss.seam.servlet.SeamListener")
-            .filter("UrlRewriteFilter", "org.tuckey.web.filters.urlrewrite.UrlRewriteFilter", new String[] {"/*"})
-                  .initParam("confReloadCheckInterval", 60)
+            .filter("UrlRewriteFilter", "org.tuckey.web.filters.urlrewrite.UrlRewriteFilter", new String[]
+            {"/*"})
+            .initParam("confReloadCheckInterval", 60)
             .facesServlet()
-            .servlet("Download Servlet", "com.acme.webapp.DownloadServlet", new String[] { "/file/*" })
+            .servlet("Download Servlet", "com.acme.webapp.DownloadServlet", new String[]
+            {"/file/*"})
             .welcomeFile("/index.jsf")
             .sessionTimeout(60)
             .sessionTrackingModes(TrackingModeType.URL)
@@ -64,121 +65,97 @@ public class WebAppDefTestCase
             .loginConfig(AuthMethodType.BASIC, "Cool App")
             .formLoginConfig("/login.jsp", "/invalidLogin.jsp")
             .securityConstraint()
-                  .webResourceCollection("All Access")
-                        .urlPatterns("/public/*")
-                        .httpMethods(HttpMethodType.DELETE, HttpMethodType.PUT, HttpMethodType.HEAD, HttpMethodType.OPTIONS,
-                                 HttpMethodType.TRACE, HttpMethodType.GET, HttpMethodType.POST)
-                  .userDataConstraint(TransportGuaranteeType.NONE)
-            .securityConstraint("Restricted GET To Employees")
-                  .webResourceCollection("Restricted Access - Get Only", "/restricted/employee/*", HttpMethodType.GET)
-                  .authConstraint("Employee")
-                  .userDataConstraint(TransportGuaranteeType.NONE)
+            .webResourceCollection("All Access")
+            .urlPatterns("/public/*")
+            .httpMethods(HttpMethodType.DELETE, HttpMethodType.PUT, HttpMethodType.HEAD, HttpMethodType.OPTIONS,
+                  HttpMethodType.TRACE, HttpMethodType.GET, HttpMethodType.POST)
+            .userDataConstraint(TransportGuaranteeType.NONE).securityConstraint("Restricted GET To Employees")
+            .webResourceCollection("Restricted Access - Get Only", "/restricted/employee/*", HttpMethodType.GET)
+            .authConstraint("Employee").userDataConstraint(TransportGuaranteeType.NONE)
             .securityConstraint("Restrict access to Facelets templates (XHTML files)")
-                  .webResourceCollection("Facelets templates").urlPatterns("*.xhtml").httpMethods(true, HttpMethodType.HEAD)
-                  .authConstraint()
-                  .userDataConstraint(TransportGuaranteeType.NONE)
-            .securityRole("Employee", "Employees of the company")
-            .absoluteOrdering("one", "two", "three")
-            .descriptor();
-      
-      ByteArrayOutputStream actual = marshal(webApp);
-      log.fine(actual.toString());
+            .webResourceCollection("Facelets templates").urlPatterns("*.xhtml").httpMethods(true, HttpMethodType.HEAD)
+            .authConstraint().userDataConstraint(TransportGuaranteeType.NONE)
+            .securityRole("Employee", "Employees of the company").absoluteOrdering("one", "two", "three")
+            .exportAsString();
+
+      log.fine(webApp);
 
       ByteArrayOutputStream expected = getResourceContents("/test-web.xml");
-      
-      Assert.assertEquals(expected.toString(), actual.toString());
+
+      Assert.assertEquals(expected.toString(), webApp);
    }
-   
+
    @Test
    public void testDefaultFilterName() throws Exception
    {
-      WebApp webApp = new WebAppDef()
-            .filter("org.tuckey.web.filters.urlrewrite.UrlRewriteFilter", "/*")
-            .descriptor();
-      
-      ByteArrayOutputStream actual = marshal(webApp);
-      log.fine(actual.toString());
-      
+      String webApp = new WebAppDescriptorImpl().filter("org.tuckey.web.filters.urlrewrite.UrlRewriteFilter", "/*")
+            .exportAsString();
+
+      log.fine(webApp);
+
       ByteArrayOutputStream expected = getResourceContents("/test-filter-web.xml");
-      
-      Assert.assertEquals(expected.toString(), actual.toString());
+
+      Assert.assertEquals(expected.toString(), webApp);
    }
-   
+
    @Test
    public void testDefaultServletName() throws Exception
    {
-      WebApp webApp = new WebAppDef()
-            .servlet("javax.faces.webapp.FacesServlet", "*.jsf")
-            .descriptor();
-      
-      ByteArrayOutputStream actual = marshal(webApp);
-      log.fine(actual.toString());
-      
+      final String webApp = new WebAppDescriptorImpl().servlet("javax.faces.webapp.FacesServlet", "*.jsf")
+            .exportAsString();
+
+      log.fine(webApp);
+
       ByteArrayOutputStream expected = getResourceContents("/test-servlet-web.xml");
-      
-      Assert.assertEquals(expected.toString(), actual.toString());
+
+      Assert.assertEquals(expected.toString(), webApp);
    }
-   
+
    @Test
    public void testRootAttributes() throws Exception
    {
-      WebApp webApp = new WebAppDef()
-            .version("2.5")
-            .metadataComplete()
-            .descriptor();
-      
-      ByteArrayOutputStream actual = marshal(webApp);
-      log.fine(actual.toString());
-      
+      final String webApp = new WebAppDescriptorImpl().version("2.5").metadataComplete().exportAsString();
+
+      log.fine(webApp);
+
       ByteArrayOutputStream expected = getResourceContents("/test-attributes-web.xml");
-      
-      Assert.assertEquals(expected.toString(), actual.toString());
+
+      Assert.assertEquals(expected.toString(), webApp);
    }
-   
+
    @Test
    public void testSessionCookieConfig() throws Exception
    {
-      WebApp webApp = new WebAppDef()
-            .sessionTimeout(3600)
-            .sessionCookieConfig().name("SESSIONID").domain("example.com").path("/").maxAge(3600)
-            .sessionTrackingModes(TrackingModeType.COOKIE)
-            .descriptor();
+      final String webApp = new WebAppDescriptorImpl().sessionTimeout(3600).sessionCookieConfig().name("SESSIONID")
+            .domain("example.com").path("/").maxAge(3600).sessionTrackingModes(TrackingModeType.COOKIE)
+            .exportAsString();
 
-      ByteArrayOutputStream actual = marshal(webApp);
-      log.fine(actual.toString());
-      
+      log.fine(webApp);
+
       ByteArrayOutputStream expected = getResourceContents("/test-session-config-web.xml");
-      
-      Assert.assertEquals(expected.toString(), actual.toString());
+
+      Assert.assertEquals(expected.toString(), webApp);
    }
-   
-   private ByteArrayOutputStream marshal(WebApp webApp) throws Exception
-   {
-      JAXBContext context = JAXBContext.newInstance(WebApp.class);
-      Marshaller m = context.createMarshaller();
-      m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
-      m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-      m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, webApp.getSchemaLocation());
-      
-      ByteArrayOutputStream bos = new ByteArrayOutputStream();
-      m.marshal(webApp, bos);
-      return bos;
-   }
-   
+
    private ByteArrayOutputStream getResourceContents(String resource) throws Exception
    {
-      InputStream in = getClass().getResourceAsStream(resource);
+      assert resource != null && resource.length() > 0 : "Resource must be specified";
+      final InputStream in = getClass().getResourceAsStream(resource);
       
-      int bufferSize = 4096;
+      
+      int bufferSize = 1024*8;
       final ByteArrayOutputStream out = new ByteArrayOutputStream(bufferSize * 2);
       final byte[] buffer = new byte[bufferSize];
       int read = 0;
-      try {
-         while (((read = in.read(buffer)) != -1)) {
+      try
+      {
+         while (((read = in.read(buffer)) != -1))
+         {
             out.write(buffer, 0, read);
          }
       }
-      finally {
+      finally
+      {
          in.close();
       }
 

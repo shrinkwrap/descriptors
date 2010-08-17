@@ -18,7 +18,7 @@ package org.jboss.shrinkwrap.descriptor.api;
 
 import java.io.ByteArrayInputStream;
 
-import org.jboss.shrinkwrap.descriptor.spec.web.WebAppDef;
+import org.jboss.shrinkwrap.descriptor.api.spec.web.WebAppDescriptor;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -49,18 +49,19 @@ public class DescriptorsTestCase
    @Test
    public void shouldBeAbleToContructDescriptor() throws Exception
    {
-      WebAppDef web = Descriptors.create(WebAppDef.class);
+      WebAppDescriptor web = Descriptors.create(WebAppDescriptor.class);
       Assert.assertNotNull(web);
    }
-   
+
    @Test
    public void shouldBeAbleToConstructDescriptorFromString() throws Exception
    {
-      WebAppDef web = Descriptors.create(WebAppDef.class, new ByteArrayInputStream(source.getBytes()));
-      
+      final WebAppDescriptor web = Descriptors.importAs(WebAppDescriptor.class).from(
+            new ByteArrayInputStream(source.getBytes()));
+
       Assert.assertNotNull(web);
-      
-      Assert.assertEquals(1, web.descriptor().getFilters().size());
-      Assert.assertEquals(1, web.descriptor().getFilterMappings().size());
+
+      Assert.assertEquals(1, web.getFilters().size());
+      Assert.assertEquals(1, web.getFilterMappings().size());
    }
 }

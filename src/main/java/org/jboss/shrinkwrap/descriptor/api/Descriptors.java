@@ -16,73 +16,78 @@
  */
 package org.jboss.shrinkwrap.descriptor.api;
 
-import java.io.InputStream;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-
 /**
  * @author Dan Allen
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
+ * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public class Descriptors
+public final class Descriptors
 {
-   public static <T extends DescriptorDef<?>> T create(Class<T> type)
+
+   /**
+    * Internal Constructor; not to be called
+    */
+   private Descriptors()
    {
-      return (T)createInstance((Class<DescriptorDef<?>>)type);
-   }
-   
-   public static <T extends Descriptor, X extends DescriptorDef<T>> X create(Class<X> defType, InputStream xmlStream)
-   {
-      Class<T> descriptorClass = (Class<T>)getDescriptorType(defType);
-      return create(defType, descriptorClass, xmlStream);
+      throw new UnsupportedOperationException("No instances permitted");
    }
 
-   static <T extends Descriptor, X extends DescriptorDef<T>> X create(Class<X> defType, Class<T> type, InputStream xmlStream)
+   /**
+    * Creates a new Descriptor instance
+    * @param <T>
+    * @param type
+    * @return
+    */
+   public static <T extends Descriptor> T create(final Class<T> type)
    {
-      T descriptor = DescriptorImporter.from(type, xmlStream);
-      return defType.cast(createInstance((Class<DescriptorDef<T>>)defType, descriptor));
-   }
-   
-   static <T extends Descriptor> DescriptorDef<T> createInstance(Class<DescriptorDef<T>> type, T descriptor)
-   {
-      try
-      {
-         return type.getConstructor(descriptor.getClass()).newInstance(descriptor);
-      }
-      catch (Exception e) 
-      {
-         throw new DescriptorException(
-               "Could not create DescriptorDef " + type.getName() + 
-               " using descriptor " + descriptor.getClass().getName());
-      }
-   }
-   
-   static DescriptorDef<?> createInstance(Class<DescriptorDef<?>> type)
-   {
-      try
-      {
-         return type.getConstructor().newInstance();
-      }
-      catch (Exception e) 
-      {
-         throw new DescriptorException(
-               "Could not create DescriptorDef " + type.getName());
-      }
+      return DescriptorInstantiator.createFromUserView(type);
    }
 
-   static <T extends Descriptor> Class<? extends Descriptor> getDescriptorType(Class<? extends DescriptorDef<T>> descriptorDefType)
+   public static <T extends Descriptor> DescriptorImporter<T> importAs(final Class<T> type)
    {
-      for(Type type : descriptorDefType.getGenericInterfaces())
-      {
-         if (type instanceof ParameterizedType)
-         {
-            ParameterizedType paramType = (ParameterizedType) type;
-            for(Type actualType : paramType.getActualTypeArguments())
-            {
-               return (Class<T>)actualType;
-            }
-         }
-      }
-      return null;
+      return DescriptorInstantiator.createImporterFromUserView(type);
+
    }
+
+   //   public static <T extends Descriptor, X extends Descriptor<T>> X create(Class<X> defType, InputStream xmlStream)
+   //   {
+   //      Class<T> descriptorClass = (Class<T>)getDescriptorType(defType);
+   //      return create(defType, descriptorClass, xmlStream);
+   //   }
+   //
+   //   static <T extends Descriptor, X extends Descriptor<T>> X create(Class<X> defType, Class<T> type, InputStream xmlStream)
+   //   {
+   //      T descriptor = DescriptorImporter.from(type, xmlStream);
+   //      return defType.cast(createInstance((Class<Descriptor<T>>)defType, descriptor));
+   //   }
+   //   
+   //   static <T extends Descriptor> Descriptor<T> createInstance(Class<Descriptor<T>> type, T descriptor)
+   //   {
+   //      try
+   //      {
+   //         return type.getConstructor(descriptor.getClass()).newInstance(descriptor);
+   //      }
+   //      catch (Exception e) 
+   //      {
+   //         throw new DescriptorException(
+   //               "Could not create DescriptorDef " + type.getName() + 
+   //               " using descriptor " + descriptor.getClass().getName());
+   //      }
+   //   }
+
+   //   private static <T extends Descriptor> Class<? extends Descriptor> getDescriptorType(Class<? extends Descriptor<T>> descriptorDefType)
+   //   {
+   //      for(Type type : descriptorDefType.getGenericInterfaces())
+   //      {
+   //         if (type instanceof ParameterizedType)
+   //         {
+   //            ParameterizedType paramType = (ParameterizedType) type;
+   //            for(Type actualType : paramType.getActualTypeArguments())
+   //            {
+   //               return (Class<T>)actualType;
+   //            }
+   //         }
+   //      }
+   //      return null;
+   //   }
 }

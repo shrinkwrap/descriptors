@@ -14,33 +14,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.api;
+package org.jboss.shrinkwrap.descriptor.impl.base;
 
-import java.io.OutputStream;
+import java.nio.charset.UnsupportedCharsetException;
 
 /**
- * End-user domain-specific language (DSL) view of an XML Descriptor.
+ * Charset
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
- * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
+ * @version $Revision: $
  */
-public interface Descriptor
+public class Charset
 {
-   /**
-    * Exports the descriptor XML as a {@link String}
-    * @return
-    * @throws DescriptorExportException
-    */
-   String exportAsString() throws DescriptorExportException;
+   public static final java.nio.charset.Charset UTF8;
+   
+   private static final String NAME_UTF_8 = "UTF-8";
 
-   /**
-    * Export the descriptor XML to a given {@link OutputStream}.
-    * The {@link OutputStream} will not be flushed or closed by this operation.
-    * 
-    * @param output Where to export
-    * @throws IllegalArgumentException if output is null
-    * @throws DescriptorExportException if problems exporting
-    */
-   void exportTo(OutputStream output) throws DescriptorExportException, IllegalArgumentException;
-
+   static
+   {
+      try
+      {
+         UTF8 = java.nio.charset.Charset.forName(NAME_UTF_8);
+      }
+      catch (UnsupportedCharsetException e)
+      {
+         throw new RuntimeException(e);
+      }
+   }
 }

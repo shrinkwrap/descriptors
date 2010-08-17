@@ -22,23 +22,15 @@ package org.jboss.shrinkwrap.descriptor.api;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-public class DescriptorExportException extends DescriptorException
+public class DescriptorExportException extends RuntimeException
 {
    private static final long serialVersionUID = 1L;
 
    /**
     * 
     */
-   public DescriptorExportException(String message, Throwable cause)
+   public DescriptorExportException(final String message, final Throwable cause)
    {
       super(message, cause);
-   }
-   
-   /**
-    * 
-    */
-   public DescriptorExportException(String message)
-   {
-      super(message);
    }
 }

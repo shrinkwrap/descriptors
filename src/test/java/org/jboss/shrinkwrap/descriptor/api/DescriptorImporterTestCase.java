@@ -17,21 +17,22 @@
 package org.jboss.shrinkwrap.descriptor.api;
 
 import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 
-import org.jboss.shrinkwrap.descriptor.spec.web.WebApp;
+import org.jboss.shrinkwrap.descriptor.api.spec.web.WebAppDescriptor;
 import org.junit.Assert;
 import org.junit.Test;
 
 
 /**
- * Verify behavior of {@link DescriptorImporter}
+ * Verify behavior of {@link SchemaDescriptorImporter}
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
 public class DescriptorImporterTestCase
 {
-   private final String source = "" +
+   private static final String SOURCE = "" +
                      "<web-app " +
                      "      xmlns=\"http://java.sun.com/xml/ns/javaee\" " +
                      "      xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" " +
@@ -50,7 +51,8 @@ public class DescriptorImporterTestCase
    @Test
    public void shouldBeAbleToImportFromStream() throws Exception
    {
-      WebApp descriptor = DescriptorImporter.from(WebApp.class, new ByteArrayInputStream(source.getBytes()));
+      
+      WebAppDescriptor descriptor = Descriptors.importAs(WebAppDescriptor.class).from(new ByteArrayInputStream(SOURCE.getBytes()));
       
       Assert.assertNotNull(
             "Verify the descriptor was created", 
@@ -68,12 +70,12 @@ public class DescriptorImporterTestCase
    @Test(expected = IllegalArgumentException.class)
    public void shouldThrowExceptionOnMissingDescriptor() throws Exception
    {
-      DescriptorImporter.from(null, new ByteArrayInputStream(source.getBytes()));
+      Descriptors.importAs(null);
    }
 
    @Test(expected = IllegalArgumentException.class)
    public void shouldThrowExceptionOnMissingInputStream() throws Exception
    {
-      DescriptorImporter.from(WebApp.class, null);
+      Descriptors.importAs(WebAppDescriptor.class).from((InputStream) null);
    }
 }

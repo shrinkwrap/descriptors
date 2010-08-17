@@ -1,6 +1,6 @@
 /*
  * JBoss, Home of Professional Open Source
- * Copyright 2009, Red Hat Middleware LLC, and individual contributors
+ * Copyright 2010, Red Hat Middleware LLC, and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
  *
@@ -16,30 +16,21 @@
  */
 package org.jboss.shrinkwrap.descriptor.api;
 
+import java.security.PrivilegedAction;
 
 /**
- * Exception used by the {@link SchemaDescriptorImporter} on Import problems.
- *
- * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
- * @version $Revision: $
+ * {@link PrivilegedAction} implementation to get at the {@link Thread} 
+ * Context {@link ClassLoader}
+ * 
+ * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public class DescriptorImportException extends RuntimeException
-{
-   private static final long serialVersionUID = 1L;
+enum GetTcclAction implements PrivilegedAction<ClassLoader> {
+   INSTANCE;
 
-   /**
-    * 
-    */
-   public DescriptorImportException(String message, Throwable cause)
+   @Override
+   public ClassLoader run()
    {
-      super(message, cause);
+      return Thread.currentThread().getContextClassLoader();
    }
-   
-   /**
-    * 
-    */
-   public DescriptorImportException(final String message)
-   {
-      super(message);
-   }
+
 }

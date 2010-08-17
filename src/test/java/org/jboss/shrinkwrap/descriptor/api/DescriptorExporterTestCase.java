@@ -18,8 +18,7 @@ package org.jboss.shrinkwrap.descriptor.api;
 
 import java.io.ByteArrayOutputStream;
 
-import org.jboss.shrinkwrap.descriptor.spec.web.LocalizedText;
-import org.jboss.shrinkwrap.descriptor.spec.web.WebApp;
+import org.jboss.shrinkwrap.descriptor.api.spec.web.WebAppDescriptor;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -35,12 +34,11 @@ public class DescriptorExporterTestCase
    @Test
    public void shouldBeAbleToExportToStream() throws Exception
    {
-      String name = DescriptorExporterTestCase.class.getName();
-      WebApp descriptor = new WebApp();
-      descriptor.getDisplayNames().add(new LocalizedText(name));
+      final String name = DescriptorExporterTestCase.class.getName();
+      final WebAppDescriptor descriptor = Descriptors.create(WebAppDescriptor.class).displayName(name);
       
-      ByteArrayOutputStream output = new ByteArrayOutputStream();
-      DescriptorExporter.to(descriptor, output);
+      final ByteArrayOutputStream output = new ByteArrayOutputStream();
+      descriptor.exportTo(output);
       
       Assert.assertTrue(
             "Verify content has been exported", 
@@ -50,16 +48,11 @@ public class DescriptorExporterTestCase
             "Verify name is a part of content",
             output.toString().contains(name));
    }
-   
-   @Test(expected = IllegalArgumentException.class)
-   public void shouldThrowExceptionOnMissingDescriptor() throws Exception
-   {
-      DescriptorExporter.to(null, new ByteArrayOutputStream());
-   }
 
    @Test(expected = IllegalArgumentException.class)
    public void shouldThrowExceptionOnMissingOutputStream() throws Exception
    {
-      DescriptorExporter.to(new WebApp(), null);
+      final WebAppDescriptor descriptor = Descriptors.create(WebAppDescriptor.class);
+      descriptor.exportTo(null);
    }
 }

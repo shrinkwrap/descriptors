@@ -1,6 +1,6 @@
 /*
  * JBoss, Home of Professional Open Source
- * Copyright 2009, Red Hat Middleware LLC, and individual contributors
+ * Copyright 2010, Red Hat Middleware LLC, and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
  *
@@ -16,74 +16,47 @@
  */
 package org.jboss.shrinkwrap.descriptor.api;
 
+import java.io.File;
 import java.io.InputStream;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-
 /**
- * Helper class for importing a given {@link Descriptor}.
- *
- * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
- * @version $Revision: $
+ * A type capable of importing a {@link Descriptor} from
+ * some existing source like a stream of bytes or {@link File}
+ * 
+ * @param <T> The type of {@link Descriptor} supported by this importer
+ * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public final class DescriptorImporter
+public interface DescriptorImporter<T extends Descriptor>
 {
    //-------------------------------------------------------------------------------------||
-   // Constructor ------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
-
-   /*
-    * Private Constructor, not constructible.
-    */
-   private DescriptorImporter() {}
-   
-   //-------------------------------------------------------------------------------------||
-   // API --------------------------------------------------------------------------------||
+   // Contracts --------------------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||
 
    /**
-    * Imports the content of given {@link InputStream} as the given {@link Class}.
-    * 
-    * @param <T>
-    * @param descriptorClass How to import it
-    * @param input What to import
-    * @return The imported {@link Descriptor}
-    * @throws DescriptorImportException if given descriptorClass does not match loaded type
-    * @throws DescriptorImportException if problems loading content
-    * @throws IllegalArgumentException if descriptorClass is null
-    * @throws IllegalArgumentException if output is null
+    * Creates a new {@link Descriptor} from the given input file 
+    * @param file
+    * @return
+    * @throws IllegalArgumentException If the file was not specified, does not
+    *   exist, or is a directory
+    * @throws DescriptorImportException If there was some error on import
     */
-   public static <T extends Descriptor> T from(Class<T> descriptorClass, InputStream input) 
-      throws DescriptorImportException, IllegalArgumentException
-   {
-      if(descriptorClass == null)
-      {
-         throw new IllegalArgumentException("DescriptorClass must be specified");
-      }
-      if(input == null)
-      {
-         throw new IllegalArgumentException("InputStream must be specified");
-      }
+   T from(File file) throws IllegalArgumentException, DescriptorImportException;
 
-      try
-      {
-         JAXBContext context = JAXBContext.newInstance(descriptorClass);
-         Unmarshaller u = context.createUnmarshaller();
-         Object descriptor = u.unmarshal(input);
-         
-         if(!descriptorClass.isInstance(descriptor))
-         {
-            throw new DescriptorImportException(
-                  "Unmarshalled descriptor not of expected type, " +
-                  "expected[" + descriptorClass.getName() + "] but found[" + descriptor.getClass().getName() + "]");
-         }
-         return descriptorClass.cast(descriptor);
-      }
-      catch (JAXBException e)
-      {
-         throw new DescriptorImportException("Could not import descriptor " + descriptorClass, e);
-      }
-   }
+   /**
+    * Creates a new {@link Descriptor} from the given input
+    * @param in
+    * @return
+    * @throws IllegalArgumentException If the stream was not specified
+    * @throws DescriptorImportException If there was some error on import
+    */
+   T from(InputStream in) throws IllegalArgumentException, DescriptorImportException;
+
+   /**
+    * Creates a new {@link Descriptor} from the given input {@link String}
+    * @param string
+    * @return
+    * @throws IllegalArgumentException If the String was not specified
+    * @throws DescriptorImportException
+    */
+   T from(String string) throws IllegalArgumentException, DescriptorImportException;
 }

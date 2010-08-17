@@ -1,6 +1,6 @@
 /*
  * JBoss, Home of Professional Open Source
- * Copyright 2009, Red Hat Middleware LLC, and individual contributors
+ * Copyright 2010, Red Hat Middleware LLC, and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
  *
@@ -14,32 +14,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.api;
+package org.jboss.shrinkwrap.descriptor.impl.spec.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
 /**
- * Exception used by the {@link SchemaDescriptorImporter} on Import problems.
- *
- * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
- * @version $Revision: $
+ * @author Dan Allen
  */
-public class DescriptorImportException extends RuntimeException
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "describable")
+public class Describable
 {
-   private static final long serialVersionUID = 1L;
-
-   /**
-    * 
-    */
-   public DescriptorImportException(String message, Throwable cause)
-   {
-      super(message, cause);
-   }
+   @XmlElement(name = "description")
+   protected List<LocalizedText> descriptions;
    
-   /**
-    * 
-    */
-   public DescriptorImportException(final String message)
+   public List<LocalizedText> getDescriptions()
    {
-      super(message);
+      if (descriptions == null)
+      {
+         descriptions = new ArrayList<LocalizedText>();
+      }
+      return descriptions;
    }
 }
