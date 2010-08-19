@@ -44,6 +44,7 @@
   <!-- Aggregate Modules -->
   <modules>
     <module>api</module>
+    <module>build</module>
   </modules>
   
   <repositories>
