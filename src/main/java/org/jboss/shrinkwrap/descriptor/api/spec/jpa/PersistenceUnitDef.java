@@ -210,6 +210,10 @@ public class PersistenceUnitDef extends PersistenceDescriptorImpl
          {
             value = "drop-and-create-tables";
          }
+         else if (SchemaGenerationModeType.UPDATE.equals(schemaGenerationMode))
+         {
+            throw new UnsupportedOperationException(SchemaGenerationModeType.UPDATE + " not supported by provider " + ProviderType.ECLIPSE_LINK);
+         }
          else if (SchemaGenerationModeType.NONE.equals(schemaGenerationMode))
          {
             value = "none";
