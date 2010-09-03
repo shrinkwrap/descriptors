@@ -17,6 +17,7 @@
 package org.jboss.shrinkwrap.descriptor.spec.beans;
 
 import static org.jboss.shrinkwrap.descriptor.spec.AssertXPath.assertXPath;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -62,15 +63,13 @@ public class BeansDescriptorTestCase
    @Test(expected = IllegalArgumentException.class)
    public void shouldNotBeAbleToAddNonAlternativeStereoType()
    {
-      Descriptors.create(BeansDescriptor.class)
-         .alternativeStereotype(Override.class);
+      create().alternativeStereotype(Override.class);
    }
    
    @Test
    public void shouldBeAbleToAddAlternativeStereoType() throws Exception
    {
-      String desc = Descriptors.create(BeansDescriptor.class)
-                     .alternativeStereotype(TestAlternativeStereoType.class)
+      String desc = create().alternativeStereotype(TestAlternativeStereoType.class)
                      .exportAsString();
       
       assertXPath(desc, "/beans/alternatives/stereotype", TestAlternativeStereoType.class.getName());
@@ -80,8 +79,7 @@ public class BeansDescriptorTestCase
    public void shouldBeAbleToAddAlternativeStereoTypes() throws Exception
    {
       @SuppressWarnings("unchecked")
-      String desc = Descriptors.create(BeansDescriptor.class)
-                     .alternativeStereotypes(TestAlternativeStereoType.class, TestAlternativeStereoType.class)
+      String desc = create().alternativeStereotypes(TestAlternativeStereoType.class, TestAlternativeStereoType.class)
                      .exportAsString();
       
       assertXPath(desc, "/beans/alternatives/stereotype", TestAlternativeStereoType.class.getName(), TestAlternativeStereoType.class.getName());
@@ -94,15 +92,13 @@ public class BeansDescriptorTestCase
    @Test(expected = IllegalArgumentException.class)
    public void shouldNotBeAbleToAddNonAlternativeClass()
    {
-      Descriptors.create(BeansDescriptor.class)
-         .alternativeClass(String.class);
+      create().alternativeClass(String.class);
    }
 
    @Test
    public void shouldBeAbleToAddAlternativeClass() throws Exception
    {
-      String desc = Descriptors.create(BeansDescriptor.class)
-                     .alternativeClass(TestAlternativeClass.class)
+      String desc = create().alternativeClass(TestAlternativeClass.class)
                      .exportAsString();
       
       assertXPath(desc, "/beans/alternatives/class", TestAlternativeClass.class.getName());
@@ -111,8 +107,7 @@ public class BeansDescriptorTestCase
    @Test
    public void shouldBeAbleToAddAlternativeClasses() throws Exception
    {
-      String desc = Descriptors.create(BeansDescriptor.class)
-                     .alternativeClasses(TestAlternativeClass.class, TestAlternativeClass.class)
+      String desc = create().alternativeClasses(TestAlternativeClass.class, TestAlternativeClass.class)
                      .exportAsString();
       
       assertXPath(desc, "/beans/alternatives/class", TestAlternativeClass.class.getName(), TestAlternativeClass.class.getName());
@@ -125,15 +120,13 @@ public class BeansDescriptorTestCase
    @Test(expected = IllegalArgumentException.class)
    public void shouldNotBeAbleToAddNonInterceptor() throws Exception
    {
-      Descriptors.create(BeansDescriptor.class)
-         .interceptor(String.class);
+      create().interceptor(String.class);
    }
 
    @Test
    public void shouldBeAbleToAddInterceptor() throws Exception
    {
-      String desc = Descriptors.create(BeansDescriptor.class)
-                     .interceptor(TestInterceptor.class)
+      String desc = create().interceptor(TestInterceptor.class)
                      .exportAsString();
       
       assertXPath(desc, "/beans/interceptors/class", TestInterceptor.class.getName());
@@ -142,29 +135,26 @@ public class BeansDescriptorTestCase
    @Test
    public void shouldBeAbleToAddInterceptors() throws Exception
    {
-      String desc = Descriptors.create(BeansDescriptor.class)
-                     .interceptors(TestInterceptor.class, TestInterceptor.class)
+      String desc = create().interceptors(TestInterceptor.class, TestInterceptor.class)
                      .exportAsString();
       
       assertXPath(desc, "/beans/interceptors/class", TestInterceptor.class.getName(), TestInterceptor.class.getName());
    }
 
    //-------------------------------------------------------------------------------------||
-   // Decorators ------------.------------------------------------------------------------||
+   // Decorators -------------------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||
 
    @Test(expected = IllegalArgumentException.class)
    public void shouldNotBeAbleToAddNonDecorator() throws Exception
    {
-      Descriptors.create(BeansDescriptor.class)
-         .decorator(String.class);
+      create().decorator(String.class);
    }
 
    @Test
    public void shouldBeAbleToAddDescorator() throws Exception
    {
-      String desc = Descriptors.create(BeansDescriptor.class)
-                     .decorator(TestDecorator.class)
+      String desc = create().decorator(TestDecorator.class)
                      .exportAsString();
       
       assertXPath(desc, "/beans/decorators/class", TestDecorator.class.getName());
@@ -173,10 +163,18 @@ public class BeansDescriptorTestCase
    @Test
    public void shouldBeAbleToAddDescorators() throws Exception
    {
-      String desc = Descriptors.create(BeansDescriptor.class)
-                     .decorators(TestDecorator.class, TestDecorator.class)
+      String desc = create().decorators(TestDecorator.class, TestDecorator.class)
                      .exportAsString();
       
       assertXPath(desc, "/beans/decorators/class", TestDecorator.class.getName(), TestDecorator.class.getName());
+   }
+
+   //-------------------------------------------------------------------------------------||
+   // Internal Helper --------------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
+   private BeansDescriptor create()
+   {
+      return Descriptors.create(BeansDescriptor.class);
    }
 }
