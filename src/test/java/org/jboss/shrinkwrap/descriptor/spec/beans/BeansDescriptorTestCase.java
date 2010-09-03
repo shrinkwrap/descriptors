@@ -18,11 +18,6 @@ package org.jboss.shrinkwrap.descriptor.spec.beans;
 
 import static org.jboss.shrinkwrap.descriptor.spec.AssertXPath.assertXPath;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
 import javax.decorator.Decorator;
 import javax.enterprise.inject.Alternative;
 import javax.enterprise.inject.Stereotype;
@@ -43,8 +38,6 @@ public class BeansDescriptorTestCase
 {
    @Stereotype
    @Alternative
-   @Retention(RetentionPolicy.RUNTIME)
-   @Target({ElementType.TYPE, ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER})
    private @interface TestAlternativeStereoType { }
    
    @Alternative
