@@ -1,11 +1,11 @@
 package org.jboss.shrinkwrap.descriptor.example;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.spec.cdi.BeansDescriptor;
-import org.jboss.shrinkwrap.descriptor.api.spec.jpa.PersistenceDescriptor;
-import org.jboss.shrinkwrap.descriptor.api.spec.jpa.ProviderType;
-import org.jboss.shrinkwrap.descriptor.api.spec.jpa.SchemaGenerationModeType;
-import org.jboss.shrinkwrap.descriptor.api.spec.jpa.TransactionType;
+import org.jboss.shrinkwrap.descriptor.api.spec.cdi.beans.BeansDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.PersistenceDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.ProviderType;
+import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.SchemaGenerationModeType;
+import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.TransactionType;
 
 public class DescriptorsExample
 {

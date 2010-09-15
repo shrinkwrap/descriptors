@@ -1,0 +1,2 @@
+implClass=org.jboss.shrinkwrap.descriptor.impl.spec.cdi.beans.BeansDescriptorImpl
+modelClass=org.jboss.shrinkwrap.descriptor.impl.spec.cdi.beans.BeansModel

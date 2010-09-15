@@ -1,2 +1,0 @@
-implClass=org.jboss.shrinkwrap.descriptor.impl.spec.web.WebAppDescriptorImpl
-modelClass=org.jboss.shrinkwrap.descriptor.impl.spec.web.WebAppModel
