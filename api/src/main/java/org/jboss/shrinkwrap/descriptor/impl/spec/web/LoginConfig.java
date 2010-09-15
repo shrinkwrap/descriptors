@@ -32,15 +32,6 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class LoginConfig
 {
-   public enum AuthMethodType {
-      BASIC, DIGEST, FORM, CLIENT_CERT;
-      
-      public String toString()
-      {
-         return name().replace('_', '-');
-      }
-   }
-   
    @XmlElement(name = "auth-method")
    protected String authMethod;
    

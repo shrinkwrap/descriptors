@@ -14,43 +14,50 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.impl.spec.web;
+package org.jboss.shrinkwrap.descriptor.impl.spec.beans;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
+ * An alternative class or stereotype
+ * 
  * @author Dan Allen
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "security-roleType")
-public class SecurityRole extends Describable
+@XmlType(name = "", propOrder = {
+      "classes",
+      "stereotypes" })
+@XmlRootElement(name = "alternatives")
+public class Alternatives
 {
-   @XmlElement(name = "role-name")
-   protected String roleName;
+   @XmlElement(name = "class")
+   protected List<String> classes;
 
-   public SecurityRole() {}
-   
-   public SecurityRole(String roleName)
+   @XmlElement(name = "stereotype")
+   protected List<String> stereotypes;
+
+   public List<String> getClasses()
    {
-      this.roleName = roleName;
-   }
-   
-   public SecurityRole(String roleName, String description)
-   {
-      this(roleName);
-      getDescriptions().add(new LocalizedTextImpl(description));
-   }
-   
-   public String getRoleName()
-   {
-      return roleName;
+      if (classes == null)
+      {
+         classes = new ArrayList<String>();
+      }
+      return this.classes;
    }
 
-   public void setRoleName(String roleName)
+   public List<String> getStereotypes()
    {
-      this.roleName = roleName;
+      if (stereotypes == null)
+      {
+         stereotypes = new ArrayList<String>();
+      }
+      return this.stereotypes;
    }
 }

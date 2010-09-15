@@ -24,82 +24,83 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.jboss.shrinkwrap.descriptor.api.spec.web.Filter;
+import org.jboss.shrinkwrap.descriptor.api.spec.web.Param;
+
 /**
  * @author Dan Allen
  */
-// TODO finish me
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "servletType", propOrder = {
+@XmlType(name = "filterType", propOrder = {
       "name",
       "clazz",
-      "initParams",
-      "loadOnStartup"
+      "initParams"
 })
-public class Servlet extends AbstractServletArtifact
+public class FilterImpl extends AbstractServletArtifact implements Filter
 {
-   @XmlElement(name = "servlet-name", required = true)
-   protected String name;
+   @XmlElement(name = "filter-name")
+   private String name;
    
-   @XmlElement(name = "servlet-class")
-   protected String clazz;
+   @XmlElement(name = "filter-class")
+   private String clazz;
    
-   @XmlElement(name = "init-param")
-   protected List<ParamImpl> initParams;
-   
-   @XmlElement(name = "load-on-startup")
-   protected Integer loadOnStartup;
+   @XmlElement(name = "init-param", type = ParamImpl.class)
+   private List<Param> initParams;
 
-   public Servlet() {}
+   public FilterImpl() {}
    
-   public Servlet(String name, String clazz)
-   {
-      this(name, clazz, null);
-   }
-   
-   public Servlet(String name, String clazz, Integer loadOnStartup)
+   public FilterImpl(String name, String clazz)
    {
       this.name = name;
       this.clazz = clazz;
-      this.loadOnStartup = loadOnStartup;
    }
-
+   
+   /* (non-Javadoc)
+    * @see org.jboss.shrinkwrap.descriptor.impl.spec.web.Filter#getName()
+    */
+   @Override
    public String getName()
    {
       return name;
    }
 
+   /* (non-Javadoc)
+    * @see org.jboss.shrinkwrap.descriptor.impl.spec.web.Filter#setName(java.lang.String)
+    */
+   @Override
    public void setName(String name)
    {
       this.name = name;
    }
 
+   /* (non-Javadoc)
+    * @see org.jboss.shrinkwrap.descriptor.impl.spec.web.Filter#getClazz()
+    */
+   @Override
    public String getClazz()
    {
       return clazz;
    }
 
+   /* (non-Javadoc)
+    * @see org.jboss.shrinkwrap.descriptor.impl.spec.web.Filter#setClazz(java.lang.String)
+    */
+   @Override
    public void setClazz(String clazz)
    {
       this.clazz = clazz;
    }
    
-   public List<ParamImpl> getInitParams()
+   /* (non-Javadoc)
+    * @see org.jboss.shrinkwrap.descriptor.impl.spec.web.Filter#getInitParams()
+    */
+   @Override
+   public List<Param> getInitParams()
    {
-      if (initParams == null)
+      if (initParams == null) 
       {
-         initParams = new ArrayList<ParamImpl>();
+         initParams = new ArrayList<Param>();
       }
-      
       return initParams;
-   }
-
-   public Integer getLoadOnStartup()
-   {
-      return loadOnStartup;
-   }
-
-   public void setLoadOnStartup(Integer loadOnStartup)
-   {
-      this.loadOnStartup = loadOnStartup;
    }
 }

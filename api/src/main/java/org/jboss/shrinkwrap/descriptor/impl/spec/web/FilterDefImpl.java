@@ -16,41 +16,30 @@
  */
 package org.jboss.shrinkwrap.descriptor.impl.spec.web;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import org.jboss.shrinkwrap.descriptor.api.spec.web.Filter;
+import org.jboss.shrinkwrap.descriptor.api.spec.web.FilterDef;
 
 /**
  * @author Dan Allen
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "security-roleType")
-public class SecurityRole extends Describable
+// TODO could be generic since servlet can use it too
+public class FilterDefImpl extends WebAppDescriptorImpl implements FilterDef
 {
-   @XmlElement(name = "role-name")
-   protected String roleName;
-
-   public SecurityRole() {}
+   protected Filter filter;
    
-   public SecurityRole(String roleName)
+   public FilterDefImpl(WebAppModel webApp, Filter filter)
    {
-      this.roleName = roleName;
+      super(webApp);
+      this.filter = filter;
    }
    
-   public SecurityRole(String roleName, String description)
+   /* (non-Javadoc)
+    * @see org.jboss.shrinkwrap.descriptor.api.spec.web.FilterDef#initParam(java.lang.String, java.lang.Object)
+    */
+   @Override
+   public FilterDef initParam(String name, Object value)
    {
-      this(roleName);
-      getDescriptions().add(new LocalizedTextImpl(description));
-   }
-   
-   public String getRoleName()
-   {
-      return roleName;
-   }
-
-   public void setRoleName(String roleName)
-   {
-      this.roleName = roleName;
+      filter.getInitParams().add(new ParamImpl(name, value.toString()));
+      return this;
    }
 }

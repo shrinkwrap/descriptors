@@ -17,6 +17,7 @@
 package org.jboss.shrinkwrap.descriptor.impl.spec.web;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -24,82 +25,68 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.jboss.shrinkwrap.descriptor.api.spec.web.LocalizedText;
+import org.jboss.shrinkwrap.descriptor.api.spec.web.Param;
+
 /**
  * @author Dan Allen
  */
-// TODO finish me
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "servletType", propOrder = {
+@XmlType(name = "param-valueType", propOrder = {
+      "descriptions",
       "name",
-      "clazz",
-      "initParams",
-      "loadOnStartup"
+      "value"
 })
-public class Servlet extends AbstractServletArtifact
+public class ParamImpl implements Param
 {
-   @XmlElement(name = "servlet-name", required = true)
+   @XmlElement(name = "description", type = LocalizedTextImpl.class)
+   protected List<LocalizedText> descriptions;
+   
+   @XmlElement(name = "param-name", required = true)
    protected String name;
    
-   @XmlElement(name = "servlet-class")
-   protected String clazz;
-   
-   @XmlElement(name = "init-param")
-   protected List<ParamImpl> initParams;
-   
-   @XmlElement(name = "load-on-startup")
-   protected Integer loadOnStartup;
+   @XmlElement(name = "param-value", required = true)
+   protected String value;
 
-   public Servlet() {}
+   public ParamImpl() {}
    
-   public Servlet(String name, String clazz)
-   {
-      this(name, clazz, null);
-   }
-   
-   public Servlet(String name, String clazz, Integer loadOnStartup)
+   public ParamImpl(String name, String value)
    {
       this.name = name;
-      this.clazz = clazz;
-      this.loadOnStartup = loadOnStartup;
+      this.value = value;
    }
-
+   
+   @Override
+   public List<LocalizedText> getDescriptions()
+   {
+      if (descriptions == null)
+      {
+         descriptions = new ArrayList<LocalizedText>();
+      }
+      return descriptions;
+   }
+   
+   @Override
    public String getName()
    {
       return name;
    }
-
+   
+   @Override
    public void setName(String name)
    {
       this.name = name;
    }
 
-   public String getClazz()
+   @Override
+   public String getValue()
    {
-      return clazz;
+      return value;
    }
 
-   public void setClazz(String clazz)
+   @Override
+   public void setValue(String value)
    {
-      this.clazz = clazz;
-   }
-   
-   public List<ParamImpl> getInitParams()
-   {
-      if (initParams == null)
-      {
-         initParams = new ArrayList<ParamImpl>();
-      }
-      
-      return initParams;
-   }
-
-   public Integer getLoadOnStartup()
-   {
-      return loadOnStartup;
-   }
-
-   public void setLoadOnStartup(Integer loadOnStartup)
-   {
-      this.loadOnStartup = loadOnStartup;
+      this.value = value;
    }
 }

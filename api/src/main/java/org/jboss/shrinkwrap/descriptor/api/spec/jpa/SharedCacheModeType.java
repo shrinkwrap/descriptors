@@ -16,15 +16,13 @@
  */
 package org.jboss.shrinkwrap.descriptor.api.spec.jpa;
 
-import org.jboss.shrinkwrap.descriptor.api.Descriptor;
 
 /**
- * DSL Grammar to construct / alter JPA
- * XML Descriptors
- * 
- * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
+ * Enum of possible values for the persistence-unit shared-cache-mode element
+ *
+ * @author Dan Allen
  */
-public interface PersistenceDescriptor extends Descriptor
+public enum SharedCacheModeType
 {
-   PersistenceUnitDef persistenceUnit(String name);
+   ALL, NONE, ENABLE_SELECTIVE, DISABLE_SELECTIVE, UNSPECIFIED;
 }

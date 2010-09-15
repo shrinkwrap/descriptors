@@ -22,8 +22,9 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlType;
+
+import org.jboss.shrinkwrap.descriptor.api.spec.web.HttpMethodType;
 
 /**
  * @author Dan Allen
@@ -38,26 +39,11 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class WebResourceCollection
 {
-   @XmlEnum
-   public enum HttpMethodType {
-      GET, POST, PUT, DELETE, OPTIONS, HEAD, TRACE;
-      
-      public String value()
-      {
-         return name();
-      }
-      
-      public static HttpMethodType fromValue(String v)
-      {
-         return valueOf(v);
-      }
-   }
-   
    @XmlElement(name = "web-resource-name", required = true)
    protected String name;
    
    @XmlElement(name = "description")
-   protected List<LocalizedText> descriptions;
+   protected List<LocalizedTextImpl> descriptions;
    
    @XmlElement(name = "url-pattern", required = true)
    protected List<String> urlPatterns;
@@ -95,11 +81,11 @@ public class WebResourceCollection
       this.name = webResourceName;
    }
    
-   public List<LocalizedText> getDescriptions()
+   public List<LocalizedTextImpl> getDescriptions()
    {
       if (descriptions == null)
       {
-         descriptions = new ArrayList<LocalizedText>();
+         descriptions = new ArrayList<LocalizedTextImpl>();
       }
       return descriptions;
    }

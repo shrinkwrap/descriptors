@@ -1,0 +1,2 @@
+implClass=org.jboss.shrinkwrap.descriptor.impl.spec.persistence.PersistenceDescriptorImpl
+modelClass=org.jboss.shrinkwrap.descriptor.impl.spec.persistence.PersistenceModel

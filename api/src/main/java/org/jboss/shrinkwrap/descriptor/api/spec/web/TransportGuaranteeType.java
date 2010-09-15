@@ -1,6 +1,6 @@
 /*
  * JBoss, Home of Professional Open Source
- * Copyright 2010, Red Hat Middleware LLC, and individual contributors
+ * Copyright 2009, Red Hat Middleware LLC, and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
  *
@@ -14,17 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.api.spec.jpa;
-
-import org.jboss.shrinkwrap.descriptor.api.Descriptor;
+package org.jboss.shrinkwrap.descriptor.api.spec.web;
 
 /**
- * DSL Grammar to construct / alter JPA
- * XML Descriptors
- * 
- * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
+ * TransportGuaranteeType
+ *
+ * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
+ * @version $Revision: $
  */
-public interface PersistenceDescriptor extends Descriptor
+public enum TransportGuaranteeType 
 {
-   PersistenceUnitDef persistenceUnit(String name);
+   NONE, CONFIDENTIAL, INTEGRAL;
 }

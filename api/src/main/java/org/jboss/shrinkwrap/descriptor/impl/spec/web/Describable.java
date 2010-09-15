@@ -32,13 +32,13 @@ import javax.xml.bind.annotation.XmlType;
 public class Describable
 {
    @XmlElement(name = "description")
-   protected List<LocalizedText> descriptions;
+   protected List<LocalizedTextImpl> descriptions;
    
-   public List<LocalizedText> getDescriptions()
+   public List<LocalizedTextImpl> getDescriptions()
    {
       if (descriptions == null)
       {
-         descriptions = new ArrayList<LocalizedText>();
+         descriptions = new ArrayList<LocalizedTextImpl>();
       }
       return descriptions;
    }

@@ -1,6 +1,6 @@
 /*
  * JBoss, Home of Professional Open Source
- * Copyright 2010, Red Hat Middleware LLC, and individual contributors
+ * Copyright 2009, Red Hat Middleware LLC, and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
  *
@@ -14,17 +14,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.api.spec.jpa;
+package org.jboss.shrinkwrap.descriptor.api.spec.web;
 
-import org.jboss.shrinkwrap.descriptor.api.Descriptor;
+import java.util.List;
 
 /**
- * DSL Grammar to construct / alter JPA
- * XML Descriptors
- * 
- * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
+ * Param
+ *
+ * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
+ * @version $Revision: $
  */
-public interface PersistenceDescriptor extends Descriptor
+public interface Param
 {
-   PersistenceUnitDef persistenceUnit(String name);
+
+   List<LocalizedText> getDescriptions();
+
+   String getName();
+
+   void setName(String name);
+
+   String getValue();
+
+   void setValue(String value);
+
 }

@@ -30,6 +30,7 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import org.jboss.shrinkwrap.descriptor.api.spec.web.SessionConfig;
 import org.jboss.shrinkwrap.descriptor.spi.SchemaModel;
 
 /**
@@ -92,36 +93,36 @@ public class WebAppModel implements SchemaModel
    protected String moduleName;
    
    @XmlElement(name = "description")
-   protected List<LocalizedText> descriptions;
+   protected List<LocalizedTextImpl> descriptions;
    
    @XmlElement(name = "display-name")
-   protected List<LocalizedText> displayNames;
+   protected List<LocalizedTextImpl> displayNames;
    
    protected EmptyType distributable = null;
    
    @XmlElement(name = "context-param")
-   protected List<Param> contextParams;
+   protected List<ParamImpl> contextParams;
    
    @XmlElement(name = "listener")
    protected List<Listener> listeners;
    
    @XmlElement(name = "filter")
-   protected List<Filter> filters;
+   protected List<FilterImpl> filters;
    
    @XmlElement(name = "filter-mapping")
-   protected List<FilterMapping> filterMappings;
+   protected List<FilterMappingImpl> filterMappings;
    
    @XmlElement(name = "servlet")
    protected List<Servlet> servlets;
    
    @XmlElement(name = "servlet-mapping")
-   protected List<ServletMapping> servletMappings;
+   protected List<ServletMappingImpl> servletMappings;
    
    @XmlElementWrapper(name = "welcome-file-list")
    @XmlElement(name = "welcome-file")
    protected List<String> welcomeFiles;
    
-   @XmlElement(name = "session-config")
+   @XmlElement(name = "session-config", type = SessionConfigImpl.class)
    protected SessionConfig sessionConfig;
    
    @XmlElement(name = "error-page")
@@ -172,18 +173,18 @@ public class WebAppModel implements SchemaModel
       this.moduleName = moduleName;
    }
 
-   public List<LocalizedText> getDescriptions()
+   public List<LocalizedTextImpl> getDescriptions()
    {
       if (descriptions == null) {
-         descriptions = new ArrayList<LocalizedText>();
+         descriptions = new ArrayList<LocalizedTextImpl>();
       }
       return descriptions;
    }
    
-   public List<LocalizedText> getDisplayNames()
+   public List<LocalizedTextImpl> getDisplayNames()
    {
       if (displayNames == null) {
-         displayNames = new ArrayList<LocalizedText>();
+         displayNames = new ArrayList<LocalizedTextImpl>();
       }
       return displayNames;
    }
@@ -205,11 +206,11 @@ public class WebAppModel implements SchemaModel
       }
    }
    
-   public List<Param> getContextParams()
+   public List<ParamImpl> getContextParams()
    {
       if (contextParams == null)
       {
-         contextParams = new ArrayList<Param>();
+         contextParams = new ArrayList<ParamImpl>();
       }
       return contextParams;
    }
@@ -224,20 +225,20 @@ public class WebAppModel implements SchemaModel
       return listeners;
    }
    
-   public List<Filter> getFilters()
+   public List<FilterImpl> getFilters()
    {
       if (filters == null)
       {
-         filters = new ArrayList<Filter>();
+         filters = new ArrayList<FilterImpl>();
       }
       return filters;
    }
    
-   public List<FilterMapping> getFilterMappings()
+   public List<FilterMappingImpl> getFilterMappings()
    {
       if (filterMappings == null)
       {
-         filterMappings = new ArrayList<FilterMapping>();
+         filterMappings = new ArrayList<FilterMappingImpl>();
       }
       
       return filterMappings;
@@ -253,11 +254,11 @@ public class WebAppModel implements SchemaModel
       return servlets;
    }
    
-   public List<ServletMapping> getServletMappings()
+   public List<ServletMappingImpl> getServletMappings()
    {
       if (servletMappings == null)
       {
-         servletMappings = new ArrayList<ServletMapping>();
+         servletMappings = new ArrayList<ServletMappingImpl>();
       }
       
       return servletMappings;
@@ -276,7 +277,7 @@ public class WebAppModel implements SchemaModel
    {
       if (sessionConfig == null)
       {
-         sessionConfig = new SessionConfig();
+         sessionConfig = new SessionConfigImpl();
       }
       return sessionConfig;
    }

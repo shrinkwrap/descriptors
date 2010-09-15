@@ -14,43 +14,43 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.impl.spec.web;
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+package org.jboss.shrinkwrap.descriptor.api.spec.jpa;
 
 /**
+ * Enum of convenient values for the persistence-unit provider element
+ *
  * @author Dan Allen
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "security-roleType")
-public class SecurityRole extends Describable
+public enum ProviderType
 {
-   @XmlElement(name = "role-name")
-   protected String roleName;
+   HIBERNATE("org.hibernate.ejb.HibernatePersistence"),
+   ECLIPSE_LINK("org.eclipse.persistence.jpa.PersistenceProvider");
 
-   public SecurityRole() {}
+   private String providerClass;
    
-   public SecurityRole(String roleName)
+   private ProviderType(String providerClass)
    {
-      this.roleName = roleName;
+      this.providerClass = providerClass;
    }
    
-   public SecurityRole(String roleName, String description)
+   public String getProviderClass()
    {
-      this(roleName);
-      getDescriptions().add(new LocalizedTextImpl(description));
+      return providerClass;
    }
    
-   public String getRoleName()
+   public static ProviderType fromProviderClass(String providerClass)
    {
-      return roleName;
-   }
-
-   public void setRoleName(String roleName)
-   {
-      this.roleName = roleName;
+      if (providerClass == null)
+      {
+         return null;
+      }
+      for (ProviderType candidate : values())
+      {
+         if (candidate.getProviderClass().equals(providerClass))
+         {
+            return candidate;
+         }
+      }
+      return null;
    }
 }

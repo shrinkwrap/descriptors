@@ -4,13 +4,6 @@ import java.util.EventListener;
 import java.util.List;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptor;
-import org.jboss.shrinkwrap.descriptor.impl.spec.web.CookieConfigDef;
-import org.jboss.shrinkwrap.descriptor.impl.spec.web.Filter;
-import org.jboss.shrinkwrap.descriptor.impl.spec.web.FilterDef;
-import org.jboss.shrinkwrap.descriptor.impl.spec.web.FilterMapping;
-import org.jboss.shrinkwrap.descriptor.impl.spec.web.LoginConfig.AuthMethodType;
-import org.jboss.shrinkwrap.descriptor.impl.spec.web.SecurityConstraintDef;
-import org.jboss.shrinkwrap.descriptor.impl.spec.web.SessionConfig;
 
 /**
  * DSL Grammar to construct / alter Web Application
@@ -79,7 +72,7 @@ public interface WebAppDescriptor extends Descriptor
 
    WebAppDescriptor sessionTimeout(int timeout);
 
-   WebAppDescriptor sessionTrackingModes(SessionConfig.TrackingModeType... sessionTrackingModes);
+   WebAppDescriptor sessionTrackingModes(TrackingModeType... sessionTrackingModes);
 
    CookieConfigDef sessionCookieConfig();
 

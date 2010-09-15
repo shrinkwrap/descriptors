@@ -16,8 +16,8 @@
  */
 package org.jboss.shrinkwrap.descriptor.impl.spec.web;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.EventListener;
 import java.util.List;
 
@@ -25,9 +25,15 @@ import javax.faces.application.ProjectStage;
 import javax.faces.application.StateManager;
 import javax.faces.webapp.FacesServlet;
 
+import org.jboss.shrinkwrap.descriptor.api.spec.web.AuthMethodType;
+import org.jboss.shrinkwrap.descriptor.api.spec.web.CookieConfigDef;
+import org.jboss.shrinkwrap.descriptor.api.spec.web.Filter;
+import org.jboss.shrinkwrap.descriptor.api.spec.web.FilterDef;
+import org.jboss.shrinkwrap.descriptor.api.spec.web.FilterMapping;
+import org.jboss.shrinkwrap.descriptor.api.spec.web.SecurityConstraintDef;
+import org.jboss.shrinkwrap.descriptor.api.spec.web.TrackingModeType;
 import org.jboss.shrinkwrap.descriptor.api.spec.web.WebAppDescriptor;
 import org.jboss.shrinkwrap.descriptor.impl.base.SchemaDescriptorImplBase;
-import org.jboss.shrinkwrap.descriptor.impl.spec.web.LoginConfig.AuthMethodType;
 
 /**
  * @author Dan Allen
@@ -66,19 +72,13 @@ public class WebAppDescriptorImpl extends SchemaDescriptorImplBase<WebAppModel> 
       return this;
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#metadataComplete()
-    */
    @Override
-   public WebAppDescriptorImpl metadataComplete()
+   public WebAppDescriptor metadataComplete()
    {
       model.setMetadataComplete(true);
       return this;
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#moduleName(java.lang.String)
-    */
    @Override
    public WebAppDescriptor moduleName(String name)
    {
@@ -86,29 +86,20 @@ public class WebAppDescriptorImpl extends SchemaDescriptorImplBase<WebAppModel> 
       return this;
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#description(java.lang.String)
-    */
    @Override
    public WebAppDescriptor description(String description)
    {
-      model.getDescriptions().add(new LocalizedText(description));
+      model.getDescriptions().add(new LocalizedTextImpl(description));
       return this;
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#displayName(java.lang.String)
-    */
    @Override
    public WebAppDescriptor displayName(String displayName)
    {
-      model.getDisplayNames().add(new LocalizedText(displayName));
+      model.getDisplayNames().add(new LocalizedTextImpl(displayName));
       return this;
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#distributable()
-    */
    @Override
    public WebAppDescriptor distributable()
    {
@@ -116,19 +107,13 @@ public class WebAppDescriptorImpl extends SchemaDescriptorImplBase<WebAppModel> 
       return this;
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#contextParam(java.lang.String, java.lang.Object)
-    */
    @Override
    public WebAppDescriptor contextParam(String name, Object value)
    {
-      model.getContextParams().add(new Param(name, value.toString()));
+      model.getContextParams().add(new ParamImpl(name, value.toString()));
       return this;
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#facesDevelopmentMode()
-    */
    @Override
    public WebAppDescriptor facesDevelopmentMode()
    {
@@ -136,18 +121,12 @@ public class WebAppDescriptorImpl extends SchemaDescriptorImplBase<WebAppModel> 
    }
 
    // TODO continue with other known parameters
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#facesStateSavingMethod(java.lang.String)
-    */
    @Override
    public WebAppDescriptor facesStateSavingMethod(String value)
    {
       return contextParam(StateManager.STATE_SAVING_METHOD_PARAM_NAME, value);
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#facesConfigFiles(java.lang.String)
-    */
    @Override
    public WebAppDescriptor facesConfigFiles(String... paths)
    {
@@ -160,18 +139,12 @@ public class WebAppDescriptorImpl extends SchemaDescriptorImplBase<WebAppModel> 
       return contextParam(FacesServlet.CONFIG_FILES_ATTR, v.substring(0, v.length() - 1));
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#listener(java.lang.Class)
-    */
    @Override
    public WebAppDescriptor listener(Class<? extends EventListener> clazz)
    {
       return listener(clazz.getName());
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#listener(java.lang.String)
-    */
    @Override
    public WebAppDescriptor listener(String clazz)
    {
@@ -179,9 +152,6 @@ public class WebAppDescriptorImpl extends SchemaDescriptorImplBase<WebAppModel> 
       return this;
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#filter(java.lang.Class, java.lang.String)
-    */
    @Override
    public WebAppDescriptor filter(Class<? extends javax.servlet.Filter> clazz, String... urlPatterns)
    {
@@ -194,7 +164,9 @@ public class WebAppDescriptorImpl extends SchemaDescriptorImplBase<WebAppModel> 
     */
    @Override
    public List<Filter> getFilters(){
-      return Collections.unmodifiableList(model.getFilters());
+      List<Filter> filters = new ArrayList<Filter>();
+      filters.addAll(model.getFilters());
+      return filters;
    }
    
    /**
@@ -203,92 +175,67 @@ public class WebAppDescriptorImpl extends SchemaDescriptorImplBase<WebAppModel> 
     */
    @Override
    public List<FilterMapping> getFilterMappings(){
-      return Collections.unmodifiableList(model.getFilterMappings());
+      List<FilterMapping> mappings = new ArrayList<FilterMapping>();
+      mappings.addAll(model.getFilterMappings());
+      return mappings;
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#filter(java.lang.String, java.lang.String)
-    */
    @Override
    public FilterDef filter(String clazz, String... urlPatterns)
    {
       return filter(getSimpleName(clazz), clazz, urlPatterns);
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#filter(java.lang.String, java.lang.Class, java.lang.String[])
-    */
    @Override
    public WebAppDescriptor filter(String name, Class<? extends javax.servlet.Filter> clazz, String[] urlPatterns)
    {
       return filter(name, clazz.getName(), urlPatterns);
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#filter(java.lang.String, java.lang.String, java.lang.String[])
-    */
    @Override
    public FilterDef filter(String name, String clazz, String[] urlPatterns)
    {
-      Filter filter = new Filter(name, clazz);
+      FilterImpl filter = new FilterImpl(name, clazz);
       model.getFilters().add(filter);
       for (String p : urlPatterns)
       {
-         model.getFilterMappings().add(new FilterMapping(name, p));
+         model.getFilterMappings().add(new FilterMappingImpl(name, p));
       }
-      return new FilterDef(model, filter);
+      return new FilterDefImpl(model, filter);
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#servlet(java.lang.Class, java.lang.String)
-    */
    @Override
    public WebAppDescriptor servlet(Class<? extends javax.servlet.Servlet> clazz, String... urlPatterns)
    {
       return servlet(clazz.getSimpleName(), clazz.getName(), urlPatterns);
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#servlet(java.lang.String, java.lang.String)
-    */
    @Override
-   public WebAppDescriptorImpl servlet(String clazz, String... urlPatterns)
+   public WebAppDescriptor servlet(String clazz, String... urlPatterns)
    {
       return servlet(getSimpleName(clazz), clazz, urlPatterns);
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#servlet(java.lang.String, java.lang.Class, java.lang.String[])
-    */
    @Override
    public WebAppDescriptor servlet(String name, Class<? extends javax.servlet.Servlet> clazz, String[] urlPatterns)
    {
       return servlet(name, clazz.getName(), urlPatterns);
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#servlet(java.lang.String, java.lang.String, java.lang.String[])
-    */
    @Override
-   public WebAppDescriptorImpl servlet(String name, String clazz, String[] urlPatterns)
+   public WebAppDescriptor servlet(String name, String clazz, String[] urlPatterns)
    {
       model.getServlets().add(new Servlet(name, clazz));
-      model.getServletMappings().add(new ServletMapping(name, urlPatterns));
+      model.getServletMappings().add(new ServletMappingImpl(name, urlPatterns));
       return this;
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#facesServlet()
-    */
    @Override
    public WebAppDescriptor facesServlet()
    {
       return servlet(FacesServlet.class, "*.jsf");
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#welcomeFiles(java.lang.String)
-    */
    @Override
    public WebAppDescriptor welcomeFiles(String... servletPaths)
    {
@@ -299,18 +246,12 @@ public class WebAppDescriptorImpl extends SchemaDescriptorImplBase<WebAppModel> 
       return this;
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#welcomeFile(java.lang.String)
-    */
    @Override
    public WebAppDescriptor welcomeFile(String servletPath)
    {
       return welcomeFiles(servletPath);
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#sessionTimeout(int)
-    */
    @Override
    public WebAppDescriptor sessionTimeout(int timeout)
    {
@@ -318,31 +259,22 @@ public class WebAppDescriptorImpl extends SchemaDescriptorImplBase<WebAppModel> 
       return this;
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#sessionTrackingModes(org.jboss.shrinkwrap.descriptor.spec.web.SessionConfig.TrackingModeType)
-    */
    @Override
-   public WebAppDescriptorImpl sessionTrackingModes(SessionConfig.TrackingModeType... sessionTrackingModes)
+   public WebAppDescriptor sessionTrackingModes(TrackingModeType... sessionTrackingModes)
    {
-      for (SessionConfig.TrackingModeType m : sessionTrackingModes)
+      for (TrackingModeType m : sessionTrackingModes)
       {
          model.getSessionConfig().getTrackingModes().add(m);
       }
       return this;
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#sessionCookieConfig()
-    */
    @Override
    public CookieConfigDef sessionCookieConfig()
    {
-      return new CookieConfigDef(model);
+      return new CookieConfigDefImpl(model);
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#errorPage(int, java.lang.String)
-    */
    @Override
    public WebAppDescriptor errorPage(int errorCode, String location)
    {
@@ -350,9 +282,6 @@ public class WebAppDescriptorImpl extends SchemaDescriptorImplBase<WebAppModel> 
       return this;
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#errorPage(java.lang.String, java.lang.String)
-    */
    @Override
    public WebAppDescriptor errorPage(String exceptionClass, String location)
    {
@@ -360,27 +289,18 @@ public class WebAppDescriptorImpl extends SchemaDescriptorImplBase<WebAppModel> 
       return this;
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#errorPage(java.lang.Class, java.lang.String)
-    */
    @Override
    public WebAppDescriptor errorPage(Class<? extends Throwable> exceptionClass, String location)
    {
       return errorPage(exceptionClass.getName(), location);
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#loginConfig(org.jboss.shrinkwrap.descriptor.spec.web.LoginConfig.AuthMethodType, java.lang.String)
-    */
    @Override
    public WebAppDescriptor loginConfig(AuthMethodType authMethod, String realmName)
    {
       return loginConfig(authMethod.toString(), realmName);
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#loginConfig(java.lang.String, java.lang.String)
-    */
    @Override
    public WebAppDescriptor loginConfig(String authMethod, String realmName)
    {
@@ -388,9 +308,6 @@ public class WebAppDescriptorImpl extends SchemaDescriptorImplBase<WebAppModel> 
       return this;
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#formLoginConfig(java.lang.String, java.lang.String)
-    */
    @Override
    public WebAppDescriptor formLoginConfig(String loginPage, String errorPage)
    {
@@ -399,33 +316,24 @@ public class WebAppDescriptorImpl extends SchemaDescriptorImplBase<WebAppModel> 
       return this;
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#securityConstraint()
-    */
    @Override
    public SecurityConstraintDef securityConstraint()
    {
       return securityConstraint(null);
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#securityConstraint(java.lang.String)
-    */
    @Override
    public SecurityConstraintDef securityConstraint(String displayName)
    {
       SecurityConstraint securityConstraint = new SecurityConstraint();
       if (displayName != null)
       {
-         securityConstraint.getDisplayNames().add(new LocalizedText(displayName));
+         securityConstraint.getDisplayNames().add(new LocalizedTextImpl(displayName));
       }
       model.getSecurityConstraints().add(securityConstraint);
-      return new SecurityConstraintDef(model, securityConstraint);
+      return new SecurityConstraintDefImpl(model, securityConstraint);
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#securityRole(java.lang.String)
-    */
    @Override
    public WebAppDescriptor securityRole(String roleName)
    {
@@ -433,9 +341,6 @@ public class WebAppDescriptorImpl extends SchemaDescriptorImplBase<WebAppModel> 
       return this;
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#securityRole(java.lang.String, java.lang.String)
-    */
    @Override
    public WebAppDescriptor securityRole(String roleName, String description)
    {
@@ -443,9 +348,6 @@ public class WebAppDescriptorImpl extends SchemaDescriptorImplBase<WebAppModel> 
       return this;
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#absoluteOrdering(boolean, java.lang.String)
-    */
    @Override
    public WebAppDescriptor absoluteOrdering(boolean others, String... names)
    {
@@ -453,9 +355,6 @@ public class WebAppDescriptorImpl extends SchemaDescriptorImplBase<WebAppModel> 
       return this;
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spec.web.WebAppI#absoluteOrdering(java.lang.String)
-    */
    @Override
    public WebAppDescriptor absoluteOrdering(String... names)
    {
@@ -488,5 +387,4 @@ public class WebAppDescriptorImpl extends SchemaDescriptorImplBase<WebAppModel> 
       }
       return fqcn;
    }
-
 }

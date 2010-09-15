@@ -14,17 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.api.spec.jpa;
-
-import org.jboss.shrinkwrap.descriptor.api.Descriptor;
-
-/**
- * DSL Grammar to construct / alter JPA
- * XML Descriptors
- * 
- * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
- */
-public interface PersistenceDescriptor extends Descriptor
-{
-   PersistenceUnitDef persistenceUnit(String name);
-}
+@javax.xml.bind.annotation.XmlSchema(
+      namespace = "http://java.sun.com/xml/ns/persistence",
+      elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+package org.jboss.shrinkwrap.descriptor.impl.spec.persistence;

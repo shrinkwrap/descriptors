@@ -19,8 +19,9 @@ package org.jboss.shrinkwrap.descriptor.impl.spec.web;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlType;
+
+import org.jboss.shrinkwrap.descriptor.api.spec.web.TransportGuaranteeType;
 
 /**
  * @author Dan Allen
@@ -29,21 +30,6 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "user-data-constraintType")
 public class UserDataConstraint extends Describable
 {
-   @XmlEnum
-   public enum TransportGuaranteeType {
-      NONE, CONFIDENTIAL, INTEGRAL;
-      
-      public String value()
-      {
-         return name();
-      }
-
-      public static TransportGuaranteeType fromValue(String v)
-      {
-         return valueOf(v);
-      }
-   }
-   
    @XmlElement(name = "transport-guarantee")
    protected TransportGuaranteeType transportGuarnatee;
 

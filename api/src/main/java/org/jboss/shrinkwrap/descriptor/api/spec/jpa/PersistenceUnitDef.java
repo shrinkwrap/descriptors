@@ -1,6 +1,6 @@
 /*
  * JBoss, Home of Professional Open Source
- * Copyright 2010, Red Hat Middleware LLC, and individual contributors
+ * Copyright 2009, Red Hat Middleware LLC, and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
  *
@@ -16,213 +16,53 @@
  */
 package org.jboss.shrinkwrap.descriptor.api.spec.jpa;
 
-import org.jboss.shrinkwrap.descriptor.spec.persistence.PersistenceDescriptorImpl;
-import org.jboss.shrinkwrap.descriptor.spec.persistence.PersistenceModel;
-import org.jboss.shrinkwrap.descriptor.spec.persistence.PersistenceUnit;
-import org.jboss.shrinkwrap.descriptor.spec.persistence.Property;
-import org.jboss.shrinkwrap.descriptor.spec.persistence.ProviderType;
-import org.jboss.shrinkwrap.descriptor.spec.persistence.SchemaGenerationModeType;
-import org.jboss.shrinkwrap.descriptor.spec.persistence.SharedCacheModeType;
-import org.jboss.shrinkwrap.descriptor.spec.persistence.TransactionType;
-import org.jboss.shrinkwrap.descriptor.spec.persistence.ValidationModeType;
-
 /**
- * @author Dan Allen
+ * PersistenceUnitDefIF
+ *
+ * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
+ * @version $Revision: $
  */
-public class PersistenceUnitDef extends PersistenceDescriptorImpl
+public interface PersistenceUnitDef extends PersistenceDescriptor
 {
-   private PersistenceUnit persistenceUnit;
-   
-   public PersistenceUnitDef(PersistenceModel persistence, PersistenceUnit persistenceUnit)
-   {
-      super(persistence);
-      this.persistenceUnit = persistenceUnit;
-   }
-   
-   public PersistenceUnitDef name(String name)
-   {
-      persistenceUnit.setName(name);
-      return this;
-   }
-   
-   public PersistenceUnitDef description(String description)
-   {
-      persistenceUnit.setDescription(description);
-      return this;
-   }
-   
-   public PersistenceUnitDef nonJtaDataSource(String jndiName)
-   {
-      persistenceUnit.setNonJtaDataSource(jndiName);
-      return this;
-   }
-   
-   public PersistenceUnitDef transactionType(TransactionType transactionType)
-   {
-      persistenceUnit.setTransactionType(transactionType);
-      return this;
-   }
-   
-   public PersistenceUnitDef jtaDataSource(String jndiName)
-   {
-      persistenceUnit.setJtaDataSource(jndiName);
-      return this;
-   }
-   
-   public PersistenceUnitDef property(String name, Object value)
-   {
-      persistenceUnit.getProperties().add(new Property(name, String.valueOf(value)));
-      return this;
-   }
-   
-   public PersistenceUnitDef classes(Class<?>... classes)
-   {
-      for (Class<?> c : classes)
-      {
-         persistenceUnit.getClasses().add(c.getName());
-      }
-      return this;
-   }
-   
-   public PersistenceUnitDef jarFiles(String... paths)
-   {
-      for (String p : paths)
-      {
-         persistenceUnit.getJarFiles().add(p);
-      }
-      return this;
-   }
-   
-   public PersistenceUnitDef jarFile(String path)
-   {
-      return jarFiles(path);
-   }
-   
-   public PersistenceUnitDef mappingFiles(String... paths)
-   {
-      for (String p : paths)
-      {
-         persistenceUnit.getMappingFiles().add(p);
-      }
-      return this;
-   }
-   
-   public PersistenceUnitDef mappingFile(String path)
-   {
-      return mappingFiles(path);
-   }
-   
-   public PersistenceUnitDef sharedCacheMode(SharedCacheModeType sharedCacheMode)
-   {
-      persistenceUnit.setSharedCacheMode(sharedCacheMode);
-      return this;
-   }
-   
-   public PersistenceUnitDef validationMode(ValidationModeType validationMode)
-   {
-      persistenceUnit.setValidationMode(validationMode);
-      return this;
-   }
-   
-   public PersistenceUnitDef excludeUnlistedClasses()
-   {
-      persistenceUnit.setExcludeUnlistedClasses(true);
-      return this;
-   }
-   
-   public PersistenceUnitDef includeUnlistedClasses()
-   {
-      persistenceUnit.setExcludeUnlistedClasses(false);
-      return this;
-   }
-   
-   public PersistenceUnitDef provider(String provider)
-   {
-      persistenceUnit.setProvider(provider);
-      return this;
-   }
-   
-   public PersistenceUnitDef provider(ProviderType providerType)
-   {
-      persistenceUnit.setProvider(providerType.getProviderClass());
-      return this;
-   }
-   
-   public PersistenceUnitDef showSql()
-   {
-      ProviderType providerType = ProviderType.fromProviderClass(persistenceUnit.getProvider());
-      if (providerType == null || providerType == ProviderType.HIBERNATE)
-      {
-         persistenceUnit.getProperties().add(new Property("hibernate.show_sql", "true"));
-      }
-      if (providerType == null || providerType == ProviderType.ECLIPSE_LINK)
-      {
-         persistenceUnit.getProperties().add(new Property("eclipselink.logging.level", "FINE"));
-      }
-      return this;
-   }
-   
-   public PersistenceUnitDef formatSql()
-   {
-      ProviderType providerType = ProviderType.fromProviderClass(persistenceUnit.getProvider());
-      if (providerType == null || providerType == ProviderType.HIBERNATE)
-      {
-         persistenceUnit.getProperties().add(new Property("hibernate.format_sql", "true"));
-      }
-      return this;
-   }
-   
-   public PersistenceUnitDef schemaGenerationMode(SchemaGenerationModeType schemaGenerationMode)
-   {
-      ProviderType providerType = ProviderType.fromProviderClass(persistenceUnit.getProvider());
-      if (providerType == null || providerType == ProviderType.HIBERNATE)
-      {
-         String value = null;
-         if (SchemaGenerationModeType.CREATE.equals(schemaGenerationMode))
-         {
-            value = "create";
-         }
-         else if (SchemaGenerationModeType.CREATE_DROP.equals(schemaGenerationMode))
-         {
-            value = "create-drop";
-         }
-         else if (SchemaGenerationModeType.UPDATE.equals(schemaGenerationMode))
-         {
-            value = "update";
-         }
-         else if (SchemaGenerationModeType.NONE.equals(schemaGenerationMode))
-         {
-            value = "none";
-         }
-         if (value != null)
-         {
-            persistenceUnit.getProperties().add(new Property("hibernate.hbm2ddl.auto", value));
-         }
-      }
-      if (providerType == null || providerType == ProviderType.ECLIPSE_LINK)
-      {
-         String value = null;
-         if (SchemaGenerationModeType.CREATE.equals(schemaGenerationMode))
-         {
-            value = "create-tables";
-         }
-         else if (SchemaGenerationModeType.CREATE_DROP.equals(schemaGenerationMode))
-         {
-            value = "drop-and-create-tables";
-         }
-         else if (SchemaGenerationModeType.UPDATE.equals(schemaGenerationMode))
-         {
-            throw new UnsupportedOperationException(SchemaGenerationModeType.UPDATE + " not supported by provider " + ProviderType.ECLIPSE_LINK);
-         }
-         else if (SchemaGenerationModeType.NONE.equals(schemaGenerationMode))
-         {
-            value = "none";
-         }
-         if (value != null)
-         {
-            persistenceUnit.getProperties().add(new Property("eclipselink.ddl-generation", value));
-         }
-      }
-      return this;
-   }
+
+   PersistenceUnitDef name(String name);
+
+   PersistenceUnitDef description(String description);
+
+   PersistenceUnitDef nonJtaDataSource(String jndiName);
+
+   PersistenceUnitDef transactionType(TransactionType transactionType);
+
+   PersistenceUnitDef jtaDataSource(String jndiName);
+
+   PersistenceUnitDef property(String name, Object value);
+
+   PersistenceUnitDef classes(Class<?>... classes);
+
+   PersistenceUnitDef jarFiles(String... paths);
+
+   PersistenceUnitDef jarFile(String path);
+
+   PersistenceUnitDef mappingFiles(String... paths);
+
+   PersistenceUnitDef mappingFile(String path);
+
+   PersistenceUnitDef sharedCacheMode(SharedCacheModeType sharedCacheMode);
+
+   PersistenceUnitDef validationMode(ValidationModeType validationMode);
+
+   PersistenceUnitDef excludeUnlistedClasses();
+
+   PersistenceUnitDef includeUnlistedClasses();
+
+   PersistenceUnitDef provider(String provider);
+
+   PersistenceUnitDef provider(ProviderType providerType);
+
+   PersistenceUnitDef showSql();
+
+   PersistenceUnitDef formatSql();
+
+   PersistenceUnitDef schemaGenerationMode(SchemaGenerationModeType schemaGenerationMode);
+
 }

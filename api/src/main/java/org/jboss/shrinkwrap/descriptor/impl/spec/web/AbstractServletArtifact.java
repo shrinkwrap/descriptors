@@ -34,25 +34,25 @@ import javax.xml.bind.annotation.XmlType;
 public abstract class AbstractServletArtifact
 {
    @XmlElement(name = "description")
-   protected List<LocalizedText> descriptions;
+   protected List<LocalizedTextImpl> descriptions;
    
    @XmlElement(name = "display-name")
-   protected List<LocalizedText> displayNames;
+   protected List<LocalizedTextImpl> displayNames;
 
-   public List<LocalizedText> getDescriptions()
+   public List<LocalizedTextImpl> getDescriptions()
    {
       if (descriptions == null)
       {
-         descriptions = new ArrayList<LocalizedText>();
+         descriptions = new ArrayList<LocalizedTextImpl>();
       }
       return descriptions;
    }
 
-   public List<LocalizedText> getDisplayNames()
+   public List<LocalizedTextImpl> getDisplayNames()
    {
       if (displayNames == null)
       {
-         displayNames = new ArrayList<LocalizedText>();
+         displayNames = new ArrayList<LocalizedTextImpl>();
       }
       return displayNames;
    }

@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlType;
 public class SecurityConstraint
 {
    @XmlElement(name = "display-name")
-   protected List<LocalizedText> displayNames;
+   protected List<LocalizedTextImpl> displayNames;
    
    @XmlElement(name = "web-resource-collection", required = true)
    protected List<WebResourceCollection> webResourceCollections;
@@ -50,11 +50,11 @@ public class SecurityConstraint
 
    public SecurityConstraint() {}
    
-   public List<LocalizedText> getDisplayNames()
+   public List<LocalizedTextImpl> getDisplayNames()
    {
       if (displayNames == null)
       {
-         displayNames = new ArrayList<LocalizedText>();
+         displayNames = new ArrayList<LocalizedTextImpl>();
       }
       return displayNames;
    }

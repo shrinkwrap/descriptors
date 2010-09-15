@@ -16,15 +16,13 @@
  */
 package org.jboss.shrinkwrap.descriptor.api.spec.jpa;
 
-import org.jboss.shrinkwrap.descriptor.api.Descriptor;
 
 /**
- * DSL Grammar to construct / alter JPA
- * XML Descriptors
- * 
- * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
+ * Enum of possible values for the persistence-unit transaction-type attribute
+ *
+ * @author Dan Allen
  */
-public interface PersistenceDescriptor extends Descriptor
+public enum TransactionType
 {
-   PersistenceUnitDef persistenceUnit(String name);
+   JTA, RESOURCE_LOCAL;
 }

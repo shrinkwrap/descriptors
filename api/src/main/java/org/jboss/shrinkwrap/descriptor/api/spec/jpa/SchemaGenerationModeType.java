@@ -16,15 +16,13 @@
  */
 package org.jboss.shrinkwrap.descriptor.api.spec.jpa;
 
-import org.jboss.shrinkwrap.descriptor.api.Descriptor;
-
 /**
- * DSL Grammar to construct / alter JPA
- * XML Descriptors
- * 
- * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
+ * @author Dan Allen
  */
-public interface PersistenceDescriptor extends Descriptor
+public enum SchemaGenerationModeType
 {
-   PersistenceUnitDef persistenceUnit(String name);
+   CREATE,
+   CREATE_DROP,
+   UPDATE,
+   NONE
 }

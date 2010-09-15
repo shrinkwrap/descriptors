@@ -14,43 +14,67 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.impl.spec.web;
+package org.jboss.shrinkwrap.descriptor.impl.spec.persistence;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 
 /**
+ * A persistence unit property
+ *
  * @author Dan Allen
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "security-roleType")
-public class SecurityRole extends Describable
+@XmlType
+public class Property
 {
-   @XmlElement(name = "role-name")
-   protected String roleName;
+   @XmlAttribute(required = true)
+   protected String value;
+   
+   @XmlAttribute(required = true)
+   protected String name;
 
-   public SecurityRole() {}
-   
-   public SecurityRole(String roleName)
+   public Property()
    {
-      this.roleName = roleName;
    }
    
-   public SecurityRole(String roleName, String description)
+   public Property(String name, String value)
    {
-      this(roleName);
-      getDescriptions().add(new LocalizedTextImpl(description));
-   }
-   
-   public String getRoleName()
-   {
-      return roleName;
+      this.name = name;
+      this.value = value;
    }
 
-   public void setRoleName(String roleName)
+   /**
+    * Gets the value of the name property.
+    */
+   public String getName()
    {
-      this.roleName = roleName;
+      return name;
+   }
+
+   /**
+    * Sets the value of the name property.
+    */
+   public void setName(String value)
+   {
+      this.name = value;
+   }
+
+   /**
+    * Gets the value of the value property.
+    */
+   public String getValue()
+   {
+      return value;
+   }
+
+   /**
+    * Sets the value of the value property.
+    */
+   public void setValue(String value)
+   {
+      this.value = value;
    }
 }
