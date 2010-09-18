@@ -19,7 +19,8 @@ package org.jboss.shrinkwrap.descriptor.api.spec.ee.application;
 import org.jboss.shrinkwrap.descriptor.api.Descriptor;
 
 /**
- * ApplicationDescriptor
+ * DSL Grammar to construct / alter Application
+ * XML Descriptors
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $

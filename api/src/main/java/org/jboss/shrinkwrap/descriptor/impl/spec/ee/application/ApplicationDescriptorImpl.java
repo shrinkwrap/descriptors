@@ -129,9 +129,7 @@ public class ApplicationDescriptorImpl extends SchemaDescriptorImplBase<Applicat
    {
       model.setVersion(version);
       return this;
-   }
-   
-   
+   }   
    //-------------------------------------------------------------------------------------||
    // Required Implementations - SchemaDescriptorImplBase --------------------------------||
    //-------------------------------------------------------------------------------------||
@@ -144,5 +142,4 @@ public class ApplicationDescriptorImpl extends SchemaDescriptorImplBase<Applicat
    {
       return model;
    }
-
 }
