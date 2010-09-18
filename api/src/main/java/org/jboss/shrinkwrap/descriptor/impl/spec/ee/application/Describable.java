@@ -16,46 +16,30 @@
  */
 package org.jboss.shrinkwrap.descriptor.impl.spec.ee.application;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
- * WebModuleImpl
- *
- * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
- * @version $Revision: $
+ * @author Dan Allen
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "webType", propOrder = {
-      "uri",
-      "contextRoot" })
-public class WebModuleImpl
+@XmlType(name = "describable")
+public class Describable
 {
-   @XmlElement(name = "web-uri")
-   private String uri;
+   @XmlElement(name = "description")
+   protected List<LocalizedTextImpl> descriptions;
    
-   @XmlElement(name = "context-root")
-   private String contextRoot;
-
-   public WebModuleImpl()
+   public List<LocalizedTextImpl> getDescriptions()
    {
-   }
-
-   public WebModuleImpl(String uri, String contextRoot)
-   {
-      this.uri = uri;
-      this.contextRoot = contextRoot;
-   }
-   
-   public String getUri()
-   {
-      return uri;
-   }
-
-   public String getContextRoot()
-   {
-      return contextRoot;
+      if (descriptions == null)
+      {
+         descriptions = new ArrayList<LocalizedTextImpl>();
+      }
+      return descriptions;
    }
 }

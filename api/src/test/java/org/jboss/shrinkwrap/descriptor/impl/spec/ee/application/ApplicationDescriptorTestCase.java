@@ -29,6 +29,7 @@ import org.junit.Test;
  */
 public class ApplicationDescriptorTestCase
 {
+   private String description = "description";
    private String moduleName = "test.jar";
    private String contextRoot = "/";
 
@@ -101,6 +102,27 @@ public class ApplicationDescriptorTestCase
 
       assertXPath(desc, "/application/module/web/web-uri", moduleName);
       assertXPath(desc, "/application/module/web/context-root", contextRoot);
+   }
+
+   @Test
+   public void shouldBeAbleToAddASecurityRole() throws Exception
+   {
+      String desc = create()
+                     .securityRole(moduleName)
+                     .exportAsString();
+
+      assertXPath(desc, "/application/security-role/role-name", moduleName);
+   }
+
+   @Test
+   public void shouldBeAbleToAddASecurityRoleWithDescription() throws Exception
+   {
+      String desc = create()
+                     .securityRole(moduleName, description)
+                     .exportAsString();
+
+      assertXPath(desc, "/application/security-role/role-name", moduleName);
+      assertXPath(desc, "/application/security-role/description", description);
    }
 
    private ApplicationDescriptor create() 

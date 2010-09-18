@@ -44,4 +44,8 @@ public interface ApplicationDescriptor extends Descriptor
    
    ApplicationDescriptor connectorModule(String uri);
    
+   ApplicationDescriptor securityRole(String roleName);
+
+   ApplicationDescriptor securityRole(String roleName, String description);
+   
 }

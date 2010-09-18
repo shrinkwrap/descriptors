@@ -26,7 +26,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchema;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import org.jboss.shrinkwrap.descriptor.spi.SchemaModel;
@@ -76,6 +75,9 @@ public class ApplicationModel implements SchemaModel
    @XmlElementWrapper(name = "module")
    @XmlElement(name = "java")
    private List<String> javaModules;
+   
+   @XmlElement(name = "security-role")
+   private List<SecurityRole> securityRoles;
    
    /**
     * @param description the description to set
@@ -179,6 +181,18 @@ public class ApplicationModel implements SchemaModel
          connectorModules = new ArrayList<String>();
       }
       return connectorModules;
+   }
+   
+   /**
+    * @return the securityRoles
+    */
+   public List<SecurityRole> getSecurityRoles()
+   {
+      if(securityRoles == null)
+      {
+         securityRoles = new ArrayList<SecurityRole>();
+      }
+      return securityRoles;
    }
    
    //-------------------------------------------------------------------------------------||

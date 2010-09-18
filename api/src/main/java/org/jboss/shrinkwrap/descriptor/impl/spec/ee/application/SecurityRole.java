@@ -22,40 +22,35 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
- * WebModuleImpl
- *
- * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
- * @version $Revision: $
+ * @author Dan Allen
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "webType", propOrder = {
-      "uri",
-      "contextRoot" })
-public class WebModuleImpl
+@XmlType(name = "security-roleType")
+public class SecurityRole extends Describable
 {
-   @XmlElement(name = "web-uri")
-   private String uri;
+   @XmlElement(name = "role-name")
+   protected String roleName;
+
+   public SecurityRole() {}
    
-   @XmlElement(name = "context-root")
-   private String contextRoot;
-
-   public WebModuleImpl()
+   public SecurityRole(String roleName)
    {
-   }
-
-   public WebModuleImpl(String uri, String contextRoot)
-   {
-      this.uri = uri;
-      this.contextRoot = contextRoot;
+      this.roleName = roleName;
    }
    
-   public String getUri()
+   public SecurityRole(String roleName, String description)
    {
-      return uri;
+      this(roleName);
+      getDescriptions().add(new LocalizedTextImpl(description));
+   }
+   
+   public String getRoleName()
+   {
+      return roleName;
    }
 
-   public String getContextRoot()
+   public void setRoleName(String roleName)
    {
-      return contextRoot;
+      this.roleName = roleName;
    }
 }

@@ -129,7 +129,28 @@ public class ApplicationDescriptorImpl extends SchemaDescriptorImplBase<Applicat
    {
       model.setVersion(version);
       return this;
-   }   
+   }
+   
+   /* (non-Javadoc)
+    * @see org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor#securityRole(java.lang.String)
+    */
+   @Override
+   public ApplicationDescriptor securityRole(String roleName)
+   {
+      model.getSecurityRoles().add(new SecurityRole(roleName));
+      return this;
+   }
+   
+   /* (non-Javadoc)
+    * @see org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor#securityRole(java.lang.String, java.lang.String)
+    */
+   @Override
+   public ApplicationDescriptor securityRole(String roleName, String description)
+   {
+      model.getSecurityRoles().add(new SecurityRole(roleName, description));
+      return this;
+   }
+   
    //-------------------------------------------------------------------------------------||
    // Required Implementations - SchemaDescriptorImplBase --------------------------------||
    //-------------------------------------------------------------------------------------||
