@@ -14,6 +14,8 @@ import org.jboss.shrinkwrap.descriptor.api.Descriptor;
 public interface WebAppDescriptor extends Descriptor
 {
 
+   WebAppDescriptor version(String version);
+   
    WebAppDescriptor metadataComplete();
 
    WebAppDescriptor moduleName(String name);

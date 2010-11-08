@@ -66,6 +66,7 @@ public class WebAppDescriptorImpl extends SchemaDescriptorImplBase<WebAppModel> 
    // API --------------------------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||
 
+   @Override
    public WebAppDescriptor version(String version)
    {
       model.setVersion(version);
