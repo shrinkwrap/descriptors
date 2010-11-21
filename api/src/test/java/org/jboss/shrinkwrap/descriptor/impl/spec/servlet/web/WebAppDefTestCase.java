@@ -16,9 +16,9 @@
  */
 package org.jboss.shrinkwrap.descriptor.impl.spec.servlet.web;
 
-import java.io.ByteArrayOutputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.logging.Logger;
 
 import javax.faces.application.StateManager;
@@ -28,7 +28,6 @@ import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.AuthMethodType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.HttpMethodType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.TrackingModeType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.TransportGuaranteeType;
-import org.jboss.shrinkwrap.descriptor.impl.spec.servlet.web.WebAppDescriptorImpl;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -80,9 +79,9 @@ public class WebAppDefTestCase
 
       log.fine(webApp);
 
-      ByteArrayOutputStream expected = getResourceContents("/test-web.xml");
+      String expected = getResourceContents("/test-web.xml");
 
-      Assert.assertEquals(expected.toString(), webApp);
+      Assert.assertEquals(expected, webApp);
    }
 
    @Test
@@ -93,9 +92,9 @@ public class WebAppDefTestCase
 
       log.fine(webApp);
 
-      ByteArrayOutputStream expected = getResourceContents("/test-filter-web.xml");
+      String expected = getResourceContents("/test-filter-web.xml");
 
-      Assert.assertEquals(expected.toString(), webApp);
+      Assert.assertEquals(expected, webApp);
    }
 
    @Test
@@ -106,9 +105,9 @@ public class WebAppDefTestCase
 
       log.fine(webApp);
 
-      ByteArrayOutputStream expected = getResourceContents("/test-servlet-web.xml");
+      String expected = getResourceContents("/test-servlet-web.xml");
 
-      Assert.assertEquals(expected.toString(), webApp);
+      Assert.assertEquals(expected, webApp);
    }
 
    @Test
@@ -118,9 +117,9 @@ public class WebAppDefTestCase
 
       log.fine(webApp);
 
-      ByteArrayOutputStream expected = getResourceContents("/test-attributes-web.xml");
+      String expected = getResourceContents("/test-attributes-web.xml");
 
-      Assert.assertEquals(expected.toString(), webApp);
+      Assert.assertEquals(expected, webApp);
    }
 
    @Test
@@ -132,33 +131,22 @@ public class WebAppDefTestCase
 
       log.fine(webApp);
 
-      ByteArrayOutputStream expected = getResourceContents("/test-session-config-web.xml");
+      String expected = getResourceContents("/test-session-config-web.xml");
 
-      Assert.assertEquals(expected.toString(), webApp);
+      Assert.assertEquals(expected, webApp);
    }
 
-   private ByteArrayOutputStream getResourceContents(String resource) throws Exception
+   private String getResourceContents(String resource) throws Exception
    {
       assert resource != null && resource.length() > 0 : "Resource must be specified";
-      final InputStream in = getClass().getResourceAsStream(resource);
-      
-      
-      int bufferSize = 1024*8;
-      final ByteArrayOutputStream out = new ByteArrayOutputStream(bufferSize * 2);
-      final byte[] buffer = new byte[bufferSize];
-      int read = 0;
-      try
+      final BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(resource)));
+      final StringBuffer builder = new StringBuffer();
+      String line;
+      while ((line = reader.readLine()) != null)
       {
-         while (((read = in.read(buffer)) != -1))
-         {
-            out.write(buffer, 0, read);
-         }
+         builder.append(line);
+         builder.append("\n");
       }
-      finally
-      {
-         in.close();
-      }
-
-      return out;
+      return builder.toString();
    }
 }
