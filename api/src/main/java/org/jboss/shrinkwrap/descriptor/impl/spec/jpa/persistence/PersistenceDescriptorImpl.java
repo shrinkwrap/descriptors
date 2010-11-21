@@ -70,6 +70,16 @@ public class PersistenceDescriptorImpl extends SchemaDescriptorImplBase<Persiste
 
    /**
     * {@inheritDoc}
+    * @see org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.PersistenceDescriptor#version(java.lang.String)
+    */
+   @Override
+   public PersistenceDescriptor version(String version) {
+	  model.setVersion(version);
+	  return this;
+   }
+   
+   /**
+    * {@inheritDoc}
     * @see org.jboss.shrinkwrap.descriptor.spi.SchemaDescriptorProvider#getSchemaModel()
     */
    @Override

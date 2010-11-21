@@ -41,6 +41,20 @@ public class PersistenceDescriptorTestCase
    private String name2 = PersistenceDescriptorTestCase.class.getSimpleName() + "2";
    
    @Test
+   public void shouldHaveDefaultVersion() throws Exception
+   {
+	   String desc = create().exportAsString();
+	   assertXPath(desc, "/persistence/@version", "2.0");
+   }
+
+   @Test
+   public void shouldBeAbleToSetVersion() throws Exception
+   {
+	   String desc = create().version("1.0").exportAsString();
+	   assertXPath(desc, "/persistence/@version", "1.0");
+   }
+   
+   @Test
    public void shouldBeAbleToAddPersistenceUnit() throws Exception
    {
       String desc = create()

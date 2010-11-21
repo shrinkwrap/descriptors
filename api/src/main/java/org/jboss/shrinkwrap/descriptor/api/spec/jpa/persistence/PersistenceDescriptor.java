@@ -27,4 +27,5 @@ import org.jboss.shrinkwrap.descriptor.api.Descriptor;
 public interface PersistenceDescriptor extends Descriptor
 {
    PersistenceUnitDef persistenceUnit(String name);
+   PersistenceDescriptor version(String version);
 }

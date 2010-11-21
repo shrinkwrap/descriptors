@@ -41,6 +41,8 @@ import org.jboss.shrinkwrap.descriptor.spi.SchemaModel;
 @XmlRootElement(name = "persistence")
 public class PersistenceModel implements SchemaModel
 {
+   public static final String DEFAULT_VERSION = "2.0";
+   
    //-------------------------------------------------------------------------------------||
    // Instance Members -------------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||
@@ -50,7 +52,7 @@ public class PersistenceModel implements SchemaModel
 
    @XmlAttribute(required = true)
    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-   protected String version;
+   protected String version = DEFAULT_VERSION;
 
    //-------------------------------------------------------------------------------------||
    // Constructor ------------------------------------------------------------------------||
@@ -95,14 +97,7 @@ public class PersistenceModel implements SchemaModel
    @Override
    public String getVersion()
    {
-      if (version == null)
-      {
-         return "2.0";
-      }
-      else
-      {
-         return version;
-      }
+      return version;
    }
 
    /**
