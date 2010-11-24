@@ -140,7 +140,7 @@ public class WebAppDefTestCase
    {
       assert resource != null && resource.length() > 0 : "Resource must be specified";
       final BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(resource)));
-      final StringBuffer builder = new StringBuffer();
+      final StringBuilder builder = new StringBuilder();
       String line;
       while ((line = reader.readLine()) != null)
       {
