@@ -87,38 +87,22 @@ class DescriptorInstantiator
       // Get the construction information
       final DescriptorConstructionInfo info = getDescriptorConstructionInfoForUserView(userViewClass);
 
-      // Create a new backing model
-      final SchemaModel model;
-      try
-      {
-         model = info.modelClass.newInstance();
-      }
-      catch (final InstantiationException e)
-      {
-         throw new RuntimeException(e);
-      }
-      catch (final IllegalAccessException e)
-      {
-         throw new RuntimeException(e);
-      }
-
       // Get the constructor to use in making the new instance
       final Constructor<? extends Descriptor> ctor;
       try
       {
-         ctor = info.implClass.getConstructor(model.getClass());
+         ctor = info.implClass.getConstructor();
       }
       catch (final NoSuchMethodException nsme)
       {
-         throw new RuntimeException(info.implClass + " must contain a constructor accepting a "
-               + model.getClass().getName() + " instance");
+         throw new RuntimeException(info.implClass + " must contain a constructor no args contructor");
       }
 
       // Create a new descriptor instance using the backing model
       final Descriptor descriptor;
       try
       {
-         descriptor = ctor.newInstance(model);
+         descriptor = ctor.newInstance();
       }
       // Handle all construction errors equally
       catch (final Exception e)
