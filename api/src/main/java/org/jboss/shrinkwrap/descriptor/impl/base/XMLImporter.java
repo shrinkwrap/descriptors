@@ -21,9 +21,9 @@ import java.io.InputStream;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.jboss.shrinkwrap.descriptor.api.core.ExporterException;
-import org.jboss.shrinkwrap.descriptor.api.core.Importer;
-import org.jboss.shrinkwrap.descriptor.api.core.Node;
+import org.jboss.shrinkwrap.descriptor.api.Descriptor;
+import org.jboss.shrinkwrap.descriptor.api.DescriptorImportException;
+import org.jboss.shrinkwrap.descriptor.api.Node;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
@@ -34,10 +34,15 @@ import org.w3c.dom.NodeList;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-public class XMLImporter implements Importer
+public class XMLImporter<T extends Descriptor> extends DescriptorImporterBase<T>
 {
+   public XMLImporter(final Class<T> endUserViewImplType)
+   {
+      super(endUserViewImplType);
+   }
+   
    @Override
-   public Node from(InputStream stream)
+   public Node importRootNode(InputStream stream) throws DescriptorImportException
    {
       try
       {
@@ -53,7 +58,7 @@ public class XMLImporter implements Importer
       }
       catch (Exception e) 
       {
-         throw new ExporterException(e);
+         throw new DescriptorImportException("Could not import XML from stream", e);
       }
    }
 

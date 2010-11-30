@@ -16,34 +16,17 @@
  */
 package org.jboss.shrinkwrap.descriptor.spi;
 
+import java.io.OutputStream;
+
+import org.jboss.shrinkwrap.descriptor.api.Node;
+
 /**
- * SPI for a backing object model representing some schema
- * 
+ * DescriptorExporter
+ *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
- * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
+ * @version $Revision: $
  */
-public interface SchemaModel
+public interface DescriptorExporter
 {
-
-   /**
-    * Get the XSD version.
-    * 
-    * @return String representation of the descriptor version
-    */
-   String getVersion();
-
-   /**
-    * Get the XSD NameSpace.
-    * 
-    * @return The Schema NameSpace
-    */
-   String getNamespace();
-
-   /**
-    * Get the XSD SchemaLocation for this descriptor.
-    * 
-    * @return XSD SchemaLocation
-    */
-   String getSchemaLocation();
-
+   void to(Node node, OutputStream output);
 }

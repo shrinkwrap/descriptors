@@ -27,9 +27,9 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.jboss.shrinkwrap.descriptor.api.core.Exporter;
-import org.jboss.shrinkwrap.descriptor.api.core.ExporterException;
-import org.jboss.shrinkwrap.descriptor.api.core.Node;
+import org.jboss.shrinkwrap.descriptor.api.DescriptorExportException;
+import org.jboss.shrinkwrap.descriptor.api.Node;
+import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 
@@ -39,10 +39,10 @@ import org.w3c.dom.Document;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-public class XMLExporter implements Exporter
+public class XMLExporter implements DescriptorExporter
 {
    @Override
-   public void to(Node node, OutputStream out) throws ExporterException
+   public void to(Node node, OutputStream out) throws DescriptorExportException
    {
       try
       {
@@ -62,7 +62,7 @@ public class XMLExporter implements Exporter
       }
       catch (Exception e)
       {
-         throw new ExporterException(e);
+         throw new DescriptorExportException("Could not export Node strcuture to XML", e);
       }
    }
 

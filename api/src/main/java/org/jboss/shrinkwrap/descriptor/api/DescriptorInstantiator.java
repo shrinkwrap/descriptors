@@ -22,8 +22,6 @@ import java.lang.reflect.Constructor;
 import java.security.AccessController;
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.descriptor.spi.SchemaModel;
-
 /**
  * Utility capable of creating {@link Descriptor} instances given 
  * a requested end-user view. 
@@ -50,7 +48,7 @@ class DescriptorInstantiator
    /**
     * Key of the property denoting the backing model class for a given end-user view type
     */
-   private static final String KEY_MODEL_CLASS_NAME = "modelClass";
+   private static final String KEY_IMPORTER_CLASS_NAME = "importerClass";
 
    //-------------------------------------------------------------------------------------||
    // Constructor ------------------------------------------------------------------------||
@@ -129,7 +127,7 @@ class DescriptorInstantiator
     * @return
     * @throws IllegalArgumentException If the user view class was not specified
     */
-   //TODO This is now hardcoded to use schema-based descriptor importers
+   @SuppressWarnings("unchecked")
    static <T extends Descriptor> DescriptorImporter<T> createImporterFromUserView(final Class<T> userViewClass)
          throws IllegalArgumentException
    {
@@ -143,12 +141,20 @@ class DescriptorInstantiator
          throw new RuntimeException("Configured implementation class for " + userViewClass.getName()
                + " is not assignable: " + implClass.getName());
       }
-      @SuppressWarnings("unchecked")
       final Class<T> implClassCasted = (Class<T>) implClass;
 
-      //TODO This is now hardcoded to use schema-based descriptor importers
-      final DescriptorImporter<T> importer = new SchemaDescriptorImporter<T>(info.modelClass, implClassCasted);
-
+      final DescriptorImporter<T> importer;
+      try
+      {
+         importer = (DescriptorImporter<T>)info.importerClass.getConstructor(Class.class).newInstance(implClassCasted);
+      }
+      catch (Exception e) 
+      {
+         throw new RuntimeException("Configured importer for " + userViewClass.getName()
+               + " of type: " + info.importerClass + " could not be created", e);
+      }
+     
+      
       // Return
       return importer;
    }
@@ -202,15 +208,15 @@ class DescriptorInstantiator
          throw new IllegalStateException("Resource " + resourceName + " for " + userViewClass
                + " does not contain key " + KEY_IMPL_CLASS_NAME);
       }
-      final String modelClassName = props.getProperty(KEY_MODEL_CLASS_NAME);
-      if (modelClassName == null || modelClassName.length() == 0)
+      final String importerClassName = props.getProperty(KEY_IMPORTER_CLASS_NAME);
+      if (importerClassName == null || importerClassName.length() == 0)
       {
          throw new IllegalStateException("Resource " + resourceName + " for " + userViewClass
-               + " does not contain key " + KEY_MODEL_CLASS_NAME);
+               + " does not contain key " + KEY_IMPORTER_CLASS_NAME);
       }
 
       // Get the construction information
-      final DescriptorConstructionInfo info = new DescriptorConstructionInfo(implClassName, modelClassName);
+      final DescriptorConstructionInfo info = new DescriptorConstructionInfo(implClassName, importerClassName);
 
       // Return 
       return info;

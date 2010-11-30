@@ -17,7 +17,7 @@
 package org.jboss.shrinkwrap.descriptor.spi;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptor;
-import org.jboss.shrinkwrap.descriptor.api.core.Node;
+import org.jboss.shrinkwrap.descriptor.api.Node;
 
 /**
  * NodeProvider

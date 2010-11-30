@@ -21,6 +21,7 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 
 import org.jboss.shrinkwrap.descriptor.api.DescriptorExportException;
+import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
 import org.jboss.shrinkwrap.descriptor.spi.NodeProvider;
 
 /**
@@ -63,6 +64,8 @@ public abstract class NodeProviderImplBase implements NodeProvider
    @Override
    public void exportTo(OutputStream output) throws DescriptorExportException, IllegalArgumentException
    {
-      new XMLExporter().to(getRootNode(), output);
+      getExporter().to(getRootNode(), output);
    }
+   
+   protected abstract DescriptorExporter getExporter();
 }

@@ -18,8 +18,7 @@ package org.jboss.shrinkwrap.descriptor.api;
 
 import java.security.AccessController;
 
-import org.jboss.shrinkwrap.descriptor.spi.SchemaDescriptorProvider;
-import org.jboss.shrinkwrap.descriptor.spi.SchemaModel;
+import org.jboss.shrinkwrap.descriptor.spi.NodeProvider;
 
 /**
  * Value object encompassing data needed to create new {@link Descriptor}
@@ -36,13 +35,13 @@ class DescriptorConstructionInfo
    /**
     * Implementation Class of the end-user view
     */
-   final Class<? extends SchemaDescriptorProvider<? extends SchemaModel>> implClass;
+   final Class<? extends NodeProvider> implClass;
 
    /**
-    * Class used for the backing object model
+    * Implementation class for the importer
     */
-   final Class<? extends SchemaModel> modelClass;
-
+   final Class<? extends DescriptorImporter<?>> importerClass;
+   
    //-------------------------------------------------------------------------------------||
    // Constructor ------------------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||
@@ -53,17 +52,17 @@ class DescriptorConstructionInfo
     * @param modelClassName
     */
    @SuppressWarnings("unchecked")
-   DescriptorConstructionInfo(final String implClassName, final String modelClassName)
+   DescriptorConstructionInfo(final String implClassName, String importerClassName)
    {
       // Get the TCCL
       final ClassLoader tccl = AccessController.doPrivileged(GetTcclAction.INSTANCE);
 
       // Load the Implementation class
-      final Class<? extends SchemaDescriptorProvider<?>> implClass;
+      final Class<? extends NodeProvider> implClass;
       try
       {
 
-         implClass = (Class<? extends SchemaDescriptorProvider<?>>) Class.forName(implClassName, false, tccl);
+         implClass = (Class<? extends NodeProvider>) Class.forName(implClassName, false, tccl);
       }
       catch (final ClassNotFoundException e)
       {
@@ -72,18 +71,19 @@ class DescriptorConstructionInfo
       }
       this.implClass = implClass;
 
-      // Load the Model class
-      final Class<? extends SchemaModel> modelClass;
+      // Load the Implementation class
+      final Class<? extends DescriptorImporter<?>> importerClass;
       try
       {
 
-         modelClass = (Class<? extends SchemaModel>) Class.forName(modelClassName, false, tccl);
+         importerClass = (Class<? extends DescriptorImporter<?>>) Class.forName(importerClassName, false, tccl);
       }
       catch (final ClassNotFoundException e)
       {
-         throw new IllegalArgumentException("Could not load specified implementation class from " + tccl + ": "
-               + modelClassName, e);
+         throw new IllegalArgumentException("Could not load specified importer class from " + tccl + ": "
+               + importerClassName, e);
       }
-      this.modelClass = modelClass;
+      
+      this.importerClass = importerClass;
    }
 }
