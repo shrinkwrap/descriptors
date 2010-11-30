@@ -16,8 +16,11 @@
  */
 package org.jboss.shrinkwrap.descriptor.impl.spec.ee.application;
 
+import org.jboss.shrinkwrap.descriptor.api.Node;
 import org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor;
-import org.jboss.shrinkwrap.descriptor.impl.base.SchemaDescriptorImplBase;
+import org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
+import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
 
 /**
  * ApplicationDescriptorImpl
@@ -25,13 +28,13 @@ import org.jboss.shrinkwrap.descriptor.impl.base.SchemaDescriptorImplBase;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-public class ApplicationDescriptorImpl extends SchemaDescriptorImplBase<ApplicationModel> implements ApplicationDescriptor
+public class ApplicationDescriptorImpl extends NodeProviderImplBase implements ApplicationDescriptor
 {
    //-------------------------------------------------------------------------------------||
    // Instance Members -------------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||
 
-   private ApplicationModel model;
+   private Node model;
    
    //-------------------------------------------------------------------------------------||
    // Constructor ------------------------------------------------------------------------||
@@ -39,11 +42,13 @@ public class ApplicationDescriptorImpl extends SchemaDescriptorImplBase<Applicat
 
    public ApplicationDescriptorImpl()
    {
-      this(new ApplicationModel());
-      
+      this(new Node("application")            
+            .attribute("xmlns", "http://java.sun.com/xml/ns/javaee")
+            .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance"));
+
    }
    
-   public ApplicationDescriptorImpl(ApplicationModel model)
+   public ApplicationDescriptorImpl(Node model)
    {
       this.model = model;
    }
@@ -58,7 +63,7 @@ public class ApplicationDescriptorImpl extends SchemaDescriptorImplBase<Applicat
    @Override
    public ApplicationDescriptor description(String description)
    {
-      model.setDescription(description);
+      model.child("description").text(description);
       return this;
    }
    
@@ -68,7 +73,7 @@ public class ApplicationDescriptorImpl extends SchemaDescriptorImplBase<Applicat
    @Override
    public ApplicationDescriptor displayName(String displayName)
    {
-      model.setDisplayName(displayName);
+      model.child("display-name").text(displayName);
       return this;
    }
    
@@ -78,7 +83,7 @@ public class ApplicationDescriptorImpl extends SchemaDescriptorImplBase<Applicat
    @Override
    public ApplicationDescriptor libraryDirectory(String libraryDirectory)
    {
-      model.setLibraryDirectory(libraryDirectory);
+      model.child("library-directory").text(libraryDirectory);
       return this;
    }
    
@@ -87,7 +92,7 @@ public class ApplicationDescriptorImpl extends SchemaDescriptorImplBase<Applicat
     */
    public ApplicationDescriptor ejbModule(String uri) 
    {
-      model.getEjbModules().add(uri);
+      model.newChild("module").newChild("ejb").text(uri);
       return this;
    }
    
@@ -97,7 +102,7 @@ public class ApplicationDescriptorImpl extends SchemaDescriptorImplBase<Applicat
    @Override
    public ApplicationDescriptor javaModule(String uri)
    {
-      model.getJavaModules().add(uri);
+      model.newChild("module").newChild("java").text(uri);
       return this;
    }
    
@@ -107,7 +112,7 @@ public class ApplicationDescriptorImpl extends SchemaDescriptorImplBase<Applicat
    @Override
    public ApplicationDescriptor connectorModule(String uri)
    {
-      model.getConnectorModules().add(uri);
+      model.newChild("module").newChild("connector").text(uri);
       return this;
    }
    
@@ -117,7 +122,9 @@ public class ApplicationDescriptorImpl extends SchemaDescriptorImplBase<Applicat
    @Override
    public ApplicationDescriptor webModule(String uri, String contextRoot)
    {
-      model.getWebModules().add(new WebModuleImpl(uri, contextRoot));
+      Node web = model.newChild("module").newChild("web");
+      web.newChild("web-uri").text(uri);
+      web.newChild("context-root").text(contextRoot);
       return this;
    }
    
@@ -127,7 +134,7 @@ public class ApplicationDescriptorImpl extends SchemaDescriptorImplBase<Applicat
    @Override
    public ApplicationDescriptor version(String version)
    {
-      model.setVersion(version);
+      model.attribute("version", version);
       return this;
    }
    
@@ -137,8 +144,7 @@ public class ApplicationDescriptorImpl extends SchemaDescriptorImplBase<Applicat
    @Override
    public ApplicationDescriptor securityRole(String roleName)
    {
-      model.getSecurityRoles().add(new SecurityRole(roleName));
-      return this;
+      return securityRole(roleName, null);
    }
    
    /* (non-Javadoc)
@@ -147,20 +153,37 @@ public class ApplicationDescriptorImpl extends SchemaDescriptorImplBase<Applicat
    @Override
    public ApplicationDescriptor securityRole(String roleName, String description)
    {
-      model.getSecurityRoles().add(new SecurityRole(roleName, description));
+      Node security = model.newChild("security-role");
+      if(roleName != null)
+      {
+         security.newChild("role-name").text(roleName);
+      }
+      if(description != null)
+      {
+         security.newChild("description").text(description);
+      }
       return this;
    }
    
    //-------------------------------------------------------------------------------------||
-   // Required Implementations - SchemaDescriptorImplBase --------------------------------||
+   // Required Implementations - NodeProviderImplBase ------------------------------------||
    //-------------------------------------------------------------------------------------||
 
    /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spi.SchemaDescriptorProvider#getSchemaModel()
+    * @see org.jboss.shrinkwrap.descriptor.spi.NodeProvider#getRootNode()
     */
    @Override
-   public ApplicationModel getSchemaModel()
+   public Node getRootNode()
    {
       return model;
+   }
+   
+   /* (non-Javadoc)
+    * @see org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase#getExporter()
+    */
+   @Override
+   protected DescriptorExporter getExporter()
+   {
+      return new XMLExporter();
    }
 }
