@@ -81,6 +81,33 @@ public class Node
       return newChild(name);
    }
 
+   public Node getOnlyOne(String name)
+   {
+      List<Node> children = get(name);
+      if(children.size() == 0)
+      {
+         return null;
+      }
+      if(children.size() > 1)
+      {
+         throw new IllegalStateException("Multiple child nodes found with name: " + name);
+      }
+      return children.get(0);
+   }
+   
+   public List<Node> get(String name)
+   {
+      List<Node> namedChildren = new ArrayList<Node>();
+      for(Node child : getChildren())
+      {
+         if(child.getName().equals(name))
+         {
+            namedChildren.add(child);
+         }
+      }
+      return namedChildren;
+   }
+   
    public String getName()
    {
       return name;

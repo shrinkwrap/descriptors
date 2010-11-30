@@ -242,7 +242,7 @@ public class PersistenceDescriptorTestCase
                         .provider(ProviderType.HIBERNATE)
                         .showSql()
                      .exportAsString();
-      
+
       assertXPath(desc, "/persistence/persistence-unit/properties/property/@name", "hibernate.show_sql");
       assertXPath(desc, "/persistence/persistence-unit/properties/property/@value", "true");
    }
