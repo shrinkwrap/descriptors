@@ -163,7 +163,7 @@ class DescriptorInstantiator
       final Class<T> implClassCasted = (Class<T>) implClass;
 
       //TODO This is now hardcoded to use schema-based descriptor importers
-      final DescriptorImporter<T> importer = new SchemaDescriptorImporter<T>(info.modelClass, implClassCasted);
+      final DescriptorImporter<T> importer = new SchemaDescriptorImporter<T>(info.modelClass, implClassCasted, userViewClass);
 
       // Return
       return importer;

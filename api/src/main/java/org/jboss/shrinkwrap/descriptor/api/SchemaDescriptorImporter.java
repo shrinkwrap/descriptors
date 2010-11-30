@@ -20,7 +20,10 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.lang.reflect.Constructor;
 
 import javax.xml.bind.JAXBContext;
@@ -50,6 +53,13 @@ final class SchemaDescriptorImporter<T extends Descriptor> implements Descriptor
     * the model during construction)
     */
    private final Class<T> endUserViewImplType;
+   
+
+   /**
+    * Class representing the type of the end-user view 
+    */
+   private final Class<T> endUserViewType;
+
 
    //-------------------------------------------------------------------------------------||
    // Constructor ------------------------------------------------------------------------||
@@ -62,7 +72,7 @@ final class SchemaDescriptorImporter<T extends Descriptor> implements Descriptor
     * @param The type of the backing object model for the descriptor
     * @throws IllegalArgumentException If the model type is not specified
     */
-   public SchemaDescriptorImporter(final Class<?> modelType, final Class<T> endUserViewImplType)
+   public SchemaDescriptorImporter(final Class<?> modelType, final Class<T> endUserViewImplType, final Class<T> endUserViewType)
          throws IllegalArgumentException
    {
       // Precondition checks
@@ -74,10 +84,16 @@ final class SchemaDescriptorImporter<T extends Descriptor> implements Descriptor
       {
          throw new IllegalArgumentException("End user view impl type must be specified");
       }
+      
+      if (endUserViewType == null) 
+      {
+         throw new IllegalArgumentException("End user view type must be specified");
+      }
       // Set
 
       this.modelType = modelType;
       this.endUserViewImplType = endUserViewImplType;
+      this.endUserViewType = endUserViewType;
    }
 
    //-------------------------------------------------------------------------------------||
@@ -115,6 +131,39 @@ final class SchemaDescriptorImporter<T extends Descriptor> implements Descriptor
     */
    @Override
    public T from(final InputStream in) throws IllegalArgumentException, DescriptorImportException
+   {
+      // Precondition check
+      if (in == null)
+      {
+         throw new IllegalArgumentException("InputStream must be specified");
+      }
+      
+      //read stream to string so we can check for empty streams
+      String content = "";
+      try
+      {
+         content = streamToString(in);
+      } catch (IOException e) {
+         throw new DescriptorImportException("Unable to import descriptor from stream",e);
+      }
+      //read in as a string
+      return from(content);
+   }
+   
+   private String streamToString(InputStream stream) throws IOException 
+   {
+      char[] buffer= new char[2048];
+      StringBuilder builder = new StringBuilder();
+      Reader reader = new InputStreamReader(stream);
+      int count;
+      while ((count = reader.read(buffer)) !=-1) 
+      {
+         builder.append(buffer,0,count);
+      }
+      return builder.toString();
+   }
+   
+   private T readFromStream(final InputStream in) throws IllegalArgumentException, DescriptorImportException
    {
       // Precondition check
       if (in == null)
@@ -176,12 +225,17 @@ final class SchemaDescriptorImporter<T extends Descriptor> implements Descriptor
    public T from(final String string) throws IllegalArgumentException, DescriptorImportException
    {
       // Precondition check
-      if (string == null || string.length() == 0)
+      if (string == null)
       {
          throw new IllegalArgumentException("Input must be specified");
       }
 
-      // Return
-      return this.from(new ByteArrayInputStream(string.getBytes()));
+      //check if this is an empty string 
+      if (string.trim().length() == 0)
+      {
+         return Descriptors.create(endUserViewType);
+      }
+
+      return this.readFromStream(new ByteArrayInputStream(string.getBytes()));
    }
 }
