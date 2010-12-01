@@ -38,13 +38,13 @@ public interface WebAppDescriptor extends Descriptor
 
    WebAppDescriptor listener(String clazz);
 
-   WebAppDescriptor filter(Class<? extends javax.servlet.Filter> clazz, String... urlPatterns);
+   InitParamDef filter(Class<? extends javax.servlet.Filter> clazz, String... urlPatterns);
 
-   FilterDef filter(String clazz, String... urlPatterns);
+   InitParamDef filter(String clazz, String... urlPatterns);
 
-   WebAppDescriptor filter(String name, Class<? extends javax.servlet.Filter> clazz, String[] urlPatterns);
+   InitParamDef filter(String name, Class<? extends javax.servlet.Filter> clazz, String[] urlPatterns);
 
-   FilterDef filter(String name, String clazz, String[] urlPatterns);
+   InitParamDef filter(String name, String clazz, String[] urlPatterns);
    
    /**
     * Returns an immutable view of the {@link javax.servlet.Filter}s configured
@@ -58,13 +58,13 @@ public interface WebAppDescriptor extends Descriptor
     */
    List<FilterMapping> getFilterMappings();
 
-   WebAppDescriptor servlet(Class<? extends javax.servlet.Servlet> clazz, String... urlPatterns);
+   InitParamDef servlet(Class<? extends javax.servlet.Servlet> clazz, String... urlPatterns);
 
-   WebAppDescriptor servlet(String clazz, String... urlPatterns);
+   InitParamDef servlet(String clazz, String... urlPatterns);
 
-   WebAppDescriptor servlet(String name, Class<? extends javax.servlet.Servlet> clazz, String[] urlPatterns);
+   InitParamDef servlet(String name, Class<? extends javax.servlet.Servlet> clazz, String[] urlPatterns);
 
-   WebAppDescriptor servlet(String name, String clazz, String[] urlPatterns);
+   InitParamDef servlet(String name, String clazz, String[] urlPatterns);
 
    WebAppDescriptor facesServlet();
 

@@ -16,6 +16,7 @@
  */
 package org.jboss.shrinkwrap.descriptor.impl.spec.servlet.web;
 
+import org.jboss.shrinkwrap.descriptor.api.Node;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.HttpMethodType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.WebResourceCollectionDef;
 
@@ -24,9 +25,9 @@ import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.WebResourceCollectio
  */
 public class WebResourceCollectionDefImpl extends SecurityConstraintDefImpl implements WebResourceCollectionDef
 {
-   private WebResourceCollection webResourceCollection;
+   private Node webResourceCollection;
    
-   public WebResourceCollectionDefImpl(WebAppModel webApp, SecurityConstraint securityConstraint, WebResourceCollection webResourceCollection)
+   public WebResourceCollectionDefImpl(Node webApp, Node securityConstraint, Node webResourceCollection)
    {
       super(webApp, securityConstraint);
       this.webResourceCollection = webResourceCollection;
@@ -37,7 +38,7 @@ public class WebResourceCollectionDefImpl extends SecurityConstraintDefImpl impl
    {
       for (String p : urlPatterns)
       {
-         webResourceCollection.getUrlPatterns().add(p);
+         webResourceCollection.create("url-pattern").text(p);
       }
       return this;
    }
@@ -55,11 +56,11 @@ public class WebResourceCollectionDefImpl extends SecurityConstraintDefImpl impl
       {
          if (omissions)
          {
-            webResourceCollection.getHttpMethodOmissions().add(m);
+            webResourceCollection.create("http-method-omission").text(m.name());
          }
          else
          {
-            webResourceCollection.getHttpMethods().add(m);
+            webResourceCollection.create("http-method").text(m.name());
          }
       }
       return this;

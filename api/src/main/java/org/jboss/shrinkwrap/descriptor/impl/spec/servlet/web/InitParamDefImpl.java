@@ -16,30 +16,32 @@
  */
 package org.jboss.shrinkwrap.descriptor.impl.spec.servlet.web;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import org.jboss.shrinkwrap.descriptor.api.Node;
+import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.InitParamDef;
 
 /**
  * @author Dan Allen
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "describable")
-public class Describable
+// TODO could be generic since servlet can use it too
+public class InitParamDefImpl extends WebAppDescriptorImpl implements InitParamDef
 {
-   @XmlElement(name = "description")
-   protected List<LocalizedTextImpl> descriptions;
+   protected Node child;
    
-   public List<LocalizedTextImpl> getDescriptions()
+   public InitParamDefImpl(Node webApp, Node child)
    {
-      if (descriptions == null)
-      {
-         descriptions = new ArrayList<LocalizedTextImpl>();
-      }
-      return descriptions;
+      super(webApp);
+      this.child = child;
+   }
+   
+   /* (non-Javadoc)
+    * @see org.jboss.shrinkwrap.descriptor.api.spec.web.FilterDef#initParam(java.lang.String, java.lang.Object)
+    */
+   @Override
+   public InitParamDef initParam(String name, Object value)
+   {
+      Node init = child.create("init-param");
+      init.create("param-name").text(name);
+      init.create("param-value").text(String.valueOf(value));
+      return this;
    }
 }

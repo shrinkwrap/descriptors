@@ -1,6 +1,6 @@
 /*
  * JBoss, Home of Professional Open Source
- * Copyright 2010, Red Hat Middleware LLC, and individual contributors
+ * Copyright 2009, Red Hat Middleware LLC, and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
  *
@@ -14,7 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-@javax.xml.bind.annotation.XmlSchema(
-      namespace = "http://java.sun.com/xml/ns/javaee",
-      elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package org.jboss.shrinkwrap.descriptor.impl.spec.servlet.web;
+package org.jboss.shrinkwrap.descriptor.api.spec.servlet.web;
+
+/**
+ * FilterDef
+ *
+ * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
+ * @version $Revision: $
+ */
+public interface InitParamDef extends WebAppDescriptor
+{
+
+   InitParamDef initParam(String name, Object value);
+
+}
