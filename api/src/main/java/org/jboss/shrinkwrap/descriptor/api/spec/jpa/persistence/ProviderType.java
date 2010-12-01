@@ -46,7 +46,7 @@ public enum ProviderType
       {
          return null;
       }
-      return fromProviderClass(providerNode.getText());
+      return fromProviderClass(providerNode.text());
    }
    
    public static ProviderType fromProviderClass(String providerClass)

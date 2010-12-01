@@ -74,7 +74,7 @@ public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDe
          {
             throw new IllegalArgumentException("Class is not an interceptor");
          }
-         beans.child("interceptors").newChild("class").text(c.getName());
+         beans.getOrCreate("interceptors").create("class").text(c.getName());
       }
       return this;
    }
@@ -101,7 +101,7 @@ public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDe
          {
             throw new IllegalArgumentException("Class is not a decorator");
          }
-         beans.child("decorators").newChild("class").text(c.getName());
+         beans.getOrCreate("decorators").create("class").text(c.getName());
       }
       return this;
    }
@@ -128,7 +128,7 @@ public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDe
          {
             throw new IllegalArgumentException("Class is not an alternative");
          }
-         beans.child("alternatives").newChild("class").text(c.getName());
+         beans.getOrCreate("alternatives").create("class").text(c.getName());
       }
       return this;
    }
@@ -160,7 +160,7 @@ public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDe
          {
             throw new IllegalArgumentException("Stereotype is not an alternative");
          }
-         beans.child("alternatives").newChild("stereotype").text(a.getName());
+         beans.getOrCreate("alternatives").create("stereotype").text(a.getName());
       }
       return this;
    }

@@ -46,6 +46,7 @@ public class ApplicationDescriptorImpl extends NodeProviderImplBase implements A
             .attribute("xmlns", "http://java.sun.com/xml/ns/javaee")
             .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance"));
 
+      version("6");
    }
    
    public ApplicationDescriptorImpl(Node model)
@@ -63,7 +64,7 @@ public class ApplicationDescriptorImpl extends NodeProviderImplBase implements A
    @Override
    public ApplicationDescriptor description(String description)
    {
-      model.child("description").text(description);
+      model.getOrCreate("description").text(description);
       return this;
    }
    
@@ -73,7 +74,7 @@ public class ApplicationDescriptorImpl extends NodeProviderImplBase implements A
    @Override
    public ApplicationDescriptor displayName(String displayName)
    {
-      model.child("display-name").text(displayName);
+      model.getOrCreate("display-name").text(displayName);
       return this;
    }
    
@@ -83,7 +84,7 @@ public class ApplicationDescriptorImpl extends NodeProviderImplBase implements A
    @Override
    public ApplicationDescriptor libraryDirectory(String libraryDirectory)
    {
-      model.child("library-directory").text(libraryDirectory);
+      model.getOrCreate("library-directory").text(libraryDirectory);
       return this;
    }
    
@@ -92,7 +93,7 @@ public class ApplicationDescriptorImpl extends NodeProviderImplBase implements A
     */
    public ApplicationDescriptor ejbModule(String uri) 
    {
-      model.newChild("module").newChild("ejb").text(uri);
+      model.create("module").create("ejb").text(uri);
       return this;
    }
    
@@ -102,7 +103,7 @@ public class ApplicationDescriptorImpl extends NodeProviderImplBase implements A
    @Override
    public ApplicationDescriptor javaModule(String uri)
    {
-      model.newChild("module").newChild("java").text(uri);
+      model.create("module").create("java").text(uri);
       return this;
    }
    
@@ -112,7 +113,7 @@ public class ApplicationDescriptorImpl extends NodeProviderImplBase implements A
    @Override
    public ApplicationDescriptor connectorModule(String uri)
    {
-      model.newChild("module").newChild("connector").text(uri);
+      model.create("module").create("connector").text(uri);
       return this;
    }
    
@@ -122,9 +123,9 @@ public class ApplicationDescriptorImpl extends NodeProviderImplBase implements A
    @Override
    public ApplicationDescriptor webModule(String uri, String contextRoot)
    {
-      Node web = model.newChild("module").newChild("web");
-      web.newChild("web-uri").text(uri);
-      web.newChild("context-root").text(contextRoot);
+      Node web = model.create("module").create("web");
+      web.create("web-uri").text(uri);
+      web.create("context-root").text(contextRoot);
       return this;
    }
    
@@ -153,14 +154,14 @@ public class ApplicationDescriptorImpl extends NodeProviderImplBase implements A
    @Override
    public ApplicationDescriptor securityRole(String roleName, String description)
    {
-      Node security = model.newChild("security-role");
+      Node security = model.create("security-role");
       if(roleName != null)
       {
-         security.newChild("role-name").text(roleName);
+         security.create("role-name").text(roleName);
       }
       if(description != null)
       {
-         security.newChild("description").text(description);
+         security.create("description").text(description);
       }
       return this;
    }

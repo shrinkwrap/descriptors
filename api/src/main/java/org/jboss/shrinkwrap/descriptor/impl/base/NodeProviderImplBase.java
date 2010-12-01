@@ -64,6 +64,10 @@ public abstract class NodeProviderImplBase implements NodeProvider
    @Override
    public void exportTo(OutputStream output) throws DescriptorExportException, IllegalArgumentException
    {
+      if(output == null)
+      {
+         throw new IllegalArgumentException("Can not export to null stream");
+      }
       getExporter().to(getRootNode(), output);
    }
    

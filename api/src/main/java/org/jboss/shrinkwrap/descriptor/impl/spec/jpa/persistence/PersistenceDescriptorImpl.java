@@ -45,8 +45,9 @@ public class PersistenceDescriptorImpl extends NodeProviderImplBase
    {
       this(new Node("persistence")
             .attribute("xmlns", "http://java.sun.com/xml/ns/persistence")
-            .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance")
-            .attribute("version", "2.0"));
+            .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance"));
+      
+      version("2.0");
    }
 
    public PersistenceDescriptorImpl(final Node model)
@@ -67,7 +68,7 @@ public class PersistenceDescriptorImpl extends NodeProviderImplBase
    {
       return new PersistenceUnitDefImpl(
             model, 
-            model.newChild("persistence-unit")
+            model.create("persistence-unit")
                .attribute("name", name));
    }
 

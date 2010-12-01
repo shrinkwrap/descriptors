@@ -78,26 +78,26 @@ public class XMLExporter implements DescriptorExporter
          owned = (Document)target;
       }
       org.w3c.dom.Node targetChild = null;
-      if(source.getText() != null) 
+      if(source.text() != null) 
       {
-         targetChild = owned.createElement(source.getName());
-         targetChild.appendChild(owned.createTextNode(source.getText()));
+         targetChild = owned.createElement(source.name());
+         targetChild.appendChild(owned.createTextNode(source.text()));
       }
       else
       {
-         targetChild = owned.createElement(source.getName());
+         targetChild = owned.createElement(source.name());
       }
       
       target.appendChild(targetChild);
       
-      for(Map.Entry<String, String> attribute: source.getAttributes().entrySet())
+      for(Map.Entry<String, String> attribute: source.attributes().entrySet())
       {
          Attr attr = owned.createAttribute(attribute.getKey());
          attr.setValue(attribute.getValue());
 
          targetChild.getAttributes().setNamedItem(attr);
       }
-      for(Node sourceChild : source.getChildren())
+      for(Node sourceChild : source.children())
       {
          writeRecursive(targetChild, sourceChild);
       }

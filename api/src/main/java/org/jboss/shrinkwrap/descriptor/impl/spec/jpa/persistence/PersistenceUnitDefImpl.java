@@ -49,14 +49,14 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    @Override
    public PersistenceUnitDef description(String description)
    {
-      persistenceUnit.child("description").text(description);
+      persistenceUnit.getOrCreate("description").text(description);
       return this;
    }
    
    @Override
    public PersistenceUnitDef nonJtaDataSource(String jndiName)
    {
-      persistenceUnit.child("non-jta-data-source").text(jndiName);
+      persistenceUnit.getOrCreate("non-jta-data-source").text(jndiName);
       return this;
    }
    
@@ -70,15 +70,15 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    @Override
    public PersistenceUnitDef jtaDataSource(String jndiName)
    {
-      persistenceUnit.child("jta-data-source").text(jndiName);
+      persistenceUnit.getOrCreate("jta-data-source").text(jndiName);
       return this;
    }
    
    @Override
    public PersistenceUnitDef property(String name, Object value)
    {
-      persistenceUnit.child("properties")
-                  .newChild("property")
+      persistenceUnit.getOrCreate("properties")
+                  .create("property")
                      .attribute("name", name)
                      .attribute("value", String.valueOf(value));
       return this;
@@ -89,7 +89,7 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    {
       for (Class<?> c : classes)
       {
-         persistenceUnit.newChild("class").text(c.getName());
+         persistenceUnit.create("class").text(c.getName());
       }
       return this;
    }
@@ -99,7 +99,7 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    {
       for (String p : paths)
       {
-         persistenceUnit.newChild("jar-file").text(p);
+         persistenceUnit.create("jar-file").text(p);
       }
       return this;
    }
@@ -115,7 +115,7 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    {
       for (String p : paths)
       {
-         persistenceUnit.newChild("mapping-file").text(p);
+         persistenceUnit.create("mapping-file").text(p);
       }
       return this;
    }
@@ -129,60 +129,60 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    @Override
    public PersistenceUnitDef sharedCacheMode(SharedCacheModeType sharedCacheMode)
    {
-      persistenceUnit.child("shared-cache-mode").text(sharedCacheMode.name());
+      persistenceUnit.getOrCreate("shared-cache-mode").text(sharedCacheMode.name());
       return this;
    }
    
    @Override
    public PersistenceUnitDef validationMode(ValidationModeType validationMode)
    {
-      persistenceUnit.child("validation-mode").text(validationMode.name());
+      persistenceUnit.getOrCreate("validation-mode").text(validationMode.name());
       return this;
    }
    
    @Override
    public PersistenceUnitDef excludeUnlistedClasses()
    {
-      persistenceUnit.child("exclude-unlisted-classes").text("true");
+      persistenceUnit.getOrCreate("exclude-unlisted-classes").text("true");
       return this;
    }
    
    @Override
    public PersistenceUnitDef includeUnlistedClasses()
    {
-      persistenceUnit.child("exclude-unlisted-classes").text("false");
+      persistenceUnit.getOrCreate("exclude-unlisted-classes").text("false");
       return this;
    }
    
    @Override
    public PersistenceUnitDef provider(String provider)
    {
-      persistenceUnit.child("provider").text(provider);
+      persistenceUnit.getOrCreate("provider").text(provider);
       return this;
    }
    
    @Override
    public PersistenceUnitDef provider(ProviderType providerType)
    {
-      persistenceUnit.child("provider").text(providerType.getProviderClass());
+      persistenceUnit.getOrCreate("provider").text(providerType.getProviderClass());
       return this;
    }
    
    @Override
    public PersistenceUnitDef showSql()
    {
-      ProviderType providerType = ProviderType.fromProviderClass(persistenceUnit.getOnlyOne("provider"));
+      ProviderType providerType = ProviderType.fromProviderClass(persistenceUnit.getSingle("provider"));
       if (providerType == null || providerType == ProviderType.HIBERNATE)
       {
-         persistenceUnit.child("properties")
-                     .newChild("property")
+         persistenceUnit.getOrCreate("properties")
+                     .create("property")
                         .attribute("name", "hibernate.show_sql")
                         .attribute("value", "true");
       }
       if (providerType == null || providerType == ProviderType.ECLIPSE_LINK)
       {
-         persistenceUnit.child("properties")
-                     .newChild("property")
+         persistenceUnit.getOrCreate("properties")
+                     .create("property")
                         .attribute("name", "eclipselink.logging.level")
                         .attribute("value", "FINE");
       }
@@ -192,11 +192,11 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    @Override
    public PersistenceUnitDef formatSql()
    {
-      ProviderType providerType = ProviderType.fromProviderClass(persistenceUnit.getOnlyOne("provider"));
+      ProviderType providerType = ProviderType.fromProviderClass(persistenceUnit.getSingle("provider"));
       if (providerType == null || providerType == ProviderType.HIBERNATE)
       {
-         persistenceUnit.child("properties")
-                     .newChild("property")
+         persistenceUnit.getOrCreate("properties")
+                     .create("property")
                         .attribute("name", "hibernate.format_sql")
                         .attribute("value", "true");
       }
@@ -206,7 +206,7 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    @Override
    public PersistenceUnitDef schemaGenerationMode(SchemaGenerationModeType schemaGenerationMode)
    {
-      ProviderType providerType = ProviderType.fromProviderClass(persistenceUnit.getOnlyOne("provider"));
+      ProviderType providerType = ProviderType.fromProviderClass(persistenceUnit.getSingle("provider"));
       if (providerType == null || providerType == ProviderType.HIBERNATE)
       {
          String value = null;
@@ -228,8 +228,8 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
          }
          if (value != null)
          {
-            persistenceUnit.child("properties")
-                        .newChild("property")
+            persistenceUnit.getOrCreate("properties")
+                        .create("property")
                            .attribute("name", "hibernate.hbm2ddl.auto")
                            .attribute("value", value);
          }
@@ -255,8 +255,8 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
          }
          if (value != null)
          {
-            persistenceUnit.child("properties")
-                     .newChild("property")
+            persistenceUnit.getOrCreate("properties")
+                     .create("property")
                         .attribute("name", "eclipselink.ddl-generation")
                         .attribute("value", value);
          }
