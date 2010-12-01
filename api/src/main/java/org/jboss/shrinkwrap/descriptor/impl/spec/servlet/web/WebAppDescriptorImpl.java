@@ -120,7 +120,7 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    {
       Node context = model.create("context-param");
       context.create("param-name").text(name);
-      context.create("param-value").text(String.valueOf(value));
+      context.create("param-value").text(value);
       
       return this;
    }
@@ -278,7 +278,7 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    @Override
    public WebAppDescriptor sessionTimeout(int timeout)
    {
-      model.getOrCreate("session-config").getOrCreate("session-timeout").text(String.valueOf(timeout));
+      model.getOrCreate("session-config").getOrCreate("session-timeout").text(timeout);
       return this;
    }
 
