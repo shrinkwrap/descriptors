@@ -153,18 +153,17 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
       persistenceUnit.getOrCreate("exclude-unlisted-classes").text("false");
       return this;
    }
-   
+
+   @Override
+   public PersistenceUnitDef provider(ProviderType providerType)
+   {
+      return provider(providerType.getProviderClass());
+   }
+
    @Override
    public PersistenceUnitDef provider(String provider)
    {
       persistenceUnit.getOrCreate("provider").text(provider);
-      return this;
-   }
-   
-   @Override
-   public PersistenceUnitDef provider(ProviderType providerType)
-   {
-      persistenceUnit.getOrCreate("provider").text(providerType.getProviderClass());
       return this;
    }
    

@@ -17,6 +17,7 @@
 package org.jboss.shrinkwrap.descriptor.api;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +36,7 @@ public class Node
 
    private Node parent;
    
-   private List<Node> children;
+   private List<Node> children = new ArrayList<Node>();
    
    private String name;
    
@@ -67,6 +68,11 @@ public class Node
    {
       this.name = name;
       this.parent = parent;
+      
+      if(this.parent != null)
+      {
+         this.parent.children.add(this);
+      }
    }
    
    //-------------------------------------------------------------------------------------||
@@ -140,9 +146,17 @@ public class Node
     */
    public Node create(String name)
    {
+      return create(Expressions.create(name));
+      /*
       Node child = new Node(name, this);
       children().add(child);
       return child;
+      */
+   }
+   
+   public Node create(Expression<Node> expression)
+   {
+      return expression.execute(this);
    }
    
    /**
@@ -159,12 +173,20 @@ public class Node
     */
    public Node getOrCreate(String name)
    {
+      return getOrCreate(Expressions.getOrCreate(name));
+      /*
       Node child = getSingle(name);
       if(child != null)
       {
          return child;
       }
       return create(name);
+      */
+   }
+   
+   public Node getOrCreate(Expression<Node> expression)
+   {
+      return expression.execute(this);
    }
 
    /**
@@ -178,6 +200,8 @@ public class Node
     */
    public Node getSingle(String name)
    {
+      return getSingle(Expressions.getSingle(name));
+      /*
       List<Node> children = get(name);
       if(children.size() == 0)
       {
@@ -188,6 +212,12 @@ public class Node
          throw new IllegalArgumentException("Multiple child nodes found with name: " + name);
       }
       return children.get(0);
+      */
+   }
+   
+   public Node getSingle(Expression<Node> expression)
+   {
+      return expression.execute(this);
    }
    
    /**
@@ -198,6 +228,8 @@ public class Node
     */
    public List<Node> get(String name)
    {
+      return get(Expressions.get(name));
+      /*
       List<Node> namedChildren = new ArrayList<Node>();
       for(Node child : children())
       {
@@ -207,6 +239,12 @@ public class Node
          }
       }
       return namedChildren;
+      */
+   }
+   
+   public List<Node> get(Expression<List<Node>> expression)
+   {
+      return expression.execute(this);
    }
    
    //-------------------------------------------------------------------------------------||
@@ -280,7 +318,7 @@ public class Node
       {
          children = new ArrayList<Node>();
       }
-      return children;
+      return Collections.unmodifiableList(children);
    }
 
    //-------------------------------------------------------------------------------------||
@@ -291,7 +329,7 @@ public class Node
    public String toString()
    {
       return "Node[" + name + "] " + 
-               (attributes != null ? "attributes[" + attributes + "]":"") + 
-               (children != null ? children.size():0) + " children "; 
+               "children[" + (children != null ? children.size():0) + "] " + 
+               (attributes != null ? "attributes[" + attributes + "] ":""); 
    }
 }

@@ -66,10 +66,10 @@ public class PersistenceDescriptorImpl extends NodeProviderImplBase
    @Override
    public PersistenceUnitDef persistenceUnit(final String name)
    {
+      //Expression<Node> exp = Expressions.getOrCreate("persistence-unit").attribute("name", name);
       return new PersistenceUnitDefImpl(
             model, 
-            model.create("persistence-unit")
-               .attribute("name", name));
+            model.getOrCreate("persistence-unit@name=" + name)).name(name);
    }
 
    /**

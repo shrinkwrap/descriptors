@@ -82,6 +82,17 @@ public class PersistenceDescriptorTestCase
    }
 
    @Test
+   public void shouldOnlyCreateOnPersistenceUnitWithSameName() throws Exception
+   {
+      // create() creates a persistenceUnit with "name". 
+      // Add a new persistence unit with "name", should return the same node. name is defined unique
+      String desc = create().persistenceUnit(name)
+                     .exportAsString();
+      
+      assertXPath(desc, "/persistence/persistence-unit/@name", name);
+   }
+
+   @Test
    public void shouldBeAbleToAddClasses() throws Exception
    {
       String desc = create().classes(PersistenceDescriptor.class, PersistenceDescriptor.class)
