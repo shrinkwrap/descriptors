@@ -14,27 +14,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.impl.base.expression;
+package org.jboss.shrinkwrap.descriptor.impl.base.query;
 
-import java.util.List;
+import java.util.Map;
 
-import org.jboss.shrinkwrap.descriptor.api.ExpressionDefinition;
 import org.jboss.shrinkwrap.descriptor.api.Node;
+import org.jboss.shrinkwrap.descriptor.api.query.Query;
+import org.jboss.shrinkwrap.descriptor.api.query.NodeQuery;
 
 /**
- * GetSingleExpression
+ * CreateExpression
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-public class GetSingleExpression extends AbstractExpression<Node>
+public class CreateQuery extends AbstractQueryExecuter<Node>
 {
-
    /**
     * @param isAbsolute
     * @param paths
     */
-   public GetSingleExpression(ExpressionDefinition def)
+   public CreateQuery(Query def)
    {
       super(def);
    }
@@ -45,18 +45,18 @@ public class GetSingleExpression extends AbstractExpression<Node>
    @Override
    public Node execute(Node node)
    {
-      GetExpression getAll = new GetExpression(getDefinition());
-      List<Node> nodes = getAll.execute(node);
-      
-      if(nodes == null || nodes.size() == 0)
-      {
-         return null;
-      }
-      if(nodes.size() > 1)
-      {
-         throw new IllegalArgumentException("Multiple nodes matching expression found");
-      }
-      return nodes.get(0);
-   }
+      Query def = getDefinition();
+      Node start = def.isAbsolute() ? findRoot(node):node;
 
+      Node previous = start;
+      for(NodeQuery nodeDef : def.getDefinitions())
+      {
+         previous = new Node(nodeDef.name(), previous);
+         for(Map.Entry<String, String> entry : nodeDef.attributes().entrySet())
+         {
+            previous.attribute(entry.getKey(), entry.getValue());
+         }
+      }
+      return previous;
+   }
 }

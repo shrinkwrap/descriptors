@@ -14,15 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.impl.base.expression;
+package org.jboss.shrinkwrap.descriptor.impl.base.query;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.jboss.shrinkwrap.descriptor.api.ExpressionDefinition;
 import org.jboss.shrinkwrap.descriptor.api.Node;
-import org.jboss.shrinkwrap.descriptor.api.NodeDefinition;
+import org.jboss.shrinkwrap.descriptor.api.query.Query;
+import org.jboss.shrinkwrap.descriptor.api.query.NodeQuery;
 
 /**
  * GetOrCreateExpression
@@ -30,13 +30,13 @@ import org.jboss.shrinkwrap.descriptor.api.NodeDefinition;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-public class GetOrCreateExpression extends AbstractExpression<Node>
+public class GetOrCreateQuery extends AbstractQueryExecuter<Node>
 {
    /**
     * @param isAbsolute
     * @param paths
     */
-   public GetOrCreateExpression(ExpressionDefinition def)
+   public GetOrCreateQuery(Query def)
    {
       super(def);
    }
@@ -47,10 +47,10 @@ public class GetOrCreateExpression extends AbstractExpression<Node>
    @Override
    public Node execute(Node node)
    {
-      ExpressionDefinition def = getDefinition();
-      List<NodeDefinition> nodeDefs = def.getDefinitions();
+      Query def = getDefinition();
+      List<NodeQuery> nodeDefs = def.getDefinitions();
 
-      GetSingleExpression single = new GetSingleExpression(getDefinition());
+      GetSingleQuery single = new GetSingleQuery(getDefinition());
       Node found = single.execute(node);
       if(found == null)
       {
@@ -73,9 +73,9 @@ public class GetOrCreateExpression extends AbstractExpression<Node>
       }
    }
 
-   private Node findOrCreateMatch(Node parent, Iterator<NodeDefinition> definitions)
+   private Node findOrCreateMatch(Node parent, Iterator<NodeQuery> definitions)
    {
-      NodeDefinition def = definitions.hasNext() ? definitions.next():null;
+      NodeQuery def = definitions.hasNext() ? definitions.next():null;
       if(def == null)
       {
          return parent;

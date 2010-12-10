@@ -14,10 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.api;
+package org.jboss.shrinkwrap.descriptor.api.query;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import org.jboss.shrinkwrap.descriptor.api.Node;
 
 /**
  * NodeDefinition
@@ -25,7 +27,7 @@ import java.util.Map;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-public class NodeDefinition
+public class NodeQuery
 {
    //-------------------------------------------------------------------------------------||
    // Instance Members -------------------------------------------------------------------||
@@ -39,7 +41,7 @@ public class NodeDefinition
    // Constructors -----------------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||
    
-   public NodeDefinition(String name)
+   public NodeQuery(String name)
    {
       this.name = name;
    }
@@ -68,7 +70,7 @@ public class NodeDefinition
     * @return This Node
     * @see #attribute(String, String)
     */
-   public NodeDefinition attribute(String name, Object value)
+   public NodeQuery attribute(String name, Object value)
    {
       return attribute(name, String.valueOf(value));
    }
@@ -80,7 +82,7 @@ public class NodeDefinition
     * @param value The given value
     * @return This Node
     */
-   public NodeDefinition attribute(String name, String value)
+   public NodeQuery attribute(String name, String value)
    {
       attributes().put(name, value);
       return this;

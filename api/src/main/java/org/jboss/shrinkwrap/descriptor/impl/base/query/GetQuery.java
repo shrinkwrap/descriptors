@@ -14,15 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.impl.base.expression;
+package org.jboss.shrinkwrap.descriptor.impl.base.query;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.jboss.shrinkwrap.descriptor.api.ExpressionDefinition;
 import org.jboss.shrinkwrap.descriptor.api.Node;
-import org.jboss.shrinkwrap.descriptor.api.NodeDefinition;
+import org.jboss.shrinkwrap.descriptor.api.query.Query;
+import org.jboss.shrinkwrap.descriptor.api.query.NodeQuery;
 
 /**
  * GetExpression
@@ -30,13 +30,13 @@ import org.jboss.shrinkwrap.descriptor.api.NodeDefinition;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-public class GetExpression extends AbstractExpression<List<Node>>
+public class GetQuery extends AbstractQueryExecuter<List<Node>>
 {
    /**
     * @param isAbsolute
     * @param paths
     */
-   public GetExpression(ExpressionDefinition def)
+   public GetQuery(Query def)
    {
       super(def);
    }
@@ -47,8 +47,8 @@ public class GetExpression extends AbstractExpression<List<Node>>
    @Override
    public List<Node> execute(Node node)
    {
-      ExpressionDefinition def = getDefinition();
-      List<NodeDefinition> nodeDefs = def.getDefinitions();
+      Query def = getDefinition();
+      List<NodeQuery> nodeDefs = def.getDefinitions();
 
       Node current = def.isAbsolute() ? findRoot(node) : node;
       int startIndex = def.isAbsolute() ? 1 : 0;
@@ -65,10 +65,10 @@ public class GetExpression extends AbstractExpression<List<Node>>
       return findMatch(current, nodeDefs.listIterator(startIndex));
    }
    
-   private List<Node> findMatch(Node parent, Iterator<NodeDefinition> definitions)
+   private List<Node> findMatch(Node parent, Iterator<NodeQuery> definitions)
    {
       List<Node> nodes = new ArrayList<Node>();
-      NodeDefinition def = definitions.hasNext() ? definitions.next():null;
+      NodeQuery def = definitions.hasNext() ? definitions.next():null;
       if(def == null)
       {
          nodes.add(parent);

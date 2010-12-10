@@ -14,14 +14,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.api;
+package org.jboss.shrinkwrap.descriptor.api.query;
 
-import java.util.List;
-
-import org.jboss.shrinkwrap.descriptor.impl.base.expression.CreateExpression;
-import org.jboss.shrinkwrap.descriptor.impl.base.expression.GetExpression;
-import org.jboss.shrinkwrap.descriptor.impl.base.expression.GetOrCreateExpression;
-import org.jboss.shrinkwrap.descriptor.impl.base.expression.GetSingleExpression;
 
 /**
  * Expressions
@@ -29,39 +23,47 @@ import org.jboss.shrinkwrap.descriptor.impl.base.expression.GetSingleExpression;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-public class Expressions
+public class Queries
 {
-   public static Expression<Node> create(String exp) 
-   {
-      return new CreateExpression(buildExpression(exp));
-   }
-
-   public static Expression<Node> getOrCreate(String exp) 
-   {
-      return new GetOrCreateExpression(buildExpression(exp));
-   }
-   
-   public static Expression<List<Node>> get(String exp) 
-   {
-      return new GetExpression(buildExpression(exp));
-   }
-
-   public static Expression<Node> getSingle(String exp) 
-   {
-      return new GetSingleExpression(buildExpression(exp));
-   }
-
    private static final String PATH_SEPARATOR = "/";
    private static final String ATTR_PATH_SEPERATOR = "@";
    private static final String ATTR_SEPERATOR = "&";
    private static final String ATTR_VALUE_SEPERATOR = "=";
    
+
+   public static Query from(String query)
+   {
+      return buildExpression(query);
+   }
+   
+   /*
+   public static Expression<Node> create(String exp) 
+   {
+      return new CreateQuery(buildExpression(exp));
+   }
+
+   public static Expression<Node> getOrCreate(String exp) 
+   {
+      return new GetOrCreateQuery(buildExpression(exp));
+   }
+   
+   public static Expression<List<Node>> get(String exp) 
+   {
+      return new GetQuery(buildExpression(exp));
+   }
+
+   public static Expression<Node> getSingle(String exp) 
+   {
+      return new GetSingleQuery(buildExpression(exp));
+   }
+
+*/
    /*
     *  convert expressions into ExpressionDefinition
     *  
     *  /node@atr=1&atr2=4/child@atr1=5
     */
-   private static ExpressionDefinition buildExpression(String exp)
+   private static Query buildExpression(String exp)
    {
       if(exp == null)
       {
@@ -69,7 +71,7 @@ public class Expressions
       }
       
       boolean isAbsolute = exp.startsWith(PATH_SEPARATOR);
-      ExpressionDefinition def  = new ExpressionDefinition(isAbsolute);
+      Query def  = new Query(isAbsolute);
       
       String[] paths = (isAbsolute ? exp.substring(1):exp).split(PATH_SEPARATOR);
       for(String path : paths)
@@ -78,7 +80,7 @@ public class Expressions
          String attribute = path.indexOf(ATTR_PATH_SEPERATOR) != -1 ? path.substring(path.indexOf(ATTR_PATH_SEPERATOR)+ ATTR_PATH_SEPERATOR.length(), path.length()):null;
          String[] attributes = attribute == null ? new String[0]:attribute.split(ATTR_SEPERATOR);
          
-         NodeDefinition nodeDef = new NodeDefinition(name);
+         NodeQuery nodeDef = new NodeQuery(name);
          for(String attr : attributes)
          {
             String[] nameValue = attr.split(ATTR_VALUE_SEPERATOR);

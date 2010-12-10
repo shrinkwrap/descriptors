@@ -14,10 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.api;
+package org.jboss.shrinkwrap.descriptor.api.query;
 
 import junit.framework.Assert;
 
+import org.jboss.shrinkwrap.descriptor.api.Node;
 import org.junit.Test;
 
 
@@ -27,7 +28,7 @@ import org.junit.Test;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-public class ExpressionTestCase
+public class QueryTestCase
 {
    private static final String ATTR_NAME = "attr_name";
    private static final String ROOT_NODE = "root";

@@ -14,7 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.api;
+package org.jboss.shrinkwrap.descriptor.api.query;
+
+import org.jboss.shrinkwrap.descriptor.api.Node;
 
 
 /**
@@ -23,7 +25,7 @@ package org.jboss.shrinkwrap.descriptor.api;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-public interface Expression<T>
+public interface QueryExecuter<T>
 {
    /** 
     * Get the result of this Expression.

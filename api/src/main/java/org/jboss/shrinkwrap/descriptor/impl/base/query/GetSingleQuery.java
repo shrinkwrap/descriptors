@@ -14,27 +14,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.impl.base.expression;
+package org.jboss.shrinkwrap.descriptor.impl.base.query;
 
-import java.util.Map;
+import java.util.List;
 
-import org.jboss.shrinkwrap.descriptor.api.ExpressionDefinition;
 import org.jboss.shrinkwrap.descriptor.api.Node;
-import org.jboss.shrinkwrap.descriptor.api.NodeDefinition;
+import org.jboss.shrinkwrap.descriptor.api.query.Query;
 
 /**
- * CreateExpression
+ * GetSingleExpression
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-public class CreateExpression extends AbstractExpression<Node>
+public class GetSingleQuery extends AbstractQueryExecuter<Node>
 {
+
    /**
     * @param isAbsolute
     * @param paths
     */
-   public CreateExpression(ExpressionDefinition def)
+   public GetSingleQuery(Query def)
    {
       super(def);
    }
@@ -45,18 +45,18 @@ public class CreateExpression extends AbstractExpression<Node>
    @Override
    public Node execute(Node node)
    {
-      ExpressionDefinition def = getDefinition();
-      Node start = def.isAbsolute() ? findRoot(node):node;
-
-      Node previous = start;
-      for(NodeDefinition nodeDef : def.getDefinitions())
+      GetQuery getAll = new GetQuery(getDefinition());
+      List<Node> nodes = getAll.execute(node);
+      
+      if(nodes == null || nodes.size() == 0)
       {
-         previous = new Node(nodeDef.name(), previous);
-         for(Map.Entry<String, String> entry : nodeDef.attributes().entrySet())
-         {
-            previous.attribute(entry.getKey(), entry.getValue());
-         }
+         return null;
       }
-      return previous;
+      if(nodes.size() > 1)
+      {
+         throw new IllegalArgumentException("Multiple nodes matching expression found");
+      }
+      return nodes.get(0);
    }
+
 }

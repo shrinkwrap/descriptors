@@ -22,6 +22,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.jboss.shrinkwrap.descriptor.api.query.Queries;
+import org.jboss.shrinkwrap.descriptor.api.query.Query;
+import org.jboss.shrinkwrap.descriptor.impl.base.query.CreateQuery;
+import org.jboss.shrinkwrap.descriptor.impl.base.query.GetOrCreateQuery;
+import org.jboss.shrinkwrap.descriptor.impl.base.query.GetQuery;
+import org.jboss.shrinkwrap.descriptor.impl.base.query.GetSingleQuery;
+
 /**
  * A Node is a 
  *
@@ -146,17 +153,12 @@ public class Node
     */
    public Node create(String name)
    {
-      return create(Expressions.create(name));
-      /*
-      Node child = new Node(name, this);
-      children().add(child);
-      return child;
-      */
+      return create(Queries.from(name));
    }
    
-   public Node create(Expression<Node> expression)
+   public Node create(Query query)
    {
-      return expression.execute(this);
+      return new CreateQuery(query).execute(this);
    }
    
    /**
@@ -173,20 +175,12 @@ public class Node
     */
    public Node getOrCreate(String name)
    {
-      return getOrCreate(Expressions.getOrCreate(name));
-      /*
-      Node child = getSingle(name);
-      if(child != null)
-      {
-         return child;
-      }
-      return create(name);
-      */
+      return getOrCreate(Queries.from(name));
    }
    
-   public Node getOrCreate(Expression<Node> expression)
+   public Node getOrCreate(Query query)
    {
-      return expression.execute(this);
+      return new GetOrCreateQuery(query).execute(this);
    }
 
    /**
@@ -200,24 +194,12 @@ public class Node
     */
    public Node getSingle(String name)
    {
-      return getSingle(Expressions.getSingle(name));
-      /*
-      List<Node> children = get(name);
-      if(children.size() == 0)
-      {
-         return null;
-      }
-      if(children.size() > 1)
-      {
-         throw new IllegalArgumentException("Multiple child nodes found with name: " + name);
-      }
-      return children.get(0);
-      */
+      return getSingle(Queries.from(name));
    }
    
-   public Node getSingle(Expression<Node> expression)
+   public Node getSingle(Query query)
    {
-      return expression.execute(this);
+      return new GetSingleQuery(query).execute(this);
    }
    
    /**
@@ -228,23 +210,12 @@ public class Node
     */
    public List<Node> get(String name)
    {
-      return get(Expressions.get(name));
-      /*
-      List<Node> namedChildren = new ArrayList<Node>();
-      for(Node child : children())
-      {
-         if(child.name().equals(name))
-         {
-            namedChildren.add(child);
-         }
-      }
-      return namedChildren;
-      */
+      return get(Queries.from(name));
    }
    
-   public List<Node> get(Expression<List<Node>> expression)
+   public List<Node> get(Query query)
    {
-      return expression.execute(this);
+      return new GetQuery(query).execute(this);
    }
    
    //-------------------------------------------------------------------------------------||

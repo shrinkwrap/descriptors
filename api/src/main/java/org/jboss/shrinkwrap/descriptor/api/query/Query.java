@@ -14,58 +14,55 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.impl.base.expression;
+package org.jboss.shrinkwrap.descriptor.api.query;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.jboss.shrinkwrap.descriptor.api.Expression;
-import org.jboss.shrinkwrap.descriptor.api.ExpressionDefinition;
-import org.jboss.shrinkwrap.descriptor.api.Node;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * AbstractExpression
+ * ExpressionDefinition
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-public abstract class AbstractExpression<T> implements Expression<T>
+public class Query
 {
    //-------------------------------------------------------------------------------------||
    // Instance Members -------------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||
+   
+   private boolean isAbsolute = false;
 
-   private ExpressionDefinition def;
+   private List<NodeQuery> definitions;
+   
    //-------------------------------------------------------------------------------------||
    // Constructor ------------------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||
-
-   AbstractExpression(ExpressionDefinition def)
+   
+   public Query(boolean isAbsolute)
    {
-      this.def = def;
+      this.isAbsolute = isAbsolute;
+      this.definitions = new ArrayList<NodeQuery>();
+   }
+
+   /**
+    * @return
+    */
+   public List<NodeQuery> getDefinitions()
+   {
+      return definitions;
+   }
+   
+   public void addDefinition(NodeQuery def)
+   {
+      getDefinitions().add(def);
    }
    
    /**
-    * @return the definition
+    * @return the isAbsolute
     */
-   public ExpressionDefinition getDefinition()
+   public boolean isAbsolute()
    {
-      return def;
+      return isAbsolute;
    }
-
-   protected Node findRoot(Node child)
-   {
-      if(child.parent() == null)
-      {
-         return child;
-      }
-      Node root = null;
-      do
-      {
-         root = child.parent();
-      }
-      while(root.parent() != null);
-      
-      return root;
-    }
 }
