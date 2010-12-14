@@ -65,15 +65,7 @@ public class XMLImporter<T extends Descriptor> extends DescriptorImporterBase<T>
 
    private void readRecursive(Node target, org.w3c.dom.Node source) 
    {
-      NamedNodeMap attributes = source.getAttributes();
-      if(attributes != null)
-      {
-         for(int i = 0 ; i < attributes.getLength(); i++)
-         {
-            org.w3c.dom.Node attribute = attributes.item(i);
-            target.attribute(attribute.getNodeName(), attribute.getNodeValue());
-         }
-      }
+      readAttributes(target, source);
       NodeList sourceChildren = source.getChildNodes();
       if(sourceChildren != null)
       {
@@ -86,12 +78,26 @@ public class XMLImporter<T extends Descriptor> extends DescriptorImporterBase<T>
                if(onlyTextChildren(child))
                {
                   newTarget.text(child.getTextContent());
+                  readAttributes(newTarget, child);
                }
                else
                {
                   readRecursive(newTarget, child);   
                }
             }
+         }
+      }
+   }
+
+   private void readAttributes(Node target, org.w3c.dom.Node source)
+   {
+      NamedNodeMap attributes = source.getAttributes();
+      if(attributes != null)
+      {
+         for(int i = 0 ; i < attributes.getLength(); i++)
+         {
+            org.w3c.dom.Node attribute = attributes.item(i);
+            target.attribute(attribute.getNodeName(), attribute.getNodeValue());
          }
       }
    }
