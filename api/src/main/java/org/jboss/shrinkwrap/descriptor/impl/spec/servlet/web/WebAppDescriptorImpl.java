@@ -46,6 +46,19 @@ import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
 public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebAppDescriptor
 {
    //-------------------------------------------------------------------------------------||
+   // Class Members ----------------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+   
+   /**
+    * Node names
+    */
+   private static final String NODE_NAME_FILTER = "filter";
+   private static final String NODE_NAME_FILTER_MAPPINGS = "filter-mapping";
+   private static final String NODE_NAME_FILTER_NAME = "filter-name";
+   private static final String NODE_NAME_FILTER_CLASS = "filter-class";
+   private static final String NODE_NAME_URL_PATTERN = "url-pattern";
+   
+   //-------------------------------------------------------------------------------------||
    // Instance Members -------------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||
 
@@ -168,9 +181,16 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
     * @see org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.WebAppDescriptor#getFilters()
     */
    @Override
-   public List<Filter> getFilters(){
-      List<Filter> filters = new ArrayList<Filter>();
-      //filters.addAll(model.getFilters());
+   public List<Filter> getFilters()
+   {
+      final List<Filter> filters = new ArrayList<Filter>();
+      for (final Node node : model.get(NODE_NAME_FILTER))
+      {
+         final String name = node.get(NODE_NAME_FILTER_NAME).get(0).text();
+         final String clazz = node.get(NODE_NAME_FILTER_CLASS).get(0).text();
+         final Filter filter = new FilterImpl(name, clazz);
+         filters.add(filter);
+      }
       return filters;
    }
    
@@ -179,9 +199,16 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
     * @see org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.WebAppDescriptor#getFilterMappings()
     */
    @Override
-   public List<FilterMapping> getFilterMappings(){
-      List<FilterMapping> mappings = new ArrayList<FilterMapping>();
-      //mappings.addAll(model.getFilterMappings());
+   public List<FilterMapping> getFilterMappings()
+   {
+      final List<FilterMapping> mappings = new ArrayList<FilterMapping>();
+      for (final Node node : model.get(NODE_NAME_FILTER_MAPPINGS))
+      {
+         final String name = node.get(NODE_NAME_FILTER_NAME).get(0).text();
+         final String urlPattern = node.get(NODE_NAME_URL_PATTERN).get(0).text();
+         final FilterMapping filterMapping = new FilterMappingImpl(name, urlPattern);
+         mappings.add(filterMapping);
+      }
       return mappings;
    }
 
