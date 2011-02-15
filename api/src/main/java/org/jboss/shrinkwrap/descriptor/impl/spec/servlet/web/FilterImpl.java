@@ -19,88 +19,135 @@ package org.jboss.shrinkwrap.descriptor.impl.spec.servlet.web;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
-
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.Filter;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.Param;
 
 /**
- * @author Dan Allen
+ * Backend object view of a Web Descriptor Filter element
+ * 
+ * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "filterType", propOrder = {
-      "name",
-      "clazz",
-      "initParams"
-})
-public class FilterImpl extends AbstractServletArtifact implements Filter
+public class FilterImpl implements Filter
 {
-   @XmlElement(name = "filter-name")
-   private String name;
-   
-   @XmlElement(name = "filter-class")
-   private String clazz;
-   
-   @XmlElement(name = "init-param", type = ParamImpl.class)
-   private List<Param> initParams;
 
-   public FilterImpl() {}
-   
-   public FilterImpl(String name, String clazz)
+   //-------------------------------------------------------------------------------------||
+   // Instance Members -------------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
+   /**
+    * filter/filter-name
+    */
+   private String name;
+
+   /**
+    * filter/filter-class
+    */
+   private String clazz;
+
+   /**
+    * filter/init-param
+    */
+   private final List<Param> initParams;
+
+   //-------------------------------------------------------------------------------------||
+   // Constructor ------------------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
+   /**
+    * Creates a new instance with the specified name
+    * @param name filter-name
+    * @param clazz filter-class
+    * @throws IllegalArgumentException If either name or class is not specified
+    */
+   public FilterImpl(final String name, final String clazz)
    {
+      // Precondition checks
+      if (name == null || name.length() == 0)
+      {
+         throw new IllegalArgumentException("name must be specified");
+      }
+      if (clazz == null || clazz.length() == 0)
+      {
+         throw new IllegalArgumentException("clazz must be specified");
+      }
+
+      // Set
       this.name = name;
       this.clazz = clazz;
+      this.initParams = new ArrayList<Param>();
    }
-   
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.impl.spec.web.Filter#getName()
+
+   //-------------------------------------------------------------------------------------||
+   // Required Implementations -----------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
+   /**
+    * {@inheritDoc}
+    * @see org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.Filter#getName()
     */
    @Override
    public String getName()
    {
-      return name;
+      return this.name;
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.impl.spec.web.Filter#setName(java.lang.String)
+   /**
+    * {@inheritDoc}
+    * @see org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.Filter#setName(java.lang.String)
     */
    @Override
-   public void setName(String name)
+   public void setName(final String name)
    {
+      if (name == null || name.length() == 0)
+      {
+         throw new IllegalArgumentException("name must be specified");
+      }
       this.name = name;
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.impl.spec.web.Filter#getClazz()
+   /**
+    * {@inheritDoc}
+    * @see org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.Filter#getClazz()
     */
    @Override
    public String getClazz()
    {
-      return clazz;
+      return this.clazz;
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.impl.spec.web.Filter#setClazz(java.lang.String)
+   /**
+    * {@inheritDoc}
+    * @see org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.Filter#setClazz(java.lang.String)
     */
    @Override
-   public void setClazz(String clazz)
+   public void setClazz(final String clazz)
    {
+      if (clazz == null || clazz.length() == 0)
+      {
+         throw new IllegalArgumentException("clazz must be specified");
+      }
       this.clazz = clazz;
+
    }
-   
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.impl.spec.web.Filter#getInitParams()
+
+   /**
+    * {@inheritDoc}
+    * @see org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.Filter#getInitParams()
     */
    @Override
    public List<Param> getInitParams()
    {
-      if (initParams == null) 
-      {
-         initParams = new ArrayList<Param>();
-      }
-      return initParams;
+      return this.initParams;
    }
+
+   /**
+    * {@inheritDoc}
+    * @see java.lang.Object#toString()
+    */
+   @Override
+   public String toString()
+   {
+      return FilterImpl.class.getSimpleName() + " [name=" + name + ", clazz=" + clazz + "]";
+   }
+
 }

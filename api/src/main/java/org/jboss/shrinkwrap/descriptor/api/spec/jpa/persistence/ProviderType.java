@@ -16,6 +16,8 @@
  */
 package org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence;
 
+import org.jboss.shrinkwrap.descriptor.api.Node;
+
 /**
  * Enum of convenient values for the persistence-unit provider element
  *
@@ -36,6 +38,15 @@ public enum ProviderType
    public String getProviderClass()
    {
       return providerClass;
+   }
+   
+   public static ProviderType fromProviderClass(Node providerNode)
+   {
+      if(providerNode == null)
+      {
+         return null;
+      }
+      return fromProviderClass(providerNode.text());
    }
    
    public static ProviderType fromProviderClass(String providerClass)

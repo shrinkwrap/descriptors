@@ -14,7 +14,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-@javax.xml.bind.annotation.XmlSchema(
-      namespace = "http://java.sun.com/xml/ns/javaee",
-      elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package org.jboss.shrinkwrap.descriptor.impl.spec.cdi.beans;
+package org.jboss.shrinkwrap.descriptor.api.query;
+
+import org.jboss.shrinkwrap.descriptor.api.Node;
+
+
+/**
+ * Expression
+ *
+ * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
+ * @version $Revision: $
+ */
+public interface QueryExecuter<T>
+{
+   /** 
+    * Get the result of this Expression.
+    *  
+    * @param node The Node to use as a reference point
+    * @return The expressed value or null if not found.
+    */
+   T execute(Node node);
+}

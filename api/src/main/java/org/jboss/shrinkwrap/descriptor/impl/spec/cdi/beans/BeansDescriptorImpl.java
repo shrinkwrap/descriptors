@@ -23,20 +23,23 @@ import javax.enterprise.inject.Alternative;
 import javax.enterprise.inject.Stereotype;
 import javax.interceptor.Interceptor;
 
+import org.jboss.shrinkwrap.descriptor.api.Node;
 import org.jboss.shrinkwrap.descriptor.api.spec.cdi.beans.BeansDescriptor;
-import org.jboss.shrinkwrap.descriptor.impl.base.SchemaDescriptorImplBase;
+import org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
+import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
 
 /**
  * @author Dan Allen
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  */
-public class BeansDescriptorImpl extends SchemaDescriptorImplBase<BeansModel> implements  BeansDescriptor
+public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDescriptor
 {
    //-------------------------------------------------------------------------------------||
    // Instance Members -------------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||
 
-   private BeansModel beans;
+   private Node beans;
    
    //-------------------------------------------------------------------------------------||
    // Constructor ------------------------------------------------------------------------||
@@ -44,10 +47,12 @@ public class BeansDescriptorImpl extends SchemaDescriptorImplBase<BeansModel> im
 
    public BeansDescriptorImpl()
    {
-      this(new BeansModel());
+      this(new Node("beans")
+            .attribute("xmlns", "http://java.sun.com/xml/ns/javaee")
+            .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance"));
    }
    
-   public BeansDescriptorImpl(BeansModel beans)
+   public BeansDescriptorImpl(Node beans)
    {
       this.beans = beans;
    }
@@ -69,7 +74,7 @@ public class BeansDescriptorImpl extends SchemaDescriptorImplBase<BeansModel> im
          {
             throw new IllegalArgumentException("Class is not an interceptor");
          }
-         beans.getInterceptors().add(c.getName());
+         beans.getOrCreate("interceptors").create("class").text(c.getName());
       }
       return this;
    }
@@ -96,7 +101,7 @@ public class BeansDescriptorImpl extends SchemaDescriptorImplBase<BeansModel> im
          {
             throw new IllegalArgumentException("Class is not a decorator");
          }
-         beans.getDecorators().add(c.getName());
+         beans.getOrCreate("decorators").create("class").text(c.getName());
       }
       return this;
    }
@@ -123,7 +128,7 @@ public class BeansDescriptorImpl extends SchemaDescriptorImplBase<BeansModel> im
          {
             throw new IllegalArgumentException("Class is not an alternative");
          }
-         beans.getAlternatives().getClasses().add(c.getName());
+         beans.getOrCreate("alternatives").create("class").text(c.getName());
       }
       return this;
    }
@@ -155,7 +160,7 @@ public class BeansDescriptorImpl extends SchemaDescriptorImplBase<BeansModel> im
          {
             throw new IllegalArgumentException("Stereotype is not an alternative");
          }
-         beans.getAlternatives().getStereotypes().add(a.getName());
+         beans.getOrCreate("alternatives").create("stereotype").text(a.getName());
       }
       return this;
    }
@@ -169,14 +174,22 @@ public class BeansDescriptorImpl extends SchemaDescriptorImplBase<BeansModel> im
    {
       return alternativeStereotypes(clazz);
    }
-
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.spi.SchemaDescriptorProvider#getSchemaModel()
+ 
+   /* (non-Javadoc)
+    * @see org.jboss.shrinkwrap.descriptor.spi.NodeProvider#getRootNode()
     */
    @Override
-   public BeansModel getSchemaModel()
+   public Node getRootNode()
    {
       return beans;
+   }
+   
+   /* (non-Javadoc)
+    * @see org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase#getExporter()
+    */
+   @Override
+   protected DescriptorExporter getExporter()
+   {
+      return new XMLExporter();
    }
 }

@@ -161,7 +161,24 @@ public class BeansDescriptorTestCase
       
       assertXPath(desc, "/beans/decorators/class", TestDecorator.class.getName(), TestDecorator.class.getName());
    }
+   
+   //-------------------------------------------------------------------------------------||
+   // Export / Import round trip ---------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+   
+   @Test
+   public void shouldBeAbleToReadWhatWasExported() throws Exception
+   {
+      String desc = create().decorators(TestDecorator.class, TestDecorator.class)
+         .exportAsString();
 
+      desc = Descriptors.importAs(BeansDescriptor.class).from(desc)
+                        .exportAsString();
+      
+      assertXPath(desc, "/beans/decorators/class", TestDecorator.class.getName(), TestDecorator.class.getName());
+      
+   }
+   
    //-------------------------------------------------------------------------------------||
    // Internal Helper --------------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||

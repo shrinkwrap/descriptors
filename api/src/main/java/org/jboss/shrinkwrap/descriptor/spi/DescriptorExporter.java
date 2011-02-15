@@ -14,32 +14,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.impl.spec.servlet.web;
+package org.jboss.shrinkwrap.descriptor.spi;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.OutputStream;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import org.jboss.shrinkwrap.descriptor.api.Node;
 
 /**
- * @author Dan Allen
+ * DescriptorExporter
+ *
+ * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
+ * @version $Revision: $
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "describable")
-public class Describable
+public interface DescriptorExporter
 {
-   @XmlElement(name = "description")
-   protected List<LocalizedTextImpl> descriptions;
-   
-   public List<LocalizedTextImpl> getDescriptions()
-   {
-      if (descriptions == null)
-      {
-         descriptions = new ArrayList<LocalizedTextImpl>();
-      }
-      return descriptions;
-   }
+   void to(Node node, OutputStream output);
 }

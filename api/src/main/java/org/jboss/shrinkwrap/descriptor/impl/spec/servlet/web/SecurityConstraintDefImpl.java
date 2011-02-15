@@ -16,6 +16,7 @@
  */
 package org.jboss.shrinkwrap.descriptor.impl.spec.servlet.web;
 
+import org.jboss.shrinkwrap.descriptor.api.Node;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.HttpMethodType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.SecurityConstraintDef;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.TransportGuaranteeType;
@@ -26,9 +27,9 @@ import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.WebResourceCollectio
  */
 public class SecurityConstraintDefImpl extends WebAppDescriptorImpl implements SecurityConstraintDef
 {
-   protected SecurityConstraint securityConstraint;
+   protected Node securityConstraint;
    
-   public SecurityConstraintDefImpl(WebAppModel webApp, SecurityConstraint securityConstraint)
+   public SecurityConstraintDefImpl(Node webApp, Node securityConstraint)
    {
       super(webApp);
       this.securityConstraint = securityConstraint;
@@ -37,24 +38,26 @@ public class SecurityConstraintDefImpl extends WebAppDescriptorImpl implements S
    @Override
    public WebResourceCollectionDef webResourceCollection()
    {
-      WebResourceCollection webResourceCollection = new WebResourceCollection();
-      securityConstraint.getWebResourceCollections().add(webResourceCollection);
-      return new WebResourceCollectionDefImpl(this.getSchemaModel(), securityConstraint, webResourceCollection);
+      return webResourceCollection(null); // TODO: hmm.. name is required. make one up?
    }
    
    @Override
    public WebResourceCollectionDef webResourceCollection(String name)
    {
-      WebResourceCollection webResourceCollection = new WebResourceCollection(name);
-      securityConstraint.getWebResourceCollections().add(webResourceCollection);
-      return new WebResourceCollectionDefImpl(this.getSchemaModel(), securityConstraint, webResourceCollection);
+      Node resource = securityConstraint.create("web-resource-collection");
+      if(name != null)
+      {
+         resource.create("web-resource-name").text(name);
+      }
+      
+      return new WebResourceCollectionDefImpl(getRootNode(), securityConstraint, resource);
    }
    
    // TODO maybe remove this
    @Override
    public SecurityConstraintDef webResourceCollection(String name, String urlPattern, HttpMethodType... httpMethods)
    {
-      securityConstraint.getWebResourceCollections().add(new WebResourceCollection(name, new String[] { urlPattern }, httpMethods));
+      webResourceCollection(name).urlPatterns(urlPattern).httpMethods(httpMethods);
       return this;
    }
    
@@ -62,21 +65,24 @@ public class SecurityConstraintDefImpl extends WebAppDescriptorImpl implements S
    @Override
    public SecurityConstraintDef webResourceCollection(String name, String[] urlPatterns, HttpMethodType... httpMethods)
    {
-      securityConstraint.getWebResourceCollections().add(new WebResourceCollection(name, urlPatterns, httpMethods));
+      webResourceCollection(name).urlPatterns(urlPatterns).httpMethods(httpMethods);
       return this;
    }
    
    @Override
    public SecurityConstraintDef authConstraint(String... roleNames)
    {
-      securityConstraint.setAuthConstraint(new AuthConstraint(roleNames));
+      for(String name : roleNames)
+      {
+         securityConstraint.getOrCreate("auth-constraint").create("role-name").text(name);   
+      }
       return this;
    }
    
    @Override
    public SecurityConstraintDef userDataConstraint(TransportGuaranteeType transportGuarantee)
    {
-      securityConstraint.setUserDataConstraint(new UserDataConstraint(transportGuarantee));
+      securityConstraint.getOrCreate("user-data-constraint").getOrCreate("transport-guarantee").text(transportGuarantee);
       return this;
    }
 }

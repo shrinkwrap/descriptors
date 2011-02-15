@@ -14,7 +14,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-@javax.xml.bind.annotation.XmlSchema(
-      namespace = "http://java.sun.com/xml/ns/javaee",
-      elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package org.jboss.shrinkwrap.descriptor.impl.spec.servlet.web;
+package org.jboss.shrinkwrap.descriptor.spi;
+
+import org.jboss.shrinkwrap.descriptor.api.Descriptor;
+import org.jboss.shrinkwrap.descriptor.api.Node;
+
+/**
+ * NodeProvider
+ *
+ * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
+ * @version $Revision: $
+ */
+public interface NodeProvider extends Descriptor
+{
+   Node getRootNode();
+}

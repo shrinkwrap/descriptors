@@ -1,2 +1,2 @@
 implClass=org.jboss.shrinkwrap.descriptor.impl.spec.servlet.web.WebAppDescriptorImpl
-modelClass=org.jboss.shrinkwrap.descriptor.impl.spec.servlet.web.WebAppModel
+importerClass=org.jboss.shrinkwrap.descriptor.impl.base.XMLImporter

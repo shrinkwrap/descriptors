@@ -16,7 +16,7 @@
  */
 package org.jboss.shrinkwrap.descriptor.impl.spec.servlet.web;
 
-import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.CookieConfig;
+import org.jboss.shrinkwrap.descriptor.api.Node;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.CookieConfigDef;
 
 /**
@@ -24,60 +24,62 @@ import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.CookieConfigDef;
  */
 public class CookieConfigDefImpl extends WebAppDescriptorImpl implements CookieConfigDef
 {
-   protected CookieConfig cookieConfig;
-
-   public CookieConfigDefImpl(WebAppModel webApp)
+   public CookieConfigDefImpl(Node webApp)
    {
       super(webApp);
-      this.cookieConfig = webApp.getSessionConfig().getCookieConfig();
    }
-
+   
+   private Node cookieConfig()
+   {
+      return getRootNode().getOrCreate("session-config").getOrCreate("cookie-config");
+   }
+   
    @Override
    public CookieConfigDef name(String name)
    {
-      cookieConfig.setName(name);
+      cookieConfig().getOrCreate("name").text(name);
       return this;
    }
 
    @Override
    public CookieConfigDef domain(String domain)
    {
-      cookieConfig.setDomain(domain);
+      cookieConfig().getOrCreate("domain").text(domain);
       return this;
    }
 
    @Override
    public CookieConfigDef path(String path)
    {
-      cookieConfig.setPath(path);
+      cookieConfig().getOrCreate("path").text(path);
       return this;
    }
 
    @Override
    public CookieConfigDef comment(String comment)
    {
-      cookieConfig.setComment(comment);
+      cookieConfig().getOrCreate("comment").text(comment);
       return this;
    }
 
    @Override
    public CookieConfigDef httpOnly()
    {
-      cookieConfig.setHttpOnly(true);
+      cookieConfig().getOrCreate("http-only").text(true);
       return this;
    }
 
    @Override
    public CookieConfigDef secure()
    {
-      cookieConfig.setSecure(true);
+      cookieConfig().getOrCreate("secure").text(true);
       return this;
    }
 
    @Override
    public CookieConfigDef maxAge(int maxAge)
    {
-      cookieConfig.setMaxAge(maxAge);
+      cookieConfig().getOrCreate("max-age").text(maxAge);
       return this;
    }
 }

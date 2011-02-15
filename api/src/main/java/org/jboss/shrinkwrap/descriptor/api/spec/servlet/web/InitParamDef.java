@@ -1,6 +1,6 @@
 /*
  * JBoss, Home of Professional Open Source
- * Copyright 2010, Red Hat Middleware LLC, and individual contributors
+ * Copyright 2009, Red Hat Middleware LLC, and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
  *
@@ -14,36 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.spi;
+package org.jboss.shrinkwrap.descriptor.api.spec.servlet.web;
 
 /**
- * SPI for a backing object model representing some schema
- * 
+ * FilterDef
+ *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
- * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
+ * @version $Revision: $
  */
-public interface SchemaModel
+public interface InitParamDef extends WebAppDescriptor
 {
 
-   /**
-    * Get the XSD version.
-    * 
-    * @return String representation of the descriptor version
-    */
-   String getVersion();
-
-   /**
-    * Get the XSD NameSpace.
-    * 
-    * @return The Schema NameSpace
-    */
-   String getNamespace();
-
-   /**
-    * Get the XSD SchemaLocation for this descriptor.
-    * 
-    * @return XSD SchemaLocation
-    */
-   String getSchemaLocation();
+   InitParamDef initParam(String name, Object value);
 
 }

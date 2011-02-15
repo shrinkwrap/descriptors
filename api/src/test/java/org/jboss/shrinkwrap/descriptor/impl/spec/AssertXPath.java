@@ -78,4 +78,15 @@ public final class AssertXPath
       }
    }
 
+   public static void assertXPath(String xml, String expression, Object... expectedValue)
+      throws Exception
+   {
+      String[] strExpectedValue = new String[expectedValue.length];
+      for(int i = 0; i < expectedValue.length; i++)
+      {
+         strExpectedValue[i] = String.valueOf(expectedValue[i]);
+      }
+      assertXPath(xml, expression, strExpectedValue);
+   }
+
 }

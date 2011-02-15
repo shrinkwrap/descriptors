@@ -16,6 +16,7 @@
  */
 package org.jboss.shrinkwrap.descriptor.impl.spec.jpa.persistence;
 
+import org.jboss.shrinkwrap.descriptor.api.Node;
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.PersistenceUnitDef;
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.ProviderType;
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.SchemaGenerationModeType;
@@ -23,14 +24,16 @@ import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.SharedCacheModeT
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.TransactionType;
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.ValidationModeType;
 
+
 /**
  * @author Dan Allen
- */
+ * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
+*/
 public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements PersistenceUnitDef
 {
-   private PersistenceUnit persistenceUnit;
+   private Node persistenceUnit;
    
-   public PersistenceUnitDefImpl(PersistenceModel persistence, PersistenceUnit persistenceUnit)
+   public PersistenceUnitDefImpl(Node persistence, Node persistenceUnit)
    {
       super(persistence);
       this.persistenceUnit = persistenceUnit;
@@ -39,42 +42,45 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    @Override
    public PersistenceUnitDef name(String name)
    {
-      persistenceUnit.setName(name);
+      persistenceUnit.attribute("name", name);
       return this;
    }
    
    @Override
    public PersistenceUnitDef description(String description)
    {
-      persistenceUnit.setDescription(description);
+      persistenceUnit.getOrCreate("description").text(description);
       return this;
    }
    
    @Override
    public PersistenceUnitDef nonJtaDataSource(String jndiName)
    {
-      persistenceUnit.setNonJtaDataSource(jndiName);
+      persistenceUnit.getOrCreate("non-jta-data-source").text(jndiName);
       return this;
    }
    
    @Override
    public PersistenceUnitDef transactionType(TransactionType transactionType)
    {
-      persistenceUnit.setTransactionType(transactionType);
+      persistenceUnit.attribute("transaction-type", transactionType.name());
       return this;
    }
    
    @Override
    public PersistenceUnitDef jtaDataSource(String jndiName)
    {
-      persistenceUnit.setJtaDataSource(jndiName);
+      persistenceUnit.getOrCreate("jta-data-source").text(jndiName);
       return this;
    }
    
    @Override
    public PersistenceUnitDef property(String name, Object value)
    {
-      persistenceUnit.getProperties().add(new Property(name, String.valueOf(value)));
+      persistenceUnit.getOrCreate("properties")
+                  .create("property")
+                     .attribute("name", name)
+                     .attribute("value", value);
       return this;
    }
    
@@ -83,7 +89,7 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    {
       for (Class<?> c : classes)
       {
-         persistenceUnit.getClasses().add(c.getName());
+         persistenceUnit.create("class").text(c.getName());
       }
       return this;
    }
@@ -93,7 +99,7 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    {
       for (String p : paths)
       {
-         persistenceUnit.getJarFiles().add(p);
+         persistenceUnit.create("jar-file").text(p);
       }
       return this;
    }
@@ -109,7 +115,7 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    {
       for (String p : paths)
       {
-         persistenceUnit.getMappingFiles().add(p);
+         persistenceUnit.create("mapping-file").text(p);
       }
       return this;
    }
@@ -123,56 +129,61 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    @Override
    public PersistenceUnitDef sharedCacheMode(SharedCacheModeType sharedCacheMode)
    {
-      persistenceUnit.setSharedCacheMode(sharedCacheMode);
+      persistenceUnit.getOrCreate("shared-cache-mode").text(sharedCacheMode.name());
       return this;
    }
    
    @Override
    public PersistenceUnitDef validationMode(ValidationModeType validationMode)
    {
-      persistenceUnit.setValidationMode(validationMode);
+      persistenceUnit.getOrCreate("validation-mode").text(validationMode.name());
       return this;
    }
    
    @Override
    public PersistenceUnitDef excludeUnlistedClasses()
    {
-      persistenceUnit.setExcludeUnlistedClasses(true);
+      persistenceUnit.getOrCreate("exclude-unlisted-classes").text("true");
       return this;
    }
    
    @Override
    public PersistenceUnitDef includeUnlistedClasses()
    {
-      persistenceUnit.setExcludeUnlistedClasses(false);
+      persistenceUnit.getOrCreate("exclude-unlisted-classes").text("false");
       return this;
    }
-   
-   @Override
-   public PersistenceUnitDef provider(String provider)
-   {
-      persistenceUnit.setProvider(provider);
-      return this;
-   }
-   
+
    @Override
    public PersistenceUnitDef provider(ProviderType providerType)
    {
-      persistenceUnit.setProvider(providerType.getProviderClass());
+      return provider(providerType.getProviderClass());
+   }
+
+   @Override
+   public PersistenceUnitDef provider(String provider)
+   {
+      persistenceUnit.getOrCreate("provider").text(provider);
       return this;
    }
    
    @Override
    public PersistenceUnitDef showSql()
    {
-      ProviderType providerType = ProviderType.fromProviderClass(persistenceUnit.getProvider());
+      ProviderType providerType = ProviderType.fromProviderClass(persistenceUnit.getSingle("provider"));
       if (providerType == null || providerType == ProviderType.HIBERNATE)
       {
-         persistenceUnit.getProperties().add(new Property("hibernate.show_sql", "true"));
+         persistenceUnit.getOrCreate("properties")
+                     .create("property")
+                        .attribute("name", "hibernate.show_sql")
+                        .attribute("value", "true");
       }
       if (providerType == null || providerType == ProviderType.ECLIPSE_LINK)
       {
-         persistenceUnit.getProperties().add(new Property("eclipselink.logging.level", "FINE"));
+         persistenceUnit.getOrCreate("properties")
+                     .create("property")
+                        .attribute("name", "eclipselink.logging.level")
+                        .attribute("value", "FINE");
       }
       return this;
    }
@@ -180,10 +191,13 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    @Override
    public PersistenceUnitDef formatSql()
    {
-      ProviderType providerType = ProviderType.fromProviderClass(persistenceUnit.getProvider());
+      ProviderType providerType = ProviderType.fromProviderClass(persistenceUnit.getSingle("provider"));
       if (providerType == null || providerType == ProviderType.HIBERNATE)
       {
-         persistenceUnit.getProperties().add(new Property("hibernate.format_sql", "true"));
+         persistenceUnit.getOrCreate("properties")
+                     .create("property")
+                        .attribute("name", "hibernate.format_sql")
+                        .attribute("value", "true");
       }
       return this;
    }
@@ -191,7 +205,7 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    @Override
    public PersistenceUnitDef schemaGenerationMode(SchemaGenerationModeType schemaGenerationMode)
    {
-      ProviderType providerType = ProviderType.fromProviderClass(persistenceUnit.getProvider());
+      ProviderType providerType = ProviderType.fromProviderClass(persistenceUnit.getSingle("provider"));
       if (providerType == null || providerType == ProviderType.HIBERNATE)
       {
          String value = null;
@@ -213,7 +227,10 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
          }
          if (value != null)
          {
-            persistenceUnit.getProperties().add(new Property("hibernate.hbm2ddl.auto", value));
+            persistenceUnit.getOrCreate("properties")
+                        .create("property")
+                           .attribute("name", "hibernate.hbm2ddl.auto")
+                           .attribute("value", value);
          }
       }
       if (providerType == null || providerType == ProviderType.ECLIPSE_LINK)
@@ -237,7 +254,10 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
          }
          if (value != null)
          {
-            persistenceUnit.getProperties().add(new Property("eclipselink.ddl-generation", value));
+            persistenceUnit.getOrCreate("properties")
+                     .create("property")
+                        .attribute("name", "eclipselink.ddl-generation")
+                        .attribute("value", value);
          }
       }
       return this;

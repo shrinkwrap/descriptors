@@ -16,7 +16,6 @@
  */
 package org.jboss.shrinkwrap.descriptor.api.spec.servlet.web;
 
-import java.util.List;
 
 /**
  * FilterMapping
@@ -31,6 +30,8 @@ public interface FilterMapping
 
    void setFilterName(String filterName);
 
-   List<String> getDispatchers();
+   String getUrlPattern();
+
+   void setUrlPattern(String urlPattern);
 
 }

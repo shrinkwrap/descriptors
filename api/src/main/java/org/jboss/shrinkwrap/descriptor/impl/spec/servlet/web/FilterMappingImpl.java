@@ -16,74 +16,107 @@
  */
 package org.jboss.shrinkwrap.descriptor.impl.spec.servlet.web;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
-
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.FilterMapping;
 
 /**
- * @author Dan Allen
+ * Backend object view of a Web Descriptor Filter Mapping element
+ * 
+ * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "filter-mappingType", propOrder = {
-      "filterName",
-      "dispatchers"
-})
-public class FilterMappingImpl extends ServletMappingImpl implements FilterMapping
+public class FilterMappingImpl implements FilterMapping
 {
-   @XmlElement(name = "filter-name")
-   protected String filterName;
-   
-   // FIXME should be an enum
-   @XmlElement(name = "dispatcher")
-   protected List<String> dispatchers;
-   
-   public FilterMappingImpl() {}
-   
-   public FilterMappingImpl(String filterName, String... urlPatterns)
+
+   //-------------------------------------------------------------------------------------||
+   // Instance Members -------------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
+   /**
+    * filter-mapping/filter-name
+    */
+   private String filterName;
+
+   /**
+    * filter-mapping/url-pattern
+    */
+   private String urlPattern;
+
+   //-------------------------------------------------------------------------------------||
+   // Constructor ------------------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
+   /**
+    * Creates a new instance with the specified name
+    * @param name filter-name
+    * @param urlPattern url-pattern
+    * @throws IllegalArgumentException If either name or urlPattern is not specified
+    */
+   public FilterMappingImpl(final String name, final String urlPattern)
    {
-      this.filterName = filterName;
-      for (String urlPattern : urlPatterns)
+      // Precondition checks
+      if (name == null || name.length() == 0)
       {
-         getUrlPatterns().add(urlPattern);
+         throw new IllegalArgumentException("name must be specified");
       }
+      if (urlPattern == null || urlPattern.length() == 0)
+      {
+         throw new IllegalArgumentException("urlPattern must be specified");
+      }
+
+      // Set
+      this.filterName = name;
+      this.urlPattern = urlPattern;
    }
-   
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.impl.spec.web.FilterMapping#getFilterName()
+
+   //-------------------------------------------------------------------------------------||
+   // Required Implementations -----------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
+   /**
+    * {@inheritDoc}
+    * @see org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.FilterMapping#getFilterName()
     */
    @Override
    public String getFilterName()
    {
-      return filterName;
+      return this.filterName;
    }
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.impl.spec.web.FilterMapping#setFilterName(java.lang.String)
+   /**
+    * {@inheritDoc}
+    * @see org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.FilterMapping#setFilterName(java.lang.String)
     */
    @Override
-   public void setFilterName(String filterName)
+   public void setFilterName(final String name)
    {
-      this.filterName = filterName;
-   }
-
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.impl.spec.web.FilterMapping#getDispatchers()
-    */
-   @Override
-   public List<String> getDispatchers()
-   {
-      if (dispatchers == null)
+      if (name == null || name.length() == 0)
       {
-         dispatchers = new ArrayList<String>();
-         
+         throw new IllegalArgumentException("name must be specified");
       }
-
-      return dispatchers;
+      this.filterName = name;
    }
+
+   /**
+    * {@inheritDoc}
+    * @see org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.FilterMapping#getUrlPattern()
+    */
+   @Override
+   public String getUrlPattern()
+   {
+      return this.urlPattern;
+   }
+
+   /**
+    * {@inheritDoc}
+    * @see org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.FilterMapping#setUrlPattern(java.lang.String)
+    */
+   @Override
+   public void setUrlPattern(final String urlPattern)
+   {
+      if (urlPattern == null || urlPattern.length() == 0)
+      {
+         throw new IllegalArgumentException("urlPattern must be specified");
+      }
+      this.urlPattern = urlPattern;
+   }
+
 }
