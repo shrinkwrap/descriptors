@@ -16,7 +16,7 @@
   <!-- Artifact Configuration -->
   <groupId>org.jboss.shrinkwrap.descriptors</groupId>
   <artifactId>shrinkwrap-descriptors-build</artifactId>
-  <version>1.0.0-alpha-1-SNAPSHOT</version>
+  <version>0.1.0-SNAPSHOT</version>
   <name>ShrinkWrap Descriptors Build</name>
   <description>ShrinkWrap Descriptors Build Configuration</description>
   <packaging>pom</packaging>
