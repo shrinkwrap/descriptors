@@ -23,6 +23,41 @@
   <name>ShrinkWrap Descriptors Aggregator</name>
   <url>http://www.jboss.org</url>
   <description>ShrinkWrap Descriptors Aggregator</description>
+  
+    <!-- Properties -->
+  <properties>
+
+    <!-- Versioning -->
+    <version.junit_junit>4.8.1</version.junit_junit>
+    <version.org.jboss.spec>1.0.0.Beta7</version.org.jboss.spec>
+
+  </properties>
+  
+  <!-- SCM -->
+  <scm>
+    <connection>scm:git:git://github.com/shrinkwrap/descriptors.git</connection>
+    <developerConnection>scm:git:git@github.com:shrinkwrap/descriptors.git</developerConnection>
+    <url>http://github.com/shrinkwrap/descriptors</url>
+  </scm>
+  
+  <!-- Issues -->
+  <issueManagement>
+    <system>jira</system>
+    <url>http://jira.jboss.com/jira/browse/SHRINKDESC</url>
+  </issueManagement>
+
+  <!-- Licenses -->
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+  
+  <!-- Aggregate Modules -->
+  <modules>
+    <module>api</module>
+  </modules>
 
   <!-- Plugin Configuration -->
   <build>
@@ -37,15 +72,99 @@
           <skip>true</skip>
         </configuration>
       </plugin>
+      
+      <!-- Release -->
+      <plugin> 
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.0</version>
+        <configuration>
+          <autoVersionSubmodules>true</autoVersionSubmodules>
+        </configuration>
+      </plugin>
+      
+      <!-- Compiler -->
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <inherited>true</inherited>
+        <version>2.3.1</version>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+          <showDeprecation>false</showDeprecation>
+          <showWarnings>true</showWarnings>
+          <optimize>true</optimize>
+          <compilerVersion>1.6</compilerVersion>
+          <fork>true</fork>
+          <argLine>-Xmx512M</argLine>
+          <executable>${JAVA_HOME}/bin/javac</executable>
+        </configuration>
+      </plugin>
 
+      <!-- Surefire -->
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <redirectTestOutputToFile>true</redirectTestOutputToFile>
+          <trimStackTrace>false</trimStackTrace>
+          <printSummary>true</printSummary>
+          <includes>
+            <include>**/*TestCase.java</include>
+            <include>**/*TestSuite.java</include>
+          </includes>
+          <forkMode>always</forkMode>
+        </configuration>
+      </plugin>
+
+      <!-- Enforce Maven Environment -->
+      <plugin>
+        <artifactId>maven-enforcer-plugin
+                      </artifactId>
+        <executions>
+          <execution>
+            <id>enforce-maven-environment</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <rules>
+            <requireMavenVersion>
+              <version>[2.2.0,)</version>
+              <!-- Must be more that 2.2 to support Assembly "includeModuleDirectory": 
+                http://maven.apache.org/plugins/maven-assembly-plugin/assembly.html -->
+            </requireMavenVersion>
+            <requireJavaVersion>
+              <version>1.6.0</version> <!-- Must be JDK6 -->
+            </requireJavaVersion>
+          </rules>
+        </configuration>
+      </plugin>
     </plugins>
-  </build>
 
-  <!-- Aggregate Modules -->
-  <modules>
-    <module>api</module>
-    <module>build</module>
-  </modules>
+  </build>
+  
+  <!-- Dependency Management -->
+  <dependencyManagement>
+    <dependencies>
+
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${version.junit_junit}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.jboss.spec</groupId>
+        <artifactId>jboss-javaee-6.0</artifactId>
+        <version>${version.org.jboss.spec}</version>
+        <type>pom</type>
+        <scope>provided</scope>
+      </dependency>
+
+    </dependencies>
+  </dependencyManagement>
   
   <repositories>
     <repository>
@@ -78,5 +197,7 @@
       </snapshots>
     </pluginRepository>
   </pluginRepositories> 
+  
+  
 
 </project>
