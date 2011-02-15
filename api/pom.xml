@@ -5,9 +5,9 @@
   <!-- Parent -->
   <parent>
     <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-    <artifactId>shrinkwrap-descriptors-build</artifactId>
+    <artifactId>shrinkwrap-descriptors-parent</artifactId>
     <version>0.1.0-SNAPSHOT</version>
-    <relativePath>../build/pom.xml</relativePath>
+    <relativePath>../pom.xml</relativePath>
   </parent>
 
   <!-- Model Version -->
