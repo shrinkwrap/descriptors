@@ -62,16 +62,6 @@
   <!-- Plugin Configuration -->
   <build>
     <plugins>
-
-      <!-- Deploy -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-deploy-plugin</artifactId>
-        <configuration>
-          <!-- Don't include this aggregator in the deployment -->
-          <skip>true</skip>
-        </configuration>
-      </plugin>
       
       <!-- Release -->
       <plugin> 
