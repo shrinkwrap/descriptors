@@ -18,13 +18,12 @@ package org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence;
 
 /**
  * PersistenceUnitDefIF
- *
+ * 
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-public interface PersistenceUnitDef extends PersistenceDescriptor
+public interface PersistenceUnitDef extends PersistenceDescriptor, PersistenceUnitDefReader
 {
-
    PersistenceUnitDef name(String name);
 
    PersistenceUnitDef description(String description);
@@ -38,6 +37,8 @@ public interface PersistenceUnitDef extends PersistenceDescriptor
    PersistenceUnitDef property(String name, Object value);
 
    PersistenceUnitDef classes(Class<?>... classes);
+
+   PersistenceUnitDef classes(String... classes);
 
    PersistenceUnitDef jarFiles(String... paths);
 

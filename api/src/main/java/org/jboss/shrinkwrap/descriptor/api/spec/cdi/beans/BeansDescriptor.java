@@ -21,28 +21,42 @@ import java.lang.annotation.Annotation;
 import org.jboss.shrinkwrap.descriptor.api.Descriptor;
 
 /**
- * DSL Grammar to construct / alter CDI Beans
- * XML Descriptors
+ * DSL Grammar to construct / alter CDI Beans XML Descriptors
  * 
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public interface BeansDescriptor extends Descriptor
+public interface BeansDescriptor extends Descriptor, BeansDescriptorReader
 {
-
-   BeansDescriptor interceptors(Class<?>... classes);
-
-   BeansDescriptor interceptor(Class<?> clazz);
-
-   BeansDescriptor decorators(Class<?>... classes);
-
-   BeansDescriptor decorator(Class<?> clazz);
-
-   BeansDescriptor alternativeClasses(Class<?>... classes);
 
    BeansDescriptor alternativeClass(Class<?> clazz);
 
-   BeansDescriptor alternativeStereotypes(Class<? extends Annotation>... annotations);
+   BeansDescriptor alternativeClass(String clazz);
+
+   BeansDescriptor alternativeClasses(Class<?>... classes);
+
+   BeansDescriptor alternativeClasses(String... classes);
 
    BeansDescriptor alternativeStereotype(Class<? extends Annotation> clazz);
 
+   BeansDescriptor alternativeStereotype(String clazz);
+
+   BeansDescriptor alternativeStereotypes(Class<? extends Annotation>... annotations);
+
+   BeansDescriptor alternativeStereotypes(String... annotations);
+
+   BeansDescriptor decorator(Class<?> clazz);
+
+   BeansDescriptor decorator(String clazz);
+
+   BeansDescriptor decorators(Class<?>... classes);
+
+   BeansDescriptor decorators(String... classes);
+
+   BeansDescriptor interceptor(Class<?> clazz);
+
+   BeansDescriptor interceptor(String clazz);
+
+   BeansDescriptor interceptors(Class<?>... classes);
+
+   BeansDescriptor interceptors(String... classes);
 }
