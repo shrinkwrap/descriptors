@@ -257,6 +257,17 @@ public class Node
       return text;
    }
 
+   public List<String> textValues(String name)
+   {
+      List<String> result = new ArrayList<String>();
+      List<Node> jars = this.get(name);
+      for (Node node : jars)
+      {
+         result.add(node.text());
+      }
+      return Collections.unmodifiableList(result);
+   }
+
    /**
     * Get the text value of the element found at the given query name. If no element is found, or no text exists, return
     * null;
