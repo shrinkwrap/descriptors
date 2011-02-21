@@ -16,6 +16,10 @@
  */
 package org.jboss.shrinkwrap.descriptor.impl.spec.jpa.persistence;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import org.jboss.shrinkwrap.descriptor.api.Node;
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.PersistenceDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.PersistenceUnitDef;
@@ -28,25 +32,25 @@ import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  */
 public class PersistenceDescriptorImpl extends NodeProviderImplBase
-      implements
+         implements
          PersistenceDescriptor
 {
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
    // Instance Members -------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
 
-   private Node model;
+   private final Node model;
 
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
    // Constructor ------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
 
    public PersistenceDescriptorImpl()
    {
       this(new Node("persistence")
-            .attribute("xmlns", "http://java.sun.com/xml/ns/persistence")
-            .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance"));
-      
+               .attribute("xmlns", "http://java.sun.com/xml/ns/persistence")
+               .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance"));
+
       version("2.0");
    }
 
@@ -55,34 +59,51 @@ public class PersistenceDescriptorImpl extends NodeProviderImplBase
       this.model = model;
    }
 
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
    // Required Implementations -----------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
 
    /**
     * {@inheritDoc}
+    * 
     * @see org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.PersistenceDescriptor#persistenceUnit(java.lang.String)
     */
    @Override
    public PersistenceUnitDef persistenceUnit(final String name)
    {
-      //Expression<Node> exp = Expressions.getOrCreate("persistence-unit").attribute("name", name);
+      // Expression<Node> exp = Expressions.getOrCreate("persistence-unit").attribute("name", name);
       return new PersistenceUnitDefImpl(
-            model, 
-            model.getOrCreate("persistence-unit@name=" + name)).name(name);
+               model,
+               model.getOrCreate("persistence-unit@name=" + name)).name(name);
+   }
+
+   @Override
+   public List<PersistenceUnitDef> listUnits()
+   {
+      List<PersistenceUnitDef> result = new ArrayList<PersistenceUnitDef>();
+      List<Node> list = model.get("persistence-unit");
+      for (Node node : list)
+      {
+         result.add(new PersistenceUnitDefImpl(model, node));
+      }
+      return Collections.unmodifiableList(result);
    }
 
    /**
     * {@inheritDoc}
+    * 
     * @see org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.PersistenceDescriptor#version(java.lang.String)
     */
    @Override
-   public PersistenceDescriptor version(String version) {
-	  model.attribute("version", version);
-	  return this;
+   public PersistenceDescriptor version(String version)
+   {
+      model.attribute("version", version);
+      return this;
    }
-   
-   /* (non-Javadoc)
+
+   /*
+    * (non-Javadoc)
+    * 
     * @see org.jboss.shrinkwrap.descriptor.spi.NodeProvider#getRootNode()
     */
    @Override
@@ -90,8 +111,10 @@ public class PersistenceDescriptorImpl extends NodeProviderImplBase
    {
       return model;
    }
-   
-   /* (non-Javadoc)
+
+   /*
+    * (non-Javadoc)
+    * 
     * @see org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase#getExporter()
     */
    @Override

@@ -16,16 +16,20 @@
  */
 package org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence;
 
+import java.util.List;
+
 import org.jboss.shrinkwrap.descriptor.api.Descriptor;
 
 /**
- * DSL Grammar to construct / alter JPA
- * XML Descriptors
+ * DSL Grammar to construct / alter JPA XML Descriptors
  * 
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
 public interface PersistenceDescriptor extends Descriptor
 {
+   List<PersistenceUnitDef> listUnits();
+
    PersistenceUnitDef persistenceUnit(String name);
+
    PersistenceDescriptor version(String version);
 }

@@ -17,6 +17,7 @@
 package org.jboss.shrinkwrap.descriptor.impl.spec.cdi.beans;
 
 import java.lang.annotation.Annotation;
+import java.util.List;
 
 import javax.decorator.Decorator;
 import javax.enterprise.inject.Alternative;
@@ -35,33 +36,139 @@ import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
  */
 public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDescriptor
 {
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
    // Instance Members -------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
 
-   private Node beans;
-   
-   //-------------------------------------------------------------------------------------||
+   private final Node beans;
+
+   // -------------------------------------------------------------------------------------||
    // Constructor ------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
 
    public BeansDescriptorImpl()
    {
       this(new Node("beans")
-            .attribute("xmlns", "http://java.sun.com/xml/ns/javaee")
-            .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance"));
+               .attribute("xmlns", "http://java.sun.com/xml/ns/javaee")
+               .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance"));
    }
-   
+
    public BeansDescriptorImpl(Node beans)
    {
       this.beans = beans;
    }
-   
-   //-------------------------------------------------------------------------------------||
-   // API --------------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
 
-   /* (non-Javadoc)
+   // -------------------------------------------------------------------------------------||
+   // API --------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
+
+   /*
+    * (non-Javadoc)
+    * 
+    * @see org.jboss.shrinkwrap.descriptor.spec.beans.BeansDescriptor#interceptors(java.lang.String)
+    */
+   @Override
+   public BeansDescriptor interceptors(String... classes)
+   {
+      for (String c : classes)
+      {
+         beans.getOrCreate("interceptors").create("class").text(c);
+      }
+      return this;
+   }
+
+   /*
+    * (non-Javadoc)
+    * 
+    * @see org.jboss.shrinkwrap.descriptor.spec.beans.BeansDescriptor#interceptor(java.lang.String)
+    */
+   @Override
+   public BeansDescriptor interceptor(String clazz)
+   {
+      return interceptors(clazz);
+   }
+
+   /*
+    * (non-Javadoc)
+    * 
+    * @see org.jboss.shrinkwrap.descriptor.spec.beans.BeansDescriptor#decorators(java.lang.String)
+    */
+   @Override
+   public BeansDescriptor decorators(String... classes)
+   {
+      for (String c : classes)
+      {
+         beans.getOrCreate("decorators").create("class").text(c);
+      }
+      return this;
+   }
+
+   /*
+    * (non-Javadoc)
+    * 
+    * @see org.jboss.shrinkwrap.descriptor.spec.beans.BeansDescriptor#decorator(java.lang.String)
+    */
+   @Override
+   public BeansDescriptor decorator(String clazz)
+   {
+      return decorators(clazz);
+   }
+
+   /*
+    * (non-Javadoc)
+    * 
+    * @see org.jboss.shrinkwrap.descriptor.spec.beans.BeansDescriptor#alternativeClasses(java.lang.String)
+    */
+   @Override
+   public BeansDescriptor alternativeClasses(String... classes)
+   {
+      for (String c : classes)
+      {
+         beans.getOrCreate("alternatives").create("class").text(c);
+      }
+      return this;
+   }
+
+   /*
+    * (non-Javadoc)
+    * 
+    * @see org.jboss.shrinkwrap.descriptor.spec.beans.BeansDescriptor#alternativeClass(java.lang.String)
+    */
+   @Override
+   public BeansDescriptor alternativeClass(String clazz)
+   {
+      return alternativeClasses(clazz);
+   }
+
+   /*
+    * (non-Javadoc)
+    * 
+    * @see org.jboss.shrinkwrap.descriptor.spec.beans.BeansDescriptor#alternativeStereotypes(java.lang.String)
+    */
+   @Override
+   public BeansDescriptorImpl alternativeStereotypes(String... annotations)
+   {
+      for (String s : annotations)
+      {
+         beans.getOrCreate("alternatives").create("stereotype").text(s);
+      }
+      return this;
+   }
+
+   /*
+    * (non-Javadoc)
+    * 
+    * @see org.jboss.shrinkwrap.descriptor.spec.beans.BeansDescriptor#alternativeStereotype(java.lang.String)
+    */
+   @Override
+   public BeansDescriptorImpl alternativeStereotype(String clazz)
+   {
+      return alternativeStereotypes(clazz);
+   }
+
+   /*
+    * (non-Javadoc)
+    * 
     * @see org.jboss.shrinkwrap.descriptor.spec.beans.BeansDescriptor#interceptors(java.lang.Class)
     */
    @Override
@@ -78,8 +185,10 @@ public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDe
       }
       return this;
    }
-   
-   /* (non-Javadoc)
+
+   /*
+    * (non-Javadoc)
+    * 
     * @see org.jboss.shrinkwrap.descriptor.spec.beans.BeansDescriptor#interceptor(java.lang.Class)
     */
    @Override
@@ -87,8 +196,10 @@ public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDe
    {
       return interceptors(clazz);
    }
-   
-   /* (non-Javadoc)
+
+   /*
+    * (non-Javadoc)
+    * 
     * @see org.jboss.shrinkwrap.descriptor.spec.beans.BeansDescriptor#decorators(java.lang.Class)
     */
    @Override
@@ -105,8 +216,10 @@ public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDe
       }
       return this;
    }
-   
-   /* (non-Javadoc)
+
+   /*
+    * (non-Javadoc)
+    * 
     * @see org.jboss.shrinkwrap.descriptor.spec.beans.BeansDescriptor#decorator(java.lang.Class)
     */
    @Override
@@ -114,8 +227,10 @@ public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDe
    {
       return decorators(clazz);
    }
-   
-   /* (non-Javadoc)
+
+   /*
+    * (non-Javadoc)
+    * 
     * @see org.jboss.shrinkwrap.descriptor.spec.beans.BeansDescriptor#alternativeClasses(java.lang.Class)
     */
    @Override
@@ -132,8 +247,10 @@ public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDe
       }
       return this;
    }
-   
-   /* (non-Javadoc)
+
+   /*
+    * (non-Javadoc)
+    * 
     * @see org.jboss.shrinkwrap.descriptor.spec.beans.BeansDescriptor#alternativeClass(java.lang.Class)
     */
    @Override
@@ -141,8 +258,10 @@ public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDe
    {
       return alternativeClasses(clazz);
    }
-   
-   /* (non-Javadoc)
+
+   /*
+    * (non-Javadoc)
+    * 
     * @see org.jboss.shrinkwrap.descriptor.spec.beans.BeansDescriptor#alternativeStereotypes(java.lang.Class)
     */
    @Override
@@ -164,8 +283,10 @@ public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDe
       }
       return this;
    }
-   
-   /* (non-Javadoc)
+
+   /*
+    * (non-Javadoc)
+    * 
     * @see org.jboss.shrinkwrap.descriptor.spec.beans.BeansDescriptor#alternativeStereotype(java.lang.Class)
     */
    @Override
@@ -174,8 +295,10 @@ public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDe
    {
       return alternativeStereotypes(clazz);
    }
- 
-   /* (non-Javadoc)
+
+   /*
+    * (non-Javadoc)
+    * 
     * @see org.jboss.shrinkwrap.descriptor.spi.NodeProvider#getRootNode()
     */
    @Override
@@ -183,13 +306,39 @@ public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDe
    {
       return beans;
    }
-   
-   /* (non-Javadoc)
+
+   /*
+    * (non-Javadoc)
+    * 
     * @see org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase#getExporter()
     */
    @Override
    protected DescriptorExporter getExporter()
    {
       return new XMLExporter();
+   }
+
+   @Override
+   public List<String> getAlternativeClasses()
+   {
+      return beans.textValues("alternatives/class");
+   }
+
+   @Override
+   public List<String> getAlternativeStereotypes()
+   {
+      return beans.textValues("alternatives/stereotype");
+   }
+
+   @Override
+   public List<String> getDecorators()
+   {
+      return beans.textValues("decorators/class");
+   }
+
+   @Override
+   public List<String> getInterceptors()
+   {
+      return beans.textValues("interceptors/class");
    }
 }

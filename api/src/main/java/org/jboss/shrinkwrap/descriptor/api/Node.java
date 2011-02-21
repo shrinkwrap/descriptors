@@ -30,41 +30,41 @@ import org.jboss.shrinkwrap.descriptor.impl.base.query.GetQuery;
 import org.jboss.shrinkwrap.descriptor.impl.base.query.GetSingleQuery;
 
 /**
- * A Node is a 
- *
+ * A Node is a
+ * 
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
 public class Node
 {
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
    // Instance Members -------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
 
-   private Node parent;
-   
+   private final Node parent;
+
    private List<Node> children = new ArrayList<Node>();
-   
-   private String name;
-   
+
+   private final String name;
+
    private Map<String, String> attributes;
-   
+
    private String text;
-   
-   //-------------------------------------------------------------------------------------||
+
+   // -------------------------------------------------------------------------------------||
    // Constructor ------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
 
    /**
     * Create a root node.
     * 
     * @param name The name of the node
     */
-   public Node(String name) 
+   public Node(String name)
    {
       this(name, null);
    }
-   
+
    /**
     * Create a node in the tree.
     * 
@@ -75,16 +75,16 @@ public class Node
    {
       this.name = name;
       this.parent = parent;
-      
-      if(this.parent != null)
+
+      if (this.parent != null)
       {
          this.parent.children.add(this);
       }
    }
-   
-   //-------------------------------------------------------------------------------------||
+
+   // -------------------------------------------------------------------------------------||
    // Attributes -------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
 
    /**
     * Add or override a named attribute.<br/>
@@ -132,17 +132,17 @@ public class Node
     */
    public Map<String, String> attributes()
    {
-      if(attributes == null)
+      if (attributes == null)
       {
          attributes = new HashMap<String, String>();
       }
       return attributes;
    }
-   
-   //-------------------------------------------------------------------------------------||
+
+   // -------------------------------------------------------------------------------------||
    // Node creation / retrieval ----------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
-   
+   // -------------------------------------------------------------------------------------||
+
    /**
     * Create a new Node with given name. <br/>
     * <br/>
@@ -155,17 +155,16 @@ public class Node
    {
       return create(Queries.from(name));
    }
-   
+
    public Node create(Query query)
    {
       return new CreateQuery(query).execute(this);
    }
-   
+
    /**
     * Get or create a named child node. <br/>
     * <br/>
-    * If a named node is found using {@link #getSingle(String)} it is returned,
-    * else a new child node is created.
+    * If a named node is found using {@link #getSingle(String)} it is returned, else a new child node is created.
     * 
     * @param name The child node name.
     * @return The existing node or a new node, never null.
@@ -177,7 +176,7 @@ public class Node
    {
       return getOrCreate(Queries.from(name));
    }
-   
+
    public Node getOrCreate(Query query)
    {
       return new GetOrCreateQuery(query).execute(this);
@@ -196,12 +195,12 @@ public class Node
    {
       return getSingle(Queries.from(name));
    }
-   
+
    public Node getSingle(Query query)
    {
       return new GetSingleQuery(query).execute(this);
    }
-   
+
    /**
     * Get all children with a specific name.
     * 
@@ -212,15 +211,15 @@ public class Node
    {
       return get(Queries.from(name));
    }
-   
+
    public List<Node> get(Query query)
    {
       return new GetQuery(query).execute(this);
    }
-   
-   //-------------------------------------------------------------------------------------||
+
+   // -------------------------------------------------------------------------------------||
    // Local data -------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
 
    /**
     * Set the Nodes text body.<br/>
@@ -247,7 +246,7 @@ public class Node
       this.text = text;
       return this;
    }
-   
+
    /**
     * Get the Nodes text body.
     * 
@@ -256,6 +255,17 @@ public class Node
    public String text()
    {
       return text;
+   }
+
+   public List<String> textValues(String name)
+   {
+      List<String> result = new ArrayList<String>();
+      List<Node> jars = this.get(name);
+      for (Node node : jars)
+      {
+         result.add(node.text());
+      }
+      return Collections.unmodifiableList(result);
    }
 
    /**
@@ -267,7 +277,7 @@ public class Node
    {
       return name;
    }
-   
+
    /**
     * Get the Nodes parent.
     * 
@@ -277,7 +287,7 @@ public class Node
    {
       return parent;
    }
-   
+
    /**
     * Get all the defined children for this node.
     * 
@@ -285,22 +295,22 @@ public class Node
     */
    public List<Node> children()
    {
-      if(children == null)
+      if (children == null)
       {
          children = new ArrayList<Node>();
       }
       return Collections.unmodifiableList(children);
    }
 
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
    // Override ---------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
 
    @Override
    public String toString()
    {
-      return "Node[" + name + "] " + 
-               "children[" + (children != null ? children.size():0) + "] " + 
-               (attributes != null ? "attributes[" + attributes + "] ":""); 
+      return "Node[" + name + "] " +
+               "children[" + (children != null ? children.size() : 0) + "] " +
+               (attributes != null ? "attributes[" + attributes + "] " : "");
    }
 }

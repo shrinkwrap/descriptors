@@ -16,6 +16,11 @@
  */
 package org.jboss.shrinkwrap.descriptor.impl.spec.jpa.persistence;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.jboss.shrinkwrap.descriptor.api.Node;
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.PersistenceUnitDef;
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.ProviderType;
@@ -24,56 +29,55 @@ import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.SharedCacheModeT
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.TransactionType;
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.ValidationModeType;
 
-
 /**
  * @author Dan Allen
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
-*/
+ */
 public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements PersistenceUnitDef
 {
-   private Node persistenceUnit;
-   
+   private final Node persistenceUnit;
+
    public PersistenceUnitDefImpl(Node persistence, Node persistenceUnit)
    {
       super(persistence);
       this.persistenceUnit = persistenceUnit;
    }
-   
+
    @Override
    public PersistenceUnitDef name(String name)
    {
       persistenceUnit.attribute("name", name);
       return this;
    }
-   
+
    @Override
    public PersistenceUnitDef description(String description)
    {
       persistenceUnit.getOrCreate("description").text(description);
       return this;
    }
-   
+
    @Override
    public PersistenceUnitDef nonJtaDataSource(String jndiName)
    {
       persistenceUnit.getOrCreate("non-jta-data-source").text(jndiName);
       return this;
    }
-   
+
    @Override
    public PersistenceUnitDef transactionType(TransactionType transactionType)
    {
       persistenceUnit.attribute("transaction-type", transactionType.name());
       return this;
    }
-   
+
    @Override
    public PersistenceUnitDef jtaDataSource(String jndiName)
    {
       persistenceUnit.getOrCreate("jta-data-source").text(jndiName);
       return this;
    }
-   
+
    @Override
    public PersistenceUnitDef property(String name, Object value)
    {
@@ -83,7 +87,7 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
                      .attribute("value", value);
       return this;
    }
-   
+
    @Override
    public PersistenceUnitDef classes(Class<?>... classes)
    {
@@ -93,7 +97,17 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
       }
       return this;
    }
-   
+
+   @Override
+   public PersistenceUnitDef classes(String... classes)
+   {
+      for (String c : classes)
+      {
+         persistenceUnit.create("class").text(c);
+      }
+      return this;
+   }
+
    @Override
    public PersistenceUnitDef jarFiles(String... paths)
    {
@@ -103,13 +117,13 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
       }
       return this;
    }
-   
+
    @Override
    public PersistenceUnitDef jarFile(String path)
    {
       return jarFiles(path);
    }
-   
+
    @Override
    public PersistenceUnitDef mappingFiles(String... paths)
    {
@@ -125,28 +139,28 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    {
       return mappingFiles(path);
    }
-   
+
    @Override
    public PersistenceUnitDef sharedCacheMode(SharedCacheModeType sharedCacheMode)
    {
       persistenceUnit.getOrCreate("shared-cache-mode").text(sharedCacheMode.name());
       return this;
    }
-   
+
    @Override
    public PersistenceUnitDef validationMode(ValidationModeType validationMode)
    {
       persistenceUnit.getOrCreate("validation-mode").text(validationMode.name());
       return this;
    }
-   
+
    @Override
    public PersistenceUnitDef excludeUnlistedClasses()
    {
       persistenceUnit.getOrCreate("exclude-unlisted-classes").text("true");
       return this;
    }
-   
+
    @Override
    public PersistenceUnitDef includeUnlistedClasses()
    {
@@ -166,7 +180,7 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
       persistenceUnit.getOrCreate("provider").text(provider);
       return this;
    }
-   
+
    @Override
    public PersistenceUnitDef showSql()
    {
@@ -187,7 +201,7 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
       }
       return this;
    }
-   
+
    @Override
    public PersistenceUnitDef formatSql()
    {
@@ -201,7 +215,7 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
       }
       return this;
    }
-   
+
    @Override
    public PersistenceUnitDef schemaGenerationMode(SchemaGenerationModeType schemaGenerationMode)
    {
@@ -246,7 +260,8 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
          }
          else if (SchemaGenerationModeType.UPDATE.equals(schemaGenerationMode))
          {
-            throw new UnsupportedOperationException(SchemaGenerationModeType.UPDATE + " not supported by provider " + ProviderType.ECLIPSE_LINK);
+            throw new UnsupportedOperationException(SchemaGenerationModeType.UPDATE + " not supported by provider "
+                     + ProviderType.ECLIPSE_LINK);
          }
          else if (SchemaGenerationModeType.NONE.equals(schemaGenerationMode))
          {
@@ -261,5 +276,108 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
          }
       }
       return this;
+   }
+
+   @Override
+   public String getName()
+   {
+      return persistenceUnit.attributes().get("name");
+   }
+
+   @Override
+   public String getDescription()
+   {
+      return persistenceUnit.attributes().get("description");
+   }
+
+   @Override
+   public String getNonJtaDataSource()
+   {
+      return persistenceUnit.attributes().get("non-jta-data-source");
+   }
+
+   @Override
+   public String getTransactionType()
+   {
+      return persistenceUnit.attributes().get("transaction-type");
+   }
+
+   @Override
+   public String getJtaDataSource()
+   {
+      return persistenceUnit.attributes().get("jta-data-source");
+   }
+
+   @Override
+   public Map<String, Object> getProperties()
+   {
+      Map<String, Object> result = new HashMap<String, Object>();
+
+      List<Node> list = persistenceUnit.get("properties");
+      if (list != null)
+      {
+         for (Node propRoot : list)
+         {
+            List<Node> properties = propRoot.get("property");
+            if (properties != null)
+            {
+               for (Node node : properties)
+               {
+                  String name = node.attributes().get("name");
+                  Object value = node.attributes().get("value");
+
+                  result.put(name, value);
+               }
+            }
+         }
+      }
+
+      return Collections.unmodifiableMap(result);
+   }
+
+   @Override
+   public List<String> getJarFiles()
+   {
+      return persistenceUnit.textValues("jar-file");
+   }
+
+   @Override
+   public List<String> getClasses()
+   {
+      return persistenceUnit.textValues("class");
+   }
+
+   @Override
+   public List<String> getMappingFiles()
+   {
+      return persistenceUnit.textValues("mapping-file");
+   }
+
+   @Override
+   public SharedCacheModeType getSharedCacheMode()
+   {
+      Node mode = persistenceUnit.getSingle("shared-cache-mode");
+      return mode == null ? null : SharedCacheModeType.valueOf(mode.text());
+   }
+
+   @Override
+   public ValidationModeType getValidationMode()
+   {
+      Node mode = persistenceUnit.getSingle("validation-mode");
+      return mode == null ? null : ValidationModeType.valueOf(mode.text());
+   }
+
+   @Override
+   public boolean includesUnlistedClasses()
+   {
+      Node mode = persistenceUnit.getSingle("exclude-unlisted-classes");
+      return mode == null ? false : Boolean.valueOf(mode.text());
+   }
+
+   @Override
+   public String getProvider()
+   {
+      Node provider = persistenceUnit.getSingle("provider");
+      return provider == null ? null : provider.text();
    }
 }
