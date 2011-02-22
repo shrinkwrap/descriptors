@@ -16,22 +16,38 @@
  */
 package org.jboss.shrinkwrap.descriptor.api.spec.servlet.web;
 
+import java.util.List;
+import java.util.Set;
+
+import javax.servlet.DispatcherType;
 
 /**
  * FilterMapping
- *
+ * 
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-public interface FilterMapping 
+public interface FilterMappingDef extends FilterDef
 {
-
    String getFilterName();
 
-   void setFilterName(String filterName);
+   FilterMappingDef filterName(String filterName);
 
-   String getUrlPattern();
+   List<String> getUrlPatterns();
 
-   void setUrlPattern(String urlPattern);
+   FilterMappingDef urlPattern(String urlPattern);
 
+   FilterMappingDef urlPatterns(String... urlPatterns);
+
+   FilterMappingDef dispatchType(DispatcherType type);
+
+   FilterMappingDef dispatchTypes(DispatcherType... types);
+
+   Set<DispatcherType> getDispatchTypes();
+
+   List<String> getServletNames();
+
+   FilterMappingDef servletName(String name);
+
+   FilterMappingDef servletNames(String... names);
 }

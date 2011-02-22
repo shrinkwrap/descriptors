@@ -23,11 +23,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.logging.Logger;
 
-import javax.faces.application.StateManager;
 import javax.servlet.http.HttpServletResponse;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.AuthMethodType;
+import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.FacesProjectStage;
+import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.FacesStateSavingMethod;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.HttpMethodType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.TrackingModeType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.TransportGuaranteeType;
@@ -43,44 +44,47 @@ public class WebAppDefTestCase
 {
    private final Logger log = Logger.getLogger(WebAppDefTestCase.class.getName());
 
-   @Test @Ignore // broken, import / export order, not 100% match on stored xml.
+   @Test
+   @Ignore
+   // broken, import / export order, not 100% match on stored xml.
    public void testValidDef() throws Exception
    {
       final String webApp = new WebAppDescriptorImpl()
-            .moduleName("test")
-            .description("A description of my webapp")
-            .displayName("Sample")
-            .distributable()
-            .contextParam("com.sun.faces.validateXml", true)
-            .facesDevelopmentMode()
-            .facesStateSavingMethod(StateManager.STATE_SAVING_METHOD_CLIENT)
-            .listener("org.jboss.seam.servlet.SeamListener")
-            .filter("UrlRewriteFilter", "org.tuckey.web.filters.urlrewrite.UrlRewriteFilter", new String[]
-            {"/*"})
-            .initParam("confReloadCheckInterval", 60)
-            .facesServlet()
-            .servlet("Download Servlet", "com.acme.webapp.DownloadServlet", new String[]
-            {"/file/*"})
-            .welcomeFile("/index.jsf")
-            .sessionTimeout(60)
-            .sessionTrackingModes(TrackingModeType.URL)
-            .errorPage(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "/500.jsp")
-            .errorPage(IOException.class, "/outputError.jsp")
-            .loginConfig(AuthMethodType.BASIC, "Cool App")
-            .formLoginConfig("/login.jsp", "/invalidLogin.jsp")
-            .securityConstraint()
-            .webResourceCollection("All Access")
-            .urlPatterns("/public/*")
-            .httpMethods(HttpMethodType.DELETE, HttpMethodType.PUT, HttpMethodType.HEAD, HttpMethodType.OPTIONS,
-                  HttpMethodType.TRACE, HttpMethodType.GET, HttpMethodType.POST)
-            .userDataConstraint(TransportGuaranteeType.NONE).securityConstraint("Restricted GET To Employees")
-            .webResourceCollection("Restricted Access - Get Only", "/restricted/employee/*", HttpMethodType.GET)
-            .authConstraint("Employee").userDataConstraint(TransportGuaranteeType.NONE)
-            .securityConstraint("Restrict access to Facelets templates (XHTML files)")
-            .webResourceCollection("Facelets templates").urlPatterns("*.xhtml").httpMethods(true, HttpMethodType.HEAD)
-            .authConstraint().userDataConstraint(TransportGuaranteeType.NONE)
-            .securityRole("Employee", "Employees of the company").absoluteOrdering("one", "two", "three")
-            .exportAsString();
+               .moduleName("test")
+               .description("A description of my webapp")
+               .displayName("Sample")
+               .distributable()
+               .contextParam("com.sun.faces.validateXml", true)
+               .facesProjectStage(FacesProjectStage.DEVELOPMENT)
+               .facesStateSavingMethod(FacesStateSavingMethod.CLIENT)
+               .listener("org.jboss.seam.servlet.SeamListener")
+               .filter("PrettyFilter", "com.ocpsoft.pretty.PrettyFilter", new String[]
+               { "/*" })
+               .initParam("confReloadCheckInterval", 60)
+               .facesServlet()
+               .servlet("Download Servlet", "com.acme.webapp.DownloadServlet", new String[]
+               { "/file/*" })
+               .welcomeFile("/index.jsf")
+               .sessionTimeout(60)
+               .sessionTrackingModes(TrackingModeType.URL)
+               .errorPage(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "/500.jsp")
+               .errorPage(IOException.class, "/outputError.jsp")
+               .loginConfig(AuthMethodType.BASIC, "Cool App")
+               .formLoginConfig("/login.jsp", "/invalidLogin.jsp")
+               .securityConstraint()
+               .webResourceCollection("All Access")
+               .urlPatterns("/public/*")
+               .httpMethods(HttpMethodType.DELETE, HttpMethodType.PUT, HttpMethodType.HEAD, HttpMethodType.OPTIONS,
+                        HttpMethodType.TRACE, HttpMethodType.GET, HttpMethodType.POST)
+               .userDataConstraint(TransportGuaranteeType.NONE).securityConstraint("Restricted GET To Employees")
+               .webResourceCollection("Restricted Access - Get Only", "/restricted/employee/*", HttpMethodType.GET)
+               .authConstraint("Employee").userDataConstraint(TransportGuaranteeType.NONE)
+               .securityConstraint("Restrict access to Facelets templates (XHTML files)")
+               .webResourceCollection("Facelets templates").urlPatterns("*.xhtml")
+               .httpMethods(true, HttpMethodType.HEAD)
+               .authConstraint().userDataConstraint(TransportGuaranteeType.NONE)
+               .securityRole("Employee", "Employees of the company").absoluteOrdering("one", "two", "three")
+               .exportAsString();
 
       log.info(webApp);
 
@@ -92,10 +96,10 @@ public class WebAppDefTestCase
    @Test
    public void shouldBeAbleToDetermineDefaultFilterName() throws Exception
    {
-      String name = "UrlRewriteFilter";
-      String clazz = "org.tuckey.web.filters.urlrewrite." + name;
+      String name = "PrettyFilter";
+      String clazz = "com.ocpsoft.pretty." + name;
       String mapping = "/*";
-      
+
       String desc = create()
                      .filter(clazz, mapping)
                      .exportAsString();
@@ -131,9 +135,9 @@ public class WebAppDefTestCase
    public void shouldBeAbleToSetRootAttributes() throws Exception
    {
       String version = "2.5";
-      
+
       String desc = create()
-                        .version(version).metadataComplete()
+                        .version(version).metadataComplete(true)
                         .exportAsString();
 
       log.fine(desc);
@@ -150,7 +154,7 @@ public class WebAppDefTestCase
       String path = "/";
       int timeout = 3600;
       int maxAge = 3600;
-      
+
       String desc = create()
                      .sessionTimeout(timeout)
                      .sessionCookieConfig()
@@ -182,8 +186,8 @@ public class WebAppDefTestCase
       }
       return builder.toString();
    }
-   
-   private WebAppDescriptor create() 
+
+   private WebAppDescriptor create()
    {
       return Descriptors.create(WebAppDescriptor.class);
    }

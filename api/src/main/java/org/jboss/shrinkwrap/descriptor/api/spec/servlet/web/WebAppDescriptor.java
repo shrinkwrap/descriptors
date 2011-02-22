@@ -1,22 +1,20 @@
 package org.jboss.shrinkwrap.descriptor.api.spec.servlet.web;
 
 import java.util.EventListener;
-import java.util.List;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptor;
 
 /**
- * DSL Grammar to construct / alter Web Application
- * XML Descriptors
+ * DSL Grammar to construct / alter Web Application XML Descriptors
  * 
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public interface WebAppDescriptor extends Descriptor
+public interface WebAppDescriptor extends Descriptor, WebAppDescriptorReader
 {
 
    WebAppDescriptor version(String version);
-   
-   WebAppDescriptor metadataComplete();
+
+   WebAppDescriptor metadataComplete(boolean value);
 
    WebAppDescriptor moduleName(String name);
 
@@ -28,9 +26,9 @@ public interface WebAppDescriptor extends Descriptor
 
    WebAppDescriptor contextParam(String name, Object value);
 
-   WebAppDescriptor facesDevelopmentMode();
+   WebAppDescriptor facesProjectStage(FacesProjectStage stage);
 
-   WebAppDescriptor facesStateSavingMethod(String value);
+   WebAppDescriptor facesStateSavingMethod(FacesStateSavingMethod method);
 
    WebAppDescriptor facesConfigFiles(String... paths);
 
@@ -38,33 +36,21 @@ public interface WebAppDescriptor extends Descriptor
 
    WebAppDescriptor listener(String clazz);
 
-   InitParamDef filter(Class<? extends javax.servlet.Filter> clazz, String... urlPatterns);
+   FilterDef filter(Class<? extends javax.servlet.Filter> clazz, String... urlPatterns);
 
-   InitParamDef filter(String clazz, String... urlPatterns);
+   FilterDef filter(String clazz, String... urlPatterns);
 
-   InitParamDef filter(String name, Class<? extends javax.servlet.Filter> clazz, String[] urlPatterns);
+   FilterDef filter(String name, Class<? extends javax.servlet.Filter> clazz, String[] urlPatterns);
 
-   InitParamDef filter(String name, String clazz, String[] urlPatterns);
-   
-   /**
-    * Returns an immutable view of the {@link javax.servlet.Filter}s configured
-    * @return
-    */
-   List<Filter> getFilters();
-   
-   /**
-    * Returns an immutable view of the filter mappings configured
-    * @return
-    */
-   List<FilterMapping> getFilterMappings();
+   FilterDef filter(String name, String clazz, String[] urlPatterns);
 
-   InitParamDef servlet(Class<? extends javax.servlet.Servlet> clazz, String... urlPatterns);
+   ServletDef servlet(Class<? extends javax.servlet.Servlet> clazz, String... urlPatterns);
 
-   InitParamDef servlet(String clazz, String... urlPatterns);
+   ServletDef servlet(String clazz, String... urlPatterns);
 
-   InitParamDef servlet(String name, Class<? extends javax.servlet.Servlet> clazz, String[] urlPatterns);
+   ServletDef servlet(String name, Class<? extends javax.servlet.Servlet> clazz, String[] urlPatterns);
 
-   InitParamDef servlet(String name, String clazz, String[] urlPatterns);
+   ServletDef servlet(String name, String clazz, String[] urlPatterns);
 
    WebAppDescriptor facesServlet();
 
@@ -101,5 +87,4 @@ public interface WebAppDescriptor extends Descriptor
    WebAppDescriptor absoluteOrdering(boolean others, String... names);
 
    WebAppDescriptor absoluteOrdering(String... names);
-
 }
