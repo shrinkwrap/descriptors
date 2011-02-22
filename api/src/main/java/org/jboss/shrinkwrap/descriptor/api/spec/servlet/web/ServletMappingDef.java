@@ -19,22 +19,21 @@ package org.jboss.shrinkwrap.descriptor.api.spec.servlet.web;
 import java.util.List;
 
 /**
- * Filter
- *
+ * ServletMapping
+ * 
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
+ * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  * @version $Revision: $
  */
-public interface Filter
+public interface ServletMappingDef extends ServletDef
 {
+   String getServletName();
 
-   String getName();
+   ServletMappingDef servletName(String servletName);
 
-   void setName(String name);
+   List<String> getUrlPatterns();
 
-   String getClazz();
+   ServletMappingDef urlPattern(String urlPattern);
 
-   void setClazz(String clazz);
-
-   List<Param> getInitParams();
-
+   ServletMappingDef urlPatterns(String... urlPatterns);
 }

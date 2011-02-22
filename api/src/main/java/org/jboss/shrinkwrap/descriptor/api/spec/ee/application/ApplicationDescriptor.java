@@ -19,33 +19,32 @@ package org.jboss.shrinkwrap.descriptor.api.spec.ee.application;
 import org.jboss.shrinkwrap.descriptor.api.Descriptor;
 
 /**
- * DSL Grammar to construct / alter Application
- * XML Descriptors
- *
+ * DSL Grammar to construct / alter Application XML Descriptors
+ * 
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-public interface ApplicationDescriptor extends Descriptor
+public interface ApplicationDescriptor extends Descriptor, ApplicationDescriptorReader
 {
 
    ApplicationDescriptor version(String version);
-   
+
    ApplicationDescriptor displayName(String displayName);
-   
+
    ApplicationDescriptor description(String description);
-   
+
    ApplicationDescriptor libraryDirectory(String libraryDirectory);
-   
+
    ApplicationDescriptor webModule(String uri, String contextRoot);
-   
+
    ApplicationDescriptor ejbModule(String uri);
-   
+
    ApplicationDescriptor javaModule(String uri);
-   
+
    ApplicationDescriptor connectorModule(String uri);
-   
+
    ApplicationDescriptor securityRole(String roleName);
 
    ApplicationDescriptor securityRole(String roleName, String description);
-   
+
 }

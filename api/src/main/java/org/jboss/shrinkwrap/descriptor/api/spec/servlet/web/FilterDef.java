@@ -17,20 +17,37 @@
 package org.jboss.shrinkwrap.descriptor.api.spec.servlet.web;
 
 import java.util.List;
+import java.util.Map;
 
 /**
- * ServletMapping
- *
+ * Filter
+ * 
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
+ * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  * @version $Revision: $
  */
-public interface ServletMapping
+public interface FilterDef extends WebAppDescriptor
 {
+   String getName();
 
-   String getServletName();
+   FilterDef name(String name);
 
-   void setServletName(String servletName);
+   FilterDef asyncSupported(boolean value);
 
-   List<String> getUrlPatterns();
+   boolean isAsyncSupported();
+
+   String getFilterClass();
+
+   FilterDef filterClass(String clazz);
+
+   FilterDef initParam(String name, Object value);
+
+   String getInitParam(String name);
+
+   Map<String, String> getInitParams();
+
+   FilterMappingDef mapping();
+
+   List<FilterMappingDef> getMappings();
 
 }

@@ -19,22 +19,32 @@ package org.jboss.shrinkwrap.descriptor.impl.spec.servlet.web;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EventListener;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.faces.application.ProjectStage;
 import javax.faces.application.StateManager;
 import javax.faces.webapp.FacesServlet;
 
 import org.jboss.shrinkwrap.descriptor.api.Node;
+import org.jboss.shrinkwrap.descriptor.api.spec.ee.application.SecurityRole;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.AuthMethodType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.CookieConfigDef;
-import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.Filter;
-import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.FilterMapping;
-import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.InitParamDef;
+import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.ErrorPage;
+import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.FacesProjectStage;
+import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.FacesStateSavingMethod;
+import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.FilterDef;
+import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.FilterMappingDef;
+import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.LoginConfig;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.SecurityConstraintDef;
+import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.ServletDef;
+import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.ServletMappingDef;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.TrackingModeType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.WebAppDescriptor;
 import org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase;
+import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
 import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
 import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
 
@@ -42,38 +52,37 @@ import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
  * @author Dan Allen
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
+ * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  */
 public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebAppDescriptor
 {
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
    // Class Members ----------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
-   
+   // -------------------------------------------------------------------------------------||
+
    /**
     * Node names
     */
    private static final String NODE_NAME_FILTER = "filter";
    private static final String NODE_NAME_FILTER_MAPPINGS = "filter-mapping";
    private static final String NODE_NAME_FILTER_NAME = "filter-name";
-   private static final String NODE_NAME_FILTER_CLASS = "filter-class";
-   private static final String NODE_NAME_URL_PATTERN = "url-pattern";
-   
-   //-------------------------------------------------------------------------------------||
+
+   // -------------------------------------------------------------------------------------||
    // Instance Members -------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
 
    private final Node model;
 
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
    // Constructor ------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
 
    public WebAppDescriptorImpl()
    {
       this(new Node("web-app")
-            .attribute("xmlns", "http://java.sun.com/xml/ns/javaee")
-            .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance"));
-      
+               .attribute("xmlns", "http://java.sun.com/xml/ns/javaee")
+               .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance"));
+
       version("3.0");
    }
 
@@ -82,9 +91,9 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
       this.model = model;
    }
 
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
    // API --------------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
 
    @Override
    public WebAppDescriptor version(String version)
@@ -94,9 +103,9 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    }
 
    @Override
-   public WebAppDescriptor metadataComplete()
+   public WebAppDescriptor metadataComplete(boolean value)
    {
-      model.attribute("metadata-complete", "true");
+      model.attribute("metadata-complete", value);
       return this;
    }
 
@@ -134,33 +143,30 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
       Node context = model.create("context-param");
       context.create("param-name").text(name);
       context.create("param-value").text(value);
-      
+
       return this;
    }
 
    @Override
-   public WebAppDescriptor facesDevelopmentMode()
+   public WebAppDescriptor facesProjectStage(FacesProjectStage stage)
    {
-      return contextParam(ProjectStage.PROJECT_STAGE_PARAM_NAME, ProjectStage.Development.toString());
+      return contextParam(ProjectStage.PROJECT_STAGE_PARAM_NAME, stage.name());
    }
 
-   // TODO continue with other known parameters
    @Override
-   public WebAppDescriptor facesStateSavingMethod(String value)
+   public WebAppDescriptor facesStateSavingMethod(FacesStateSavingMethod method)
    {
-      return contextParam(StateManager.STATE_SAVING_METHOD_PARAM_NAME, value);
+      return contextParam(StateManager.STATE_SAVING_METHOD_PARAM_NAME, method.name());
    }
 
    @Override
    public WebAppDescriptor facesConfigFiles(String... paths)
    {
-      // poor man's way of doing join
-      String v = Arrays.asList(paths).toString();
-      if (v.length() == 2)
+      if (paths == null || paths.length == 0)
       {
          return this;
       }
-      return contextParam(FacesServlet.CONFIG_FILES_ATTR, v.substring(0, v.length() - 1));
+      return contextParam(FacesServlet.CONFIG_FILES_ATTR, Strings.join(Arrays.asList(paths), ","));
    }
 
    @Override
@@ -178,112 +184,115 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
 
    /**
     * {@inheritDoc}
+    * 
     * @see org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.WebAppDescriptor#getFilters()
     */
    @Override
-   public List<Filter> getFilters()
+   public List<FilterDef> getFilters()
    {
-      final List<Filter> filters = new ArrayList<Filter>();
-      for (final Node node : model.get(NODE_NAME_FILTER))
+      final List<FilterDef> filters = new ArrayList<FilterDef>();
+      for (final Node filterNode : model.get(NODE_NAME_FILTER))
       {
-         final String name = node.get(NODE_NAME_FILTER_NAME).get(0).text();
-         final String clazz = node.get(NODE_NAME_FILTER_CLASS).get(0).text();
-         final Filter filter = new FilterImpl(name, clazz);
+         final FilterDef filter = new FilterDefImpl(model, filterNode);
          filters.add(filter);
       }
       return filters;
    }
-   
+
    /**
     * {@inheritDoc}
+    * 
     * @see org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.WebAppDescriptor#getFilterMappings()
     */
    @Override
-   public List<FilterMapping> getFilterMappings()
+   public List<FilterMappingDef> getFilterMappings()
    {
-      final List<FilterMapping> mappings = new ArrayList<FilterMapping>();
-      for (final Node node : model.get(NODE_NAME_FILTER_MAPPINGS))
+      final List<FilterMappingDef> mappings = new ArrayList<FilterMappingDef>();
+      for (final Node mappingNode : model.get(NODE_NAME_FILTER_MAPPINGS))
       {
-         final String name = node.get(NODE_NAME_FILTER_NAME).get(0).text();
-         final String urlPattern = node.get(NODE_NAME_URL_PATTERN).get(0).text();
-         final FilterMapping filterMapping = new FilterMappingImpl(name, urlPattern);
+         final String filterName = mappingNode.getSingle(NODE_NAME_FILTER_NAME).text();
+
+         FilterDef filterDef = null;
+         List<FilterDef> filters = getFilters();
+         for (FilterDef filter : filters)
+         {
+            if (Strings.areEqualTrimmed(filter.getName(), filterName))
+            {
+               filterDef = filter;
+            }
+         }
+
+         final FilterMappingDef filterMapping = new FilterMappingDefImpl(getRootNode(),
+                  ((FilterDefImpl) filterDef).getNode(), mappingNode);
          mappings.add(filterMapping);
       }
       return mappings;
    }
 
    @Override
-   public InitParamDef filter(Class<? extends javax.servlet.Filter> clazz, String... urlPatterns)
+   public FilterDef filter(Class<? extends javax.servlet.Filter> clazz, String... urlPatterns)
    {
       return filter(clazz.getSimpleName(), clazz.getName(), urlPatterns);
    }
-   
+
    @Override
-   public InitParamDef filter(String clazz, String... urlPatterns)
+   public FilterDef filter(String clazz, String... urlPatterns)
    {
       return filter(getSimpleName(clazz), clazz, urlPatterns);
    }
 
    @Override
-   public InitParamDef filter(String name, Class<? extends javax.servlet.Filter> clazz, String[] urlPatterns)
+   public FilterDef filter(String name, Class<? extends javax.servlet.Filter> clazz, String[] urlPatterns)
    {
       return filter(name, clazz.getName(), urlPatterns);
    }
 
    @Override
-   public InitParamDef filter(String name, String clazz, String[] urlPatterns)
+   public FilterDef filter(String name, String clazz, String[] urlPatterns)
    {
       Node filter = model.create("filter");
       filter.create("filter-name").text(name);
       filter.create("filter-class").text(clazz);
 
-      for (String p : urlPatterns)
-      {
-         Node mapping = model.create("filter-mapping");
-         mapping.create("filter-name").text(name);
-         mapping.create("url-pattern").text(p);
-      }
-      return new InitParamDefImpl(model, filter);
+      FilterDef f = new FilterDefImpl(model, filter).mapping().urlPatterns(urlPatterns);
+      return f;
    }
 
    @Override
-   public InitParamDef servlet(Class<? extends javax.servlet.Servlet> clazz, String... urlPatterns)
+   public ServletDef servlet(Class<? extends javax.servlet.Servlet> clazz, String... urlPatterns)
    {
       return servlet(clazz.getSimpleName(), clazz.getName(), urlPatterns);
    }
 
    @Override
-   public InitParamDef servlet(String clazz, String... urlPatterns)
+   public ServletDef servlet(String clazz, String... urlPatterns)
    {
       return servlet(getSimpleName(clazz), clazz, urlPatterns);
    }
 
    @Override
-   public InitParamDef servlet(String name, Class<? extends javax.servlet.Servlet> clazz, String[] urlPatterns)
+   public ServletDef servlet(String name, Class<? extends javax.servlet.Servlet> clazz, String[] urlPatterns)
    {
       return servlet(name, clazz.getName(), urlPatterns);
    }
 
    @Override
-   public InitParamDef servlet(String name, String clazz, String[] urlPatterns)
+   public ServletDef servlet(String name, String clazz, String[] urlPatterns)
    {
-      Node servlet = model.create("servlet");
-      servlet.create("servlet-name").text(name);
-      servlet.create("servlet-class").text(clazz);
-      
-      Node mapping = model.create("servlet-mapping");
-      mapping.create("servlet-name").text(name);
-      for(String p : urlPatterns)
-      {
-         mapping.create("url-pattern").text(p);
-      }
-      return new InitParamDefImpl(model, servlet);
+      Node servletNode = model.create("servlet");
+      servletNode.create("servlet-name").text(name);
+      servletNode.create("servlet-class").text(clazz);
+      ServletDef servlet = new ServletDefImpl(model, servletNode);
+
+      servlet.mapping().urlPatterns(urlPatterns);
+      return servlet;
    }
 
    @Override
-   public InitParamDef facesServlet()
+   public WebAppDescriptor facesServlet()
    {
-      return servlet(FacesServlet.class, "*.jsf");
+      servlet(FacesServlet.class, "*.jsf");
+      return this;
    }
 
    @Override
@@ -340,7 +349,7 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
       Node error = model.create("error-page");
       error.create("exception-type").text(exceptionClass);
       error.create("location").text(location);
-      
+
       return this;
    }
 
@@ -362,7 +371,7 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
       Node login = model.create("login-config");
       login.create("auth-method").text(authMethod);
       login.create("realm-name").text(realmName);
-      
+
       return this;
    }
 
@@ -371,7 +380,7 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    {
       Node login = model.create("login-config");
       login.create("auth-method").text(AuthMethodType.FORM);
-      
+
       Node form = model.create("form-login-config");
       form.create("form-login-page").text(loginPage);
       form.create("form-error-page").text(errorPage);
@@ -406,11 +415,11 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    public WebAppDescriptor securityRole(String roleName, String description)
    {
       Node security = model.create("security-role");
-      if(roleName != null)
+      if (roleName != null)
       {
          security.create("role-name").text(roleName);
       }
-      if(description != null)
+      if (description != null)
       {
          security.create("description").text(description);
       }
@@ -427,22 +436,23 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    public WebAppDescriptor absoluteOrdering(boolean others, String... names)
    {
       Node ordering = model.getOrCreate("absolute-ordering");
-      if(names != null)
+      if (names != null)
       {
-         for(String name : names)
+         for (String name : names)
          {
             ordering.create("name").text(name);
          }
       }
-      if(others)
+      if (others)
       {
          ordering.getOrCreate("others");
       }
       return this;
    }
-   
- 
-   /* (non-Javadoc)
+
+   /*
+    * (non-Javadoc)
+    * 
     * @see org.jboss.shrinkwrap.descriptor.spi.NodeProvider#getRootNode()
     */
    @Override
@@ -450,8 +460,10 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    {
       return model;
    }
-   
-   /* (non-Javadoc)
+
+   /*
+    * (non-Javadoc)
+    * 
     * @see org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase#getExporter()
     */
    @Override
@@ -459,10 +471,10 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    {
       return new XMLExporter();
    }
-   
-   //-------------------------------------------------------------------------------------||
+
+   // -------------------------------------------------------------------------------------||
    // Internal Helper Methods ------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
 
    /*
     * org.test.MyClass -> MyClass
@@ -474,5 +486,171 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
          return fqcn.substring(fqcn.lastIndexOf('.') + 1);
       }
       return fqcn;
+   }
+
+   @Override
+   public String getVersion()
+   {
+      return model.attributes().get("version");
+   }
+
+   @Override
+   public String getModuleName()
+   {
+      return model.attributes().get("module-name");
+   }
+
+   @Override
+   public String getDescription()
+   {
+      return model.attributes().get("description");
+   }
+
+   @Override
+   public String getDisplayName()
+   {
+      return model.attributes().get("display-name");
+   }
+
+   @Override
+   public boolean isDistributable()
+   {
+      return model.attributes().get("distributable") != null;
+   }
+
+   @Override
+   public boolean isMetadataComplete()
+   {
+      String complete = model.attributes().get("metadata-complete");
+      if (complete == null)
+      {
+         complete = "";
+      }
+      return "true".equalsIgnoreCase(complete);
+   }
+
+   @Override
+   public String getContextParam(String name)
+   {
+      Map<String, String> params = getContextParams();
+      for (Entry<String, String> e : params.entrySet())
+      {
+         if (e.getKey() != null && e.getKey().equals(name))
+         {
+            return e.getValue();
+         }
+      }
+      return null;
+   }
+
+   @Override
+   public Map<String, String> getContextParams()
+   {
+      Map<String, String> result = new HashMap<String, String>();
+
+      List<Node> params = model.get("context-param");
+      for (Node p : params)
+      {
+         String name = p.textValue("param-name");
+         String value = p.textValue("param-value");
+         result.put(name, value);
+      }
+
+      return result;
+   }
+
+   @Override
+   public FacesProjectStage getFacesProjectStage()
+   {
+      return FacesProjectStage.valueOf(getContextParam(ProjectStage.PROJECT_STAGE_PARAM_NAME));
+   }
+
+   @Override
+   public FacesStateSavingMethod getFacesStateSavingMethod()
+   {
+      return FacesStateSavingMethod.valueOf(getContextParam(StateManager.STATE_SAVING_METHOD_PARAM_NAME));
+   }
+
+   @Override
+   public List<String> getFacesConfigFiles()
+   {
+      String value = getContextParam(FacesServlet.CONFIG_FILES_ATTR);
+      return value == null ? new ArrayList<String>() : Arrays.asList(value.split(","));
+   }
+
+   @Override
+   public List<String> getListeners()
+   {
+      return model.textValues("listener/listener-class");
+   }
+
+   @Override
+   public List<ServletDef> getServlets()
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public List<ServletMappingDef> getServletMappings()
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public boolean hasFacesServlet()
+   {
+      // TODO Auto-generated method stub
+      return false;
+   }
+
+   @Override
+   public List<String> getWelcomeFiles()
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public int getSessionTimeout()
+   {
+      // TODO Auto-generated method stub
+      return 0;
+   }
+
+   @Override
+   public List<TrackingModeType> getSessionTrackingModes()
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public List<ErrorPage> getErrorPages()
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public List<LoginConfig> getLoginConfigs()
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public List<SecurityConstraintDef> getSecurityConstraints()
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public List<SecurityRole> getSecurityRoles()
+   {
+      // TODO Auto-generated method stub
+      return null;
    }
 }

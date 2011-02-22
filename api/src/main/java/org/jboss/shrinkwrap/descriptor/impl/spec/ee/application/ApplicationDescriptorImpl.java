@@ -16,49 +16,56 @@
  */
 package org.jboss.shrinkwrap.descriptor.impl.spec.ee.application;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jboss.shrinkwrap.descriptor.api.Node;
 import org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.spec.ee.application.SecurityRole;
+import org.jboss.shrinkwrap.descriptor.api.spec.ee.application.WebModule;
 import org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase;
 import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
 import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
 
 /**
  * ApplicationDescriptorImpl
- *
+ * 
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
 public class ApplicationDescriptorImpl extends NodeProviderImplBase implements ApplicationDescriptor
 {
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
    // Instance Members -------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
 
-   private Node model;
-   
-   //-------------------------------------------------------------------------------------||
+   private final Node model;
+
+   // -------------------------------------------------------------------------------------||
    // Constructor ------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
 
    public ApplicationDescriptorImpl()
    {
-      this(new Node("application")            
-            .attribute("xmlns", "http://java.sun.com/xml/ns/javaee")
-            .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance"));
+      this(new Node("application")
+               .attribute("xmlns", "http://java.sun.com/xml/ns/javaee")
+               .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance"));
 
       version("6");
    }
-   
+
    public ApplicationDescriptorImpl(Node model)
    {
       this.model = model;
    }
-   
-   //-------------------------------------------------------------------------------------||
-   // API --------------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
 
-   /* (non-Javadoc)
+   // -------------------------------------------------------------------------------------||
+   // API --------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
+
+   /*
+    * (non-Javadoc)
+    * 
     * @see org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor#description()
     */
    @Override
@@ -67,8 +74,10 @@ public class ApplicationDescriptorImpl extends NodeProviderImplBase implements A
       model.getOrCreate("description").text(description);
       return this;
    }
-   
-   /* (non-Javadoc)
+
+   /*
+    * (non-Javadoc)
+    * 
     * @see org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor#displayName(java.lang.String)
     */
    @Override
@@ -77,9 +86,12 @@ public class ApplicationDescriptorImpl extends NodeProviderImplBase implements A
       model.getOrCreate("display-name").text(displayName);
       return this;
    }
-   
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor#libraryDirectory(java.lang.String)
+
+   /*
+    * (non-Javadoc)
+    * 
+    * @see
+    * org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor#libraryDirectory(java.lang.String)
     */
    @Override
    public ApplicationDescriptor libraryDirectory(String libraryDirectory)
@@ -87,17 +99,22 @@ public class ApplicationDescriptorImpl extends NodeProviderImplBase implements A
       model.getOrCreate("library-directory").text(libraryDirectory);
       return this;
    }
-   
-   /* (non-Javadoc)
+
+   /*
+    * (non-Javadoc)
+    * 
     * @see org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor#ejbModule(java.lang.String)
     */
-   public ApplicationDescriptor ejbModule(String uri) 
+   @Override
+   public ApplicationDescriptor ejbModule(String uri)
    {
       model.create("module").create("ejb").text(uri);
       return this;
    }
-   
-   /* (non-Javadoc)
+
+   /*
+    * (non-Javadoc)
+    * 
     * @see org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor#javaModule(java.lang.String)
     */
    @Override
@@ -106,9 +123,12 @@ public class ApplicationDescriptorImpl extends NodeProviderImplBase implements A
       model.create("module").create("java").text(uri);
       return this;
    }
-   
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor#connectorModule(java.lang.String)
+
+   /*
+    * (non-Javadoc)
+    * 
+    * @see
+    * org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor#connectorModule(java.lang.String)
     */
    @Override
    public ApplicationDescriptor connectorModule(String uri)
@@ -116,9 +136,12 @@ public class ApplicationDescriptorImpl extends NodeProviderImplBase implements A
       model.create("module").create("connector").text(uri);
       return this;
    }
-   
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor#webModule(java.lang.String, java.lang.String)
+
+   /*
+    * (non-Javadoc)
+    * 
+    * @see org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor#webModule(java.lang.String,
+    * java.lang.String)
     */
    @Override
    public ApplicationDescriptor webModule(String uri, String contextRoot)
@@ -128,8 +151,10 @@ public class ApplicationDescriptorImpl extends NodeProviderImplBase implements A
       web.create("context-root").text(contextRoot);
       return this;
    }
-   
-   /* (non-Javadoc)
+
+   /*
+    * (non-Javadoc)
+    * 
     * @see org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor#version(java.lang.String)
     */
    @Override
@@ -138,8 +163,10 @@ public class ApplicationDescriptorImpl extends NodeProviderImplBase implements A
       model.attribute("version", version);
       return this;
    }
-   
-   /* (non-Javadoc)
+
+   /*
+    * (non-Javadoc)
+    * 
     * @see org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor#securityRole(java.lang.String)
     */
    @Override
@@ -147,44 +174,122 @@ public class ApplicationDescriptorImpl extends NodeProviderImplBase implements A
    {
       return securityRole(roleName, null);
    }
-   
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor#securityRole(java.lang.String, java.lang.String)
+
+   /*
+    * (non-Javadoc)
+    * 
+    * @see org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor#securityRole(java.lang.String,
+    * java.lang.String)
     */
    @Override
    public ApplicationDescriptor securityRole(String roleName, String description)
    {
       Node security = model.create("security-role");
-      if(roleName != null)
+      if (roleName != null)
       {
          security.create("role-name").text(roleName);
       }
-      if(description != null)
+      if (description != null)
       {
          security.create("description").text(description);
       }
       return this;
    }
-   
-   //-------------------------------------------------------------------------------------||
-   // Required Implementations - NodeProviderImplBase ------------------------------------||
-   //-------------------------------------------------------------------------------------||
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.spi.NodeProvider#getRootNode()
-    */
+   // -------------------------------------------------------------------------------------||
+   // Required Implementations - NodeProviderImplBase ------------------------------------||
+   // -------------------------------------------------------------------------------------||
+
    @Override
    public Node getRootNode()
    {
       return model;
    }
-   
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase#getExporter()
-    */
+
    @Override
    protected DescriptorExporter getExporter()
    {
       return new XMLExporter();
+   }
+
+   @Override
+   public String getVersion()
+   {
+      return model.attributes().get("version");
+   }
+
+   @Override
+   public String getDisplayName()
+   {
+      return model.attributes().get("display-name");
+   }
+
+   @Override
+   public String getDescription()
+   {
+      return model.attributes().get("description");
+   }
+
+   @Override
+   public String getLibraryDirectory()
+   {
+      return model.attributes().get("library-directory");
+   }
+
+   @Override
+   public List<WebModule> getWebModules()
+   {
+      List<WebModule> result = new ArrayList<WebModule>();
+
+      List<Node> webModules = model.get("module/web");
+      for (Node module : webModules)
+      {
+         String webUri = module.textValue("web-uri");
+         String contextRoot = module.textValue("context-root");
+
+         if (webUri != null || contextRoot != null)
+         {
+            result.add(new WebModuleImpl(webUri, contextRoot));
+         }
+      }
+      return result;
+   }
+
+   @Override
+   public List<String> getEjbModules()
+   {
+      return model.textValues("module/ejb");
+   }
+
+   @Override
+   public List<String> getJavaModules()
+   {
+      return model.textValues("module/java");
+   }
+
+   @Override
+   public List<String> getConnectorModules()
+   {
+      return model.textValues("module/connector");
+   }
+
+   @Override
+   public List<SecurityRole> getSecurityRoles()
+   {
+      List<SecurityRole> result = new ArrayList<SecurityRole>();
+
+      List<Node> securityRoles = model.get("security-role");
+      for (Node module : securityRoles)
+      {
+         String name = module.textValue("role-name");
+         String desc = module.textValue("description");
+
+         if (name != null || desc != null)
+         {
+            result.add(new SecurityRoleImpl(name, desc));
+         }
+      }
+      return result;
+
    }
 }
