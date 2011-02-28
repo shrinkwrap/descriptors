@@ -80,9 +80,10 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    public WebAppDescriptorImpl()
    {
       this(new Node("web-app")
-               .attribute("xmlns", "http://java.sun.com/xml/ns/javaee")
-               .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance"));
-
+            .attribute("xmlns", "http://java.sun.com/xml/ns/javaee")
+            .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance")
+            .attribute("xsi:schemaLocation",
+                  "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"));
       version("3.0");
    }
 

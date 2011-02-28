@@ -17,10 +17,13 @@
 package org.jboss.shrinkwrap.descriptor.impl.spec;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import junit.framework.Assert;
@@ -28,6 +31,7 @@ import junit.framework.Assert;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 /**
  * Simple helper for Xpath related Assertions.
@@ -55,18 +59,52 @@ public final class AssertXPath
     * @throws Exception XML/XPath related parse exceptions
     */
    public static void assertXPath(String xml, String expression, String... expectedValue)
-      throws Exception
    {
-      Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(
-            new ByteArrayInputStream(xml.getBytes()));
+      final Document doc;
+      try
+      {
+         doc = DocumentBuilderFactory.newInstance().newDocumentBuilder()
+               .parse(new ByteArrayInputStream(xml.getBytes()));
+      }
+      catch (final IOException ioe)
+      {
+         throw new RuntimeException(ioe);
+      }
+      catch (final SAXException se)
+      {
+         throw new RuntimeException(se);
+      }
+      catch (final ParserConfigurationException pce)
+      {
+         throw new RuntimeException(pce);
+      }
       
-      XPathExpression xPathExpression = XPathFactory.newInstance().newXPath().compile(expression);
+      final XPathExpression xPathExpression;
+      try
+      {
+         xPathExpression = XPathFactory.newInstance().newXPath().compile(expression);
+      }
+      catch (final XPathExpressionException xee)
+      {
+         throw new RuntimeException(xee);
+      }
    
-      NodeList nodes = (NodeList)xPathExpression.evaluate(doc, XPathConstants.NODESET);
-      Assert.assertEquals(
-            "ExpectedValue count should match found Node count", 
-            expectedValue.length, 
-            nodes.getLength());
+      final NodeList nodes;
+      try
+      {
+         nodes = (NodeList) xPathExpression.evaluate(doc, XPathConstants.NODESET);
+      }
+      catch (final XPathExpressionException xee)
+      {
+         throw new RuntimeException(xee);
+      }
+      
+      // If not looking for an attribute, count found Node matches
+      if (!expression.contains("@"))
+      {
+         Assert.assertEquals("ExpectedValue count should match found Node count", expectedValue.length,
+               nodes.getLength());
+      }
    
       for(int i = 0; i < nodes.getLength(); i++)
       {
