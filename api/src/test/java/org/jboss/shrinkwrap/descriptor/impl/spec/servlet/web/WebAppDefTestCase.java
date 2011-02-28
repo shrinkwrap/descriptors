@@ -49,7 +49,7 @@ public class WebAppDefTestCase
    // broken, import / export order, not 100% match on stored xml.
    public void testValidDef() throws Exception
    {
-      final String webApp = new WebAppDescriptorImpl()
+      final String webApp = Descriptors.create(WebAppDescriptor.class)
                .moduleName("test")
                .description("A description of my webapp")
                .displayName("Sample")
@@ -91,6 +91,17 @@ public class WebAppDefTestCase
       String expected = getResourceContents("/test-web.xml");
 
       Assert.assertEquals(expected, webApp);
+   }
+   
+   /**
+    * Ensures that the root element has xsi:schemaLocation w/ correct value
+    * SHRINKDESC-36
+    */
+   @Test
+   public void verifySchemaLocation()
+   {
+      final String expectedSchemaLocation = "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd";
+      assertXPath(create().exportAsString(),"/web-app/@xsi:schemaLocation",expectedSchemaLocation+"dsd");
    }
 
    @Test
