@@ -90,7 +90,7 @@ public class XMLImporterTestCase
    @SuppressWarnings({"unchecked", "rawtypes"})
    private Node load()
    {
-      return new XMLImporter(Object.class)
+      return new XMLImporter(Object.class, "test.xml")
          .importRootNode(new ByteArrayInputStream(SOURCE.getBytes()));
    }
 }

@@ -17,8 +17,10 @@
 package org.jboss.shrinkwrap.descriptor.impl.spec.jpa.persistence;
 
 import static org.jboss.shrinkwrap.descriptor.impl.spec.AssertXPath.assertXPath;
+import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
+import org.jboss.shrinkwrap.descriptor.api.spec.cdi.beans.BeansDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.PersistenceDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.PersistenceUnitDef;
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.ProviderType;
@@ -39,7 +41,19 @@ public class PersistenceDescriptorTestCase
 {
    private String name = PersistenceDescriptorTestCase.class.getSimpleName();
    private String name2 = PersistenceDescriptorTestCase.class.getSimpleName() + "2";
-   
+
+   @Test
+   public void shouldCreateDefaultName() throws Exception
+   {
+      Assert.assertEquals("persistence.xml", create().getDescriptorName());
+   }
+
+   @Test
+   public void shouldBeAbleToSetName() throws Exception
+   {
+      Assert.assertEquals("test.xml", Descriptors.create(PersistenceDescriptor.class, "test.xml").getDescriptorName());
+   }
+
    @Test
    public void shouldHaveDefaultVersion() throws Exception
    {

@@ -45,17 +45,18 @@ public class PersistenceDescriptorImpl extends NodeProviderImplBase
    // Constructor ------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public PersistenceDescriptorImpl()
+   public PersistenceDescriptorImpl(String descriptorName)
    {
-      this(new Node("persistence")
+      this(descriptorName, new Node("persistence")
                .attribute("xmlns", "http://java.sun.com/xml/ns/persistence")
                .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance"));
 
       version("2.0");
    }
 
-   public PersistenceDescriptorImpl(final Node model)
+   public PersistenceDescriptorImpl(String descriptorName, final Node model)
    {
+      super(descriptorName);
       this.model = model;
    }
 
@@ -73,6 +74,7 @@ public class PersistenceDescriptorImpl extends NodeProviderImplBase
    {
       // Expression<Node> exp = Expressions.getOrCreate("persistence-unit").attribute("name", name);
       return new PersistenceUnitDefImpl(
+               getDescriptorName(),
                model,
                model.getOrCreate("persistence-unit@name=" + name)).name(name);
    }
@@ -84,7 +86,7 @@ public class PersistenceDescriptorImpl extends NodeProviderImplBase
       List<Node> list = model.get("persistence-unit");
       for (Node node : list)
       {
-         result.add(new PersistenceUnitDefImpl(model, node));
+         result.add(new PersistenceUnitDefImpl(getDescriptorName(), model, node));
       }
       return Collections.unmodifiableList(result);
    }

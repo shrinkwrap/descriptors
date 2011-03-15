@@ -27,6 +27,13 @@ import java.io.OutputStream;
 public interface Descriptor
 {
    /**
+    * Get the Descriptor name. The name can be specified by user or predefined.
+    * 
+    * @return the descriptor name
+    */
+   String getDescriptorName();
+   
+   /**
     * Exports the descriptor XML as a {@link String}
     * @return
     * @throws DescriptorExportException

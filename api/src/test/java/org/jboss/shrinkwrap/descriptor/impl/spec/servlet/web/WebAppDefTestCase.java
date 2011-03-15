@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletResponse;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
+import org.jboss.shrinkwrap.descriptor.api.spec.cdi.beans.BeansDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.AuthMethodType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.FacesProjectStage;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.FacesStateSavingMethod;
@@ -44,6 +45,7 @@ public class WebAppDefTestCase
 {
    private final Logger log = Logger.getLogger(WebAppDefTestCase.class.getName());
 
+   
    @Test
    @Ignore
    // broken, import / export order, not 100% match on stored xml.
@@ -93,6 +95,18 @@ public class WebAppDefTestCase
       Assert.assertEquals(expected, webApp);
    }
    
+   @Test
+   public void shouldCreateDefaultName() throws Exception
+   {
+      Assert.assertEquals("web.xml", create().getDescriptorName());
+   }
+
+   @Test
+   public void shouldBeAbleToSetName() throws Exception
+   {
+      Assert.assertEquals("test.xml", Descriptors.create(WebAppDescriptor.class, "test.xml").getDescriptorName());
+   }
+
    /**
     * Ensures that the root element has xsi:schemaLocation w/ correct value
     * SHRINKDESC-36

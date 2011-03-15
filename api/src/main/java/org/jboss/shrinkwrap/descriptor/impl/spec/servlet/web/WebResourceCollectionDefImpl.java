@@ -27,9 +27,9 @@ public class WebResourceCollectionDefImpl extends SecurityConstraintDefImpl impl
 {
    private Node webResourceCollection;
    
-   public WebResourceCollectionDefImpl(Node webApp, Node securityConstraint, Node webResourceCollection)
+   public WebResourceCollectionDefImpl(String descriptorName, Node webApp, Node securityConstraint, Node webResourceCollection)
    {
-      super(webApp, securityConstraint);
+      super(descriptorName, webApp, securityConstraint);
       this.webResourceCollection = webResourceCollection;
    }
    

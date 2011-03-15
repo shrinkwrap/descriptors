@@ -34,9 +34,9 @@ public class ServletMappingDefImpl extends ServletDefImpl implements ServletMapp
 {
    private final Node mapping;
 
-   public ServletMappingDefImpl(Node webApp, Node servletNode, Node mappingNode)
+   public ServletMappingDefImpl(String descriptorName, Node webApp, Node servletNode, Node mappingNode)
    {
-      super(webApp, servletNode);
+      super(descriptorName, webApp, servletNode);
       this.mapping = mappingNode;
    }
 
