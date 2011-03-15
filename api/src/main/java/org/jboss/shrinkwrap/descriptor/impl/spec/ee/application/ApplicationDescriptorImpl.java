@@ -45,17 +45,18 @@ public class ApplicationDescriptorImpl extends NodeProviderImplBase implements A
    // Constructor ------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public ApplicationDescriptorImpl()
+   public ApplicationDescriptorImpl(String descriptorName)
    {
-      this(new Node("application")
+      this(descriptorName, new Node("application")
                .attribute("xmlns", "http://java.sun.com/xml/ns/javaee")
                .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance"));
 
       version("6");
    }
 
-   public ApplicationDescriptorImpl(Node model)
+   public ApplicationDescriptorImpl(String descriptorName, Node model)
    {
+      super(descriptorName);
       this.model = model;
    }
 

@@ -45,7 +45,9 @@ public abstract class DescriptorImporterBase<T extends Descriptor> implements De
     * the model during construction)
     */
    private final Class<T> endUserViewImplType;
-
+   
+   private final String descriptorName; 
+   
    //-------------------------------------------------------------------------------------||
    // Constructor ------------------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||
@@ -56,8 +58,9 @@ public abstract class DescriptorImporterBase<T extends Descriptor> implements De
     * 
     * @param The type of the backing object model for the descriptor
     * @throws IllegalArgumentException If the model type is not specified
+    * @throws IllegalArgumentException If the descriptorName not specified
     */
-   public DescriptorImporterBase(final Class<T> endUserViewImplType)
+   public DescriptorImporterBase(final Class<T> endUserViewImplType, String descriptorName)
          throws IllegalArgumentException
    {
       // Precondition checks
@@ -65,9 +68,15 @@ public abstract class DescriptorImporterBase<T extends Descriptor> implements De
       {
          throw new IllegalArgumentException("End user view impl type must be specified");
       }
+      if (descriptorName == null)
+      {
+         throw new IllegalArgumentException("Descriptor name must be specified");
+      }
+
       // Set
 
       this.endUserViewImplType = endUserViewImplType;
+      this.descriptorName = descriptorName;
    }
 
    @Override
@@ -127,17 +136,17 @@ public abstract class DescriptorImporterBase<T extends Descriptor> implements De
       final Constructor<T> constructor;
       try
       {
-         constructor = endUserViewImplType.getConstructor(Node.class);
+         constructor = endUserViewImplType.getConstructor(String.class, Node.class);
       }
       catch (final NoSuchMethodException e)
       {
          throw new DescriptorImportException("Descriptor impl " + endUserViewImplType.getName()
-               + " does not have a constructor accepting " + Node.class.getName(), e);
+               + " does not have a constructor accepting " + String.class.getName() + " and " + Node.class.getName(), e);
       }
       final T descriptor;
       try
       {
-         descriptor = constructor.newInstance(rootNode);
+         descriptor = constructor.newInstance(descriptorName, rootNode);
       }
       catch (final Exception e)
       {

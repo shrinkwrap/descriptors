@@ -17,7 +17,10 @@
 package org.jboss.shrinkwrap.descriptor.impl.spec.ee.application;
 
 import static org.jboss.shrinkwrap.descriptor.impl.spec.AssertXPath.assertXPath;
+import junit.framework.Assert;
+
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
+import org.jboss.shrinkwrap.descriptor.api.spec.cdi.beans.BeansDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor;
 import org.junit.Test;
 
@@ -32,6 +35,18 @@ public class ApplicationDescriptorTestCase
    private String description = "description";
    private String moduleName = "test.jar";
    private String contextRoot = "/";
+
+   @Test
+   public void shouldCreateDefaultName() throws Exception
+   {
+      Assert.assertEquals("application.xml", create().getDescriptorName());
+   }
+
+   @Test
+   public void shouldBeAbleToSetName() throws Exception
+   {
+      Assert.assertEquals("test.xml", Descriptors.create(ApplicationDescriptor.class, "test.xml").getDescriptorName());
+   }
 
    @Test
    public void shouldBeAbleToAddDescription() throws Exception

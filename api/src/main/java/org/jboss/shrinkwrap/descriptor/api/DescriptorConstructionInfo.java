@@ -42,6 +42,11 @@ class DescriptorConstructionInfo
     */
    final Class<? extends DescriptorImporter<?>> importerClass;
    
+   /**
+    * The default name of the Descriptor 
+    */
+   final String defaultName;
+   
    //-------------------------------------------------------------------------------------||
    // Constructor ------------------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||
@@ -50,9 +55,10 @@ class DescriptorConstructionInfo
     * Creates a new instance using the specified 
     * @param implClassName
     * @param modelClassName
+    * @param defaultName The default name for this Descriptor
     */
    @SuppressWarnings("unchecked")
-   DescriptorConstructionInfo(final String implClassName, String importerClassName)
+   DescriptorConstructionInfo(final String implClassName, String importerClassName, String defaultName)
    {
       // Get the TCCL
       final ClassLoader tccl = AccessController.doPrivileged(GetTcclAction.INSTANCE);
@@ -85,5 +91,6 @@ class DescriptorConstructionInfo
       }
       
       this.importerClass = importerClass;
+      this.defaultName = defaultName;
    }
 }

@@ -46,6 +46,11 @@ class DescriptorInstantiator
    private static final String KEY_IMPL_CLASS_NAME = "implClass";
 
    /**
+    * Key of the property denoting the default descriptor name
+    */
+   private static final String KEY_DEFAULT_NAME = "defaultName";
+
+   /**
     * Key of the property denoting the backing model class for a given end-user view type
     */
    private static final String KEY_IMPORTER_CLASS_NAME = "importerClass";
@@ -77,30 +82,37 @@ class DescriptorInstantiator
     * 
     * @param <T>
     * @param userViewClass
+    * @param descriptorName The name of the descriptor. If argument is null, the default name will be used.
     * @return
     * @throws IllegalArgumentException If the user view class was not specified
     */
-   static <T extends Descriptor> T createFromUserView(final Class<T> userViewClass) throws IllegalArgumentException
+   static <T extends Descriptor> T createFromUserView(final Class<T> userViewClass, String descriptorName) throws IllegalArgumentException
    {
       // Get the construction information
       final DescriptorConstructionInfo info = getDescriptorConstructionInfoForUserView(userViewClass);
-
+      
       // Get the constructor to use in making the new instance
       final Constructor<? extends Descriptor> ctor;
       try
       {
-         ctor = info.implClass.getConstructor();
+         ctor = info.implClass.getConstructor(String.class);
       }
       catch (final NoSuchMethodException nsme)
       {
-         throw new RuntimeException(info.implClass + " must contain a constructor no args contructor");
+         throw new RuntimeException(info.implClass + " must contain a constructor with a single String argument");
+      }
+      
+      String name = info.defaultName;
+      if(descriptorName != null)
+      {
+         name = descriptorName;
       }
 
       // Create a new descriptor instance using the backing model
       final Descriptor descriptor;
       try
       {
-         descriptor = ctor.newInstance();
+         descriptor = ctor.newInstance(name);
       }
       // Handle all construction errors equally
       catch (final Exception e)
@@ -124,11 +136,12 @@ class DescriptorInstantiator
     * 
     * @param <T>
     * @param userViewClass
+    * @param descriptorName The name of the descriptor. If argument is null, the default name will be used.
     * @return
     * @throws IllegalArgumentException If the user view class was not specified
     */
    @SuppressWarnings("unchecked")
-   static <T extends Descriptor> DescriptorImporter<T> createImporterFromUserView(final Class<T> userViewClass)
+   static <T extends Descriptor> DescriptorImporter<T> createImporterFromUserView(final Class<T> userViewClass, String descriptorName)
          throws IllegalArgumentException
    {
       // Get the construction information
@@ -143,10 +156,16 @@ class DescriptorInstantiator
       }
       final Class<T> implClassCasted = (Class<T>) implClass;
 
+      String name = info.defaultName;
+      if(descriptorName != null)
+      {
+         name = descriptorName;
+      }
+
       final DescriptorImporter<T> importer;
       try
       {
-         importer = (DescriptorImporter<T>)info.importerClass.getConstructor(Class.class).newInstance(implClassCasted);
+         importer = (DescriptorImporter<T>)info.importerClass.getConstructor(Class.class, String.class).newInstance(implClassCasted, name);
       }
       catch (Exception e) 
       {
@@ -214,9 +233,16 @@ class DescriptorInstantiator
          throw new IllegalStateException("Resource " + resourceName + " for " + userViewClass
                + " does not contain key " + KEY_IMPORTER_CLASS_NAME);
       }
+       
+      final String defaultName = props.getProperty(KEY_DEFAULT_NAME);
+      if(defaultName == null)
+      {
+         throw new IllegalStateException("Resource " + resourceName + " for " + userViewClass
+               + " does not contain key " + KEY_DEFAULT_NAME);
+      }
 
       // Get the construction information
-      final DescriptorConstructionInfo info = new DescriptorConstructionInfo(implClassName, importerClassName);
+      final DescriptorConstructionInfo info = new DescriptorConstructionInfo(implClassName, importerClassName, defaultName);
 
       // Return 
       return info;

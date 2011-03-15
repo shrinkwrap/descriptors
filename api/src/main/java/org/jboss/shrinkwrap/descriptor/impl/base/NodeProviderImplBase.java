@@ -30,9 +30,13 @@ import org.jboss.shrinkwrap.descriptor.spi.NodeProvider;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-public abstract class NodeProviderImplBase implements NodeProvider
+public abstract class NodeProviderImplBase extends DescriptorImplBase implements NodeProvider
 {
-
+   public NodeProviderImplBase(String name)
+   {
+      super(name);
+   }
+   
    /* (non-Javadoc)
     * @see org.jboss.shrinkwrap.descriptor.api.Descriptor#exportAsString()
     */

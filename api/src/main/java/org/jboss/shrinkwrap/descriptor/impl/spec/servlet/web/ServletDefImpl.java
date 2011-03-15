@@ -40,9 +40,9 @@ public class ServletDefImpl extends WebAppDescriptorImpl implements ServletDef
 {
    private final Node servlet;
 
-   public ServletDefImpl(Node webApp, Node servlet)
+   public ServletDefImpl(String descriptorName, Node webApp, Node servlet)
    {
-      super(webApp);
+      super(descriptorName, webApp);
       this.servlet = servlet;
    }
 
@@ -63,7 +63,7 @@ public class ServletDefImpl extends WebAppDescriptorImpl implements ServletDef
    @Override
    public ServletDef initParam(String name, Object value)
    {
-      InitParamDefImpl param = new InitParamDefImpl(getRootNode(), servlet);
+      InitParamDefImpl param = new InitParamDefImpl(getDescriptorName(), getRootNode(), servlet);
       param.initParam(name, value == null ? null : value.toString());
       return this;
    }
@@ -79,7 +79,7 @@ public class ServletDefImpl extends WebAppDescriptorImpl implements ServletDef
    public ServletMappingDef mapping()
    {
       Node mappingNode = getRootNode().create("servlet-mapping");
-      ServletMappingDef mapping = new ServletMappingDefImpl(getRootNode(), servlet, mappingNode);
+      ServletMappingDef mapping = new ServletMappingDefImpl(getDescriptorName(), getRootNode(), servlet, mappingNode);
       mapping.servletName(getName());
       return mapping;
    }

@@ -77,9 +77,9 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    // Constructor ------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public WebAppDescriptorImpl()
+   public WebAppDescriptorImpl(String descriptorName)
    {
-      this(new Node("web-app")
+      this(descriptorName, new Node("web-app")
             .attribute("xmlns", "http://java.sun.com/xml/ns/javaee")
             .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance")
             .attribute("xsi:schemaLocation",
@@ -87,8 +87,9 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
       version("3.0");
    }
 
-   public WebAppDescriptorImpl(Node model)
+   public WebAppDescriptorImpl(String descriptorName, Node model)
    {
+      super(descriptorName);
       this.model = model;
    }
 
@@ -194,7 +195,7 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
       final List<FilterDef> filters = new ArrayList<FilterDef>();
       for (final Node filterNode : model.get(NODE_NAME_FILTER))
       {
-         final FilterDef filter = new FilterDefImpl(model, filterNode);
+         final FilterDef filter = new FilterDefImpl(getDescriptorName(), model, filterNode);
          filters.add(filter);
       }
       return filters;
@@ -223,7 +224,7 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
             }
          }
 
-         final FilterMappingDef filterMapping = new FilterMappingDefImpl(getRootNode(),
+         final FilterMappingDef filterMapping = new FilterMappingDefImpl(getDescriptorName(), getRootNode(),
                   ((FilterDefImpl) filterDef).getNode(), mappingNode);
          mappings.add(filterMapping);
       }
@@ -255,7 +256,7 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
       filter.create("filter-name").text(name);
       filter.create("filter-class").text(clazz);
 
-      FilterDef f = new FilterDefImpl(model, filter).mapping().urlPatterns(urlPatterns);
+      FilterDef f = new FilterDefImpl(getDescriptorName(), model, filter).mapping().urlPatterns(urlPatterns);
       return f;
    }
 
@@ -283,7 +284,7 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
       Node servletNode = model.create("servlet");
       servletNode.create("servlet-name").text(name);
       servletNode.create("servlet-class").text(clazz);
-      ServletDef servlet = new ServletDefImpl(model, servletNode);
+      ServletDef servlet = new ServletDefImpl(getDescriptorName(), model, servletNode);
 
       servlet.mapping().urlPatterns(urlPatterns);
       return servlet;
@@ -332,7 +333,7 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    @Override
    public CookieConfigDef sessionCookieConfig()
    {
-      return new CookieConfigDefImpl(model);
+      return new CookieConfigDefImpl(getDescriptorName(), model);
    }
 
    @Override
@@ -403,7 +404,7 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
       {
          security.create("name").text(displayName);
       }
-      return new SecurityConstraintDefImpl(model, security);
+      return new SecurityConstraintDefImpl(getDescriptorName(), model, security);
    }
 
    @Override
