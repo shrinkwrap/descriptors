@@ -37,9 +37,9 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
 {
    private final Node persistenceUnit;
 
-   public PersistenceUnitDefImpl(Node persistence, Node persistenceUnit)
+   public PersistenceUnitDefImpl(String descriptorName, Node persistence, Node persistenceUnit)
    {
-      super(persistence);
+      super(descriptorName, persistence);
       this.persistenceUnit = persistenceUnit;
    }
 

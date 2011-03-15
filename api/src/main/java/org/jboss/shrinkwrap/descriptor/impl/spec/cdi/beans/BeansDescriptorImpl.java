@@ -46,15 +46,16 @@ public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDe
    // Constructor ------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public BeansDescriptorImpl()
+   public BeansDescriptorImpl(String descriptorName)
    {
-      this(new Node("beans")
+      this(descriptorName, new Node("beans")
                .attribute("xmlns", "http://java.sun.com/xml/ns/javaee")
                .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance"));
    }
 
-   public BeansDescriptorImpl(Node beans)
+   public BeansDescriptorImpl(String descriptorName, Node beans)
    {
+      super(descriptorName);
       this.beans = beans;
    }
 

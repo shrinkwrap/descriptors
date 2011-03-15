@@ -33,20 +33,39 @@ public final class Descriptors
    }
 
    /**
-    * Creates a new Descriptor instance
+    * Creates a new Descriptor instance, predefined default descriptor name will be used.
+    * 
     * @param <T>
     * @param type
     * @return
+    * @see #create(Class, String)
     */
    public static <T extends Descriptor> T create(final Class<T> type)
    {
-      return DescriptorInstantiator.createFromUserView(type);
+      return create(type, null);
+   }
+
+   /**
+    * Creates a new named Descriptor instance.
+    * 
+    * @param <T>
+    * @param type
+    * @param descriptorName the descriptor name 
+    * @return
+    */
+   public static <T extends Descriptor> T create(final Class<T> type, String descriptorName)
+   {
+      return DescriptorInstantiator.createFromUserView(type, descriptorName);
    }
 
    public static <T extends Descriptor> DescriptorImporter<T> importAs(final Class<T> type)
    {
-      return DescriptorInstantiator.createImporterFromUserView(type);
+      return importAs(type, null);
+   }
 
+   public static <T extends Descriptor> DescriptorImporter<T> importAs(final Class<T> type, String descriptorName)
+   {
+      return DescriptorInstantiator.createImporterFromUserView(type, descriptorName);
    }
 
    //   public static <T extends Descriptor, X extends Descriptor<T>> X create(Class<X> defType, InputStream xmlStream)

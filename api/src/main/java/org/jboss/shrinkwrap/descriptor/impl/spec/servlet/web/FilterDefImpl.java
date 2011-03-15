@@ -36,9 +36,9 @@ public class FilterDefImpl extends WebAppDescriptorImpl implements FilterDef
 {
    private final Node filter;
 
-   public FilterDefImpl(final Node webApp, final Node filter)
+   public FilterDefImpl(String descriptorName, final Node webApp, final Node filter)
    {
-      super(webApp);
+      super(descriptorName, webApp);
       this.filter = filter;
    }
 
@@ -84,7 +84,7 @@ public class FilterDefImpl extends WebAppDescriptorImpl implements FilterDef
    @Override
    public FilterDef initParam(String name, Object value)
    {
-      InitParamDefImpl param = new InitParamDefImpl(getRootNode(), filter);
+      InitParamDefImpl param = new InitParamDefImpl(getDescriptorName(), getRootNode(), filter);
       param.initParam(name, value == null ? null : value.toString());
       return this;
    }
@@ -119,7 +119,7 @@ public class FilterDefImpl extends WebAppDescriptorImpl implements FilterDef
    public FilterMappingDef mapping()
    {
       Node mappingNode = getRootNode().create("filter-mapping");
-      FilterMappingDefImpl mapping = new FilterMappingDefImpl(getRootNode(), filter, mappingNode);
+      FilterMappingDefImpl mapping = new FilterMappingDefImpl(getDescriptorName(), getRootNode(), filter, mappingNode);
       mapping.filterName(getName());
       return mapping;
    }

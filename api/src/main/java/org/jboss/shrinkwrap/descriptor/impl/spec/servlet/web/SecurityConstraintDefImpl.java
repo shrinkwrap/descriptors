@@ -29,9 +29,9 @@ public class SecurityConstraintDefImpl extends WebAppDescriptorImpl implements S
 {
    protected Node securityConstraint;
    
-   public SecurityConstraintDefImpl(Node webApp, Node securityConstraint)
+   public SecurityConstraintDefImpl(String descriptorName, Node webApp, Node securityConstraint)
    {
-      super(webApp);
+      super(descriptorName, webApp);
       this.securityConstraint = securityConstraint;
    }
    
@@ -50,7 +50,7 @@ public class SecurityConstraintDefImpl extends WebAppDescriptorImpl implements S
          resource.create("web-resource-name").text(name);
       }
       
-      return new WebResourceCollectionDefImpl(getRootNode(), securityConstraint, resource);
+      return new WebResourceCollectionDefImpl(getDisplayName(), getRootNode(), securityConstraint, resource);
    }
    
    // TODO maybe remove this

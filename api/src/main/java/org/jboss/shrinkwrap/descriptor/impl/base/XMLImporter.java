@@ -36,9 +36,9 @@ import org.w3c.dom.NodeList;
  */
 public class XMLImporter<T extends Descriptor> extends DescriptorImporterBase<T>
 {
-   public XMLImporter(final Class<T> endUserViewImplType)
+   public XMLImporter(final Class<T> endUserViewImplType, String descriptorName)
    {
-      super(endUserViewImplType);
+      super(endUserViewImplType, descriptorName);
    }
    
    @Override

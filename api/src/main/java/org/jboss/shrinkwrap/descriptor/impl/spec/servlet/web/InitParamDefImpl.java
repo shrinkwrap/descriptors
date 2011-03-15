@@ -27,9 +27,9 @@ public class InitParamDefImpl extends WebAppDescriptorImpl implements InitParamD
 {
    protected Node child;
    
-   public InitParamDefImpl(Node webApp, Node child)
+   public InitParamDefImpl(String descriptorName, Node webApp, Node child)
    {
-      super(webApp);
+      super(descriptorName, webApp);
       this.child = child;
    }
    

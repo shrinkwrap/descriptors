@@ -24,9 +24,9 @@ import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.CookieConfigDef;
  */
 public class CookieConfigDefImpl extends WebAppDescriptorImpl implements CookieConfigDef
 {
-   public CookieConfigDefImpl(Node webApp)
+   public CookieConfigDefImpl(String descriptorName, Node webApp)
    {
-      super(webApp);
+      super(descriptorName, webApp);
    }
    
    private Node cookieConfig()

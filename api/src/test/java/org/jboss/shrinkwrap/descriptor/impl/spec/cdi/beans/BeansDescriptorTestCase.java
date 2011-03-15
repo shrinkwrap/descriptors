@@ -23,6 +23,8 @@ import javax.enterprise.inject.Alternative;
 import javax.enterprise.inject.Stereotype;
 import javax.interceptor.Interceptor;
 
+import junit.framework.Assert;
+
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.spec.cdi.beans.BeansDescriptor;
 import org.junit.Test;
@@ -49,6 +51,22 @@ public class BeansDescriptorTestCase
    @Decorator
    private class TestDecorator {}
 
+   //-------------------------------------------------------------------------------------||
+   // Basic API --------------------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+   
+   @Test
+   public void shouldCreateDefaultName() throws Exception
+   {
+      Assert.assertEquals("beans.xml", create().getDescriptorName());
+   }
+   
+   @Test
+   public void shouldBeAbleToSetName() throws Exception
+   {
+      Assert.assertEquals("test.xml", Descriptors.create(BeansDescriptor.class, "test.xml").getDescriptorName());
+   }
+   
    //-------------------------------------------------------------------------------------||
    // Alternative StereoTypes ------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||

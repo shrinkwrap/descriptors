@@ -34,9 +34,9 @@ public class FilterMappingDefImpl extends FilterDefImpl implements FilterMapping
 {
    private final Node mapping;
 
-   public FilterMappingDefImpl(Node rootNode, Node filter, Node mapping)
+   public FilterMappingDefImpl(String descriptorName, Node rootNode, Node filter, Node mapping)
    {
-      super(rootNode, filter);
+      super(descriptorName, rootNode, filter);
       this.mapping = mapping;
    }
 
