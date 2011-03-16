@@ -98,9 +98,26 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    @Override
    public PersistenceUnitDef property(String name, Object value)
    {
-      persistenceUnit.getOrCreate("properties")
-                  .create("property").attribute("name", name)
+      Node propertiesNode = persistenceUnit.getOrCreate("properties");
+      List<Node> props = propertiesNode
+                  .get("property");
+
+      boolean updated = false;
+      for (Node p : props)
+      {
+         if (p.attribute("name").equals(name))
+         {
+            p.attribute("value", value);
+            updated = true;
+            break;
+         }
+      }
+
+      if (!updated)
+      {
+         propertiesNode.create("property").attribute("name", name)
                   .attribute("value", value == null ? "" : value.toString());
+      }
 
       return this;
    }

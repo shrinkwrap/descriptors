@@ -244,6 +244,18 @@ public class PersistenceDescriptorTestCase
    }
 
    @Test
+   public void addingDuplicateNamePropertyUpdatesExisting() throws Exception
+   {
+      String desc = create()
+                        .property(name, name2)
+                        .property(name, name)
+                     .exportAsString();
+
+      assertXPath(desc, "/persistence/persistence-unit/properties/property/@name", name, name);
+      assertXPath(desc, "/persistence/persistence-unit/properties/property/@value", name, name);
+   }
+
+   @Test
    public void shouldBeAbleToGetProperties() throws Exception
    {
       PersistenceUnitDef def = create()

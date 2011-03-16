@@ -289,36 +289,6 @@ public class Node
    }
 
    /**
-    * Get the text value of the element found at the given query name. If no element is found, or no text exists, return
-    * null;
-    */
-   public String textValue(String name)
-   {
-      Node n = this.getSingle(name);
-      String text = n == null ? null : n.text();
-      return text;
-   }
-
-   /**
-    * Get the text values of all elements found at the given query name. If no elements are found, or no text exists,
-    * return an empty list;
-    */
-   public List<String> textValues(String name)
-   {
-      List<String> result = new ArrayList<String>();
-      List<Node> jars = this.get(name);
-      for (Node node : jars)
-      {
-         String text = node.text();
-         if (text != null)
-         {
-            result.add(text);
-         }
-      }
-      return Collections.unmodifiableList(result);
-   }
-
-   /**
     * Get the Nodes name.
     * 
     * @return Given name.
