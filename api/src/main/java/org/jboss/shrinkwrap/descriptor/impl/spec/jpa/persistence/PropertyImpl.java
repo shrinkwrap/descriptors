@@ -19,39 +19,55 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence;
+package org.jboss.shrinkwrap.descriptor.impl.spec.jpa.persistence;
 
-import java.util.List;
+import org.jboss.shrinkwrap.descriptor.api.Node;
+import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.Property;
 
 /**
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  * 
  */
-public interface PersistenceUnitDefReader
+public class PropertyImpl implements Property
 {
-   String getName();
+   private final Node node;
 
-   String getDescription();
+   public PropertyImpl(Node node, String name, Object value)
+   {
+      this.node = node;
+      node.attribute("name", name);
+      node.attribute("value", value);
+   }
 
-   String getNonJtaDataSource();
+   public PropertyImpl(Node node)
+   {
+      this.node = node;
+   }
 
-   String getTransactionType();
+   @Override
+   public Property name(String name)
+   {
+      node.attribute("name", name);
+      return this;
+   }
 
-   String getJtaDataSource();
+   @Override
+   public String getName()
+   {
+      return node.attribute("name");
+   }
 
-   List<Property> getProperties();
+   @Override
+   public Property value(Object value)
+   {
+      node.attribute("value", value);
+      return this;
+   }
 
-   List<String> getJarFiles();
+   @Override
+   public Object getValue()
+   {
+      return node.attribute("value");
+   }
 
-   List<String> getClasses();
-
-   List<String> getMappingFiles();
-
-   SharedCacheModeType getSharedCacheMode();
-
-   ValidationModeType getValidationMode();
-
-   boolean includesUnlistedClasses();
-
-   String getProvider();
 }

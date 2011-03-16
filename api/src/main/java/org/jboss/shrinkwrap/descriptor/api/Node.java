@@ -33,6 +33,7 @@ import org.jboss.shrinkwrap.descriptor.impl.base.query.GetSingleQuery;
  * A Node is a
  * 
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
+ * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  * @version $Revision: $
  */
 public class Node
@@ -189,7 +190,7 @@ public class Node
     * 
     * @param name The child node name
     * @return The named child node or null if non found
-    * @throws IllegalArgumentException if multiple children with name exists.
+    * @throws IllegalArgumentException if multiple children with name exist.
     */
    public Node getSingle(String name)
    {
@@ -349,6 +350,72 @@ public class Node
          children = new ArrayList<Node>();
       }
       return Collections.unmodifiableList(children);
+   }
+
+   /**
+    * Remove all child nodes found at the given query.
+    * 
+    * @return the {@link List} of removed children.
+    */
+   public List<Node> remove(String name)
+   {
+      if (name == null || name.trim().isEmpty())
+      {
+         throw new IllegalArgumentException("Path must not be null or empty");
+      }
+
+      List<Node> found = get(name);
+      for (Node child : found)
+      {
+         children.remove(child);
+      }
+      return found;
+   }
+
+   /**
+    * Remove all child nodes found at the given {@link Query}.
+    * 
+    * @return the {@link List} of removed children.
+    */
+   public List<Node> remove(Query query)
+   {
+      if (query == null)
+      {
+         throw new IllegalArgumentException("Query must not be null");
+      }
+
+      List<Node> found = get(query);
+      for (Node child : found)
+      {
+         children.remove(child);
+      }
+      return found;
+   }
+
+   /**
+    * Remove a single child from this {@link Node}
+    * 
+    * @return true if this node contained the given child
+    */
+   public boolean removeSingle(Node child)
+   {
+      return children.remove(child);
+   }
+
+   /**
+    * Remove a single child from this {@link Node}
+    * 
+    * @return true if this node contained the given child
+    * @throws IllegalArgumentException if multiple children with name exist.
+    */
+   public Node removeSingle(String name)
+   {
+      Node node = getSingle(name);
+      if (node != null)
+      {
+         removeSingle(node);
+      }
+      return node;
    }
 
    // -------------------------------------------------------------------------------------||

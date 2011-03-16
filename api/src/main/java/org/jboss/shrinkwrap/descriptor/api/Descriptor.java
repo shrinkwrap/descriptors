@@ -20,7 +20,7 @@ import java.io.OutputStream;
 
 /**
  * End-user domain-specific language (DSL) view of an XML Descriptor.
- *
+ * 
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
@@ -32,17 +32,18 @@ public interface Descriptor
     * @return the descriptor name
     */
    String getDescriptorName();
-   
+
    /**
     * Exports the descriptor XML as a {@link String}
+    * 
     * @return
     * @throws DescriptorExportException
     */
    String exportAsString() throws DescriptorExportException;
 
    /**
-    * Export the descriptor XML to a given {@link OutputStream}.
-    * The {@link OutputStream} will not be flushed or closed by this operation.
+    * Export the descriptor XML to a given {@link OutputStream}. The {@link OutputStream} will not be flushed or closed
+    * by this operation.
     * 
     * @param output Where to export
     * @throws IllegalArgumentException if output is null

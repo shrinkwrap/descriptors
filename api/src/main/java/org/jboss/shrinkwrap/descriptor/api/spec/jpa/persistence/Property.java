@@ -21,37 +21,17 @@
  */
 package org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence;
 
-import java.util.List;
-
 /**
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  * 
  */
-public interface PersistenceUnitDefReader
+public interface Property
 {
-   String getName();
+   public Property name(String name);
 
-   String getDescription();
+   public String getName();
 
-   String getNonJtaDataSource();
+   public Property value(Object value);
 
-   String getTransactionType();
-
-   String getJtaDataSource();
-
-   List<Property> getProperties();
-
-   List<String> getJarFiles();
-
-   List<String> getClasses();
-
-   List<String> getMappingFiles();
-
-   SharedCacheModeType getSharedCacheMode();
-
-   ValidationModeType getValidationMode();
-
-   boolean includesUnlistedClasses();
-
-   String getProvider();
+   public Object getValue();
 }
