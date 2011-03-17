@@ -156,6 +156,26 @@ public class PersistenceDescriptorTestCase
    }
 
    @Test
+   public void shouldBeAbleToReplaceJTADataSourceWithNonJTADataSource() throws Exception
+   {
+      String desc = create().jtaDataSource(name).nonJtaDataSource(name2)
+                     .exportAsString();
+
+      assertXPath(desc, "/persistence/persistence-unit/jta-data-source", new String[] {});
+      assertXPath(desc, "/persistence/persistence-unit/non-jta-data-source", name2);
+   }
+
+   @Test
+   public void shouldBeAbleToReplaceNonJTADataSourceWithJTADataSource() throws Exception
+   {
+      String desc = create().nonJtaDataSource(name2).jtaDataSource(name)
+                     .exportAsString();
+
+      assertXPath(desc, "/persistence/persistence-unit/jta-data-source", name);
+      assertXPath(desc, "/persistence/persistence-unit/non-jta-data-source", new String[] {});
+   }
+
+   @Test
    public void shouldBeAbleToSetNonJtaDataSource() throws Exception
    {
       String desc = create().nonJtaDataSource(name)
