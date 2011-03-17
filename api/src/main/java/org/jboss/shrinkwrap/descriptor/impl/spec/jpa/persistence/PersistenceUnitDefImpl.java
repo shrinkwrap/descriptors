@@ -60,7 +60,30 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    @Override
    public PersistenceUnitDef nonJtaDataSource(String jndiName)
    {
-      persistenceUnit.getOrCreate("non-jta-data-source").text(jndiName);
+      if (jndiName == null)
+      {
+         persistenceUnit.remove("non-jta-data-source");
+      }
+      else
+      {
+         persistenceUnit.removeSingle("jta-data-source");
+         persistenceUnit.getOrCreate("non-jta-data-source").text(jndiName);
+      }
+      return this;
+   }
+
+   @Override
+   public PersistenceUnitDef jtaDataSource(String jndiName)
+   {
+      if (jndiName == null)
+      {
+         persistenceUnit.remove("jta-data-source");
+      }
+      else
+      {
+         persistenceUnit.removeSingle("non-jta-data-source");
+         persistenceUnit.getOrCreate("jta-data-source").text(jndiName);
+      }
       return this;
    }
 
@@ -68,13 +91,6 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    public PersistenceUnitDef transactionType(TransactionType transactionType)
    {
       persistenceUnit.attribute("transaction-type", transactionType.name());
-      return this;
-   }
-
-   @Override
-   public PersistenceUnitDef jtaDataSource(String jndiName)
-   {
-      persistenceUnit.getOrCreate("jta-data-source").text(jndiName);
       return this;
    }
 
