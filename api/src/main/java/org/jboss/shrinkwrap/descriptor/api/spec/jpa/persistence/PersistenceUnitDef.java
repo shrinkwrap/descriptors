@@ -16,6 +16,8 @@
  */
 package org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence;
 
+import java.util.List;
+
 /**
  * PersistenceUnitDefIF
  * 
@@ -35,6 +37,12 @@ public interface PersistenceUnitDef extends PersistenceDescriptor, PersistenceUn
    PersistenceUnitDef jtaDataSource(String jndiName);
 
    PersistenceUnitDef property(String name, Object value);
+
+   Property removeProperty(String name);
+
+   public boolean removeProperty(Property prop);
+
+   public List<Property> clearProperties();
 
    PersistenceUnitDef classes(Class<?>... classes);
 

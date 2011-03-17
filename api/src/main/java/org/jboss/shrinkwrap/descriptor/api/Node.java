@@ -217,6 +217,78 @@ public class Node
       return new GetQuery(query).execute(this);
    }
 
+   /**
+    * Remove all child nodes found at the given query.
+    * 
+    * @return the {@link List} of removed children.
+    */
+   public List<Node> remove(String name)
+   {
+      if (name == null || name.trim().isEmpty())
+      {
+         throw new IllegalArgumentException("Path must not be null or empty");
+      }
+
+      List<Node> found = get(name);
+      for (Node child : found)
+      {
+         children.remove(child);
+      }
+      return found;
+   }
+
+   /**
+    * Remove all child nodes found at the given {@link Query}.
+    * 
+    * @return the {@link List} of removed children.
+    */
+   public List<Node> remove(Query query)
+   {
+      if (query == null)
+      {
+         throw new IllegalArgumentException("Query must not be null");
+      }
+
+      List<Node> found = get(query);
+      for (Node child : found)
+      {
+         children.remove(child);
+      }
+      return found;
+   }
+
+   /**
+    * Remove a single child from this {@link Node}
+    * 
+    * @return true if this node contained the given child
+    */
+   public boolean removeSingle(final Node child)
+   {
+      return children.remove(child);
+   }
+
+
+   /**
+    * Remove a single child from this {@link Node}
+    * 
+    * @return the removed child, or null if this node did not contain the given node
+    * @throws IllegalArgumentException if multiple children with name exist.
+    */
+   public Node removeSingle(final String name)
+   {
+      if ((name == null) || name.trim().isEmpty())
+      {
+         throw new IllegalArgumentException("Path must not be null or empty");
+      }
+      
+      Node node = getSingle(name);
+      if (node != null)
+      {
+         removeSingle(node);
+      }
+      return node;
+   }
+
    // -------------------------------------------------------------------------------------||
    // Local data -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||

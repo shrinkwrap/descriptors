@@ -21,37 +21,25 @@
  */
 package org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence;
 
-import java.util.List;
-
 /**
+ * Represents a property in persistence.xml
+ * <p>
+ * For example:
+ * <p>
+ * <code>&lt;property name="hibernate.show_sql" value="true" /&gt;]]></code>
+ * 
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  * 
  */
-public interface PersistenceUnitDefReader
+public interface Property
 {
+
+   Property name(String name);
+
    String getName();
 
-   String getDescription();
+   Property value(Object value);
 
-   String getNonJtaDataSource();
+   Object getValue();
 
-   String getTransactionType();
-
-   String getJtaDataSource();
-
-   public List<Property> getProperties();
-
-   List<String> getJarFiles();
-
-   List<String> getClasses();
-
-   List<String> getMappingFiles();
-
-   SharedCacheModeType getSharedCacheMode();
-
-   ValidationModeType getValidationMode();
-
-   boolean includesUnlistedClasses();
-
-   String getProvider();
 }
