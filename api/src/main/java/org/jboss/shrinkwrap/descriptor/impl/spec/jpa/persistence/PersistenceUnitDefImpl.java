@@ -16,13 +16,13 @@
  */
 package org.jboss.shrinkwrap.descriptor.impl.spec.jpa.persistence;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.jboss.shrinkwrap.descriptor.api.Node;
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.PersistenceUnitDef;
+import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.Property;
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.ProviderType;
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.SchemaGenerationModeType;
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.SharedCacheModeType;
@@ -85,6 +85,57 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
                   .getOrCreate("property@name=" + name)
                      .attribute("value", value);
       return this;
+   }
+
+   @Override
+   public List<Property> getProperties()
+   {
+      List<Property> result = new ArrayList<Property>();
+
+      Node props = persistenceUnit.getSingle("properties");
+      if (props != null)
+      {
+         for (Node node : props.children())
+         {
+            result.add(new PropertyImpl(node));
+         }
+      }
+      return Collections.unmodifiableList(result);
+   }
+
+   @Override
+   public Property removeProperty(String name)
+   {
+      Node props = persistenceUnit.getSingle("properties");
+
+      for (Node node : props.get("property"))
+      {
+         Property prop = new PropertyImpl(node);
+         if (prop.getName().equals(name))
+         {
+            props.removeSingle(node);
+            return new PropertyImpl(node);
+         }
+      }
+      return null;
+   }
+
+   @Override
+   public boolean removeProperty(Property prop)
+   {
+      return removeProperty(prop.getName()) != null;
+   }
+
+   @Override
+   public List<Property> clearProperties()
+   {
+      List<Property> result = new ArrayList<Property>();
+      Node props = persistenceUnit.removeSingle("properties");
+      for (Node node : props.get("property"))
+      {
+         result.add(new PropertyImpl(node));
+      }
+      return Collections.unmodifiableList(result);
    }
 
    @Override
@@ -305,33 +356,6 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    public String getJtaDataSource()
    {
       return persistenceUnit.attributes().get("jta-data-source");
-   }
-
-   @Override
-   public Map<String, Object> getProperties()
-   {
-      Map<String, Object> result = new HashMap<String, Object>();
-
-      List<Node> list = persistenceUnit.get("properties");
-      if (list != null)
-      {
-         for (Node propRoot : list)
-         {
-            List<Node> properties = propRoot.get("property");
-            if (properties != null)
-            {
-               for (Node node : properties)
-               {
-                  String name = node.attributes().get("name");
-                  Object value = node.attributes().get("value");
-
-                  result.put(name, value);
-               }
-            }
-         }
-      }
-
-      return Collections.unmodifiableMap(result);
    }
 
    @Override
