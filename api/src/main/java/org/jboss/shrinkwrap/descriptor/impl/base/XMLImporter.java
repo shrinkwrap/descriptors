@@ -46,11 +46,17 @@ public class XMLImporter<T extends Descriptor> extends DescriptorImporterBase<T>
    {
       try
       {
+         // Empty contents?  If so, no root Node
+         if (stream.available() == 0)
+         {
+            return null;
+         }
+         
          DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
          factory.setNamespaceAware(true);
          DocumentBuilder builder = factory.newDocumentBuilder();
-         Document doc = builder.parse(stream); 
-
+         Document doc=builder.parse(stream); 
+         
          Node root = new Node(doc.getDocumentElement().getNodeName());
          readRecursive(root, doc.getDocumentElement());
          return root;

@@ -19,6 +19,7 @@ package org.jboss.shrinkwrap.descriptor.api;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
+import org.jboss.shrinkwrap.descriptor.api.spec.cdi.beans.BeansDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.WebAppDescriptor;
 import org.junit.Assert;
 import org.junit.Test;
@@ -77,5 +78,44 @@ public class DescriptorImporterTestCase
    public void shouldThrowExceptionOnMissingInputStream() throws Exception
    {
       Descriptors.importAs(WebAppDescriptor.class).from((InputStream) null);
+   }
+   
+   /**
+    * SHRINKDESC-20
+    */
+   @Test(expected = IllegalArgumentException.class)
+   public void shouldThrowExceptionOnMissingString() throws Exception
+   {
+      Descriptors.importAs(WebAppDescriptor.class).from((String) null);
+   }
+
+   /**
+    * SHRINKDESC-20
+    */
+   @Test
+   public void shouldBeAbleToImportWhiteSpaceString()
+   {
+      BeansDescriptor descriptor = Descriptors.importAs(BeansDescriptor.class).from("  \n  \n  ");
+      Assert.assertNotNull("Verify the descriptor was created from an empty string",descriptor);
+   }
+
+   /**
+    * SHRINKDESC-20
+    */
+   @Test
+   public void shouldBeAbleToImportEmptyString()
+   {
+      BeansDescriptor descriptor = Descriptors.importAs(BeansDescriptor.class).from("");
+      Assert.assertNotNull("Verify the descriptor was created from an empty string",descriptor);
+   }
+   
+   /**
+    * SHRINKDESC-20
+    */
+   @Test
+   public void shouldBeAbleToImportEmptyFile()
+   {
+      BeansDescriptor descriptor = Descriptors.importAs(BeansDescriptor.class).from(getClass().getResourceAsStream("/empty.xml"));
+      Assert.assertNotNull("Verify the descriptor was created from and empty file",descriptor);
    }
 }

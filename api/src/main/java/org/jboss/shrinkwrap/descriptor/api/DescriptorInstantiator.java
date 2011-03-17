@@ -86,33 +86,63 @@ class DescriptorInstantiator
     * @return
     * @throws IllegalArgumentException If the user view class was not specified
     */
-   static <T extends Descriptor> T createFromUserView(final Class<T> userViewClass, String descriptorName) throws IllegalArgumentException
+   static <T extends Descriptor> T createFromUserView(final Class<T> userViewClass, String descriptorName)
+         throws IllegalArgumentException
    {
       // Get the construction information
       final DescriptorConstructionInfo info = getDescriptorConstructionInfoForUserView(userViewClass);
-      
+
+      final Class<? extends Descriptor> implClass = info.implClass;
+      String name = info.defaultName;
+      if (descriptorName != null)
+      {
+         name = descriptorName;
+      }
+
+      // Make model class 
+      final Descriptor descriptor = createFromImplModelType(implClass, name);
+
+      // Return
+      return userViewClass.cast(descriptor);
+   }
+   
+   /**
+    * Creates a {@link Descriptor} instance from the specified implementation
+    * class name, also using the specified name
+    * @param implClass
+    * @param descriptorName
+    * @return
+    * @throws IllegalArgumentException If either argument is not specified
+    */
+   static Descriptor createFromImplModelType(final Class<? extends Descriptor> implClass, String descriptorName)
+         throws IllegalArgumentException
+   {
+      // Precondition checks
+      if (implClass == null)
+      {
+         throw new IllegalArgumentException("implClass must be specified");
+      }
+      if (descriptorName == null || descriptorName.length() == 0)
+      {
+         throw new IllegalArgumentException("descriptorName must be specified");
+      }
+
       // Get the constructor to use in making the new instance
       final Constructor<? extends Descriptor> ctor;
       try
       {
-         ctor = info.implClass.getConstructor(String.class);
+         ctor = implClass.getConstructor(String.class);
       }
       catch (final NoSuchMethodException nsme)
       {
-         throw new RuntimeException(info.implClass + " must contain a constructor with a single String argument");
-      }
-      
-      String name = info.defaultName;
-      if(descriptorName != null)
-      {
-         name = descriptorName;
+         throw new RuntimeException(implClass + " must contain a constructor with a single String argument");
       }
 
       // Create a new descriptor instance using the backing model
       final Descriptor descriptor;
       try
       {
-         descriptor = ctor.newInstance(name);
+         descriptor = ctor.newInstance(descriptorName);
       }
       // Handle all construction errors equally
       catch (final Exception e)
@@ -121,8 +151,7 @@ class DescriptorInstantiator
       }
 
       // Return
-      return userViewClass.cast(descriptor);
-
+      return descriptor;
    }
 
    /**

@@ -23,6 +23,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
 
+import org.jboss.shrinkwrap.descriptor.api.ApiExposition;
 import org.jboss.shrinkwrap.descriptor.api.Descriptor;
 import org.jboss.shrinkwrap.descriptor.api.DescriptorImportException;
 import org.jboss.shrinkwrap.descriptor.api.DescriptorImporter;
@@ -46,7 +47,7 @@ public abstract class DescriptorImporterBase<T extends Descriptor> implements De
     */
    private final Class<T> endUserViewImplType;
    
-   private final String descriptorName; 
+   private final String descriptorName;
    
    //-------------------------------------------------------------------------------------||
    // Constructor ------------------------------------------------------------------------||
@@ -60,7 +61,7 @@ public abstract class DescriptorImporterBase<T extends Descriptor> implements De
     * @throws IllegalArgumentException If the model type is not specified
     * @throws IllegalArgumentException If the descriptorName not specified
     */
-   public DescriptorImporterBase(final Class<T> endUserViewImplType, String descriptorName)
+   public DescriptorImporterBase(final Class<T> endUserViewImplType, final String descriptorName)
          throws IllegalArgumentException
    {
       // Precondition checks
@@ -74,7 +75,6 @@ public abstract class DescriptorImporterBase<T extends Descriptor> implements De
       }
 
       // Set
-
       this.endUserViewImplType = endUserViewImplType;
       this.descriptorName = descriptorName;
    }
@@ -108,9 +108,15 @@ public abstract class DescriptorImporterBase<T extends Descriptor> implements De
    public T from(final String string) throws IllegalArgumentException, DescriptorImportException
    {
       // Precondition check
-      if (string == null || string.length() == 0)
+      if (string == null)
       {
          throw new IllegalArgumentException("Input must be specified");
+      }
+
+      // Check if empty String  
+      if (string.trim().length() == 0)
+      {
+         return endUserViewImplType.cast(ApiExposition.createFromImplModelType(endUserViewImplType, descriptorName));
       }
 
       // Return
@@ -165,4 +171,5 @@ public abstract class DescriptorImporterBase<T extends Descriptor> implements De
     * @return The Root node extracted.
     */
    public abstract Node importRootNode(InputStream stream) throws DescriptorImportException;
+
 }
