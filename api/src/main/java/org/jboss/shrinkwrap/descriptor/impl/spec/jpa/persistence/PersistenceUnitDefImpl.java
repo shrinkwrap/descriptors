@@ -82,8 +82,7 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    public PersistenceUnitDef property(String name, Object value)
    {
       persistenceUnit.getOrCreate("properties")
-                  .create("property")
-                     .attribute("name", name)
+                  .getOrCreate("property@name=" + name)
                      .attribute("value", value);
       return this;
    }
