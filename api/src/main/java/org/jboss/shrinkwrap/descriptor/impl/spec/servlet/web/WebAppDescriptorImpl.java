@@ -96,10 +96,17 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    // -------------------------------------------------------------------------------------||
    // API --------------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
-
+   
    @Override
-   public WebAppDescriptor version(String version)
+   public WebAppDescriptor version(final String version)
    {
+      if (version == null || version.length() == 0)
+      {
+         throw new IllegalArgumentException("Version must be specified");
+      }
+      model.attribute("xsi:schemaLocation",
+            "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_" + version.replace(".", "_")
+                  + ".xsd");
       model.attribute("version", version);
       return this;
    }

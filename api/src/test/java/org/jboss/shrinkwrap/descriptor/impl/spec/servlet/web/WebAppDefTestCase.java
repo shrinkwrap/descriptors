@@ -19,14 +19,16 @@ package org.jboss.shrinkwrap.descriptor.impl.spec.servlet.web;
 import static org.jboss.shrinkwrap.descriptor.impl.spec.AssertXPath.assertXPath;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.spec.cdi.beans.BeansDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.Node;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.AuthMethodType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.FacesProjectStage;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.FacesStateSavingMethod;
@@ -34,6 +36,7 @@ import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.HttpMethodType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.TrackingModeType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.TransportGuaranteeType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.WebAppDescriptor;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLImporter;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -45,6 +48,22 @@ public class WebAppDefTestCase
 {
    private final Logger log = Logger.getLogger(WebAppDefTestCase.class.getName());
 
+   private final String source = "" +
+        "<web-app " +
+        "      xmlns=\"http://java.sun.com/xml/ns/javaee\" " +
+        "      xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" " +
+        "      version=\"3.0\" " +
+        "      xsi:schemaLocation=\"http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd\">\n" + 
+        "    <filter>\n" + 
+        "        <filter-name>UrlRewriteFilter</filter-name>\n" + 
+        "        <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>\n" + 
+        "    </filter>\n" + 
+        "    <filter-mapping>\n" + 
+        "        <url-pattern>/*</url-pattern>\n" + 
+        "        <filter-name>UrlRewriteFilter</filter-name>\n" + 
+        "    </filter-mapping>\n" + 
+        "</web-app>"; 
+   
    
    @Test
    @Ignore
@@ -196,6 +215,40 @@ public class WebAppDefTestCase
       assertXPath(desc, "/web-app/session-config/cookie-config/path", path);
       assertXPath(desc, "/web-app/session-config/cookie-config/max-age", maxAge);
       assertXPath(desc, "/web-app/session-config/tracking-mode", TrackingModeType.COOKIE);
+   }
+   
+   /**
+    * SHRINKDESC-37
+    */
+   @Test
+   public void shouldBeAbleToOverrideVersionInWebAppDescriptor() throws Exception
+   {
+      // Make a descriptor
+      final WebAppDescriptor web = Descriptors.importAs(WebAppDescriptor.class).from(
+            source);
+
+      // Get as Node structure
+      final InputStream stream = new ByteArrayInputStream(web.exportAsString().getBytes());
+      final XMLImporter<WebAppDescriptor> importer = new XMLImporter<WebAppDescriptor>(WebAppDescriptor.class, "web.xml");
+      final Node root = importer.importRootNode(stream);
+      
+      // Preconditions
+      Assert.assertEquals("3.0", web.getVersion());
+      Assert.assertTrue(root.attribute("xsi:schemaLocation").contains("web-app_3_0.xsd"));
+      
+      // Change the version
+      web.version("2.5");
+      
+      // Get as Node structure
+      final InputStream afterUpdateStream = new ByteArrayInputStream(web.exportAsString().getBytes());
+      final Node rootAfterUpdate = importer.importRootNode(afterUpdateStream);
+      
+      // Check that everything was updated
+      Assert.assertEquals("2.5", web.getVersion());
+      Assert.assertTrue(rootAfterUpdate.attribute("xsi:schemaLocation").contains("web-app_2_5.xsd"));
+      
+      // Log just for fun
+      log.info("web.xml after update: " + web.exportAsString());
    }
 
    private String getResourceContents(String resource) throws Exception
