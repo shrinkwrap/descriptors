@@ -16,6 +16,8 @@
  */
 package org.jboss.shrinkwrap.descriptor.api.query;
 
+import java.util.List;
+
 import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Node;
@@ -26,6 +28,7 @@ import org.junit.Test;
  * ExpressionTestCase
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
+ * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  * @version $Revision: $
  */
 public class QueryTestCase
@@ -121,6 +124,84 @@ public class QueryTestCase
       Assert.assertEquals(
             "Verify root only has one child node",
             1, root.children().size());
+   }
+
+   @Test
+   public void shouldBeAbleToCreateOrGetNodesWithTextValues()
+   {
+      Node root = new Node(ROOT_NODE);
+      root.create(CHILD_3_NODE);
+
+      Node created = root.getOrCreate(("/" + ROOT_NODE + "/" + CHILD_3_NODE + "=" + CHILD_3_TEXT));
+
+      Assert.assertNotNull("Verify a node was created", created);
+
+      Assert.assertEquals(
+               "Verify correct node created",
+               CHILD_3_NODE, created.name());
+
+      Assert.assertEquals(
+               "Verify correct value set",
+               CHILD_3_TEXT, created.text());
+
+      Assert.assertEquals(
+               "Verify root only has one child node",
+               2, root.children().size());
+   }
+
+   @Test
+   public void shouldBeAbleToGetNodesWithTextValues()
+   {
+      Node root = new Node(ROOT_NODE);
+      root.getOrCreate(("/" + ROOT_NODE + "/" + CHILD_2_NODE));
+      root.getOrCreate(("/" + ROOT_NODE + "/" + CHILD_3_NODE));
+      root.getOrCreate(("/" + ROOT_NODE + "/" + CHILD_3_NODE + "=" + CHILD_3_TEXT));
+      root.getOrCreate(("/" + ROOT_NODE + "/" + CHILD_3_NODE + "=" + CHILD_3_TEXT + "diff"));
+
+      List<Node> nodes = root.get(("/" + ROOT_NODE + "/" + CHILD_3_NODE + "=" + CHILD_3_TEXT));
+
+      Assert.assertNotNull("Verify nodes were found", nodes);
+      
+      Assert.assertEquals("Verify found a single node", 1, nodes.size());
+
+      Node found = nodes.get(0);
+      Assert.assertEquals(
+               "Verify correct node created",
+               CHILD_3_NODE, found.name());
+
+      Assert.assertEquals(
+               "Verify correct value set",
+               CHILD_3_TEXT, found.text());
+
+      Assert.assertEquals(
+               "Verify root only has four children",
+               4, root.children().size());
+   }
+   
+   @Test
+   public void shouldBeAbleToGetNodeWithTextValues()
+   {
+      Node root = new Node(ROOT_NODE);
+      root.getOrCreate(("/" + ROOT_NODE + "/" + CHILD_2_NODE));
+      root.getOrCreate(("/" + ROOT_NODE + "/" + CHILD_3_NODE));
+      root.getOrCreate(("/" + ROOT_NODE + "/" + CHILD_3_NODE + "=" + CHILD_3_TEXT));
+      root.getOrCreate(("/" + ROOT_NODE + "/" + CHILD_3_NODE + "=" + CHILD_3_TEXT + "diff"));
+
+      Node found = root.getSingle(("/" + ROOT_NODE + "/" + CHILD_3_NODE + "=" + CHILD_3_TEXT));
+
+      Assert.assertNotNull("Verify node was found", found);
+      
+      Assert.assertEquals(
+               "Verify correct node created",
+               CHILD_3_NODE, found.name());
+
+      Assert.assertEquals(
+               "Verify correct value set",
+               CHILD_3_TEXT, found.text());
+
+      Assert.assertEquals(
+               "Verify root only has four children",
+               4, root.children().size());
    }
    
    private Node createTree()

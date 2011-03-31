@@ -33,6 +33,7 @@ import org.jboss.shrinkwrap.descriptor.impl.base.query.GetSingleQuery;
  * A Node is a
  * 
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
+ * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  * @version $Revision: $
  */
 public class Node
@@ -396,6 +397,7 @@ public class Node
    {
       return "Node[" + name + "] " +
                "children[" + (children != null ? children.size() : 0) + "] " +
-               (attributes != null ? "attributes[" + attributes + "] " : "");
+               (attributes != null ? "attributes[" + attributes + "] " : "" +
+                        text != null ? "text[" + text + "] " : "");
    }
 }

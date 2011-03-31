@@ -45,6 +45,12 @@ public class Query
       this.definitions = new ArrayList<NodeQuery>();
    }
 
+   @Override
+   public String toString()
+   {
+      return "Query [isAbsolute=" + isAbsolute + ", definitions=" + definitions + "]";
+   }
+
    /**
     * @return
     */

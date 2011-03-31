@@ -39,6 +39,12 @@ public class GetSingleQuery extends AbstractQueryExecuter<Node>
       super(def);
    }
 
+   @Override
+   public String toString()
+   {
+      return "GetSingleQuery [query=" + getDefinition() + "]";
+   }
+
    /* (non-Javadoc)
     * @see org.jboss.shrinkwrap.descriptor.api.Expression#execute(org.jboss.shrinkwrap.descriptor.api.Node)
     */

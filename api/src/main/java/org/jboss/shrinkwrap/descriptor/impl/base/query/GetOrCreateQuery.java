@@ -88,6 +88,7 @@ public class GetOrCreateQuery extends AbstractQueryExecuter<Node>
          }
       }
       Node createdNode = new Node(def.name(), parent); 
+      createdNode.text(def.text());
       for(Map.Entry<String, String> attribute : def.attributes().entrySet())
       {
          createdNode.attribute(attribute.getKey(), attribute.getValue());

@@ -25,6 +25,7 @@ import org.jboss.shrinkwrap.descriptor.api.Node;
  * NodeDefinition
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
+ * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  * @version $Revision: $
  */
 public class NodeQuery
@@ -46,6 +47,12 @@ public class NodeQuery
    public NodeQuery(String name)
    {
       this.name = name;
+   }
+
+   @Override
+   public String toString()
+   {
+      return "NodeQuery [attributes=" + attributes + ", name=" + name + ", text=" + text + "]";
    }
 
    /**
@@ -134,5 +141,13 @@ public class NodeQuery
    public void text(String text)
    {
       this.text = text;
+   }
+
+   /**
+    * Get the node text query
+    */
+   public String text()
+   {
+      return text;
    }
 }
