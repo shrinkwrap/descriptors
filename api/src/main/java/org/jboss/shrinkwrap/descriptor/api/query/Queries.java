@@ -76,11 +76,16 @@ public class Queries
       String[] paths = (isAbsolute ? exp.substring(1):exp).split(PATH_SEPARATOR);
       for(String path : paths)
       {
-         String name = path.indexOf(ATTR_PATH_SEPERATOR) != -1 ? path.substring(0, path.indexOf(ATTR_PATH_SEPERATOR)):path;
+         String nameSegment = path.indexOf(ATTR_PATH_SEPERATOR) != -1 ? path.substring(0, path.indexOf(ATTR_PATH_SEPERATOR)):path;
+         
+         
+         String name = nameSegment.indexOf(ATTR_VALUE_SEPERATOR) != -1 ? nameSegment.substring(0,nameSegment.indexOf(ATTR_VALUE_SEPERATOR)) : nameSegment;
+         String text = nameSegment.indexOf(ATTR_VALUE_SEPERATOR) != -1 ? nameSegment.substring(nameSegment.indexOf(ATTR_VALUE_SEPERATOR) + 1) : null;
          String attribute = path.indexOf(ATTR_PATH_SEPERATOR) != -1 ? path.substring(path.indexOf(ATTR_PATH_SEPERATOR)+ ATTR_PATH_SEPERATOR.length(), path.length()):null;
          String[] attributes = attribute == null ? new String[0]:attribute.split(ATTR_SEPERATOR);
          
          NodeQuery nodeDef = new NodeQuery(name);
+         nodeDef.text(text);
          for(String attr : attributes)
          {
             String[] nameValue = attr.split(ATTR_VALUE_SEPERATOR);
