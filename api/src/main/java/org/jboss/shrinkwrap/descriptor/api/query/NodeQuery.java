@@ -36,6 +36,8 @@ public class NodeQuery
    private Map<String, String> attributes;
 
    private String name;
+
+   private String text;
    
    //-------------------------------------------------------------------------------------||
    // Constructors -----------------------------------------------------------------------||
@@ -108,6 +110,11 @@ public class NodeQuery
       {
          return false;
       }
+      if((text != null && node.text() == null)
+         || (text != null && !text.trim().equals(node.text().trim())))
+      {
+         return false;
+      }
       if(attributes != null)
       {
          for(Map.Entry<String, String> attribute : attributes.entrySet())
@@ -119,5 +126,13 @@ public class NodeQuery
          }
       }
       return true;
+   }
+
+   /**
+    * The node text to match
+    */
+   public void text(String text)
+   {
+      this.text = text;
    }
 }

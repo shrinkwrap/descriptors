@@ -38,6 +38,24 @@ public class QueryTestCase
    private static final String CHILD_2_NODE = "child-2";
    private static final String CHILD_2_1_NODE = "child-2.1";
    private static final String CHILD_2_2_NODE = "child-2.2";
+   private static final String CHILD_3_TEXT = "child-3-text";
+   private static final String CHILD_3_NODE = "child-3";
+
+   @Test
+   public void shouldBeAbleToFindAChildWithTextValue() throws Exception
+   {
+      Node root = createTree();
+      Node found = root.getSingle(CHILD_3_NODE + "=" + CHILD_3_TEXT);
+
+      Assert.assertNotNull("Verify a node as found", found);
+
+      Assert.assertEquals(
+               "Verify correct node found",
+               CHILD_3_NODE, found.name());
+      Assert.assertEquals(
+               "Verify correct node value",
+               CHILD_3_TEXT, found.text());
+   }
    
    @Test
    public void shouldBeAbleToFindAExpressedChild() throws Exception
@@ -119,6 +137,7 @@ public class QueryTestCase
       // same node name, but different attribute value
       child2.create(CHILD_2_1_NODE).attribute(ATTR_NAME, CHILD_2_2_NODE);
       
+      root.create(CHILD_3_NODE).text(CHILD_3_TEXT);
       return root;
    }
 }
