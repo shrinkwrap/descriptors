@@ -38,6 +38,7 @@ import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.FacesProjectStage;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.FacesStateSavingMethod;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.HttpMethodType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.ServletDef;
+import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.ServletMappingDef;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.TrackingModeType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.TransportGuaranteeType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.WebAppDescriptor;
@@ -228,6 +229,25 @@ public class WebAppDefTestCase
       assertEquals(1, servlets.size());
       assertEquals(name, servlets.get(0).getName());
       assertEquals(mapping, servlets.get(0).getMappings().get(0).getUrlPatterns().get(0));
+   }
+
+   @Test
+   public void shouldBeAbleToQueryServletMappings() throws Exception
+   {
+      String name = "FacesServlet";
+      String clazz = "javax.faces.webapp." + name;
+      String mapping = "/*";
+
+      WebAppDescriptor webXml = create();
+      
+      assertFalse(webXml.hasFacesServlet());
+      
+      webXml.servlet(clazz, mapping);
+      
+      List<ServletMappingDef> mappings = webXml.getServletMappings();
+      assertEquals(1, mappings.size());
+      assertEquals(name, mappings.get(0).getName());
+      assertEquals(mapping, mappings.get(0).getUrlPatterns().get(0));
    }
 
    @Test
