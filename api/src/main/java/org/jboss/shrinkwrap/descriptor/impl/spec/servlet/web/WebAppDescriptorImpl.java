@@ -66,6 +66,9 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    private static final String NODE_NAME_FILTER = "filter";
    private static final String NODE_NAME_FILTER_MAPPINGS = "filter-mapping";
    private static final String NODE_NAME_FILTER_NAME = "filter-name";
+   private static final String NODE_NAME_SERVLET = "servlet";
+   private static final String NODE_NAME_SERVLET_MAPPINGS = "servlet-mapping";
+   private static final String NODE_NAME_SERVLET_NAME = "servlet-name";
 
    // -------------------------------------------------------------------------------------||
    // Instance Members -------------------------------------------------------------------||
@@ -300,8 +303,7 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    @Override
    public WebAppDescriptor facesServlet()
    {
-      servlet(FacesServlet.class, "*.jsf");
-      return this;
+      return servlet(FacesServlet.class, "*.jsf");
    }
 
    @Override
@@ -596,35 +598,74 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    @Override
    public List<ServletDef> getServlets()
    {
-      // TODO Auto-generated method stub
-      return null;
+      final List<ServletDef> servlets = new ArrayList<ServletDef>();
+      for (final Node servlet : model.get(NODE_NAME_SERVLET))
+      {
+         final ServletDef filter = new ServletDefImpl(getDescriptorName(), model, servlet);
+         servlets.add(filter);
+      }
+      return servlets;
    }
 
    @Override
    public List<ServletMappingDef> getServletMappings()
    {
-      // TODO Auto-generated method stub
-      return null;
+      final List<ServletMappingDef> mappings = new ArrayList<ServletMappingDef>();
+      for (final Node mappingNode : model.get(NODE_NAME_SERVLET_MAPPINGS))
+      {
+         final String servletName = mappingNode.getSingle(NODE_NAME_SERVLET_NAME).text();
+
+         ServletDef servletDef = null;
+         List<ServletDef> servlets = getServlets();
+         for (ServletDef servlet : servlets)
+         {
+            if (Strings.areEqualTrimmed(servlet.getName(), servletName))
+            {
+               servletDef = servlet;
+            }
+         }
+
+         final ServletMappingDef servletMapping = new ServletMappingDefImpl(getDescriptorName(), getRootNode(),
+                  ((ServletDefImpl) servletDef).getNode(), mappingNode);
+         mappings.add(servletMapping);
+      }
+      return mappings;
    }
 
    @Override
    public boolean hasFacesServlet()
    {
-      // TODO Auto-generated method stub
-      return false;
+      List<Node> list = model.get("servlet/servlet-class=javax.faces.webapp.FacesServlet");
+      return !list.isEmpty();
    }
 
    @Override
    public List<String> getWelcomeFiles()
    {
-      // TODO Auto-generated method stub
-      return null;
+      List<String> results = new ArrayList<String>();
+      List<Node> list = model.get("welcome-file-list/welcome-file");
+      for (Node file : list)
+      {
+         results.add(file.text());
+      }
+      return results;
    }
 
    @Override
    public int getSessionTimeout()
    {
-      // TODO Auto-generated method stub
+      Node single = model.getSingle("session-config/session-timeout");
+      if(single != null)
+      {
+         try
+         {
+            return Integer.parseInt(single.text().trim());
+         }
+         catch (NumberFormatException e)
+         {
+            throw new RuntimeException("Unable to parse session-timeout from value ["+single.text().trim()+"]");
+         }
+      }
       return 0;
    }
 

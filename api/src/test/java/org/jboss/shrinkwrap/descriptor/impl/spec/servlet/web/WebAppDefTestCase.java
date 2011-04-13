@@ -18,12 +18,15 @@ package org.jboss.shrinkwrap.descriptor.impl.spec.servlet.web;
 
 import static org.jboss.shrinkwrap.descriptor.impl.spec.AssertXPath.assertXPath;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletResponse;
@@ -190,6 +193,41 @@ public class WebAppDefTestCase
       log.fine(desc);
 
       assertEquals(clazz, servlet.getServletClass());
+   }
+
+   @Test
+   public void shouldBeAbleToQueryFacesServlet() throws Exception
+   {
+      String name = "FacesServlet";
+      String clazz = "javax.faces.webapp." + name;
+      String mapping = "/*";
+
+      WebAppDescriptor webXml = create();
+      
+      assertFalse(webXml.hasFacesServlet());
+      
+      webXml.servlet(clazz, mapping);
+      
+      assertTrue(webXml.hasFacesServlet());
+   }
+
+   @Test
+   public void shouldBeAbleToQueryServlets() throws Exception
+   {
+      String name = "FacesServlet";
+      String clazz = "javax.faces.webapp." + name;
+      String mapping = "/*";
+
+      WebAppDescriptor webXml = create();
+      
+      assertFalse(webXml.hasFacesServlet());
+      
+      webXml.servlet(clazz, mapping);
+      
+      List<ServletDef> servlets = webXml.getServlets();
+      assertEquals(1, servlets.size());
+      assertEquals(name, servlets.get(0).getName());
+      assertEquals(mapping, servlets.get(0).getMappings().get(0).getUrlPatterns().get(0));
    }
 
    @Test

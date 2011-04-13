@@ -167,4 +167,9 @@ public class ServletDefImpl extends WebAppDescriptorImpl implements ServletDef
       return result;
    }
 
+   public Node getNode()
+   {
+      return servlet;
+   }
+
 }
