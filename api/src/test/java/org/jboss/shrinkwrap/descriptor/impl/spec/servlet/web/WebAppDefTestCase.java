@@ -17,6 +17,7 @@
 package org.jboss.shrinkwrap.descriptor.impl.spec.servlet.web;
 
 import static org.jboss.shrinkwrap.descriptor.impl.spec.AssertXPath.assertXPath;
+import static org.junit.Assert.assertEquals;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -33,6 +34,7 @@ import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.AuthMethodType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.FacesProjectStage;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.FacesStateSavingMethod;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.HttpMethodType;
+import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.ServletDef;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.TrackingModeType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.TransportGuaranteeType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.WebAppDescriptor;
@@ -173,6 +175,21 @@ public class WebAppDefTestCase
       assertXPath(desc, "/web-app/servlet/servlet-class", clazz);
       assertXPath(desc, "/web-app/servlet-mapping/servlet-name", name);
       assertXPath(desc, "/web-app/servlet-mapping/url-pattern", mapping);
+   }
+
+   @Test
+   public void shouldBeAbleToDetermineReadServletClass() throws Exception
+   {
+      String name = "FacesServlet";
+      String clazz = "javax.faces.webapp." + name;
+      String mapping = "/*";
+
+      ServletDef servlet = create().servlet(clazz, mapping);
+      String desc = servlet.exportAsString();
+
+      log.fine(desc);
+
+      assertEquals(clazz, servlet.getServletClass());
    }
 
    @Test

@@ -98,6 +98,16 @@ public class ServletDefImpl extends WebAppDescriptorImpl implements ServletDef
    }
 
    @Override
+   public String getServletClass()
+   {
+      if (servlet.getSingle("servlet-class") != null)
+      {
+         return servlet.getSingle("servlet-class").text();
+      }
+      return null;
+   }
+
+   @Override
    public String getName()
    {
       return servlet.textValue("servlet-name");

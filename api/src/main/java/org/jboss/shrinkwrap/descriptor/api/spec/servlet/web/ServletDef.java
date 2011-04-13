@@ -44,6 +44,8 @@ public interface ServletDef extends WebAppDescriptor
    ServletMappingDef mapping();
 
    String getName();
+   
+   String getServletClass();
 
    String getInitParam(String name);
 
