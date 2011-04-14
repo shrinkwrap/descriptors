@@ -27,5 +27,17 @@ package org.jboss.shrinkwrap.descriptor.api.spec.servlet.web;
  */
 public enum FacesProjectStage
 {
-   DEVELOPMENT, PRODUCTION, UNIT_TEST, SYSTEM_TEST
+   DEVELOPMENT("Development"), PRODUCTION("Production"), UNIT_TEST("UnitTest"), SYSTEM_TEST("SystemTest");
+   
+   private String stage;
+
+   private FacesProjectStage(String stage)
+   {
+      this.stage = stage;
+   }
+   
+   public String getStage()
+   {
+      return stage;
+   }
 }

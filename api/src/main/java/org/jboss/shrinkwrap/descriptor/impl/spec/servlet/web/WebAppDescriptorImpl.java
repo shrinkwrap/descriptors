@@ -161,7 +161,7 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
          param = node.getSingle("param-name=" + name);
          if(param != null)
          {
-            param.getOrCreate("param-value").text(value);
+            param.parent().getOrCreate("param-value").text(value);
             break;
          }
       }
@@ -179,7 +179,7 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    @Override
    public WebAppDescriptor facesProjectStage(FacesProjectStage stage)
    {
-      return contextParam(ProjectStage.PROJECT_STAGE_PARAM_NAME, stage.name());
+      return contextParam(ProjectStage.PROJECT_STAGE_PARAM_NAME, stage.getStage());
    }
 
    @Override
@@ -662,7 +662,16 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    @Override
    public FacesProjectStage getFacesProjectStage()
    {
-      return FacesProjectStage.valueOf(getContextParam(ProjectStage.PROJECT_STAGE_PARAM_NAME));
+      // JSF uses strict case-sensitive parsing, so we need to be rediculously sensitive here
+      String value = getContextParam(ProjectStage.PROJECT_STAGE_PARAM_NAME);
+      for (FacesProjectStage stage : FacesProjectStage.values())
+      {
+         if(stage.getStage().equals(value))
+         {
+            return stage;
+         }
+      }
+      return FacesProjectStage.PRODUCTION;
    }
 
    @Override
