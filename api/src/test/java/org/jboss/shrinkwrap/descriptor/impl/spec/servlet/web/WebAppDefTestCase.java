@@ -232,6 +232,54 @@ public class WebAppDefTestCase
    }
 
    @Test
+   public void defaultFacesSuffixesAndViewMappingsValues() throws Exception
+   {
+      WebAppDescriptor web = create();
+      
+      List<String> faceletsDefaultSuffixes = web.getFaceletsDefaultSuffixes();
+      assertEquals(1, faceletsDefaultSuffixes.size());
+      assertTrue(faceletsDefaultSuffixes.contains(".xhtml"));
+      
+      List<String> facesDefaultSuffixes = web.getFacesDefaultSuffixes();
+      assertEquals(2, facesDefaultSuffixes.size());
+      assertTrue(facesDefaultSuffixes.contains(".xhtml"));
+      assertTrue(facesDefaultSuffixes.contains(".jsp"));
+      
+      List<String> faceletsViewMappings = web.getFaceletsViewMappings();
+      assertTrue(faceletsViewMappings.isEmpty());
+      
+   }
+
+   @Test
+   public void shouldBeAbleToMutateFacesSuffixesAndMappings() throws Exception
+   {
+      WebAppDescriptor web = create();
+      
+      web.faceletsDefaultSuffixes(".foo", ".bar", ".xhtml");
+      web.faceletsDefaultSuffixes(".foo", ".bar", ".xhtml");
+      web.facesDefaultSuffixes(".baz", ".cat", ".view.xml");
+      web.faceletsViewMappings("*.jspx", "/custom/facelet.face", "/facelets/*");
+      
+      List<String> faceletsDefaultSuffixes = web.getFaceletsDefaultSuffixes();
+      assertEquals(3, faceletsDefaultSuffixes.size());
+      assertTrue(faceletsDefaultSuffixes.contains(".foo"));
+      assertTrue(faceletsDefaultSuffixes.contains(".bar"));
+      assertTrue(faceletsDefaultSuffixes.contains(".xhtml"));
+      
+      List<String> facesDefaultSuffixes = web.getFacesDefaultSuffixes();
+      assertEquals(3, facesDefaultSuffixes.size());
+      assertTrue(facesDefaultSuffixes.contains(".baz"));
+      assertTrue(facesDefaultSuffixes.contains(".cat"));
+      assertTrue(facesDefaultSuffixes.contains(".view.xml"));
+      
+      List<String> faceletsViewMappings = web.getFaceletsViewMappings();
+      assertEquals(3, faceletsViewMappings.size());
+      assertTrue(faceletsViewMappings.contains("*.jspx"));
+      assertTrue(faceletsViewMappings.contains("/custom/facelet.face"));
+      assertTrue(faceletsViewMappings.contains("/facelets/*"));
+   }
+
+   @Test
    public void shouldBeAbleToQueryServletMappings() throws Exception
    {
       String name = "FacesServlet";

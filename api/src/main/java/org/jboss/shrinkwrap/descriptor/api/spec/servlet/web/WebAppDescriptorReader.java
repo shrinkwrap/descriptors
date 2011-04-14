@@ -48,6 +48,12 @@ public interface WebAppDescriptorReader
 
    Map<String, String> getContextParams();
 
+   List<String> getFaceletsDefaultSuffixes();
+
+   List<String> getFacesDefaultSuffixes();
+   
+   List<String> getFaceletsViewMappings();
+
    FacesProjectStage getFacesProjectStage();
 
    FacesStateSavingMethod getFacesStateSavingMethod();

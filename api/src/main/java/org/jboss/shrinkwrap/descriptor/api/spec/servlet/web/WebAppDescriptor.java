@@ -26,6 +26,28 @@ public interface WebAppDescriptor extends Descriptor, WebAppDescriptorReader
 
    WebAppDescriptor contextParam(String name, Object value);
 
+
+   /**
+    * Set the suffixes for Faces jsp files (default .jsp)
+    */
+   WebAppDescriptor facesDefaultSuffixes(String... suffix);
+
+   /**
+    * Set the suffixes for Facelet files (default .xhtml)
+    */
+   WebAppDescriptor faceletsDefaultSuffixes(String... suffix);
+   
+   /**
+    * Set the list of Facelet files that don't use the default facelets suffix. 
+    * <p>Mappings may be in the form of:<br>
+    * <ul>
+    *  <li>*.suffix</li>
+    *  <li>/path/to/facelet.file</li>
+    *  <li>/prefix/*</li>
+    * </ul>
+    */
+   WebAppDescriptor faceletsViewMappings(String... mappings);
+
    WebAppDescriptor facesProjectStage(FacesProjectStage stage);
 
    WebAppDescriptor facesStateSavingMethod(FacesStateSavingMethod method);

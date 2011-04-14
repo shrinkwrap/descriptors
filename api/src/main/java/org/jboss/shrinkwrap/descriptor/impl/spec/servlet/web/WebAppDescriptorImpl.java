@@ -26,6 +26,7 @@ import java.util.Map.Entry;
 
 import javax.faces.application.ProjectStage;
 import javax.faces.application.StateManager;
+import javax.faces.application.ViewHandler;
 import javax.faces.webapp.FacesServlet;
 
 import org.jboss.shrinkwrap.descriptor.api.Node;
@@ -152,10 +153,26 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    @Override
    public WebAppDescriptor contextParam(String name, Object value)
    {
-      Node context = model.create("context-param");
-      context.create("param-name").text(name);
-      context.create("param-value").text(value);
+      List<Node> params = model.get("context-param");
+      
+      Node param = null;
+      for (Node node : params)
+      {
+         param = node.getSingle("param-name=" + name);
+         if(param != null)
+         {
+            param.getOrCreate("param-value").text(value);
+            break;
+         }
+      }
 
+      if(param == null)
+      {
+         param = model.create("context-param");
+         param.create("param-name").text(name);
+         param.create("param-value").text(value);
+      }
+      
       return this;
    }
 
@@ -568,6 +585,78 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
       }
 
       return result;
+   }
+
+   @Override
+   public List<String> getFaceletsDefaultSuffixes()
+   {
+      List<String> suffixes = new ArrayList<String>();
+      
+      String value = getContextParam(ViewHandler.FACELETS_SUFFIX_PARAM_NAME);
+      if(value != null)
+      {
+         suffixes = Arrays.asList(value.split("\\s+"));
+      }
+      else
+      {
+         suffixes = Arrays.asList(ViewHandler.DEFAULT_FACELETS_SUFFIX.split("\\s+"));
+      }
+      
+      return suffixes;
+   }
+   
+   @Override
+   public WebAppDescriptor faceletsDefaultSuffixes(String... suffixes)
+   {
+      contextParam(ViewHandler.FACELETS_SUFFIX_PARAM_NAME, Strings.join(Arrays.asList(suffixes), " "));
+      
+      return this;
+   }
+
+   @Override
+   public List<String> getFacesDefaultSuffixes()
+   {
+      List<String> suffixes = new ArrayList<String>();
+      
+      String value = getContextParam(ViewHandler.DEFAULT_SUFFIX_PARAM_NAME);
+      if(value != null)
+      {
+         suffixes.addAll(Arrays.asList(value.split("\\s+")));
+      }
+      else
+      {
+         suffixes.addAll(Arrays.asList(ViewHandler.DEFAULT_SUFFIX.split("\\s+")));
+      }
+      
+      return suffixes;
+   }
+
+   @Override
+   public WebAppDescriptor facesDefaultSuffixes(String... suffixes)
+   {
+      contextParam(ViewHandler.DEFAULT_SUFFIX_PARAM_NAME, Strings.join(Arrays.asList(suffixes), " "));
+      return this;
+   }
+
+   @Override
+   public List<String> getFaceletsViewMappings()
+   {
+      List<String> mappings = new ArrayList<String>();
+      
+      String value = getContextParam(ViewHandler.FACELETS_VIEW_MAPPINGS_PARAM_NAME);
+      if(value != null)
+      {
+         mappings.addAll(Arrays.asList(value.split("\\s*;\\s*")));
+      }
+      
+      return mappings;
+   }
+
+   @Override
+   public WebAppDescriptor faceletsViewMappings(String... mappings)
+   {
+      contextParam(ViewHandler.FACELETS_VIEW_MAPPINGS_PARAM_NAME, Strings.join(Arrays.asList(mappings), ";"));
+      return null;
    }
 
    @Override
