@@ -18,8 +18,6 @@ package org.jboss.shrinkwrap.descriptor.api;
 
 import java.security.AccessController;
 
-import org.jboss.shrinkwrap.descriptor.spi.NodeProvider;
-
 /**
  * Value object encompassing data needed to create new {@link Descriptor}
  * instances
@@ -35,18 +33,18 @@ class DescriptorConstructionInfo
    /**
     * Implementation Class of the end-user view
     */
-   final Class<? extends NodeProvider> implClass;
+   final Class<?> implClass;
 
    /**
     * Implementation class for the importer
     */
    final Class<? extends DescriptorImporter<?>> importerClass;
-   
+
    /**
     * The default name of the Descriptor 
     */
    final String defaultName;
-   
+
    //-------------------------------------------------------------------------------------||
    // Constructor ------------------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||
@@ -64,11 +62,11 @@ class DescriptorConstructionInfo
       final ClassLoader tccl = AccessController.doPrivileged(GetTcclAction.INSTANCE);
 
       // Load the Implementation class
-      final Class<? extends NodeProvider> implClass;
+      final Class<?> implClass;
       try
       {
 
-         implClass = (Class<? extends NodeProvider>) Class.forName(implClassName, false, tccl);
+         implClass = (Class<?>) Class.forName(implClassName, false, tccl);
       }
       catch (final ClassNotFoundException e)
       {
@@ -89,7 +87,7 @@ class DescriptorConstructionInfo
          throw new IllegalArgumentException("Could not load specified importer class from " + tccl + ": "
                + importerClassName, e);
       }
-      
+
       this.importerClass = importerClass;
       this.defaultName = defaultName;
    }

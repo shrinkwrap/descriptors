@@ -92,7 +92,8 @@ class DescriptorInstantiator
       // Get the construction information
       final DescriptorConstructionInfo info = getDescriptorConstructionInfoForUserView(userViewClass);
 
-      final Class<? extends Descriptor> implClass = info.implClass;
+      @SuppressWarnings("unchecked")
+      final Class<? extends Descriptor> implClass = (Class<? extends Descriptor>) info.implClass;
       String name = info.defaultName;
       if (descriptorName != null)
       {
