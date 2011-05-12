@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.api.javaee6.webcommon;
+package org.jboss.shrinkwrap.descriptor.api.webcommon30;
 
 import org.jboss.shrinkwrap.descriptor.api.javaee6.Child;
 

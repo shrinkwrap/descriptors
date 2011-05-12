@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.api.javaee6.webcommon;
+package org.jboss.shrinkwrap.descriptor.api.webcommon30;
 
 public interface WebCommonType<T>
 {
