@@ -1,8 +1,10 @@
 package org.jboss.shrinkwrap.descriptor.api.webcommon30;
 
+import org.jboss.shrinkwrap.descriptor.api.NodeInfo;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.DescriptionGroup;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.ListenerType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.ParamValueType;
+import org.jboss.shrinkwrap.descriptor.api.jsp22.JspConfigType;
 
 /**
  * WebCommonType
@@ -12,40 +14,56 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.ParamValueType;
  */
 public interface WebCommonType<T> extends DescriptionGroup
 {
-   public ParamValueType<T> paramParam();
+//	@NodeInfo(xmlName="")
+//   public ParamValueType<T> paramParam();
 
+	@NodeInfo(xmlName="filter")
    public FilterType<T> filter();
 
+	@NodeInfo(xmlName="filter-mapping")
    public FilterMappingType<T> filterMapping();
 
+	@NodeInfo(xmlName="listener")
    public ListenerType<T> listener();
 
+	@NodeInfo(xmlName="servlet")
    public ServletType<T> servlet();
 
+	@NodeInfo(xmlName="servlet-mapping")
    public ServletMappingType<T> servletMapping();
 
+	@NodeInfo(xmlName="session-config")
    public SessionConfigType<T> sessionConfig();
 
+	@NodeInfo(xmlName="absolute-ordering")
    public AbsoluteOrderingType<T> absoluteOrdering();
 
-   public AuthConstraintType<T> authConstraint();
-
+//	@NodeInfo(xmlName="absolute-ordering")
+//   public AuthConstraintType<T> authConstraint();
+   
+	@NodeInfo(xmlName="mime-mapping")
+   public MimeMappingType<T> mimeMapping();
+   
+	@NodeInfo(xmlName="welcome-file-list")
+   public WelcomeFileListType<T> welcomeFileList();
+   
+	@NodeInfo(xmlName="error-page")
+   public ErrorPageType<T> errorPage();
+   
+	@NodeInfo(xmlName="jsp-config")
+   public JspConfigType<T> jspConfig();
+   
+	@NodeInfo(xmlName="security-constraint")
    public SecurityConstraintType<T> securityConstraint();
+   
+	@NodeInfo(xmlName="login-config")
+   public LoginConfigType<T> loginConfig();
+   
+   
+   
 }
 
-//
-//  <xsd:element name="mime-mapping"
-//               type="javaee:mime-mappingType"/>
-//  <xsd:element name="welcome-file-list"
-//               type="javaee:welcome-file-listType"/>
-//  <xsd:element name="error-page"
-//               type="javaee:error-pageType"/>
-//  <xsd:element name="jsp-config"
-//               type="javaee:jsp-configType"/>
-//  <xsd:element name="security-constraint"
-//               type="javaee:security-constraintType"/>
-//  <xsd:element name="login-config"
-//               type="javaee:login-configType"/>
+
 //  <xsd:element name="security-role"
 //               type="javaee:security-roleType"/>
 //  <xsd:group ref="javaee:jndiEnvironmentRefsGroup"/>
