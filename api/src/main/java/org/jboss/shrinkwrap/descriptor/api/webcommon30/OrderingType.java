@@ -3,12 +3,14 @@ package org.jboss.shrinkwrap.descriptor.api.webcommon30;
 import org.jboss.shrinkwrap.descriptor.api.Child;
 
 /**
- * WelcomeFileListType
+ * OrderingType
  * 
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  * @version $Revision: $
  */
-public interface WelcomeFileListType<T> extends Child<T>
+public interface OrderingType<T> extends Child<T>
 {
-   public WelcomeFileListType<T> welcomeFile(String welcomeFile);
+   public OrderingOrderingType<OrderingType<T>> after();
+
+   public OrderingOrderingType<OrderingType<T>> before();
 }

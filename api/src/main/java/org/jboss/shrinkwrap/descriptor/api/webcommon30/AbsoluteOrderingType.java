@@ -1,7 +1,13 @@
 package org.jboss.shrinkwrap.descriptor.api.webcommon30;
 
-import org.jboss.shrinkwrap.descriptor.api.javaee6.Child;
+import org.jboss.shrinkwrap.descriptor.api.Child;
 
+/**
+ * AbsoluteOrderingType
+ * 
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ * @version $Revision: $
+ */
 public interface AbsoluteOrderingType<T> extends Child<T> 
 {
 	public AbsoluteOrderingType<T> name(String name);

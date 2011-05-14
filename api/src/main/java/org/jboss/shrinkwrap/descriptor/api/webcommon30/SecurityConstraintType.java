@@ -1,22 +1,20 @@
 package org.jboss.shrinkwrap.descriptor.api.webcommon30;
 
-import org.jboss.shrinkwrap.descriptor.api.javaee6.Child;
+import org.jboss.shrinkwrap.descriptor.api.Child;
 
+/**
+ * SecurityConstraintType
+ * 
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ * @version $Revision: $
+ */
 public interface SecurityConstraintType<T> extends Child<T>
 {
+   public SecurityConstraintType<T> DisplayName(String DisplayName);
 
-   public SecurityConstraintType<T> displayName(String displayName);
-
-   /*
-     <xsd:element name="web-resource-collection"
-                  type="javaee:web-resource-collectionType"
-                  maxOccurs="unbounded"/>
-    
-     <xsd:element name="user-data-constraint"
-                  type="javaee:user-data-constraintType"
-                  minOccurs="0"/>
-   </xsd:sequence>
-   */
+   public WebResourceCollectionType<SecurityConstraintType<T>> WebResourceCollection();
 
    public AuthConstraintType<SecurityConstraintType<T>> authConstraint();
+
+   public UserDataConstraintType<SecurityConstraintType<T>> UserDataConstraint();
 }
