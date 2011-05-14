@@ -10,11 +10,11 @@ import org.jboss.shrinkwrap.descriptor.api.Child;
  */
 public interface SecurityConstraintType<T> extends Child<T>
 {
-   public SecurityConstraintType<T> DisplayName(String DisplayName);
+   public SecurityConstraintType<T> displayName(String displayName);
 
-   public WebResourceCollectionType<SecurityConstraintType<T>> WebResourceCollection();
+   public WebResourceCollectionType<SecurityConstraintType<T>> webResourceCollection();
 
    public AuthConstraintType<SecurityConstraintType<T>> authConstraint();
 
-   public UserDataConstraintType<SecurityConstraintType<T>> UserDataConstraint();
+   public UserDataConstraintType<SecurityConstraintType<T>> userDataConstraint();
 }
