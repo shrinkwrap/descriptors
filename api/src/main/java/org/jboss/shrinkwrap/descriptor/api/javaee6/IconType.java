@@ -1,8 +1,10 @@
 package org.jboss.shrinkwrap.descriptor.api.javaee6;
 
+import org.jboss.shrinkwrap.descriptor.api.Child;
 
-public interface IconType
+
+public interface IconType<T> extends Child<T>
 {
-   public IconType smallIcon(String smallIcon);
-   public IconType largeIcon(String largeIcon);
+   public IconType<T> smallIcon(String smallIcon);
+   public IconType<T> largeIcon(String largeIcon);
 }
