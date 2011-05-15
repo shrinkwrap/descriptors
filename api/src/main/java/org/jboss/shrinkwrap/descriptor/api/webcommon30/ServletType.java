@@ -3,6 +3,7 @@ package org.jboss.shrinkwrap.descriptor.api.webcommon30;
 import org.jboss.shrinkwrap.descriptor.api.Child;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.DescriptionGroup;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.ParamValueType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.RunAsType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleRefType;
 
 /**
@@ -11,7 +12,7 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleRefType;
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  * @version $Revision: $
  */
-public interface ServletType<T> extends Child<T>, DescriptionGroup
+public interface ServletType<T> extends Child<T>, DescriptionGroup<T>
 {
    public ServletType<T> servletName(String servletName);
 
@@ -27,7 +28,7 @@ public interface ServletType<T> extends Child<T>, DescriptionGroup
 
    public ServletType<T> asyncSupported(boolean asyncSupported);
 
-   public ServletType<T> runAs(String runAs);
+   public RunAsType<ServletType<T>> runAs();
 
    public SecurityRoleRefType<ServletType<T>> securityRoleRef();
 

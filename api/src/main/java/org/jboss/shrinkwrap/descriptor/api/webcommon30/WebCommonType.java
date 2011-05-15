@@ -1,10 +1,22 @@
 package org.jboss.shrinkwrap.descriptor.api.webcommon30;
 
-import org.jboss.shrinkwrap.descriptor.api.NodeInfo;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.DescriptionGroup;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbLocalRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.EnvEntryType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.LifecycleCallbackType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.ListenerType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.ParamValueType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceContextRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceUnitRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceEnvRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleType;
 import org.jboss.shrinkwrap.descriptor.api.jsp22.JspConfigType;
+import org.jboss.shrinkwrap.descriptor.api.webservices13.ServiceRefType;
 
 /**
  * WebCommonType
@@ -12,64 +24,73 @@ import org.jboss.shrinkwrap.descriptor.api.jsp22.JspConfigType;
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  * @version $Revision: $
  */
-public interface WebCommonType<T> extends DescriptionGroup
+public interface WebCommonType<T> extends DescriptionGroup<T>
 {
-//	@NodeInfo(xmlName="")
-//   public ParamValueType<T> paramParam();
+   public WebCommonType<T> moduleName(String moduleName);
 
-	@NodeInfo(xmlName="filter")
-   public FilterType<T> filter();
+   public WebCommonType<T> distributable();
 
-	@NodeInfo(xmlName="filter-mapping")
+   public ParamValueType<T> contextParam(String description, String paramName, String paramValue);
+
+   public FilterType<T> filter(String filterName, String filterClass, boolean asyncSupported); //   public ParamValueType<FilterType<T>> initParam();
+  
+// TODO add argumnents for the methods below ...
+   
    public FilterMappingType<T> filterMapping();
 
-	@NodeInfo(xmlName="listener")
    public ListenerType<T> listener();
 
-	@NodeInfo(xmlName="servlet")
    public ServletType<T> servlet();
 
-	@NodeInfo(xmlName="servlet-mapping")
    public ServletMappingType<T> servletMapping();
 
-	@NodeInfo(xmlName="session-config")
    public SessionConfigType<T> sessionConfig();
 
-	@NodeInfo(xmlName="absolute-ordering")
+   public MimeMappingType<T> mimeMapping();
+
+   public WelcomeFileListType<T> welcomeFileList();
+
+   public ErrorPageType<T> errorPage();
+
+   public JspConfigType<T> jspConfig();
+
+   public SecurityConstraintType<T> securityConstraint();
+
+   public LoginConfigType<T> loginConfig();
+
+   public SecurityRoleType<T> securityRole();
+
+   // begin [0 ... *]
+   public EnvEntryType<T> envEntry();
+
+   public EjbRefType<T> ejbRef();
+
+   public EjbLocalRefType<T> ejbLocalRef();
+
+   public ServiceRefType<T> serviceRef();
+
+   public ResourceRefType<T> resourceRef();
+
+   public ResourceEnvRefType<T> resourceEnvRef();
+
+   public MessageDestinationRefType<T> messageDestinationRef();
+
+   public PersistenceContextRefType<T> persistenceContextRef();
+
+   public PersistenceUnitRefType<T> persistenceUnitRef();
+
+   public LifecycleCallbackType<T> postConstruct();
+
+   public LifecycleCallbackType<T> preDestroy();
+
+   public DataSourceType<T> dataSource();
+
+   // end [0 ... *]
+
+   public MessageDestinationType<T> messageDestination();
+
+   public WebCommonType<T> localeEncodingMappingList(LocaleEncodingMappingType[] localEncodingMappings);
+
    public AbsoluteOrderingType<T> absoluteOrdering();
 
-//	@NodeInfo(xmlName="absolute-ordering")
-//   public AuthConstraintType<T> authConstraint();
-   
-	@NodeInfo(xmlName="mime-mapping")
-   public MimeMappingType<T> mimeMapping();
-   
-	@NodeInfo(xmlName="welcome-file-list")
-   public WelcomeFileListType<T> welcomeFileList();
-   
-	@NodeInfo(xmlName="error-page")
-   public ErrorPageType<T> errorPage();
-   
-	@NodeInfo(xmlName="jsp-config")
-   public JspConfigType<T> jspConfig();
-   
-	@NodeInfo(xmlName="security-constraint")
-   public SecurityConstraintType<T> securityConstraint();
-   
-	@NodeInfo(xmlName="login-config")
-   public LoginConfigType<T> loginConfig();
-   
-   
-   
 }
-
-
-//  <xsd:element name="security-role"
-//               type="javaee:security-roleType"/>
-//  <xsd:group ref="javaee:jndiEnvironmentRefsGroup"/>
-//  <xsd:element name="message-destination"
-//               type="javaee:message-destinationType"/>
-//  <xsd:element name="locale-encoding-mapping-list"
-//               type="javaee:locale-encoding-mapping-listType"/>
-//</xsd:choice>
-//</xsd:group>

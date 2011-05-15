@@ -6,11 +6,11 @@ package org.jboss.shrinkwrap.descriptor.api.javaee6;
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  * @version $Revision: $
  */
-public interface DescriptionGroup
+public interface DescriptionGroup<T>
 {
-   public DescriptionGroup description(String description);
+   public DescriptionGroup<T> description(String[] descriptions);
 
-   public DescriptionGroup displayName(String displayName);
-
-   public DescriptionGroup icon();
+   public DescriptionGroup<T> displayName(String[] displayNames);
+   
+   public DescriptionGroup<T> icon(IconType[] icons);
 }

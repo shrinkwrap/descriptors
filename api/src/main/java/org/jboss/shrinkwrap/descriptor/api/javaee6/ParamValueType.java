@@ -10,9 +10,9 @@ import org.jboss.shrinkwrap.descriptor.api.Child;
  */
 public interface ParamValueType<T> extends Child<T>
 {
-   public ParamValueType<T> Description(String Description);
+   public ParamValueType<T> description(String description);
 
-   public ParamValueType<T> ParamName(String ParamName);
+   public ParamValueType<T> paramName(String paramName);
 
-   public ParamValueType<T> ParamValue(String ParamValue);
+   public ParamValueType<T> paramValue(String paramValue);
 }
