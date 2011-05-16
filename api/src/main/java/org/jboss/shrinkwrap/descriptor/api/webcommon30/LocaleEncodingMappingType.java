@@ -1,5 +1,7 @@
 package org.jboss.shrinkwrap.descriptor.api.webcommon30;
 
+import org.jboss.shrinkwrap.descriptor.api.Child;
+
 
 /**
  * LocaleEncodingMappingType
@@ -7,9 +9,9 @@ package org.jboss.shrinkwrap.descriptor.api.webcommon30;
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  * @version $Revision: $
  */
-public interface LocaleEncodingMappingType
+public interface LocaleEncodingMappingType<T> extends Child<T>
 {
-   public LocaleEncodingMappingType locale(String locale);
+   public LocaleEncodingMappingType<T> locale(String locale);
 
-   public LocaleEncodingMappingType encoding(String encoding);
+   public LocaleEncodingMappingType<T> encoding(String encoding);
 }

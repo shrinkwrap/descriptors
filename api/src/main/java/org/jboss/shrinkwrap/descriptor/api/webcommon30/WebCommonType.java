@@ -26,15 +26,11 @@ import org.jboss.shrinkwrap.descriptor.api.webservices13.ServiceRefType;
  */
 public interface WebCommonType<T> extends DescriptionGroup<T>
 {
-   public WebCommonType<T> moduleName(String moduleName);
-
    public WebCommonType<T> distributable();
 
-   public ParamValueType<T> contextParam(String description, String paramName, String paramValue);
+   public ParamValueType<T> contextParam();
 
-   public FilterType<T> filter(String filterName, String filterClass, boolean asyncSupported); //   public ParamValueType<FilterType<T>> initParam();
-  
-// TODO add argumnents for the methods below ...
+   public FilterType<T> filter(); 
    
    public FilterMappingType<T> filterMapping();
 
@@ -60,7 +56,6 @@ public interface WebCommonType<T> extends DescriptionGroup<T>
 
    public SecurityRoleType<T> securityRole();
 
-   // begin [0 ... *]
    public EnvEntryType<T> envEntry();
 
    public EjbRefType<T> ejbRef();
@@ -85,12 +80,8 @@ public interface WebCommonType<T> extends DescriptionGroup<T>
 
    public DataSourceType<T> dataSource();
 
-   // end [0 ... *]
-
    public MessageDestinationType<T> messageDestination();
 
    public WebCommonType<T> localeEncodingMappingList(LocaleEncodingMappingType[] localEncodingMappings);
-
-   public AbsoluteOrderingType<T> absoluteOrdering();
 
 }

@@ -9,7 +9,7 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.DescriptionGroup;
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  * @version $Revision: $
  */
-public interface JspPropertyGroupType<T> extends Child<T>, DescriptionGroup
+public interface JspPropertyGroupType<T> extends Child<T>, DescriptionGroup<T>
 {
    public JspPropertyGroupType<T> urlPattern(String urlPattern);
 
