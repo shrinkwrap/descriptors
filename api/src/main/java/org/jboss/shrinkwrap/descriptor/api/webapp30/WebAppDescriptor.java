@@ -43,7 +43,7 @@ public interface WebAppDescriptor extends Descriptor, DescriptionGroup<WebAppDes
 {
    //   public WebAppDescriptor version(String version);
    //   
-   //   public WebAppDescriptor ejbRefName(String ejbRefName);
+   //   public WebAppDescriptor ejbRefName(String ejbRefName); 
    //
    //   public EjbLocalRefType<WebAppDescriptor> ejbLocalRef();
 

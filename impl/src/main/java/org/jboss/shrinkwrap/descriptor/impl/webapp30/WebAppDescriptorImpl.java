@@ -1,41 +1,6 @@
 package org.jboss.shrinkwrap.descriptor.impl.webapp30;
 
-import java.io.OutputStream;
-
-import org.jboss.shrinkwrap.descriptor.api.DescriptorExportException;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.DescriptionGroup;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbLocalRefType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbRefType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.EnvEntryType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.LifecycleCallbackType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.ListenerType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationRefType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.ParamValueType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceContextRefType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceUnitRefType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceEnvRefType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceRefType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleType;
-import org.jboss.shrinkwrap.descriptor.api.jsp22.JspConfigType;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.AbsoluteOrderingType;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.ErrorPageType;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.FilterMappingType;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.FilterType;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.LocaleEncodingMappingType;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.LoginConfigType;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.MimeMappingType;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.SecurityConstraintType;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.ServletMappingType;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.ServletType;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.SessionConfigType;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.WebCommonType;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.WelcomeFileListType;
-import org.jboss.shrinkwrap.descriptor.api.webservices13.ServiceRefType;
-import org.jboss.shrinkwrap.descriptor.impl.webcommon30.AbsoluteOrderingTypeImpl;
 
 public class WebAppDescriptorImpl //implements WebAppDescriptor<WebAppDescriptorImpl>
 {
