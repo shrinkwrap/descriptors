@@ -47,7 +47,7 @@ public interface WebAppDescriptor extends Descriptor, DescriptionGroup<WebAppDes
    //
    //   public EjbLocalRefType<WebAppDescriptor> ejbLocalRef();
 
-   public WebAppDescriptor moduleName(String moduleName);
+   public WebAppDescriptor moduleName(String moduleName); 
 
    public AbsoluteOrderingType<WebAppDescriptor> absoluteOrdering();
    
