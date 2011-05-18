@@ -1,7 +1,6 @@
 package org.jboss.shrinkwrap.descriptor.api.webapp30;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptor;
-import org.jboss.shrinkwrap.descriptor.api.NodeInfo;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.DescriptionGroup;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbLocalRefType;
