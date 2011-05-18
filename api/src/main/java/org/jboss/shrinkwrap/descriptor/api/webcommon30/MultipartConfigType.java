@@ -10,11 +10,11 @@ import org.jboss.shrinkwrap.descriptor.api.Child;
  */
 public interface MultipartConfigType<T> extends Child<T>
 {
-   public MultipartConfigType<T> Location(String Location);
+   public MultipartConfigType<T> location(String location);
 
-   public MultipartConfigType<T> MaxFileSize(long MaxFileSize);
+   public MultipartConfigType<T> maxFileSize(long maxFileSize);
 
-   public MultipartConfigType<T> MaxRequestSize(long MaxRequestSize);
+   public MultipartConfigType<T> maxRequestSize(long maxRequestSize);
 
-   public MultipartConfigType<T> FileSizeThreshold(int FileSizeThreshold);
+   public MultipartConfigType<T> fileSizeThreshold(int fileSizeThreshold);
 }

@@ -2,6 +2,7 @@ package org.jboss.shrinkwrap.descriptor.impl.webapp30;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.AuthMethodType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.DispatcherType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.TrackingModeType;
 import org.junit.Test;
@@ -25,7 +26,13 @@ public class WebAppDescriptorImplTest
          .filter()
                .filterName("filterName")
                .filterClass("org.jboss.arquillian.class")
-               .asyncSupported(false) /* DescriptionGroup is missing */
+               .asyncSupported(false)
+                     .description("")
+                     .displayName("")
+                     .icon()
+                           .smallIcon("")
+                           .largeIcon("")
+                     .up()
                .initParam()
                      .description("description")
                      .paramName("").paramValue("").up()
@@ -43,10 +50,10 @@ public class WebAppDescriptorImplTest
                .jspFile("")
                .loadOnStartup(true)
                .multipartConfig()
-                     .Location("")
-                     .MaxFileSize(10000)
-                     .MaxRequestSize(10000)
-                     .FileSizeThreshold(100).up()
+                     .location("")
+                     .maxFileSize(10000)
+                     .maxRequestSize(10000)
+                     .fileSizeThreshold(100).up()
                .up()
          .servletMapping()
                .servletName("")
@@ -97,7 +104,7 @@ public class WebAppDescriptorImplTest
                      .up()
                .up()
          .loginConfig()
-//               .authMethod(AuthMethodType.BASIC) --> TODO
+               .authMethod(AuthMethodType.BASIC) 
                .up()
          .securityRole()
                .description("")

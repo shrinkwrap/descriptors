@@ -1,6 +1,7 @@
 package org.jboss.shrinkwrap.descriptor.api.webcommon30;
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.DescriptionGroup;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.ParamValueType;
 
 /**
@@ -9,7 +10,7 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.ParamValueType;
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  * @version $Revision: $
  */
-public interface FilterType<T> extends Child<T>
+public interface FilterType<T> extends Child<T>, DescriptionGroup<FilterType<T>>
 {
    public FilterType<T> filterName(String filterName);
 
