@@ -103,18 +103,20 @@
 			</xsl:call-template>
 
 			<xsl:text>(</xsl:text>
-			<xsl:call-template name="Pascalize">
+			<xsl:call-template name="JavaTypeReplace">
 				<xsl:with-param name="pText" select="@type" />
 			</xsl:call-template>
+			
 			<xsl:text> </xsl:text>
 			<xsl:call-template name="Pascalize">
 				<xsl:with-param name="pText" select="@name" />
 			</xsl:call-template>
 			<xsl:text>);</xsl:text>
 			<xsl:text>&#10;</xsl:text>
+			
 			<!-- **** generate get element **** -->
 			<xsl:text>   public </xsl:text>
-			<xsl:call-template name="Pascalize">
+			<xsl:call-template name="JavaTypeReplace">
 				<xsl:with-param name="pText" select="@type" />
 			</xsl:call-template>
 			<xsl:text> </xsl:text>
@@ -125,13 +127,13 @@
 			</xsl:call-template>
 			<xsl:text>();</xsl:text>
 			<xsl:text>&#10;</xsl:text>
-			
+
 			<xsl:if test="position() = last()">
 				<xsl:text>&#10;</xsl:text>
 				<xsl:text>}</xsl:text>
 				<xsl:text>&#10;</xsl:text>
 				<xsl:text>&#10;</xsl:text>
-			</xsl:if>	
+			</xsl:if>
 		</xsl:for-each>
 	</xsl:template>
 
@@ -156,6 +158,39 @@
 					select="substring-after(substring($pText,2), '-')" />
 			</xsl:call-template>
 		</xsl:if>
+	</xsl:template>
+
+
+	<!-- ************************************************************************** -->
+	<!-- ****** Template which replaces schema defined types with java types ****** -->
+	<!-- ************************************************************************** -->
+	<xsl:template name="JavaTypeReplace">
+		<xsl:param name="pText" />
+		
+		<xsl:choose>
+			<xsl:when test="$pText='xsd:long'">
+				<xsl:text>Long</xsl:text>
+			</xsl:when>
+			<xsl:when test="$pText='xsd:integer'">
+				<xsl:text>Integer</xsl:text>
+			</xsl:when>
+			<xsl:when test="$pText='xsd:string'">
+				<xsl:text>String</xsl:text>
+			</xsl:when>
+			<xsl:when test="$pText='javaee:xsdIntegerType'">
+				<xsl:text>String</xsl:text>
+			</xsl:when>
+			<xsl:when test="$pText='javaee:string'">
+				<xsl:text>String</xsl:text>
+			</xsl:when>
+			<xsl:when test="$pText='javaee:true-falseType'">
+				<xsl:text>Boolean</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+			    <xsl:value-of select="$pText" />
+			</xsl:otherwise>
+		</xsl:choose>
+		
 	</xsl:template>
 
 </xsl:stylesheet>
