@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <datatypes>
+        <datatype complexTypeName="descriptionType" mappedTo="javaee:xsdStringType" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="display-nameType" mappedTo="javaee:string" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="ejb-linkType" mappedTo="javaee:string" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="ejb-ref-nameType" mappedTo="javaee:jndi-nameType" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="ejb-ref-typeType" mappedTo="javaee:string" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="env-entry-type-valuesType" mappedTo="javaee:fully-qualified-classType" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="fully-qualified-classType" mappedTo="javaee:string" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="generic-booleanType" mappedTo="javaee:string" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="java-identifierType" mappedTo="javaee:string" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="java-typeType" mappedTo="javaee:string" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="jdbc-urlType" mappedTo="javaee:string" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="jndi-nameType" mappedTo="javaee:string" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="homeType" mappedTo="javaee:fully-qualified-classType" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="localType" mappedTo="javaee:fully-qualified-classType" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="local-homeType" mappedTo="javaee:fully-qualified-classType" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="pathType" mappedTo="javaee:string" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="persistence-context-typeType" mappedTo="javaee:string" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="remoteType" mappedTo="javaee:fully-qualified-classType" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="res-authType" mappedTo="javaee:string" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="res-sharing-scopeType" mappedTo="javaee:string" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="role-nameType" mappedTo="javaee:string" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="xsdQNameType" mappedTo="xsd:QName" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="xsdBooleanType" mappedTo="xsd:boolean" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="xsdNMTOKENType" mappedTo="xsd:NMTOKEN" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="xsdAnyURIType" mappedTo="xsd:anyURI" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="xsdIntegerType" mappedTo="xsd:integer" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="xsdPositiveIntegerType" mappedTo="xsd:positiveInteger" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="xsdNonNegativeIntegerType" mappedTo="xsd:nonNegativeInteger" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="xsdStringType" mappedTo="xsd:string" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="string" mappedTo="xsd:token" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="true-falseType" mappedTo="javaee:xsdBooleanType" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="url-patternType" mappedTo="xsd:string" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="message-destination-usageType" mappedTo="javaee:string" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="message-destination-typeType" mappedTo="javaee:fully-qualified-classType" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="message-destination-linkType" mappedTo="javaee:string" schemaName="../javaee_6.xsd"/>
+        <datatype complexTypeName="cmp-versionType" mappedTo="javaee:string" schemaName="../ejb-jar_3_1.xsd"/>
+        <datatype complexTypeName="cmr-field-typeType" mappedTo="javaee:string" schemaName="../ejb-jar_3_1.xsd"/>
+        <datatype complexTypeName="concurrency-management-typeType" mappedTo="javaee:string" schemaName="../ejb-jar_3_1.xsd"/>
+        <datatype complexTypeName="concurrent-lock-typeType" mappedTo="javaee:string" schemaName="../ejb-jar_3_1.xsd"/>
+        <datatype complexTypeName="ejb-classType" mappedTo="javaee:fully-qualified-classType" schemaName="../ejb-jar_3_1.xsd"/>
+        <datatype complexTypeName="ejb-nameType" mappedTo="javaee:xsdNMTOKENType" schemaName="../ejb-jar_3_1.xsd"/>
+        <datatype complexTypeName="method-intfType" mappedTo="javaee:string" schemaName="../ejb-jar_3_1.xsd"/>
+        <datatype complexTypeName="method-nameType" mappedTo="javaee:string" schemaName="../ejb-jar_3_1.xsd"/>
+        <datatype complexTypeName="multiplicityType" mappedTo="javaee:string" schemaName="../ejb-jar_3_1.xsd"/>
+        <datatype complexTypeName="persistence-typeType" mappedTo="javaee:string" schemaName="../ejb-jar_3_1.xsd"/>
+        <datatype complexTypeName="result-type-mappingType" mappedTo="javaee:string" schemaName="../ejb-jar_3_1.xsd"/>
+        <datatype complexTypeName="session-typeType" mappedTo="javaee:string" schemaName="../ejb-jar_3_1.xsd"/>
+        <datatype complexTypeName="time-unit-typeType" mappedTo="javaee:string" schemaName="../ejb-jar_3_1.xsd"/>
+        <datatype complexTypeName="trans-attributeType" mappedTo="javaee:string" schemaName="../ejb-jar_3_1.xsd"/>
+        <datatype complexTypeName="transaction-typeType" mappedTo="javaee:string" schemaName="../ejb-jar_3_1.xsd"/>
+        <datatype complexTypeName="servlet-linkType" mappedTo="javaee:string" schemaName="../javaee_web_services_1_3.xsd"/>
+        <datatype complexTypeName="addressing-responsesType" mappedTo="javaee:string" schemaName="../javaee_web_services_client_1_3.xsd"/>
+        <datatype complexTypeName="auth-methodType" mappedTo="javaee:string" schemaName="../web-common_3_0.xsd"/>
+        <datatype complexTypeName="dispatcherType" mappedTo="javaee:string" schemaName="../web-common_3_0.xsd"/>
+        <datatype complexTypeName="error-codeType" mappedTo="javaee:xsdPositiveIntegerType" schemaName="../web-common_3_0.xsd"/>
+        <datatype complexTypeName="nonEmptyStringType" mappedTo="javaee:string" schemaName="../web-common_3_0.xsd"/>
+        <datatype complexTypeName="filter-nameType" mappedTo="javaee:nonEmptyStringType" schemaName="../web-common_3_0.xsd"/>
+        <datatype complexTypeName="mime-typeType" mappedTo="javaee:string" schemaName="../web-common_3_0.xsd"/>
+        <datatype complexTypeName="servlet-nameType" mappedTo="javaee:nonEmptyStringType" schemaName="../web-common_3_0.xsd"/>
+        <datatype complexTypeName="cookie-nameType" mappedTo="javaee:nonEmptyStringType" schemaName="../web-common_3_0.xsd"/>
+        <datatype complexTypeName="cookie-domainType" mappedTo="javaee:nonEmptyStringType" schemaName="../web-common_3_0.xsd"/>
+        <datatype complexTypeName="cookie-pathType" mappedTo="javaee:nonEmptyStringType" schemaName="../web-common_3_0.xsd"/>
+        <datatype complexTypeName="cookie-commentType" mappedTo="javaee:nonEmptyStringType" schemaName="../web-common_3_0.xsd"/>
+        <datatype complexTypeName="tracking-modeType" mappedTo="javaee:string" schemaName="../web-common_3_0.xsd"/>
+        <datatype complexTypeName="transport-guaranteeType" mappedTo="javaee:string" schemaName="../web-common_3_0.xsd"/>
+        <datatype complexTypeName="war-pathType" mappedTo="javaee:string" schemaName="../web-common_3_0.xsd"/>
+        <datatype complexTypeName="jsp-fileType" mappedTo="javaee:pathType" schemaName="../jsp_2_2.xsd"/>
+        <datatype complexTypeName="config-property-nameType" mappedTo="javaee:xsdStringType" schemaName="../connector_1_6.xsd"/>
+        <datatype complexTypeName="config-property-typeType" mappedTo="javaee:string" schemaName="../connector_1_6.xsd"/>
+        <datatype complexTypeName="credential-interfaceType" mappedTo="javaee:fully-qualified-classType" schemaName="../connector_1_6.xsd"/>
+        <datatype complexTypeName="transaction-supportType" mappedTo="javaee:string" schemaName="../connector_1_6.xsd"/>
+        <datatype complexTypeName="facelet-taglib-canonical-nameType" mappedTo="xsd:NCName" schemaName="../web-facelettaglibrary_2_0.xsd"/>
+        <datatype complexTypeName="faces-config-default-localeType" mappedTo="javaee:faces-config-localeType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <datatype complexTypeName="faces-config-default-valueType" mappedTo="javaee:string" schemaName="../web-facesconfig_2_0.xsd"/>
+        <datatype complexTypeName="faces-config-from-view-idType" mappedTo="javaee:string" schemaName="../web-facesconfig_2_0.xsd"/>
+        <datatype complexTypeName="faces-config-from-actionType" mappedTo="javaee:faces-config-el-expressionType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <datatype complexTypeName="faces-config-ifType" mappedTo="javaee:faces-config-el-expressionType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <datatype complexTypeName="faces-config-managed-bean-scopeOrNoneType" mappedTo="javaee:string" schemaName="../web-facesconfig_2_0.xsd"/>
+        <datatype complexTypeName="faces-config-suggested-valueType" mappedTo="javaee:string" schemaName="../web-facesconfig_2_0.xsd"/>
+        <datatype complexTypeName="faces-config-supported-localeType" mappedTo="javaee:faces-config-localeType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <datatype complexTypeName="faces-config-value-classType" mappedTo="javaee:fully-qualified-classType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <datatype complexTypeName="body-contentType" mappedTo="javaee:string" schemaName="../web-jsptaglibrary_2_1.xsd"/>
+        <datatype complexTypeName="tld-canonical-nameType" mappedTo="javaee:xsdNMTOKENType" schemaName="../web-jsptaglibrary_2_1.xsd"/>
+        <datatype complexTypeName="variable-scopeType" mappedTo="javaee:string" schemaName="../web-jsptaglibrary_2_1.xsd"/>
+        <datatype complexTypeName="partial-response-updateType" mappedTo="xsd:string" schemaName="../web-partialresponse_2_0.xsd"/>
+    </datatypes>
+    <enums>
+        <enum complexTypeName="ejb-ref-typeType" schemaName="../javaee_6.xsd"/>
+        <enum complexTypeName="generic-booleanType" schemaName="../javaee_6.xsd"/>
+        <enum complexTypeName="persistence-context-typeType" schemaName="../javaee_6.xsd"/>
+        <enum complexTypeName="res-authType" schemaName="../javaee_6.xsd"/>
+        <enum complexTypeName="res-sharing-scopeType" schemaName="../javaee_6.xsd"/>
+        <enum complexTypeName="message-destination-usageType" schemaName="../javaee_6.xsd"/>
+        <enum complexTypeName="cmp-versionType" schemaName="../ejb-jar_3_1.xsd"/>
+        <enum complexTypeName="cmr-field-typeType" schemaName="../ejb-jar_3_1.xsd"/>
+        <enum complexTypeName="concurrency-management-typeType" schemaName="../ejb-jar_3_1.xsd"/>
+        <enum complexTypeName="concurrent-lock-typeType" schemaName="../ejb-jar_3_1.xsd"/>
+        <enum complexTypeName="method-intfType" schemaName="../ejb-jar_3_1.xsd"/>
+        <enum complexTypeName="multiplicityType" schemaName="../ejb-jar_3_1.xsd"/>
+        <enum complexTypeName="persistence-typeType" schemaName="../ejb-jar_3_1.xsd"/>
+        <enum complexTypeName="result-type-mappingType" schemaName="../ejb-jar_3_1.xsd"/>
+        <enum complexTypeName="session-typeType" schemaName="../ejb-jar_3_1.xsd"/>
+        <enum complexTypeName="time-unit-typeType" schemaName="../ejb-jar_3_1.xsd"/>
+        <enum complexTypeName="trans-attributeType" schemaName="../ejb-jar_3_1.xsd"/>
+        <enum complexTypeName="transaction-typeType" schemaName="../ejb-jar_3_1.xsd"/>
+        <enum complexTypeName="addressing-responsesType" schemaName="../javaee_web_services_client_1_3.xsd"/>
+        <enum complexTypeName="dispatcherType" schemaName="../web-common_3_0.xsd"/>
+        <enum complexTypeName="tracking-modeType" schemaName="../web-common_3_0.xsd"/>
+        <enum complexTypeName="transport-guaranteeType" schemaName="../web-common_3_0.xsd"/>
+        <enum complexTypeName="config-property-typeType" schemaName="../connector_1_6.xsd"/>
+        <enum complexTypeName="transaction-supportType" schemaName="../connector_1_6.xsd"/>
+        <enum complexTypeName="body-contentType" schemaName="../web-jsptaglibrary_2_1.xsd"/>
+        <enum complexTypeName="variable-scopeType" schemaName="../web-jsptaglibrary_2_1.xsd"/>
+    </enums>
+    <classes>
+        <class complexTypeName="data-sourceType" schemaName="../javaee_6.xsd"/>
+        <class complexTypeName="ejb-local-refType" schemaName="../javaee_6.xsd"/>
+        <class complexTypeName="ejb-refType" schemaName="../javaee_6.xsd"/>
+        <class complexTypeName="env-entryType" schemaName="../javaee_6.xsd"/>
+        <class complexTypeName="iconType" schemaName="../javaee_6.xsd"/>
+        <class complexTypeName="injection-targetType" schemaName="../javaee_6.xsd"/>
+        <class complexTypeName="lifecycle-callbackType" schemaName="../javaee_6.xsd"/>
+        <class complexTypeName="listenerType" schemaName="../javaee_6.xsd"/>
+        <class complexTypeName="param-valueType" schemaName="../javaee_6.xsd"/>
+        <class complexTypeName="persistence-context-refType" schemaName="../javaee_6.xsd"/>
+        <class complexTypeName="propertyType" schemaName="../javaee_6.xsd"/>
+        <class complexTypeName="persistence-unit-refType" schemaName="../javaee_6.xsd"/>
+        <class complexTypeName="resource-env-refType" schemaName="../javaee_6.xsd"/>
+        <class complexTypeName="resource-refType" schemaName="../javaee_6.xsd"/>
+        <class complexTypeName="run-asType" schemaName="../javaee_6.xsd"/>
+        <class complexTypeName="security-roleType" schemaName="../javaee_6.xsd"/>
+        <class complexTypeName="security-role-refType" schemaName="../javaee_6.xsd"/>
+        <class complexTypeName="message-destinationType" schemaName="../javaee_6.xsd"/>
+        <class complexTypeName="message-destination-refType" schemaName="../javaee_6.xsd"/>
+        <class complexTypeName="applicationType" schemaName="../application_6.xsd"/>
+        <class complexTypeName="moduleType" schemaName="../application_6.xsd"/>
+        <class complexTypeName="webType" schemaName="../application_6.xsd"/>
+        <class complexTypeName="access-timeoutType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="async-methodType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="activation-configType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="activation-config-propertyType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="around-invokeType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="around-timeoutType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="assembly-descriptorType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="cmp-fieldType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="cmr-fieldType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="concurrent-methodType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="container-transactionType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="depends-onType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="ejb-jarType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="ejb-relationType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="ejb-relationship-roleType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="entity-beanType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="exclude-listType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="application-exceptionType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="interceptorsType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="interceptorType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="interceptor-bindingType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="interceptor-orderType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="named-methodType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="init-methodType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="remove-methodType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="message-driven-beanType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="methodType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="method-paramsType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="method-permissionType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="queryType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="query-methodType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="relationship-role-sourceType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="relationshipsType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="security-identityType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="session-beanType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="stateful-timeoutType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="timer-scheduleType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="timerType" schemaName="../ejb-jar_3_1.xsd"/>
+        <class complexTypeName="port-componentType" schemaName="../javaee_web_services_1_3.xsd"/>
+        <class complexTypeName="webservice-descriptionType" schemaName="../javaee_web_services_1_3.xsd"/>
+        <class complexTypeName="webservicesType" schemaName="../javaee_web_services_1_3.xsd"/>
+        <class complexTypeName="service-refType" schemaName="../javaee_web_services_client_1_3.xsd"/>
+        <class complexTypeName="port-component-refType" schemaName="../javaee_web_services_client_1_3.xsd"/>
+        <class complexTypeName="handler-chainsType" schemaName="../javaee_web_services_client_1_3.xsd"/>
+        <class complexTypeName="handler-chainType" schemaName="../javaee_web_services_client_1_3.xsd"/>
+        <class complexTypeName="addressingType" schemaName="../javaee_web_services_client_1_3.xsd"/>
+        <class complexTypeName="respect-bindingType" schemaName="../javaee_web_services_client_1_3.xsd"/>
+        <class complexTypeName="handlerType" schemaName="../javaee_web_services_client_1_3.xsd"/>
+        <class complexTypeName="auth-constraintType" schemaName="../web-common_3_0.xsd"/>
+        <class complexTypeName="error-pageType" schemaName="../web-common_3_0.xsd"/>
+        <class complexTypeName="filterType" schemaName="../web-common_3_0.xsd"/>
+        <class complexTypeName="filter-mappingType" schemaName="../web-common_3_0.xsd"/>
+        <class complexTypeName="form-login-configType" schemaName="../web-common_3_0.xsd"/>
+        <class complexTypeName="login-configType" schemaName="../web-common_3_0.xsd"/>
+        <class complexTypeName="mime-mappingType" schemaName="../web-common_3_0.xsd"/>
+        <class complexTypeName="security-constraintType" schemaName="../web-common_3_0.xsd"/>
+        <class complexTypeName="servletType" schemaName="../web-common_3_0.xsd"/>
+        <class complexTypeName="servlet-mappingType" schemaName="../web-common_3_0.xsd"/>
+        <class complexTypeName="session-configType" schemaName="../web-common_3_0.xsd"/>
+        <class complexTypeName="cookie-configType" schemaName="../web-common_3_0.xsd"/>
+        <class complexTypeName="user-data-constraintType" schemaName="../web-common_3_0.xsd"/>
+        <class complexTypeName="web-resource-collectionType" schemaName="../web-common_3_0.xsd"/>
+        <class complexTypeName="welcome-file-listType" schemaName="../web-common_3_0.xsd"/>
+        <class complexTypeName="locale-encoding-mapping-listType" schemaName="../web-common_3_0.xsd"/>
+        <class complexTypeName="locale-encoding-mappingType" schemaName="../web-common_3_0.xsd"/>
+        <class complexTypeName="orderingType" schemaName="../web-common_3_0.xsd"/>
+        <class complexTypeName="ordering-orderingType" schemaName="../web-common_3_0.xsd"/>
+        <class complexTypeName="multipart-configType" schemaName="../web-common_3_0.xsd"/>
+        <class complexTypeName="jsp-configType" schemaName="../jsp_2_2.xsd"/>
+        <class complexTypeName="jsp-property-groupType" schemaName="../jsp_2_2.xsd"/>
+        <class complexTypeName="taglibType" schemaName="../jsp_2_2.xsd"/>
+        <class complexTypeName="activationspecType" schemaName="../connector_1_6.xsd"/>
+        <class complexTypeName="adminobjectType" schemaName="../connector_1_6.xsd"/>
+        <class complexTypeName="authentication-mechanismType" schemaName="../connector_1_6.xsd"/>
+        <class complexTypeName="config-propertyType" schemaName="../connector_1_6.xsd"/>
+        <class complexTypeName="connection-definitionType" schemaName="../connector_1_6.xsd"/>
+        <class complexTypeName="connectorType" schemaName="../connector_1_6.xsd"/>
+        <class complexTypeName="inbound-resourceadapterType" schemaName="../connector_1_6.xsd"/>
+        <class complexTypeName="licenseType" schemaName="../connector_1_6.xsd"/>
+        <class complexTypeName="messageadapterType" schemaName="../connector_1_6.xsd"/>
+        <class complexTypeName="messagelistenerType" schemaName="../connector_1_6.xsd"/>
+        <class complexTypeName="outbound-resourceadapterType" schemaName="../connector_1_6.xsd"/>
+        <class complexTypeName="required-config-propertyType" schemaName="../connector_1_6.xsd"/>
+        <class complexTypeName="resourceadapterType" schemaName="../connector_1_6.xsd"/>
+        <class complexTypeName="security-permissionType" schemaName="../connector_1_6.xsd"/>
+        <class complexTypeName="" schemaName="../persistence_2_0.xsd"/>
+        <class complexTypeName="" schemaName="../persistence_2_0.xsd"/>
+        <class complexTypeName="" schemaName="../persistence_2_0.xsd"/>
+        <class complexTypeName="facelet-taglibType" schemaName="../web-facelettaglibrary_2_0.xsd"/>
+        <class complexTypeName="facelet-taglib-tagType" schemaName="../web-facelettaglibrary_2_0.xsd"/>
+        <class complexTypeName="facelet-taglib-tag-attributeType" schemaName="../web-facelettaglibrary_2_0.xsd"/>
+        <class complexTypeName="facelet-taglib-functionType" schemaName="../web-facelettaglibrary_2_0.xsd"/>
+        <class complexTypeName="facelet-taglib-tag-behaviorType" schemaName="../web-facelettaglibrary_2_0.xsd"/>
+        <class complexTypeName="facelet-taglib-tag-componentType" schemaName="../web-facelettaglibrary_2_0.xsd"/>
+        <class complexTypeName="facelet-taglib-tag-converterType" schemaName="../web-facelettaglibrary_2_0.xsd"/>
+        <class complexTypeName="facelet-taglib-tag-validatorType" schemaName="../web-facelettaglibrary_2_0.xsd"/>
+        <class complexTypeName="faces-config-orderingType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-ordering-orderingType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-application-resource-bundleType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-attributeType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-componentType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-facetType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-converterType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-lifecycleType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-locale-configType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-default-validatorsType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-managed-beanType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-managed-propertyType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-map-entryType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-map-entriesType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-navigation-caseType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-navigation-ruleType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-propertyType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-redirectType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-redirect-viewParamType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-referenced-beanType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-render-kitType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-client-behavior-rendererType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-rendererType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-behaviorType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-validatorType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-list-entriesType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="faces-config-system-event-listenerType" schemaName="../web-facesconfig_2_0.xsd"/>
+        <class complexTypeName="functionType" schemaName="../web-jsptaglibrary_2_1.xsd"/>
+        <class complexTypeName="tagFileType" schemaName="../web-jsptaglibrary_2_1.xsd"/>
+        <class complexTypeName="tagType" schemaName="../web-jsptaglibrary_2_1.xsd"/>
+        <class complexTypeName="tld-attributeType" schemaName="../web-jsptaglibrary_2_1.xsd"/>
+        <class complexTypeName="tld-deferred-methodType" schemaName="../web-jsptaglibrary_2_1.xsd"/>
+        <class complexTypeName="tld-deferred-valueType" schemaName="../web-jsptaglibrary_2_1.xsd"/>
+        <class complexTypeName="tld-extensionType" schemaName="../web-jsptaglibrary_2_1.xsd"/>
+        <class complexTypeName="tldTaglibType" schemaName="../web-jsptaglibrary_2_1.xsd"/>
+        <class complexTypeName="validatorType" schemaName="../web-jsptaglibrary_2_1.xsd"/>
+        <class complexTypeName="variableType" schemaName="../web-jsptaglibrary_2_1.xsd"/>
+        <class complexTypeName="partial-response-attributesType" schemaName="../web-partialresponse_2_0.xsd"/>
+        <class complexTypeName="partial-response-errorType" schemaName="../web-partialresponse_2_0.xsd"/>
+    </classes>
+</metadata>
