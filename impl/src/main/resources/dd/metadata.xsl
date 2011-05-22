@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    exclude-result-prefixes="xs" version="2.0">
 
     <xsl:template match="/">
         <metadata>
@@ -90,19 +92,22 @@
             <xsl:variable name="complexTypeName" select="@name"/>
             <xsl:for-each select="xsd:simpleContent/xsd:restriction">
                 <xsl:if test="@base='javaee:string'">
-                    <xsl:for-each select="xsd:enumeration">
-                        <xsl:if test="position() = 1">
-                            <xsl:text>&#10;</xsl:text>
-                            <enum>
-                                <xsl:attribute name="complexTypeName">
-                                    <xsl:value-of select="$complexTypeName"/>
-                                </xsl:attribute>
-                                <xsl:attribute name="schemaName">
-                                    <xsl:value-of select="$pDocument"/>
-                                </xsl:attribute>
-                            </enum>
-                        </xsl:if>
-                    </xsl:for-each>
+                    <xsl:if test="count(xsd:enumeration) > 0">
+                        <xsl:text>&#10;</xsl:text>
+                        <enum>
+                            <xsl:attribute name="complexTypeName">
+                                <xsl:value-of select="$complexTypeName"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="schemaName">
+                                <xsl:value-of select="$pDocument"/>
+                            </xsl:attribute>
+                            <xsl:for-each select="xsd:enumeration">
+                                <value>
+                                    <xsl:value-of select="@value"/>
+                                </value>
+                            </xsl:for-each>
+                        </enum>
+                    </xsl:if>
                 </xsl:if>
             </xsl:for-each>
         </xsl:for-each>
@@ -116,7 +121,26 @@
         <xsl:param name="pDocument"/>
         <xsl:for-each select="document($pDocument)//xsd:complexType">
             <xsl:variable name="complexTypeName" select="@name"/>
-            <xsl:for-each select="xsd:sequence/xsd:element">
+
+            <xsl:if test="count(xsd:sequence/xsd:element) > 0">
+                <class>
+                    <xsl:attribute name="complexTypeName">
+                        <xsl:value-of select="$complexTypeName"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="schemaName">
+                        <xsl:value-of select="$pDocument"/>
+                    </xsl:attribute>
+
+                    <xsl:for-each select="xsd:sequence/xsd:element">
+                        <element>
+                            <xsl:value-of select="@name"/>
+                        </element>
+                    </xsl:for-each>
+
+                </class>
+            </xsl:if>
+
+            <!-- <xsl:for-each select="xsd:sequence/xsd:element">
                 <xsl:if test="position() = 1">
                     <xsl:text>&#10;</xsl:text>
                     <class>
@@ -128,7 +152,7 @@
                         </xsl:attribute>
                     </class>
                 </xsl:if>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </xsl:for-each>
     </xsl:template>
 </xsl:stylesheet>
