@@ -7,6 +7,7 @@
         <metadata>
             <xsl:call-template name="GenerateDataTypes"/>
             <xsl:call-template name="GenerateEnums"/>
+            <xsl:call-template name="GenerateGroups"/>
             <xsl:call-template name="GenerateClasses"/>
         </metadata>
     </xsl:template>
@@ -42,6 +43,20 @@
     </xsl:template>
 
 
+
+    <!-- ****************************************************** -->
+    <!-- ****** Template which generates the grpups       ***** -->
+    <!-- ****************************************************** -->
+    <xsl:template name="GenerateGroups">
+        <groups>
+            <xsl:for-each select="//schemaName">
+                <xsl:call-template name="WriteGroups">
+                    <xsl:with-param name="pDocument" select="text()"/>
+                </xsl:call-template>
+            </xsl:for-each>
+        </groups>
+    </xsl:template>
+    
     <!-- ****************************************************** -->
     <!-- ****** Template which generates the classes      ***** -->
     <!-- ****************************************************** -->
@@ -115,6 +130,39 @@
 
 
     <!-- ****************************************************** -->
+    <!-- ****** Template which writes the groups         ****** -->
+    <!-- ****************************************************** -->
+    <xsl:template name="WriteGroups">
+        <xsl:param name="pDocument"/>
+        <xsl:for-each select="document($pDocument)//xsd:group">
+            <xsl:variable name="complexTypeName" select="@name"/>
+            <xsl:if test="count(xsd:sequence/xsd:element) > 0">
+                <group>
+                    <xsl:attribute name="complexTypeName">
+                        <xsl:value-of select="$complexTypeName"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="schemaName">
+                        <xsl:value-of select="$pDocument"/>
+                    </xsl:attribute>
+
+                    <xsl:for-each select="xsd:sequence/xsd:element">
+                        <element>
+                            <xsl:value-of select="@name"/>
+                        </element>
+                    </xsl:for-each>
+
+                    <xsl:for-each select="xsd:sequence/xsd:group">
+                        <include>
+                            <xsl:value-of select="@ref"/>
+                        </include>
+                    </xsl:for-each>
+                </group>
+            </xsl:if>
+        </xsl:for-each>
+    </xsl:template>
+    
+
+    <!-- ****************************************************** -->
     <!-- ****** Template which writes the classes        ****** -->
     <!-- ****************************************************** -->
     <xsl:template name="WriteClasses">
@@ -137,22 +185,14 @@
                         </element>
                     </xsl:for-each>
 
+                    <xsl:for-each select="xsd:sequence/xsd:group">
+                        <include>
+                            <xsl:value-of select="@ref"/>
+                        </include>
+                    </xsl:for-each>
                 </class>
             </xsl:if>
-
-            <!-- <xsl:for-each select="xsd:sequence/xsd:element">
-                <xsl:if test="position() = 1">
-                    <xsl:text>&#10;</xsl:text>
-                    <class>
-                        <xsl:attribute name="complexTypeName">
-                            <xsl:value-of select="$complexTypeName"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="schemaName">
-                            <xsl:value-of select="$pDocument"/>
-                        </xsl:attribute>
-                    </class>
-                </xsl:if>
-            </xsl:for-each>-->
         </xsl:for-each>
     </xsl:template>
+    
 </xsl:stylesheet>
