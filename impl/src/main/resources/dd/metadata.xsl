@@ -36,6 +36,7 @@
             <xsl:for-each select="//schemaName">
                 <xsl:call-template name="WriteEnums">
                     <xsl:with-param name="pDocument" select="text()"/>
+                    <xsl:with-param name="pPackage" select="@packageApi"/>
                 </xsl:call-template>
             </xsl:for-each>
 
@@ -103,6 +104,7 @@
     <!-- ****************************************************** -->
     <xsl:template name="WriteEnums">
         <xsl:param name="pDocument"/>
+        <xsl:param name="pPackage"/>
         <xsl:for-each select="document($pDocument)//xsd:complexType">
             <xsl:variable name="complexTypeName" select="@name"/>
             <xsl:for-each select="xsd:simpleContent/xsd:restriction">
@@ -115,6 +117,10 @@
                             </xsl:attribute>
                             <xsl:attribute name="schemaName">
                                 <xsl:value-of select="$pDocument"/>
+                            </xsl:attribute>
+                            
+                            <xsl:attribute name="package">
+                                <xsl:value-of select="$pPackage"/>
                             </xsl:attribute>
                             <xsl:for-each select="xsd:enumeration">
                                 <value>

@@ -30,6 +30,7 @@
         
     </xsl:template>-->
 
+
     <!-- ******************************************************* -->
     <!-- ****** Template which generates the enumerations ****** -->
     <!-- ******************************************************* -->
@@ -37,10 +38,8 @@
         <xsl:param name="pTypeName"/>
         <xsl:for-each select="//enums/enum">
 
-            <xsl:variable name="schemaNameNode" select="document('schemas.xml')//dd/schemas/schemaName/text()=@schemaName"/>
-
-
-            <xsl:variable name="filename" select="concat('../output1/',schemaNameNode/@packageApi,@complexTypeName,'.java')"/>
+            <xsl:variable name="path" select="replace(@package,'\.','/')"></xsl:variable>
+            <xsl:variable name="filename" select="concat('../output1/', $path,@complexTypeName,'.java')"/>
             <xsl:value-of select="$filename"/>
 
             <xsl:result-document href="{$filename}">
@@ -92,4 +91,7 @@
             </xsl:call-template>
         </xsl:if>
     </xsl:template>
+    
+    
+    
 </xsl:stylesheet>
