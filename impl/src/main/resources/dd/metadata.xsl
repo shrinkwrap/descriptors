@@ -51,6 +51,7 @@
             <xsl:for-each select="//schemaName">
                 <xsl:call-template name="WriteGroups">
                     <xsl:with-param name="pDocument" select="text()"/>
+                    <xsl:with-param name="pPackage" select="@packageApi"/>
                 </xsl:call-template>
             </xsl:for-each>
         </groups>
@@ -64,6 +65,7 @@
             <xsl:for-each select="//schemaName">
                 <xsl:call-template name="WriteClasses">
                     <xsl:with-param name="pDocument" select="text()"/>
+                    <xsl:with-param name="pPackage" select="@packageApi"/>
                 </xsl:call-template>
             </xsl:for-each>
         </classes>
@@ -116,7 +118,6 @@
                             <xsl:attribute name="schemaName">
                                 <xsl:value-of select="$pDocument"/>
                             </xsl:attribute>
-
                             <xsl:attribute name="package">
                                 <xsl:value-of select="$pPackage"/>
                             </xsl:attribute>
@@ -138,20 +139,23 @@
     <!-- ****************************************************** -->
     <xsl:template name="WriteGroups">
         <xsl:param name="pDocument"/>
+        <xsl:param name="pPackage"/>
         <xsl:for-each select="document($pDocument)//xsd:group">
             <xsl:variable name="complexTypeName" select="@name"/>
             <xsl:if test="count(xsd:sequence/xsd:element) > 0">
-                <group>
+                <class>
                     <xsl:attribute name="complexTypeName">
                         <xsl:value-of select="$complexTypeName"/>
                     </xsl:attribute>
                     <xsl:attribute name="schemaName">
                         <xsl:value-of select="$pDocument"/>
                     </xsl:attribute>
-
+                    <xsl:attribute name="package">
+                        <xsl:value-of select="$pPackage"/>
+                    </xsl:attribute>
                     <xsl:for-each select="xsd:sequence/xsd:element">
                         <element>
-                             <xsl:attribute name="name">
+                            <xsl:attribute name="name">
                                 <xsl:value-of select="@name"/>
                             </xsl:attribute>
                             <xsl:attribute name="type">
@@ -165,7 +169,7 @@
                             <xsl:value-of select="@ref"/>
                         </include>
                     </xsl:for-each>
-                </group>
+                </class>
             </xsl:if>
         </xsl:for-each>
     </xsl:template>
@@ -176,9 +180,9 @@
     <!-- ****************************************************** -->
     <xsl:template name="WriteClasses">
         <xsl:param name="pDocument"/>
+        <xsl:param name="pPackage"/>
         <xsl:for-each select="document($pDocument)//xsd:complexType">
             <xsl:variable name="complexTypeName" select="@name"/>
-
             <xsl:if test="count(xsd:sequence/xsd:element) > 0">
                 <class>
                     <xsl:attribute name="complexTypeName">
@@ -187,10 +191,12 @@
                     <xsl:attribute name="schemaName">
                         <xsl:value-of select="$pDocument"/>
                     </xsl:attribute>
-
+                    <xsl:attribute name="package">
+                        <xsl:value-of select="$pPackage"/>
+                    </xsl:attribute>
                     <xsl:for-each select="xsd:sequence/xsd:element">
-                         <element>
-                             <xsl:attribute name="name">
+                        <element>
+                            <xsl:attribute name="name">
                                 <xsl:value-of select="@name"/>
                             </xsl:attribute>
                             <xsl:attribute name="type">

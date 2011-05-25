@@ -229,12 +229,12 @@
         </enum>
     </enums>
     <groups>
-        <group complexTypeName="descriptionGroup" schemaName="../javaee_6.xsd">
+        <class complexTypeName="descriptionGroup" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
             <element name="description" type="javaee:descriptionType"/>
             <element name="display-name" type="javaee:display-nameType"/>
             <element name="icon" type="javaee:iconType"/>
-        </group>
-        <group complexTypeName="jndiEnvironmentRefsGroup" schemaName="../javaee_6.xsd">
+        </class>
+        <class complexTypeName="jndiEnvironmentRefsGroup" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
             <element name="env-entry" type="javaee:env-entryType"/>
             <element name="ejb-ref" type="javaee:ejb-refType"/>
             <element name="ejb-local-ref" type="javaee:ejb-local-refType"/>
@@ -247,21 +247,21 @@
             <element name="pre-destroy" type="javaee:lifecycle-callbackType"/>
             <element name="data-source" type="javaee:data-sourceType"/>
             <include>javaee:service-refGroup</include>
-        </group>
-        <group complexTypeName="resourceGroup" schemaName="../javaee_6.xsd">
+        </class>
+        <class complexTypeName="resourceGroup" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
             <element name="lookup-name" type="javaee:xsdStringType"/>
             <include>javaee:resourceBaseGroup</include>
-        </group>
-        <group complexTypeName="resourceBaseGroup" schemaName="../javaee_6.xsd">
+        </class>
+        <class complexTypeName="resourceBaseGroup" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
             <element name="mapped-name" type="javaee:xsdStringType"/>
             <element name="injection-target" type="javaee:injection-targetType"/>
-        </group>
-        <group complexTypeName="service-refGroup" schemaName="../javaee_web_services_client_1_3.xsd">
+        </class>
+        <class complexTypeName="service-refGroup" schemaName="../javaee_web_services_client_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13">
             <element name="service-ref" type="javaee:service-refType"/>
-        </group>
+        </class>
     </groups>
     <classes>
-        <class complexTypeName="data-sourceType" schemaName="../javaee_6.xsd">
+        <class complexTypeName="data-sourceType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
             <element name="description" type="javaee:descriptionType"/>
             <element name="name" type="javaee:jndi-nameType"/>
             <element name="class-name" type="javaee:fully-qualified-classType"/>
@@ -281,7 +281,7 @@
             <element name="max-idle-time" type="javaee:xsdIntegerType"/>
             <element name="max-statements" type="javaee:xsdIntegerType"/>
         </class>
-        <class complexTypeName="ejb-local-refType" schemaName="../javaee_6.xsd">
+        <class complexTypeName="ejb-local-refType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
             <element name="description" type="javaee:descriptionType"/>
             <element name="ejb-ref-name" type="javaee:ejb-ref-nameType"/>
             <element name="ejb-ref-type" type="javaee:ejb-ref-typeType"/>
@@ -290,7 +290,7 @@
             <element name="ejb-link" type="javaee:ejb-linkType"/>
             <include>javaee:resourceGroup</include>
         </class>
-        <class complexTypeName="ejb-refType" schemaName="../javaee_6.xsd">
+        <class complexTypeName="ejb-refType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
             <element name="description" type="javaee:descriptionType"/>
             <element name="ejb-ref-name" type="javaee:ejb-ref-nameType"/>
             <element name="ejb-ref-type" type="javaee:ejb-ref-typeType"/>
@@ -299,35 +299,35 @@
             <element name="ejb-link" type="javaee:ejb-linkType"/>
             <include>javaee:resourceGroup</include>
         </class>
-        <class complexTypeName="env-entryType" schemaName="../javaee_6.xsd">
+        <class complexTypeName="env-entryType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
             <element name="description" type="javaee:descriptionType"/>
             <element name="env-entry-name" type="javaee:jndi-nameType"/>
             <element name="env-entry-type" type="javaee:env-entry-type-valuesType"/>
             <element name="env-entry-value" type="javaee:xsdStringType"/>
             <include>javaee:resourceGroup</include>
         </class>
-        <class complexTypeName="iconType" schemaName="../javaee_6.xsd">
+        <class complexTypeName="iconType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
             <element name="small-icon" type="javaee:pathType"/>
             <element name="large-icon" type="javaee:pathType"/>
         </class>
-        <class complexTypeName="injection-targetType" schemaName="../javaee_6.xsd">
+        <class complexTypeName="injection-targetType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
             <element name="injection-target-class" type="javaee:fully-qualified-classType"/>
             <element name="injection-target-name" type="javaee:java-identifierType"/>
         </class>
-        <class complexTypeName="lifecycle-callbackType" schemaName="../javaee_6.xsd">
+        <class complexTypeName="lifecycle-callbackType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
             <element name="lifecycle-callback-class" type="javaee:fully-qualified-classType"/>
             <element name="lifecycle-callback-method" type="javaee:java-identifierType"/>
         </class>
-        <class complexTypeName="listenerType" schemaName="../javaee_6.xsd">
+        <class complexTypeName="listenerType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
             <element name="listener-class" type="javaee:fully-qualified-classType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="param-valueType" schemaName="../javaee_6.xsd">
+        <class complexTypeName="param-valueType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
             <element name="description" type="javaee:descriptionType"/>
             <element name="param-name" type="javaee:string"/>
             <element name="param-value" type="javaee:xsdStringType"/>
         </class>
-        <class complexTypeName="persistence-context-refType" schemaName="../javaee_6.xsd">
+        <class complexTypeName="persistence-context-refType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
             <element name="description" type="javaee:descriptionType"/>
             <element name="persistence-context-ref-name" type="javaee:jndi-nameType"/>
             <element name="persistence-unit-name" type="javaee:string"/>
@@ -335,23 +335,23 @@
             <element name="persistence-property" type="javaee:propertyType"/>
             <include>javaee:resourceBaseGroup</include>
         </class>
-        <class complexTypeName="propertyType" schemaName="../javaee_6.xsd">
+        <class complexTypeName="propertyType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
             <element name="name" type="javaee:xsdStringType"/>
             <element name="value" type="javaee:xsdStringType"/>
         </class>
-        <class complexTypeName="persistence-unit-refType" schemaName="../javaee_6.xsd">
+        <class complexTypeName="persistence-unit-refType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
             <element name="description" type="javaee:descriptionType"/>
             <element name="persistence-unit-ref-name" type="javaee:jndi-nameType"/>
             <element name="persistence-unit-name" type="javaee:string"/>
             <include>javaee:resourceBaseGroup</include>
         </class>
-        <class complexTypeName="resource-env-refType" schemaName="../javaee_6.xsd">
+        <class complexTypeName="resource-env-refType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
             <element name="description" type="javaee:descriptionType"/>
             <element name="resource-env-ref-name" type="javaee:jndi-nameType"/>
             <element name="resource-env-ref-type" type="javaee:fully-qualified-classType"/>
             <include>javaee:resourceGroup</include>
         </class>
-        <class complexTypeName="resource-refType" schemaName="../javaee_6.xsd">
+        <class complexTypeName="resource-refType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
             <element name="description" type="javaee:descriptionType"/>
             <element name="res-ref-name" type="javaee:jndi-nameType"/>
             <element name="res-type" type="javaee:fully-qualified-classType"/>
@@ -359,26 +359,26 @@
             <element name="res-sharing-scope" type="javaee:res-sharing-scopeType"/>
             <include>javaee:resourceGroup</include>
         </class>
-        <class complexTypeName="run-asType" schemaName="../javaee_6.xsd">
+        <class complexTypeName="run-asType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
             <element name="description" type="javaee:descriptionType"/>
             <element name="role-name" type="javaee:role-nameType"/>
         </class>
-        <class complexTypeName="security-roleType" schemaName="../javaee_6.xsd">
+        <class complexTypeName="security-roleType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
             <element name="description" type="javaee:descriptionType"/>
             <element name="role-name" type="javaee:role-nameType"/>
         </class>
-        <class complexTypeName="security-role-refType" schemaName="../javaee_6.xsd">
+        <class complexTypeName="security-role-refType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
             <element name="description" type="javaee:descriptionType"/>
             <element name="role-name" type="javaee:role-nameType"/>
             <element name="role-link" type="javaee:role-nameType"/>
         </class>
-        <class complexTypeName="message-destinationType" schemaName="../javaee_6.xsd">
+        <class complexTypeName="message-destinationType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
             <element name="message-destination-name" type="javaee:string"/>
             <element name="mapped-name" type="javaee:xsdStringType"/>
             <element name="lookup-name" type="javaee:xsdStringType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="message-destination-refType" schemaName="../javaee_6.xsd">
+        <class complexTypeName="message-destination-refType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
             <element name="description" type="javaee:descriptionType"/>
             <element name="message-destination-ref-name" type="javaee:jndi-nameType"/>
             <element name="message-destination-type" type="javaee:message-destination-typeType"/>
@@ -386,7 +386,7 @@
             <element name="message-destination-link" type="javaee:message-destination-linkType"/>
             <include>javaee:resourceGroup</include>
         </class>
-        <class complexTypeName="applicationType" schemaName="../application_6.xsd">
+        <class complexTypeName="applicationType" schemaName="../application_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.application6">
             <element name="application-name" type="javaee:string"/>
             <element name="initialize-in-order" type="javaee:generic-booleanType"/>
             <element name="module" type="javaee:moduleType"/>
@@ -405,38 +405,38 @@
             <include>javaee:descriptionGroup</include>
             <include>javaee:service-refGroup</include>
         </class>
-        <class complexTypeName="moduleType" schemaName="../application_6.xsd">
+        <class complexTypeName="moduleType" schemaName="../application_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.application6">
             <element name="alt-dd" type="javaee:pathType"/>
         </class>
-        <class complexTypeName="webType" schemaName="../application_6.xsd">
+        <class complexTypeName="webType" schemaName="../application_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.application6">
             <element name="web-uri" type="javaee:pathType"/>
             <element name="context-root" type="javaee:string"/>
         </class>
-        <class complexTypeName="access-timeoutType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="access-timeoutType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="timeout" type="javaee:xsdIntegerType"/>
             <element name="unit" type="javaee:time-unit-typeType"/>
         </class>
-        <class complexTypeName="async-methodType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="async-methodType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="method-name" type="javaee:string"/>
             <element name="method-params" type="javaee:method-paramsType"/>
         </class>
-        <class complexTypeName="activation-configType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="activation-configType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="description" type="javaee:descriptionType"/>
             <element name="activation-config-property" type="javaee:activation-config-propertyType"/>
         </class>
-        <class complexTypeName="activation-config-propertyType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="activation-config-propertyType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="activation-config-property-name" type="javaee:xsdStringType"/>
             <element name="activation-config-property-value" type="javaee:xsdStringType"/>
         </class>
-        <class complexTypeName="around-invokeType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="around-invokeType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="class" type="javaee:fully-qualified-classType"/>
             <element name="method-name" type="javaee:java-identifierType"/>
         </class>
-        <class complexTypeName="around-timeoutType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="around-timeoutType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="class" type="javaee:fully-qualified-classType"/>
             <element name="method-name" type="javaee:java-identifierType"/>
         </class>
-        <class complexTypeName="assembly-descriptorType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="assembly-descriptorType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="security-role" type="javaee:security-roleType"/>
             <element name="method-permission" type="javaee:method-permissionType"/>
             <element name="container-transaction" type="javaee:container-transactionType"/>
@@ -445,29 +445,29 @@
             <element name="exclude-list" type="javaee:exclude-listType"/>
             <element name="application-exception" type="javaee:application-exceptionType"/>
         </class>
-        <class complexTypeName="cmp-fieldType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="cmp-fieldType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="description" type="javaee:descriptionType"/>
             <element name="field-name" type="javaee:java-identifierType"/>
         </class>
-        <class complexTypeName="cmr-fieldType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="cmr-fieldType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="description" type="javaee:descriptionType"/>
             <element name="cmr-field-name" type="javaee:string"/>
             <element name="cmr-field-type" type="javaee:cmr-field-typeType"/>
         </class>
-        <class complexTypeName="concurrent-methodType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="concurrent-methodType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="method" type="javaee:named-methodType"/>
             <element name="lock" type="javaee:concurrent-lock-typeType"/>
             <element name="access-timeout" type="javaee:access-timeoutType"/>
         </class>
-        <class complexTypeName="container-transactionType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="container-transactionType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="description" type="javaee:descriptionType"/>
             <element name="method" type="javaee:methodType"/>
             <element name="trans-attribute" type="javaee:trans-attributeType"/>
         </class>
-        <class complexTypeName="depends-onType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="depends-onType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="ejb-name" type="javaee:ejb-linkType"/>
         </class>
-        <class complexTypeName="ejb-jarType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="ejb-jarType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="module-name" type="javaee:string"/>
             <element name="enterprise-beans" type="javaee:enterprise-beansType"/>
             <element name="interceptors" type="javaee:interceptorsType"/>
@@ -476,13 +476,13 @@
             <element name="ejb-client-jar" type="javaee:pathType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="ejb-relationType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="ejb-relationType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="description" type="javaee:descriptionType"/>
             <element name="ejb-relation-name" type="javaee:string"/>
             <element name="ejb-relationship-role" type="javaee:ejb-relationship-roleType"/>
             <element name="ejb-relationship-role" type="javaee:ejb-relationship-roleType"/>
         </class>
-        <class complexTypeName="ejb-relationship-roleType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="ejb-relationship-roleType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="description" type="javaee:descriptionType"/>
             <element name="ejb-relationship-role-name" type="javaee:string"/>
             <element name="multiplicity" type="javaee:multiplicityType"/>
@@ -490,7 +490,7 @@
             <element name="relationship-role-source" type="javaee:relationship-role-sourceType"/>
             <element name="cmr-field" type="javaee:cmr-fieldType"/>
         </class>
-        <class complexTypeName="entity-beanType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="entity-beanType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="ejb-name" type="javaee:ejb-nameType"/>
             <element name="mapped-name" type="javaee:xsdStringType"/>
             <element name="home" type="javaee:homeType"/>
@@ -511,20 +511,20 @@
             <include>javaee:descriptionGroup</include>
             <include>javaee:jndiEnvironmentRefsGroup</include>
         </class>
-        <class complexTypeName="exclude-listType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="exclude-listType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="description" type="javaee:descriptionType"/>
             <element name="method" type="javaee:methodType"/>
         </class>
-        <class complexTypeName="application-exceptionType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="application-exceptionType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="exception-class" type="javaee:fully-qualified-classType"/>
             <element name="rollback" type="javaee:true-falseType"/>
             <element name="inherited" type="javaee:true-falseType"/>
         </class>
-        <class complexTypeName="interceptorsType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="interceptorsType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="description" type="javaee:descriptionType"/>
             <element name="interceptor" type="javaee:interceptorType"/>
         </class>
-        <class complexTypeName="interceptorType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="interceptorType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="description" type="javaee:descriptionType"/>
             <element name="interceptor-class" type="javaee:fully-qualified-classType"/>
             <element name="around-invoke" type="javaee:around-invokeType"/>
@@ -533,29 +533,29 @@
             <element name="pre-passivate" type="javaee:lifecycle-callbackType"/>
             <include>javaee:jndiEnvironmentRefsGroup</include>
         </class>
-        <class complexTypeName="interceptor-bindingType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="interceptor-bindingType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="description" type="javaee:descriptionType"/>
             <element name="ejb-name" type="javaee:string"/>
             <element name="exclude-default-interceptors" type="javaee:true-falseType"/>
             <element name="exclude-class-interceptors" type="javaee:true-falseType"/>
             <element name="method" type="javaee:named-methodType"/>
         </class>
-        <class complexTypeName="interceptor-orderType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="interceptor-orderType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="interceptor-class" type="javaee:fully-qualified-classType"/>
         </class>
-        <class complexTypeName="named-methodType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="named-methodType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="method-name" type="javaee:string"/>
             <element name="method-params" type="javaee:method-paramsType"/>
         </class>
-        <class complexTypeName="init-methodType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="init-methodType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="create-method" type="javaee:named-methodType"/>
             <element name="bean-method" type="javaee:named-methodType"/>
         </class>
-        <class complexTypeName="remove-methodType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="remove-methodType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="bean-method" type="javaee:named-methodType"/>
             <element name="retain-if-exception" type="javaee:true-falseType"/>
         </class>
-        <class complexTypeName="message-driven-beanType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="message-driven-beanType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="ejb-name" type="javaee:ejb-nameType"/>
             <element name="mapped-name" type="javaee:xsdStringType"/>
             <element name="ejb-class" type="javaee:ejb-classType"/>
@@ -573,42 +573,42 @@
             <include>javaee:descriptionGroup</include>
             <include>javaee:jndiEnvironmentRefsGroup</include>
         </class>
-        <class complexTypeName="methodType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="methodType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="description" type="javaee:descriptionType"/>
             <element name="ejb-name" type="javaee:ejb-nameType"/>
             <element name="method-intf" type="javaee:method-intfType"/>
             <element name="method-name" type="javaee:method-nameType"/>
             <element name="method-params" type="javaee:method-paramsType"/>
         </class>
-        <class complexTypeName="method-paramsType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="method-paramsType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="method-param" type="javaee:java-typeType"/>
         </class>
-        <class complexTypeName="method-permissionType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="method-permissionType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="description" type="javaee:descriptionType"/>
             <element name="method" type="javaee:methodType"/>
         </class>
-        <class complexTypeName="queryType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="queryType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="description" type="javaee:descriptionType"/>
             <element name="query-method" type="javaee:query-methodType"/>
             <element name="result-type-mapping" type="javaee:result-type-mappingType"/>
             <element name="ejb-ql" type="javaee:xsdStringType"/>
         </class>
-        <class complexTypeName="query-methodType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="query-methodType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="method-name" type="javaee:method-nameType"/>
             <element name="method-params" type="javaee:method-paramsType"/>
         </class>
-        <class complexTypeName="relationship-role-sourceType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="relationship-role-sourceType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="description" type="javaee:descriptionType"/>
             <element name="ejb-name" type="javaee:ejb-nameType"/>
         </class>
-        <class complexTypeName="relationshipsType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="relationshipsType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="description" type="javaee:descriptionType"/>
             <element name="ejb-relation" type="javaee:ejb-relationType"/>
         </class>
-        <class complexTypeName="security-identityType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="security-identityType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="description" type="javaee:descriptionType"/>
         </class>
-        <class complexTypeName="session-beanType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="session-beanType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="ejb-name" type="javaee:ejb-nameType"/>
             <element name="mapped-name" type="javaee:xsdStringType"/>
             <element name="home" type="javaee:homeType"/>
@@ -644,11 +644,11 @@
             <include>javaee:descriptionGroup</include>
             <include>javaee:jndiEnvironmentRefsGroup</include>
         </class>
-        <class complexTypeName="stateful-timeoutType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="stateful-timeoutType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="timeout" type="javaee:xsdIntegerType"/>
             <element name="unit" type="javaee:time-unit-typeType"/>
         </class>
-        <class complexTypeName="timer-scheduleType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="timer-scheduleType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="second" type="javaee:string"/>
             <element name="minute" type="javaee:string"/>
             <element name="hour" type="javaee:string"/>
@@ -657,7 +657,7 @@
             <element name="day-of-week" type="javaee:string"/>
             <element name="year" type="javaee:string"/>
         </class>
-        <class complexTypeName="timerType" schemaName="../ejb-jar_3_1.xsd">
+        <class complexTypeName="timerType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="description" type="javaee:descriptionType"/>
             <element name="schedule" type="javaee:timer-scheduleType"/>
             <element name="start" type="xsd:dateTime"/>
@@ -667,7 +667,7 @@
             <element name="timezone" type="javaee:string"/>
             <element name="info" type="javaee:string"/>
         </class>
-        <class complexTypeName="port-componentType" schemaName="../javaee_web_services_1_3.xsd">
+        <class complexTypeName="port-componentType" schemaName="../javaee_web_services_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservices13">
             <element name="description" type="javaee:descriptionType"/>
             <element name="display-name" type="javaee:display-nameType"/>
             <element name="icon" type="javaee:iconType"/>
@@ -682,7 +682,7 @@
             <element name="service-endpoint-interface" type="javaee:fully-qualified-classType"/>
             <element name="service-impl-bean" type="javaee:service-impl-beanType"/>
         </class>
-        <class complexTypeName="webservice-descriptionType" schemaName="../javaee_web_services_1_3.xsd">
+        <class complexTypeName="webservice-descriptionType" schemaName="../javaee_web_services_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservices13">
             <element name="description" type="javaee:descriptionType"/>
             <element name="display-name" type="javaee:display-nameType"/>
             <element name="icon" type="javaee:iconType"/>
@@ -691,11 +691,11 @@
             <element name="jaxrpc-mapping-file" type="javaee:pathType"/>
             <element name="port-component" type="javaee:port-componentType"/>
         </class>
-        <class complexTypeName="webservicesType" schemaName="../javaee_web_services_1_3.xsd">
+        <class complexTypeName="webservicesType" schemaName="../javaee_web_services_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservices13">
             <element name="webservice-description" type="javaee:webservice-descriptionType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="service-refType" schemaName="../javaee_web_services_client_1_3.xsd">
+        <class complexTypeName="service-refType" schemaName="../javaee_web_services_client_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13">
             <element name="service-ref-name" type="javaee:jndi-nameType"/>
             <element name="service-interface" type="javaee:fully-qualified-classType"/>
             <element name="service-ref-type" type="javaee:fully-qualified-classType"/>
@@ -706,7 +706,7 @@
             <include>javaee:descriptionGroup</include>
             <include>javaee:resourceGroup</include>
         </class>
-        <class complexTypeName="port-component-refType" schemaName="../javaee_web_services_client_1_3.xsd">
+        <class complexTypeName="port-component-refType" schemaName="../javaee_web_services_client_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13">
             <element name="service-endpoint-interface" type="javaee:fully-qualified-classType"/>
             <element name="enable-mtom" type="javaee:true-falseType"/>
             <element name="mtom-threshold" type="javaee:xsdNonNegativeIntegerType"/>
@@ -714,21 +714,21 @@
             <element name="respect-binding" type="javaee:respect-bindingType"/>
             <element name="port-component-link" type="javaee:string"/>
         </class>
-        <class complexTypeName="handler-chainsType" schemaName="../javaee_web_services_client_1_3.xsd">
+        <class complexTypeName="handler-chainsType" schemaName="../javaee_web_services_client_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13">
             <element name="handler-chain" type="javaee:handler-chainType"/>
         </class>
-        <class complexTypeName="handler-chainType" schemaName="../javaee_web_services_client_1_3.xsd">
+        <class complexTypeName="handler-chainType" schemaName="../javaee_web_services_client_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13">
             <element name="handler" type="javaee:handlerType"/>
         </class>
-        <class complexTypeName="addressingType" schemaName="../javaee_web_services_client_1_3.xsd">
+        <class complexTypeName="addressingType" schemaName="../javaee_web_services_client_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13">
             <element name="enabled" type="javaee:true-falseType"/>
             <element name="required" type="javaee:true-falseType"/>
             <element name="responses" type="javaee:addressing-responsesType"/>
         </class>
-        <class complexTypeName="respect-bindingType" schemaName="../javaee_web_services_client_1_3.xsd">
+        <class complexTypeName="respect-bindingType" schemaName="../javaee_web_services_client_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13">
             <element name="enabled" type="javaee:true-falseType"/>
         </class>
-        <class complexTypeName="handlerType" schemaName="../javaee_web_services_client_1_3.xsd">
+        <class complexTypeName="handlerType" schemaName="../javaee_web_services_client_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13">
             <element name="handler-name" type="javaee:string"/>
             <element name="handler-class" type="javaee:fully-qualified-classType"/>
             <element name="init-param" type="javaee:param-valueType"/>
@@ -737,44 +737,44 @@
             <element name="port-name" type="javaee:string"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="auth-constraintType" schemaName="../web-common_3_0.xsd">
+        <class complexTypeName="auth-constraintType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="description" type="javaee:descriptionType"/>
             <element name="role-name" type="javaee:role-nameType"/>
         </class>
-        <class complexTypeName="error-pageType" schemaName="../web-common_3_0.xsd">
+        <class complexTypeName="error-pageType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="location" type="javaee:war-pathType"/>
         </class>
-        <class complexTypeName="filterType" schemaName="../web-common_3_0.xsd">
+        <class complexTypeName="filterType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="filter-name" type="javaee:filter-nameType"/>
             <element name="filter-class" type="javaee:fully-qualified-classType"/>
             <element name="async-supported" type="javaee:true-falseType"/>
             <element name="init-param" type="javaee:param-valueType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="filter-mappingType" schemaName="../web-common_3_0.xsd">
+        <class complexTypeName="filter-mappingType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="filter-name" type="javaee:filter-nameType"/>
             <element name="dispatcher" type="javaee:dispatcherType"/>
         </class>
-        <class complexTypeName="form-login-configType" schemaName="../web-common_3_0.xsd">
+        <class complexTypeName="form-login-configType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="form-login-page" type="javaee:war-pathType"/>
             <element name="form-error-page" type="javaee:war-pathType"/>
         </class>
-        <class complexTypeName="login-configType" schemaName="../web-common_3_0.xsd">
+        <class complexTypeName="login-configType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="auth-method" type="javaee:auth-methodType"/>
             <element name="realm-name" type="javaee:string"/>
             <element name="form-login-config" type="javaee:form-login-configType"/>
         </class>
-        <class complexTypeName="mime-mappingType" schemaName="../web-common_3_0.xsd">
+        <class complexTypeName="mime-mappingType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="extension" type="javaee:string"/>
             <element name="mime-type" type="javaee:mime-typeType"/>
         </class>
-        <class complexTypeName="security-constraintType" schemaName="../web-common_3_0.xsd">
+        <class complexTypeName="security-constraintType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="display-name" type="javaee:display-nameType"/>
             <element name="web-resource-collection" type="javaee:web-resource-collectionType"/>
             <element name="auth-constraint" type="javaee:auth-constraintType"/>
             <element name="user-data-constraint" type="javaee:user-data-constraintType"/>
         </class>
-        <class complexTypeName="servletType" schemaName="../web-common_3_0.xsd">
+        <class complexTypeName="servletType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="servlet-name" type="javaee:servlet-nameType"/>
             <element name="init-param" type="javaee:param-valueType"/>
             <element name="load-on-startup" type="javaee:load-on-startupType"/>
@@ -785,16 +785,16 @@
             <element name="multipart-config" type="javaee:multipart-configType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="servlet-mappingType" schemaName="../web-common_3_0.xsd">
+        <class complexTypeName="servlet-mappingType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="servlet-name" type="javaee:servlet-nameType"/>
             <element name="url-pattern" type="javaee:url-patternType"/>
         </class>
-        <class complexTypeName="session-configType" schemaName="../web-common_3_0.xsd">
+        <class complexTypeName="session-configType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="session-timeout" type="javaee:xsdIntegerType"/>
             <element name="cookie-config" type="javaee:cookie-configType"/>
             <element name="tracking-mode" type="javaee:tracking-modeType"/>
         </class>
-        <class complexTypeName="cookie-configType" schemaName="../web-common_3_0.xsd">
+        <class complexTypeName="cookie-configType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="name" type="javaee:cookie-nameType"/>
             <element name="domain" type="javaee:cookie-domainType"/>
             <element name="path" type="javaee:cookie-pathType"/>
@@ -803,44 +803,44 @@
             <element name="secure" type="javaee:true-falseType"/>
             <element name="max-age" type="javaee:xsdIntegerType"/>
         </class>
-        <class complexTypeName="user-data-constraintType" schemaName="../web-common_3_0.xsd">
+        <class complexTypeName="user-data-constraintType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="description" type="javaee:descriptionType"/>
             <element name="transport-guarantee" type="javaee:transport-guaranteeType"/>
         </class>
-        <class complexTypeName="web-resource-collectionType" schemaName="../web-common_3_0.xsd">
+        <class complexTypeName="web-resource-collectionType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="web-resource-name" type="javaee:string"/>
             <element name="description" type="javaee:descriptionType"/>
             <element name="url-pattern" type="javaee:url-patternType"/>
         </class>
-        <class complexTypeName="welcome-file-listType" schemaName="../web-common_3_0.xsd">
+        <class complexTypeName="welcome-file-listType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="welcome-file" type="xsd:string"/>
         </class>
-        <class complexTypeName="locale-encoding-mapping-listType" schemaName="../web-common_3_0.xsd">
+        <class complexTypeName="locale-encoding-mapping-listType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="locale-encoding-mapping" type="javaee:locale-encoding-mappingType"/>
         </class>
-        <class complexTypeName="locale-encoding-mappingType" schemaName="../web-common_3_0.xsd">
+        <class complexTypeName="locale-encoding-mappingType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="locale" type="javaee:localeType"/>
             <element name="encoding" type="javaee:encodingType"/>
         </class>
-        <class complexTypeName="orderingType" schemaName="../web-common_3_0.xsd">
+        <class complexTypeName="orderingType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="after" type="javaee:ordering-orderingType"/>
             <element name="before" type="javaee:ordering-orderingType"/>
         </class>
-        <class complexTypeName="ordering-orderingType" schemaName="../web-common_3_0.xsd">
+        <class complexTypeName="ordering-orderingType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="name" type="javaee:java-identifierType"/>
             <element name="others" type="javaee:ordering-othersType"/>
         </class>
-        <class complexTypeName="multipart-configType" schemaName="../web-common_3_0.xsd">
+        <class complexTypeName="multipart-configType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="location" type="javaee:string"/>
             <element name="max-file-size" type="xsd:long"/>
             <element name="max-request-size" type="xsd:long"/>
             <element name="file-size-threshold" type="xsd:integer"/>
         </class>
-        <class complexTypeName="jsp-configType" schemaName="../jsp_2_2.xsd">
+        <class complexTypeName="jsp-configType" schemaName="../jsp_2_2.xsd" package="org.jboss.shrinkwrap.descriptor.api.jsp22">
             <element name="taglib" type="javaee:taglibType"/>
             <element name="jsp-property-group" type="javaee:jsp-property-groupType"/>
         </class>
-        <class complexTypeName="jsp-property-groupType" schemaName="../jsp_2_2.xsd">
+        <class complexTypeName="jsp-property-groupType" schemaName="../jsp_2_2.xsd" package="org.jboss.shrinkwrap.descriptor.api.jsp22">
             <element name="url-pattern" type="javaee:url-patternType"/>
             <element name="el-ignored" type="javaee:true-falseType"/>
             <element name="page-encoding" type="javaee:string"/>
@@ -855,26 +855,26 @@
             <element name="error-on-undeclared-namespace" type="javaee:true-falseType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="taglibType" schemaName="../jsp_2_2.xsd">
+        <class complexTypeName="taglibType" schemaName="../jsp_2_2.xsd" package="org.jboss.shrinkwrap.descriptor.api.jsp22">
             <element name="taglib-uri" type="javaee:string"/>
             <element name="taglib-location" type="javaee:pathType"/>
         </class>
-        <class complexTypeName="activationspecType" schemaName="../connector_1_6.xsd">
+        <class complexTypeName="activationspecType" schemaName="../connector_1_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.connector16">
             <element name="activationspec-class" type="javaee:fully-qualified-classType"/>
             <element name="required-config-property" type="javaee:required-config-propertyType"/>
             <element name="config-property" type="javaee:config-propertyType"/>
         </class>
-        <class complexTypeName="adminobjectType" schemaName="../connector_1_6.xsd">
+        <class complexTypeName="adminobjectType" schemaName="../connector_1_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.connector16">
             <element name="adminobject-interface" type="javaee:fully-qualified-classType"/>
             <element name="adminobject-class" type="javaee:fully-qualified-classType"/>
             <element name="config-property" type="javaee:config-propertyType"/>
         </class>
-        <class complexTypeName="authentication-mechanismType" schemaName="../connector_1_6.xsd">
+        <class complexTypeName="authentication-mechanismType" schemaName="../connector_1_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.connector16">
             <element name="description" type="javaee:descriptionType"/>
             <element name="authentication-mechanism-type" type="javaee:xsdStringType"/>
             <element name="credential-interface" type="javaee:credential-interfaceType"/>
         </class>
-        <class complexTypeName="config-propertyType" schemaName="../connector_1_6.xsd">
+        <class complexTypeName="config-propertyType" schemaName="../connector_1_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.connector16">
             <element name="description" type="javaee:descriptionType"/>
             <element name="config-property-name" type="javaee:config-property-nameType"/>
             <element name="config-property-type" type="javaee:config-property-typeType"/>
@@ -883,7 +883,7 @@
             <element name="config-property-supports-dynamic-updates" type="javaee:true-falseType"/>
             <element name="config-property-confidential" type="javaee:true-falseType"/>
         </class>
-        <class complexTypeName="connection-definitionType" schemaName="../connector_1_6.xsd">
+        <class complexTypeName="connection-definitionType" schemaName="../connector_1_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.connector16">
             <element name="managedconnectionfactory-class" type="javaee:fully-qualified-classType"/>
             <element name="config-property" type="javaee:config-propertyType"/>
             <element name="connectionfactory-interface" type="javaee:fully-qualified-classType"/>
@@ -891,7 +891,7 @@
             <element name="connection-interface" type="javaee:fully-qualified-classType"/>
             <element name="connection-impl-class" type="javaee:fully-qualified-classType"/>
         </class>
-        <class complexTypeName="connectorType" schemaName="../connector_1_6.xsd">
+        <class complexTypeName="connectorType" schemaName="../connector_1_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.connector16">
             <element name="module-name" type="javaee:string"/>
             <element name="vendor-name" type="javaee:xsdStringType"/>
             <element name="eis-type" type="javaee:xsdStringType"/>
@@ -901,31 +901,31 @@
             <element name="required-work-context" type="javaee:fully-qualified-classType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="inbound-resourceadapterType" schemaName="../connector_1_6.xsd">
+        <class complexTypeName="inbound-resourceadapterType" schemaName="../connector_1_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.connector16">
             <element name="messageadapter" type="javaee:messageadapterType"/>
         </class>
-        <class complexTypeName="licenseType" schemaName="../connector_1_6.xsd">
+        <class complexTypeName="licenseType" schemaName="../connector_1_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.connector16">
             <element name="description" type="javaee:descriptionType"/>
             <element name="license-required" type="javaee:true-falseType"/>
         </class>
-        <class complexTypeName="messageadapterType" schemaName="../connector_1_6.xsd">
+        <class complexTypeName="messageadapterType" schemaName="../connector_1_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.connector16">
             <element name="messagelistener" type="javaee:messagelistenerType"/>
         </class>
-        <class complexTypeName="messagelistenerType" schemaName="../connector_1_6.xsd">
+        <class complexTypeName="messagelistenerType" schemaName="../connector_1_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.connector16">
             <element name="messagelistener-type" type="javaee:fully-qualified-classType"/>
             <element name="activationspec" type="javaee:activationspecType"/>
         </class>
-        <class complexTypeName="outbound-resourceadapterType" schemaName="../connector_1_6.xsd">
+        <class complexTypeName="outbound-resourceadapterType" schemaName="../connector_1_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.connector16">
             <element name="connection-definition" type="javaee:connection-definitionType"/>
             <element name="transaction-support" type="javaee:transaction-supportType"/>
             <element name="authentication-mechanism" type="javaee:authentication-mechanismType"/>
             <element name="reauthentication-support" type="javaee:true-falseType"/>
         </class>
-        <class complexTypeName="required-config-propertyType" schemaName="../connector_1_6.xsd">
+        <class complexTypeName="required-config-propertyType" schemaName="../connector_1_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.connector16">
             <element name="description" type="javaee:descriptionType"/>
             <element name="config-property-name" type="javaee:config-property-nameType"/>
         </class>
-        <class complexTypeName="resourceadapterType" schemaName="../connector_1_6.xsd">
+        <class complexTypeName="resourceadapterType" schemaName="../connector_1_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.connector16">
             <element name="resourceadapter-class" type="javaee:fully-qualified-classType"/>
             <element name="config-property" type="javaee:config-propertyType"/>
             <element name="outbound-resourceadapter" type="javaee:outbound-resourceadapterType"/>
@@ -933,14 +933,14 @@
             <element name="adminobject" type="javaee:adminobjectType"/>
             <element name="security-permission" type="javaee:security-permissionType"/>
         </class>
-        <class complexTypeName="security-permissionType" schemaName="../connector_1_6.xsd">
+        <class complexTypeName="security-permissionType" schemaName="../connector_1_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.connector16">
             <element name="description" type="javaee:descriptionType"/>
             <element name="security-permission-spec" type="javaee:xsdStringType"/>
         </class>
-        <class complexTypeName="" schemaName="../persistence_2_0.xsd">
+        <class complexTypeName="" schemaName="../persistence_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.persistence20">
             <element name="persistence-unit" type=""/>
         </class>
-        <class complexTypeName="" schemaName="../persistence_2_0.xsd">
+        <class complexTypeName="" schemaName="../persistence_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.persistence20">
             <element name="description" type="xsd:string"/>
             <element name="provider" type="xsd:string"/>
             <element name="jta-data-source" type="xsd:string"/>
@@ -953,69 +953,69 @@
             <element name="validation-mode" type="persistence:persistence-unit-validation-mode-type"/>
             <element name="properties" type=""/>
         </class>
-        <class complexTypeName="" schemaName="../persistence_2_0.xsd">
+        <class complexTypeName="" schemaName="../persistence_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.persistence20">
             <element name="property" type=""/>
         </class>
-        <class complexTypeName="facelet-taglibType" schemaName="../web-facelettaglibrary_2_0.xsd">
+        <class complexTypeName="facelet-taglibType" schemaName="../web-facelettaglibrary_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacelettaglibrary20">
             <element name="taglib-extension" type="javaee:facelet-taglib-extensionType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="facelet-taglib-tagType" schemaName="../web-facelettaglibrary_2_0.xsd">
+        <class complexTypeName="facelet-taglib-tagType" schemaName="../web-facelettaglibrary_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacelettaglibrary20">
             <element name="tag-name" type="javaee:facelet-taglib-canonical-nameType"/>
             <element name="attribute" type="javaee:facelet-taglib-tag-attributeType"/>
             <element name="tag-extension" type="javaee:facelet-taglib-tag-extensionType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="facelet-taglib-tag-attributeType" schemaName="../web-facelettaglibrary_2_0.xsd">
+        <class complexTypeName="facelet-taglib-tag-attributeType" schemaName="../web-facelettaglibrary_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacelettaglibrary20">
             <element name="name" type="javaee:java-identifierType"/>
             <element name="required" type="javaee:generic-booleanType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="facelet-taglib-functionType" schemaName="../web-facelettaglibrary_2_0.xsd">
+        <class complexTypeName="facelet-taglib-functionType" schemaName="../web-facelettaglibrary_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacelettaglibrary20">
             <element name="function-name" type="javaee:string"/>
             <element name="function-class" type="javaee:fully-qualified-classType"/>
             <element name="function-signature" type="javaee:string"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="facelet-taglib-tag-behaviorType" schemaName="../web-facelettaglibrary_2_0.xsd">
+        <class complexTypeName="facelet-taglib-tag-behaviorType" schemaName="../web-facelettaglibrary_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacelettaglibrary20">
             <element name="behavior-id" type="javaee:string"/>
             <element name="handler-class" type="javaee:fully-qualified-classType"/>
             <element name="behavior-extension" type="javaee:facelet-taglib-tag-behavior-extensionType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="facelet-taglib-tag-componentType" schemaName="../web-facelettaglibrary_2_0.xsd">
+        <class complexTypeName="facelet-taglib-tag-componentType" schemaName="../web-facelettaglibrary_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacelettaglibrary20">
             <element name="component-type" type="javaee:string"/>
             <element name="renderer-type" type="javaee:string"/>
             <element name="handler-class" type="javaee:fully-qualified-classType"/>
             <element name="component-extension" type="javaee:facelet-taglib-tag-component-extensionType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="facelet-taglib-tag-converterType" schemaName="../web-facelettaglibrary_2_0.xsd">
+        <class complexTypeName="facelet-taglib-tag-converterType" schemaName="../web-facelettaglibrary_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacelettaglibrary20">
             <element name="converter-id" type="javaee:string"/>
             <element name="handler-class" type="javaee:fully-qualified-classType"/>
             <element name="converter-extension" type="javaee:facelet-taglib-tag-converter-extensionType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="facelet-taglib-tag-validatorType" schemaName="../web-facelettaglibrary_2_0.xsd">
+        <class complexTypeName="facelet-taglib-tag-validatorType" schemaName="../web-facelettaglibrary_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacelettaglibrary20">
             <element name="validator-id" type="javaee:string"/>
             <element name="handler-class" type="javaee:fully-qualified-classType"/>
             <element name="validator-extension" type="javaee:facelet-taglib-tag-validator-extensionType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="faces-config-orderingType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-orderingType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="after" type="javaee:faces-config-ordering-orderingType"/>
             <element name="before" type="javaee:faces-config-ordering-orderingType"/>
         </class>
-        <class complexTypeName="faces-config-ordering-orderingType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-ordering-orderingType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="name" type="javaee:java-identifierType"/>
             <element name="others" type="javaee:faces-config-ordering-othersType"/>
         </class>
-        <class complexTypeName="faces-config-application-resource-bundleType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-application-resource-bundleType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="base-name" type="javaee:fully-qualified-classType"/>
             <element name="var" type="javaee:string"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="faces-config-attributeType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-attributeType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="attribute-name" type="javaee:string"/>
             <element name="attribute-class" type="javaee:fully-qualified-classType"/>
             <element name="default-value" type="javaee:faces-config-default-valueType"/>
@@ -1023,7 +1023,7 @@
             <element name="attribute-extension" type="javaee:faces-config-attribute-extensionType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="faces-config-componentType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-componentType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="component-type" type="javaee:string"/>
             <element name="component-class" type="javaee:fully-qualified-classType"/>
             <element name="facet" type="javaee:faces-config-facetType"/>
@@ -1032,50 +1032,50 @@
             <element name="component-extension" type="javaee:faces-config-component-extensionType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="faces-config-facetType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-facetType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="facet-name" type="javaee:java-identifierType"/>
             <element name="facet-extension" type="javaee:faces-config-facet-extensionType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="faces-config-converterType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-converterType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="converter-class" type="javaee:fully-qualified-classType"/>
             <element name="attribute" type="javaee:faces-config-attributeType"/>
             <element name="property" type="javaee:faces-config-propertyType"/>
             <element name="converter-extension" type="javaee:faces-config-converter-extensionType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="faces-config-lifecycleType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-lifecycleType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="phase-listener" type="javaee:fully-qualified-classType"/>
             <element name="lifecycle-extension" type="javaee:faces-config-lifecycle-extensionType"/>
         </class>
-        <class complexTypeName="faces-config-locale-configType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-locale-configType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="default-locale" type="javaee:faces-config-default-localeType"/>
             <element name="supported-locale" type="javaee:faces-config-supported-localeType"/>
         </class>
-        <class complexTypeName="faces-config-default-validatorsType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-default-validatorsType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="validator-id" type="javaee:string"/>
         </class>
-        <class complexTypeName="faces-config-managed-beanType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-managed-beanType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="managed-bean-name" type="javaee:java-identifierType"/>
             <element name="managed-bean-class" type="javaee:fully-qualified-classType"/>
             <element name="managed-bean-scope" type="javaee:faces-config-managed-bean-scopeOrNoneType"/>
             <element name="managed-bean-extension" type="javaee:faces-config-managed-bean-extensionType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="faces-config-managed-propertyType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-managed-propertyType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="property-name" type="javaee:string"/>
             <element name="property-class" type="javaee:java-typeType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="faces-config-map-entryType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-map-entryType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="key" type="javaee:string"/>
         </class>
-        <class complexTypeName="faces-config-map-entriesType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-map-entriesType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="key-class" type="javaee:fully-qualified-classType"/>
             <element name="value-class" type="javaee:faces-config-value-classType"/>
             <element name="map-entry" type="javaee:faces-config-map-entryType"/>
         </class>
-        <class complexTypeName="faces-config-navigation-caseType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-navigation-caseType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="from-action" type="javaee:faces-config-from-actionType"/>
             <element name="from-outcome" type="javaee:string"/>
             <element name="if" type="javaee:faces-config-ifType"/>
@@ -1083,13 +1083,13 @@
             <element name="redirect" type="javaee:faces-config-redirectType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="faces-config-navigation-ruleType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-navigation-ruleType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="from-view-id" type="javaee:faces-config-from-view-idType"/>
             <element name="navigation-case" type="javaee:faces-config-navigation-caseType"/>
             <element name="navigation-rule-extension" type="javaee:faces-config-navigation-rule-extensionType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="faces-config-propertyType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-propertyType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="property-name" type="javaee:string"/>
             <element name="property-class" type="javaee:java-typeType"/>
             <element name="default-value" type="javaee:faces-config-default-valueType"/>
@@ -1097,19 +1097,19 @@
             <element name="property-extension" type="javaee:faces-config-property-extensionType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="faces-config-redirectType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-redirectType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="view-param" type="javaee:faces-config-redirect-viewParamType"/>
         </class>
-        <class complexTypeName="faces-config-redirect-viewParamType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-redirect-viewParamType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="name" type="javaee:string"/>
             <element name="value" type="javaee:string"/>
         </class>
-        <class complexTypeName="faces-config-referenced-beanType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-referenced-beanType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="referenced-bean-name" type="javaee:java-identifierType"/>
             <element name="referenced-bean-class" type="javaee:fully-qualified-classType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="faces-config-render-kitType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-render-kitType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="render-kit-id" type="javaee:string"/>
             <element name="render-kit-class" type="javaee:fully-qualified-classType"/>
             <element name="renderer" type="javaee:faces-config-rendererType"/>
@@ -1117,11 +1117,11 @@
             <element name="render-kit-extension" type="javaee:faces-config-render-kit-extensionType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="faces-config-client-behavior-rendererType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-client-behavior-rendererType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="client-behavior-renderer-type" type="javaee:string"/>
             <element name="client-behavior-renderer-class" type="javaee:fully-qualified-classType"/>
         </class>
-        <class complexTypeName="faces-config-rendererType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-rendererType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="component-family" type="javaee:string"/>
             <element name="renderer-type" type="javaee:string"/>
             <element name="renderer-class" type="javaee:fully-qualified-classType"/>
@@ -1130,7 +1130,7 @@
             <element name="renderer-extension" type="javaee:faces-config-renderer-extensionType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="faces-config-behaviorType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-behaviorType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="behavior-id" type="javaee:string"/>
             <element name="behavior-class" type="javaee:fully-qualified-classType"/>
             <element name="attribute" type="javaee:faces-config-attributeType"/>
@@ -1138,7 +1138,7 @@
             <element name="behavior-extension" type="javaee:faces-config-behavior-extensionType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="faces-config-validatorType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-validatorType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="validator-id" type="javaee:string"/>
             <element name="validator-class" type="javaee:fully-qualified-classType"/>
             <element name="attribute" type="javaee:faces-config-attributeType"/>
@@ -1146,15 +1146,15 @@
             <element name="validator-extension" type="javaee:faces-config-validator-extensionType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="faces-config-list-entriesType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-list-entriesType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="value-class" type="javaee:faces-config-value-classType"/>
         </class>
-        <class complexTypeName="faces-config-system-event-listenerType" schemaName="../web-facesconfig_2_0.xsd">
+        <class complexTypeName="faces-config-system-event-listenerType" schemaName="../web-facesconfig_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20">
             <element name="system-event-listener-class" type="javaee:fully-qualified-classType"/>
             <element name="system-event-class" type="javaee:fully-qualified-classType"/>
             <element name="source-class" type="javaee:fully-qualified-classType"/>
         </class>
-        <class complexTypeName="functionType" schemaName="../web-jsptaglibrary_2_1.xsd">
+        <class complexTypeName="functionType" schemaName="../web-jsptaglibrary_2_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.webjsptaglibrary21">
             <element name="name" type="javaee:tld-canonical-nameType"/>
             <element name="function-class" type="javaee:fully-qualified-classType"/>
             <element name="function-signature" type="javaee:string"/>
@@ -1162,14 +1162,14 @@
             <element name="function-extension" type="javaee:tld-extensionType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="tagFileType" schemaName="../web-jsptaglibrary_2_1.xsd">
+        <class complexTypeName="tagFileType" schemaName="../web-jsptaglibrary_2_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.webjsptaglibrary21">
             <element name="name" type="javaee:tld-canonical-nameType"/>
             <element name="path" type="javaee:pathType"/>
             <element name="example" type="javaee:xsdStringType"/>
             <element name="tag-extension" type="javaee:tld-extensionType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="tagType" schemaName="../web-jsptaglibrary_2_1.xsd">
+        <class complexTypeName="tagType" schemaName="../web-jsptaglibrary_2_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.webjsptaglibrary21">
             <element name="name" type="javaee:tld-canonical-nameType"/>
             <element name="tag-class" type="javaee:fully-qualified-classType"/>
             <element name="tei-class" type="javaee:fully-qualified-classType"/>
@@ -1181,21 +1181,21 @@
             <element name="tag-extension" type="javaee:tld-extensionType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="tld-attributeType" schemaName="../web-jsptaglibrary_2_1.xsd">
+        <class complexTypeName="tld-attributeType" schemaName="../web-jsptaglibrary_2_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.webjsptaglibrary21">
             <element name="description" type="javaee:descriptionType"/>
             <element name="name" type="javaee:java-identifierType"/>
             <element name="required" type="javaee:generic-booleanType"/>
         </class>
-        <class complexTypeName="tld-deferred-methodType" schemaName="../web-jsptaglibrary_2_1.xsd">
+        <class complexTypeName="tld-deferred-methodType" schemaName="../web-jsptaglibrary_2_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.webjsptaglibrary21">
             <element name="method-signature" type="javaee:string"/>
         </class>
-        <class complexTypeName="tld-deferred-valueType" schemaName="../web-jsptaglibrary_2_1.xsd">
+        <class complexTypeName="tld-deferred-valueType" schemaName="../web-jsptaglibrary_2_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.webjsptaglibrary21">
             <element name="type" type="javaee:fully-qualified-classType"/>
         </class>
-        <class complexTypeName="tld-extensionType" schemaName="../web-jsptaglibrary_2_1.xsd">
+        <class complexTypeName="tld-extensionType" schemaName="../web-jsptaglibrary_2_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.webjsptaglibrary21">
             <element name="extension-element" type="javaee:extensibleType"/>
         </class>
-        <class complexTypeName="tldTaglibType" schemaName="../web-jsptaglibrary_2_1.xsd">
+        <class complexTypeName="tldTaglibType" schemaName="../web-jsptaglibrary_2_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.webjsptaglibrary21">
             <element name="tlib-version" type="javaee:dewey-versionType"/>
             <element name="short-name" type="javaee:tld-canonical-nameType"/>
             <element name="uri" type="javaee:xsdAnyURIType"/>
@@ -1207,21 +1207,21 @@
             <element name="taglib-extension" type="javaee:tld-extensionType"/>
             <include>javaee:descriptionGroup</include>
         </class>
-        <class complexTypeName="validatorType" schemaName="../web-jsptaglibrary_2_1.xsd">
+        <class complexTypeName="validatorType" schemaName="../web-jsptaglibrary_2_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.webjsptaglibrary21">
             <element name="description" type="javaee:descriptionType"/>
             <element name="validator-class" type="javaee:fully-qualified-classType"/>
             <element name="init-param" type="javaee:param-valueType"/>
         </class>
-        <class complexTypeName="variableType" schemaName="../web-jsptaglibrary_2_1.xsd">
+        <class complexTypeName="variableType" schemaName="../web-jsptaglibrary_2_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.webjsptaglibrary21">
             <element name="description" type="javaee:descriptionType"/>
             <element name="variable-class" type="javaee:fully-qualified-classType"/>
             <element name="declare" type="javaee:generic-booleanType"/>
             <element name="scope" type="javaee:variable-scopeType"/>
         </class>
-        <class complexTypeName="partial-response-attributesType" schemaName="../web-partialresponse_2_0.xsd">
+        <class complexTypeName="partial-response-attributesType" schemaName="../web-partialresponse_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webpartialresponse20">
             <element name="attribute" type=""/>
         </class>
-        <class complexTypeName="partial-response-errorType" schemaName="../web-partialresponse_2_0.xsd">
+        <class complexTypeName="partial-response-errorType" schemaName="../web-partialresponse_2_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webpartialresponse20">
             <element name="error-name" type="xsd:string"/>
             <element name="error-message" type="xsd:string"/>
         </class>
