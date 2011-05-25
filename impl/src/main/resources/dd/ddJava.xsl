@@ -85,6 +85,21 @@
             <xsl:value-of select="$vClassname"/>
             <xsl:text>&lt;T&gt;</xsl:text>
             <xsl:text>&#10;</xsl:text>
+            
+            <xsl:for-each select="include">
+                <xsl:text> extends </xsl:text>
+                 <xsl:call-template name="PrintDataType">
+                    <xsl:with-param name="pDataType" select="text()"/>
+                    <!--                    <xsl:with-param name="pClassName" select="$pTypeName"/>-->
+                 </xsl:call-template>
+                <xsl:if test="position() != last()">
+                    <xsl:text>, </xsl:text>
+                </xsl:if>
+                <xsl:if test="position() = last()">
+                   <xsl:text>&#10;</xsl:text>
+                </xsl:if>
+            </xsl:for-each>
+            
             <xsl:text>{</xsl:text>
             <xsl:text>&#10;</xsl:text>
 
@@ -144,15 +159,35 @@
         <xsl:choose>
             <xsl:when test="contains($pDataType, ':')">
                 <xsl:variable name="pJavaObject" select="substring-after($pJavaObject, ':')"/>
-                <xsl:call-template name="JavaTypeMapping">
-                    <xsl:with-param name="pText" select="$pJavaObject"/>
+                <xsl:call-template name="PrintDataType">
+                    <xsl:with-param name="pDataType" select="$pJavaObject"/>
                 </xsl:call-template>
             </xsl:when>
 
             <xsl:otherwise>
-                <xsl:call-template name="JavaTypeMapping">
-                    <xsl:with-param name="pText" select="$pJavaObject"/>
-                </xsl:call-template>
+
+                <xsl:variable name="vMappedTo" select="//datatype[@complexTypeName=$pJavaObject]/@mappedTo"/>
+                <xsl:choose>
+                    <xsl:when test="$vMappedTo">                        
+                        <xsl:choose>
+                            <xsl:when test="starts-with($vMappedTo, 'xsd:')">
+                                 <xsl:call-template name="JavaTypeMapping">
+                                <xsl:with-param name="pText" select="$vMappedTo"/>
+                            </xsl:call-template>                                
+                            </xsl:when>
+                            <xsl:otherwise>
+                                 <xsl:call-template name="PrintDataType">
+                                <xsl:with-param name="pDataType" select="$vMappedTo"/>
+                            </xsl:call-template>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="Pascalize">
+                            <xsl:with-param name="pText" select="$pJavaObject"/>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:otherwise>
         </xsl:choose>
 
@@ -212,7 +247,7 @@
             <xsl:when test="$pText='string'">
                 <xsl:text>String</xsl:text>
             </xsl:when>
-            <xsl:when test="$pText='string'">
+            <xsl:when test="$pText='xsd:token'">
                 <xsl:text>String</xsl:text>
             </xsl:when>
             <xsl:when test="$pText='nonEmptyStringType'">
