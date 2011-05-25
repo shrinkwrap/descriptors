@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    exclude-result-prefixes="xs" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
 
     <xsl:template match="/">
         <metadata>
@@ -57,7 +55,7 @@
             </xsl:for-each>
         </groups>
     </xsl:template>
-    
+
     <!-- ****************************************************** -->
     <!-- ****** Template which generates the classes      ***** -->
     <!-- ****************************************************** -->
@@ -118,7 +116,7 @@
                             <xsl:attribute name="schemaName">
                                 <xsl:value-of select="$pDocument"/>
                             </xsl:attribute>
-                            
+
                             <xsl:attribute name="package">
                                 <xsl:value-of select="$pPackage"/>
                             </xsl:attribute>
@@ -153,7 +151,12 @@
 
                     <xsl:for-each select="xsd:sequence/xsd:element">
                         <element>
-                            <xsl:value-of select="@name"/>
+                             <xsl:attribute name="name">
+                                <xsl:value-of select="@name"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="type">
+                                <xsl:value-of select="@type"/>
+                            </xsl:attribute>
                         </element>
                     </xsl:for-each>
 
@@ -166,7 +169,7 @@
             </xsl:if>
         </xsl:for-each>
     </xsl:template>
-    
+
 
     <!-- ****************************************************** -->
     <!-- ****** Template which writes the classes        ****** -->
@@ -186,8 +189,13 @@
                     </xsl:attribute>
 
                     <xsl:for-each select="xsd:sequence/xsd:element">
-                        <element>
-                            <xsl:value-of select="@name"/>
+                         <element>
+                             <xsl:attribute name="name">
+                                <xsl:value-of select="@name"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="type">
+                                <xsl:value-of select="@type"/>
+                            </xsl:attribute>
                         </element>
                     </xsl:for-each>
 
@@ -200,5 +208,5 @@
             </xsl:if>
         </xsl:for-each>
     </xsl:template>
-    
+
 </xsl:stylesheet>

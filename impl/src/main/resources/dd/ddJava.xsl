@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-    xmlns:functx="http://www.functx.com"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:functx="http://www.functx.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
     <!--    <xsl:output method="text"/>-->
     <xsl:output method="text" indent="yes" media-type="text/plain"/>
 
@@ -9,10 +7,9 @@
     <xsl:variable name="vUpper" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
 
     <xsl:template match="/">
-        <xsl:call-template name="GenerateEnums"/>
-
-        <!--          <xsl:call-template name="GenerateGroups"/>
-            <xsl:call-template name="GenerateClasses"/>-->
+        <!--        <xsl:call-template name="GenerateEnums"/>-->
+        <xsl:call-template name="GenerateGroups"/>
+        <!--            <xsl:call-template name="GenerateClasses"/>-->
 
     </xsl:template>
 
@@ -21,14 +18,13 @@
     <!-- ****** Template which generates the interfaces   ***** -->
     <!-- ****************************************************** -->
     <xsl:template name="GenerateInterfaces">
-            <xsl:for-each select="//groups/group">
-                
-               <!-- <xsl:call-template name="WriteEnums">
+        <xsl:for-each select="//groups/group">
+            <!-- <xsl:call-template name="WriteEnums">
                     <xsl:with-param name="pDocument" select="text()"/>
                 </xsl:call-template>-->
-            </xsl:for-each>
+        </xsl:for-each>
 
-        
+
     </xsl:template>
 
 
@@ -38,11 +34,11 @@
     <xsl:template name="GenerateEnums">
         <xsl:param name="pTypeName"/>
         <xsl:for-each select="//enums/enum">
-            
+
             <xsl:variable name="vClassname" select="replace(@complexTypeName,'-',' ')"/>
-            <xsl:variable name="vClassname" select="functx:words-to-camel-case($vClassname)"/> 
+            <xsl:variable name="vClassname" select="functx:words-to-camel-case($vClassname)"/>
             <xsl:variable name="vClassname" select="concat(upper-case(substring($vClassname,1,1)), substring($vClassname,2))"/>
-            
+
             <xsl:variable name="path" select="replace(@package,'\.','/')"/>
             <xsl:variable name="filename" select="concat('../', $path,'/' , $vClassname,'.java')"/>
             <xsl:value-of select="$filename"/>
@@ -71,6 +67,97 @@
     </xsl:template>
 
 
+
+    <!-- ******************************************************* -->
+    <!-- ****** Template which generates the interfaces ****** -->
+    <!-- ******************************************************* -->
+    <xsl:template name="GenerateGroups">
+        <xsl:param name="pTypeName"/>
+
+        <!-- **** loop through all elements **** -->
+        <xsl:for-each select="//groups/group">
+
+            <xsl:variable name="vClassname" select="replace(@complexTypeName,'-',' ')"/>
+            <xsl:variable name="vClassname" select="functx:words-to-camel-case($vClassname)"/>
+            <xsl:variable name="vClassname" select="concat(upper-case(substring($vClassname,1,1)), substring($vClassname,2))"/>
+
+            <xsl:text>public interface </xsl:text>
+            <xsl:value-of select="$vClassname"/>
+            <xsl:text>&lt;T&gt;</xsl:text>
+            <xsl:text>&#10;</xsl:text>
+            <xsl:text>{</xsl:text>
+            <xsl:text>&#10;</xsl:text>
+
+            <xsl:for-each select="element">
+
+                <xsl:variable name="vMethodName" select="replace(@name,'-',' ')"/>
+                <xsl:variable name="vMethodName" select="functx:words-to-camel-case($vMethodName)"/>
+
+                <!-- **** generate set element **** -->
+                <xsl:text>   public T </xsl:text>
+                <xsl:text>set</xsl:text>
+                <xsl:call-template name="Pascalize">
+                    <xsl:with-param name="pText" select="@name"/>
+                </xsl:call-template>
+
+                <xsl:text>(</xsl:text>
+                <xsl:call-template name="PrintDataType">
+                    <xsl:with-param name="pDataType" select="@type"/>
+                    <!--                    <xsl:with-param name="pClassName" select="$pTypeName"/>-->
+                </xsl:call-template>
+
+                <xsl:text> </xsl:text>
+                <xsl:value-of select="$vMethodName"/>
+                <xsl:text>);</xsl:text>
+                <xsl:text>&#10;</xsl:text>
+
+                <!-- **** generate get element **** -->
+                <xsl:text>   public </xsl:text>
+                <xsl:call-template name="PrintDataType">
+                    <xsl:with-param name="pDataType" select="@type"/>
+                    <!--                    <xsl:with-param name="pClassName" select="$pTypeName"/>-->
+                </xsl:call-template>
+                <xsl:text> </xsl:text>
+
+                <xsl:text>get</xsl:text>
+                <xsl:call-template name="Pascalize">
+                    <xsl:with-param name="pText" select="@name"/>
+                </xsl:call-template>
+                <xsl:text>();</xsl:text>
+                <xsl:text>&#10;</xsl:text>
+
+            </xsl:for-each>
+
+            <xsl:text>}</xsl:text>
+            <xsl:text>&#10;</xsl:text>
+            <xsl:text>&#10;</xsl:text>
+
+        </xsl:for-each>
+    </xsl:template>
+
+
+
+    <xsl:template name="PrintDataType">
+        <xsl:param name="pDataType"/>
+
+        <xsl:variable name="pJavaObject" select="$pDataType"/>
+        <xsl:choose>
+            <xsl:when test="contains($pDataType, ':')">
+                <xsl:variable name="pJavaObject" select="substring-after($pJavaObject, ':')"/>
+                <xsl:call-template name="JavaTypeMapping">
+                    <xsl:with-param name="pText" select="$pJavaObject"/>
+                </xsl:call-template>
+            </xsl:when>
+
+            <xsl:otherwise>
+                <xsl:call-template name="JavaTypeMapping">
+                    <xsl:with-param name="pText" select="$pJavaObject"/>
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
+
+    </xsl:template>
+
     <!-- ****************************************************** -->
     <!-- ****** Template which generates pascalize names ****** -->
     <!-- ****************************************************** -->
@@ -91,6 +178,60 @@
                 <xsl:with-param name="pText" select="substring-after(substring($pText,2), '-')"/>
             </xsl:call-template>
         </xsl:if>
+    </xsl:template>
+
+
+    <xsl:template name="JavaTypeMapping">
+        <xsl:param name="pText"/>
+
+        <xsl:choose>
+            <xsl:when test="$pText='xsd:long'">
+                <xsl:text>Long</xsl:text>
+            </xsl:when>
+            <xsl:when test="$pText='xsd:integer'">
+                <xsl:text>Integer</xsl:text>
+            </xsl:when>
+            <xsl:when test="$pText='xsd:string'">
+                <xsl:text>String</xsl:text>
+            </xsl:when>
+            <xsl:when test="$pText='xsdIntegerType'">
+                <xsl:text>Integer</xsl:text>
+            </xsl:when>
+            <xsl:when test="$pText='positiveInteger'">
+                <xsl:text>Integer</xsl:text>
+            </xsl:when>
+            <xsl:when test="$pText='nonNegativeInteger'">
+                <xsl:text>Integer</xsl:text>
+            </xsl:when>
+            <xsl:when test="$pText='integer'">
+                <xsl:text>Integer</xsl:text>
+            </xsl:when>
+            <xsl:when test="$pText='xsdStringType'">
+                <xsl:text>String</xsl:text>
+            </xsl:when>
+            <xsl:when test="$pText='string'">
+                <xsl:text>String</xsl:text>
+            </xsl:when>
+            <xsl:when test="$pText='string'">
+                <xsl:text>String</xsl:text>
+            </xsl:when>
+            <xsl:when test="$pText='nonEmptyStringType'">
+                <xsl:text>String</xsl:text>
+            </xsl:when>
+            <xsl:when test="$pText='xsdBooleanType'">
+                <xsl:text>Boolean</xsl:text>
+            </xsl:when>
+            <xsl:when test="$pText='token'">
+                <xsl:text>String</xsl:text>
+            </xsl:when>
+            <xsl:when test="$pText='long'">
+                <xsl:text>Long</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$pText"/>
+            </xsl:otherwise>
+        </xsl:choose>
+
     </xsl:template>
 
     <xsl:function name="functx:words-to-camel-case" as="xs:string" xmlns:functx="http://www.functx.com">
@@ -115,6 +256,6 @@
             "/>
 
     </xsl:function>
-    
+
 
 </xsl:stylesheet>
