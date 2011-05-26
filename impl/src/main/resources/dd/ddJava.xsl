@@ -50,13 +50,30 @@
                 <xsl:text>{</xsl:text>
                 <xsl:text>&#10;</xsl:text>
                 <xsl:for-each select="value">
-                    <xsl:text>   </xsl:text><xsl:value-of select="text()"/>
+                    <xsl:variable name="pEnum" select=" upper-case(replace(text(), '\.', '_'))"/>
+                    <xsl:text>   _</xsl:text><xsl:value-of select="$pEnum"/>
+                    <xsl:text>("</xsl:text><xsl:value-of select="text()"/><xsl:text>")</xsl:text>
                     <xsl:if test="position() != last()">
                         <xsl:text>,</xsl:text>
                         <xsl:text>&#10;</xsl:text>
                     </xsl:if>
-                </xsl:for-each>
+                </xsl:for-each> 
+                <xsl:text>;</xsl:text>
                 <xsl:text>&#10;</xsl:text>
+                 <xsl:text>&#10;</xsl:text>
+                 <xsl:text>   private String value;</xsl:text>
+                <xsl:text>&#10;</xsl:text>
+                 <xsl:text>&#10;</xsl:text>
+                 <xsl:text>   </xsl:text>
+                <xsl:call-template name="Pascalize">
+                    <xsl:with-param name="pText" select="@complexTypeName"/>
+                </xsl:call-template>
+                <xsl:text> (String value)</xsl:text>
+                <xsl:text> { this.value = value; }</xsl:text>
+                <xsl:text>&#10;</xsl:text>
+                 <xsl:text>&#10;</xsl:text>
+                 <xsl:text>   public String toString() {return value;}</xsl:text>
+                 <xsl:text>&#10;</xsl:text>
                 <xsl:text>}</xsl:text>
                 <xsl:text>&#10;</xsl:text>
                 <xsl:text>&#10;</xsl:text>
@@ -76,79 +93,7 @@
             <xsl:call-template name="WriteInterface">
                 <xsl:with-param name="pClass" select="."/>
             </xsl:call-template>
-            <!-- 
-            <xsl:variable name="vClassname" select="replace(@complexTypeName,'-',' ')"/>
-            <xsl:variable name="vClassname" select="functx:words-to-camel-case($vClassname)"/>
-            <xsl:variable name="vClassname" select="concat(upper-case(substring($vClassname,1,1)), substring($vClassname,2), '&lt;T&gt;')"/>
-
-            <xsl:text>public interface </xsl:text>
-            <xsl:value-of select="$vClassname"/>
-            <xsl:text> extends Child&lt;T&gt;</xsl:text>
-            <xsl:text>&#10;</xsl:text>
-
-            <xsl:for-each select="include">
-                <xsl:text>, </xsl:text>
-                <xsl:call-template name="PrintDataType">
-                    <xsl:with-param name="pDataType" select="text()"/>
-                    <xsl:with-param name="pClassName" select="$vClassname"/>
-                </xsl:call-template>
-                <xsl:text>&lt;T&gt;</xsl:text>
-                <xsl:if test="position() != last()">
-                    <xsl:text>, </xsl:text>
-                </xsl:if>
-                <xsl:if test="position() = last()">
-                    <xsl:text>&#10;</xsl:text>
-                </xsl:if>
-            </xsl:for-each>
-
-            <xsl:text>{</xsl:text>
-            <xsl:text>&#10;</xsl:text>
-
-            <xsl:for-each select="element">
-
-                <xsl:variable name="vMethodName" select="replace(@name,'-',' ')"/>
-                <xsl:variable name="vMethodName" select="functx:words-to-camel-case($vMethodName)"/>
-
-                <!-\- **** generate set element **** -\->
-                <xsl:text>   public </xsl:text>
-                <xsl:value-of select="$vClassname"/>
-                <xsl:text> set</xsl:text>
-                <xsl:call-template name="Pascalize">
-                    <xsl:with-param name="pText" select="@name"/>
-                </xsl:call-template>
-
-                <xsl:text>(</xsl:text>
-                <xsl:call-template name="PrintDataType">
-                    <xsl:with-param name="pDataType" select="@type"/>
-                    <xsl:with-param name="pClassName" select="'T'"/>
-                </xsl:call-template>
-
-                <xsl:text> </xsl:text>
-                <xsl:value-of select="$vMethodName"/>
-                <xsl:text>);</xsl:text>
-                <xsl:text>&#10;</xsl:text>
-
-                <!-\- **** generate get element **** -\->
-                <xsl:text>   public </xsl:text>
-                <xsl:call-template name="PrintDataType">
-                    <xsl:with-param name="pDataType" select="@type"/>
-                    <xsl:with-param name="pClassName" select="$vClassname"/>
-                </xsl:call-template>
-                <xsl:text> </xsl:text>
-
-                <xsl:text>get</xsl:text>
-                <xsl:call-template name="Pascalize">
-                    <xsl:with-param name="pText" select="@name"/>
-                </xsl:call-template>
-                <xsl:text>();</xsl:text>
-                <xsl:text>&#10;</xsl:text>
-
-            </xsl:for-each>
-
-            <xsl:text>}</xsl:text>
-            <xsl:text>&#10;</xsl:text>
-            <xsl:text>&#10;</xsl:text>
--->
+           
         </xsl:for-each>
     </xsl:template>
 
@@ -206,7 +151,16 @@
                         <xsl:with-param name="pClassName" select="'T'"/>
                     </xsl:call-template>
                     <xsl:text> </xsl:text>
-                    <xsl:value-of select="$vMethodName"/>
+                    
+                    <xsl:choose>
+                        <xsl:when test="$vMethodName='class'">
+                            <xsl:text>clzz</xsl:text>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="$vMethodName"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    
                     <xsl:text>);</xsl:text>
                     <xsl:text>&#10;</xsl:text>
                     <!-- **** generate get element **** -->
@@ -244,7 +198,6 @@
             </xsl:when>
 
             <xsl:otherwise>
-
                 <xsl:variable name="vMappedTo" select="//datatype[@complexTypeName=$pJavaObject]/@mappedTo"/>
                 <xsl:choose>
                     <xsl:when test="$vMappedTo">
@@ -321,6 +274,9 @@
             <xsl:when test="$pText='nonNegativeInteger'">
                 <xsl:text>Integer</xsl:text>
             </xsl:when>
+            <xsl:when test="$pText='xsd:nonNegativeInteger'">
+                <xsl:text>Integer</xsl:text>
+            </xsl:when>
             <xsl:when test="$pText='integer'">
                 <xsl:text>Integer</xsl:text>
             </xsl:when>
@@ -328,6 +284,15 @@
                 <xsl:text>String</xsl:text>
             </xsl:when>
             <xsl:when test="$pText='string'">
+                <xsl:text>String</xsl:text>
+            </xsl:when>
+            <xsl:when test="$pText='xsd:QName'">
+                <xsl:text>String</xsl:text>
+            </xsl:when>
+            <xsl:when test="$pText='xsd:anyURI'">
+                <xsl:text>String</xsl:text>
+            </xsl:when>
+            <xsl:when test="$pText='xsd:NMTOKEN'">
                 <xsl:text>String</xsl:text>
             </xsl:when>
             <xsl:when test="$pText='xsd:token'">

@@ -28,6 +28,7 @@ import org.jboss.shrinkwrap.descriptor.api.webcommon30.SecurityConstraintType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.ServletMappingType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.ServletType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.SessionConfigType;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.WebCommonAttributes;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.WebCommonType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.WelcomeFileListType;
 import org.jboss.shrinkwrap.descriptor.api.webservices13.ServiceRefType;
@@ -38,14 +39,8 @@ import org.jboss.shrinkwrap.descriptor.api.webservices13.ServiceRefType;
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  * @version $Revision: $
  */
-public interface WebAppDescriptor extends Descriptor, DescriptionGroup<WebAppDescriptor>//, WebCommonType<WebAppDescriptor<T>>
+public interface WebAppDescriptor extends Descriptor, DescriptionGroup<WebAppDescriptor>, WebCommonAttributes<WebAppDescriptor>
 {
-   //   public WebAppDescriptor version(String version);
-   //   
-   //   public WebAppDescriptor ejbRefName(String ejbRefName); 
-   //
-   //   public EjbLocalRefType<WebAppDescriptor> ejbLocalRef();
-
    public WebAppDescriptor moduleName(String moduleName); 
 
    public AbsoluteOrderingType<WebAppDescriptor> absoluteOrdering();

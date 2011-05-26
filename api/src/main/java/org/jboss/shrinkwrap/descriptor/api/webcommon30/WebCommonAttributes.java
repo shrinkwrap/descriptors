@@ -8,7 +8,7 @@ package org.jboss.shrinkwrap.descriptor.api.webcommon30;
  */
 public interface WebCommonAttributes<T>
 {
-   public WebCommonAttributes version(String version);
+   public T version(String version);
 
-   public WebCommonAttributes metadataComplete(boolean isMetaDataComplete);
+   public T metadataComplete(Boolean isMetaDataComplete);
 }

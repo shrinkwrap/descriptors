@@ -10,7 +10,7 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.ParamValueType;
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  * @version $Revision: $
  */
-public interface FilterType<T> extends Child<T>, DescriptionGroup<FilterType<T>>
+public interface FilterType<T> extends Child<T>, DescriptionGroup<T>
 {
    public FilterType<T> filterName(String filterName);
 
