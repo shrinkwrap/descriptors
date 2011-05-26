@@ -57,23 +57,23 @@
                         <xsl:text>,</xsl:text>
                         <xsl:text>&#10;</xsl:text>
                     </xsl:if>
-                </xsl:for-each> 
+                </xsl:for-each>
                 <xsl:text>;</xsl:text>
                 <xsl:text>&#10;</xsl:text>
-                 <xsl:text>&#10;</xsl:text>
-                 <xsl:text>   private String value;</xsl:text>
                 <xsl:text>&#10;</xsl:text>
-                 <xsl:text>&#10;</xsl:text>
-                 <xsl:text>   </xsl:text>
+                <xsl:text>   private String value;</xsl:text>
+                <xsl:text>&#10;</xsl:text>
+                <xsl:text>&#10;</xsl:text>
+                <xsl:text>   </xsl:text>
                 <xsl:call-template name="Pascalize">
                     <xsl:with-param name="pText" select="@complexTypeName"/>
                 </xsl:call-template>
                 <xsl:text> (String value)</xsl:text>
                 <xsl:text> { this.value = value; }</xsl:text>
                 <xsl:text>&#10;</xsl:text>
-                 <xsl:text>&#10;</xsl:text>
-                 <xsl:text>   public String toString() {return value;}</xsl:text>
-                 <xsl:text>&#10;</xsl:text>
+                <xsl:text>&#10;</xsl:text>
+                <xsl:text>   public String toString() {return value;}</xsl:text>
+                <xsl:text>&#10;</xsl:text>
                 <xsl:text>}</xsl:text>
                 <xsl:text>&#10;</xsl:text>
                 <xsl:text>&#10;</xsl:text>
@@ -93,7 +93,7 @@
             <xsl:call-template name="WriteInterface">
                 <xsl:with-param name="pClass" select="."/>
             </xsl:call-template>
-           
+
         </xsl:for-each>
     </xsl:template>
 
@@ -139,43 +139,50 @@
                     <xsl:variable name="vMethodName" select="replace(@name,'-',' ')"/>
                     <xsl:variable name="vMethodName" select="functx:words-to-camel-case($vMethodName)"/>
                     <!-- **** generate set element **** -->
-                    <xsl:text>   public </xsl:text>
-                    <xsl:value-of select="$vClassname"/>
-                    <xsl:text> set</xsl:text>
-                    <xsl:call-template name="Pascalize">
-                        <xsl:with-param name="pText" select="@name"/>
-                    </xsl:call-template>
-                    <xsl:text>(</xsl:text>
-                    <xsl:call-template name="PrintDataType">
-                        <xsl:with-param name="pDataType" select="@type"/>
-                        <xsl:with-param name="pClassName" select="'T'"/>
-                    </xsl:call-template>
-                    <xsl:text> </xsl:text>
-                    
                     <xsl:choose>
-                        <xsl:when test="$vMethodName='class'">
-                            <xsl:text>clzz</xsl:text>
+                        <xsl:when test="@type='javaee:emptyType'">
+                            <xsl:text>   public void </xsl:text>
+                            <xsl:call-template name="Pascalize">
+                                <xsl:with-param name="pText" select="@name"/>
+                            </xsl:call-template>
+                            <xsl:text>();</xsl:text>
                         </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:value-of select="$vMethodName"/>
-                        </xsl:otherwise>
+                        <xsl:otherwise> <xsl:text>   public </xsl:text>
+                            <xsl:value-of select="$vClassname"/>
+                            <xsl:text> set</xsl:text>
+                            <xsl:call-template name="Pascalize">
+                                <xsl:with-param name="pText" select="@name"/>
+                            </xsl:call-template>
+                            <xsl:text>(</xsl:text>
+                            <xsl:call-template name="PrintDataType">
+                                <xsl:with-param name="pDataType" select="@type"/>
+                                <xsl:with-param name="pClassName" select="'T'"/>
+                            </xsl:call-template>
+                            <xsl:text> </xsl:text>
+                            <xsl:choose>
+                                <xsl:when test="$vMethodName='class'">
+                                    <xsl:text>clzz</xsl:text>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="$vMethodName"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                            <xsl:text>);</xsl:text>
+                            <xsl:text>&#10;</xsl:text>
+                            <!-- **** generate get element **** -->
+                            <xsl:text>   public </xsl:text>
+                            <xsl:call-template name="PrintDataType">
+                                <xsl:with-param name="pDataType" select="@type"/>
+                                <xsl:with-param name="pClassName" select="$vClassname"/>
+                            </xsl:call-template>
+                            <xsl:text> </xsl:text>
+                            <xsl:text>get</xsl:text>
+                            <xsl:call-template name="Pascalize">
+                                <xsl:with-param name="pText" select="@name"/>
+                            </xsl:call-template>
+                            <xsl:text>();</xsl:text>
+                            <xsl:text>&#10;</xsl:text> </xsl:otherwise>
                     </xsl:choose>
-                    
-                    <xsl:text>);</xsl:text>
-                    <xsl:text>&#10;</xsl:text>
-                    <!-- **** generate get element **** -->
-                    <xsl:text>   public </xsl:text>
-                    <xsl:call-template name="PrintDataType">
-                        <xsl:with-param name="pDataType" select="@type"/>
-                        <xsl:with-param name="pClassName" select="$vClassname"/>
-                    </xsl:call-template>
-                    <xsl:text> </xsl:text>
-                    <xsl:text>get</xsl:text>
-                    <xsl:call-template name="Pascalize">
-                        <xsl:with-param name="pText" select="@name"/>
-                    </xsl:call-template>
-                    <xsl:text>();</xsl:text>
-                    <xsl:text>&#10;</xsl:text>
                 </xsl:for-each>
                 <xsl:text>}</xsl:text>
                 <xsl:text>&#10;</xsl:text>
@@ -189,6 +196,11 @@
 
         <xsl:variable name="pJavaObject" select="$pDataType"/>
         <xsl:choose>
+            <xsl:when test="starts-with($pJavaObject, 'xsd:')">
+                <xsl:call-template name="JavaTypeMapping">
+                    <xsl:with-param name="pText" select="$pJavaObject"/>
+                </xsl:call-template>
+            </xsl:when>
             <xsl:when test="contains($pDataType, ':')">
                 <xsl:variable name="pJavaObject" select="substring-after($pJavaObject, ':')"/>
                 <xsl:call-template name="PrintDataType">
@@ -235,20 +247,25 @@
     <xsl:template name="Pascalize">
         <xsl:param name="pText"/>
 
-        <xsl:if test="$pText">
-            <xsl:value-of select="translate(substring($pText,1,1), $vLower, $vUpper)"/>
-            <xsl:choose>
-                <xsl:when test="contains($pText, '-')">
-                    <xsl:value-of select="substring-before(substring($pText,2), '-')"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="substring($pText,2)"/>
-                </xsl:otherwise>
-            </xsl:choose>
-            <xsl:call-template name="Pascalize">
-                <xsl:with-param name="pText" select="substring-after(substring($pText,2), '-')"/>
-            </xsl:call-template>
-        </xsl:if>
+        <xsl:choose>
+            <xsl:when test="$pText='class'">
+                <xsl:value-of select="'Clazz'"/>
+            </xsl:when>
+            <xsl:when test="$pText!=''">
+                <xsl:value-of select="translate(substring($pText,1,1), $vLower, $vUpper)"/>
+                <xsl:choose>
+                    <xsl:when test="contains($pText, '-')">
+                        <xsl:value-of select="substring-before(substring($pText,2), '-')"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="substring($pText,2)"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+                <xsl:call-template name="Pascalize">
+                    <xsl:with-param name="pText" select="substring-after(substring($pText,2), '-')"/>
+                </xsl:call-template>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
 
 
@@ -312,6 +329,9 @@
             </xsl:when>
             <xsl:when test="$pText='long'">
                 <xsl:text>Long</xsl:text>
+            </xsl:when>
+            <xsl:when test="$pText='xsd:dateTime'">
+                <xsl:text>java.util.Date</xsl:text>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="$pText"/>

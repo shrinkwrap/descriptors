@@ -14,6 +14,8 @@ public class WebAppDescriptorImplTest
    public void testNavigation() throws Exception
    {
       final String webApp = Descriptors.create(WebAppDescriptor.class)
+         .version("3.0")
+         .metadataComplete(false)
          .moduleName("")
          .description("description1")
          .displayName("displayName1")

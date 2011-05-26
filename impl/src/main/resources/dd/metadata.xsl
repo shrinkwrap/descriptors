@@ -131,6 +131,32 @@
                 </xsl:if>
             </xsl:for-each>
         </xsl:for-each>
+        <xsl:for-each select="document($pDocument)//xsd:simpleType">
+            <xsl:variable name="complexTypeName" select="@name"/>
+            <xsl:for-each select="xsd:restriction">
+                <xsl:if test="@base='javaee:string' or 'xsd:string'">
+                    <xsl:if test="count(xsd:enumeration) > 0">
+                        <xsl:text>&#10;</xsl:text>
+                        <enum>
+                            <xsl:attribute name="complexTypeName">
+                                <xsl:value-of select="$complexTypeName"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="schemaName">
+                                <xsl:value-of select="$pDocument"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="package">
+                                <xsl:value-of select="$pPackage"/>
+                            </xsl:attribute>
+                            <xsl:for-each select="xsd:enumeration">
+                                <value>
+                                    <xsl:value-of select="@value"/>
+                                </value>
+                            </xsl:for-each>
+                        </enum>
+                    </xsl:if>
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:for-each>
     </xsl:template>
 
 
@@ -183,7 +209,7 @@
         <xsl:param name="pPackage"/>
         <xsl:for-each select="document($pDocument)//xsd:complexType">
             <xsl:variable name="complexTypeName" select="@name"/>
-            <xsl:if test="count(xsd:sequence/xsd:element) > 0">
+            <xsl:if test="count(xsd:sequence/xsd:element) > 0 or count(xsd:choice/xsd:element)">
                 <class>
                     <xsl:attribute name="complexTypeName">
                         <xsl:value-of select="$complexTypeName"/>
@@ -205,6 +231,17 @@
                         </element>
                     </xsl:for-each>
 
+                    <xsl:for-each select="xsd:choice/xsd:element">
+                        <element>
+                            <xsl:attribute name="name">
+                                <xsl:value-of select="@name"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="type">
+                                <xsl:value-of select="@type"/>
+                            </xsl:attribute>
+                        </element>
+                    </xsl:for-each>
+                    
                     <xsl:for-each select="xsd:sequence/xsd:group">
                         <include>
                             <xsl:value-of select="@ref"/>
