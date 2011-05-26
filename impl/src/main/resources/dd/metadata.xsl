@@ -96,6 +96,47 @@
                 </xsl:if>
             </xsl:for-each>
         </xsl:for-each>
+
+        <xsl:for-each select="document($pDocument)//xsd:simpleType">
+            <xsl:variable name="complexTypeName" select="@name"/>
+            
+            <xsl:if test="$complexTypeName='load-on-startupType'">
+                  <datatype>
+                        <xsl:attribute name="complexTypeName">
+                            <xsl:value-of select="$complexTypeName"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="mappedTo">
+                            <xsl:value-of select="'javaee:xsdBooleanType'"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="schemaName">
+                            <xsl:value-of select="$pDocument"/>
+                        </xsl:attribute>
+                    </datatype>
+                <xsl:text>&#10;</xsl:text>
+            </xsl:if>
+            
+            <xsl:for-each select="xsd:restriction">
+                <xsl:if test="count(xsd:enumeration) = 0">
+                    <!--           
+        <xsl:for-each select="document($pDocument)//xsd:simpleType/xsd:restriction">
+            <xsl:variable name="complexTypeName" select="@name"/>
+
+            <xsl:if test="count(//xsd:enumeration) = 0">-->
+                    <xsl:text>&#10;</xsl:text>
+                    <datatype>
+                        <xsl:attribute name="complexTypeName">
+                            <xsl:value-of select="$complexTypeName"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="mappedTo">
+                            <xsl:value-of select="@base"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="schemaName">
+                            <xsl:value-of select="$pDocument"/>
+                        </xsl:attribute>
+                    </datatype>
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:for-each>
     </xsl:template>
 
 
@@ -241,7 +282,7 @@
                             </xsl:attribute>
                         </element>
                     </xsl:for-each>
-                    
+
                     <xsl:for-each select="xsd:sequence/xsd:group">
                         <include>
                             <xsl:value-of select="@ref"/>

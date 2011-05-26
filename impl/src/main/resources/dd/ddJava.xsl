@@ -140,14 +140,16 @@
                     <xsl:variable name="vMethodName" select="functx:words-to-camel-case($vMethodName)"/>
                     <!-- **** generate set element **** -->
                     <xsl:choose>
-                        <xsl:when test="@type='javaee:emptyType'">
+                        <xsl:when test="@type='javaee:emptyType' or @type='javaee:ordering-othersType'">
                             <xsl:text>   public void </xsl:text>
-                            <xsl:call-template name="Pascalize">
+                            <xsl:call-template name="Camalize">
                                 <xsl:with-param name="pText" select="@name"/>
                             </xsl:call-template>
                             <xsl:text>();</xsl:text>
+                            <xsl:text>&#10;</xsl:text>
                         </xsl:when>
-                        <xsl:otherwise> <xsl:text>   public </xsl:text>
+                        <xsl:otherwise>
+                            <xsl:text>   public </xsl:text>
                             <xsl:value-of select="$vClassname"/>
                             <xsl:text> set</xsl:text>
                             <xsl:call-template name="Pascalize">
@@ -181,7 +183,8 @@
                                 <xsl:with-param name="pText" select="@name"/>
                             </xsl:call-template>
                             <xsl:text>();</xsl:text>
-                            <xsl:text>&#10;</xsl:text> </xsl:otherwise>
+                            <xsl:text>&#10;</xsl:text>
+                        </xsl:otherwise>
                     </xsl:choose>
                 </xsl:for-each>
                 <xsl:text>}</xsl:text>
@@ -209,6 +212,14 @@
                 </xsl:call-template>
             </xsl:when>
 
+            <xsl:when test="$pJavaObject='protocol-bindingType'">
+                <xsl:text>String</xsl:text>
+            </xsl:when>
+            <xsl:when test="count(//enum[@complexTypeName=$pJavaObject]) = 1">
+                <xsl:call-template name="Pascalize">
+                    <xsl:with-param name="pText" select="$pJavaObject"/>
+                </xsl:call-template>
+            </xsl:when>
             <xsl:otherwise>
                 <xsl:variable name="vMappedTo" select="//datatype[@complexTypeName=$pJavaObject]/@mappedTo"/>
                 <xsl:choose>
@@ -253,6 +264,34 @@
             </xsl:when>
             <xsl:when test="$pText!=''">
                 <xsl:value-of select="translate(substring($pText,1,1), $vLower, $vUpper)"/>
+                <xsl:choose>
+                    <xsl:when test="contains($pText, '-')">
+                        <xsl:value-of select="substring-before(substring($pText,2), '-')"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="substring($pText,2)"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+                <xsl:call-template name="Pascalize">
+                    <xsl:with-param name="pText" select="substring-after(substring($pText,2), '-')"/>
+                </xsl:call-template>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:template>
+
+
+    <!-- ****************************************************** -->
+    <!-- ****** Template which generates pascalize names ****** -->
+    <!-- ****************************************************** -->
+    <xsl:template name="Camalize">
+        <xsl:param name="pText"/>
+
+        <xsl:choose>
+            <xsl:when test="$pText='class'">
+                <xsl:value-of select="'Clazz'"/>
+            </xsl:when>
+            <xsl:when test="$pText!=''">
+                <xsl:value-of select="translate(substring($pText,1,1), $vUpper, $vLower)"/>
                 <xsl:choose>
                     <xsl:when test="contains($pText, '-')">
                         <xsl:value-of select="substring-before(substring($pText,2), '-')"/>
