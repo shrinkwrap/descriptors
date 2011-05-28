@@ -102,48 +102,48 @@
     <!-- ****** Template which generates the interfaces ****** -->
     <!-- ******************************************************* -->
     <xsl:template name="WriteInterface">
-        <xsl:param name="pClass"/>
+        <xsl:param name="pClass" select="."/>
 
-        <xsl:variable name="vClassname" select="replace($pClass/@name,'-',' ')"/>
-        <xsl:variable name="vClassname" select="functx:words-to-camel-case($vClassname)"/>
-        <xsl:variable name="vClassnameP" select="concat(upper-case(substring($vClassname,1,1)), substring($vClassname,2))"/>
-        <xsl:variable name="vClassname" select="concat(upper-case(substring($vClassname,1,1)), substring($vClassname,2), '&lt;T&gt;')"/>
+        <xsl:variable name="vClassname" select="xdd:createClassName(@name, '')"/>
+        <xsl:variable name="vFilename" select="xdd:createPath('..', @package, $vClassname, 'java')"/>
 
-        <xsl:if test="$vClassnameP">
+        <xsl:if test="$vClassname=''">
+            <xsl:value-of select="'cannot process'"/>: <xsl:value-of select=" name()"/>: <xsl:value-of select="  position()"/>
+            <xsl:text>&#10;</xsl:text>
+        </xsl:if>
 
-            <xsl:variable name="path" select="replace(@package,'\.','/')"/>
-            <xsl:variable name="filename" select="concat('../', $path,'/' , $vClassnameP,'.java')"/>
-            <xsl:value-of select="$filename"/>
-            <xsl:result-document href="{$filename}">
-                <xsl:text>package </xsl:text><xsl:value-of select="@package"/>; <xsl:text>&#10;</xsl:text>
-                <xsl:text>public interface </xsl:text>
-                <xsl:value-of select="$vClassname"/>
+        <xsl:if test="$vClassname">
+            <xsl:result-document href="{$vFilename}">
+                <xsl:value-of select="xdd:writePackageLine(@package)"/>
+                <xsl:value-of select="xdd:classHeaderComment('')"/>
+                <xsl:value-of select="xdd:classHeaderDeclaration('class', $vClassname)"/>
+                <xsl:text>&lt;T&gt;</xsl:text>
                 <xsl:text> extends Child&lt;T&gt;</xsl:text>
-                <xsl:text>&#10;</xsl:text>
+               
                 <xsl:for-each select="include">
-                    <xsl:variable name="vClassnamePlain" select="text()"/>
-                    <xsl:variable name="vClassnamePlain" select="concat(upper-case(substring($vClassnamePlain,1,1)), substring($vClassnamePlain,2))"/>
                     <xsl:text>, </xsl:text>
-                    <xsl:call-template name="PrintDataType">
-                        <xsl:with-param name="pDataType" select="text()"/>
-                        <xsl:with-param name="pClassName" select="'T'"/>
-                    </xsl:call-template>
+                    <xsl:value-of select="xdd:createClassName(text(), '')"/>
+                    <xsl:text>&lt;T&gt;</xsl:text>
                     <xsl:if test="position() = last()">
                         <xsl:text>&#10;</xsl:text>
                     </xsl:if>
                 </xsl:for-each>
+                <xsl:text>&#10;</xsl:text>
                 <xsl:text>{</xsl:text>
                 <xsl:text>&#10;</xsl:text>
+                
                 <xsl:for-each select="element">
-                    <xsl:variable name="vMethodName" select="replace(@name,'-',' ')"/>
-                    <xsl:variable name="vMethodName" select="functx:words-to-camel-case($vMethodName)"/>
+                    <xsl:variable name="vMethodName" select=" xdd:createClassName(@name, '')"/>
+<!--                    <xsl:variable name="vMethodName" select="functx:words-to-camel-case($vMethodName)"/>-->
+                    
                     <!-- **** generate set element **** -->
                     <xsl:choose>
                         <xsl:when test="@type='javaee:emptyType' or @type='javaee:ordering-othersType' or @type='faces-config-ordering-othersType' or @type='extensibleType'">
                             <xsl:text>   public void </xsl:text>
-                            <xsl:call-template name="Camalize">
+                            <xsl:value-of select="$vMethodName"></xsl:value-of>
+                           <!-- <xsl:call-template name="Camalize">
                                 <xsl:with-param name="pText" select="@name"/>
-                            </xsl:call-template>
+                            </xsl:call-template>-->
                             <xsl:text>();</xsl:text>
                             <xsl:text>&#10;</xsl:text>
                         </xsl:when>
@@ -472,7 +472,7 @@
     <!-- ****************************************************** -->
     <xsl:function name="xdd:createClassName">
         <xsl:param name="name"/>
-        <xsl:param name="extension"/>
+        <xsl:param name="extension" as="xs:string"/>
 
         <xsl:variable name="retValue" select="xdd:normalizeString($name)"/>
         <xsl:variable name="retValue" select="functx:words-to-camel-case($retValue)"/>
