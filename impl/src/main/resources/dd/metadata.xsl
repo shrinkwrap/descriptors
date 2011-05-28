@@ -3,13 +3,37 @@
 
     <xsl:template match="/">
         <metadata>
+            <xsl:call-template name="GenerateStatistic"/>
             <xsl:call-template name="GenerateDataTypes"/>
             <xsl:call-template name="GenerateEnums"/>
             <xsl:call-template name="GenerateGroups"/>
             <xsl:call-template name="GenerateClasses"/>
+            <xsl:call-template name="GenerateDescriptors"/>
         </metadata>
     </xsl:template>
 
+    <!-- ****************************************************** -->
+    <!-- ****** Template which generates the data types  ****** -->
+    <!-- ****************************************************** -->
+    <xsl:template name="GenerateStatistic">
+        <statistics>
+            <xsl:for-each select="//schemaName">
+                <xsl:call-template name="WriteStatistic">
+                    <xsl:with-param name="pDocument" select="text()"/>
+                    <xsl:with-param name="pArea" select="'groups'"/>
+                </xsl:call-template>
+            </xsl:for-each>
+
+            <xsl:for-each select="//schemaName">
+                <xsl:call-template name="WriteStatistic">
+                    <xsl:with-param name="pDocument" select="text()"/>
+                    <xsl:with-param name="pArea" select="'enums'"/>
+                </xsl:call-template>
+            </xsl:for-each>
+
+        </statistics>
+
+    </xsl:template>
 
     <!-- ****************************************************** -->
     <!-- ****** Template which generates the data types  ****** -->
@@ -57,6 +81,7 @@
         </groups>
     </xsl:template>
 
+
     <!-- ****************************************************** -->
     <!-- ****** Template which generates the classes      ***** -->
     <!-- ****************************************************** -->
@@ -73,17 +98,112 @@
 
 
     <!-- ****************************************************** -->
+    <!-- ****** Template which generates the descriptors  ***** -->
+    <!-- ****************************************************** -->
+    <xsl:template name="GenerateDescriptors">
+        <descriptors>
+            <xsl:for-each select="//schemaName">
+                <xsl:if test="@generateDDClass='true'">
+                    <descriptor>
+                        <xsl:attribute name="schemaName">
+                            <xsl:value-of select="text()"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="package">
+                            <xsl:value-of select="@packageApi"/>
+                        </xsl:attribute>
+                        <xsl:for-each select="document(text())/*/xsd:element">
+                            <!--                            <xsl:if test="local-name() = 'element'">-->
+                            <element>
+                                <xsl:attribute name="name">
+                                    <xsl:value-of select="@name"/>
+                                </xsl:attribute>
+                                <xsl:attribute name="type">
+                                    <xsl:value-of select="@type"/>
+                                </xsl:attribute>
+                            </element>
+                            <!--                            </xsl:if>-->
+                        </xsl:for-each>
+                    </descriptor>
+                </xsl:if>
+            </xsl:for-each>
+        </descriptors>
+    </xsl:template>
+
+
+    <!-- ****************************************************** -->
+    <!-- ****** Template which writes the groups         ****** -->
+    <!-- ****************************************************** -->
+    <xsl:template name="WriteStatistic">
+        <xsl:param name="pDocument"/>
+        <xsl:param name="pPackage"/>
+        <xsl:param name="pArea"/>
+
+        <xsl:if test="$pArea='groups'">
+            <groups>
+                <xsl:attribute name="schemaName">
+                    <xsl:value-of select="$pDocument"/>
+                </xsl:attribute>
+                <xsl:attribute name="count">
+                    <xsl:value-of select="count(document($pDocument)//xsd:group/@name) + count(document($pDocument)//xsd:attributeGroup/@name) "/>
+                </xsl:attribute>
+            </groups>
+        </xsl:if>
+
+        <xsl:if test="$pArea='enums'">
+            <enums>
+                <xsl:attribute name="schemaName">
+                    <xsl:value-of select="$pDocument"/>
+                </xsl:attribute>
+                <xsl:attribute name="count">
+                    <xsl:value-of select="count(document($pDocument)//xsd:enumeration) "/>
+                </xsl:attribute>
+            </enums>
+        </xsl:if>
+
+    </xsl:template>
+
+
+    <!-- ****************************************************** -->
     <!-- ****** Template which writes the data types     ****** -->
     <!-- ****************************************************** -->
     <xsl:template name="WriteDataTypes">
         <xsl:param name="pDocument"/>
         <xsl:for-each select="document($pDocument)//xsd:complexType">
             <xsl:variable name="complexTypeName" select="@name"/>
+
+            <!--<xsl:if test="$complexTypeName='faces-config-ordering-othersType'">
+                 <datatype>
+                    <xsl:attribute name="complexTypeName">
+                            <xsl:value-of select="$complexTypeName"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="mappedTo">
+                            <xsl:value-of select="'javaee:emptyType'"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="schemaName">
+                            <xsl:value-of select="$pDocument"/>
+                        </xsl:attribute>
+                </datatype>
+            </xsl:if>-->
+
+            <xsl:if test="count(xsd:sequence/xsd:any) = 1 or $complexTypeName='faces-config-valueType'">
+                <datatype>
+                    <xsl:attribute name="name">
+                        <xsl:value-of select="$complexTypeName"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="mappedTo">
+                        <xsl:value-of select="'javaee:string'"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="schemaName">
+                        <xsl:value-of select="$pDocument"/>
+                    </xsl:attribute>
+                </datatype>
+            </xsl:if>
+
             <xsl:for-each select="//xsd:complexType[@name=$complexTypeName]//@base">
                 <xsl:if test="contains(../@base, 'xsd:') or contains(../@base, 'javaee:')">
                     <xsl:text>&#10;</xsl:text>
                     <datatype>
-                        <xsl:attribute name="complexTypeName">
+                        <xsl:attribute name="name">
                             <xsl:value-of select="$complexTypeName"/>
                         </xsl:attribute>
                         <xsl:attribute name="mappedTo">
@@ -99,32 +219,27 @@
 
         <xsl:for-each select="document($pDocument)//xsd:simpleType">
             <xsl:variable name="complexTypeName" select="@name"/>
-            
+
             <xsl:if test="$complexTypeName='load-on-startupType'">
-                  <datatype>
-                        <xsl:attribute name="complexTypeName">
-                            <xsl:value-of select="$complexTypeName"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="mappedTo">
-                            <xsl:value-of select="'javaee:xsdBooleanType'"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="schemaName">
-                            <xsl:value-of select="$pDocument"/>
-                        </xsl:attribute>
-                    </datatype>
+                <datatype>
+                    <xsl:attribute name="name">
+                        <xsl:value-of select="$complexTypeName"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="mappedTo">
+                        <xsl:value-of select="'javaee:xsdBooleanType'"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="schemaName">
+                        <xsl:value-of select="$pDocument"/>
+                    </xsl:attribute>
+                </datatype>
                 <xsl:text>&#10;</xsl:text>
             </xsl:if>
-            
+
             <xsl:for-each select="xsd:restriction">
                 <xsl:if test="count(xsd:enumeration) = 0">
-                    <!--           
-        <xsl:for-each select="document($pDocument)//xsd:simpleType/xsd:restriction">
-            <xsl:variable name="complexTypeName" select="@name"/>
-
-            <xsl:if test="count(//xsd:enumeration) = 0">-->
                     <xsl:text>&#10;</xsl:text>
                     <datatype>
-                        <xsl:attribute name="complexTypeName">
+                        <xsl:attribute name="name">
                             <xsl:value-of select="$complexTypeName"/>
                         </xsl:attribute>
                         <xsl:attribute name="mappedTo">
@@ -153,7 +268,7 @@
                     <xsl:if test="count(xsd:enumeration) > 0">
                         <xsl:text>&#10;</xsl:text>
                         <enum>
-                            <xsl:attribute name="complexTypeName">
+                            <xsl:attribute name="name">
                                 <xsl:value-of select="$complexTypeName"/>
                             </xsl:attribute>
                             <xsl:attribute name="schemaName">
@@ -179,7 +294,7 @@
                     <xsl:if test="count(xsd:enumeration) > 0">
                         <xsl:text>&#10;</xsl:text>
                         <enum>
-                            <xsl:attribute name="complexTypeName">
+                            <xsl:attribute name="name">
                                 <xsl:value-of select="$complexTypeName"/>
                             </xsl:attribute>
                             <xsl:attribute name="schemaName">
@@ -207,12 +322,14 @@
     <xsl:template name="WriteGroups">
         <xsl:param name="pDocument"/>
         <xsl:param name="pPackage"/>
-        <xsl:for-each select="document($pDocument)//xsd:group">
-            <xsl:variable name="complexTypeName" select="@name"/>
-            <xsl:if test="count(xsd:sequence/xsd:element) > 0">
+
+        <xsl:for-each select="document($pDocument)//xsd:attributeGroup">
+            <xsl:if test="@name!=''">
+                <xsl:variable name="groupName" select="@name"/>
+
                 <class>
-                    <xsl:attribute name="complexTypeName">
-                        <xsl:value-of select="$complexTypeName"/>
+                    <xsl:attribute name="name">
+                        <xsl:value-of select="$groupName"/>
                     </xsl:attribute>
                     <xsl:attribute name="schemaName">
                         <xsl:value-of select="$pDocument"/>
@@ -220,21 +337,53 @@
                     <xsl:attribute name="package">
                         <xsl:value-of select="$pPackage"/>
                     </xsl:attribute>
-                    <xsl:for-each select="xsd:sequence/xsd:element">
-                        <element>
-                            <xsl:attribute name="name">
-                                <xsl:value-of select="@name"/>
-                            </xsl:attribute>
-                            <xsl:attribute name="type">
-                                <xsl:value-of select="@type"/>
-                            </xsl:attribute>
-                        </element>
+                    <xsl:for-each select="descendant::node()">
+                        <xsl:if test="local-name() = 'attribute'">
+                            <xsl:if test="@type!='xsd:ID'">
+                                <element>
+                                    <xsl:attribute name="name">
+                                        <xsl:value-of select="@name"/>
+                                    </xsl:attribute>
+                                    <xsl:attribute name="type">
+                                        <xsl:value-of select="@type"/>
+                                    </xsl:attribute>
+                                </element>
+                            </xsl:if>
+                        </xsl:if>
                     </xsl:for-each>
+                </class>
+            </xsl:if>
+        </xsl:for-each>
 
-                    <xsl:for-each select="xsd:sequence/xsd:group">
-                        <include>
-                            <xsl:value-of select="@ref"/>
-                        </include>
+        <xsl:for-each select="document($pDocument)//xsd:group">
+            <xsl:if test="@name!=''">
+                <xsl:variable name="groupName" select="@name"/>
+                <class>
+                    <xsl:attribute name="name">
+                        <xsl:value-of select="$groupName"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="schemaName">
+                        <xsl:value-of select="$pDocument"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="package">
+                        <xsl:value-of select="$pPackage"/>
+                    </xsl:attribute>
+                    <xsl:for-each select="descendant::node()">
+                        <xsl:if test="local-name() = 'element'">
+                            <element>
+                                <xsl:attribute name="name">
+                                    <xsl:value-of select="@name"/>
+                                </xsl:attribute>
+                                <xsl:attribute name="type">
+                                    <xsl:value-of select="@type"/>
+                                </xsl:attribute>
+                            </element>
+                        </xsl:if>
+                        <xsl:if test="local-name() = 'group'">
+                            <include>
+                                <xsl:value-of select="@ref"/>
+                            </include>
+                        </xsl:if>
                     </xsl:for-each>
                 </class>
             </xsl:if>
@@ -250,9 +399,9 @@
         <xsl:param name="pPackage"/>
         <xsl:for-each select="document($pDocument)//xsd:complexType">
             <xsl:variable name="complexTypeName" select="@name"/>
-            <xsl:if test="count(xsd:sequence/xsd:element) > 0 or count(xsd:choice/xsd:element)">
+            <xsl:if test="count(xsd:sequence/xsd:element) > 0 or count(xsd:choice/xsd:element) > 0 or count(xsd:choice/xsd:group) > 0">
                 <class>
-                    <xsl:attribute name="complexTypeName">
+                    <xsl:attribute name="name">
                         <xsl:value-of select="$complexTypeName"/>
                     </xsl:attribute>
                     <xsl:attribute name="schemaName">
@@ -284,6 +433,12 @@
                     </xsl:for-each>
 
                     <xsl:for-each select="xsd:sequence/xsd:group">
+                        <include>
+                            <xsl:value-of select="@ref"/>
+                        </include>
+                    </xsl:for-each>
+
+                    <xsl:for-each select="xsd:choice/xsd:group">
                         <include>
                             <xsl:value-of select="@ref"/>
                         </include>
