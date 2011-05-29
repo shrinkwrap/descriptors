@@ -269,11 +269,11 @@
             <xsl:variable name="vFilename" select="xdd:createPath('..', $vPackage, $vClassname, 'java')"/>
             <xsl:result-document href="{$vFilename}">
                 <xsl:value-of select="xdd:writePackageLine($vPackage)"/>
-                <xsl:text>&#10;</xsl:text>
+                <xsl:text>import org.jboss.shrinkwrap.descriptor.api.Descriptor;</xsl:text>
                 <xsl:value-of select="xdd:classHeaderComment('')"/>
                 <xsl:value-of select="xdd:classHeaderDeclaration('interface', $vClassname)"/>
 
-                <xsl:text> extends </xsl:text>
+                <xsl:text> extends Descriptor, </xsl:text>
                 <xsl:variable name="vExtendsInterface" select="xdd:createPascalizedName($pDescriptor/element/@type, ' ')"/>
                 <xsl:value-of select="$vExtendsInterface"/>
                 <xsl:text>&lt;</xsl:text>
@@ -531,6 +531,9 @@
         <xsl:variable name="retValue" select="concat(upper-case(substring($retValue,1,1)), substring($retValue,2))"/>
 
         <xsl:choose>
+            <xsl:when test=" starts-with($name, 'java.')">
+                <xsl:sequence select="$name"/>
+            </xsl:when>
             <xsl:when test="$extension!=''">
                 <xsl:sequence select="concat($retValue, $extension)"/>
             </xsl:when>
@@ -860,7 +863,7 @@
                 <xsl:sequence select="'Long'"/>
             </xsl:when>
             <xsl:when test="$pText='xsd:dateTime'">
-                <xsl:sequence select="'Date'"/>
+                <xsl:sequence select="'java.util.Date'"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:sequence select="''"/>

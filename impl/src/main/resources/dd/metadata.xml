@@ -748,11 +748,13 @@
             <element name="module-name" type="javaee:string"/>
             <element name="absolute-ordering" type="javaee:absoluteOrderingType"/>
             <include>javaee:web-commonType</include>
+            <include>javaee:web-common-attributes</include>
         </class>
         <class name="web-fragmentType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="name" type="javaee:java-identifierType"/>
             <element name="ordering" type="javaee:orderingType"/>
             <include>javaee:web-commonType</include>
+            <include>javaee:web-common-attributes</include>
         </class>
         <class name="auth-constraintType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="description" type="javaee:descriptionType"/>

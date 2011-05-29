@@ -460,6 +460,12 @@
                             <xsl:value-of select="@ref"/>
                         </include>
                     </xsl:for-each>
+                    
+                    <xsl:for-each select="xsd:attributeGroup">
+                        <include>
+                            <xsl:value-of select="@ref"/>
+                        </include>
+                    </xsl:for-each>
                 </class>
             </xsl:if>
         </xsl:for-each>
