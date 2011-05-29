@@ -201,18 +201,20 @@
 
             <xsl:for-each select="//xsd:complexType[@name=$complexTypeName]//@base">
                 <xsl:if test="contains(../@base, 'xsd:') or contains(../@base, 'javaee:')">
-                    <xsl:text>&#10;</xsl:text>
-                    <datatype>
-                        <xsl:attribute name="name">
-                            <xsl:value-of select="$complexTypeName"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="mappedTo">
-                            <xsl:value-of select="../@base"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="schemaName">
-                            <xsl:value-of select="$pDocument"/>
-                        </xsl:attribute>
-                    </datatype>
+                    <xsl:if test="count(../xsd:enumeration) = 0">
+                        <xsl:text>&#10;</xsl:text>
+                        <datatype>
+                            <xsl:attribute name="name">
+                                <xsl:value-of select="$complexTypeName"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="mappedTo">
+                                <xsl:value-of select="../@base"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="schemaName">
+                                <xsl:value-of select="$pDocument"/>
+                            </xsl:attribute>
+                        </datatype>
+                    </xsl:if>
                 </xsl:if>
             </xsl:for-each>
         </xsl:for-each>
@@ -227,6 +229,21 @@
                     </xsl:attribute>
                     <xsl:attribute name="mappedTo">
                         <xsl:value-of select="'javaee:xsdBooleanType'"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="schemaName">
+                        <xsl:value-of select="$pDocument"/>
+                    </xsl:attribute>
+                </datatype>
+                <xsl:text>&#10;</xsl:text>
+            </xsl:if>
+            
+             <xsl:if test="$complexTypeName='protocol-bindingType' or $complexTypeName='protocol-bindingType'">
+                <datatype>
+                    <xsl:attribute name="name">
+                        <xsl:value-of select="$complexTypeName"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="mappedTo">
+                        <xsl:value-of select="'javaee:string'"/>
                     </xsl:attribute>
                     <xsl:attribute name="schemaName">
                         <xsl:value-of select="$pDocument"/>

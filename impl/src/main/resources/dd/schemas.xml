@@ -7,16 +7,16 @@
         <schemaName generateDDClass="false" packageApi="org.jboss.shrinkwrap.descriptor.api.javaeewebservices13" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaeewebservices13">../javaee_web_services_1_3.xsd</schemaName>
         <schemaName generateDDClass="false" packageApi="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient13">../javaee_web_services_client_1_3.xsd</schemaName>
         <schemaName generateDDClass="true" packageApi="org.jboss.shrinkwrap.descriptor.api.webapp30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.webapp30">../web-app_3_0.xsd</schemaName>
-        <schemaName generateDDClass="false" packageApi="org.jboss.shrinkwrap.descriptor.api.webfragment30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.webfragment30">../web-fragment_3_0.xsd</schemaName>
+        <!--        <schemaName generateDDClass="false" packageApi="org.jboss.shrinkwrap.descriptor.api.webfragment30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.webfragment30">../web-fragment_3_0.xsd</schemaName>-->
         <schemaName generateDDClass="false" packageApi="org.jboss.shrinkwrap.descriptor.api.webcommon30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.webcommon30">../web-common_3_0.xsd</schemaName>
         <schemaName generateDDClass="false" packageApi="org.jboss.shrinkwrap.descriptor.api.jsp22" packageImpl="org.jboss.shrinkwrap.descriptor.impl.jsp22">../jsp_2_2.xsd</schemaName>
-        <schemaName generateDDClass="false" packageApi="org.jboss.shrinkwrap.descriptor.api.beans10" packageImpl="org.jboss.shrinkwrap.descriptor.impl.beans10">../beans_1_0.xsd</schemaName>
+        <!--    <schemaName generateDDClass="false" packageApi="org.jboss.shrinkwrap.descriptor.api.beans10" packageImpl="org.jboss.shrinkwrap.descriptor.impl.beans10">../beans_1_0.xsd</schemaName>
         <schemaName generateDDClass="false" packageApi="org.jboss.shrinkwrap.descriptor.api.connector16" packageImpl="org.jboss.shrinkwrap.descriptor.impl.connector16">../connector_1_6.xsd</schemaName>
         <schemaName generateDDClass="false" packageApi="org.jboss.shrinkwrap.descriptor.api.persistence20" packageImpl="org.jboss.shrinkwrap.descriptor.impl.persistence20">../persistence_2_0.xsd</schemaName>
         <schemaName generateDDClass="false" packageApi="org.jboss.shrinkwrap.descriptor.api.webfacelettaglibrary20" packageImpl="org.jboss.shrinkwrap.descriptor.impl.webfacelettaglibrary20">../web-facelettaglibrary_2_0.xsd</schemaName>
         <schemaName generateDDClass="false" packageApi="org.jboss.shrinkwrap.descriptor.api.webfacesconfig20" packageImpl="org.jboss.shrinkwrap.descriptor.impl.webfacesconfig20">../web-facesconfig_2_0.xsd</schemaName>
         <schemaName generateDDClass="false" packageApi="org.jboss.shrinkwrap.descriptor.api.webfacesuicomponent20" packageImpl="org.jboss.shrinkwrap.descriptor.impl.webfacesuicomponent20">../web-facesuicomponent_2_0.xsd</schemaName>
         <schemaName generateDDClass="false" packageApi="org.jboss.shrinkwrap.descriptor.api.webjsptaglibrary21" packageImpl="org.jboss.shrinkwrap.descriptor.impl.webjsptaglibrary21">../web-jsptaglibrary_2_1.xsd</schemaName>
-        <schemaName generateDDClass="false" packageApi="org.jboss.shrinkwrap.descriptor.api.webpartialresponse20" packageImpl="org.jboss.shrinkwrap.descriptor.impl.webpartialresponse20">../web-partialresponse_2_0.xsd</schemaName>
+        <schemaName generateDDClass="false" packageApi="org.jboss.shrinkwrap.descriptor.api.webpartialresponse20" packageImpl="org.jboss.shrinkwrap.descriptor.impl.webpartialresponse20">../web-partialresponse_2_0.xsd</schemaName>-->
     </schemas>
 </dd>
