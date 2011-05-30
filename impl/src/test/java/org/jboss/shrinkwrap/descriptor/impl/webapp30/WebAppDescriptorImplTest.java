@@ -1,10 +1,11 @@
 package org.jboss.shrinkwrap.descriptor.impl.webapp30;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.AuthMethodType;
+import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.AuthMethodType;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.WebApp30Descriptor;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.DispatcherType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.TrackingModeType;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.WebAppVersionType;
 import org.junit.Test;
 
 
@@ -13,29 +14,33 @@ public class WebAppDescriptorImplTest
    @Test
    public void testNavigation() throws Exception
    {
-      final String webApp = Descriptors.create(WebAppDescriptor.class)
-         .version("3.0")
-         .metadataComplete(false)
-         .moduleName("")
-         .description("description1")
-         .displayName("displayName1")
-         .icon().smallIcon("smallIcon1").largeIcon("largeIcon1").up()
+      final String webApp = Descriptors.create(WebApp30Descriptor.class)
+         .getEjbLocalRef()
+            .setLocal("")
+            .setMappedName("")
+            .setLookupName("").up()
+         .setVersion(WebAppVersionType._3_0).setVersion(WebAppVersionType._3_0)
+         .setMetadataComplete(false)
+         .setModuleName("")
+         .setDescription("description1")
+         .setDisplayName("displayName1")
+         .getIcon().setSmallIcon("smallIcon1").setLargeIcon("largeIcon1").up().up()
          .distributable()
-         .contextParam()
+         .getContextParam()
                .setDescription("description")
                .setParamName("paramName")
                .setParamValue("paramValue").up()
-         .filter()
-               .filterName("filterName")
-               .filterClass("org.jboss.arquillian.class")
-               .asyncSupported(false)
-                     .description("")
-                     .displayName("")
-                     .icon()
-                           .smallIcon("")
-                           .largeIcon("")
-                     .up()
-               .initParam()
+         .getFilter()
+               .setFilterName("filterName")
+               .setFilterClass("org.jboss.arquillian.class")               
+               .setAsyncSupported(false)
+//               .setDescription("")
+//               .setDisplayName("")
+//               .getIcon()
+//                     .setSmallIcon("")
+//                     .setLargeIcon("").
+//               .up()
+               .getInitParam()
                      .setDescription("description")
                      .setParamName("")
                      .setParamValue("").up()

@@ -1,44 +1,35 @@
-package org.jboss.shrinkwrap.descriptor.api.ejbjar31;
-
-import java.util.Date;
+package org.jboss.shrinkwrap.descriptor.api.ejbjar31; 
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
+        
 
 /**
  * This class is a generated class.
- * Generation date :2011-05-29T14:51:23.661+02:00
+ * Generation date :2011-05-30T06:59:44.76+02:00
  */
 public interface TimerType<T> extends Child<T>
 {
    public TimerType<T> setDescription(String description);
-
    public String getDescription();
 
-   public TimerScheduleType<TimerType<T>> setSchedule(TimerScheduleType<T> schedule);
+   public TimerType<T> setSchedule(TimerScheduleType<T> schedule);
+   public TimerScheduleType<T> getSchedule();
 
-   public TimerScheduleType<TimerType<T>> getSchedule();
+   public TimerType<T> setStart(java.util.Date start);
+   public java.util.Date getStart();
 
-   public TimerType<T> setStart(Date start);
+   public TimerType<T> setEnd(java.util.Date end);
+   public java.util.Date getEnd();
 
-   public Date getStart();
-
-   public TimerType<T> setEnd(Date end);
-
-   public Date getEnd();
-
-   public NamedMethodType<TimerType<T>> setTimeoutMethod(NamedMethodType<T> timeoutMethod);
-
-   public NamedMethodType<TimerType<T>> getTimeoutMethod();
+   public TimerType<T> setTimeoutMethod(NamedMethodType<T> timeoutMethod);
+   public NamedMethodType<T> getTimeoutMethod();
 
    public TimerType<T> setPersistent(Boolean persistent);
-
    public Boolean getPersistent();
 
    public TimerType<T> setTimezone(String timezone);
-
    public String getTimezone();
 
    public TimerType<T> setInfo(String info);
-
    public String getInfo();
 }

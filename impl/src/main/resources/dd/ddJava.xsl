@@ -218,9 +218,6 @@
                     <xsl:text>, </xsl:text>
                     <xsl:value-of select="xdd:createPascalizedName(text(), '')"/>
                     <xsl:text>&lt;T&gt;</xsl:text>
-                    <xsl:if test="position() = last()">
-                        <xsl:text>&#10;</xsl:text>
-                    </xsl:if>
                 </xsl:for-each>
 
                 <xsl:text>&#10;</xsl:text>
@@ -635,9 +632,7 @@
         <xsl:choose>
             <xsl:when test="$pElementType='javaee:emptyType' or $pElementType='javaee:ordering-othersType' or 
                             $pElementType='faces-config-ordering-othersType' or $pElementType='extensibleType'">
-                <xsl:text>   public void </xsl:text>
-                <xsl:value-of select="xdd:createCamelizedName($pElementName)"/>
-                <xsl:text>();</xsl:text>
+                <xsl:value-of select="concat('   public ', $vReturn, ' ', xdd:createCamelizedName($pElementName), '();')"/>
                 <xsl:text>&#10;</xsl:text>
             </xsl:when>
 
@@ -654,9 +649,9 @@
 
             <xsl:otherwise>
                 <!-- it is a complex type -->
-                <xsl:variable name="vReturnGeneric" select="xdd:createPascalizedName($pElementType, concat('&lt;', $vReturn, '&gt;'))"/>
+                <xsl:variable name="vReturnGeneric" select="xdd:createPascalizedName($pElementType, concat('&lt;', 'T', '&gt;'))"/>
                 <xsl:variable name="vElementTypeGeneric" select="xdd:createPascalizedName($pElementType, '&lt;T&gt;')"/>
-                <xsl:value-of select="xdd:writeSetMethodSignature($vReturnGeneric, $vMethodName, $vElementTypeGeneric, $pElementName,  true())"/>
+                <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, $vElementTypeGeneric, $pElementName,  true())"/>
                 <xsl:value-of select="xdd:writeGetMethodSignature($vReturnGeneric, $vMethodName, true())"/>
             </xsl:otherwise>
         </xsl:choose>

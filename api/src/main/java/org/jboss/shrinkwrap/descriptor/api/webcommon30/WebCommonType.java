@@ -12,12 +12,11 @@ import org.jboss.shrinkwrap.descriptor.api.jsp22.JspConfigType;
 
 /**
  * This class is a generated class.
- * Generation date :2011-05-29T19:58:11.781+02:00
+ * Generation date :2011-05-30T06:59:44.76+02:00
  */
 public interface WebCommonType<T> extends Child<T>, DescriptionGroup<T>, JndiEnvironmentRefsGroup<T>
-
 {
-   public void distributable();
+   public WebCommonType<T> distributable();
 
    public WebCommonType<T> setContextParam(ParamValueType<T> contextParam);
    public ParamValueType<T> getContextParam();
@@ -49,21 +48,21 @@ public interface WebCommonType<T> extends Child<T>, DescriptionGroup<T>, JndiEnv
    public WebCommonType<T> setErrorPage(ErrorPageType<T> errorPage);
    public ErrorPageType<T> getErrorPage();
 
-   public JspConfigType<WebCommonType<T>> setJspConfig(JspConfigType<T> jspConfig);
+   public WebCommonType<T> setJspConfig(JspConfigType<T> jspConfig);
    public JspConfigType<T> getJspConfig();
 
-   public SecurityConstraintType<WebCommonType<T>> setSecurityConstraint(SecurityConstraintType<T> securityConstraint);
+   public WebCommonType<T> setSecurityConstraint(SecurityConstraintType<T> securityConstraint);
    public SecurityConstraintType<T> getSecurityConstraint();
 
-   public LoginConfigType<WebCommonType<T>> setLoginConfig(LoginConfigType<T> loginConfig);
-   public LoginConfigType<WebCommonType<T>> getLoginConfig();
+   public WebCommonType<T> setLoginConfig(LoginConfigType<T> loginConfig);
+   public LoginConfigType<T> getLoginConfig();
 
-   public SecurityRoleType<WebCommonType<T>> setSecurityRole(SecurityRoleType<T> securityRole);
-   public SecurityRoleType<WebCommonType<T>> getSecurityRole();
+   public WebCommonType<T> setSecurityRole(SecurityRoleType<T> securityRole);
+   public SecurityRoleType<T> getSecurityRole();
 
-   public MessageDestinationType<WebCommonType<T>> setMessageDestination(MessageDestinationType<T> messageDestination);
-   public MessageDestinationType<WebCommonType<T>> getMessageDestination();
+   public WebCommonType<T> setMessageDestination(MessageDestinationType<T> messageDestination);
+   public MessageDestinationType<T> getMessageDestination();
 
-   public LocaleEncodingMappingListType<WebCommonType<T>> setLocaleEncodingMappingList(LocaleEncodingMappingListType<T> localeEncodingMappingList);
-   public LocaleEncodingMappingListType<WebCommonType<T>> getLocaleEncodingMappingList();
+   public WebCommonType<T> setLocaleEncodingMappingList(LocaleEncodingMappingListType<T> localeEncodingMappingList);
+   public LocaleEncodingMappingListType<T> getLocaleEncodingMappingList();
 }

@@ -1,28 +1,23 @@
-package org.jboss.shrinkwrap.descriptor.api.webcommon30;
+package org.jboss.shrinkwrap.descriptor.api.webcommon30; 
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
+        
 
 /**
  * This class is a generated class.
- * Generation date :2011-05-29T14:51:23.661+02:00
+ * Generation date :2011-05-30T06:59:44.76+02:00
  */
 public interface SecurityConstraintType<T> extends Child<T>
 {
    public SecurityConstraintType<T> setDisplayName(String displayName);
-
    public String getDisplayName();
 
-   public WebResourceCollectionType<SecurityConstraintType<T>> setWebResourceCollection(
-         WebResourceCollectionType<T> webResourceCollection);
+   public SecurityConstraintType<T> setWebResourceCollection(WebResourceCollectionType<T> webResourceCollection);
+   public WebResourceCollectionType<T> getWebResourceCollection();
 
-   public WebResourceCollectionType<SecurityConstraintType<T>> getWebResourceCollection();
+   public SecurityConstraintType<T> setAuthConstraint(AuthConstraintType<T> authConstraint);
+   public AuthConstraintType<T> getAuthConstraint();
 
-   public AuthConstraintType<SecurityConstraintType<T>> setAuthConstraint(AuthConstraintType<T> authConstraint);
-
-   public AuthConstraintType<SecurityConstraintType<T>> getAuthConstraint();
-
-   public UserDataConstraintType<SecurityConstraintType<T>> setUserDataConstraint(
-         UserDataConstraintType<T> userDataConstraint);
-
-   public UserDataConstraintType<SecurityConstraintType<T>> getUserDataConstraint();
+   public SecurityConstraintType<T> setUserDataConstraint(UserDataConstraintType<T> userDataConstraint);
+   public UserDataConstraintType<T> getUserDataConstraint();
 }

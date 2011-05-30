@@ -1,44 +1,34 @@
-package org.jboss.shrinkwrap.descriptor.api.ejbjar31;
+package org.jboss.shrinkwrap.descriptor.api.ejbjar31; 
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleType;
+        
 
 /**
  * This class is a generated class.
- * Generation date :2011-05-29T14:51:23.661+02:00
+ * Generation date :2011-05-30T06:59:44.76+02:00
  */
 public interface AssemblyDescriptorType<T> extends Child<T>
 {
-   public SecurityRoleType<AssemblyDescriptorType<T>> setSecurityRole(SecurityRoleType<T> securityRole);
+   public AssemblyDescriptorType<T> setSecurityRole(SecurityRoleType<T> securityRole);
+   public SecurityRoleType<T> getSecurityRole();
 
-   public SecurityRoleType<AssemblyDescriptorType<T>> getSecurityRole();
+   public AssemblyDescriptorType<T> setMethodPermission(MethodPermissionType<T> methodPermission);
+   public MethodPermissionType<T> getMethodPermission();
 
-   public MethodPermissionType<AssemblyDescriptorType<T>> setMethodPermission(MethodPermissionType<T> methodPermission);
+   public AssemblyDescriptorType<T> setContainerTransaction(ContainerTransactionType<T> containerTransaction);
+   public ContainerTransactionType<T> getContainerTransaction();
 
-   public MethodPermissionType<AssemblyDescriptorType<T>> getMethodPermission();
+   public AssemblyDescriptorType<T> setInterceptorBinding(InterceptorBindingType<T> interceptorBinding);
+   public InterceptorBindingType<T> getInterceptorBinding();
 
-   public ContainerTransactionType<AssemblyDescriptorType<T>> setContainerTransaction(
-         ContainerTransactionType<T> containerTransaction);
+   public AssemblyDescriptorType<T> setMessageDestination(MessageDestinationType<T> messageDestination);
+   public MessageDestinationType<T> getMessageDestination();
 
-   public ContainerTransactionType<AssemblyDescriptorType<T>> getContainerTransaction();
+   public AssemblyDescriptorType<T> setExcludeList(ExcludeListType<T> excludeList);
+   public ExcludeListType<T> getExcludeList();
 
-   public InterceptorBindingType<AssemblyDescriptorType<T>> setInterceptorBinding(
-         InterceptorBindingType<T> interceptorBinding);
-
-   public InterceptorBindingType<AssemblyDescriptorType<T>> getInterceptorBinding();
-
-   public MessageDestinationType<AssemblyDescriptorType<T>> setMessageDestination(
-         MessageDestinationType<T> messageDestination);
-
-   public MessageDestinationType<AssemblyDescriptorType<T>> getMessageDestination();
-
-   public ExcludeListType<AssemblyDescriptorType<T>> setExcludeList(ExcludeListType<T> excludeList);
-
-   public ExcludeListType<AssemblyDescriptorType<T>> getExcludeList();
-
-   public ApplicationExceptionType<AssemblyDescriptorType<T>> setApplicationException(
-         ApplicationExceptionType<T> applicationException);
-
-   public ApplicationExceptionType<AssemblyDescriptorType<T>> getApplicationException();
+   public AssemblyDescriptorType<T> setApplicationException(ApplicationExceptionType<T> applicationException);
+   public ApplicationExceptionType<T> getApplicationException();
 }
