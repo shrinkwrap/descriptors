@@ -12,53 +12,51 @@ import org.junit.Test;
 
 public class WebAppDescriptorImplTest
 {
+	@Test
+	public void testEjbJarNavigation() throws Exception
+	{
+		final String ejbJar = Descriptors.create(EjbJar31Descriptor.class)
+			.setModuleName("")
+			.setDescription("")
+			.setDisplayName("").up()
+			.getEnterpriseBeans()
+				.getSession()
+					.setEjbName("")
+					.setEjbClass("")
+					.getEnvEntry()
+						.setEnvEntryName("")
+						.setEnvEntryType("java.lang.Long")
+						.setEnvEntryValue("8L")
+						.up()
+					.getEnvEntry()
+						.setEnvEntryName("")
+						.setEnvEntryType("java.lang.Long")
+						.setEnvEntryValue("8L")
+					.up()
+				.up()
+				.getMessageDriven()
+					.setMessageDestinationLink("")
+					.getMessageDestinationRef()
+						.setLookupName("")
+						.setMappedName("")
+						.up()
+					.up()
+				.up()
+			.up()
+			.getAssemblyDescriptor()
+				.getApplicationException()
+					.setExceptionClass("")
+					.setInherited(true)
+					.setRollback(false)
+					.up()
+				.up()
+			.up()
+			.exportAsString();		
+	}
+	
    @Test
    public void testNavigation() throws Exception
-   {
-	   public void testEjbJarNavigation() throws Exception
-		{
-			final String webApp = Descriptors.create(EjbJar31Descriptor.class)
-				.setModuleName("")
-				.setDescription("")
-				.setDisplayName("").up()
-				.getEnterpriseBeans()
-					.getSession()
-						.setEjbName("")
-						.setEjbClass("")
-						.getEnvEntry()
-							.setEnvEntryName("")
-							.setEnvEntryType("java.lang.Long")
-							.setEnvEntryValue("8L")
-							.up()
-						.getEnvEntry()
-							.setEnvEntryName("")
-							.setEnvEntryType("java.lang.Long")
-							.setEnvEntryValue("8L")
-						.up()
-					.up()
-					.getMessageDriven()
-						.setMessageDestinationLink("")
-						.getMessageDestinationRef()
-							.setLookupName("")
-							.setMappedName("")
-							.up()
-						.up()
-					.up()
-				.up()
-				.getAssemblyDescriptor()
-					.getApplicationException()
-						.setExceptionClass("")
-						.setInherited(true)
-						.setRollback(false)
-						.up()
-					.up()
-				.up()
-				.exportAsString();
-			
-		}
-	   
-	   public void testNavigation() throws Exception
-	   {
+   {		  
 	      final String webApp = Descriptors.create(WebApp30Descriptor.class)
 	         .setVersion(WebAppVersionType._3_0)
 	         .setMetadataComplete(false)
