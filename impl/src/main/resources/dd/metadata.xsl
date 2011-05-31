@@ -416,7 +416,7 @@
         <xsl:param name="pPackage"/>
         <xsl:for-each select="document($pDocument)//xsd:complexType">
             <xsl:variable name="complexTypeName" select="@name"/>
-            <xsl:if test="count(xsd:sequence/xsd:element) > 0 or count(xsd:choice/xsd:element) > 0 or count(xsd:choice/xsd:group) > 0">
+            <xsl:if test="count(xsd:sequence/xsd:element) > 0 or count(xsd:choice/xsd:element) > 0 or count(xsd:sequence/xsd:choice/xsd:element) > 0 or count(xsd:choice/xsd:group) > 0">
                 <class>
                     <xsl:attribute name="name">
                         <xsl:value-of select="$complexTypeName"/>
@@ -428,6 +428,17 @@
                         <xsl:value-of select="$pPackage"/>
                     </xsl:attribute>
                     <xsl:for-each select="xsd:sequence/xsd:element">
+                        <element>
+                            <xsl:attribute name="name">
+                                <xsl:value-of select="@name"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="type">
+                                <xsl:value-of select="@type"/>
+                            </xsl:attribute>
+                        </element>
+                    </xsl:for-each>
+                    
+                    <xsl:for-each select="xsd:sequence/xsd:choice/xsd:element">
                         <element>
                             <xsl:attribute name="name">
                                 <xsl:value-of select="@name"/>

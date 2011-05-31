@@ -405,6 +405,10 @@
         </class>
         <class name="moduleType" schemaName="../application_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.application6">
             <element name="alt-dd" type="javaee:pathType"/>
+            <element name="connector" type="javaee:pathType"/>
+            <element name="ejb" type="javaee:pathType"/>
+            <element name="java" type="javaee:pathType"/>
+            <element name="web" type="javaee:webType"/>
         </class>
         <class name="webType" schemaName="../application_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.application6">
             <element name="web-uri" type="javaee:pathType"/>
@@ -542,6 +546,8 @@
             <element name="exclude-default-interceptors" type="javaee:true-falseType"/>
             <element name="exclude-class-interceptors" type="javaee:true-falseType"/>
             <element name="method" type="javaee:named-methodType"/>
+            <element name="interceptor-class" type="javaee:fully-qualified-classType"/>
+            <element name="interceptor-order" type="javaee:interceptor-orderType"/>
         </class>
         <class name="interceptor-orderType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="interceptor-class" type="javaee:fully-qualified-classType"/>
@@ -589,6 +595,8 @@
         <class name="method-permissionType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="description" type="javaee:descriptionType"/>
             <element name="method" type="javaee:methodType"/>
+            <element name="role-name" type="javaee:role-nameType"/>
+            <element name="unchecked" type="javaee:emptyType"/>
         </class>
         <class name="queryType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="description" type="javaee:descriptionType"/>
@@ -610,6 +618,8 @@
         </class>
         <class name="security-identityType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="description" type="javaee:descriptionType"/>
+            <element name="use-caller-identity" type="javaee:emptyType"/>
+            <element name="run-as" type="javaee:run-asType"/>
         </class>
         <class name="session-beanType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="ejb-name" type="javaee:ejb-nameType"/>
@@ -684,6 +694,8 @@
             <element name="protocol-binding" type="javaee:protocol-bindingType"/>
             <element name="service-endpoint-interface" type="javaee:fully-qualified-classType"/>
             <element name="service-impl-bean" type="javaee:service-impl-beanType"/>
+            <element name="handler" type="javaee:handlerType"/>
+            <element name="handler-chains" type="javaee:handler-chainsType"/>
         </class>
         <class name="service-impl-beanType" schemaName="../javaee_web_services_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservices13">
             <element name="ejb-link" type="javaee:ejb-linkType"/>
@@ -710,6 +722,8 @@
             <element name="jaxrpc-mapping-file" type="javaee:pathType"/>
             <element name="service-qname" type="javaee:xsdQNameType"/>
             <element name="port-component-ref" type="javaee:port-component-refType"/>
+            <element name="handler" type="javaee:handlerType"/>
+            <element name="handler-chains" type="javaee:handler-chainsType"/>
             <include>javaee:descriptionGroup</include>
             <include>javaee:resourceGroup</include>
         </class>
@@ -726,6 +740,9 @@
         </class>
         <class name="handler-chainType" schemaName="../javaee_web_services_client_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13">
             <element name="handler" type="javaee:handlerType"/>
+            <element name="service-name-pattern" type="javaee:qname-pattern"/>
+            <element name="port-name-pattern" type="javaee:qname-pattern"/>
+            <element name="protocol-bindings" type="javaee:protocol-bindingListType"/>
         </class>
         <class name="addressingType" schemaName="../javaee_web_services_client_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13">
             <element name="enabled" type="javaee:true-falseType"/>
@@ -762,6 +779,8 @@
         </class>
         <class name="error-pageType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="location" type="javaee:war-pathType"/>
+            <element name="error-code" type="javaee:error-codeType"/>
+            <element name="exception-type" type="javaee:fully-qualified-classType"/>
         </class>
         <class name="filterType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="filter-name" type="javaee:filter-nameType"/>
@@ -773,6 +792,8 @@
         <class name="filter-mappingType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="filter-name" type="javaee:filter-nameType"/>
             <element name="dispatcher" type="javaee:dispatcherType"/>
+            <element name="url-pattern" type="javaee:url-patternType"/>
+            <element name="servlet-name" type="javaee:servlet-nameType"/>
         </class>
         <class name="form-login-configType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="form-login-page" type="javaee:war-pathType"/>
@@ -802,6 +823,8 @@
             <element name="run-as" type="javaee:run-asType"/>
             <element name="security-role-ref" type="javaee:security-role-refType"/>
             <element name="multipart-config" type="javaee:multipart-configType"/>
+            <element name="servlet-class" type="javaee:fully-qualified-classType"/>
+            <element name="jsp-file" type="javaee:jsp-fileType"/>
             <include>javaee:descriptionGroup</include>
         </class>
         <class name="servlet-mappingType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
@@ -830,6 +853,8 @@
             <element name="web-resource-name" type="javaee:string"/>
             <element name="description" type="javaee:descriptionType"/>
             <element name="url-pattern" type="javaee:url-patternType"/>
+            <element name="http-method" type="javaee:http-methodType"/>
+            <element name="http-method-omission" type="javaee:http-methodType"/>
         </class>
         <class name="welcome-file-listType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="welcome-file" type="xsd:string"/>

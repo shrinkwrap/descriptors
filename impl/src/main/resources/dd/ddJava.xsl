@@ -579,8 +579,8 @@
 
             <xsl:otherwise>
                 <!-- it is a complex type -->
-                <xsl:variable name="vReturnGeneric" select="xdd:createPascalizedName($pElementType, concat('&lt;', 'T', '&gt;'))"/>
-                <xsl:variable name="vElementTypeGeneric" select="xdd:createPascalizedName($pElementType, '&lt;T&gt;')"/>
+                <xsl:variable name="vReturnGeneric" select="xdd:createPascalizedName($pElementType, concat('&lt;', $pClassName, '&lt;T&gt;&gt;'))"/>
+                <xsl:variable name="vElementTypeGeneric" select="xdd:createPascalizedName($pElementType, concat('&lt;', $pClassName, '&lt;T&gt;&gt;'))"/>
                 <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, $vElementTypeGeneric, $pElementName,  true())"/>
                 <xsl:value-of select="xdd:writeGetMethodSignature($vReturnGeneric, $vMethodName, true())"/>
             </xsl:otherwise>
@@ -737,6 +737,9 @@
                 <xsl:sequence select="'String'"/>
             </xsl:when>
             <xsl:when test="$pText='xsdIntegerType'">
+                <xsl:sequence select="'Integer'"/>
+            </xsl:when>
+            <xsl:when test="$pText='xsd:positiveInteger'">
                 <xsl:sequence select="'Integer'"/>
             </xsl:when>
             <xsl:when test="$pText='positiveInteger'">
