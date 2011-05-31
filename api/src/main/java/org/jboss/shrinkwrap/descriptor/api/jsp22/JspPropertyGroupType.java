@@ -1,15 +1,24 @@
 package org.jboss.shrinkwrap.descriptor.api.jsp22; 
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.DescriptionGroup;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
         
 
 /**
  * This class is a generated class.
- * Generation date :2011-05-30T06:59:44.76+02:00
+ * Generation date :2011-05-31T07:08:31.33+02:00
  */
-public interface JspPropertyGroupType<T> extends Child<T>, DescriptionGroup<T>
+public interface JspPropertyGroupType<T> extends Child<T>
 {
+   public JspPropertyGroupType<T> setDescription(String description);
+   public String getDescription();
+
+   public JspPropertyGroupType<T> setDisplayName(String displayName);
+   public String getDisplayName();
+
+   public JspPropertyGroupType<T> setIcon(IconType<T> icon);
+   public IconType<T> getIcon();
+
    public JspPropertyGroupType<T> setUrlPattern(String urlPattern);
    public String getUrlPattern();
 

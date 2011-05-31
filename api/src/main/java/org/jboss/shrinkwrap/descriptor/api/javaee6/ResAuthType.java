@@ -3,7 +3,7 @@ package org.jboss.shrinkwrap.descriptor.api.javaee6;
 
 /**
  * This class is a generated class.
- * Generation date :2011-05-30T06:59:44.76+02:00
+ * Generation date :2011-05-31T07:08:31.33+02:00
  */
 public enum ResAuthType
 {

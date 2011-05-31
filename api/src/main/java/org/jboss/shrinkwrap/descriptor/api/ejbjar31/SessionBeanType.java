@@ -1,18 +1,72 @@
 package org.jboss.shrinkwrap.descriptor.api.ejbjar31; 
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.DescriptionGroup;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.JndiEnvironmentRefsGroup;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbLocalRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.EnvEntryType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.LifecycleCallbackType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceContextRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceUnitRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceEnvRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13.ServiceRefType;
         
 
 /**
  * This class is a generated class.
- * Generation date :2011-05-30T06:59:44.76+02:00
+ * Generation date :2011-05-31T07:08:31.33+02:00
  */
-public interface SessionBeanType<T> extends Child<T>, DescriptionGroup<T>, JndiEnvironmentRefsGroup<T>
+public interface SessionBeanType<T> extends Child<T>
 {
+   public SessionBeanType<T> setDescription(String description);
+   public String getDescription();
+
+   public SessionBeanType<T> setDisplayName(String displayName);
+   public String getDisplayName();
+
+   public SessionBeanType<T> setIcon(IconType<T> icon);
+   public IconType<T> getIcon();
+
+   public SessionBeanType<T> setEnvEntry(EnvEntryType<T> envEntry);
+   public EnvEntryType<T> getEnvEntry();
+
+   public SessionBeanType<T> setEjbRef(EjbRefType<T> ejbRef);
+   public EjbRefType<T> getEjbRef();
+
+   public SessionBeanType<T> setEjbLocalRef(EjbLocalRefType<T> ejbLocalRef);
+   public EjbLocalRefType<T> getEjbLocalRef();
+
+   public SessionBeanType<T> setResourceRef(ResourceRefType<T> resourceRef);
+   public ResourceRefType<T> getResourceRef();
+
+   public SessionBeanType<T> setResourceEnvRef(ResourceEnvRefType<T> resourceEnvRef);
+   public ResourceEnvRefType<T> getResourceEnvRef();
+
+   public SessionBeanType<T> setMessageDestinationRef(MessageDestinationRefType<T> messageDestinationRef);
+   public MessageDestinationRefType<T> getMessageDestinationRef();
+
+   public SessionBeanType<T> setPersistenceContextRef(PersistenceContextRefType<T> persistenceContextRef);
+   public PersistenceContextRefType<T> getPersistenceContextRef();
+
+   public SessionBeanType<T> setPersistenceUnitRef(PersistenceUnitRefType<T> persistenceUnitRef);
+   public PersistenceUnitRefType<T> getPersistenceUnitRef();
+
+   public SessionBeanType<T> setPostConstruct(LifecycleCallbackType<T> postConstruct);
+   public LifecycleCallbackType<T> getPostConstruct();
+
+   public SessionBeanType<T> setPreDestroy(LifecycleCallbackType<T> preDestroy);
+   public LifecycleCallbackType<T> getPreDestroy();
+
+   public SessionBeanType<T> setDataSource(DataSourceType<T> dataSource);
+   public DataSourceType<T> getDataSource();
+
+   public SessionBeanType<T> setServiceRef(ServiceRefType<T> serviceRef);
+   public ServiceRefType<T> getServiceRef();
+
    public SessionBeanType<T> setEjbName(String ejbName);
    public String getEjbName();
 
