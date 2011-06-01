@@ -203,23 +203,23 @@
     </enums>
     <groups>
         <class name="descriptionGroup" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
-            <element name="description" type="javaee:descriptionType"/>
-            <element name="display-name" type="javaee:display-nameType"/>
-            <element name="icon" type="javaee:iconType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="display-name" type="javaee:display-nameType" maxOccurs="unbounded"/>
+            <element name="icon" type="javaee:iconType" maxOccurs="unbounded"/>
         </class>
         <class name="jndiEnvironmentRefsGroup" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
-            <element name="env-entry" type="javaee:env-entryType"/>
-            <element name="ejb-ref" type="javaee:ejb-refType"/>
-            <element name="ejb-local-ref" type="javaee:ejb-local-refType"/>
+            <element name="env-entry" type="javaee:env-entryType" maxOccurs="unbounded"/>
+            <element name="ejb-ref" type="javaee:ejb-refType" maxOccurs="unbounded"/>
+            <element name="ejb-local-ref" type="javaee:ejb-local-refType" maxOccurs="unbounded"/>
             <include>javaee:service-refGroup</include>
-            <element name="resource-ref" type="javaee:resource-refType"/>
-            <element name="resource-env-ref" type="javaee:resource-env-refType"/>
-            <element name="message-destination-ref" type="javaee:message-destination-refType"/>
-            <element name="persistence-context-ref" type="javaee:persistence-context-refType"/>
-            <element name="persistence-unit-ref" type="javaee:persistence-unit-refType"/>
-            <element name="post-construct" type="javaee:lifecycle-callbackType"/>
-            <element name="pre-destroy" type="javaee:lifecycle-callbackType"/>
-            <element name="data-source" type="javaee:data-sourceType"/>
+            <element name="resource-ref" type="javaee:resource-refType" maxOccurs="unbounded"/>
+            <element name="resource-env-ref" type="javaee:resource-env-refType" maxOccurs="unbounded"/>
+            <element name="message-destination-ref" type="javaee:message-destination-refType" maxOccurs="unbounded"/>
+            <element name="persistence-context-ref" type="javaee:persistence-context-refType" maxOccurs="unbounded"/>
+            <element name="persistence-unit-ref" type="javaee:persistence-unit-refType" maxOccurs="unbounded"/>
+            <element name="post-construct" type="javaee:lifecycle-callbackType" maxOccurs="unbounded"/>
+            <element name="pre-destroy" type="javaee:lifecycle-callbackType" maxOccurs="unbounded"/>
+            <element name="data-source" type="javaee:data-sourceType" maxOccurs="unbounded"/>
         </class>
         <class name="resourceGroup" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
             <include>javaee:resourceBaseGroup</include>
@@ -227,10 +227,10 @@
         </class>
         <class name="resourceBaseGroup" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
             <element name="mapped-name" type="javaee:xsdStringType"/>
-            <element name="injection-target" type="javaee:injection-targetType"/>
+            <element name="injection-target" type="javaee:injection-targetType" maxOccurs="unbounded"/>
         </class>
         <class name="service-refGroup" schemaName="../javaee_web_services_client_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13">
-            <element name="service-ref" type="javaee:service-refType"/>
+            <element name="service-ref" type="javaee:service-refType" maxOccurs="unbounded"/>
         </class>
         <class name="web-common-attributes" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="version" type="javaee:web-app-versionType"/>
@@ -269,7 +269,7 @@
             <element name="url" type="javaee:jdbc-urlType"/>
             <element name="user" type="javaee:string"/>
             <element name="password" type="javaee:string"/>
-            <element name="property" type="javaee:propertyType"/>
+            <element name="property" type="javaee:propertyType" maxOccurs="unbounded"/>
             <element name="login-timeout" type="javaee:xsdIntegerType"/>
             <element name="transactional" type="javaee:xsdBooleanType"/>
             <element name="isolation-level" type="javaee:isolation-levelType"/>
@@ -280,7 +280,7 @@
             <element name="max-statements" type="javaee:xsdIntegerType"/>
         </class>
         <class name="ejb-local-refType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
-            <element name="description" type="javaee:descriptionType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
             <element name="ejb-ref-name" type="javaee:ejb-ref-nameType"/>
             <element name="ejb-ref-type" type="javaee:ejb-ref-typeType"/>
             <element name="local-home" type="javaee:local-homeType"/>
@@ -289,7 +289,7 @@
             <include>javaee:resourceGroup</include>
         </class>
         <class name="ejb-refType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
-            <element name="description" type="javaee:descriptionType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
             <element name="ejb-ref-name" type="javaee:ejb-ref-nameType"/>
             <element name="ejb-ref-type" type="javaee:ejb-ref-typeType"/>
             <element name="home" type="javaee:homeType"/>
@@ -298,7 +298,7 @@
             <include>javaee:resourceGroup</include>
         </class>
         <class name="env-entryType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
-            <element name="description" type="javaee:descriptionType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
             <element name="env-entry-name" type="javaee:jndi-nameType"/>
             <element name="env-entry-type" type="javaee:env-entry-type-valuesType"/>
             <element name="env-entry-value" type="javaee:xsdStringType"/>
@@ -321,16 +321,16 @@
             <include>javaee:descriptionGroup</include>
         </class>
         <class name="param-valueType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
-            <element name="description" type="javaee:descriptionType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
             <element name="param-name" type="javaee:string"/>
             <element name="param-value" type="javaee:xsdStringType"/>
         </class>
         <class name="persistence-context-refType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
-            <element name="description" type="javaee:descriptionType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
             <element name="persistence-context-ref-name" type="javaee:jndi-nameType"/>
             <element name="persistence-unit-name" type="javaee:string"/>
             <element name="persistence-context-type" type="javaee:persistence-context-typeType"/>
-            <element name="persistence-property" type="javaee:propertyType"/>
+            <element name="persistence-property" type="javaee:propertyType" maxOccurs="unbounded"/>
             <include>javaee:resourceBaseGroup</include>
         </class>
         <class name="propertyType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
@@ -338,19 +338,19 @@
             <element name="value" type="javaee:xsdStringType"/>
         </class>
         <class name="persistence-unit-refType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
-            <element name="description" type="javaee:descriptionType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
             <element name="persistence-unit-ref-name" type="javaee:jndi-nameType"/>
             <element name="persistence-unit-name" type="javaee:string"/>
             <include>javaee:resourceBaseGroup</include>
         </class>
         <class name="resource-env-refType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
-            <element name="description" type="javaee:descriptionType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
             <element name="resource-env-ref-name" type="javaee:jndi-nameType"/>
             <element name="resource-env-ref-type" type="javaee:fully-qualified-classType"/>
             <include>javaee:resourceGroup</include>
         </class>
         <class name="resource-refType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
-            <element name="description" type="javaee:descriptionType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
             <element name="res-ref-name" type="javaee:jndi-nameType"/>
             <element name="res-type" type="javaee:fully-qualified-classType"/>
             <element name="res-auth" type="javaee:res-authType"/>
@@ -358,15 +358,15 @@
             <include>javaee:resourceGroup</include>
         </class>
         <class name="run-asType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
-            <element name="description" type="javaee:descriptionType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
             <element name="role-name" type="javaee:role-nameType"/>
         </class>
         <class name="security-roleType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
-            <element name="description" type="javaee:descriptionType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
             <element name="role-name" type="javaee:role-nameType"/>
         </class>
         <class name="security-role-refType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
-            <element name="description" type="javaee:descriptionType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
             <element name="role-name" type="javaee:role-nameType"/>
             <element name="role-link" type="javaee:role-nameType"/>
         </class>
@@ -377,7 +377,7 @@
             <include>javaee:descriptionGroup</include>
         </class>
         <class name="message-destination-refType" schemaName="../javaee_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee6">
-            <element name="description" type="javaee:descriptionType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
             <element name="message-destination-ref-name" type="javaee:jndi-nameType"/>
             <element name="message-destination-type" type="javaee:message-destination-typeType"/>
             <element name="message-destination-usage" type="javaee:message-destination-usageType"/>
@@ -386,20 +386,20 @@
         </class>
         <class name="applicationType" schemaName="../application_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.application6">
             <element name="application-name" type="javaee:string"/>
-            <element name="initialize-in-order" type="javaee:generic-booleanType"/>
-            <element name="module" type="javaee:moduleType"/>
-            <element name="security-role" type="javaee:security-roleType"/>
-            <element name="library-directory" type="javaee:pathType"/>
-            <element name="env-entry" type="javaee:env-entryType"/>
-            <element name="ejb-ref" type="javaee:ejb-refType"/>
-            <element name="ejb-local-ref" type="javaee:ejb-local-refType"/>
-            <element name="resource-ref" type="javaee:resource-refType"/>
-            <element name="resource-env-ref" type="javaee:resource-env-refType"/>
-            <element name="message-destination-ref" type="javaee:message-destination-refType"/>
-            <element name="persistence-context-ref" type="javaee:persistence-context-refType"/>
-            <element name="persistence-unit-ref" type="javaee:persistence-unit-refType"/>
-            <element name="message-destination" type="javaee:message-destinationType"/>
-            <element name="data-source" type="javaee:data-sourceType"/>
+            <element name="initialize-in-order" type="javaee:generic-booleanType" maxOccurs="1"/>
+            <element name="module" type="javaee:moduleType" maxOccurs="unbounded"/>
+            <element name="security-role" type="javaee:security-roleType" maxOccurs="unbounded"/>
+            <element name="library-directory" type="javaee:pathType" maxOccurs="1"/>
+            <element name="env-entry" type="javaee:env-entryType" maxOccurs="unbounded"/>
+            <element name="ejb-ref" type="javaee:ejb-refType" maxOccurs="unbounded"/>
+            <element name="ejb-local-ref" type="javaee:ejb-local-refType" maxOccurs="unbounded"/>
+            <element name="resource-ref" type="javaee:resource-refType" maxOccurs="unbounded"/>
+            <element name="resource-env-ref" type="javaee:resource-env-refType" maxOccurs="unbounded"/>
+            <element name="message-destination-ref" type="javaee:message-destination-refType" maxOccurs="unbounded"/>
+            <element name="persistence-context-ref" type="javaee:persistence-context-refType" maxOccurs="unbounded"/>
+            <element name="persistence-unit-ref" type="javaee:persistence-unit-refType" maxOccurs="unbounded"/>
+            <element name="message-destination" type="javaee:message-destinationType" maxOccurs="unbounded"/>
+            <element name="data-source" type="javaee:data-sourceType" maxOccurs="unbounded"/>
             <include>javaee:descriptionGroup</include>
             <include>javaee:service-refGroup</include>
         </class>
@@ -423,8 +423,8 @@
             <element name="method-params" type="javaee:method-paramsType"/>
         </class>
         <class name="activation-configType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
-            <element name="description" type="javaee:descriptionType"/>
-            <element name="activation-config-property" type="javaee:activation-config-propertyType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="activation-config-property" type="javaee:activation-config-propertyType" maxOccurs="unbounded"/>
         </class>
         <class name="activation-config-propertyType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="activation-config-property-name" type="javaee:xsdStringType"/>
@@ -439,20 +439,20 @@
             <element name="method-name" type="javaee:java-identifierType"/>
         </class>
         <class name="assembly-descriptorType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
-            <element name="security-role" type="javaee:security-roleType"/>
-            <element name="method-permission" type="javaee:method-permissionType"/>
-            <element name="container-transaction" type="javaee:container-transactionType"/>
-            <element name="interceptor-binding" type="javaee:interceptor-bindingType"/>
-            <element name="message-destination" type="javaee:message-destinationType"/>
+            <element name="security-role" type="javaee:security-roleType" maxOccurs="unbounded"/>
+            <element name="method-permission" type="javaee:method-permissionType" maxOccurs="unbounded"/>
+            <element name="container-transaction" type="javaee:container-transactionType" maxOccurs="unbounded"/>
+            <element name="interceptor-binding" type="javaee:interceptor-bindingType" maxOccurs="unbounded"/>
+            <element name="message-destination" type="javaee:message-destinationType" maxOccurs="unbounded"/>
             <element name="exclude-list" type="javaee:exclude-listType"/>
-            <element name="application-exception" type="javaee:application-exceptionType"/>
+            <element name="application-exception" type="javaee:application-exceptionType" maxOccurs="unbounded"/>
         </class>
         <class name="cmp-fieldType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
-            <element name="description" type="javaee:descriptionType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
             <element name="field-name" type="javaee:java-identifierType"/>
         </class>
         <class name="cmr-fieldType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
-            <element name="description" type="javaee:descriptionType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
             <element name="cmr-field-name" type="javaee:string"/>
             <element name="cmr-field-type" type="javaee:cmr-field-typeType"/>
         </class>
@@ -462,12 +462,12 @@
             <element name="access-timeout" type="javaee:access-timeoutType"/>
         </class>
         <class name="container-transactionType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
-            <element name="description" type="javaee:descriptionType"/>
-            <element name="method" type="javaee:methodType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="method" type="javaee:methodType" maxOccurs="unbounded"/>
             <element name="trans-attribute" type="javaee:trans-attributeType"/>
         </class>
         <class name="depends-onType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
-            <element name="ejb-name" type="javaee:ejb-linkType"/>
+            <element name="ejb-name" type="javaee:ejb-linkType" maxOccurs="unbounded"/>
         </class>
         <class name="ejb-jarType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="module-name" type="javaee:string"/>
@@ -479,13 +479,13 @@
             <include>javaee:descriptionGroup</include>
         </class>
         <class name="ejb-relationType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
-            <element name="description" type="javaee:descriptionType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
             <element name="ejb-relation-name" type="javaee:string"/>
             <element name="ejb-relationship-role" type="javaee:ejb-relationship-roleType"/>
             <element name="ejb-relationship-role" type="javaee:ejb-relationship-roleType"/>
         </class>
         <class name="ejb-relationship-roleType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
-            <element name="description" type="javaee:descriptionType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
             <element name="ejb-relationship-role-name" type="javaee:string"/>
             <element name="multiplicity" type="javaee:multiplicityType"/>
             <element name="cascade-delete" type="javaee:emptyType"/>
@@ -510,17 +510,17 @@
             <element name="reentrant" type="javaee:true-falseType"/>
             <element name="cmp-version" type="javaee:cmp-versionType"/>
             <element name="abstract-schema-name" type="javaee:java-identifierType"/>
-            <element name="cmp-field" type="javaee:cmp-fieldType"/>
+            <element name="cmp-field" type="javaee:cmp-fieldType" maxOccurs="unbounded"/>
             <element name="primkey-field" type="javaee:string"/>
-            <element name="security-role-ref" type="javaee:security-role-refType"/>
+            <element name="security-role-ref" type="javaee:security-role-refType" maxOccurs="unbounded"/>
             <element name="security-identity" type="javaee:security-identityType"/>
-            <element name="query" type="javaee:queryType"/>
+            <element name="query" type="javaee:queryType" maxOccurs="unbounded"/>
             <include>javaee:descriptionGroup</include>
             <include>javaee:jndiEnvironmentRefsGroup</include>
         </class>
         <class name="exclude-listType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
-            <element name="description" type="javaee:descriptionType"/>
-            <element name="method" type="javaee:methodType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="method" type="javaee:methodType" maxOccurs="unbounded"/>
         </class>
         <class name="application-exceptionType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="exception-class" type="javaee:fully-qualified-classType"/>
@@ -528,29 +528,29 @@
             <element name="inherited" type="javaee:true-falseType"/>
         </class>
         <class name="interceptorsType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
-            <element name="description" type="javaee:descriptionType"/>
-            <element name="interceptor" type="javaee:interceptorType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="interceptor" type="javaee:interceptorType" maxOccurs="unbounded"/>
         </class>
         <class name="interceptorType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
-            <element name="description" type="javaee:descriptionType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
             <element name="interceptor-class" type="javaee:fully-qualified-classType"/>
-            <element name="around-invoke" type="javaee:around-invokeType"/>
-            <element name="around-timeout" type="javaee:around-timeoutType"/>
-            <element name="post-activate" type="javaee:lifecycle-callbackType"/>
-            <element name="pre-passivate" type="javaee:lifecycle-callbackType"/>
+            <element name="around-invoke" type="javaee:around-invokeType" maxOccurs="unbounded"/>
+            <element name="around-timeout" type="javaee:around-timeoutType" maxOccurs="unbounded"/>
+            <element name="post-activate" type="javaee:lifecycle-callbackType" maxOccurs="unbounded"/>
+            <element name="pre-passivate" type="javaee:lifecycle-callbackType" maxOccurs="unbounded"/>
             <include>javaee:jndiEnvironmentRefsGroup</include>
         </class>
         <class name="interceptor-bindingType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
-            <element name="description" type="javaee:descriptionType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
             <element name="ejb-name" type="javaee:string"/>
             <element name="exclude-default-interceptors" type="javaee:true-falseType"/>
             <element name="exclude-class-interceptors" type="javaee:true-falseType"/>
             <element name="method" type="javaee:named-methodType"/>
-            <element name="interceptor-class" type="javaee:fully-qualified-classType"/>
+            <element name="interceptor-class" type="javaee:fully-qualified-classType" maxOccurs="unbounded"/>
             <element name="interceptor-order" type="javaee:interceptor-orderType"/>
         </class>
         <class name="interceptor-orderType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
-            <element name="interceptor-class" type="javaee:fully-qualified-classType"/>
+            <element name="interceptor-class" type="javaee:fully-qualified-classType" maxOccurs="unbounded"/>
         </class>
         <class name="named-methodType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
             <element name="method-name" type="javaee:string"/>
@@ -570,32 +570,32 @@
             <element name="ejb-class" type="javaee:ejb-classType"/>
             <element name="messaging-type" type="javaee:fully-qualified-classType"/>
             <element name="timeout-method" type="javaee:named-methodType"/>
-            <element name="timer" type="javaee:timerType"/>
+            <element name="timer" type="javaee:timerType" maxOccurs="unbounded"/>
             <element name="transaction-type" type="javaee:transaction-typeType"/>
             <element name="message-destination-type" type="javaee:message-destination-typeType"/>
             <element name="message-destination-link" type="javaee:message-destination-linkType"/>
             <element name="activation-config" type="javaee:activation-configType"/>
-            <element name="around-invoke" type="javaee:around-invokeType"/>
-            <element name="around-timeout" type="javaee:around-timeoutType"/>
-            <element name="security-role-ref" type="javaee:security-role-refType"/>
+            <element name="around-invoke" type="javaee:around-invokeType" maxOccurs="unbounded"/>
+            <element name="around-timeout" type="javaee:around-timeoutType" maxOccurs="unbounded"/>
+            <element name="security-role-ref" type="javaee:security-role-refType" maxOccurs="unbounded"/>
             <element name="security-identity" type="javaee:security-identityType"/>
             <include>javaee:descriptionGroup</include>
             <include>javaee:jndiEnvironmentRefsGroup</include>
         </class>
         <class name="methodType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
-            <element name="description" type="javaee:descriptionType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
             <element name="ejb-name" type="javaee:ejb-nameType"/>
             <element name="method-intf" type="javaee:method-intfType"/>
             <element name="method-name" type="javaee:method-nameType"/>
             <element name="method-params" type="javaee:method-paramsType"/>
         </class>
         <class name="method-paramsType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
-            <element name="method-param" type="javaee:java-typeType"/>
+            <element name="method-param" type="javaee:java-typeType" maxOccurs="unbounded"/>
         </class>
         <class name="method-permissionType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
-            <element name="description" type="javaee:descriptionType"/>
-            <element name="method" type="javaee:methodType"/>
-            <element name="role-name" type="javaee:role-nameType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="method" type="javaee:methodType" maxOccurs="unbounded"/>
+            <element name="role-name" type="javaee:role-nameType" maxOccurs="unbounded"/>
             <element name="unchecked" type="javaee:emptyType"/>
         </class>
         <class name="queryType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
@@ -609,15 +609,15 @@
             <element name="method-params" type="javaee:method-paramsType"/>
         </class>
         <class name="relationship-role-sourceType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
-            <element name="description" type="javaee:descriptionType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
             <element name="ejb-name" type="javaee:ejb-nameType"/>
         </class>
         <class name="relationshipsType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
-            <element name="description" type="javaee:descriptionType"/>
-            <element name="ejb-relation" type="javaee:ejb-relationType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="ejb-relation" type="javaee:ejb-relationType" maxOccurs="unbounded"/>
         </class>
         <class name="security-identityType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
-            <element name="description" type="javaee:descriptionType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
             <element name="use-caller-identity" type="javaee:emptyType"/>
             <element name="run-as" type="javaee:run-asType"/>
         </class>
@@ -628,31 +628,31 @@
             <element name="remote" type="javaee:remoteType"/>
             <element name="local-home" type="javaee:local-homeType"/>
             <element name="local" type="javaee:localType"/>
-            <element name="business-local" type="javaee:fully-qualified-classType"/>
-            <element name="business-remote" type="javaee:fully-qualified-classType"/>
+            <element name="business-local" type="javaee:fully-qualified-classType" maxOccurs="unbounded"/>
+            <element name="business-remote" type="javaee:fully-qualified-classType" maxOccurs="unbounded"/>
             <element name="local-bean" type="javaee:emptyType"/>
             <element name="service-endpoint" type="javaee:fully-qualified-classType"/>
             <element name="ejb-class" type="javaee:ejb-classType"/>
             <element name="session-type" type="javaee:session-typeType"/>
             <element name="stateful-timeout" type="javaee:stateful-timeoutType"/>
             <element name="timeout-method" type="javaee:named-methodType"/>
-            <element name="timer" type="javaee:timerType"/>
+            <element name="timer" type="javaee:timerType" maxOccurs="unbounded"/>
             <element name="init-on-startup" type="javaee:true-falseType"/>
             <element name="concurrency-management-type" type="javaee:concurrency-management-typeType"/>
-            <element name="concurrent-method" type="javaee:concurrent-methodType"/>
+            <element name="concurrent-method" type="javaee:concurrent-methodType" maxOccurs="unbounded"/>
             <element name="depends-on" type="javaee:depends-onType"/>
-            <element name="init-method" type="javaee:init-methodType"/>
-            <element name="remove-method" type="javaee:remove-methodType"/>
-            <element name="async-method" type="javaee:async-methodType"/>
+            <element name="init-method" type="javaee:init-methodType" maxOccurs="unbounded"/>
+            <element name="remove-method" type="javaee:remove-methodType" maxOccurs="unbounded"/>
+            <element name="async-method" type="javaee:async-methodType" maxOccurs="unbounded"/>
             <element name="transaction-type" type="javaee:transaction-typeType"/>
             <element name="after-begin-method" type="javaee:named-methodType"/>
             <element name="before-completion-method" type="javaee:named-methodType"/>
             <element name="after-completion-method" type="javaee:named-methodType"/>
-            <element name="around-invoke" type="javaee:around-invokeType"/>
-            <element name="around-timeout" type="javaee:around-timeoutType"/>
-            <element name="post-activate" type="javaee:lifecycle-callbackType"/>
-            <element name="pre-passivate" type="javaee:lifecycle-callbackType"/>
-            <element name="security-role-ref" type="javaee:security-role-refType"/>
+            <element name="around-invoke" type="javaee:around-invokeType" maxOccurs="unbounded"/>
+            <element name="around-timeout" type="javaee:around-timeoutType" maxOccurs="unbounded"/>
+            <element name="post-activate" type="javaee:lifecycle-callbackType" maxOccurs="unbounded"/>
+            <element name="pre-passivate" type="javaee:lifecycle-callbackType" maxOccurs="unbounded"/>
+            <element name="security-role-ref" type="javaee:security-role-refType" maxOccurs="unbounded"/>
             <element name="security-identity" type="javaee:security-identityType"/>
             <include>javaee:descriptionGroup</include>
             <include>javaee:jndiEnvironmentRefsGroup</include>
@@ -671,7 +671,7 @@
             <element name="year" type="javaee:string"/>
         </class>
         <class name="timerType" schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
-            <element name="description" type="javaee:descriptionType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
             <element name="schedule" type="javaee:timer-scheduleType"/>
             <element name="start" type="xsd:dateTime"/>
             <element name="end" type="xsd:dateTime"/>
@@ -681,84 +681,84 @@
             <element name="info" type="javaee:string"/>
         </class>
         <class name="port-componentType" schemaName="../javaee_web_services_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservices13">
-            <element name="description" type="javaee:descriptionType"/>
-            <element name="display-name" type="javaee:display-nameType"/>
-            <element name="icon" type="javaee:iconType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="1"/>
+            <element name="display-name" type="javaee:display-nameType" maxOccurs="1"/>
+            <element name="icon" type="javaee:iconType" maxOccurs="1"/>
             <element name="port-component-name" type="javaee:string"/>
-            <element name="wsdl-service" type="javaee:xsdQNameType"/>
-            <element name="wsdl-port" type="javaee:xsdQNameType"/>
-            <element name="enable-mtom" type="javaee:true-falseType"/>
-            <element name="mtom-threshold" type="javaee:xsdNonNegativeIntegerType"/>
-            <element name="addressing" type="javaee:addressingType"/>
-            <element name="respect-binding" type="javaee:respect-bindingType"/>
-            <element name="protocol-binding" type="javaee:protocol-bindingType"/>
-            <element name="service-endpoint-interface" type="javaee:fully-qualified-classType"/>
+            <element name="wsdl-service" type="javaee:xsdQNameType" maxOccurs="1"/>
+            <element name="wsdl-port" type="javaee:xsdQNameType" maxOccurs="1"/>
+            <element name="enable-mtom" type="javaee:true-falseType" maxOccurs="1"/>
+            <element name="mtom-threshold" type="javaee:xsdNonNegativeIntegerType" maxOccurs="1"/>
+            <element name="addressing" type="javaee:addressingType" maxOccurs="1"/>
+            <element name="respect-binding" type="javaee:respect-bindingType" maxOccurs="1"/>
+            <element name="protocol-binding" type="javaee:protocol-bindingType" maxOccurs="1"/>
+            <element name="service-endpoint-interface" type="javaee:fully-qualified-classType" maxOccurs="1"/>
             <element name="service-impl-bean" type="javaee:service-impl-beanType"/>
-            <element name="handler" type="javaee:handlerType"/>
-            <element name="handler-chains" type="javaee:handler-chainsType"/>
+            <element name="handler" type="javaee:handlerType" maxOccurs="unbounded"/>
+            <element name="handler-chains" type="javaee:handler-chainsType" maxOccurs="1"/>
         </class>
         <class name="service-impl-beanType" schemaName="../javaee_web_services_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservices13">
             <element name="ejb-link" type="javaee:ejb-linkType"/>
             <element name="servlet-link" type="javaee:servlet-linkType"/>
         </class>
         <class name="webservice-descriptionType" schemaName="../javaee_web_services_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservices13">
-            <element name="description" type="javaee:descriptionType"/>
-            <element name="display-name" type="javaee:display-nameType"/>
-            <element name="icon" type="javaee:iconType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="1"/>
+            <element name="display-name" type="javaee:display-nameType" maxOccurs="1"/>
+            <element name="icon" type="javaee:iconType" maxOccurs="1"/>
             <element name="webservice-description-name" type="javaee:string"/>
-            <element name="wsdl-file" type="javaee:pathType"/>
-            <element name="jaxrpc-mapping-file" type="javaee:pathType"/>
-            <element name="port-component" type="javaee:port-componentType"/>
+            <element name="wsdl-file" type="javaee:pathType" maxOccurs="1"/>
+            <element name="jaxrpc-mapping-file" type="javaee:pathType" maxOccurs="1"/>
+            <element name="port-component" type="javaee:port-componentType" maxOccurs="unbounded"/>
         </class>
         <class name="webservicesType" schemaName="../javaee_web_services_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservices13">
-            <element name="webservice-description" type="javaee:webservice-descriptionType"/>
+            <element name="webservice-description" type="javaee:webservice-descriptionType" maxOccurs="unbounded"/>
             <include>javaee:descriptionGroup</include>
         </class>
         <class name="service-refType" schemaName="../javaee_web_services_client_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13">
             <element name="service-ref-name" type="javaee:jndi-nameType"/>
             <element name="service-interface" type="javaee:fully-qualified-classType"/>
-            <element name="service-ref-type" type="javaee:fully-qualified-classType"/>
-            <element name="wsdl-file" type="javaee:xsdAnyURIType"/>
-            <element name="jaxrpc-mapping-file" type="javaee:pathType"/>
-            <element name="service-qname" type="javaee:xsdQNameType"/>
-            <element name="port-component-ref" type="javaee:port-component-refType"/>
-            <element name="handler" type="javaee:handlerType"/>
-            <element name="handler-chains" type="javaee:handler-chainsType"/>
+            <element name="service-ref-type" type="javaee:fully-qualified-classType" maxOccurs="1"/>
+            <element name="wsdl-file" type="javaee:xsdAnyURIType" maxOccurs="1"/>
+            <element name="jaxrpc-mapping-file" type="javaee:pathType" maxOccurs="1"/>
+            <element name="service-qname" type="javaee:xsdQNameType" maxOccurs="1"/>
+            <element name="port-component-ref" type="javaee:port-component-refType" maxOccurs="unbounded"/>
+            <element name="handler" type="javaee:handlerType" maxOccurs="unbounded"/>
+            <element name="handler-chains" type="javaee:handler-chainsType" maxOccurs="1"/>
             <include>javaee:descriptionGroup</include>
             <include>javaee:resourceGroup</include>
         </class>
         <class name="port-component-refType" schemaName="../javaee_web_services_client_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13">
             <element name="service-endpoint-interface" type="javaee:fully-qualified-classType"/>
-            <element name="enable-mtom" type="javaee:true-falseType"/>
-            <element name="mtom-threshold" type="javaee:xsdNonNegativeIntegerType"/>
-            <element name="addressing" type="javaee:addressingType"/>
-            <element name="respect-binding" type="javaee:respect-bindingType"/>
-            <element name="port-component-link" type="javaee:string"/>
+            <element name="enable-mtom" type="javaee:true-falseType" maxOccurs="1"/>
+            <element name="mtom-threshold" type="javaee:xsdNonNegativeIntegerType" maxOccurs="1"/>
+            <element name="addressing" type="javaee:addressingType" maxOccurs="1"/>
+            <element name="respect-binding" type="javaee:respect-bindingType" maxOccurs="1"/>
+            <element name="port-component-link" type="javaee:string" maxOccurs="1"/>
         </class>
         <class name="handler-chainsType" schemaName="../javaee_web_services_client_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13">
-            <element name="handler-chain" type="javaee:handler-chainType"/>
+            <element name="handler-chain" type="javaee:handler-chainType" maxOccurs="unbounded"/>
         </class>
         <class name="handler-chainType" schemaName="../javaee_web_services_client_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13">
-            <element name="handler" type="javaee:handlerType"/>
+            <element name="handler" type="javaee:handlerType" maxOccurs="unbounded"/>
             <element name="service-name-pattern" type="javaee:qname-pattern"/>
             <element name="port-name-pattern" type="javaee:qname-pattern"/>
             <element name="protocol-bindings" type="javaee:protocol-bindingListType"/>
         </class>
         <class name="addressingType" schemaName="../javaee_web_services_client_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13">
-            <element name="enabled" type="javaee:true-falseType"/>
-            <element name="required" type="javaee:true-falseType"/>
-            <element name="responses" type="javaee:addressing-responsesType"/>
+            <element name="enabled" type="javaee:true-falseType" maxOccurs="1"/>
+            <element name="required" type="javaee:true-falseType" maxOccurs="1"/>
+            <element name="responses" type="javaee:addressing-responsesType" maxOccurs="1"/>
         </class>
         <class name="respect-bindingType" schemaName="../javaee_web_services_client_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13">
-            <element name="enabled" type="javaee:true-falseType"/>
+            <element name="enabled" type="javaee:true-falseType" maxOccurs="1"/>
         </class>
         <class name="handlerType" schemaName="../javaee_web_services_client_1_3.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13">
             <element name="handler-name" type="javaee:string"/>
             <element name="handler-class" type="javaee:fully-qualified-classType"/>
-            <element name="init-param" type="javaee:param-valueType"/>
-            <element name="soap-header" type="javaee:xsdQNameType"/>
-            <element name="soap-role" type="javaee:string"/>
-            <element name="port-name" type="javaee:string"/>
+            <element name="init-param" type="javaee:param-valueType" maxOccurs="unbounded"/>
+            <element name="soap-header" type="javaee:xsdQNameType" maxOccurs="unbounded"/>
+            <element name="soap-role" type="javaee:string" maxOccurs="unbounded"/>
+            <element name="port-name" type="javaee:string" maxOccurs="unbounded"/>
             <include>javaee:descriptionGroup</include>
         </class>
         <class name="web-appType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
@@ -774,8 +774,8 @@
             <include>javaee:web-common-attributes</include>
         </class>
         <class name="auth-constraintType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
-            <element name="description" type="javaee:descriptionType"/>
-            <element name="role-name" type="javaee:role-nameType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="role-name" type="javaee:role-nameType" maxOccurs="unbounded"/>
         </class>
         <class name="error-pageType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="location" type="javaee:war-pathType"/>
@@ -784,14 +784,14 @@
         </class>
         <class name="filterType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="filter-name" type="javaee:filter-nameType"/>
-            <element name="filter-class" type="javaee:fully-qualified-classType"/>
+            <element name="filter-class" type="javaee:fully-qualified-classType" maxOccurs="1"/>
             <element name="async-supported" type="javaee:true-falseType"/>
-            <element name="init-param" type="javaee:param-valueType"/>
+            <element name="init-param" type="javaee:param-valueType" maxOccurs="unbounded"/>
             <include>javaee:descriptionGroup</include>
         </class>
         <class name="filter-mappingType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="filter-name" type="javaee:filter-nameType"/>
-            <element name="dispatcher" type="javaee:dispatcherType"/>
+            <element name="dispatcher" type="javaee:dispatcherType" maxOccurs="5"/>
             <element name="url-pattern" type="javaee:url-patternType"/>
             <element name="servlet-name" type="javaee:servlet-nameType"/>
         </class>
@@ -809,32 +809,32 @@
             <element name="mime-type" type="javaee:mime-typeType"/>
         </class>
         <class name="security-constraintType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
-            <element name="display-name" type="javaee:display-nameType"/>
-            <element name="web-resource-collection" type="javaee:web-resource-collectionType"/>
+            <element name="display-name" type="javaee:display-nameType" maxOccurs="unbounded"/>
+            <element name="web-resource-collection" type="javaee:web-resource-collectionType" maxOccurs="unbounded"/>
             <element name="auth-constraint" type="javaee:auth-constraintType"/>
             <element name="user-data-constraint" type="javaee:user-data-constraintType"/>
         </class>
         <class name="servletType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="servlet-name" type="javaee:servlet-nameType"/>
-            <element name="init-param" type="javaee:param-valueType"/>
+            <element name="init-param" type="javaee:param-valueType" maxOccurs="unbounded"/>
             <element name="load-on-startup" type="javaee:load-on-startupType"/>
             <element name="enabled" type="javaee:true-falseType"/>
             <element name="async-supported" type="javaee:true-falseType"/>
             <element name="run-as" type="javaee:run-asType"/>
-            <element name="security-role-ref" type="javaee:security-role-refType"/>
-            <element name="multipart-config" type="javaee:multipart-configType"/>
+            <element name="security-role-ref" type="javaee:security-role-refType" maxOccurs="unbounded"/>
+            <element name="multipart-config" type="javaee:multipart-configType" maxOccurs="1"/>
             <element name="servlet-class" type="javaee:fully-qualified-classType"/>
             <element name="jsp-file" type="javaee:jsp-fileType"/>
             <include>javaee:descriptionGroup</include>
         </class>
         <class name="servlet-mappingType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="servlet-name" type="javaee:servlet-nameType"/>
-            <element name="url-pattern" type="javaee:url-patternType"/>
+            <element name="url-pattern" type="javaee:url-patternType" maxOccurs="unbounded"/>
         </class>
         <class name="session-configType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="session-timeout" type="javaee:xsdIntegerType"/>
             <element name="cookie-config" type="javaee:cookie-configType"/>
-            <element name="tracking-mode" type="javaee:tracking-modeType"/>
+            <element name="tracking-mode" type="javaee:tracking-modeType" maxOccurs="3"/>
         </class>
         <class name="cookie-configType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="name" type="javaee:cookie-nameType"/>
@@ -846,56 +846,56 @@
             <element name="max-age" type="javaee:xsdIntegerType"/>
         </class>
         <class name="user-data-constraintType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
-            <element name="description" type="javaee:descriptionType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
             <element name="transport-guarantee" type="javaee:transport-guaranteeType"/>
         </class>
         <class name="web-resource-collectionType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="web-resource-name" type="javaee:string"/>
-            <element name="description" type="javaee:descriptionType"/>
-            <element name="url-pattern" type="javaee:url-patternType"/>
-            <element name="http-method" type="javaee:http-methodType"/>
-            <element name="http-method-omission" type="javaee:http-methodType"/>
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="url-pattern" type="javaee:url-patternType" maxOccurs="unbounded"/>
+            <element name="http-method" type="javaee:http-methodType" maxOccurs="unbounded"/>
+            <element name="http-method-omission" type="javaee:http-methodType" maxOccurs="unbounded"/>
         </class>
         <class name="welcome-file-listType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
-            <element name="welcome-file" type="xsd:string"/>
+            <element name="welcome-file" type="xsd:string" maxOccurs="unbounded"/>
         </class>
         <class name="locale-encoding-mapping-listType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
-            <element name="locale-encoding-mapping" type="javaee:locale-encoding-mappingType"/>
+            <element name="locale-encoding-mapping" type="javaee:locale-encoding-mappingType" maxOccurs="unbounded"/>
         </class>
         <class name="locale-encoding-mappingType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
             <element name="locale" type="javaee:localeType"/>
             <element name="encoding" type="javaee:encodingType"/>
         </class>
         <class name="absoluteOrderingType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
-            <element name="name" type="javaee:java-identifierType"/>
-            <element name="others" type="javaee:ordering-othersType"/>
+            <element name="name" type="javaee:java-identifierType" maxOccurs="unbounded"/>
+            <element name="others" type="javaee:ordering-othersType" maxOccurs="1"/>
         </class>
         <class name="orderingType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
-            <element name="after" type="javaee:ordering-orderingType"/>
-            <element name="before" type="javaee:ordering-orderingType"/>
+            <element name="after" type="javaee:ordering-orderingType" maxOccurs="1"/>
+            <element name="before" type="javaee:ordering-orderingType" maxOccurs="1"/>
         </class>
         <class name="ordering-orderingType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
-            <element name="name" type="javaee:java-identifierType"/>
-            <element name="others" type="javaee:ordering-othersType"/>
+            <element name="name" type="javaee:java-identifierType" maxOccurs="unbounded"/>
+            <element name="others" type="javaee:ordering-othersType" maxOccurs="1"/>
         </class>
         <class name="multipart-configType" schemaName="../web-common_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webcommon30">
-            <element name="location" type="javaee:string"/>
-            <element name="max-file-size" type="xsd:long"/>
-            <element name="max-request-size" type="xsd:long"/>
-            <element name="file-size-threshold" type="xsd:integer"/>
+            <element name="location" type="javaee:string" maxOccurs="1"/>
+            <element name="max-file-size" type="xsd:long" maxOccurs="1"/>
+            <element name="max-request-size" type="xsd:long" maxOccurs="1"/>
+            <element name="file-size-threshold" type="xsd:integer" maxOccurs="1"/>
         </class>
         <class name="jsp-configType" schemaName="../jsp_2_2.xsd" package="org.jboss.shrinkwrap.descriptor.api.jsp22">
-            <element name="taglib" type="javaee:taglibType"/>
-            <element name="jsp-property-group" type="javaee:jsp-property-groupType"/>
+            <element name="taglib" type="javaee:taglibType" maxOccurs="unbounded"/>
+            <element name="jsp-property-group" type="javaee:jsp-property-groupType" maxOccurs="unbounded"/>
         </class>
         <class name="jsp-property-groupType" schemaName="../jsp_2_2.xsd" package="org.jboss.shrinkwrap.descriptor.api.jsp22">
-            <element name="url-pattern" type="javaee:url-patternType"/>
+            <element name="url-pattern" type="javaee:url-patternType" maxOccurs="unbounded"/>
             <element name="el-ignored" type="javaee:true-falseType"/>
             <element name="page-encoding" type="javaee:string"/>
             <element name="scripting-invalid" type="javaee:true-falseType"/>
             <element name="is-xml" type="javaee:true-falseType"/>
-            <element name="include-prelude" type="javaee:pathType"/>
-            <element name="include-coda" type="javaee:pathType"/>
+            <element name="include-prelude" type="javaee:pathType" maxOccurs="unbounded"/>
+            <element name="include-coda" type="javaee:pathType" maxOccurs="unbounded"/>
             <element name="deferred-syntax-allowed-as-literal" type="javaee:true-falseType"/>
             <element name="trim-directive-whitespaces" type="javaee:true-falseType"/>
             <element name="default-content-type" type="javaee:string"/>

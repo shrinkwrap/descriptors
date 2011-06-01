@@ -171,20 +171,6 @@
         <xsl:for-each select="document($pDocument)//xsd:complexType">
             <xsl:variable name="complexTypeName" select="@name"/>
 
-            <!--<xsl:if test="$complexTypeName='faces-config-ordering-othersType'">
-                 <datatype>
-                    <xsl:attribute name="complexTypeName">
-                            <xsl:value-of select="$complexTypeName"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="mappedTo">
-                            <xsl:value-of select="'javaee:emptyType'"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="schemaName">
-                            <xsl:value-of select="$pDocument"/>
-                        </xsl:attribute>
-                </datatype>
-            </xsl:if>-->
-
             <xsl:if test="count(xsd:sequence/xsd:any) = 1 or $complexTypeName='faces-config-valueType'">
                 <datatype>
                     <xsl:attribute name="name">
@@ -236,8 +222,8 @@
                 </datatype>
                 <xsl:text>&#10;</xsl:text>
             </xsl:if>
-            
-             <xsl:if test="$complexTypeName='protocol-bindingType' or $complexTypeName='protocol-bindingType'">
+
+            <xsl:if test="$complexTypeName='protocol-bindingType' or $complexTypeName='protocol-bindingType'">
                 <datatype>
                     <xsl:attribute name="name">
                         <xsl:value-of select="$complexTypeName"/>
@@ -364,6 +350,12 @@
                                     <xsl:attribute name="type">
                                         <xsl:value-of select="@type"/>
                                     </xsl:attribute>
+                                    <xsl:if test="@maxOccurs">
+                                        <xsl:attribute name="maxOccurs">
+                                            <xsl:value-of select="@maxOccurs"/>
+                                        </xsl:attribute>
+                                    </xsl:if>
+
                                 </element>
                             </xsl:if>
                         </xsl:if>
@@ -394,6 +386,11 @@
                                 <xsl:attribute name="type">
                                     <xsl:value-of select="@type"/>
                                 </xsl:attribute>
+                                <xsl:if test="@maxOccurs">
+                                    <xsl:attribute name="maxOccurs">
+                                        <xsl:value-of select="@maxOccurs"/>
+                                    </xsl:attribute>
+                                </xsl:if>
                             </element>
                         </xsl:if>
                         <xsl:if test="local-name() = 'group'">
@@ -435,9 +432,14 @@
                             <xsl:attribute name="type">
                                 <xsl:value-of select="@type"/>
                             </xsl:attribute>
+                            <xsl:if test="@maxOccurs">
+                                <xsl:attribute name="maxOccurs">
+                                    <xsl:value-of select="@maxOccurs"/>
+                                </xsl:attribute>
+                            </xsl:if>
                         </element>
                     </xsl:for-each>
-                    
+
                     <xsl:for-each select="xsd:sequence/xsd:choice/xsd:element">
                         <element>
                             <xsl:attribute name="name">
@@ -446,6 +448,11 @@
                             <xsl:attribute name="type">
                                 <xsl:value-of select="@type"/>
                             </xsl:attribute>
+                            <xsl:if test="@maxOccurs">
+                                <xsl:attribute name="maxOccurs">
+                                    <xsl:value-of select="@maxOccurs"/>
+                                </xsl:attribute>
+                            </xsl:if>
                         </element>
                     </xsl:for-each>
 
@@ -457,6 +464,11 @@
                             <xsl:attribute name="type">
                                 <xsl:value-of select="@type"/>
                             </xsl:attribute>
+                            <xsl:if test="@maxOccurs">
+                                <xsl:attribute name="maxOccurs">
+                                    <xsl:value-of select="@maxOccurs"/>
+                                </xsl:attribute>
+                            </xsl:if>
                         </element>
                     </xsl:for-each>
 
@@ -471,7 +483,7 @@
                             <xsl:value-of select="@ref"/>
                         </include>
                     </xsl:for-each>
-                    
+
                     <xsl:for-each select="xsd:attributeGroup">
                         <include>
                             <xsl:value-of select="@ref"/>
