@@ -108,8 +108,11 @@
                         <xsl:attribute name="schemaName">
                             <xsl:value-of select="text()"/>
                         </xsl:attribute>
-                        <xsl:attribute name="package">
+                        <xsl:attribute name="packageApi">
                             <xsl:value-of select="@packageApi"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="packageImpl">
+                            <xsl:value-of select="@packageImpl"/>
                         </xsl:attribute>
                         <xsl:for-each select="document(text())/*/xsd:element">
                             <!--                            <xsl:if test="local-name() = 'element'">-->

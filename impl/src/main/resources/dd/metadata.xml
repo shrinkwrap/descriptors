@@ -909,13 +909,13 @@
         </class>
     </classes>
     <descriptors>
-        <descriptor schemaName="../application_6.xsd" package="org.jboss.shrinkwrap.descriptor.api.application6">
+        <descriptor schemaName="../application_6.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.application6" packageImpl="org.jboss.shrinkwrap.descriptor.impl.application6">
             <element name="application" type="javaee:applicationType"/>
         </descriptor>
-        <descriptor schemaName="../ejb-jar_3_1.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar31">
+        <descriptor schemaName="../ejb-jar_3_1.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar31" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar31">
             <element name="ejb-jar" type="javaee:ejb-jarType"/>
         </descriptor>
-        <descriptor schemaName="../web-app_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.webapp30">
+        <descriptor schemaName="../web-app_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.webapp30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.webapp30">
             <element name="web-app" type="javaee:web-appType"/>
         </descriptor>
     </descriptors>

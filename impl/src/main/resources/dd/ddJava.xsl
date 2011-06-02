@@ -14,6 +14,7 @@
         <!--  <xsl:call-template name="<!-\-GenerateGroups-\->"/>-->
         <xsl:call-template name="GenerateInterfaces"/>
         <xsl:call-template name="GenerateDescriptors"/>
+        <xsl:call-template name="GenerateDescriptorsImpl"/>
     </xsl:template>
 
 
@@ -160,6 +161,18 @@
         </xsl:for-each>
     </xsl:template>
 
+    <!-- ****************************************************** -->
+    <!-- ****** Template which generates the descriptorsimpl * -->
+    <!-- ****************************************************** -->
+    <xsl:template name="GenerateDescriptorsImpl">
+        <xsl:for-each select="//descriptors/descriptor">
+            <xsl:call-template name="WriteDescriptorImpl">
+                <xsl:with-param name="pDescriptor" select="."/>
+            </xsl:call-template>
+        </xsl:for-each>
+    </xsl:template>
+
+
 
     <!-- ******************************************************* -->
     <!-- ****** Template which generates the descriptors  ****** -->
@@ -167,14 +180,16 @@
     <xsl:template name="WriteDescriptor">
         <xsl:param name="pDescriptor" select="."/>
 
-        <xsl:variable name="vPackage" select="./@package"/>
+        <xsl:variable name="vPackage" select="./@packageApi"/>
         <xsl:variable name="vClassname" select="xdd:createPascalizedName($pDescriptor/@schemaName, 'Descriptor')"/>
+        <xsl:message select="concat('Generating DescriptorApi: ', $vClassname)"/>
         <xsl:if test="$vClassname">
             <xsl:variable name="vFilename" select="xdd:createPath('..', $vPackage, $vClassname, 'java')"/>
             <xsl:result-document href="{$vFilename}">
                 <xsl:value-of select="xdd:writePackageLine($vPackage)"/>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.api.Descriptor;</xsl:text>
                 <xsl:value-of select="xdd:classHeaderComment('')"/>
+                <xsl:value-of select="xdd:classNodeInfo($pDescriptor/element/@name)"/>
                 <xsl:value-of select="xdd:classHeaderDeclaration('interface', $vClassname)"/>
 
                 <xsl:text> extends Descriptor, </xsl:text>
@@ -185,6 +200,43 @@
                 <xsl:text>&gt;</xsl:text>
                 <xsl:text>&#10;</xsl:text>
                 <xsl:text>{</xsl:text>
+                <xsl:text>&#10;</xsl:text>
+                <xsl:text>}</xsl:text>
+                <xsl:text>&#10;</xsl:text>
+            </xsl:result-document>
+        </xsl:if>
+    </xsl:template>
+
+
+    <!-- ******************************************************* -->
+    <!-- ****** Template which generates the descriptors  ****** -->
+    <!-- ******************************************************* -->
+    <xsl:template name="WriteDescriptorImpl">
+        <xsl:param name="pDescriptor" select="."/>
+
+        <xsl:variable name="vPackage" select="@packageImpl"/>
+        <xsl:variable name="vInterfaceName" select="xdd:createPascalizedName($pDescriptor/@schemaName, 'Descriptor')"/>
+        <xsl:variable name="vClassnameImpl" select="xdd:createPascalizedName($pDescriptor/@schemaName, 'DescriptorImpl')"/>
+        <xsl:message select="concat('Generating DescriptorImpl: ', $vClassnameImpl)"/>
+        <xsl:if test="$vClassnameImpl">
+            <xsl:variable name="vFilename" select="xdd:createPath('..', $vPackage, $vClassnameImpl, 'java')"/>
+            <xsl:result-document href="{$vFilename}">
+                <xsl:value-of select="xdd:writePackageLine($vPackage)"/>
+                <xsl:text>import org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase;</xsl:text>
+                <xsl:text>&#10;</xsl:text>
+                <xsl:text>&#10;</xsl:text>
+                <xsl:value-of select="xdd:classHeaderComment('')"/>
+                <xsl:value-of select="xdd:classNodeInfo($pDescriptor/element/@name)"/>
+                <xsl:value-of select="xdd:classHeaderDeclaration('class', $vClassnameImpl)"/>
+                <xsl:text> extends NodeProviderImplBase implements </xsl:text>
+                <xsl:value-of select="xdd:createPascalizedName($vInterfaceName, ' ')"/>
+                <xsl:text>&#10;</xsl:text>
+                <xsl:text>{</xsl:text>
+                <xsl:text>&#10;</xsl:text>
+                <xsl:value-of select=" xdd:writeAttribute('Node', 'model', boolean(true))"/>
+                <xsl:text>&#10;</xsl:text>
+
+                <xsl:value-of select="xdd:writeDescriptorImplConstructor($vClassnameImpl)"/>
                 <xsl:text>&#10;</xsl:text>
                 <xsl:text>}</xsl:text>
                 <xsl:text>&#10;</xsl:text>
@@ -492,6 +544,65 @@
     </xsl:function>
 
 
+
+    <!-- ****************************************************** -->
+    <!-- ****** Function which writes the package line   ****** -->
+    <!-- ****************************************************** -->
+    <xsl:function name="xdd:writeDescriptorImplConstructor">
+        <xsl:param name="pClassName"/>
+        <xsl:text>   // -------------------------------------------------------------------------------------||</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:text>   // Constructor -------------------------------------------------------------------------||</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:text>   // -------------------------------------------------------------------------------------||</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:value-of select="concat('   public ', $pClassName, '(String descriptorName)')"/>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:text>   {</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:variable name="nodeExtractor" select="concat('NodeInfoExtractor.getNodeInfo(', $pClassName, '.class)')"/>
+        <xsl:value-of select="concat('       this(descriptorName, new Node(', $nodeExtractor , ');')"/>
+        <xsl:text>&#10;</xsl:text>
+
+        <!--        <xsl:value-of select="'       this(descriptorName, new Node(nodeName);'"/><xsl:text>&#10;</xsl:text>-->
+        <!--
+        <xsl:text>         .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance")</xsl:text><xsl:text>&#10;</xsl:text>
+        <xsl:text>         .attribute("xsi:schemaLocation",</xsl:text><xsl:text>&#10;</xsl:text>
+        <xsl:text>         "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"));</xsl:text><xsl:text>&#10;</xsl:text>-->
+        <!-- <xsl:text>       version("3.0");</xsl:text><xsl:text>&#10;</xsl:text>-->
+        <xsl:text>   }</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:value-of select="concat('   public ', $pClassName, '(String descriptorName, Node model)')"/>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:text>   {</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:text>      super(descriptorName);</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:text>      this.model = model;</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:text>   }</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+    </xsl:function>
+
+    <!-- ****************************************************** -->
+    <!-- ****** Function which writes the package line   ****** -->
+    <!-- ****************************************************** -->
+    <xsl:function name="xdd:writeAttribute">
+        <xsl:param name="pType"/>
+        <xsl:param name="pName"/>
+        <xsl:param name="pWithCommentHeader" as="xs:boolean"/>
+        <xsl:if test="$pWithCommentHeader">
+            <xsl:text>// -------------------------------------------------------------------------------------||</xsl:text>
+            <xsl:text>// Instance Members --------------------------------------------------------------------||</xsl:text>
+            <xsl:text>// -------------------------------------------------------------------------------------||</xsl:text>
+        </xsl:if>
+        <xsl:value-of select="concat('   private final ', $pType, ' ', $pName, ';')"/>
+        <xsl:text>&#10;</xsl:text>
+    </xsl:function>
+
+
     <!-- ****************************************************** -->
     <!-- ****** Function which writes the class header   ****** -->
     <!-- ****************************************************** -->
@@ -515,7 +626,6 @@
     <xsl:function name="xdd:classHeaderDeclaration">
         <xsl:param name="classType"/>
         <xsl:param name="className"/>
-        <xsl:text>&#10;</xsl:text>
         <xsl:text>public </xsl:text>
         <xsl:value-of select="$classType"/>
         <xsl:text> </xsl:text>
@@ -583,7 +693,7 @@
             <xsl:when test="xdd:isEnumType($pElementType)">
                 <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, $pElementType, $pElementName, $pMaxOccurs, true())"/>
                 <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, 'String', $pElementName, '-', true())"/>
-<!--                <xsl:value-of select="xdd:writeGetMethodSignature($pElementType, $vMethodName, $pElementName, $pMaxOccurs, true())"/>-->
+                <!--                <xsl:value-of select="xdd:writeGetMethodSignature($pElementType, $vMethodName, $pElementName, $pMaxOccurs, true())"/>-->
                 <xsl:value-of select="xdd:writeGetMethodSignature('String', concat($vMethodName, ''), $pElementName, '-', true())"/>
 
             </xsl:when>
