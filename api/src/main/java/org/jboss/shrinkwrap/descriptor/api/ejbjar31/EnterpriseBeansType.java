@@ -1,20 +1,21 @@
-package org.jboss.shrinkwrap.descriptor.api.ejbjar31; 
+package org.jboss.shrinkwrap.descriptor.api.ejbjar31;
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
-        
+import org.jboss.shrinkwrap.descriptor.api.NodeInfo;
 
 /**
  * This class is a generated class.
- * Generation date :2011-05-31T22:53:10.827+02:00
+ * Generation date :2011-06-02T12:29:43.14+02:00
  */
+
 public interface EnterpriseBeansType<T> extends Child<T>
 {
-   public EnterpriseBeansType<T> setSession(SessionBeanType<EnterpriseBeansType<T>> session);
-   public SessionBeanType<EnterpriseBeansType<T>> getSession();
+   @NodeInfo(xmlName = "session")
+   public SessionBeanType<EnterpriseBeansType<T>> session();
 
-   public EnterpriseBeansType<T> setEntity(EntityBeanType<EnterpriseBeansType<T>> entity);
-   public EntityBeanType<EnterpriseBeansType<T>> getEntity();
+   @NodeInfo(xmlName = "entity")
+   public EntityBeanType<EnterpriseBeansType<T>> entity();
 
-   public EnterpriseBeansType<T> setMessageDriven(MessageDrivenBeanType<EnterpriseBeansType<T>> messageDriven);
-   public MessageDrivenBeanType<EnterpriseBeansType<T>> getMessageDriven();
+   @NodeInfo(xmlName = "message-driven")
+   public MessageDrivenBeanType<EnterpriseBeansType<T>> messageDriven();
 }

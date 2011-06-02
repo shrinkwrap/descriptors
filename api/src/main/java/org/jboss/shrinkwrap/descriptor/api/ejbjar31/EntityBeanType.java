@@ -1,6 +1,7 @@
-package org.jboss.shrinkwrap.descriptor.api.ejbjar31; 
+package org.jboss.shrinkwrap.descriptor.api.ejbjar31;
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
+import org.jboss.shrinkwrap.descriptor.api.NodeInfo;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbLocalRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbRefType;
@@ -14,107 +15,143 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceEnvRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13.ServiceRefType;
-        
 
 /**
  * This class is a generated class.
- * Generation date :2011-05-31T22:53:10.827+02:00
+ * Generation date :2011-06-02T12:29:43.14+02:00
  */
+
 public interface EntityBeanType<T> extends Child<T>
 {
    public EntityBeanType<T> setDescription(String description);
+
+   @NodeInfo(xmlName = "description")
    public String getDescription();
 
    public EntityBeanType<T> setDisplayName(String displayName);
+
+   @NodeInfo(xmlName = "display-name")
    public String getDisplayName();
 
-   public EntityBeanType<T> setIcon(IconType<EntityBeanType<T>> icon);
-   public IconType<EntityBeanType<T>> getIcon();
+   @NodeInfo(xmlName = "icon")
+   public IconType<EntityBeanType<T>> icon();
 
-   public EntityBeanType<T> setEnvEntry(EnvEntryType<EntityBeanType<T>> envEntry);
-   public EnvEntryType<EntityBeanType<T>> getEnvEntry();
+   @NodeInfo(xmlName = "env-entry")
+   public EnvEntryType<EntityBeanType<T>> envEntry();
 
-   public EntityBeanType<T> setEjbRef(EjbRefType<EntityBeanType<T>> ejbRef);
-   public EjbRefType<EntityBeanType<T>> getEjbRef();
+   @NodeInfo(xmlName = "ejb-ref")
+   public EjbRefType<EntityBeanType<T>> ejbRef();
 
-   public EntityBeanType<T> setEjbLocalRef(EjbLocalRefType<EntityBeanType<T>> ejbLocalRef);
-   public EjbLocalRefType<EntityBeanType<T>> getEjbLocalRef();
+   @NodeInfo(xmlName = "ejb-local-ref")
+   public EjbLocalRefType<EntityBeanType<T>> ejbLocalRef();
 
-   public EntityBeanType<T> setResourceRef(ResourceRefType<EntityBeanType<T>> resourceRef);
-   public ResourceRefType<EntityBeanType<T>> getResourceRef();
+   @NodeInfo(xmlName = "resource-ref")
+   public ResourceRefType<EntityBeanType<T>> resourceRef();
 
-   public EntityBeanType<T> setResourceEnvRef(ResourceEnvRefType<EntityBeanType<T>> resourceEnvRef);
-   public ResourceEnvRefType<EntityBeanType<T>> getResourceEnvRef();
+   @NodeInfo(xmlName = "resource-env-ref")
+   public ResourceEnvRefType<EntityBeanType<T>> resourceEnvRef();
 
-   public EntityBeanType<T> setMessageDestinationRef(MessageDestinationRefType<EntityBeanType<T>> messageDestinationRef);
-   public MessageDestinationRefType<EntityBeanType<T>> getMessageDestinationRef();
+   @NodeInfo(xmlName = "message-destination-ref")
+   public MessageDestinationRefType<EntityBeanType<T>> messageDestinationRef();
 
-   public EntityBeanType<T> setPersistenceContextRef(PersistenceContextRefType<EntityBeanType<T>> persistenceContextRef);
-   public PersistenceContextRefType<EntityBeanType<T>> getPersistenceContextRef();
+   @NodeInfo(xmlName = "persistence-context-ref")
+   public PersistenceContextRefType<EntityBeanType<T>> persistenceContextRef();
 
-   public EntityBeanType<T> setPersistenceUnitRef(PersistenceUnitRefType<EntityBeanType<T>> persistenceUnitRef);
-   public PersistenceUnitRefType<EntityBeanType<T>> getPersistenceUnitRef();
+   @NodeInfo(xmlName = "persistence-unit-ref")
+   public PersistenceUnitRefType<EntityBeanType<T>> persistenceUnitRef();
 
-   public EntityBeanType<T> setPostConstruct(LifecycleCallbackType<EntityBeanType<T>> postConstruct);
-   public LifecycleCallbackType<EntityBeanType<T>> getPostConstruct();
+   @NodeInfo(xmlName = "post-construct")
+   public LifecycleCallbackType<EntityBeanType<T>> postConstruct();
 
-   public EntityBeanType<T> setPreDestroy(LifecycleCallbackType<EntityBeanType<T>> preDestroy);
-   public LifecycleCallbackType<EntityBeanType<T>> getPreDestroy();
+   @NodeInfo(xmlName = "pre-destroy")
+   public LifecycleCallbackType<EntityBeanType<T>> preDestroy();
 
-   public EntityBeanType<T> setDataSource(DataSourceType<EntityBeanType<T>> dataSource);
-   public DataSourceType<EntityBeanType<T>> getDataSource();
+   @NodeInfo(xmlName = "data-source")
+   public DataSourceType<EntityBeanType<T>> dataSource();
 
-   public EntityBeanType<T> setServiceRef(ServiceRefType<EntityBeanType<T>> serviceRef);
-   public ServiceRefType<EntityBeanType<T>> getServiceRef();
+   @NodeInfo(xmlName = "service-ref")
+   public ServiceRefType<EntityBeanType<T>> serviceRef();
 
    public EntityBeanType<T> setEjbName(String ejbName);
+
+   @NodeInfo(xmlName = "ejb-name")
    public String getEjbName();
 
    public EntityBeanType<T> setMappedName(String mappedName);
+
+   @NodeInfo(xmlName = "mapped-name")
    public String getMappedName();
 
    public EntityBeanType<T> setHome(String home);
+
+   @NodeInfo(xmlName = "home")
    public String getHome();
 
    public EntityBeanType<T> setRemote(String remote);
+
+   @NodeInfo(xmlName = "remote")
    public String getRemote();
 
    public EntityBeanType<T> setLocalHome(String localHome);
+
+   @NodeInfo(xmlName = "local-home")
    public String getLocalHome();
 
    public EntityBeanType<T> setLocal(String local);
+
+   @NodeInfo(xmlName = "local")
    public String getLocal();
 
    public EntityBeanType<T> setEjbClass(String ejbClass);
+
+   @NodeInfo(xmlName = "ejb-class")
    public String getEjbClass();
 
    public EntityBeanType<T> setPersistenceType(PersistenceTypeType persistenceType);
-   public PersistenceTypeType getPersistenceType();
+
+   public EntityBeanType<T> setPersistenceType(String persistenceType);
+
+   @NodeInfo(xmlName = "persistence-type")
+   public String getPersistenceType();
+
+   public EntityBeanType<T> setPrimKeyClass(Class<?> primKeyClass);
 
    public EntityBeanType<T> setPrimKeyClass(String primKeyClass);
+
+   @NodeInfo(xmlName = "prim-key-class")
    public String getPrimKeyClass();
 
    public EntityBeanType<T> setReentrant(Boolean reentrant);
+
+   @NodeInfo(xmlName = "reentrant")
    public Boolean getReentrant();
 
    public EntityBeanType<T> setCmpVersion(CmpVersionType cmpVersion);
-   public CmpVersionType getCmpVersion();
+
+   public EntityBeanType<T> setCmpVersion(String cmpVersion);
+
+   @NodeInfo(xmlName = "cmp-version")
+   public String getCmpVersion();
 
    public EntityBeanType<T> setAbstractSchemaName(String abstractSchemaName);
+
+   @NodeInfo(xmlName = "abstract-schema-name")
    public String getAbstractSchemaName();
 
-   public EntityBeanType<T> setCmpField(CmpFieldType<EntityBeanType<T>> cmpField);
-   public CmpFieldType<EntityBeanType<T>> getCmpField();
+   @NodeInfo(xmlName = "cmp-field")
+   public CmpFieldType<EntityBeanType<T>> cmpField();
 
    public EntityBeanType<T> setPrimkeyField(String primkeyField);
+
+   @NodeInfo(xmlName = "primkey-field")
    public String getPrimkeyField();
 
-   public EntityBeanType<T> setSecurityRoleRef(SecurityRoleRefType<EntityBeanType<T>> securityRoleRef);
-   public SecurityRoleRefType<EntityBeanType<T>> getSecurityRoleRef();
+   @NodeInfo(xmlName = "security-role-ref")
+   public SecurityRoleRefType<EntityBeanType<T>> securityRoleRef();
 
-   public EntityBeanType<T> setSecurityIdentity(SecurityIdentityType<EntityBeanType<T>> securityIdentity);
-   public SecurityIdentityType<EntityBeanType<T>> getSecurityIdentity();
+   @NodeInfo(xmlName = "security-identity")
+   public SecurityIdentityType<EntityBeanType<T>> securityIdentity();
 
-   public EntityBeanType<T> setQuery(QueryType<EntityBeanType<T>> query);
-   public QueryType<EntityBeanType<T>> getQuery();
+   @NodeInfo(xmlName = "query")
+   public QueryType<EntityBeanType<T>> query();
 }

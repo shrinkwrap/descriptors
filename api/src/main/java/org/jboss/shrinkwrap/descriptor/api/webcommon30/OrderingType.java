@@ -1,17 +1,18 @@
-package org.jboss.shrinkwrap.descriptor.api.webcommon30; 
+package org.jboss.shrinkwrap.descriptor.api.webcommon30;
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
-        
+import org.jboss.shrinkwrap.descriptor.api.NodeInfo;
 
 /**
  * This class is a generated class.
- * Generation date :2011-05-31T22:53:10.827+02:00
+ * Generation date :2011-06-02T12:29:43.14+02:00
  */
+
 public interface OrderingType<T> extends Child<T>
 {
-   public OrderingType<T> setAfter(OrderingOrderingType<OrderingType<T>> after);
-   public OrderingOrderingType<OrderingType<T>> getAfter();
+   @NodeInfo(xmlName = "after")
+   public OrderingOrderingType<OrderingType<T>> after();
 
-   public OrderingType<T> setBefore(OrderingOrderingType<OrderingType<T>> before);
-   public OrderingOrderingType<OrderingType<T>> getBefore();
+   @NodeInfo(xmlName = "before")
+   public OrderingOrderingType<OrderingType<T>> before();
 }

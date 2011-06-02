@@ -1,33 +1,44 @@
-package org.jboss.shrinkwrap.descriptor.api.javaeewebservices13; 
+package org.jboss.shrinkwrap.descriptor.api.javaeewebservices13;
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
+import org.jboss.shrinkwrap.descriptor.api.NodeInfo;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
-        
 
 /**
  * This class is a generated class.
- * Generation date :2011-05-31T22:53:10.827+02:00
+ * Generation date :2011-06-02T12:29:43.14+02:00
  */
+
 public interface WebserviceDescriptionType<T> extends Child<T>
 {
    public WebserviceDescriptionType<T> setDescription(String description);
+
+   @NodeInfo(xmlName = "description")
    public String getDescription();
 
    public WebserviceDescriptionType<T> setDisplayName(String displayName);
+
+   @NodeInfo(xmlName = "display-name")
    public String getDisplayName();
 
-   public WebserviceDescriptionType<T> setIcon(IconType<WebserviceDescriptionType<T>> icon);
-   public IconType<WebserviceDescriptionType<T>> getIcon();
+   @NodeInfo(xmlName = "icon")
+   public IconType<WebserviceDescriptionType<T>> icon();
 
    public WebserviceDescriptionType<T> setWebserviceDescriptionName(String webserviceDescriptionName);
+
+   @NodeInfo(xmlName = "webservice-description-name")
    public String getWebserviceDescriptionName();
 
    public WebserviceDescriptionType<T> setWsdlFile(String wsdlFile);
+
+   @NodeInfo(xmlName = "wsdl-file")
    public String getWsdlFile();
 
    public WebserviceDescriptionType<T> setJaxrpcMappingFile(String jaxrpcMappingFile);
+
+   @NodeInfo(xmlName = "jaxrpc-mapping-file")
    public String getJaxrpcMappingFile();
 
-   public WebserviceDescriptionType<T> setPortComponent(PortComponentType<WebserviceDescriptionType<T>> portComponent);
-   public PortComponentType<WebserviceDescriptionType<T>> getPortComponent();
+   @NodeInfo(xmlName = "port-component")
+   public PortComponentType<WebserviceDescriptionType<T>> portComponent();
 }

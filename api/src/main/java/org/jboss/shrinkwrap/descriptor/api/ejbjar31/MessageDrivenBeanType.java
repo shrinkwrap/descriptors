@@ -1,6 +1,7 @@
-package org.jboss.shrinkwrap.descriptor.api.ejbjar31; 
+package org.jboss.shrinkwrap.descriptor.api.ejbjar31;
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
+import org.jboss.shrinkwrap.descriptor.api.NodeInfo;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbLocalRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbRefType;
@@ -14,98 +15,120 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceEnvRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13.ServiceRefType;
-        
 
 /**
  * This class is a generated class.
- * Generation date :2011-05-31T22:53:10.827+02:00
+ * Generation date :2011-06-02T12:29:43.14+02:00
  */
+
 public interface MessageDrivenBeanType<T> extends Child<T>
 {
    public MessageDrivenBeanType<T> setDescription(String description);
+
+   @NodeInfo(xmlName = "description")
    public String getDescription();
 
    public MessageDrivenBeanType<T> setDisplayName(String displayName);
+
+   @NodeInfo(xmlName = "display-name")
    public String getDisplayName();
 
-   public MessageDrivenBeanType<T> setIcon(IconType<MessageDrivenBeanType<T>> icon);
-   public IconType<MessageDrivenBeanType<T>> getIcon();
+   @NodeInfo(xmlName = "icon")
+   public IconType<MessageDrivenBeanType<T>> icon();
 
-   public MessageDrivenBeanType<T> setEnvEntry(EnvEntryType<MessageDrivenBeanType<T>> envEntry);
-   public EnvEntryType<MessageDrivenBeanType<T>> getEnvEntry();
+   @NodeInfo(xmlName = "env-entry")
+   public EnvEntryType<MessageDrivenBeanType<T>> envEntry();
 
-   public MessageDrivenBeanType<T> setEjbRef(EjbRefType<MessageDrivenBeanType<T>> ejbRef);
-   public EjbRefType<MessageDrivenBeanType<T>> getEjbRef();
+   @NodeInfo(xmlName = "ejb-ref")
+   public EjbRefType<MessageDrivenBeanType<T>> ejbRef();
 
-   public MessageDrivenBeanType<T> setEjbLocalRef(EjbLocalRefType<MessageDrivenBeanType<T>> ejbLocalRef);
-   public EjbLocalRefType<MessageDrivenBeanType<T>> getEjbLocalRef();
+   @NodeInfo(xmlName = "ejb-local-ref")
+   public EjbLocalRefType<MessageDrivenBeanType<T>> ejbLocalRef();
 
-   public MessageDrivenBeanType<T> setResourceRef(ResourceRefType<MessageDrivenBeanType<T>> resourceRef);
-   public ResourceRefType<MessageDrivenBeanType<T>> getResourceRef();
+   @NodeInfo(xmlName = "resource-ref")
+   public ResourceRefType<MessageDrivenBeanType<T>> resourceRef();
 
-   public MessageDrivenBeanType<T> setResourceEnvRef(ResourceEnvRefType<MessageDrivenBeanType<T>> resourceEnvRef);
-   public ResourceEnvRefType<MessageDrivenBeanType<T>> getResourceEnvRef();
+   @NodeInfo(xmlName = "resource-env-ref")
+   public ResourceEnvRefType<MessageDrivenBeanType<T>> resourceEnvRef();
 
-   public MessageDrivenBeanType<T> setMessageDestinationRef(MessageDestinationRefType<MessageDrivenBeanType<T>> messageDestinationRef);
-   public MessageDestinationRefType<MessageDrivenBeanType<T>> getMessageDestinationRef();
+   @NodeInfo(xmlName = "message-destination-ref")
+   public MessageDestinationRefType<MessageDrivenBeanType<T>> messageDestinationRef();
 
-   public MessageDrivenBeanType<T> setPersistenceContextRef(PersistenceContextRefType<MessageDrivenBeanType<T>> persistenceContextRef);
-   public PersistenceContextRefType<MessageDrivenBeanType<T>> getPersistenceContextRef();
+   @NodeInfo(xmlName = "persistence-context-ref")
+   public PersistenceContextRefType<MessageDrivenBeanType<T>> persistenceContextRef();
 
-   public MessageDrivenBeanType<T> setPersistenceUnitRef(PersistenceUnitRefType<MessageDrivenBeanType<T>> persistenceUnitRef);
-   public PersistenceUnitRefType<MessageDrivenBeanType<T>> getPersistenceUnitRef();
+   @NodeInfo(xmlName = "persistence-unit-ref")
+   public PersistenceUnitRefType<MessageDrivenBeanType<T>> persistenceUnitRef();
 
-   public MessageDrivenBeanType<T> setPostConstruct(LifecycleCallbackType<MessageDrivenBeanType<T>> postConstruct);
-   public LifecycleCallbackType<MessageDrivenBeanType<T>> getPostConstruct();
+   @NodeInfo(xmlName = "post-construct")
+   public LifecycleCallbackType<MessageDrivenBeanType<T>> postConstruct();
 
-   public MessageDrivenBeanType<T> setPreDestroy(LifecycleCallbackType<MessageDrivenBeanType<T>> preDestroy);
-   public LifecycleCallbackType<MessageDrivenBeanType<T>> getPreDestroy();
+   @NodeInfo(xmlName = "pre-destroy")
+   public LifecycleCallbackType<MessageDrivenBeanType<T>> preDestroy();
 
-   public MessageDrivenBeanType<T> setDataSource(DataSourceType<MessageDrivenBeanType<T>> dataSource);
-   public DataSourceType<MessageDrivenBeanType<T>> getDataSource();
+   @NodeInfo(xmlName = "data-source")
+   public DataSourceType<MessageDrivenBeanType<T>> dataSource();
 
-   public MessageDrivenBeanType<T> setServiceRef(ServiceRefType<MessageDrivenBeanType<T>> serviceRef);
-   public ServiceRefType<MessageDrivenBeanType<T>> getServiceRef();
+   @NodeInfo(xmlName = "service-ref")
+   public ServiceRefType<MessageDrivenBeanType<T>> serviceRef();
 
    public MessageDrivenBeanType<T> setEjbName(String ejbName);
+
+   @NodeInfo(xmlName = "ejb-name")
    public String getEjbName();
 
    public MessageDrivenBeanType<T> setMappedName(String mappedName);
+
+   @NodeInfo(xmlName = "mapped-name")
    public String getMappedName();
 
    public MessageDrivenBeanType<T> setEjbClass(String ejbClass);
+
+   @NodeInfo(xmlName = "ejb-class")
    public String getEjbClass();
 
+   public MessageDrivenBeanType<T> setMessagingType(Class<?> messagingType);
+
    public MessageDrivenBeanType<T> setMessagingType(String messagingType);
+
+   @NodeInfo(xmlName = "messaging-type")
    public String getMessagingType();
 
-   public MessageDrivenBeanType<T> setTimeoutMethod(NamedMethodType<MessageDrivenBeanType<T>> timeoutMethod);
-   public NamedMethodType<MessageDrivenBeanType<T>> getTimeoutMethod();
+   @NodeInfo(xmlName = "timeout-method")
+   public NamedMethodType<MessageDrivenBeanType<T>> timeoutMethod();
 
-   public MessageDrivenBeanType<T> setTimer(TimerType<MessageDrivenBeanType<T>> timer);
-   public TimerType<MessageDrivenBeanType<T>> getTimer();
+   @NodeInfo(xmlName = "timer")
+   public TimerType<MessageDrivenBeanType<T>> timer();
 
    public MessageDrivenBeanType<T> setTransactionType(TransactionTypeType transactionType);
-   public TransactionTypeType getTransactionType();
+
+   public MessageDrivenBeanType<T> setTransactionType(String transactionType);
+
+   @NodeInfo(xmlName = "transaction-type")
+   public String getTransactionType();
 
    public MessageDrivenBeanType<T> setMessageDestinationType(String messageDestinationType);
+
+   @NodeInfo(xmlName = "message-destination-type")
    public String getMessageDestinationType();
 
    public MessageDrivenBeanType<T> setMessageDestinationLink(String messageDestinationLink);
+
+   @NodeInfo(xmlName = "message-destination-link")
    public String getMessageDestinationLink();
 
-   public MessageDrivenBeanType<T> setActivationConfig(ActivationConfigType<MessageDrivenBeanType<T>> activationConfig);
-   public ActivationConfigType<MessageDrivenBeanType<T>> getActivationConfig();
+   @NodeInfo(xmlName = "activation-config")
+   public ActivationConfigType<MessageDrivenBeanType<T>> activationConfig();
 
-   public MessageDrivenBeanType<T> setAroundInvoke(AroundInvokeType<MessageDrivenBeanType<T>> aroundInvoke);
-   public AroundInvokeType<MessageDrivenBeanType<T>> getAroundInvoke();
+   @NodeInfo(xmlName = "around-invoke")
+   public AroundInvokeType<MessageDrivenBeanType<T>> aroundInvoke();
 
-   public MessageDrivenBeanType<T> setAroundTimeout(AroundTimeoutType<MessageDrivenBeanType<T>> aroundTimeout);
-   public AroundTimeoutType<MessageDrivenBeanType<T>> getAroundTimeout();
+   @NodeInfo(xmlName = "around-timeout")
+   public AroundTimeoutType<MessageDrivenBeanType<T>> aroundTimeout();
 
-   public MessageDrivenBeanType<T> setSecurityRoleRef(SecurityRoleRefType<MessageDrivenBeanType<T>> securityRoleRef);
-   public SecurityRoleRefType<MessageDrivenBeanType<T>> getSecurityRoleRef();
+   @NodeInfo(xmlName = "security-role-ref")
+   public SecurityRoleRefType<MessageDrivenBeanType<T>> securityRoleRef();
 
-   public MessageDrivenBeanType<T> setSecurityIdentity(SecurityIdentityType<MessageDrivenBeanType<T>> securityIdentity);
-   public SecurityIdentityType<MessageDrivenBeanType<T>> getSecurityIdentity();
+   @NodeInfo(xmlName = "security-identity")
+   public SecurityIdentityType<MessageDrivenBeanType<T>> securityIdentity();
 }

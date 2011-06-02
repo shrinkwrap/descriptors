@@ -1,6 +1,7 @@
-package org.jboss.shrinkwrap.descriptor.api.webcommon30; 
+package org.jboss.shrinkwrap.descriptor.api.webcommon30;
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
+import org.jboss.shrinkwrap.descriptor.api.NodeInfo;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbLocalRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbRefType;
@@ -18,118 +19,131 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleType;
 import org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13.ServiceRefType;
 import org.jboss.shrinkwrap.descriptor.api.jsp22.JspConfigType;
-        
 
 /**
  * This class is a generated class.
- * Generation date :2011-05-31T22:53:10.827+02:00
+ * Generation date :2011-06-02T12:29:43.14+02:00
  */
+
 public interface WebAppType<T> extends Child<T>
 {
+   @NodeInfo(xmlName = "distributable")
    public WebAppType<T> distributable();
 
-   public WebAppType<T> setContextParam(ParamValueType<WebAppType<T>> contextParam);
-   public ParamValueType<WebAppType<T>> getContextParam();
+   @NodeInfo(xmlName = "context-param")
+   public ParamValueType<WebAppType<T>> contextParam();
 
-   public WebAppType<T> setFilter(FilterType<WebAppType<T>> filter);
-   public FilterType<WebAppType<T>> getFilter();
+   @NodeInfo(xmlName = "filter")
+   public FilterType<WebAppType<T>> filter();
 
-   public WebAppType<T> setFilterMapping(FilterMappingType<WebAppType<T>> filterMapping);
-   public FilterMappingType<WebAppType<T>> getFilterMapping();
+   @NodeInfo(xmlName = "filter-mapping")
+   public FilterMappingType<WebAppType<T>> filterMapping();
 
-   public WebAppType<T> setListener(ListenerType<WebAppType<T>> listener);
-   public ListenerType<WebAppType<T>> getListener();
+   @NodeInfo(xmlName = "listener")
+   public ListenerType<WebAppType<T>> listener();
 
-   public WebAppType<T> setServlet(ServletType<WebAppType<T>> servlet);
-   public ServletType<WebAppType<T>> getServlet();
+   @NodeInfo(xmlName = "servlet")
+   public ServletType<WebAppType<T>> servlet();
 
-   public WebAppType<T> setServletMapping(ServletMappingType<WebAppType<T>> servletMapping);
-   public ServletMappingType<WebAppType<T>> getServletMapping();
+   @NodeInfo(xmlName = "servlet-mapping")
+   public ServletMappingType<WebAppType<T>> servletMapping();
 
-   public WebAppType<T> setSessionConfig(SessionConfigType<WebAppType<T>> sessionConfig);
-   public SessionConfigType<WebAppType<T>> getSessionConfig();
+   @NodeInfo(xmlName = "session-config")
+   public SessionConfigType<WebAppType<T>> sessionConfig();
 
-   public WebAppType<T> setMimeMapping(MimeMappingType<WebAppType<T>> mimeMapping);
-   public MimeMappingType<WebAppType<T>> getMimeMapping();
+   @NodeInfo(xmlName = "mime-mapping")
+   public MimeMappingType<WebAppType<T>> mimeMapping();
 
-   public WebAppType<T> setWelcomeFileList(WelcomeFileListType<WebAppType<T>> welcomeFileList);
-   public WelcomeFileListType<WebAppType<T>> getWelcomeFileList();
+   @NodeInfo(xmlName = "welcome-file-list")
+   public WelcomeFileListType<WebAppType<T>> welcomeFileList();
 
-   public WebAppType<T> setErrorPage(ErrorPageType<WebAppType<T>> errorPage);
-   public ErrorPageType<WebAppType<T>> getErrorPage();
+   @NodeInfo(xmlName = "error-page")
+   public ErrorPageType<WebAppType<T>> errorPage();
 
-   public WebAppType<T> setJspConfig(JspConfigType<WebAppType<T>> jspConfig);
-   public JspConfigType<WebAppType<T>> getJspConfig();
+   @NodeInfo(xmlName = "jsp-config")
+   public JspConfigType<WebAppType<T>> jspConfig();
 
-   public WebAppType<T> setSecurityConstraint(SecurityConstraintType<WebAppType<T>> securityConstraint);
-   public SecurityConstraintType<WebAppType<T>> getSecurityConstraint();
+   @NodeInfo(xmlName = "security-constraint")
+   public SecurityConstraintType<WebAppType<T>> securityConstraint();
 
-   public WebAppType<T> setLoginConfig(LoginConfigType<WebAppType<T>> loginConfig);
-   public LoginConfigType<WebAppType<T>> getLoginConfig();
+   @NodeInfo(xmlName = "login-config")
+   public LoginConfigType<WebAppType<T>> loginConfig();
 
-   public WebAppType<T> setSecurityRole(SecurityRoleType<WebAppType<T>> securityRole);
-   public SecurityRoleType<WebAppType<T>> getSecurityRole();
+   @NodeInfo(xmlName = "security-role")
+   public SecurityRoleType<WebAppType<T>> securityRole();
 
-   public WebAppType<T> setMessageDestination(MessageDestinationType<WebAppType<T>> messageDestination);
-   public MessageDestinationType<WebAppType<T>> getMessageDestination();
+   @NodeInfo(xmlName = "message-destination")
+   public MessageDestinationType<WebAppType<T>> messageDestination();
 
-   public WebAppType<T> setLocaleEncodingMappingList(LocaleEncodingMappingListType<WebAppType<T>> localeEncodingMappingList);
-   public LocaleEncodingMappingListType<WebAppType<T>> getLocaleEncodingMappingList();
+   @NodeInfo(xmlName = "locale-encoding-mapping-list")
+   public LocaleEncodingMappingListType<WebAppType<T>> localeEncodingMappingList();
 
    public WebAppType<T> setDescription(String description);
+
+   @NodeInfo(xmlName = "description")
    public String getDescription();
 
    public WebAppType<T> setDisplayName(String displayName);
+
+   @NodeInfo(xmlName = "display-name")
    public String getDisplayName();
 
-   public WebAppType<T> setIcon(IconType<WebAppType<T>> icon);
-   public IconType<WebAppType<T>> getIcon();
+   @NodeInfo(xmlName = "icon")
+   public IconType<WebAppType<T>> icon();
 
-   public WebAppType<T> setEnvEntry(EnvEntryType<WebAppType<T>> envEntry);
-   public EnvEntryType<WebAppType<T>> getEnvEntry();
+   @NodeInfo(xmlName = "env-entry")
+   public EnvEntryType<WebAppType<T>> envEntry();
 
-   public WebAppType<T> setEjbRef(EjbRefType<WebAppType<T>> ejbRef);
-   public EjbRefType<WebAppType<T>> getEjbRef();
+   @NodeInfo(xmlName = "ejb-ref")
+   public EjbRefType<WebAppType<T>> ejbRef();
 
-   public WebAppType<T> setEjbLocalRef(EjbLocalRefType<WebAppType<T>> ejbLocalRef);
-   public EjbLocalRefType<WebAppType<T>> getEjbLocalRef();
+   @NodeInfo(xmlName = "ejb-local-ref")
+   public EjbLocalRefType<WebAppType<T>> ejbLocalRef();
 
-   public WebAppType<T> setResourceRef(ResourceRefType<WebAppType<T>> resourceRef);
-   public ResourceRefType<WebAppType<T>> getResourceRef();
+   @NodeInfo(xmlName = "resource-ref")
+   public ResourceRefType<WebAppType<T>> resourceRef();
 
-   public WebAppType<T> setResourceEnvRef(ResourceEnvRefType<WebAppType<T>> resourceEnvRef);
-   public ResourceEnvRefType<WebAppType<T>> getResourceEnvRef();
+   @NodeInfo(xmlName = "resource-env-ref")
+   public ResourceEnvRefType<WebAppType<T>> resourceEnvRef();
 
-   public WebAppType<T> setMessageDestinationRef(MessageDestinationRefType<WebAppType<T>> messageDestinationRef);
-   public MessageDestinationRefType<WebAppType<T>> getMessageDestinationRef();
+   @NodeInfo(xmlName = "message-destination-ref")
+   public MessageDestinationRefType<WebAppType<T>> messageDestinationRef();
 
-   public WebAppType<T> setPersistenceContextRef(PersistenceContextRefType<WebAppType<T>> persistenceContextRef);
-   public PersistenceContextRefType<WebAppType<T>> getPersistenceContextRef();
+   @NodeInfo(xmlName = "persistence-context-ref")
+   public PersistenceContextRefType<WebAppType<T>> persistenceContextRef();
 
-   public WebAppType<T> setPersistenceUnitRef(PersistenceUnitRefType<WebAppType<T>> persistenceUnitRef);
-   public PersistenceUnitRefType<WebAppType<T>> getPersistenceUnitRef();
+   @NodeInfo(xmlName = "persistence-unit-ref")
+   public PersistenceUnitRefType<WebAppType<T>> persistenceUnitRef();
 
-   public WebAppType<T> setPostConstruct(LifecycleCallbackType<WebAppType<T>> postConstruct);
-   public LifecycleCallbackType<WebAppType<T>> getPostConstruct();
+   @NodeInfo(xmlName = "post-construct")
+   public LifecycleCallbackType<WebAppType<T>> postConstruct();
 
-   public WebAppType<T> setPreDestroy(LifecycleCallbackType<WebAppType<T>> preDestroy);
-   public LifecycleCallbackType<WebAppType<T>> getPreDestroy();
+   @NodeInfo(xmlName = "pre-destroy")
+   public LifecycleCallbackType<WebAppType<T>> preDestroy();
 
-   public WebAppType<T> setDataSource(DataSourceType<WebAppType<T>> dataSource);
-   public DataSourceType<WebAppType<T>> getDataSource();
+   @NodeInfo(xmlName = "data-source")
+   public DataSourceType<WebAppType<T>> dataSource();
 
-   public WebAppType<T> setServiceRef(ServiceRefType<WebAppType<T>> serviceRef);
-   public ServiceRefType<WebAppType<T>> getServiceRef();
+   @NodeInfo(xmlName = "service-ref")
+   public ServiceRefType<WebAppType<T>> serviceRef();
 
    public WebAppType<T> setVersion(WebAppVersionType version);
-   public WebAppVersionType getVersion();
+
+   public WebAppType<T> setVersion(String version);
+
+   @NodeInfo(xmlName = "version")
+   public String getVersion();
 
    public WebAppType<T> setMetadataComplete(Boolean metadataComplete);
+
+   @NodeInfo(xmlName = "metadata-complete")
    public Boolean getMetadataComplete();
 
    public WebAppType<T> setModuleName(String moduleName);
+
+   @NodeInfo(xmlName = "module-name")
    public String getModuleName();
 
-   public WebAppType<T> setAbsoluteOrdering(AbsoluteOrderingType<WebAppType<T>> absoluteOrdering);
-   public AbsoluteOrderingType<WebAppType<T>> getAbsoluteOrdering();
+   @NodeInfo(xmlName = "absolute-ordering")
+   public AbsoluteOrderingType<WebAppType<T>> absoluteOrdering();
 }

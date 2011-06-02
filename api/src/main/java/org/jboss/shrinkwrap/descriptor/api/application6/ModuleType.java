@@ -1,26 +1,35 @@
-package org.jboss.shrinkwrap.descriptor.api.application6; 
+package org.jboss.shrinkwrap.descriptor.api.application6;
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
-        
+import org.jboss.shrinkwrap.descriptor.api.NodeInfo;
 
 /**
  * This class is a generated class.
- * Generation date :2011-05-31T22:53:10.827+02:00
+ * Generation date :2011-06-02T12:29:43.14+02:00
  */
+
 public interface ModuleType<T> extends Child<T>
 {
    public ModuleType<T> setAltDd(String altDd);
+
+   @NodeInfo(xmlName = "alt-dd")
    public String getAltDd();
 
    public ModuleType<T> setConnector(String connector);
+
+   @NodeInfo(xmlName = "connector")
    public String getConnector();
 
    public ModuleType<T> setEjb(String ejb);
+
+   @NodeInfo(xmlName = "ejb")
    public String getEjb();
 
    public ModuleType<T> setJava(String java);
+
+   @NodeInfo(xmlName = "java")
    public String getJava();
 
-   public ModuleType<T> setWeb(WebType<ModuleType<T>> web);
-   public WebType<ModuleType<T>> getWeb();
+   @NodeInfo(xmlName = "web")
+   public WebType<ModuleType<T>> web();
 }

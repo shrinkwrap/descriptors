@@ -1,6 +1,7 @@
-package org.jboss.shrinkwrap.descriptor.api.webcommon30; 
+package org.jboss.shrinkwrap.descriptor.api.webcommon30;
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
+import org.jboss.shrinkwrap.descriptor.api.NodeInfo;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbLocalRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbRefType;
@@ -18,118 +19,131 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleType;
 import org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13.ServiceRefType;
 import org.jboss.shrinkwrap.descriptor.api.jsp22.JspConfigType;
-        
 
 /**
  * This class is a generated class.
- * Generation date :2011-05-31T22:53:10.827+02:00
+ * Generation date :2011-06-02T12:29:43.14+02:00
  */
+
 public interface WebFragmentType<T> extends Child<T>
 {
+   @NodeInfo(xmlName = "distributable")
    public WebFragmentType<T> distributable();
 
-   public WebFragmentType<T> setContextParam(ParamValueType<WebFragmentType<T>> contextParam);
-   public ParamValueType<WebFragmentType<T>> getContextParam();
+   @NodeInfo(xmlName = "context-param")
+   public ParamValueType<WebFragmentType<T>> contextParam();
 
-   public WebFragmentType<T> setFilter(FilterType<WebFragmentType<T>> filter);
-   public FilterType<WebFragmentType<T>> getFilter();
+   @NodeInfo(xmlName = "filter")
+   public FilterType<WebFragmentType<T>> filter();
 
-   public WebFragmentType<T> setFilterMapping(FilterMappingType<WebFragmentType<T>> filterMapping);
-   public FilterMappingType<WebFragmentType<T>> getFilterMapping();
+   @NodeInfo(xmlName = "filter-mapping")
+   public FilterMappingType<WebFragmentType<T>> filterMapping();
 
-   public WebFragmentType<T> setListener(ListenerType<WebFragmentType<T>> listener);
-   public ListenerType<WebFragmentType<T>> getListener();
+   @NodeInfo(xmlName = "listener")
+   public ListenerType<WebFragmentType<T>> listener();
 
-   public WebFragmentType<T> setServlet(ServletType<WebFragmentType<T>> servlet);
-   public ServletType<WebFragmentType<T>> getServlet();
+   @NodeInfo(xmlName = "servlet")
+   public ServletType<WebFragmentType<T>> servlet();
 
-   public WebFragmentType<T> setServletMapping(ServletMappingType<WebFragmentType<T>> servletMapping);
-   public ServletMappingType<WebFragmentType<T>> getServletMapping();
+   @NodeInfo(xmlName = "servlet-mapping")
+   public ServletMappingType<WebFragmentType<T>> servletMapping();
 
-   public WebFragmentType<T> setSessionConfig(SessionConfigType<WebFragmentType<T>> sessionConfig);
-   public SessionConfigType<WebFragmentType<T>> getSessionConfig();
+   @NodeInfo(xmlName = "session-config")
+   public SessionConfigType<WebFragmentType<T>> sessionConfig();
 
-   public WebFragmentType<T> setMimeMapping(MimeMappingType<WebFragmentType<T>> mimeMapping);
-   public MimeMappingType<WebFragmentType<T>> getMimeMapping();
+   @NodeInfo(xmlName = "mime-mapping")
+   public MimeMappingType<WebFragmentType<T>> mimeMapping();
 
-   public WebFragmentType<T> setWelcomeFileList(WelcomeFileListType<WebFragmentType<T>> welcomeFileList);
-   public WelcomeFileListType<WebFragmentType<T>> getWelcomeFileList();
+   @NodeInfo(xmlName = "welcome-file-list")
+   public WelcomeFileListType<WebFragmentType<T>> welcomeFileList();
 
-   public WebFragmentType<T> setErrorPage(ErrorPageType<WebFragmentType<T>> errorPage);
-   public ErrorPageType<WebFragmentType<T>> getErrorPage();
+   @NodeInfo(xmlName = "error-page")
+   public ErrorPageType<WebFragmentType<T>> errorPage();
 
-   public WebFragmentType<T> setJspConfig(JspConfigType<WebFragmentType<T>> jspConfig);
-   public JspConfigType<WebFragmentType<T>> getJspConfig();
+   @NodeInfo(xmlName = "jsp-config")
+   public JspConfigType<WebFragmentType<T>> jspConfig();
 
-   public WebFragmentType<T> setSecurityConstraint(SecurityConstraintType<WebFragmentType<T>> securityConstraint);
-   public SecurityConstraintType<WebFragmentType<T>> getSecurityConstraint();
+   @NodeInfo(xmlName = "security-constraint")
+   public SecurityConstraintType<WebFragmentType<T>> securityConstraint();
 
-   public WebFragmentType<T> setLoginConfig(LoginConfigType<WebFragmentType<T>> loginConfig);
-   public LoginConfigType<WebFragmentType<T>> getLoginConfig();
+   @NodeInfo(xmlName = "login-config")
+   public LoginConfigType<WebFragmentType<T>> loginConfig();
 
-   public WebFragmentType<T> setSecurityRole(SecurityRoleType<WebFragmentType<T>> securityRole);
-   public SecurityRoleType<WebFragmentType<T>> getSecurityRole();
+   @NodeInfo(xmlName = "security-role")
+   public SecurityRoleType<WebFragmentType<T>> securityRole();
 
-   public WebFragmentType<T> setMessageDestination(MessageDestinationType<WebFragmentType<T>> messageDestination);
-   public MessageDestinationType<WebFragmentType<T>> getMessageDestination();
+   @NodeInfo(xmlName = "message-destination")
+   public MessageDestinationType<WebFragmentType<T>> messageDestination();
 
-   public WebFragmentType<T> setLocaleEncodingMappingList(LocaleEncodingMappingListType<WebFragmentType<T>> localeEncodingMappingList);
-   public LocaleEncodingMappingListType<WebFragmentType<T>> getLocaleEncodingMappingList();
+   @NodeInfo(xmlName = "locale-encoding-mapping-list")
+   public LocaleEncodingMappingListType<WebFragmentType<T>> localeEncodingMappingList();
 
    public WebFragmentType<T> setDescription(String description);
+
+   @NodeInfo(xmlName = "description")
    public String getDescription();
 
    public WebFragmentType<T> setDisplayName(String displayName);
+
+   @NodeInfo(xmlName = "display-name")
    public String getDisplayName();
 
-   public WebFragmentType<T> setIcon(IconType<WebFragmentType<T>> icon);
-   public IconType<WebFragmentType<T>> getIcon();
+   @NodeInfo(xmlName = "icon")
+   public IconType<WebFragmentType<T>> icon();
 
-   public WebFragmentType<T> setEnvEntry(EnvEntryType<WebFragmentType<T>> envEntry);
-   public EnvEntryType<WebFragmentType<T>> getEnvEntry();
+   @NodeInfo(xmlName = "env-entry")
+   public EnvEntryType<WebFragmentType<T>> envEntry();
 
-   public WebFragmentType<T> setEjbRef(EjbRefType<WebFragmentType<T>> ejbRef);
-   public EjbRefType<WebFragmentType<T>> getEjbRef();
+   @NodeInfo(xmlName = "ejb-ref")
+   public EjbRefType<WebFragmentType<T>> ejbRef();
 
-   public WebFragmentType<T> setEjbLocalRef(EjbLocalRefType<WebFragmentType<T>> ejbLocalRef);
-   public EjbLocalRefType<WebFragmentType<T>> getEjbLocalRef();
+   @NodeInfo(xmlName = "ejb-local-ref")
+   public EjbLocalRefType<WebFragmentType<T>> ejbLocalRef();
 
-   public WebFragmentType<T> setResourceRef(ResourceRefType<WebFragmentType<T>> resourceRef);
-   public ResourceRefType<WebFragmentType<T>> getResourceRef();
+   @NodeInfo(xmlName = "resource-ref")
+   public ResourceRefType<WebFragmentType<T>> resourceRef();
 
-   public WebFragmentType<T> setResourceEnvRef(ResourceEnvRefType<WebFragmentType<T>> resourceEnvRef);
-   public ResourceEnvRefType<WebFragmentType<T>> getResourceEnvRef();
+   @NodeInfo(xmlName = "resource-env-ref")
+   public ResourceEnvRefType<WebFragmentType<T>> resourceEnvRef();
 
-   public WebFragmentType<T> setMessageDestinationRef(MessageDestinationRefType<WebFragmentType<T>> messageDestinationRef);
-   public MessageDestinationRefType<WebFragmentType<T>> getMessageDestinationRef();
+   @NodeInfo(xmlName = "message-destination-ref")
+   public MessageDestinationRefType<WebFragmentType<T>> messageDestinationRef();
 
-   public WebFragmentType<T> setPersistenceContextRef(PersistenceContextRefType<WebFragmentType<T>> persistenceContextRef);
-   public PersistenceContextRefType<WebFragmentType<T>> getPersistenceContextRef();
+   @NodeInfo(xmlName = "persistence-context-ref")
+   public PersistenceContextRefType<WebFragmentType<T>> persistenceContextRef();
 
-   public WebFragmentType<T> setPersistenceUnitRef(PersistenceUnitRefType<WebFragmentType<T>> persistenceUnitRef);
-   public PersistenceUnitRefType<WebFragmentType<T>> getPersistenceUnitRef();
+   @NodeInfo(xmlName = "persistence-unit-ref")
+   public PersistenceUnitRefType<WebFragmentType<T>> persistenceUnitRef();
 
-   public WebFragmentType<T> setPostConstruct(LifecycleCallbackType<WebFragmentType<T>> postConstruct);
-   public LifecycleCallbackType<WebFragmentType<T>> getPostConstruct();
+   @NodeInfo(xmlName = "post-construct")
+   public LifecycleCallbackType<WebFragmentType<T>> postConstruct();
 
-   public WebFragmentType<T> setPreDestroy(LifecycleCallbackType<WebFragmentType<T>> preDestroy);
-   public LifecycleCallbackType<WebFragmentType<T>> getPreDestroy();
+   @NodeInfo(xmlName = "pre-destroy")
+   public LifecycleCallbackType<WebFragmentType<T>> preDestroy();
 
-   public WebFragmentType<T> setDataSource(DataSourceType<WebFragmentType<T>> dataSource);
-   public DataSourceType<WebFragmentType<T>> getDataSource();
+   @NodeInfo(xmlName = "data-source")
+   public DataSourceType<WebFragmentType<T>> dataSource();
 
-   public WebFragmentType<T> setServiceRef(ServiceRefType<WebFragmentType<T>> serviceRef);
-   public ServiceRefType<WebFragmentType<T>> getServiceRef();
+   @NodeInfo(xmlName = "service-ref")
+   public ServiceRefType<WebFragmentType<T>> serviceRef();
 
    public WebFragmentType<T> setVersion(WebAppVersionType version);
-   public WebAppVersionType getVersion();
+
+   public WebFragmentType<T> setVersion(String version);
+
+   @NodeInfo(xmlName = "version")
+   public String getVersion();
 
    public WebFragmentType<T> setMetadataComplete(Boolean metadataComplete);
+
+   @NodeInfo(xmlName = "metadata-complete")
    public Boolean getMetadataComplete();
 
    public WebFragmentType<T> setName(String name);
+
+   @NodeInfo(xmlName = "name")
    public String getName();
 
-   public WebFragmentType<T> setOrdering(OrderingType<WebFragmentType<T>> ordering);
-   public OrderingType<WebFragmentType<T>> getOrdering();
+   @NodeInfo(xmlName = "ordering")
+   public OrderingType<WebFragmentType<T>> ordering();
 }

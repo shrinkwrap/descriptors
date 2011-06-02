@@ -1,6 +1,7 @@
-package org.jboss.shrinkwrap.descriptor.api.application6; 
+package org.jboss.shrinkwrap.descriptor.api.application6;
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
+import org.jboss.shrinkwrap.descriptor.api.NodeInfo;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbLocalRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbRefType;
@@ -15,68 +16,80 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceEnvRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleType;
 import org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13.ServiceRefType;
-        
 
 /**
  * This class is a generated class.
- * Generation date :2011-05-31T22:53:10.827+02:00
+ * Generation date :2011-06-02T12:29:43.14+02:00
  */
+
 public interface ApplicationType<T> extends Child<T>
 {
    public ApplicationType<T> setDescription(String description);
+
+   @NodeInfo(xmlName = "description")
    public String getDescription();
 
    public ApplicationType<T> setDisplayName(String displayName);
+
+   @NodeInfo(xmlName = "display-name")
    public String getDisplayName();
 
-   public ApplicationType<T> setIcon(IconType<ApplicationType<T>> icon);
-   public IconType<ApplicationType<T>> getIcon();
+   @NodeInfo(xmlName = "icon")
+   public IconType<ApplicationType<T>> icon();
 
-   public ApplicationType<T> setServiceRef(ServiceRefType<ApplicationType<T>> serviceRef);
-   public ServiceRefType<ApplicationType<T>> getServiceRef();
+   @NodeInfo(xmlName = "service-ref")
+   public ServiceRefType<ApplicationType<T>> serviceRef();
 
    public ApplicationType<T> setApplicationName(String applicationName);
+
+   @NodeInfo(xmlName = "application-name")
    public String getApplicationName();
 
    public ApplicationType<T> setInitializeInOrder(GenericBooleanType initializeInOrder);
-   public GenericBooleanType getInitializeInOrder();
 
-   public ApplicationType<T> setModule(ModuleType<ApplicationType<T>> module);
-   public ModuleType<ApplicationType<T>> getModule();
+   public ApplicationType<T> setInitializeInOrder(String initializeInOrder);
 
-   public ApplicationType<T> setSecurityRole(SecurityRoleType<ApplicationType<T>> securityRole);
-   public SecurityRoleType<ApplicationType<T>> getSecurityRole();
+   @NodeInfo(xmlName = "initialize-in-order")
+   public String getInitializeInOrder();
+
+   @NodeInfo(xmlName = "module")
+   public ModuleType<ApplicationType<T>> module();
+
+   @NodeInfo(xmlName = "security-role")
+   public SecurityRoleType<ApplicationType<T>> securityRole();
 
    public ApplicationType<T> setLibraryDirectory(String libraryDirectory);
+
+   @NodeInfo(xmlName = "library-directory")
    public String getLibraryDirectory();
 
-   public ApplicationType<T> setEnvEntry(EnvEntryType<ApplicationType<T>> envEntry);
-   public EnvEntryType<ApplicationType<T>> getEnvEntry();
+   @NodeInfo(xmlName = "env-entry")
+   public EnvEntryType<ApplicationType<T>> envEntry();
 
-   public ApplicationType<T> setEjbRef(EjbRefType<ApplicationType<T>> ejbRef);
-   public EjbRefType<ApplicationType<T>> getEjbRef();
+   @NodeInfo(xmlName = "ejb-ref")
+   public EjbRefType<ApplicationType<T>> ejbRef();
 
-   public ApplicationType<T> setEjbLocalRef(EjbLocalRefType<ApplicationType<T>> ejbLocalRef);
-   public EjbLocalRefType<ApplicationType<T>> getEjbLocalRef();
+   @NodeInfo(xmlName = "ejb-local-ref")
+   public EjbLocalRefType<ApplicationType<T>> ejbLocalRef();
 
-   public ApplicationType<T> setResourceRef(ResourceRefType<ApplicationType<T>> resourceRef);
-   public ResourceRefType<ApplicationType<T>> getResourceRef();
+   @NodeInfo(xmlName = "resource-ref")
+   public ResourceRefType<ApplicationType<T>> resourceRef();
 
-   public ApplicationType<T> setResourceEnvRef(ResourceEnvRefType<ApplicationType<T>> resourceEnvRef);
-   public ResourceEnvRefType<ApplicationType<T>> getResourceEnvRef();
+   @NodeInfo(xmlName = "resource-env-ref")
+   public ResourceEnvRefType<ApplicationType<T>> resourceEnvRef();
 
-   public ApplicationType<T> setMessageDestinationRef(MessageDestinationRefType<ApplicationType<T>> messageDestinationRef);
-   public MessageDestinationRefType<ApplicationType<T>> getMessageDestinationRef();
+   @NodeInfo(xmlName = "message-destination-ref")
+   public MessageDestinationRefType<ApplicationType<T>> messageDestinationRef();
 
-   public ApplicationType<T> setPersistenceContextRef(PersistenceContextRefType<ApplicationType<T>> persistenceContextRef);
-   public PersistenceContextRefType<ApplicationType<T>> getPersistenceContextRef();
+   @NodeInfo(xmlName = "persistence-context-ref")
+   public PersistenceContextRefType<ApplicationType<T>> persistenceContextRef();
 
-   public ApplicationType<T> setPersistenceUnitRef(PersistenceUnitRefType<ApplicationType<T>> persistenceUnitRef);
-   public PersistenceUnitRefType<ApplicationType<T>> getPersistenceUnitRef();
+   @NodeInfo(xmlName = "persistence-unit-ref")
+   public PersistenceUnitRefType<ApplicationType<T>> persistenceUnitRef();
 
-   public ApplicationType<T> setMessageDestination(MessageDestinationType<ApplicationType<T>> messageDestination);
-   public MessageDestinationType<ApplicationType<T>> getMessageDestination();
+   @NodeInfo(xmlName = "message-destination")
+   public MessageDestinationType<ApplicationType<T>> messageDestination();
 
-   public ApplicationType<T> setDataSource(DataSourceType<ApplicationType<T>> dataSource);
-   public DataSourceType<ApplicationType<T>> getDataSource();
+   @NodeInfo(xmlName = "data-source")
+   public DataSourceType<ApplicationType<T>> dataSource();
 }

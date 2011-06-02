@@ -1,39 +1,48 @@
-package org.jboss.shrinkwrap.descriptor.api.ejbjar31; 
+package org.jboss.shrinkwrap.descriptor.api.ejbjar31;
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
+import org.jboss.shrinkwrap.descriptor.api.NodeInfo;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
-        
 
 /**
  * This class is a generated class.
- * Generation date :2011-05-31T22:53:10.827+02:00
+ * Generation date :2011-06-02T12:29:43.14+02:00
  */
+
 public interface EjbJarType<T> extends Child<T>
 {
    public EjbJarType<T> setDescription(String description);
+
+   @NodeInfo(xmlName = "description")
    public String getDescription();
 
    public EjbJarType<T> setDisplayName(String displayName);
+
+   @NodeInfo(xmlName = "display-name")
    public String getDisplayName();
 
-   public EjbJarType<T> setIcon(IconType<EjbJarType<T>> icon);
-   public IconType<EjbJarType<T>> getIcon();
+   @NodeInfo(xmlName = "icon")
+   public IconType<EjbJarType<T>> icon();
 
    public EjbJarType<T> setModuleName(String moduleName);
+
+   @NodeInfo(xmlName = "module-name")
    public String getModuleName();
 
-   public EjbJarType<T> setEnterpriseBeans(EnterpriseBeansType<EjbJarType<T>> enterpriseBeans);
-   public EnterpriseBeansType<EjbJarType<T>> getEnterpriseBeans();
+   @NodeInfo(xmlName = "enterprise-beans")
+   public EnterpriseBeansType<EjbJarType<T>> enterpriseBeans();
 
-   public EjbJarType<T> setInterceptors(InterceptorsType<EjbJarType<T>> interceptors);
-   public InterceptorsType<EjbJarType<T>> getInterceptors();
+   @NodeInfo(xmlName = "interceptors")
+   public InterceptorsType<EjbJarType<T>> interceptors();
 
-   public EjbJarType<T> setRelationships(RelationshipsType<EjbJarType<T>> relationships);
-   public RelationshipsType<EjbJarType<T>> getRelationships();
+   @NodeInfo(xmlName = "relationships")
+   public RelationshipsType<EjbJarType<T>> relationships();
 
-   public EjbJarType<T> setAssemblyDescriptor(AssemblyDescriptorType<EjbJarType<T>> assemblyDescriptor);
-   public AssemblyDescriptorType<EjbJarType<T>> getAssemblyDescriptor();
+   @NodeInfo(xmlName = "assembly-descriptor")
+   public AssemblyDescriptorType<EjbJarType<T>> assemblyDescriptor();
 
    public EjbJarType<T> setEjbClientJar(String ejbClientJar);
+
+   @NodeInfo(xmlName = "ejb-client-jar")
    public String getEjbClientJar();
 }

@@ -515,12 +515,23 @@
     <xsl:function name="xdd:classHeaderDeclaration">
         <xsl:param name="classType"/>
         <xsl:param name="className"/>
+        <xsl:text>&#10;</xsl:text>
         <xsl:text>public </xsl:text>
         <xsl:value-of select="$classType"/>
         <xsl:text> </xsl:text>
         <xsl:value-of select="xdd:createPascalizedName($className, '')"/>
     </xsl:function>
 
+
+
+    <!-- ****************************************************** -->
+    <!-- ****** Function which writes the class declaration *** -->
+    <!-- ****************************************************** -->
+    <xsl:function name="xdd:classNodeInfo">
+        <xsl:param name="pNodeName"/>
+        <xsl:value-of select="concat('   @NodeInfo(xmlName=&quot;', $pNodeName, '&quot;)')"/>
+        <xsl:text>&#10;</xsl:text>
+    </xsl:function>
 
 
     <!---****************************************************** -->
@@ -564,13 +575,16 @@
         <xsl:choose>
             <xsl:when test="$pElementType='javaee:emptyType' or $pElementType='javaee:ordering-othersType' or 
                             $pElementType='faces-config-ordering-othersType' or $pElementType='extensibleType'">
+                <xsl:value-of select="xdd:classNodeInfo($pElementName)"/>
                 <xsl:value-of select="concat('   public ', $vReturn, ' ', xdd:createCamelizedName($pElementName), '();')"/>
                 <xsl:text>&#10;</xsl:text>
             </xsl:when>
 
             <xsl:when test="xdd:isEnumType($pElementType)">
                 <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, $pElementType, $pElementName, $pMaxOccurs, true())"/>
-                <xsl:value-of select="xdd:writeGetMethodSignature($pElementType, $vMethodName, $pMaxOccurs, true())"/>
+                <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, 'String', $pElementName, '-', true())"/>
+<!--                <xsl:value-of select="xdd:writeGetMethodSignature($pElementType, $vMethodName, $pElementName, $pMaxOccurs, true())"/>-->
+                <xsl:value-of select="xdd:writeGetMethodSignature('String', concat($vMethodName, ''), $pElementName, '-', true())"/>
 
             </xsl:when>
 
@@ -578,19 +592,24 @@
                 <xsl:variable name="vDataType" select="xdd:CheckDataType($pElementType)"/>
                 <xsl:if test="$pElementType='javaee:fully-qualified-classType'">
                     <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, 'Class&lt;?&gt;', $pElementName, $pMaxOccurs, true())"/>
-                    <xsl:value-of select="xdd:writeGetMethodSignature('Class&lt;?&gt;', $vMethodName, $pMaxOccurs, true())"/>
+                    <!--                    <xsl:value-of select="xdd:writeGetMethodSignature('Class&lt;?&gt;', $vMethodName, $pMaxOccurs, true())"/>-->
                     <xsl:text>&#10;</xsl:text>
                 </xsl:if>
                 <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, $vDataType, $pElementName, $pMaxOccurs, true())"/>
-                <xsl:value-of select="xdd:writeGetMethodSignature($vDataType, $vMethodName, $pMaxOccurs, true())"/>
+                <xsl:value-of select="xdd:writeGetMethodSignature($vDataType, $vMethodName, $pElementName, $pMaxOccurs, true())"/>
             </xsl:when>
 
             <xsl:otherwise>
                 <!-- it is a complex type -->
+
                 <xsl:variable name="vReturnGeneric" select="xdd:createPascalizedName($pElementType, concat('&lt;', $pClassName, '&lt;T&gt;&gt;'))"/>
                 <xsl:variable name="vElementTypeGeneric" select="xdd:createPascalizedName($pElementType, concat('&lt;', $pClassName, '&lt;T&gt;&gt;'))"/>
-                <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, $vElementTypeGeneric, $pElementName, $pMaxOccurs, true())"/>
-                <xsl:value-of select="xdd:writeGetMethodSignature($vReturnGeneric, $vMethodName, $pMaxOccurs, true())"/>
+                <!--   <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, $vElementTypeGeneric, $pElementName, $pMaxOccurs, true())"/>
+                <xsl:value-of select="xdd:writeGetMethodSignature($vReturnGeneric, $vMethodName, $pMaxOccurs, true())"/>-->
+
+                <xsl:value-of select="xdd:classNodeInfo($pElementName)"/>
+                <xsl:value-of select="concat('   public ', $vReturnGeneric, ' ', xdd:createCamelizedName($pElementName), '();')"/>
+                <xsl:text>&#10;</xsl:text>
             </xsl:otherwise>
         </xsl:choose>
 
@@ -609,22 +628,11 @@
         <xsl:param name="vIsInterface" as="xs:boolean"/>
 
         <xsl:variable name="vClassType" select="xdd:createPascalizedName($vElementType,'')"/>
-        <xsl:choose>
-            <xsl:when test="$vMaxOccurs!='-' and $vElementType='String'">
-                <xsl:value-of select="concat('   public ', $vReturnType, ' set', xdd:checkForClassType($vMethodName), '(',  xdd:createPascalizedName($vElementType,''),' ',xdd:checkForClassType(xdd:createCamelizedName($vElementName)), ')')"/>
-                <xsl:text>&#10;</xsl:text>
-                <xsl:value-of select="concat('   public ', $vReturnType, ' set', xdd:checkForClassType($vMethodName), '(',  xdd:createPascalizedName($vElementType,''),' ... ',xdd:checkForClassType(xdd:createCamelizedName($vElementName)), ')')"/>
-            </xsl:when>
-
-            <xsl:otherwise>
-                <xsl:value-of select="concat('   public ', $vReturnType, ' set', xdd:checkForClassType($vMethodName), '(',  xdd:createPascalizedName($vElementType,''),' ',xdd:checkForClassType(xdd:createCamelizedName($vElementName)), ')')"/>
-            </xsl:otherwise>
-        </xsl:choose>
-
-        <!--        <xsl:value-of select="concat('   public ', $vReturnType, ' set', xdd:checkForClassType($vMethodName), '(',  xdd:createPascalizedName($vElementType,''),' ',xdd:checkForClassType(xdd:createCamelizedName($vElementName)), ')')"/>-->
+        <xsl:value-of select="concat('   public ', $vReturnType, ' set', xdd:checkForClassType($vMethodName), '(',  xdd:createPascalizedName($vElementType,''),' ',xdd:checkForClassType(xdd:createCamelizedName($vElementName)), ')')"/>
         <xsl:if test="$vIsInterface">
             <xsl:value-of select="';'"/>
         </xsl:if>
+        <xsl:text>&#10;</xsl:text>
         <xsl:text>&#10;</xsl:text>
     </xsl:function>
 
@@ -635,22 +643,11 @@
     <xsl:function name="xdd:writeGetMethodSignature">
         <xsl:param name="vElementType"/>
         <xsl:param name="vMethodName"/>
+        <xsl:param name="vElementName"/>
         <xsl:param name="vMaxOccurs"/>
         <xsl:param name="vIsInterface" as="xs:boolean"/>
-
-        <xsl:choose>
-            <xsl:when test="$vMaxOccurs!='-' and $vElementType='String'">
-                <xsl:value-of select="concat('   public ', xdd:createPascalizedName($vElementType,''), ' get', xdd:checkForClassType($vMethodName), '()')"/>
-                <xsl:text>&#10;</xsl:text>
-                <xsl:value-of select="concat('   public ', xdd:createPascalizedName($vElementType,'[]'), ' get', xdd:checkForClassType($vMethodName), '()')"/>
-            </xsl:when>
-
-            <xsl:otherwise>
-                <xsl:value-of select="concat('   public ', xdd:createPascalizedName($vElementType,''), ' get', xdd:checkForClassType($vMethodName), '()')"/>
-            </xsl:otherwise>
-        </xsl:choose>
-
-        <!--        <xsl:value-of select="concat('   public ', xdd:createPascalizedName($vElementType,''), ' get', xdd:checkForClassType($vMethodName), '()')"/>-->
+        <xsl:value-of select="xdd:classNodeInfo($vElementName)"/>
+        <xsl:value-of select="concat('   public ', xdd:createPascalizedName($vElementType,''), ' get', xdd:checkForClassType($vMethodName), '()')"/>
         <xsl:if test="$vIsInterface">
             <xsl:value-of select="';'"/>
         </xsl:if>
