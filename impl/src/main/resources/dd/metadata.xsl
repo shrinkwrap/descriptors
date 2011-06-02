@@ -90,7 +90,8 @@
             <xsl:for-each select="//schemaName">
                 <xsl:call-template name="WriteClasses">
                     <xsl:with-param name="pDocument" select="text()"/>
-                    <xsl:with-param name="pPackage" select="@packageApi"/>
+                    <xsl:with-param name="pPackageApi" select="@packageApi"/>
+                    <xsl:with-param name="pPackageImpl" select="@packageImpl"/>
                 </xsl:call-template>
             </xsl:for-each>
         </classes>
@@ -413,7 +414,8 @@
     <!-- ****************************************************** -->
     <xsl:template name="WriteClasses">
         <xsl:param name="pDocument"/>
-        <xsl:param name="pPackage"/>
+        <xsl:param name="pPackageApi"/>
+        <xsl:param name="pPackageImpl"/>
         <xsl:for-each select="document($pDocument)//xsd:complexType">
             <xsl:variable name="complexTypeName" select="@name"/>
             <xsl:if test="count(xsd:sequence/xsd:element) > 0 or count(xsd:choice/xsd:element) > 0 or count(xsd:sequence/xsd:choice/xsd:element) > 0 or count(xsd:choice/xsd:group) > 0">
@@ -424,8 +426,11 @@
                     <xsl:attribute name="schemaName">
                         <xsl:value-of select="$pDocument"/>
                     </xsl:attribute>
-                    <xsl:attribute name="package">
-                        <xsl:value-of select="$pPackage"/>
+                    <xsl:attribute name="packageApi">
+                        <xsl:value-of select="$pPackageApi"/>
+                    </xsl:attribute>
+                     <xsl:attribute name="packageImpl">
+                        <xsl:value-of select="$pPackageImpl"/>
                     </xsl:attribute>
                     <xsl:for-each select="xsd:sequence/xsd:element">
                         <element>

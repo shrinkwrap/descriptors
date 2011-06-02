@@ -14,10 +14,11 @@ public class NodeInfoExtractor
       
       for (Annotation annotation: annotations)
       {
-         if (annotation.getClass() == NodeInfo.class)
+         if (annotation.annotationType() == NodeInfo.class)
          {
             NodeInfo nodeInfo = (NodeInfo)annotation;
             xmlName = nodeInfo.xmlName();
+            break;
          }
       }
       
