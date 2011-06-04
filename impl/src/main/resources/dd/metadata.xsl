@@ -4,6 +4,7 @@
     <xsl:template match="/">
         <metadata>
             <xsl:call-template name="GenerateStatistic"/>
+            <xsl:call-template name="GeneratePackages"/>
             <xsl:call-template name="GenerateDataTypes"/>
             <xsl:call-template name="GenerateEnums"/>
             <xsl:call-template name="GenerateGroups"/>
@@ -49,6 +50,30 @@
 
     </xsl:template>
 
+
+    <!-- ****************************************************** -->
+    <!-- ****** Template which generates the packages    ****** -->
+    <!-- ****************************************************** -->
+    <xsl:template name="GeneratePackages">
+        <packages>
+            <xsl:for-each select="//@packageApi">
+                <api>
+                    <xsl:attribute name="name">
+                        <xsl:value-of select="."/>
+                    </xsl:attribute>
+                </api>
+            </xsl:for-each>
+            <xsl:for-each select="//@packageImpl">
+                <impl>
+                    <xsl:attribute name="name">
+                        <xsl:value-of select="."/>
+                    </xsl:attribute>
+                </impl>
+            </xsl:for-each>
+
+        </packages>
+
+    </xsl:template>
 
     <!-- ****************************************************** -->
     <!-- ****** Template which generates the enumarations ***** -->
@@ -429,7 +454,7 @@
                     <xsl:attribute name="packageApi">
                         <xsl:value-of select="$pPackageApi"/>
                     </xsl:attribute>
-                     <xsl:attribute name="packageImpl">
+                    <xsl:attribute name="packageImpl">
                         <xsl:value-of select="$pPackageImpl"/>
                     </xsl:attribute>
                     <xsl:for-each select="xsd:sequence/xsd:element">
