@@ -39,19 +39,14 @@
     <xsl:template name="GenerateEnums">
         <xsl:param name="pTypeName" select="."/>
         <xsl:for-each select="//enums/enum">
-
             <xsl:variable name="vClassname" select="xdd:createPascalizedName(@name, '')"/>
             <xsl:variable name="vFilename" select="xdd:createPath('..', @package, $vClassname, 'java')"/>
-
             <xsl:message select="concat('Generating Enum: ', $vClassname)"/>
             <xsl:result-document href="{$vFilename}">
                 <xsl:value-of select="xdd:writePackageLine(@package)"/>
                 <xsl:value-of select="xdd:classHeaderComment('')"/>
                 <xsl:value-of select="xdd:classHeaderDeclaration('enum', $vClassname)"/>
-
-                <xsl:text>&#10;</xsl:text>
-                <xsl:text>{</xsl:text>
-                <xsl:text>&#10;</xsl:text>
+                <xsl:text>&#10;{&#10;</xsl:text>
 
                 <xsl:for-each select="value">
                     <xsl:variable name="pEnum" select=" upper-case(replace(text(), '\.', '_'))"/>
@@ -80,9 +75,7 @@
                 <xsl:text>&#10;</xsl:text>
                 <xsl:text>&#10;</xsl:text>
                 <xsl:text>   public String toString() {return value;}</xsl:text>
-                <xsl:text>&#10;</xsl:text>
-                <xsl:text>}</xsl:text>
-                <xsl:text>&#10;</xsl:text>
+                <xsl:text>&#10;}&#10;</xsl:text>
                 <xsl:text>&#10;</xsl:text>
             </xsl:result-document>
         </xsl:for-each>
@@ -315,24 +308,43 @@
             <xsl:variable name="vFilename" select="xdd:createPath('..', $vPackage, $vClassnameImpl, 'java')"/>
             <xsl:result-document href="{$vFilename}">
                 <xsl:value-of select="xdd:writePackageLine($vPackage)"/>
-                <xsl:text>import org.jboss.shrinkwrap.descriptor.api.NodeInfo;&#10;</xsl:text>
+                <xsl:value-of select="xdd:writeImports(true())"/>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase;&#10;</xsl:text>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.Node;&#10;</xsl:text>
                 <xsl:text>&#10;</xsl:text>
-                <xsl:text>&#10;</xsl:text>
                 <xsl:value-of select="xdd:classHeaderComment('')"/>
-                <xsl:value-of select="xdd:classNodeInfo($pDescriptor/element/@name)"/>
+                <!--                <xsl:value-of select="xdd:classNodeInfo($pDescriptor/element/@name)"/>-->
                 <xsl:value-of select="xdd:classHeaderDeclaration('class', $vClassnameImpl)"/>
                 <xsl:text> extends NodeProviderImplBase implements </xsl:text>
                 <xsl:value-of select="xdd:createPascalizedName($vInterfaceName, ' ')"/>
+                <xsl:text>&#10;{</xsl:text>
                 <xsl:text>&#10;</xsl:text>
-                <xsl:text>{</xsl:text>
+
+                <!-- write all attributes -->
+                <xsl:value-of select="xdd:writeAttribute('Node', 'model', true())"/>
+                <xsl:for-each select="element">
+                    <xsl:value-of select="xdd:writeMethodOrAttribute($vClassnameImpl, @name, @type, '-', true(), false())"/>
+                </xsl:for-each>
                 <xsl:text>&#10;</xsl:text>
-                <xsl:value-of select=" xdd:writeAttribute('Node', 'model', true())"/>
-                <xsl:text>&#10;</xsl:text>
-                <xsl:value-of select="xdd:writeDescriptorImplConstructor($vClassnameImpl)"/>
-                <xsl:text>&#10;</xsl:text>
-                <xsl:text>}</xsl:text>
+
+                <!-- write the constructor -->
+                <xsl:value-of select="xdd:writeDescriptorImplConstructor($vClassnameImpl, $pDescriptor/element/@name)"/>
+                <xsl:value-of select="xdd:writeMethodComment()"/>
+                <!-- write all methods -->
+                <xsl:for-each select="element">
+                    <xsl:value-of select="xdd:writeMethodOrAttribute($vClassnameImpl, @name, @type, '-', false(), false())"/>
+                    
+                    <xsl:for-each select="//classes/class[@name=substring-after(@type, ':')]/element">
+                        <xsl:value-of select="xdd:writeMethodOrAttribute($vClassnameImpl, @name, @type, '-', false(), false())"/>
+                    </xsl:for-each>
+                </xsl:for-each>
+
+                
+                    
+                
+                <xsl:value-of select="xdd:includeGroupRefs($vClassnameImpl, @type, false(), false())"/>
+                
+                <xsl:text>&#10;}</xsl:text>
                 <xsl:text>&#10;</xsl:text>
             </xsl:result-document>
         </xsl:if>
@@ -454,17 +466,17 @@
     <!-- ****************************************************** -->
     <xsl:function name="xdd:writeDescriptorImplConstructor">
         <xsl:param name="pClassName"/>
+        <xsl:param name="pAppDescription"/>
         <xsl:text>   // -------------------------------------------------------------------------------------||&#10;</xsl:text>
         <xsl:text>   // Constructor -------------------------------------------------------------------------||&#10;</xsl:text>
         <xsl:text>   // -------------------------------------------------------------------------------------||&#10;</xsl:text>
-        <xsl:text>&#10;</xsl:text>
         <xsl:text>&#10;</xsl:text>
         <xsl:value-of select="concat('   public ', $pClassName, '(String descriptorName)')"/>
         <xsl:text>&#10;</xsl:text>
         <xsl:text>   {</xsl:text>
         <xsl:text>&#10;</xsl:text>
         <xsl:variable name="nodeExtractor" select="concat('NodeInfoExtractor.getNodeInfo(', $pClassName, '.class)')"/>
-        <xsl:value-of select="concat('       this(descriptorName, new Node(', $nodeExtractor , '));')"/>
+        <xsl:value-of select="concat('       this(descriptorName, new Node(&quot;', $pAppDescription , '&quot;));')"/>
         <xsl:text>&#10;</xsl:text>
 
         <!--        <xsl:value-of select="'       this(descriptorName, new Node(nodeName);'"/><xsl:text>&#10;</xsl:text>-->
@@ -479,7 +491,7 @@
         <xsl:text>   {&#10;</xsl:text>
         <xsl:text>      super(descriptorName);&#10;</xsl:text>
         <xsl:text>      this.model = model;&#10;</xsl:text>
-        <xsl:text>   }&#10;</xsl:text>
+        <xsl:text>   }&#10;&#10;</xsl:text>
     </xsl:function>
 
 
@@ -503,6 +515,15 @@
         <xsl:text>&#10;</xsl:text>
     </xsl:function>
 
+
+    <!-- ****************************************************** -->
+    <!-- ****** Function which writes the method line    ****** -->
+    <!-- ****************************************************** -->
+    <xsl:function name="xdd:writeMethodComment">
+        <xsl:text>   // -------------------------------------------------------------------------------------||&#10;</xsl:text>
+        <xsl:text>   // Methods -----------------------------------------------------------------------------||&#10;</xsl:text>
+        <xsl:text>   // -------------------------------------------------------------------------------------||&#10;</xsl:text>
+    </xsl:function>
 
     <!-- ****************************************************** -->
     <!-- ****** Function which writes the package line   ****** -->
@@ -620,13 +641,8 @@
                         <xsl:value-of select="concat('   private ', 'Boolean', ' ', xdd:createCamelizedName($pElementName), ';&#10;')"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <!--<xsl:value-of select="xdd:classNodeInfo($pElementName)"/>
-                        <xsl:value-of select="concat('   public ', $vReturn, ' ', xdd:createCamelizedName($pElementName), '();')"/>
-                        <xsl:text>&#10;</xsl:text>-->
-
                         <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, 'Boolean', $pElementName, '-', $pWriteInterface)"/>
                         <xsl:value-of select="xdd:writeGetMethodSignature($vReturn, 'Boolean', concat($vMethodName, ''), $pElementName, '-', $pWriteInterface, false())"/>
-
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
