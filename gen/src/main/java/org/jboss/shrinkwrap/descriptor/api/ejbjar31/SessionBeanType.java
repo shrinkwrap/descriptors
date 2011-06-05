@@ -17,7 +17,7 @@ import org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13.ServiceRefT
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T13:14:17.666+02:00
+ * Generation date :2011-06-05T13:52:46.95+02:00
  */
 public interface SessionBeanType<T> extends Child<T>
 {

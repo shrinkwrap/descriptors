@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T13:14:17.666+02:00
+ * Generation date :2011-06-05T13:52:46.95+02:00
  */
 public class ListenerTypeImpl<T> implements Child<T>, ListenerType<T>
 {
@@ -33,7 +33,7 @@ public class ListenerTypeImpl<T> implements Child<T>, ListenerType<T>
    {
       this.t = t;
       this.node = node;
-      this.childNode = node.create("");   }
+      this.childNode = node.create("listener");   }
 
 
    public T up()

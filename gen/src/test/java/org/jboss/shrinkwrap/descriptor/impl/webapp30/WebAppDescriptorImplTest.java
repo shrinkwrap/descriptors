@@ -2,69 +2,55 @@ package org.jboss.shrinkwrap.descriptor.impl.webapp30;
 
 import static org.jboss.shrinkwrap.descriptor.impl.spec.AssertXPath.assertXPath;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.List;
 import java.util.logging.Logger;
 
+import junit.framework.Assert;
+
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.application6.Application6Descriptor;
-import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.AuthMethodType;
-import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.FacesProjectStage;
-import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.FacesStateSavingMethod;
-import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.HttpMethodType;
-import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.ServletDef;
-import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.ServletMappingDef;
-import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.TrackingModeType;
-import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.TransportGuaranteeType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.WebAppDescriptor;
-import org.jboss.shrinkwrap.descriptor.impl.application6.Application6DescriptorImpl;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLImporter;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.WebApp30Descriptor;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.ServletType;
 import org.jboss.shrinkwrap.descriptor.impl.spec.servlet.web.WebAppDefTestCase;
-import org.jboss.shrinkwrap.descriptor.spi.Node;
-import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
+
+
 
 public class WebAppDescriptorImplTest
 {
 
-//   private final Logger log = Logger.getLogger(WebAppDefTestCase.class.getName());
-//
-//   private final String source = "" +
-//        "<web-app " +
-//        "      xmlns=\"http://java.sun.com/xml/ns/javaee\" " +
-//        "      xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" " +
-//        "      version=\"3.0\" " +
-//        "      xsi:schemaLocation=\"http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd\">\n" + 
-//        "    <filter>\n" + 
-//        "        <filter-name>UrlRewriteFilter</filter-name>\n" + 
-//        "        <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>\n" + 
-//        "    </filter>\n" + 
-//        "    <filter-mapping>\n" + 
-//        "        <url-pattern>/*</url-pattern>\n" + 
-//        "        <filter-name>UrlRewriteFilter</filter-name>\n" + 
-//        "    </filter-mapping>\n" + 
-//        "</web-app>"; 
-//   
-//   
-//   @Test
-//   @Ignore
-//   // broken, import / export order, not 100% match on stored xml.
-//   public void testValidDef() throws Exception
-//   {
-//      final String webApp = Descriptors.create(WebAppDescriptor.class)
-//               .moduleName("test")
-//               .description("A description of my webapp")
-//               .displayName("Sample")
-//               .distributable()
-//               .contextParam("com.sun.faces.validateXml", true)
+   private final Logger log = Logger.getLogger(WebAppDefTestCase.class.getName());
+
+   private final String source = "" +
+        "<web-app " +
+        "      xmlns=\"http://java.sun.com/xml/ns/javaee\" " +
+        "      xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" " +
+        "      version=\"3.0\" " +
+        "      xsi:schemaLocation=\"http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd\">\n" + 
+        "    <filter>\n" + 
+        "        <filter-name>UrlRewriteFilter</filter-name>\n" + 
+        "        <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>\n" + 
+        "    </filter>\n" + 
+        "    <filter-mapping>\n" + 
+        "        <url-pattern>/*</url-pattern>\n" + 
+        "        <filter-name>UrlRewriteFilter</filter-name>\n" + 
+        "    </filter-mapping>\n" + 
+        "</web-app>"; 
+   
+   
+   @Test
+   @Ignore
+   // broken, import / export order, not 100% match on stored xml.
+   public void testValidDef() throws Exception
+   {
+      final String webApp = create()
+               .setModuleName("")
+               .setDescription("A description of my webapp")      
+               .setDisplayName("Sample")
+               .setDistributable(true)
+               .getContextParam().setParamName("com.sun.faces.validateXml").setParamValue("true").up()               
+               .exportAsString();
 //               .facesProjectStage(FacesProjectStage.DEVELOPMENT)
 //               .facesStateSavingMethod(FacesStateSavingMethod.CLIENT)
 //               .listener("org.jboss.seam.servlet.SeamListener")
@@ -101,84 +87,87 @@ public class WebAppDescriptorImplTest
 //      String expected = getResourceContents("/test-web.xml");
 //
 //      Assert.assertEquals(expected, webApp);
-//   }
-//   
-//   @Test
-//   public void shouldCreateDefaultName() throws Exception
-//   {
-//      Assert.assertEquals("web.xml", create().getDescriptorName());
-//   }
-//
-//   @Test
-//   public void shouldBeAbleToSetName() throws Exception
-//   {
-//      Assert.assertEquals("test.xml", Descriptors.create(WebAppDescriptor.class, "test.xml").getDescriptorName());
-//   }
-//
-//   /**
-//    * Ensures that the root element has xsi:schemaLocation w/ correct value
-//    * SHRINKDESC-36
-//    */
-//   @Test
-//   public void verifySchemaLocation()
-//   {
-//      final String expectedSchemaLocation = "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd";
-//      assertXPath(create().exportAsString(),"/web-app/@xsi:schemaLocation",expectedSchemaLocation+"dsd");
-//   }
-//
-//   @Test
-//   public void shouldBeAbleToDetermineDefaultFilterName() throws Exception
-//   {
-//      String name = "PrettyFilter";
-//      String clazz = "com.ocpsoft.pretty." + name;
-//      String mapping = "/*";
-//
-//      String desc = create()
-//                     .filter(clazz, mapping)
-//                     .exportAsString();
-//
+   }
+   
+   @Test
+   public void shouldCreateDefaultName() throws Exception
+   {
+      Assert.assertEquals("web.xml", create().getDescriptorName());
+   }
+
+   @Test
+   public void shouldBeAbleToSetName() throws Exception
+   {
+      Assert.assertEquals("test.xml", Descriptors.create(WebAppDescriptor.class, "test.xml").getDescriptorName());
+   }
+
+   /**
+    * Ensures that the root element has xsi:schemaLocation w/ correct value
+    * SHRINKDESC-36
+    */
+   @Test
+   public void verifySchemaLocation()
+   {
+      final String expectedSchemaLocation = "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd";
+      assertXPath(create().exportAsString(),"/web-app/@xsi:schemaLocation",expectedSchemaLocation+"dsd");
+   }
+
+   @Test
+   public void shouldBeAbleToDetermineDefaultFilterName() throws Exception
+   {
+      String name = "PrettyFilter";
+      String clazz = "com.ocpsoft.pretty." + name;
+      String mapping = "/*";
+
+      String desc = create()
+                     .getFilter().setFilterClass(clazz).setFilterName(name).up()
+                     .getFilterMapping().setFilterName(name).setUrlPattern(mapping).up()
+                     .exportAsString();
+
+      log.fine(desc);
+
+      assertXPath(desc, "/web-app/filter/filter-name", name);
+      assertXPath(desc, "/web-app/filter/filter-class", clazz);
+      assertXPath(desc, "/web-app/filter-mapping/filter-name", name);
+      assertXPath(desc, "/web-app/filter-mapping/url-pattern", mapping);
+   }
+
+   @Test
+   public void shouldBeAbleToDetermineDefaultServletName() throws Exception
+   {
+      String name = "FacesServlet";
+      String clazz = "javax.faces.webapp." + name;
+      String mapping = "/*";
+
+      String desc = create()
+                     .getServlet().setServletClass(clazz).setServletName(name).up()
+                     .getServletMapping().setServletName(name).setUrlPattern(mapping).up()
+                     .exportAsString();
+
+      log.fine(desc);
+
+      assertXPath(desc, "/web-app/servlet/servlet-name", name);
+      assertXPath(desc, "/web-app/servlet/servlet-class", clazz);
+      assertXPath(desc, "/web-app/servlet-mapping/servlet-name", name);
+      assertXPath(desc, "/web-app/servlet-mapping/url-pattern", mapping);
+   }
+
+   @Test
+   public void shouldBeAbleToDetermineReadServletClass() throws Exception
+   {
+      String name = "FacesServlet";
+      String clazz = "javax.faces.webapp." + name;
+      String mapping = "/*";
+
+      ServletType servlet = create().getServlet().setServletClass(clazz).setServletName(name);
+      
+//      String desc = servlet.exportAsString(); TODO
+
 //      log.fine(desc);
-//
-//      assertXPath(desc, "/web-app/filter/filter-name", name);
-//      assertXPath(desc, "/web-app/filter/filter-class", clazz);
-//      assertXPath(desc, "/web-app/filter-mapping/filter-name", name);
-//      assertXPath(desc, "/web-app/filter-mapping/url-pattern", mapping);
-//   }
-//
-//   @Test
-//   public void shouldBeAbleToDetermineDefaultServletName() throws Exception
-//   {
-//      String name = "FacesServlet";
-//      String clazz = "javax.faces.webapp." + name;
-//      String mapping = "/*";
-//
-//      String desc = create()
-//                     .servlet(clazz, mapping)
-//                     .exportAsString();
-//
-//      log.fine(desc);
-//
-//      assertXPath(desc, "/web-app/servlet/servlet-name", name);
-//      assertXPath(desc, "/web-app/servlet/servlet-class", clazz);
-//      assertXPath(desc, "/web-app/servlet-mapping/servlet-name", name);
-//      assertXPath(desc, "/web-app/servlet-mapping/url-pattern", mapping);
-//   }
-//
-//   @Test
-//   public void shouldBeAbleToDetermineReadServletClass() throws Exception
-//   {
-//      String name = "FacesServlet";
-//      String clazz = "javax.faces.webapp." + name;
-//      String mapping = "/*";
-//
-//      ServletDef servlet = create().servlet(clazz, mapping);
-//      String desc = servlet.exportAsString();
-//
-//      log.fine(desc);
-//
-//      assertEquals(clazz, servlet.getServletClass());
-//   }
-//
+
+      assertEquals(clazz, servlet.getServletClass());
+   }
+
 //   @Test
 //   public void shouldBeAbleToQueryFacesServlet() throws Exception
 //   {
@@ -186,15 +175,15 @@ public class WebAppDescriptorImplTest
 //      String clazz = "javax.faces.webapp." + name;
 //      String mapping = "/*";
 //
-//      WebAppDescriptor webXml = create();
+//      WebApp30Descriptor webXml = create();
 //      
-//      assertFalse(webXml.hasFacesServlet());
+//      assertFalse(webXml.getFilter()..hasFacesServlet());
 //      
 //      webXml.servlet(clazz, mapping);
 //      
 //      assertTrue(webXml.hasFacesServlet());
 //   }
-//
+
 //   @Test
 //   public void shouldBeAbleToQueryServlets() throws Exception
 //   {
@@ -370,13 +359,13 @@ public class WebAppDescriptorImplTest
 //      }
 //      return builder.toString();
 //   }
-//   
-//// -------------------------------------------------------------------------------------||
-//   // Helper Methods ----------------------------------------------------------------------||
-//   // -------------------------------------------------------------------------------------||
-//   
-//   private Application6Descriptor<Application6DescriptorImpl> create()
-//   {
-//      return Descriptors.create(Application6Descriptor.class);
-//   }
+   
+   // -------------------------------------------------------------------------------------||
+   // Helper Methods ----------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
+   
+   private WebApp30Descriptor<WebApp30DescriptorImpl> create()
+   {
+      return Descriptors.create(WebApp30Descriptor.class);
+   }
 }
