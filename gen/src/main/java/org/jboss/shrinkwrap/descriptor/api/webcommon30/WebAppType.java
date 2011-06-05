@@ -21,7 +21,7 @@ import org.jboss.shrinkwrap.descriptor.api.jsp22.JspConfigType;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T13:52:46.95+02:00
+ * Generation date :2011-06-05T22:37:30.243+02:00
  */
 public interface WebAppType<T> extends Child<T>
 {

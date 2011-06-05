@@ -52,7 +52,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T13:52:46.95+02:00
+ * Generation date :2011-06-05T22:37:30.243+02:00
  */
 public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
 {
@@ -684,7 +684,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    public WebAppType<T> setVersion(String version)
    {
       this.version = version;
-      childNode.getOrCreate("version").text(version);
+      childNode.attribute("version", version);
       return this;
    }
 
@@ -697,7 +697,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    public WebAppType<T> setMetadataComplete(Boolean metadataComplete)
    {
       this.metadataComplete = metadataComplete;
-      childNode.getOrCreate("metadata-complete").text(metadataComplete);
+      childNode.attribute("metadata-complete", metadataComplete);
       return this;
    }
 

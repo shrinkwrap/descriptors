@@ -379,6 +379,9 @@
                                     <xsl:attribute name="type">
                                         <xsl:value-of select="@type"/>
                                     </xsl:attribute>
+                                    <xsl:attribute name="attribute">
+                                        <xsl:value-of select="true()"/>
+                                    </xsl:attribute>
                                     <xsl:if test="@maxOccurs">
                                         <xsl:attribute name="maxOccurs">
                                             <xsl:value-of select="@maxOccurs"/>
@@ -415,6 +418,9 @@
                                 <xsl:attribute name="type">
                                     <xsl:value-of select="@type"/>
                                 </xsl:attribute>
+                                 <xsl:attribute name="attribute">
+                                        <xsl:value-of select="false()"/>
+                                    </xsl:attribute>
                                 <xsl:if test="@maxOccurs">
                                     <xsl:attribute name="maxOccurs">
                                         <xsl:value-of select="@maxOccurs"/>

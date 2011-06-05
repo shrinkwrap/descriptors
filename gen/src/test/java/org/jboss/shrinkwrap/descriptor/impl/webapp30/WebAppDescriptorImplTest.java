@@ -1,17 +1,21 @@
 package org.jboss.shrinkwrap.descriptor.impl.webapp30;
 
-import static org.jboss.shrinkwrap.descriptor.impl.spec.AssertXPath.assertXPath;
+import static org.jboss.shrinkwrap.descriptor.impl.test.AssertXPath.assertXPath;
 import static org.junit.Assert.assertEquals;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.logging.Logger;
 
 import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.WebAppDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebApp30Descriptor;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.ServletType;
-import org.jboss.shrinkwrap.descriptor.impl.spec.servlet.web.WebAppDefTestCase;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLImporter;
+import org.jboss.shrinkwrap.descriptor.spi.Node;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -20,7 +24,7 @@ import org.junit.Test;
 public class WebAppDescriptorImplTest
 {
 
-   private final Logger log = Logger.getLogger(WebAppDefTestCase.class.getName());
+   private final Logger log = Logger.getLogger(WebAppDescriptorImplTest.class.getName());
 
    private final String source = "" +
         "<web-app " +
@@ -90,6 +94,15 @@ public class WebAppDescriptorImplTest
    }
    
    @Test
+   public void shouldBeAbleToSetVersion() throws Exception 
+   {
+	   String desc = create().setVersion("3.0")
+	       .exportAsString();
+
+	   log.fine(desc);
+   }
+   
+   @Test
    public void shouldCreateDefaultName() throws Exception
    {
       Assert.assertEquals("web.xml", create().getDescriptorName());
@@ -98,7 +111,7 @@ public class WebAppDescriptorImplTest
    @Test
    public void shouldBeAbleToSetName() throws Exception
    {
-      Assert.assertEquals("test.xml", Descriptors.create(WebAppDescriptor.class, "test.xml").getDescriptorName());
+      Assert.assertEquals("test.xml", Descriptors.create(WebApp30Descriptor.class, "test.xml").getDescriptorName());
    }
 
    /**
@@ -168,21 +181,21 @@ public class WebAppDescriptorImplTest
       assertEquals(clazz, servlet.getServletClass());
    }
 
-//   @Test
-//   public void shouldBeAbleToQueryFacesServlet() throws Exception
-//   {
+   @Test
+   public void shouldBeAbleToQueryFacesServlet() throws Exception
+   {
 //      String name = "FacesServlet";
 //      String clazz = "javax.faces.webapp." + name;
 //      String mapping = "/*";
 //
 //      WebApp30Descriptor webXml = create();
-//      
+      
 //      assertFalse(webXml.getFilter()..hasFacesServlet());
-//      
-//      webXml.servlet(clazz, mapping);
+      
+//      webXml.getServlet().setServletClass(clazz).servlet(clazz, mapping);
 //      
 //      assertTrue(webXml.hasFacesServlet());
-//   }
+   }
 
 //   @Test
 //   public void shouldBeAbleToQueryServlets() throws Exception
@@ -270,20 +283,20 @@ public class WebAppDescriptorImplTest
 //      assertEquals(mapping, mappings.get(0).getUrlPatterns().get(0));
 //   }
 //
-//   @Test
-//   public void shouldBeAbleToSetRootAttributes() throws Exception
-//   {
-//      String version = "2.5";
-//
-//      String desc = create()
-//                        .version(version).metadataComplete(true)
-//                        .exportAsString();
-//
-//      log.fine(desc);
-//
-//      assertXPath(desc, "/web-app/@version", version);
-//      assertXPath(desc, "/web-app/@metadata-complete", "true");
-//   }
+   @Test
+   public void shouldBeAbleToSetRootAttributes() throws Exception
+   {
+      String version = "2.5";
+
+      String desc = create()
+                        .setVersion(version).setMetadataComplete(true)
+                        .exportAsString();
+
+      log.fine(desc);
+
+      assertXPath(desc, "/web-app/@version", version);
+      assertXPath(desc, "/web-app/@metadata-complete", "true");
+   }
 //
 //   @Test
 //   public void shouldBeAbleToCreateSessionCookieConfig() throws Exception
@@ -312,53 +325,53 @@ public class WebAppDescriptorImplTest
 //      assertXPath(desc, "/web-app/session-config/tracking-mode", TrackingModeType.COOKIE);
 //   }
 //   
-//   /**
-//    * SHRINKDESC-37
-//    */
-//   @Test
-//   public void shouldBeAbleToOverrideVersionInWebAppDescriptor() throws Exception
-//   {
-//      // Make a descriptor
-//      final WebAppDescriptor web = Descriptors.importAs(WebAppDescriptor.class).from(
-//            source);
-//
-//      // Get as Node structure
-//      final InputStream stream = new ByteArrayInputStream(web.exportAsString().getBytes());
-//      final XMLImporter<WebAppDescriptor> importer = new XMLImporter<WebAppDescriptor>(WebAppDescriptor.class, "web.xml");
-//      final Node root = importer.importRootNode(stream);
-//      
-//      // Preconditions
-//      Assert.assertEquals("3.0", web.getVersion());
-//      Assert.assertTrue(root.attribute("xsi:schemaLocation").contains("web-app_3_0.xsd"));
-//      
-//      // Change the version
-//      web.version("2.5");
-//      
-//      // Get as Node structure
-//      final InputStream afterUpdateStream = new ByteArrayInputStream(web.exportAsString().getBytes());
-//      final Node rootAfterUpdate = importer.importRootNode(afterUpdateStream);
-//      
-//      // Check that everything was updated
-//      Assert.assertEquals("2.5", web.getVersion());
-//      Assert.assertTrue(rootAfterUpdate.attribute("xsi:schemaLocation").contains("web-app_2_5.xsd"));
-//      
-//      // Log just for fun
-//      log.info("web.xml after update: " + web.exportAsString());
-//   }
-//
-//   private String getResourceContents(String resource) throws Exception
-//   {
-//      assert resource != null && resource.length() > 0 : "Resource must be specified";
-//      final BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(resource)));
-//      final StringBuilder builder = new StringBuilder();
-//      String line;
-//      while ((line = reader.readLine()) != null)
-//      {
-//         builder.append(line);
-//         builder.append("\n");
-//      }
-//      return builder.toString();
-//   }
+   /**
+    * SHRINKDESC-37
+    */
+   @Test
+   public void shouldBeAbleToOverrideVersionInWebAppDescriptor() throws Exception
+   {
+      // Make a descriptor
+      final WebApp30Descriptor web = Descriptors.importAs(WebApp30Descriptor.class).from(
+            source);
+
+      // Get as Node structure
+      final InputStream stream = new ByteArrayInputStream(web.exportAsString().getBytes());
+      final XMLImporter<WebApp30Descriptor> importer = new XMLImporter<WebApp30Descriptor>(WebApp30Descriptor.class, "web.xml");
+      final Node root = importer.importRootNode(stream);
+      
+      // Preconditions
+      Assert.assertEquals("3.0", web.getVersion());
+      Assert.assertTrue(root.attribute("xsi:schemaLocation").contains("web-app_3_0.xsd"));
+      
+      // Change the version
+      web.setVersion("2.5");
+      
+      // Get as Node structure
+      final InputStream afterUpdateStream = new ByteArrayInputStream(web.exportAsString().getBytes());
+      final Node rootAfterUpdate = importer.importRootNode(afterUpdateStream);
+      
+      // Check that everything was updated
+      Assert.assertEquals("2.5", web.getVersion());
+      Assert.assertTrue(rootAfterUpdate.attribute("xsi:schemaLocation").contains("web-app_2_5.xsd"));
+      
+      // Log just for fun
+      log.info("web.xml after update: " + web.exportAsString());
+   }
+
+   private String getResourceContents(String resource) throws Exception
+   {
+      assert resource != null && resource.length() > 0 : "Resource must be specified";
+      final BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(resource)));
+      final StringBuilder builder = new StringBuilder();
+      String line;
+      while ((line = reader.readLine()) != null)
+      {
+         builder.append(line);
+         builder.append("\n");
+      }
+      return builder.toString();
+   }
    
    // -------------------------------------------------------------------------------------||
    // Helper Methods ----------------------------------------------------------------------||
