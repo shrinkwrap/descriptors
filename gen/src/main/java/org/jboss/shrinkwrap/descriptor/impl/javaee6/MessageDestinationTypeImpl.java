@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinationType<T>
 {
@@ -47,8 +47,7 @@ public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinati
 
    public MessageDestinationType<T> setDescription(String description)
    {
-      this.description = description;
-      childNode.getOrCreate("description").text(description);
+      childNode.create("description").text(description);
       return this;
    }
 
@@ -60,8 +59,7 @@ public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinati
 
    public MessageDestinationType<T> setDisplayName(String displayName)
    {
-      this.displayName = displayName;
-      childNode.getOrCreate("display-name").text(displayName);
+      childNode.create("display-name").text(displayName);
       return this;
    }
 
@@ -73,8 +71,7 @@ public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinati
 
    public MessageDestinationType<T> setIcon(IconType<MessageDestinationType<T>> icon)
    {
-      this.icon = icon;
-      childNode.getOrCreate("icon").text(icon);
+      childNode.create("icon").text(icon);
       return this;
    }
 

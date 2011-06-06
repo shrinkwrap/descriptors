@@ -8,7 +8,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupType<T>
 {
@@ -57,8 +57,7 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
 
    public JspPropertyGroupType<T> setDescription(String description)
    {
-      this.description = description;
-      childNode.getOrCreate("description").text(description);
+      childNode.create("description").text(description);
       return this;
    }
 
@@ -70,8 +69,7 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
 
    public JspPropertyGroupType<T> setDisplayName(String displayName)
    {
-      this.displayName = displayName;
-      childNode.getOrCreate("display-name").text(displayName);
+      childNode.create("display-name").text(displayName);
       return this;
    }
 
@@ -83,8 +81,7 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
 
    public JspPropertyGroupType<T> setIcon(IconType<JspPropertyGroupType<T>> icon)
    {
-      this.icon = icon;
-      childNode.getOrCreate("icon").text(icon);
+      childNode.create("icon").text(icon);
       return this;
    }
 
@@ -101,8 +98,7 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
 
    public JspPropertyGroupType<T> setUrlPattern(String urlPattern)
    {
-      this.urlPattern = urlPattern;
-      childNode.getOrCreate("url-pattern").text(urlPattern);
+      childNode.create("url-pattern").text(urlPattern);
       return this;
    }
 
@@ -171,8 +167,7 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
 
    public JspPropertyGroupType<T> setIncludePrelude(String includePrelude)
    {
-      this.includePrelude = includePrelude;
-      childNode.getOrCreate("include-prelude").text(includePrelude);
+      childNode.create("include-prelude").text(includePrelude);
       return this;
    }
 
@@ -185,8 +180,7 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
 
    public JspPropertyGroupType<T> setIncludeCoda(String includeCoda)
    {
-      this.includeCoda = includeCoda;
-      childNode.getOrCreate("include-coda").text(includeCoda);
+      childNode.create("include-coda").text(includeCoda);
       return this;
    }
 

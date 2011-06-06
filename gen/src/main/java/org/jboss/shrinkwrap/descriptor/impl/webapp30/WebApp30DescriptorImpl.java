@@ -66,7 +66,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebApp30Descriptor<WebApp30DescriptorImpl>
 {
@@ -475,8 +475,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public WebApp30DescriptorImpl setDescription(String description)
    {
-      this.description = description;
-      model.getOrCreate("description").text(description);
+      model.create("description").text(description);
       return this;
    }
 
@@ -488,8 +487,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public WebApp30DescriptorImpl setDisplayName(String displayName)
    {
-      this.displayName = displayName;
-      model.getOrCreate("display-name").text(displayName);
+      model.create("display-name").text(displayName);
       return this;
    }
 
@@ -501,8 +499,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public WebApp30DescriptorImpl setIcon(IconType<WebApp30DescriptorImpl> icon)
    {
-      this.icon = icon;
-      model.getOrCreate("icon").text(icon);
+      model.create("icon").text(icon);
       return this;
    }
 
@@ -519,8 +516,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public WebApp30DescriptorImpl setEnvEntry(EnvEntryType<WebApp30DescriptorImpl> envEntry)
    {
-      this.envEntry = envEntry;
-      model.getOrCreate("env-entry").text(envEntry);
+      model.create("env-entry").text(envEntry);
       return this;
    }
 
@@ -537,8 +533,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public WebApp30DescriptorImpl setEjbRef(EjbRefType<WebApp30DescriptorImpl> ejbRef)
    {
-      this.ejbRef = ejbRef;
-      model.getOrCreate("ejb-ref").text(ejbRef);
+      model.create("ejb-ref").text(ejbRef);
       return this;
    }
 
@@ -555,8 +550,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public WebApp30DescriptorImpl setEjbLocalRef(EjbLocalRefType<WebApp30DescriptorImpl> ejbLocalRef)
    {
-      this.ejbLocalRef = ejbLocalRef;
-      model.getOrCreate("ejb-local-ref").text(ejbLocalRef);
+      model.create("ejb-local-ref").text(ejbLocalRef);
       return this;
    }
 
@@ -573,8 +567,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public WebApp30DescriptorImpl setResourceRef(ResourceRefType<WebApp30DescriptorImpl> resourceRef)
    {
-      this.resourceRef = resourceRef;
-      model.getOrCreate("resource-ref").text(resourceRef);
+      model.create("resource-ref").text(resourceRef);
       return this;
    }
 
@@ -591,8 +584,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public WebApp30DescriptorImpl setResourceEnvRef(ResourceEnvRefType<WebApp30DescriptorImpl> resourceEnvRef)
    {
-      this.resourceEnvRef = resourceEnvRef;
-      model.getOrCreate("resource-env-ref").text(resourceEnvRef);
+      model.create("resource-env-ref").text(resourceEnvRef);
       return this;
    }
 
@@ -609,8 +601,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public WebApp30DescriptorImpl setMessageDestinationRef(MessageDestinationRefType<WebApp30DescriptorImpl> messageDestinationRef)
    {
-      this.messageDestinationRef = messageDestinationRef;
-      model.getOrCreate("message-destination-ref").text(messageDestinationRef);
+      model.create("message-destination-ref").text(messageDestinationRef);
       return this;
    }
 
@@ -627,8 +618,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public WebApp30DescriptorImpl setPersistenceContextRef(PersistenceContextRefType<WebApp30DescriptorImpl> persistenceContextRef)
    {
-      this.persistenceContextRef = persistenceContextRef;
-      model.getOrCreate("persistence-context-ref").text(persistenceContextRef);
+      model.create("persistence-context-ref").text(persistenceContextRef);
       return this;
    }
 
@@ -645,8 +635,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public WebApp30DescriptorImpl setPersistenceUnitRef(PersistenceUnitRefType<WebApp30DescriptorImpl> persistenceUnitRef)
    {
-      this.persistenceUnitRef = persistenceUnitRef;
-      model.getOrCreate("persistence-unit-ref").text(persistenceUnitRef);
+      model.create("persistence-unit-ref").text(persistenceUnitRef);
       return this;
    }
 
@@ -663,8 +652,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public WebApp30DescriptorImpl setPostConstruct(LifecycleCallbackType<WebApp30DescriptorImpl> postConstruct)
    {
-      this.postConstruct = postConstruct;
-      model.getOrCreate("post-construct").text(postConstruct);
+      model.create("post-construct").text(postConstruct);
       return this;
    }
 
@@ -681,8 +669,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public WebApp30DescriptorImpl setPreDestroy(LifecycleCallbackType<WebApp30DescriptorImpl> preDestroy)
    {
-      this.preDestroy = preDestroy;
-      model.getOrCreate("pre-destroy").text(preDestroy);
+      model.create("pre-destroy").text(preDestroy);
       return this;
    }
 
@@ -699,8 +686,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public WebApp30DescriptorImpl setDataSource(DataSourceType<WebApp30DescriptorImpl> dataSource)
    {
-      this.dataSource = dataSource;
-      model.getOrCreate("data-source").text(dataSource);
+      model.create("data-source").text(dataSource);
       return this;
    }
 
@@ -717,8 +703,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public WebApp30DescriptorImpl setServiceRef(ServiceRefType<WebApp30DescriptorImpl> serviceRef)
    {
-      this.serviceRef = serviceRef;
-      model.getOrCreate("service-ref").text(serviceRef);
+      model.create("service-ref").text(serviceRef);
       return this;
    }
 

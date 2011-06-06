@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class HandlerChainTypeImpl<T> implements Child<T>, HandlerChainType<T>
 {
@@ -21,7 +21,7 @@ public class HandlerChainTypeImpl<T> implements Child<T>, HandlerChainType<T>
    private HandlerType<HandlerChainType<T>> handler;
    private String serviceNamePattern;
    private String portNamePattern;
-//   private ProtocolBindingListType<HandlerChainType<T>> protocolBindings;
+   private ProtocolBindingListType<HandlerChainType<T>> protocolBindings;
 
 
 
@@ -45,8 +45,7 @@ public class HandlerChainTypeImpl<T> implements Child<T>, HandlerChainType<T>
 
    public HandlerChainType<T> setHandler(HandlerType<HandlerChainType<T>> handler)
    {
-      this.handler = handler;
-      childNode.getOrCreate("handler").text(handler);
+      childNode.create("handler").text(handler);
       return this;
    }
 
@@ -88,23 +87,23 @@ public class HandlerChainTypeImpl<T> implements Child<T>, HandlerChainType<T>
       return portNamePattern;
    }
 
-//
-//
-//   public HandlerChainType<T> setProtocolBindings(ProtocolBindingListType<HandlerChainType<T>> protocolBindings)
-//   {
-//      this.protocolBindings = protocolBindings;
-//      childNode.getOrCreate("protocol-bindings").text(protocolBindings);
-//      return this;
-//   }
-//
-//   public ProtocolBindingListType<HandlerChainType<T>> getProtocolBindings()
-//   {
-//      if( protocolBindings == null)
-//      {
-//          protocolBindings = new ProtocolBindingListTypeImpl<HandlerChainType<T>>(this, "", childNode);
-//      }
-//      return protocolBindings;
-//   }
+
+
+   public HandlerChainType<T> setProtocolBindings(ProtocolBindingListType<HandlerChainType<T>> protocolBindings)
+   {
+      this.protocolBindings = protocolBindings;
+      childNode.getOrCreate("protocol-bindings").text(protocolBindings);
+      return this;
+   }
+
+   public ProtocolBindingListType<HandlerChainType<T>> getProtocolBindings()
+   {
+      if( protocolBindings == null)
+      {
+          protocolBindings = new ProtocolBindingListTypeImpl<HandlerChainType<T>>(this, "", childNode);
+      }
+      return protocolBindings;
+   }
 
 
 }

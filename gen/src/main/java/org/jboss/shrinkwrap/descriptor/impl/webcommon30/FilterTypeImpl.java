@@ -10,7 +10,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
 {
@@ -51,8 +51,7 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
 
    public FilterType<T> setDescription(String description)
    {
-      this.description = description;
-      childNode.getOrCreate("description").text(description);
+      childNode.create("description").text(description);
       return this;
    }
 
@@ -64,8 +63,7 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
 
    public FilterType<T> setDisplayName(String displayName)
    {
-      this.displayName = displayName;
-      childNode.getOrCreate("display-name").text(displayName);
+      childNode.create("display-name").text(displayName);
       return this;
    }
 
@@ -77,8 +75,7 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
 
    public FilterType<T> setIcon(IconType<FilterType<T>> icon)
    {
-      this.icon = icon;
-      childNode.getOrCreate("icon").text(icon);
+      childNode.create("icon").text(icon);
       return this;
    }
 
@@ -137,8 +134,7 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
 
    public FilterType<T> setInitParam(ParamValueType<FilterType<T>> initParam)
    {
-      this.initParam = initParam;
-      childNode.getOrCreate("init-param").text(initParam);
+      childNode.create("init-param").text(initParam);
       return this;
    }
 

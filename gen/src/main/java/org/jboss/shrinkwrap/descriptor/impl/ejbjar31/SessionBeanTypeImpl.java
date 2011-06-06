@@ -43,7 +43,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 {
@@ -124,8 +124,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setDescription(String description)
    {
-      this.description = description;
-      childNode.getOrCreate("description").text(description);
+      childNode.create("description").text(description);
       return this;
    }
 
@@ -137,8 +136,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setDisplayName(String displayName)
    {
-      this.displayName = displayName;
-      childNode.getOrCreate("display-name").text(displayName);
+      childNode.create("display-name").text(displayName);
       return this;
    }
 
@@ -150,8 +148,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setIcon(IconType<SessionBeanType<T>> icon)
    {
-      this.icon = icon;
-      childNode.getOrCreate("icon").text(icon);
+      childNode.create("icon").text(icon);
       return this;
    }
 
@@ -168,8 +165,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setEnvEntry(EnvEntryType<SessionBeanType<T>> envEntry)
    {
-      this.envEntry = envEntry;
-      childNode.getOrCreate("env-entry").text(envEntry);
+      childNode.create("env-entry").text(envEntry);
       return this;
    }
 
@@ -186,8 +182,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setEjbRef(EjbRefType<SessionBeanType<T>> ejbRef)
    {
-      this.ejbRef = ejbRef;
-      childNode.getOrCreate("ejb-ref").text(ejbRef);
+      childNode.create("ejb-ref").text(ejbRef);
       return this;
    }
 
@@ -204,8 +199,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setEjbLocalRef(EjbLocalRefType<SessionBeanType<T>> ejbLocalRef)
    {
-      this.ejbLocalRef = ejbLocalRef;
-      childNode.getOrCreate("ejb-local-ref").text(ejbLocalRef);
+      childNode.create("ejb-local-ref").text(ejbLocalRef);
       return this;
    }
 
@@ -222,8 +216,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setResourceRef(ResourceRefType<SessionBeanType<T>> resourceRef)
    {
-      this.resourceRef = resourceRef;
-      childNode.getOrCreate("resource-ref").text(resourceRef);
+      childNode.create("resource-ref").text(resourceRef);
       return this;
    }
 
@@ -240,8 +233,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setResourceEnvRef(ResourceEnvRefType<SessionBeanType<T>> resourceEnvRef)
    {
-      this.resourceEnvRef = resourceEnvRef;
-      childNode.getOrCreate("resource-env-ref").text(resourceEnvRef);
+      childNode.create("resource-env-ref").text(resourceEnvRef);
       return this;
    }
 
@@ -258,8 +250,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setMessageDestinationRef(MessageDestinationRefType<SessionBeanType<T>> messageDestinationRef)
    {
-      this.messageDestinationRef = messageDestinationRef;
-      childNode.getOrCreate("message-destination-ref").text(messageDestinationRef);
+      childNode.create("message-destination-ref").text(messageDestinationRef);
       return this;
    }
 
@@ -276,8 +267,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setPersistenceContextRef(PersistenceContextRefType<SessionBeanType<T>> persistenceContextRef)
    {
-      this.persistenceContextRef = persistenceContextRef;
-      childNode.getOrCreate("persistence-context-ref").text(persistenceContextRef);
+      childNode.create("persistence-context-ref").text(persistenceContextRef);
       return this;
    }
 
@@ -294,8 +284,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setPersistenceUnitRef(PersistenceUnitRefType<SessionBeanType<T>> persistenceUnitRef)
    {
-      this.persistenceUnitRef = persistenceUnitRef;
-      childNode.getOrCreate("persistence-unit-ref").text(persistenceUnitRef);
+      childNode.create("persistence-unit-ref").text(persistenceUnitRef);
       return this;
    }
 
@@ -312,8 +301,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setPostConstruct(LifecycleCallbackType<SessionBeanType<T>> postConstruct)
    {
-      this.postConstruct = postConstruct;
-      childNode.getOrCreate("post-construct").text(postConstruct);
+      childNode.create("post-construct").text(postConstruct);
       return this;
    }
 
@@ -330,8 +318,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setPreDestroy(LifecycleCallbackType<SessionBeanType<T>> preDestroy)
    {
-      this.preDestroy = preDestroy;
-      childNode.getOrCreate("pre-destroy").text(preDestroy);
+      childNode.create("pre-destroy").text(preDestroy);
       return this;
    }
 
@@ -348,8 +335,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setDataSource(DataSourceType<SessionBeanType<T>> dataSource)
    {
-      this.dataSource = dataSource;
-      childNode.getOrCreate("data-source").text(dataSource);
+      childNode.create("data-source").text(dataSource);
       return this;
    }
 
@@ -366,8 +352,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setServiceRef(ServiceRefType<SessionBeanType<T>> serviceRef)
    {
-      this.serviceRef = serviceRef;
-      childNode.getOrCreate("service-ref").text(serviceRef);
+      childNode.create("service-ref").text(serviceRef);
       return this;
    }
 
@@ -468,8 +453,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setBusinessLocal(String businessLocal)
    {
-      this.businessLocal = businessLocal;
-      childNode.getOrCreate("business-local").text(businessLocal);
+      childNode.create("business-local").text(businessLocal);
       return this;
    }
 
@@ -482,8 +466,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setBusinessRemote(String businessRemote)
    {
-      this.businessRemote = businessRemote;
-      childNode.getOrCreate("business-remote").text(businessRemote);
+      childNode.create("business-remote").text(businessRemote);
       return this;
    }
 
@@ -590,8 +573,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setTimer(TimerType<SessionBeanType<T>> timer)
    {
-      this.timer = timer;
-      childNode.getOrCreate("timer").text(timer);
+      childNode.create("timer").text(timer);
       return this;
    }
 
@@ -637,8 +619,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setConcurrentMethod(ConcurrentMethodType<SessionBeanType<T>> concurrentMethod)
    {
-      this.concurrentMethod = concurrentMethod;
-      childNode.getOrCreate("concurrent-method").text(concurrentMethod);
+      childNode.create("concurrent-method").text(concurrentMethod);
       return this;
    }
 
@@ -675,8 +656,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setInitMethod(InitMethodType<SessionBeanType<T>> initMethod)
    {
-      this.initMethod = initMethod;
-      childNode.getOrCreate("init-method").text(initMethod);
+      childNode.create("init-method").text(initMethod);
       return this;
    }
 
@@ -694,8 +674,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setRemoveMethod(RemoveMethodType<SessionBeanType<T>> removeMethod)
    {
-      this.removeMethod = removeMethod;
-      childNode.getOrCreate("remove-method").text(removeMethod);
+      childNode.create("remove-method").text(removeMethod);
       return this;
    }
 
@@ -713,8 +692,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setAsyncMethod(AsyncMethodType<SessionBeanType<T>> asyncMethod)
    {
-      this.asyncMethod = asyncMethod;
-      childNode.getOrCreate("async-method").text(asyncMethod);
+      childNode.create("async-method").text(asyncMethod);
       return this;
    }
 
@@ -803,8 +781,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setAroundInvoke(AroundInvokeType<SessionBeanType<T>> aroundInvoke)
    {
-      this.aroundInvoke = aroundInvoke;
-      childNode.getOrCreate("around-invoke").text(aroundInvoke);
+      childNode.create("around-invoke").text(aroundInvoke);
       return this;
    }
 
@@ -822,8 +799,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setAroundTimeout(AroundTimeoutType<SessionBeanType<T>> aroundTimeout)
    {
-      this.aroundTimeout = aroundTimeout;
-      childNode.getOrCreate("around-timeout").text(aroundTimeout);
+      childNode.create("around-timeout").text(aroundTimeout);
       return this;
    }
 
@@ -841,8 +817,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setPostActivate(LifecycleCallbackType<SessionBeanType<T>> postActivate)
    {
-      this.postActivate = postActivate;
-      childNode.getOrCreate("post-activate").text(postActivate);
+      childNode.create("post-activate").text(postActivate);
       return this;
    }
 
@@ -860,8 +835,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setPrePassivate(LifecycleCallbackType<SessionBeanType<T>> prePassivate)
    {
-      this.prePassivate = prePassivate;
-      childNode.getOrCreate("pre-passivate").text(prePassivate);
+      childNode.create("pre-passivate").text(prePassivate);
       return this;
    }
 
@@ -879,8 +853,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
 
    public SessionBeanType<T> setSecurityRoleRef(SecurityRoleRefType<SessionBeanType<T>> securityRoleRef)
    {
-      this.securityRoleRef = securityRoleRef;
-      childNode.getOrCreate("security-role-ref").text(securityRoleRef);
+      childNode.create("security-role-ref").text(securityRoleRef);
       return this;
    }
 

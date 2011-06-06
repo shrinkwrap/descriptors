@@ -144,6 +144,23 @@ public class WebAppDescriptorImplTest
       assertXPath(desc, "/web-app/filter-mapping/filter-name", name);
       assertXPath(desc, "/web-app/filter-mapping/url-pattern", mapping);
    }
+   
+   
+   @Test
+   public void shouldBeAbleToSetWelcomeFiles() throws Exception
+   {
+      String desc = create()
+      				.getWelcomeFileList()
+      					.setWelcomeFile("WelcomeFile1")
+      					.setWelcomeFile("WelcomeFile2").up()
+                    .exportAsString();
+
+      log.fine(desc);
+
+      assertXPath(desc, "/web-app/welcome-file-list/welcome-file[1]", "WelcomeFile1");
+      assertXPath(desc, "/web-app/welcome-file-list/welcome-file[2]", "WelcomeFile2");
+   }
+   
 
    @Test
    public void shouldBeAbleToDetermineDefaultServletName() throws Exception

@@ -52,7 +52,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
 {
@@ -423,8 +423,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
 
    public WebAppType<T> setDescription(String description)
    {
-      this.description = description;
-      childNode.getOrCreate("description").text(description);
+      childNode.create("description").text(description);
       return this;
    }
 
@@ -436,8 +435,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
 
    public WebAppType<T> setDisplayName(String displayName)
    {
-      this.displayName = displayName;
-      childNode.getOrCreate("display-name").text(displayName);
+      childNode.create("display-name").text(displayName);
       return this;
    }
 
@@ -449,8 +447,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
 
    public WebAppType<T> setIcon(IconType<WebAppType<T>> icon)
    {
-      this.icon = icon;
-      childNode.getOrCreate("icon").text(icon);
+      childNode.create("icon").text(icon);
       return this;
    }
 
@@ -467,8 +464,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
 
    public WebAppType<T> setEnvEntry(EnvEntryType<WebAppType<T>> envEntry)
    {
-      this.envEntry = envEntry;
-      childNode.getOrCreate("env-entry").text(envEntry);
+      childNode.create("env-entry").text(envEntry);
       return this;
    }
 
@@ -485,8 +481,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
 
    public WebAppType<T> setEjbRef(EjbRefType<WebAppType<T>> ejbRef)
    {
-      this.ejbRef = ejbRef;
-      childNode.getOrCreate("ejb-ref").text(ejbRef);
+      childNode.create("ejb-ref").text(ejbRef);
       return this;
    }
 
@@ -503,8 +498,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
 
    public WebAppType<T> setEjbLocalRef(EjbLocalRefType<WebAppType<T>> ejbLocalRef)
    {
-      this.ejbLocalRef = ejbLocalRef;
-      childNode.getOrCreate("ejb-local-ref").text(ejbLocalRef);
+      childNode.create("ejb-local-ref").text(ejbLocalRef);
       return this;
    }
 
@@ -521,8 +515,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
 
    public WebAppType<T> setResourceRef(ResourceRefType<WebAppType<T>> resourceRef)
    {
-      this.resourceRef = resourceRef;
-      childNode.getOrCreate("resource-ref").text(resourceRef);
+      childNode.create("resource-ref").text(resourceRef);
       return this;
    }
 
@@ -539,8 +532,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
 
    public WebAppType<T> setResourceEnvRef(ResourceEnvRefType<WebAppType<T>> resourceEnvRef)
    {
-      this.resourceEnvRef = resourceEnvRef;
-      childNode.getOrCreate("resource-env-ref").text(resourceEnvRef);
+      childNode.create("resource-env-ref").text(resourceEnvRef);
       return this;
    }
 
@@ -557,8 +549,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
 
    public WebAppType<T> setMessageDestinationRef(MessageDestinationRefType<WebAppType<T>> messageDestinationRef)
    {
-      this.messageDestinationRef = messageDestinationRef;
-      childNode.getOrCreate("message-destination-ref").text(messageDestinationRef);
+      childNode.create("message-destination-ref").text(messageDestinationRef);
       return this;
    }
 
@@ -575,8 +566,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
 
    public WebAppType<T> setPersistenceContextRef(PersistenceContextRefType<WebAppType<T>> persistenceContextRef)
    {
-      this.persistenceContextRef = persistenceContextRef;
-      childNode.getOrCreate("persistence-context-ref").text(persistenceContextRef);
+      childNode.create("persistence-context-ref").text(persistenceContextRef);
       return this;
    }
 
@@ -593,8 +583,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
 
    public WebAppType<T> setPersistenceUnitRef(PersistenceUnitRefType<WebAppType<T>> persistenceUnitRef)
    {
-      this.persistenceUnitRef = persistenceUnitRef;
-      childNode.getOrCreate("persistence-unit-ref").text(persistenceUnitRef);
+      childNode.create("persistence-unit-ref").text(persistenceUnitRef);
       return this;
    }
 
@@ -611,8 +600,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
 
    public WebAppType<T> setPostConstruct(LifecycleCallbackType<WebAppType<T>> postConstruct)
    {
-      this.postConstruct = postConstruct;
-      childNode.getOrCreate("post-construct").text(postConstruct);
+      childNode.create("post-construct").text(postConstruct);
       return this;
    }
 
@@ -629,8 +617,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
 
    public WebAppType<T> setPreDestroy(LifecycleCallbackType<WebAppType<T>> preDestroy)
    {
-      this.preDestroy = preDestroy;
-      childNode.getOrCreate("pre-destroy").text(preDestroy);
+      childNode.create("pre-destroy").text(preDestroy);
       return this;
    }
 
@@ -647,8 +634,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
 
    public WebAppType<T> setDataSource(DataSourceType<WebAppType<T>> dataSource)
    {
-      this.dataSource = dataSource;
-      childNode.getOrCreate("data-source").text(dataSource);
+      childNode.create("data-source").text(dataSource);
       return this;
    }
 
@@ -665,8 +651,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
 
    public WebAppType<T> setServiceRef(ServiceRefType<WebAppType<T>> serviceRef)
    {
-      this.serviceRef = serviceRef;
-      childNode.getOrCreate("service-ref").text(serviceRef);
+      childNode.create("service-ref").text(serviceRef);
       return this;
    }
 

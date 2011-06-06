@@ -8,7 +8,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class JspConfigTypeImpl<T> implements Child<T>, JspConfigType<T>
 {
@@ -44,8 +44,7 @@ public class JspConfigTypeImpl<T> implements Child<T>, JspConfigType<T>
 
    public JspConfigType<T> setTaglib(TaglibType<JspConfigType<T>> taglib)
    {
-      this.taglib = taglib;
-      childNode.getOrCreate("taglib").text(taglib);
+      childNode.create("taglib").text(taglib);
       return this;
    }
 
@@ -63,8 +62,7 @@ public class JspConfigTypeImpl<T> implements Child<T>, JspConfigType<T>
 
    public JspConfigType<T> setJspPropertyGroup(JspPropertyGroupType<JspConfigType<T>> jspPropertyGroup)
    {
-      this.jspPropertyGroup = jspPropertyGroup;
-      childNode.getOrCreate("jsp-property-group").text(jspPropertyGroup);
+      childNode.create("jsp-property-group").text(jspPropertyGroup);
       return this;
    }
 

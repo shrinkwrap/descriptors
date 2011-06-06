@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:functx="http://www.functx.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0" xmlns:xdd="http://org.jboss/shrinkwrap">
     <!--    <xsl:output method="text"/>-->
+    
     <xsl:output method="text" indent="yes" media-type="text/plain"/>
     <xsl:param name="gOutputFolder" select="'..'"/>
     <xsl:variable name="vLower" select="'abcdefghijklmnopqrstuvwxyz'"/>
@@ -17,6 +18,8 @@
         <xsl:call-template name="GenerateDescriptorsImpl"/>
         <xsl:call-template name="GenerateImplClasses"/>
     </xsl:template>
+    
+    
     <!-- ****************************************************** -->
     <!-- ****** Template which generates the interfaces   ***** -->
     <!-- ****************************************************** -->
@@ -26,6 +29,8 @@
             </xsl:call-template>
         </xsl:for-each>
     </xsl:template>
+    
+    
     <!-- ******************************************************* -->
     <!-- ****** Template which generates the enumerations ****** -->
     <!-- ******************************************************* -->
@@ -67,6 +72,8 @@
             </xsl:result-document>
         </xsl:for-each>
     </xsl:template>
+    
+    
     <!-- ******************************************************* -->
     <!-- ****** Template which generates the interfaces ****** -->
     <!-- ******************************************************* -->
@@ -77,6 +84,8 @@
                 <xsl:with-param name="pClassNode" select="."/>
             </xsl:call-template> </xsl:for-each>
     </xsl:template>
+    
+    
     <!-- ******************************************************* -->
     <!-- ****** Template which generates the interfaces2  ****** -->
     <!-- ******************************************************* -->
@@ -114,6 +123,8 @@
             </xsl:result-document>
         </xsl:if>
     </xsl:template>
+    
+    
     <!-- ****************************************************** -->
     <!-- ****** Template which generates the descriptors  ***** -->
     <!-- ****************************************************** -->
@@ -134,6 +145,8 @@
             </xsl:call-template>
         </xsl:for-each>
     </xsl:template>
+    
+    
     <!-- ****************************************************** -->
     <!-- ****** Template which generates theimpl classes  * -->
     <!-- ****************************************************** -->
@@ -144,6 +157,8 @@
             </xsl:call-template>
         </xsl:for-each>
     </xsl:template>
+    
+    
     <!-- ******************************************************* -->
     <!-- ****** Template which generates the descriptors  ****** -->
     <!-- ******************************************************* -->
@@ -170,6 +185,8 @@
             </xsl:result-document>
         </xsl:if>
     </xsl:template>
+    
+    
     <!-- ******************************************************* -->
     <!-- ****** Template which generates the impl classes  ***** -->
     <!-- ******************************************************* -->
@@ -238,6 +255,8 @@
             </xsl:result-document>
         </xsl:if>
     </xsl:template>
+    
+    
     <!-- ******************************************************* -->
     <!-- ****** Template which generates the descriptors  ****** -->
     <!-- ******************************************************* -->
@@ -294,6 +313,8 @@
             </xsl:result-document>
         </xsl:if>
     </xsl:template>
+    
+    
     <!-- ****************************************************** -->
     <!-- ******  Function which generates a camel case string * -->
     <!-- ****************************************************** -->
@@ -304,6 +325,8 @@
             return functx:capitalize-first($word))
             ,'')
             "/> </xsl:function>
+    
+    
     <!-- ****************************************************** -->
     <!-- ******  Function which capitalize tje first char     * -->
     <!-- ****************************************************** -->
@@ -322,6 +345,8 @@
         <xsl:param name="extension" as="xs:string"/>
         <xsl:sequence select="concat($path, '/' , replace($package,'\.','/'), '/' , $filename, '.', $extension)"/>
     </xsl:function>
+    
+    
     <!-- ****************************************************** -->
     <!-- ****** Function which creates a class name      ****** -->
     <!-- ****************************************************** -->
@@ -341,6 +366,8 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
+    
+    
     <!-- ****************************************************** -->
     <!-- ****** Function which creates a type   name     ****** -->
     <!-- ****************************************************** -->
@@ -348,6 +375,8 @@
         <xsl:param name="name"/>
         <xsl:sequence select="functx:words-to-camel-case(xdd:normalizeString($name))"/>
     </xsl:function>
+    
+    
     <!-- ****************************************************** -->
     <!-- ****** Function which normalizes a string       ****** -->
     <!-- ****************************************************** -->
@@ -369,6 +398,8 @@
         "
         />
     </xsl:function>
+    
+    
     <!-- ****************************************************** -->
     <!-- ****** Function which writes the package line   ****** -->
     <!-- ****************************************************** -->
@@ -377,6 +408,8 @@
         <xsl:text>package </xsl:text><xsl:value-of select="$pPackage"/>; <xsl:text>&#10;</xsl:text>
         <xsl:text>&#10;</xsl:text>
     </xsl:function>
+    
+    
     <!-- ****************************************************** -->
     <!-- ****** Function which writes the package line   ****** -->
     <!-- ****************************************************** -->
@@ -544,6 +577,8 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
+    
+    
     <!-- ****************************************************** -->
     <!-- ****** Function which writes a method              *** -->
     <!-- ****************************************************** -->
@@ -627,6 +662,7 @@
                 </xsl:choose>
             </xsl:otherwise>
         </xsl:choose> </xsl:function>
+    
     <!-- ****************************************************** -->
     <!-- ****** Function which writes a set method          *** -->
     <!-- ****************************************************** -->
@@ -643,6 +679,12 @@
         <xsl:value-of select="concat('   public ', $vReturnType, ' set', xdd:checkForClassType($vMethodName), '(',  xdd:createPascalizedName($vElementType,''),' ',xdd:checkForClassType(xdd:createCamelizedName($vElementName)), ')')"/> <xsl:choose>
             <xsl:when test="$vIsInterface=true()">
                 <xsl:value-of select="';'"/>
+            </xsl:when>
+            <xsl:when test=" contains($vMaxOccurs, 'unbounded')">
+                <xsl:text>&#10;   {&#10;</xsl:text>
+                <xsl:value-of select="concat('      ', $vNodeNameLocal, '.create(&quot;', $vElementName, '&quot;).text(', xdd:checkForClassType(xdd:createCamelizedName($vElementName)) , ');', '&#10;')"/>
+                <xsl:value-of select="'      return this;&#10;'"/>
+                <xsl:text>   }&#10;</xsl:text> 
             </xsl:when>
             <xsl:otherwise>
                 <xsl:text>&#10;</xsl:text>
@@ -692,6 +734,10 @@
         <xsl:choose>
             <xsl:when test="$vIsInterface=true()">
                 <xsl:value-of select="';'"/>
+            </xsl:when>
+            
+            <xsl:when test="$vMaxOccurs='unbounded'">
+                
             </xsl:when>
             <xsl:otherwise>
                 <xsl:text>&#10;</xsl:text>

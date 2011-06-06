@@ -14,7 +14,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class EjbJar31DescriptorImpl extends NodeProviderImplBase implements EjbJar31Descriptor<EjbJar31DescriptorImpl>
 {
@@ -162,8 +162,7 @@ public class EjbJar31DescriptorImpl extends NodeProviderImplBase implements EjbJ
 
    public EjbJar31DescriptorImpl setDescription(String description)
    {
-      this.description = description;
-      model.getOrCreate("description").text(description);
+      model.create("description").text(description);
       return this;
    }
 
@@ -175,8 +174,7 @@ public class EjbJar31DescriptorImpl extends NodeProviderImplBase implements EjbJ
 
    public EjbJar31DescriptorImpl setDisplayName(String displayName)
    {
-      this.displayName = displayName;
-      model.getOrCreate("display-name").text(displayName);
+      model.create("display-name").text(displayName);
       return this;
    }
 
@@ -188,8 +186,7 @@ public class EjbJar31DescriptorImpl extends NodeProviderImplBase implements EjbJ
 
    public EjbJar31DescriptorImpl setIcon(IconType<EjbJar31DescriptorImpl> icon)
    {
-      this.icon = icon;
-      model.getOrCreate("icon").text(icon);
+      model.create("icon").text(icon);
       return this;
    }
 

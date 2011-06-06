@@ -6,7 +6,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class ServletMappingTypeImpl<T> implements Child<T>, ServletMappingType<T>
 {
@@ -56,8 +56,7 @@ public class ServletMappingTypeImpl<T> implements Child<T>, ServletMappingType<T
 
    public ServletMappingType<T> setUrlPattern(String urlPattern)
    {
-      this.urlPattern = urlPattern;
-      childNode.getOrCreate("url-pattern").text(urlPattern);
+      childNode.create("url-pattern").text(urlPattern);
       return this;
    }
 

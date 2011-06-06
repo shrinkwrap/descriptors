@@ -6,7 +6,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCollectionType<T>
 {
@@ -59,8 +59,7 @@ public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCo
 
    public WebResourceCollectionType<T> setDescription(String description)
    {
-      this.description = description;
-      childNode.getOrCreate("description").text(description);
+      childNode.create("description").text(description);
       return this;
    }
 
@@ -73,8 +72,7 @@ public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCo
 
    public WebResourceCollectionType<T> setUrlPattern(String urlPattern)
    {
-      this.urlPattern = urlPattern;
-      childNode.getOrCreate("url-pattern").text(urlPattern);
+      childNode.create("url-pattern").text(urlPattern);
       return this;
    }
 
@@ -87,8 +85,7 @@ public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCo
 
    public WebResourceCollectionType<T> setHttpMethod(String httpMethod)
    {
-      this.httpMethod = httpMethod;
-      childNode.getOrCreate("http-method").text(httpMethod);
+      childNode.create("http-method").text(httpMethod);
       return this;
    }
 
@@ -101,8 +98,7 @@ public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCo
 
    public WebResourceCollectionType<T> setHttpMethodOmission(String httpMethodOmission)
    {
-      this.httpMethodOmission = httpMethodOmission;
-      childNode.getOrCreate("http-method-omission").text(httpMethodOmission);
+      childNode.create("http-method-omission").text(httpMethodOmission);
       return this;
    }
 

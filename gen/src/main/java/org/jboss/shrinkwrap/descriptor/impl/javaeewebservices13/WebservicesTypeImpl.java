@@ -9,7 +9,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class WebservicesTypeImpl<T> implements Child<T>, WebservicesType<T>
 {
@@ -47,8 +47,7 @@ public class WebservicesTypeImpl<T> implements Child<T>, WebservicesType<T>
 
    public WebservicesType<T> setDescription(String description)
    {
-      this.description = description;
-      childNode.getOrCreate("description").text(description);
+      childNode.create("description").text(description);
       return this;
    }
 
@@ -60,8 +59,7 @@ public class WebservicesTypeImpl<T> implements Child<T>, WebservicesType<T>
 
    public WebservicesType<T> setDisplayName(String displayName)
    {
-      this.displayName = displayName;
-      childNode.getOrCreate("display-name").text(displayName);
+      childNode.create("display-name").text(displayName);
       return this;
    }
 
@@ -73,8 +71,7 @@ public class WebservicesTypeImpl<T> implements Child<T>, WebservicesType<T>
 
    public WebservicesType<T> setIcon(IconType<WebservicesType<T>> icon)
    {
-      this.icon = icon;
-      childNode.getOrCreate("icon").text(icon);
+      childNode.create("icon").text(icon);
       return this;
    }
 
@@ -91,8 +88,7 @@ public class WebservicesTypeImpl<T> implements Child<T>, WebservicesType<T>
 
    public WebservicesType<T> setWebserviceDescription(WebserviceDescriptionType<WebservicesType<T>> webserviceDescription)
    {
-      this.webserviceDescription = webserviceDescription;
-      childNode.getOrCreate("webservice-description").text(webserviceDescription);
+      childNode.create("webservice-description").text(webserviceDescription);
       return this;
    }
 

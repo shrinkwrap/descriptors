@@ -17,7 +17,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class PortComponentTypeImpl<T> implements Child<T>, PortComponentType<T>
 {
@@ -268,8 +268,7 @@ public class PortComponentTypeImpl<T> implements Child<T>, PortComponentType<T>
 
    public PortComponentType<T> setHandler(HandlerType<PortComponentType<T>> handler)
    {
-      this.handler = handler;
-      childNode.getOrCreate("handler").text(handler);
+      childNode.create("handler").text(handler);
       return this;
    }
 

@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class ListenerTypeImpl<T> implements Child<T>, ListenerType<T>
 {
@@ -45,8 +45,7 @@ public class ListenerTypeImpl<T> implements Child<T>, ListenerType<T>
 
    public ListenerType<T> setDescription(String description)
    {
-      this.description = description;
-      childNode.getOrCreate("description").text(description);
+      childNode.create("description").text(description);
       return this;
    }
 
@@ -58,8 +57,7 @@ public class ListenerTypeImpl<T> implements Child<T>, ListenerType<T>
 
    public ListenerType<T> setDisplayName(String displayName)
    {
-      this.displayName = displayName;
-      childNode.getOrCreate("display-name").text(displayName);
+      childNode.create("display-name").text(displayName);
       return this;
    }
 
@@ -71,8 +69,7 @@ public class ListenerTypeImpl<T> implements Child<T>, ListenerType<T>
 
    public ListenerType<T> setIcon(IconType<ListenerType<T>> icon)
    {
-      this.icon = icon;
-      childNode.getOrCreate("icon").text(icon);
+      childNode.create("icon").text(icon);
       return this;
    }
 

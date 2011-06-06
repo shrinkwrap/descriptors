@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class InterceptorsTypeImpl<T> implements Child<T>, InterceptorsType<T>
 {
@@ -43,8 +43,7 @@ public class InterceptorsTypeImpl<T> implements Child<T>, InterceptorsType<T>
 
    public InterceptorsType<T> setDescription(String description)
    {
-      this.description = description;
-      childNode.getOrCreate("description").text(description);
+      childNode.create("description").text(description);
       return this;
    }
 
@@ -57,8 +56,7 @@ public class InterceptorsTypeImpl<T> implements Child<T>, InterceptorsType<T>
 
    public InterceptorsType<T> setInterceptor(InterceptorType<InterceptorsType<T>> interceptor)
    {
-      this.interceptor = interceptor;
-      childNode.getOrCreate("interceptor").text(interceptor);
+      childNode.create("interceptor").text(interceptor);
       return this;
    }
 

@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class LocaleEncodingMappingListTypeImpl<T> implements Child<T>, LocaleEncodingMappingListType<T>
 {
@@ -42,8 +42,7 @@ public class LocaleEncodingMappingListTypeImpl<T> implements Child<T>, LocaleEnc
 
    public LocaleEncodingMappingListType<T> setLocaleEncodingMapping(LocaleEncodingMappingType<LocaleEncodingMappingListType<T>> localeEncodingMapping)
    {
-      this.localeEncodingMapping = localeEncodingMapping;
-      childNode.getOrCreate("locale-encoding-mapping").text(localeEncodingMapping);
+      childNode.create("locale-encoding-mapping").text(localeEncodingMapping);
       return this;
    }
 

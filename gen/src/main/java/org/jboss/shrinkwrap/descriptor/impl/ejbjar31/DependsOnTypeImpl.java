@@ -6,7 +6,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class DependsOnTypeImpl<T> implements Child<T>, DependsOnType<T>
 {
@@ -41,8 +41,7 @@ public class DependsOnTypeImpl<T> implements Child<T>, DependsOnType<T>
 
    public DependsOnType<T> setEjbName(String ejbName)
    {
-      this.ejbName = ejbName;
-      childNode.getOrCreate("ejb-name").text(ejbName);
+      childNode.create("ejb-name").text(ejbName);
       return this;
    }
 

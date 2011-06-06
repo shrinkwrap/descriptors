@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class MethodPermissionTypeImpl<T> implements Child<T>, MethodPermissionType<T>
 {
@@ -45,8 +45,7 @@ public class MethodPermissionTypeImpl<T> implements Child<T>, MethodPermissionTy
 
    public MethodPermissionType<T> setDescription(String description)
    {
-      this.description = description;
-      childNode.getOrCreate("description").text(description);
+      childNode.create("description").text(description);
       return this;
    }
 
@@ -59,8 +58,7 @@ public class MethodPermissionTypeImpl<T> implements Child<T>, MethodPermissionTy
 
    public MethodPermissionType<T> setMethod(MethodType<MethodPermissionType<T>> method)
    {
-      this.method = method;
-      childNode.getOrCreate("method").text(method);
+      childNode.create("method").text(method);
       return this;
    }
 
@@ -78,8 +76,7 @@ public class MethodPermissionTypeImpl<T> implements Child<T>, MethodPermissionTy
 
    public MethodPermissionType<T> setRoleName(String roleName)
    {
-      this.roleName = roleName;
-      childNode.getOrCreate("role-name").text(roleName);
+      childNode.create("role-name").text(roleName);
       return this;
    }
 

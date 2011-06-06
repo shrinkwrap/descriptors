@@ -8,7 +8,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class PersistenceContextRefTypeImpl<T> implements Child<T>, PersistenceContextRefType<T>
 {
@@ -62,8 +62,7 @@ public class PersistenceContextRefTypeImpl<T> implements Child<T>, PersistenceCo
 
    public PersistenceContextRefType<T> setInjectionTarget(InjectionTargetType<PersistenceContextRefType<T>> injectionTarget)
    {
-      this.injectionTarget = injectionTarget;
-      childNode.getOrCreate("injection-target").text(injectionTarget);
+      childNode.create("injection-target").text(injectionTarget);
       return this;
    }
 
@@ -80,8 +79,7 @@ public class PersistenceContextRefTypeImpl<T> implements Child<T>, PersistenceCo
 
    public PersistenceContextRefType<T> setDescription(String description)
    {
-      this.description = description;
-      childNode.getOrCreate("description").text(description);
+      childNode.create("description").text(description);
       return this;
    }
 
@@ -136,8 +134,7 @@ public class PersistenceContextRefTypeImpl<T> implements Child<T>, PersistenceCo
 
    public PersistenceContextRefType<T> setPersistenceProperty(PropertyType<PersistenceContextRefType<T>> persistenceProperty)
    {
-      this.persistenceProperty = persistenceProperty;
-      childNode.getOrCreate("persistence-property").text(persistenceProperty);
+      childNode.create("persistence-property").text(persistenceProperty);
       return this;
    }
 

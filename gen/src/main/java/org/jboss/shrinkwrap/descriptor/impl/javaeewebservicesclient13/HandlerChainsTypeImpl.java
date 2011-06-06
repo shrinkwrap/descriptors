@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class HandlerChainsTypeImpl<T> implements Child<T>, HandlerChainsType<T>
 {
@@ -42,8 +42,7 @@ public class HandlerChainsTypeImpl<T> implements Child<T>, HandlerChainsType<T>
 
    public HandlerChainsType<T> setHandlerChain(HandlerChainType<HandlerChainsType<T>> handlerChain)
    {
-      this.handlerChain = handlerChain;
-      childNode.getOrCreate("handler-chain").text(handlerChain);
+      childNode.create("handler-chain").text(handlerChain);
       return this;
    }
 

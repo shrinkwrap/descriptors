@@ -38,7 +38,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class MessageDrivenBeanTypeImpl<T> implements Child<T>, MessageDrivenBeanType<T>
 {
@@ -101,8 +101,7 @@ public class MessageDrivenBeanTypeImpl<T> implements Child<T>, MessageDrivenBean
 
    public MessageDrivenBeanType<T> setDescription(String description)
    {
-      this.description = description;
-      childNode.getOrCreate("description").text(description);
+      childNode.create("description").text(description);
       return this;
    }
 
@@ -114,8 +113,7 @@ public class MessageDrivenBeanTypeImpl<T> implements Child<T>, MessageDrivenBean
 
    public MessageDrivenBeanType<T> setDisplayName(String displayName)
    {
-      this.displayName = displayName;
-      childNode.getOrCreate("display-name").text(displayName);
+      childNode.create("display-name").text(displayName);
       return this;
    }
 
@@ -127,8 +125,7 @@ public class MessageDrivenBeanTypeImpl<T> implements Child<T>, MessageDrivenBean
 
    public MessageDrivenBeanType<T> setIcon(IconType<MessageDrivenBeanType<T>> icon)
    {
-      this.icon = icon;
-      childNode.getOrCreate("icon").text(icon);
+      childNode.create("icon").text(icon);
       return this;
    }
 
@@ -145,8 +142,7 @@ public class MessageDrivenBeanTypeImpl<T> implements Child<T>, MessageDrivenBean
 
    public MessageDrivenBeanType<T> setEnvEntry(EnvEntryType<MessageDrivenBeanType<T>> envEntry)
    {
-      this.envEntry = envEntry;
-      childNode.getOrCreate("env-entry").text(envEntry);
+      childNode.create("env-entry").text(envEntry);
       return this;
    }
 
@@ -163,8 +159,7 @@ public class MessageDrivenBeanTypeImpl<T> implements Child<T>, MessageDrivenBean
 
    public MessageDrivenBeanType<T> setEjbRef(EjbRefType<MessageDrivenBeanType<T>> ejbRef)
    {
-      this.ejbRef = ejbRef;
-      childNode.getOrCreate("ejb-ref").text(ejbRef);
+      childNode.create("ejb-ref").text(ejbRef);
       return this;
    }
 
@@ -181,8 +176,7 @@ public class MessageDrivenBeanTypeImpl<T> implements Child<T>, MessageDrivenBean
 
    public MessageDrivenBeanType<T> setEjbLocalRef(EjbLocalRefType<MessageDrivenBeanType<T>> ejbLocalRef)
    {
-      this.ejbLocalRef = ejbLocalRef;
-      childNode.getOrCreate("ejb-local-ref").text(ejbLocalRef);
+      childNode.create("ejb-local-ref").text(ejbLocalRef);
       return this;
    }
 
@@ -199,8 +193,7 @@ public class MessageDrivenBeanTypeImpl<T> implements Child<T>, MessageDrivenBean
 
    public MessageDrivenBeanType<T> setResourceRef(ResourceRefType<MessageDrivenBeanType<T>> resourceRef)
    {
-      this.resourceRef = resourceRef;
-      childNode.getOrCreate("resource-ref").text(resourceRef);
+      childNode.create("resource-ref").text(resourceRef);
       return this;
    }
 
@@ -217,8 +210,7 @@ public class MessageDrivenBeanTypeImpl<T> implements Child<T>, MessageDrivenBean
 
    public MessageDrivenBeanType<T> setResourceEnvRef(ResourceEnvRefType<MessageDrivenBeanType<T>> resourceEnvRef)
    {
-      this.resourceEnvRef = resourceEnvRef;
-      childNode.getOrCreate("resource-env-ref").text(resourceEnvRef);
+      childNode.create("resource-env-ref").text(resourceEnvRef);
       return this;
    }
 
@@ -235,8 +227,7 @@ public class MessageDrivenBeanTypeImpl<T> implements Child<T>, MessageDrivenBean
 
    public MessageDrivenBeanType<T> setMessageDestinationRef(MessageDestinationRefType<MessageDrivenBeanType<T>> messageDestinationRef)
    {
-      this.messageDestinationRef = messageDestinationRef;
-      childNode.getOrCreate("message-destination-ref").text(messageDestinationRef);
+      childNode.create("message-destination-ref").text(messageDestinationRef);
       return this;
    }
 
@@ -253,8 +244,7 @@ public class MessageDrivenBeanTypeImpl<T> implements Child<T>, MessageDrivenBean
 
    public MessageDrivenBeanType<T> setPersistenceContextRef(PersistenceContextRefType<MessageDrivenBeanType<T>> persistenceContextRef)
    {
-      this.persistenceContextRef = persistenceContextRef;
-      childNode.getOrCreate("persistence-context-ref").text(persistenceContextRef);
+      childNode.create("persistence-context-ref").text(persistenceContextRef);
       return this;
    }
 
@@ -271,8 +261,7 @@ public class MessageDrivenBeanTypeImpl<T> implements Child<T>, MessageDrivenBean
 
    public MessageDrivenBeanType<T> setPersistenceUnitRef(PersistenceUnitRefType<MessageDrivenBeanType<T>> persistenceUnitRef)
    {
-      this.persistenceUnitRef = persistenceUnitRef;
-      childNode.getOrCreate("persistence-unit-ref").text(persistenceUnitRef);
+      childNode.create("persistence-unit-ref").text(persistenceUnitRef);
       return this;
    }
 
@@ -289,8 +278,7 @@ public class MessageDrivenBeanTypeImpl<T> implements Child<T>, MessageDrivenBean
 
    public MessageDrivenBeanType<T> setPostConstruct(LifecycleCallbackType<MessageDrivenBeanType<T>> postConstruct)
    {
-      this.postConstruct = postConstruct;
-      childNode.getOrCreate("post-construct").text(postConstruct);
+      childNode.create("post-construct").text(postConstruct);
       return this;
    }
 
@@ -307,8 +295,7 @@ public class MessageDrivenBeanTypeImpl<T> implements Child<T>, MessageDrivenBean
 
    public MessageDrivenBeanType<T> setPreDestroy(LifecycleCallbackType<MessageDrivenBeanType<T>> preDestroy)
    {
-      this.preDestroy = preDestroy;
-      childNode.getOrCreate("pre-destroy").text(preDestroy);
+      childNode.create("pre-destroy").text(preDestroy);
       return this;
    }
 
@@ -325,8 +312,7 @@ public class MessageDrivenBeanTypeImpl<T> implements Child<T>, MessageDrivenBean
 
    public MessageDrivenBeanType<T> setDataSource(DataSourceType<MessageDrivenBeanType<T>> dataSource)
    {
-      this.dataSource = dataSource;
-      childNode.getOrCreate("data-source").text(dataSource);
+      childNode.create("data-source").text(dataSource);
       return this;
    }
 
@@ -343,8 +329,7 @@ public class MessageDrivenBeanTypeImpl<T> implements Child<T>, MessageDrivenBean
 
    public MessageDrivenBeanType<T> setServiceRef(ServiceRefType<MessageDrivenBeanType<T>> serviceRef)
    {
-      this.serviceRef = serviceRef;
-      childNode.getOrCreate("service-ref").text(serviceRef);
+      childNode.create("service-ref").text(serviceRef);
       return this;
    }
 
@@ -436,8 +421,7 @@ public class MessageDrivenBeanTypeImpl<T> implements Child<T>, MessageDrivenBean
 
    public MessageDrivenBeanType<T> setTimer(TimerType<MessageDrivenBeanType<T>> timer)
    {
-      this.timer = timer;
-      childNode.getOrCreate("timer").text(timer);
+      childNode.create("timer").text(timer);
       return this;
    }
 
@@ -516,8 +500,7 @@ public class MessageDrivenBeanTypeImpl<T> implements Child<T>, MessageDrivenBean
 
    public MessageDrivenBeanType<T> setAroundInvoke(AroundInvokeType<MessageDrivenBeanType<T>> aroundInvoke)
    {
-      this.aroundInvoke = aroundInvoke;
-      childNode.getOrCreate("around-invoke").text(aroundInvoke);
+      childNode.create("around-invoke").text(aroundInvoke);
       return this;
    }
 
@@ -535,8 +518,7 @@ public class MessageDrivenBeanTypeImpl<T> implements Child<T>, MessageDrivenBean
 
    public MessageDrivenBeanType<T> setAroundTimeout(AroundTimeoutType<MessageDrivenBeanType<T>> aroundTimeout)
    {
-      this.aroundTimeout = aroundTimeout;
-      childNode.getOrCreate("around-timeout").text(aroundTimeout);
+      childNode.create("around-timeout").text(aroundTimeout);
       return this;
    }
 
@@ -554,8 +536,7 @@ public class MessageDrivenBeanTypeImpl<T> implements Child<T>, MessageDrivenBean
 
    public MessageDrivenBeanType<T> setSecurityRoleRef(SecurityRoleRefType<MessageDrivenBeanType<T>> securityRoleRef)
    {
-      this.securityRoleRef = securityRoleRef;
-      childNode.getOrCreate("security-role-ref").text(securityRoleRef);
+      childNode.create("security-role-ref").text(securityRoleRef);
       return this;
    }
 

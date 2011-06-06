@@ -35,7 +35,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class Application6DescriptorImpl extends NodeProviderImplBase implements Application6Descriptor<Application6DescriptorImpl>
 {
@@ -350,8 +350,7 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
 
    public Application6DescriptorImpl setDescription(String description)
    {
-      this.description = description;
-      model.getOrCreate("description").text(description);
+      model.create("description").text(description);
       return this;
    }
 
@@ -363,8 +362,7 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
 
    public Application6DescriptorImpl setDisplayName(String displayName)
    {
-      this.displayName = displayName;
-      model.getOrCreate("display-name").text(displayName);
+      model.create("display-name").text(displayName);
       return this;
    }
 
@@ -376,8 +374,7 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
 
    public Application6DescriptorImpl setIcon(IconType<Application6DescriptorImpl> icon)
    {
-      this.icon = icon;
-      model.getOrCreate("icon").text(icon);
+      model.create("icon").text(icon);
       return this;
    }
 
@@ -394,8 +391,7 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
 
    public Application6DescriptorImpl setServiceRef(ServiceRefType<Application6DescriptorImpl> serviceRef)
    {
-      this.serviceRef = serviceRef;
-      model.getOrCreate("service-ref").text(serviceRef);
+      model.create("service-ref").text(serviceRef);
       return this;
    }
 

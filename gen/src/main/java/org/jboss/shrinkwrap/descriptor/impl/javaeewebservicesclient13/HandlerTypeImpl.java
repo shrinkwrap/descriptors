@@ -10,7 +10,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class HandlerTypeImpl<T> implements Child<T>, HandlerType<T>
 {
@@ -53,8 +53,7 @@ public class HandlerTypeImpl<T> implements Child<T>, HandlerType<T>
 
    public HandlerType<T> setDescription(String description)
    {
-      this.description = description;
-      childNode.getOrCreate("description").text(description);
+      childNode.create("description").text(description);
       return this;
    }
 
@@ -66,8 +65,7 @@ public class HandlerTypeImpl<T> implements Child<T>, HandlerType<T>
 
    public HandlerType<T> setDisplayName(String displayName)
    {
-      this.displayName = displayName;
-      childNode.getOrCreate("display-name").text(displayName);
+      childNode.create("display-name").text(displayName);
       return this;
    }
 
@@ -79,8 +77,7 @@ public class HandlerTypeImpl<T> implements Child<T>, HandlerType<T>
 
    public HandlerType<T> setIcon(IconType<HandlerType<T>> icon)
    {
-      this.icon = icon;
-      childNode.getOrCreate("icon").text(icon);
+      childNode.create("icon").text(icon);
       return this;
    }
 
@@ -125,8 +122,7 @@ public class HandlerTypeImpl<T> implements Child<T>, HandlerType<T>
 
    public HandlerType<T> setInitParam(ParamValueType<HandlerType<T>> initParam)
    {
-      this.initParam = initParam;
-      childNode.getOrCreate("init-param").text(initParam);
+      childNode.create("init-param").text(initParam);
       return this;
    }
 
@@ -144,8 +140,7 @@ public class HandlerTypeImpl<T> implements Child<T>, HandlerType<T>
 
    public HandlerType<T> setSoapHeader(String soapHeader)
    {
-      this.soapHeader = soapHeader;
-      childNode.getOrCreate("soap-header").text(soapHeader);
+      childNode.create("soap-header").text(soapHeader);
       return this;
    }
 
@@ -158,8 +153,7 @@ public class HandlerTypeImpl<T> implements Child<T>, HandlerType<T>
 
    public HandlerType<T> setSoapRole(String soapRole)
    {
-      this.soapRole = soapRole;
-      childNode.getOrCreate("soap-role").text(soapRole);
+      childNode.create("soap-role").text(soapRole);
       return this;
    }
 
@@ -172,8 +166,7 @@ public class HandlerTypeImpl<T> implements Child<T>, HandlerType<T>
 
    public HandlerType<T> setPortName(String portName)
    {
-      this.portName = portName;
-      childNode.getOrCreate("port-name").text(portName);
+      childNode.create("port-name").text(portName);
       return this;
    }
 

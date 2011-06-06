@@ -13,7 +13,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class ServiceRefTypeImpl<T> implements Child<T>, ServiceRefType<T>
 {
@@ -62,8 +62,7 @@ public class ServiceRefTypeImpl<T> implements Child<T>, ServiceRefType<T>
 
    public ServiceRefType<T> setDescription(String description)
    {
-      this.description = description;
-      childNode.getOrCreate("description").text(description);
+      childNode.create("description").text(description);
       return this;
    }
 
@@ -75,8 +74,7 @@ public class ServiceRefTypeImpl<T> implements Child<T>, ServiceRefType<T>
 
    public ServiceRefType<T> setDisplayName(String displayName)
    {
-      this.displayName = displayName;
-      childNode.getOrCreate("display-name").text(displayName);
+      childNode.create("display-name").text(displayName);
       return this;
    }
 
@@ -88,8 +86,7 @@ public class ServiceRefTypeImpl<T> implements Child<T>, ServiceRefType<T>
 
    public ServiceRefType<T> setIcon(IconType<ServiceRefType<T>> icon)
    {
-      this.icon = icon;
-      childNode.getOrCreate("icon").text(icon);
+      childNode.create("icon").text(icon);
       return this;
    }
 
@@ -132,8 +129,7 @@ public class ServiceRefTypeImpl<T> implements Child<T>, ServiceRefType<T>
 
    public ServiceRefType<T> setInjectionTarget(InjectionTargetType<ServiceRefType<T>> injectionTarget)
    {
-      this.injectionTarget = injectionTarget;
-      childNode.getOrCreate("injection-target").text(injectionTarget);
+      childNode.create("injection-target").text(injectionTarget);
       return this;
    }
 
@@ -234,8 +230,7 @@ public class ServiceRefTypeImpl<T> implements Child<T>, ServiceRefType<T>
 
    public ServiceRefType<T> setPortComponentRef(PortComponentRefType<ServiceRefType<T>> portComponentRef)
    {
-      this.portComponentRef = portComponentRef;
-      childNode.getOrCreate("port-component-ref").text(portComponentRef);
+      childNode.create("port-component-ref").text(portComponentRef);
       return this;
    }
 
@@ -253,8 +248,7 @@ public class ServiceRefTypeImpl<T> implements Child<T>, ServiceRefType<T>
 
    public ServiceRefType<T> setHandler(HandlerType<ServiceRefType<T>> handler)
    {
-      this.handler = handler;
-      childNode.getOrCreate("handler").text(handler);
+      childNode.create("handler").text(handler);
       return this;
    }
 

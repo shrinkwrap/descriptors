@@ -15,7 +15,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class AssemblyDescriptorTypeImpl<T> implements Child<T>, AssemblyDescriptorType<T>
 {
@@ -56,8 +56,7 @@ public class AssemblyDescriptorTypeImpl<T> implements Child<T>, AssemblyDescript
 
    public AssemblyDescriptorType<T> setSecurityRole(SecurityRoleType<AssemblyDescriptorType<T>> securityRole)
    {
-      this.securityRole = securityRole;
-      childNode.getOrCreate("security-role").text(securityRole);
+      childNode.create("security-role").text(securityRole);
       return this;
    }
 
@@ -75,8 +74,7 @@ public class AssemblyDescriptorTypeImpl<T> implements Child<T>, AssemblyDescript
 
    public AssemblyDescriptorType<T> setMethodPermission(MethodPermissionType<AssemblyDescriptorType<T>> methodPermission)
    {
-      this.methodPermission = methodPermission;
-      childNode.getOrCreate("method-permission").text(methodPermission);
+      childNode.create("method-permission").text(methodPermission);
       return this;
    }
 
@@ -94,8 +92,7 @@ public class AssemblyDescriptorTypeImpl<T> implements Child<T>, AssemblyDescript
 
    public AssemblyDescriptorType<T> setContainerTransaction(ContainerTransactionType<AssemblyDescriptorType<T>> containerTransaction)
    {
-      this.containerTransaction = containerTransaction;
-      childNode.getOrCreate("container-transaction").text(containerTransaction);
+      childNode.create("container-transaction").text(containerTransaction);
       return this;
    }
 
@@ -113,8 +110,7 @@ public class AssemblyDescriptorTypeImpl<T> implements Child<T>, AssemblyDescript
 
    public AssemblyDescriptorType<T> setInterceptorBinding(InterceptorBindingType<AssemblyDescriptorType<T>> interceptorBinding)
    {
-      this.interceptorBinding = interceptorBinding;
-      childNode.getOrCreate("interceptor-binding").text(interceptorBinding);
+      childNode.create("interceptor-binding").text(interceptorBinding);
       return this;
    }
 
@@ -132,8 +128,7 @@ public class AssemblyDescriptorTypeImpl<T> implements Child<T>, AssemblyDescript
 
    public AssemblyDescriptorType<T> setMessageDestination(MessageDestinationType<AssemblyDescriptorType<T>> messageDestination)
    {
-      this.messageDestination = messageDestination;
-      childNode.getOrCreate("message-destination").text(messageDestination);
+      childNode.create("message-destination").text(messageDestination);
       return this;
    }
 
@@ -170,8 +165,7 @@ public class AssemblyDescriptorTypeImpl<T> implements Child<T>, AssemblyDescript
 
    public AssemblyDescriptorType<T> setApplicationException(ApplicationExceptionType<AssemblyDescriptorType<T>> applicationException)
    {
-      this.applicationException = applicationException;
-      childNode.getOrCreate("application-exception").text(applicationException);
+      childNode.create("application-exception").text(applicationException);
       return this;
    }
 

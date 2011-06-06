@@ -9,7 +9,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class SecurityConstraintTypeImpl<T> implements Child<T>, SecurityConstraintType<T>
 {
@@ -47,8 +47,7 @@ public class SecurityConstraintTypeImpl<T> implements Child<T>, SecurityConstrai
 
    public SecurityConstraintType<T> setDisplayName(String displayName)
    {
-      this.displayName = displayName;
-      childNode.getOrCreate("display-name").text(displayName);
+      childNode.create("display-name").text(displayName);
       return this;
    }
 
@@ -61,8 +60,7 @@ public class SecurityConstraintTypeImpl<T> implements Child<T>, SecurityConstrai
 
    public SecurityConstraintType<T> setWebResourceCollection(WebResourceCollectionType<SecurityConstraintType<T>> webResourceCollection)
    {
-      this.webResourceCollection = webResourceCollection;
-      childNode.getOrCreate("web-resource-collection").text(webResourceCollection);
+      childNode.create("web-resource-collection").text(webResourceCollection);
       return this;
    }
 

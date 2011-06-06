@@ -15,7 +15,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-05T22:37:30.243+02:00
+ * Generation date :2011-06-06T19:59:35.573+02:00
  */
 public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
 {
@@ -62,8 +62,7 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
 
    public ServletType<T> setDescription(String description)
    {
-      this.description = description;
-      childNode.getOrCreate("description").text(description);
+      childNode.create("description").text(description);
       return this;
    }
 
@@ -75,8 +74,7 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
 
    public ServletType<T> setDisplayName(String displayName)
    {
-      this.displayName = displayName;
-      childNode.getOrCreate("display-name").text(displayName);
+      childNode.create("display-name").text(displayName);
       return this;
    }
 
@@ -88,8 +86,7 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
 
    public ServletType<T> setIcon(IconType<ServletType<T>> icon)
    {
-      this.icon = icon;
-      childNode.getOrCreate("icon").text(icon);
+      childNode.create("icon").text(icon);
       return this;
    }
 
@@ -120,8 +117,7 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
 
    public ServletType<T> setInitParam(ParamValueType<ServletType<T>> initParam)
    {
-      this.initParam = initParam;
-      childNode.getOrCreate("init-param").text(initParam);
+      childNode.create("init-param").text(initParam);
       return this;
    }
 
@@ -200,8 +196,7 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
 
    public ServletType<T> setSecurityRoleRef(SecurityRoleRefType<ServletType<T>> securityRoleRef)
    {
-      this.securityRoleRef = securityRoleRef;
-      childNode.getOrCreate("security-role-ref").text(securityRoleRef);
+      childNode.create("security-role-ref").text(securityRoleRef);
       return this;
    }
 
