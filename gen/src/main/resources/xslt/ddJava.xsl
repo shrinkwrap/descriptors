@@ -591,8 +591,14 @@
         <xsl:param name="pWriteInterface" as="xs:boolean"/>
         <xsl:param name="pIsGeneric" as="xs:boolean"/>
         <xsl:param name="pNodeNameLocal" as="xs:string"/>
-        <xsl:param name="pIsAttribute" as="xs:boolean"/> <xsl:variable name="vMethodName" select="xdd:createPascalizedName($pElementName,'')"/>
-        <xsl:variable name="vReturn" select=" xdd:getReturnType($pClassName, $pIsGeneric)"/> <xsl:choose>
+        <xsl:param name="pIsAttribute" as="xs:boolean"/> 
+        <xsl:variable name="vMethodName" select="xdd:createPascalizedName($pElementName,'')"/>
+        <xsl:variable name="vReturn" select=" xdd:getReturnType($pClassName, $pIsGeneric)"/> 
+        
+        <xsl:value-of select="concat( '   // maxOccurs = ', $pMaxOccurs)"/>
+        <xsl:value-of select="concat( '   // isGeneric = ', $pIsGeneric)"/>
+        <xsl:value-of select="concat( '   // isAttribute = ', $pIsAttribute)"/>
+        <xsl:choose>
             <xsl:when test="$pElementType='javaee:emptyType' or $pElementType='javaee:ordering-othersType' or 
                             $pElementType='faces-config-ordering-othersType' or $pElementType='extensibleType'">
                 <xsl:choose>
@@ -707,17 +713,6 @@
         <xsl:text>&#10;</xsl:text>
     </xsl:function>     
     
-    <xsl:function name="xdd:getModelAction" as="xs:string">
-        <xsl:param name="pIsAttribute" as="xs:boolean"/>
-        <xsl:choose>
-            <xsl:when test="$pIsAttribute=true()">
-                <xsl:sequence select="'attribute'"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:sequence select="'getOrCreate'"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:function>
     
     <!-- ****************************************************** -->
     <!-- ****** Function which writes a get method          *** -->
@@ -730,19 +725,20 @@
         <xsl:param name="vMaxOccurs"/>
         <xsl:param name="vIsInterface" as="xs:boolean"/>
         <xsl:param name="vIsComplexType"/>
-        <xsl:param name="vNodeNameLocal"/> <xsl:value-of select="concat('   public ', xdd:createPascalizedName($vElementType,''), ' get', xdd:checkForClassType($vMethodName), '()')"/>
+        <xsl:param name="vNodeNameLocal"/> 
+        
+        <xsl:value-of select="concat('   public ', xdd:createPascalizedName($vElementType,''), ' get', xdd:checkForClassType($vMethodName), '()')"/>
+        
         <xsl:choose>
             <xsl:when test="$vIsInterface=true()">
                 <xsl:value-of select="';'"/>
             </xsl:when>
             
-            <xsl:when test="$vMaxOccurs='unbounded'">
-                
-            </xsl:when>
             <xsl:otherwise>
                 <xsl:text>&#10;</xsl:text>
                 <xsl:text>   {&#10;</xsl:text>
                 <xsl:choose>
+<!--                    <xsl:when test="$vIsComplexType=true() and contains($vMaxOccurs, 'unbounded')=false()">-->
                     <xsl:when test="$vIsComplexType=true()">
                         <xsl:variable name="vConstructor" select="concat(substring-before($vElementType, '&lt;'), 'Impl&lt;', $vClassType, '&gt;')"/>
                         <xsl:value-of select=" concat('      if( ', xdd:checkForClassType(xdd:createCamelizedName($vElementName)), ' == null)' , '&#10;')"/>
@@ -751,6 +747,19 @@
                         <xsl:value-of select=" concat('      }', '&#10;')"/>
                         <xsl:value-of select=" concat('      return ', xdd:createCamelizedName($vElementName), ';&#10;')"/>
                     </xsl:when>
+                    
+                   <xsl:when test="$vIsComplexType=false() and contains($vMaxOccurs, 'unbounded')=false()">
+                       <xsl:choose>
+                        <xsl:when test="$vElementType='Boolean'">
+                            <xsl:value-of select=" concat('      return Strings.isTrue(', $vNodeNameLocal, '.textValue(&quot;', $vElementName, '&quot;));' , '&#10;')"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                             <xsl:value-of select=" concat('      return ', $vNodeNameLocal, '.textValue(&quot;', $vElementName, '&quot;);' , '&#10;')"/>
+                        </xsl:otherwise>
+                       </xsl:choose>
+                   </xsl:when>
+                    
+                    
                     <xsl:otherwise>
                         <xsl:value-of select=" concat('      return ', xdd:checkForClassType(xdd:createCamelizedName($vElementName)), ';' , '&#10;')"/>
                     </xsl:otherwise>
