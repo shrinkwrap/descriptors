@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:functx="http://www.functx.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0" xmlns:xdd="http://org.jboss/shrinkwrap">
     <!--    <xsl:output method="text"/>-->
-    
+
     <xsl:output method="text" indent="yes" media-type="text/plain"/>
     <xsl:param name="gOutputFolder" select="'..'"/>
     <xsl:variable name="vLower" select="'abcdefghijklmnopqrstuvwxyz'"/>
@@ -18,19 +18,20 @@
         <xsl:call-template name="GenerateDescriptorsImpl"/>
         <xsl:call-template name="GenerateImplClasses"/>
     </xsl:template>
-    
-    
+
+
     <!-- ****************************************************** -->
     <!-- ****** Template which generates the interfaces   ***** -->
     <!-- ****************************************************** -->
     <xsl:template name="GenerateInterfaces">
-        <xsl:for-each select="//classes/class"> <xsl:call-template name="WriteInterface2">
+        <xsl:for-each select="//classes/class">
+            <xsl:call-template name="WriteInterface2">
                 <xsl:with-param name="pClassNode" select="."/>
             </xsl:call-template>
         </xsl:for-each>
     </xsl:template>
-    
-    
+
+
     <!-- ******************************************************* -->
     <!-- ****** Template which generates the enumerations ****** -->
     <!-- ******************************************************* -->
@@ -44,7 +45,8 @@
                 <xsl:value-of select="xdd:writePackageLine(@package)"/>
                 <xsl:value-of select="xdd:classHeaderComment('')"/>
                 <xsl:value-of select="xdd:classHeaderDeclaration('enum', $vClassname)"/>
-                <xsl:text>&#10;{&#10;</xsl:text> <xsl:for-each select="value">
+                <xsl:text>&#10;{&#10;</xsl:text>
+                <xsl:for-each select="value">
                     <xsl:variable name="pEnum" select=" upper-case(replace(text(), '\.', '_'))"/>
                     <xsl:text>   _</xsl:text>
                     <xsl:value-of select="$pEnum"/>
@@ -56,12 +58,14 @@
                         <xsl:text>&#10;</xsl:text>
                     </xsl:if>
                 </xsl:for-each>
-                <xsl:text>;</xsl:text> <xsl:text>&#10;</xsl:text>
+                <xsl:text>;</xsl:text>
+                <xsl:text>&#10;</xsl:text>
                 <xsl:text>&#10;</xsl:text>
                 <xsl:text>   private String value;</xsl:text>
                 <xsl:text>&#10;</xsl:text>
                 <xsl:text>&#10;</xsl:text>
-                <xsl:text>   </xsl:text> <xsl:value-of select="$vClassname"/>
+                <xsl:text>   </xsl:text>
+                <xsl:value-of select="$vClassname"/>
                 <xsl:text> (String value)</xsl:text>
                 <xsl:text> { this.value = value; }</xsl:text>
                 <xsl:text>&#10;</xsl:text>
@@ -72,29 +76,34 @@
             </xsl:result-document>
         </xsl:for-each>
     </xsl:template>
-    
-    
+
+
     <!-- ******************************************************* -->
     <!-- ****** Template which generates the interfaces ****** -->
     <!-- ******************************************************* -->
     <xsl:template name="GenerateGroups">
         <xsl:param name="pTypeName"/>
         <!-- **** loop through all elements **** -->
-        <xsl:for-each select="//groups/class"> <xsl:call-template name="WriteInterface2">
+        <xsl:for-each select="//groups/class">
+            <xsl:call-template name="WriteInterface2">
                 <xsl:with-param name="pClassNode" select="."/>
-            </xsl:call-template> </xsl:for-each>
+            </xsl:call-template>
+        </xsl:for-each>
     </xsl:template>
-    
-    
+
+
     <!-- ******************************************************* -->
     <!-- ****** Template which generates the interfaces2  ****** -->
     <!-- ******************************************************* -->
     <xsl:template name="WriteInterface2">
-        <xsl:param name="pClassNode" select="."/> <xsl:variable name="vClassname" select="xdd:createPascalizedName($pClassNode/@name, '')"/>
-        <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolder, @packageApi, $vClassname, 'java')"/> <xsl:if test="$vClassname=''">
+        <xsl:param name="pClassNode" select="."/>
+        <xsl:variable name="vClassname" select="xdd:createPascalizedName($pClassNode/@name, '')"/>
+        <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolder, @packageApi, $vClassname, 'java')"/>
+        <xsl:if test="$vClassname=''">
             <xsl:value-of select="'cannot process'"/>: <xsl:value-of select=" name()"/>: <xsl:value-of select="position()"/>
             <xsl:text>&#10;</xsl:text>
-        </xsl:if> <xsl:if test="$vClassname">
+        </xsl:if>
+        <xsl:if test="$vClassname">
             <xsl:message select="concat('Generating Interface: ', $vClassname)"/>
             <xsl:result-document href="{$vFilename}">
                 <xsl:value-of select="xdd:writePackageLine(@packageApi)"/>
@@ -104,9 +113,11 @@
                 <xsl:text> extends Child&lt;T&gt;</xsl:text>
                 <xsl:text>&#10;</xsl:text>
                 <xsl:text>{</xsl:text>
-                <xsl:text>&#10;</xsl:text> <xsl:for-each select="include">
+                <xsl:text>&#10;</xsl:text>
+                <xsl:for-each select="include">
                     <xsl:value-of select="xdd:includeGroupRefs($vClassname, text(), false(), true(), true(), '')"/>
-                </xsl:for-each> <xsl:for-each select="element">
+                </xsl:for-each>
+                <xsl:for-each select="element">
                     <xsl:variable name="vMaxOccurs" select="concat('-',  @maxOccurs)"/>
                     <xsl:choose>
                         <xsl:when test="@type='javaee:ejb-relationship-roleType' and position()=4"/>
@@ -123,8 +134,8 @@
             </xsl:result-document>
         </xsl:if>
     </xsl:template>
-    
-    
+
+
     <!-- ****************************************************** -->
     <!-- ****** Template which generates the descriptors  ***** -->
     <!-- ****************************************************** -->
@@ -145,8 +156,8 @@
             </xsl:call-template>
         </xsl:for-each>
     </xsl:template>
-    
-    
+
+
     <!-- ****************************************************** -->
     <!-- ****** Template which generates theimpl classes  * -->
     <!-- ****************************************************** -->
@@ -157,13 +168,14 @@
             </xsl:call-template>
         </xsl:for-each>
     </xsl:template>
-    
-    
+
+
     <!-- ******************************************************* -->
     <!-- ****** Template which generates the descriptors  ****** -->
     <!-- ******************************************************* -->
     <xsl:template name="WriteDescriptor">
-        <xsl:param name="pDescriptor" select="."/> <xsl:variable name="vPackage" select="./@packageApi"/>
+        <xsl:param name="pDescriptor" select="."/>
+        <xsl:variable name="vPackage" select="./@packageApi"/>
         <xsl:variable name="vClassname" select="xdd:createPascalizedName($pDescriptor/@schemaName, 'Descriptor')"/>
         <xsl:message select="concat('Generating Descriptor Api: ', $vClassname)"/>
         <xsl:if test="$vClassname">
@@ -172,8 +184,10 @@
                 <xsl:value-of select="xdd:writePackageLine($vPackage)"/>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.api.Descriptor;&#10;&#10;</xsl:text>
                 <xsl:value-of select="xdd:classHeaderComment('')"/>
-                <xsl:value-of select="xdd:classHeaderDeclaration('interface', $vClassname)"/> <xsl:text>&lt;T&gt; extends Descriptor</xsl:text>
-                <xsl:text>&#10;{&#10;</xsl:text> <xsl:variable name="vType" select=" substring-after($pDescriptor/element/@type, ':')"/>
+                <xsl:value-of select="xdd:classHeaderDeclaration('interface', $vClassname)"/>
+                <xsl:text>&lt;T&gt; extends Descriptor</xsl:text>
+                <xsl:text>&#10;{&#10;</xsl:text>
+                <xsl:variable name="vType" select=" substring-after($pDescriptor/element/@type, ':')"/>
                 <xsl:for-each select="//classes/class[@name=$vType]">
                     <xsl:for-each select="include">
                         <xsl:value-of select="xdd:includeGroupRefs('T', text(), false(), true(), false(), '')"/>
@@ -181,17 +195,19 @@
                     <xsl:for-each select="element">
                         <xsl:value-of select="xdd:writeMethodOrAttribute('T', @name, @type, '-', false(), true(), false(), '', false())"/>
                     </xsl:for-each>
-                </xsl:for-each> <xsl:text>}&#10;</xsl:text>
+                </xsl:for-each>
+                <xsl:text>}&#10;</xsl:text>
             </xsl:result-document>
         </xsl:if>
     </xsl:template>
-    
-    
+
+
     <!-- ******************************************************* -->
     <!-- ****** Template which generates the impl classes  ***** -->
     <!-- ******************************************************* -->
     <xsl:template name="WriteImplClasses">
-        <xsl:param name="pClass" select="."/> <xsl:variable name="vPackage" select="@packageImpl"/>
+        <xsl:param name="pClass" select="."/>
+        <xsl:variable name="vPackage" select="@packageImpl"/>
         <xsl:variable name="vInterfaceName" select="xdd:createPascalizedName($pClass/@name, '')"/>
         <xsl:variable name="vClassnameImpl" select="xdd:createPascalizedName($pClass/@name, 'Impl')"/>
         <xsl:message select="concat('Generating Implementation Class: ', $vClassnameImpl)"/>
@@ -232,9 +248,11 @@
                     <xsl:value-of select="xdd:includeGroupRefs($vInterfaceName, text(), true(), false(), true(),'childNode')"/>
                 </xsl:for-each>
                 <xsl:text>&#10;</xsl:text>
-                <xsl:text>&#10;</xsl:text> <xsl:variable name="vName" select="@name"/>
+                <xsl:text>&#10;</xsl:text>
+                <xsl:variable name="vName" select="@name"/>
                 <xsl:variable name="vNodeName" select="//class/element[contains(@type, $vName)][1]/@name"/>
-                <xsl:value-of select=" xdd:writeImplClassConstructor($vClassnameImpl, $vNodeName[1], 'childNode')"/> <xsl:value-of select="xdd:writeChildUp()"/>
+                <xsl:value-of select=" xdd:writeImplClassConstructor($vClassnameImpl, $vNodeName[1], 'childNode')"/>
+                <xsl:value-of select="xdd:writeChildUp()"/>
                 <xsl:for-each select="include">
                     <xsl:value-of select="xdd:includeGroupRefs($vInterfaceName, text(), false(), false(), true(), 'childNode')"/>
                 </xsl:for-each>
@@ -255,13 +273,14 @@
             </xsl:result-document>
         </xsl:if>
     </xsl:template>
-    
-    
+
+
     <!-- ******************************************************* -->
     <!-- ****** Template which generates the descriptors  ****** -->
     <!-- ******************************************************* -->
     <xsl:template name="WriteDescriptorImpl">
-        <xsl:param name="pDescriptor" select="."/> <xsl:variable name="vPackage" select="@packageImpl"/>
+        <xsl:param name="pDescriptor" select="."/>
+        <xsl:variable name="vPackage" select="@packageImpl"/>
         <xsl:variable name="vNodeName" select="'model'"/>
         <xsl:variable name="vInterfaceName" select="xdd:createPascalizedName($pDescriptor/@schemaName, 'Descriptor')"/>
         <xsl:variable name="vClassnameImpl" select="xdd:createPascalizedName($pDescriptor/@schemaName, 'DescriptorImpl')"/>
@@ -291,7 +310,8 @@
                         <xsl:for-each select="include">
                             <xsl:value-of select="xdd:includeGroupRefs($vClassnameImpl, text(), true(), false(), false(), 'node')"/>
                         </xsl:for-each>
-                    </xsl:for-each> </xsl:for-each>
+                    </xsl:for-each>
+                </xsl:for-each>
                 <xsl:text>&#10;</xsl:text>
                 <!-- write the constructor -->
                 <xsl:value-of select="xdd:writeDescriptorImplConstructor($vClassnameImpl, $pDescriptor/element/@name, $vNodeName)"/>
@@ -308,33 +328,38 @@
                             <xsl:value-of select="xdd:includeGroupRefs($vClassnameImpl, text(), false(), false(), false(), $vNodeName)"/>
                         </xsl:for-each>
                     </xsl:for-each>
-                </xsl:for-each> <xsl:text>&#10;}</xsl:text>
+                </xsl:for-each>
+                <xsl:text>&#10;}</xsl:text>
                 <xsl:text>&#10;</xsl:text>
             </xsl:result-document>
         </xsl:if>
     </xsl:template>
-    
-    
+
+
     <!-- ****************************************************** -->
     <!-- ******  Function which generates a camel case string * -->
     <!-- ****************************************************** -->
     <xsl:function name="functx:words-to-camel-case" as="xs:string" xmlns:functx="http://www.functx.com">
-        <xsl:param name="arg" as="xs:string?"/> <xsl:sequence select=" 
+        <xsl:param name="arg" as="xs:string?"/>
+        <xsl:sequence select=" 
             string-join((tokenize($arg,'\s+')[1],
             for $word in tokenize($arg,'\s+')[position() > 1]
             return functx:capitalize-first($word))
             ,'')
-            "/> </xsl:function>
-    
-    
+            "/>
+    </xsl:function>
+
+
     <!-- ****************************************************** -->
     <!-- ******  Function which capitalize tje first char     * -->
     <!-- ****************************************************** -->
     <xsl:function name="functx:capitalize-first" as="xs:string?" xmlns:functx="http://www.functx.com">
-        <xsl:param name="arg" as="xs:string?"/> <xsl:sequence select=" 
+        <xsl:param name="arg" as="xs:string?"/>
+        <xsl:sequence select=" 
             concat(upper-case(substring($arg,1,1)),
             substring($arg,2))
-            "/> </xsl:function>
+            "/>
+    </xsl:function>
     <!-- ****************************************************** -->
     <!-- ****** Function which creates a full path       ****** -->
     <!-- ****************************************************** -->
@@ -345,16 +370,18 @@
         <xsl:param name="extension" as="xs:string"/>
         <xsl:sequence select="concat($path, '/' , replace($package,'\.','/'), '/' , $filename, '.', $extension)"/>
     </xsl:function>
-    
-    
+
+
     <!-- ****************************************************** -->
     <!-- ****** Function which creates a class name      ****** -->
     <!-- ****************************************************** -->
     <xsl:function name="xdd:createPascalizedName">
         <xsl:param name="name"/>
-        <xsl:param name="extension" as="xs:string"/> <xsl:variable name="retValue" select="xdd:normalizeString($name)"/>
+        <xsl:param name="extension" as="xs:string"/>
+        <xsl:variable name="retValue" select="xdd:normalizeString($name)"/>
         <xsl:variable name="retValue" select="functx:words-to-camel-case($retValue)"/>
-        <xsl:variable name="retValue" select="concat(upper-case(substring($retValue,1,1)), substring($retValue,2))"/> <xsl:choose>
+        <xsl:variable name="retValue" select="concat(upper-case(substring($retValue,1,1)), substring($retValue,2))"/>
+        <xsl:choose>
             <xsl:when test=" starts-with($name, 'java.')">
                 <xsl:sequence select="$name"/>
             </xsl:when>
@@ -366,8 +393,8 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
-    
+
+
     <!-- ****************************************************** -->
     <!-- ****** Function which creates a type   name     ****** -->
     <!-- ****************************************************** -->
@@ -375,13 +402,14 @@
         <xsl:param name="name"/>
         <xsl:sequence select="functx:words-to-camel-case(xdd:normalizeString($name))"/>
     </xsl:function>
-    
-    
+
+
     <!-- ****************************************************** -->
     <!-- ****** Function which normalizes a string       ****** -->
     <!-- ****************************************************** -->
     <xsl:function name="xdd:normalizeString">
-        <xsl:param name="name"/> <xsl:sequence
+        <xsl:param name="name"/>
+        <xsl:sequence
             select="
              if (contains($name, '/')) then
                    xdd:normalizeString(substring-after($name,'/'))
@@ -398,8 +426,8 @@
         "
         />
     </xsl:function>
-    
-    
+
+
     <!-- ****************************************************** -->
     <!-- ****** Function which writes the package line   ****** -->
     <!-- ****************************************************** -->
@@ -408,15 +436,16 @@
         <xsl:text>package </xsl:text><xsl:value-of select="$pPackage"/>; <xsl:text>&#10;</xsl:text>
         <xsl:text>&#10;</xsl:text>
     </xsl:function>
-    
-    
+
+
     <!-- ****************************************************** -->
     <!-- ****** Function which writes the package line   ****** -->
     <!-- ****************************************************** -->
     <xsl:function name="xdd:writeDescriptorImplConstructor">
         <xsl:param name="pClassName"/>
         <xsl:param name="pAppDescription"/>
-        <xsl:param name="pNodeNameLocal"/> <xsl:text>   // -------------------------------------------------------------------------------------||&#10;</xsl:text>
+        <xsl:param name="pNodeNameLocal"/>
+        <xsl:text>   // -------------------------------------------------------------------------------------||&#10;</xsl:text>
         <xsl:text>   // Constructor -------------------------------------------------------------------------||&#10;</xsl:text>
         <xsl:text>   // -------------------------------------------------------------------------------------||&#10;</xsl:text>
         <xsl:text>&#10;</xsl:text>
@@ -555,13 +584,16 @@
         <xsl:param name="pWriteAttribute" as="xs:boolean"/>
         <xsl:param name="pWriteInterface" as="xs:boolean"/>
         <xsl:param name="pIsGeneric" as="xs:boolean"/>
-        <xsl:param name="pNodeNameLocal" as="xs:string"/> <xsl:variable name="vGroupName" select=" substring-after($pGroupName, ':')"/>
+        <xsl:param name="pNodeNameLocal" as="xs:string"/>
+        <xsl:variable name="vGroupName" select=" substring-after($pGroupName, ':')"/>
         <xsl:for-each select="$gGroups/class[@name=$vGroupName]/element">
             <xsl:variable name="vMaxOccurs" select="concat('-', @maxOccurs)"/>
             <xsl:value-of select=" xdd:writeMethodOrAttribute($pClassname, @name, @type, $vMaxOccurs, $pWriteAttribute, $pWriteInterface, $pIsGeneric, $pNodeNameLocal, @attribute)"/>
-        </xsl:for-each> <xsl:for-each select="$gGroups/class[@name=$vGroupName]/include">
+        </xsl:for-each>
+        <xsl:for-each select="$gGroups/class[@name=$vGroupName]/include">
             <xsl:value-of select="xdd:includeGroupRefs($pClassname, text(), $pWriteAttribute, $pWriteInterface, $pIsGeneric, $pNodeNameLocal)"/>
-        </xsl:for-each> </xsl:function>
+        </xsl:for-each>
+    </xsl:function>
     <!---****************************************************** -->
     <!-- ****** Function which returns a classname          *** -->
     <!-- ****************************************************** -->
@@ -577,8 +609,8 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
-    
+
+
     <!-- ****************************************************** -->
     <!-- ****** Function which writes a method              *** -->
     <!-- ****************************************************** -->
@@ -591,10 +623,10 @@
         <xsl:param name="pWriteInterface" as="xs:boolean"/>
         <xsl:param name="pIsGeneric" as="xs:boolean"/>
         <xsl:param name="pNodeNameLocal" as="xs:string"/>
-        <xsl:param name="pIsAttribute" as="xs:boolean"/> 
+        <xsl:param name="pIsAttribute" as="xs:boolean"/>
         <xsl:variable name="vMethodName" select="xdd:createPascalizedName($pElementName,'')"/>
-        <xsl:variable name="vReturn" select=" xdd:getReturnType($pClassName, $pIsGeneric)"/> 
-        
+        <xsl:variable name="vReturn" select=" xdd:getReturnType($pClassName, $pIsGeneric)"/>
+
         <xsl:value-of select="concat( '   // maxOccurs = ', $pMaxOccurs)"/>
         <xsl:value-of select="concat( '   // isGeneric = ', $pIsGeneric)"/>
         <xsl:value-of select="concat( '   // isAttribute = ', $pIsAttribute)"/>
@@ -610,7 +642,8 @@
                         <xsl:value-of select="xdd:writeGetMethodSignature($vReturn, 'Boolean', concat($vMethodName, ''), $pElementName, '-', $pWriteInterface, false(), $pNodeNameLocal)"/>
                     </xsl:otherwise>
                 </xsl:choose>
-            </xsl:when> <xsl:when test="xdd:isEnumType($pElementType)">
+            </xsl:when>
+            <xsl:when test="xdd:isEnumType($pElementType)">
                 <xsl:choose>
                     <xsl:when test="$pWriteAttribute=true()">
                         <xsl:value-of select="concat('   private ', 'String', ' ', xdd:createCamelizedName($pElementName), ';')"/>
@@ -622,7 +655,8 @@
                         <xsl:value-of select="xdd:writeGetMethodSignature($vReturn, 'String', concat($vMethodName, ''), $pElementName, '-', $pWriteInterface, false(), $pNodeNameLocal)"/>
                     </xsl:otherwise>
                 </xsl:choose>
-            </xsl:when> <xsl:when test="xdd:isDataType($pElementType)">
+            </xsl:when>
+            <xsl:when test="xdd:isDataType($pElementType)">
                 <xsl:variable name="vDataType" select="xdd:CheckDataType($pElementType)"/>
                 <xsl:choose>
                     <xsl:when test="$pWriteAttribute=true()">
@@ -639,7 +673,8 @@
                         <xsl:value-of select="xdd:writeGetMethodSignature($vReturn, $vDataType, $vMethodName, $pElementName, $pMaxOccurs, $pWriteInterface, false(), $pNodeNameLocal)"/>
                     </xsl:otherwise>
                 </xsl:choose>
-            </xsl:when> <xsl:when test="$pIsGeneric=false()">
+            </xsl:when>
+            <xsl:when test="$pIsGeneric=false()">
                 <xsl:variable name="vReturnGeneric" select="xdd:createPascalizedName($pElementType, concat('&lt;', $pClassName, '&gt;'))"/>
                 <xsl:variable name="vElementTypeGeneric" select="xdd:createPascalizedName($pElementType, concat('&lt;', $pClassName, '&gt;'))"/>
                 <xsl:choose>
@@ -652,7 +687,8 @@
                         <xsl:text>&#10;</xsl:text>
                     </xsl:otherwise>
                 </xsl:choose>
-            </xsl:when> <xsl:otherwise>
+            </xsl:when>
+            <xsl:otherwise>
                 <!-- it is a complex type -->
                 <xsl:variable name="vReturnGeneric" select="xdd:createPascalizedName($pElementType, concat('&lt;', $pClassName, '&lt;T&gt;&gt;'))"/>
                 <xsl:variable name="vElementTypeGeneric" select="xdd:createPascalizedName($pElementType, concat('&lt;', $pClassName, '&lt;T&gt;&gt;'))"/>
@@ -667,8 +703,9 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:otherwise>
-        </xsl:choose> </xsl:function>
-    
+        </xsl:choose>
+    </xsl:function>
+
     <!-- ****************************************************** -->
     <!-- ****** Function which writes a set method          *** -->
     <!-- ****************************************************** -->
@@ -680,9 +717,11 @@
         <xsl:param name="vMaxOccurs"/>
         <xsl:param name="vIsInterface" as="xs:boolean"/>
         <xsl:param name="vNodeNameLocal"/>
-        <xsl:param name="pIsAttribute" as="xs:boolean"/> <xsl:variable name="vClassType" select="xdd:createPascalizedName($vElementType,'')"/>
+        <xsl:param name="pIsAttribute" as="xs:boolean"/>
+        <xsl:variable name="vClassType" select="xdd:createPascalizedName($vElementType,'')"/>
         <xsl:text>&#10;</xsl:text>
-        <xsl:value-of select="concat('   public ', $vReturnType, ' set', xdd:checkForClassType($vMethodName), '(',  xdd:createPascalizedName($vElementType,''),' ',xdd:checkForClassType(xdd:createCamelizedName($vElementName)), ')')"/> <xsl:choose>
+        <xsl:value-of select="concat('   public ', $vReturnType, ' set', xdd:checkForClassType($vMethodName), '(',  xdd:createPascalizedName($vElementType,''),' ',xdd:checkForClassType(xdd:createCamelizedName($vElementName)), ')')"/>
+        <xsl:choose>
             <xsl:when test="$vIsInterface=true()">
                 <xsl:value-of select="';'"/>
             </xsl:when>
@@ -690,7 +729,7 @@
                 <xsl:text>&#10;   {&#10;</xsl:text>
                 <xsl:value-of select="concat('      ', $vNodeNameLocal, '.create(&quot;', $vElementName, '&quot;).text(', xdd:checkForClassType(xdd:createCamelizedName($vElementName)) , ');', '&#10;')"/>
                 <xsl:value-of select="'      return this;&#10;'"/>
-                <xsl:text>   }&#10;</xsl:text> 
+                <xsl:text>   }&#10;</xsl:text>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:text>&#10;</xsl:text>
@@ -700,20 +739,21 @@
                         <xsl:value-of select="concat('      this.', xdd:checkForClassType(xdd:createCamelizedName($vElementName)), ' = ', xdd:checkForClassType(xdd:createCamelizedName($vElementName)), ';' , '&#10;')"/>
                         <xsl:value-of select="concat('      ', $vNodeNameLocal, '.attribute(&quot;', $vElementName, '&quot;, ', xdd:checkForClassType(xdd:createCamelizedName($vElementName)) , ');', '&#10;')"/>
                         <xsl:value-of select="'      return this;&#10;'"/>
-                    </xsl:when> <xsl:otherwise>
+                    </xsl:when>
+                    <xsl:otherwise>
                         <xsl:value-of select="concat('      this.', xdd:checkForClassType(xdd:createCamelizedName($vElementName)), ' = ', xdd:checkForClassType(xdd:createCamelizedName($vElementName)), ';' , '&#10;')"/>
                         <xsl:value-of select="concat('      ', $vNodeNameLocal, '.getOrCreate(&quot;', $vElementName, '&quot;).text(', xdd:checkForClassType(xdd:createCamelizedName($vElementName)) , ');', '&#10;')"/>
                         <xsl:value-of select="'      return this;&#10;'"/>
                     </xsl:otherwise>
                 </xsl:choose>
-                <xsl:text>   }&#10;</xsl:text> 
-                
+                <xsl:text>   }&#10;</xsl:text>
+
             </xsl:otherwise>
         </xsl:choose>
         <xsl:text>&#10;</xsl:text>
-    </xsl:function>     
-    
-    
+    </xsl:function>
+
+
     <!-- ****************************************************** -->
     <!-- ****** Function which writes a get method          *** -->
     <!-- ****************************************************** -->
@@ -725,20 +765,20 @@
         <xsl:param name="vMaxOccurs"/>
         <xsl:param name="vIsInterface" as="xs:boolean"/>
         <xsl:param name="vIsComplexType"/>
-        <xsl:param name="vNodeNameLocal"/> 
-        
+        <xsl:param name="vNodeNameLocal"/>
+
         <xsl:value-of select="concat('   public ', xdd:createPascalizedName($vElementType,''), ' get', xdd:checkForClassType($vMethodName), '()')"/>
-        
+
         <xsl:choose>
             <xsl:when test="$vIsInterface=true()">
                 <xsl:value-of select="';'"/>
             </xsl:when>
-            
+
             <xsl:otherwise>
                 <xsl:text>&#10;</xsl:text>
                 <xsl:text>   {&#10;</xsl:text>
                 <xsl:choose>
-<!--                    <xsl:when test="$vIsComplexType=true() and contains($vMaxOccurs, 'unbounded')=false()">-->
+                    <!--                    <xsl:when test="$vIsComplexType=true() and contains($vMaxOccurs, 'unbounded')=false()">-->
                     <xsl:when test="$vIsComplexType=true()">
                         <xsl:variable name="vConstructor" select="concat(substring-before($vElementType, '&lt;'), 'Impl&lt;', $vClassType, '&gt;')"/>
                         <xsl:value-of select=" concat('      if( ', xdd:checkForClassType(xdd:createCamelizedName($vElementName)), ' == null)' , '&#10;')"/>
@@ -747,19 +787,19 @@
                         <xsl:value-of select=" concat('      }', '&#10;')"/>
                         <xsl:value-of select=" concat('      return ', xdd:createCamelizedName($vElementName), ';&#10;')"/>
                     </xsl:when>
-                    
-                   <xsl:when test="$vIsComplexType=false() and contains($vMaxOccurs, 'unbounded')=false()">
-                       <xsl:choose>
-                        <xsl:when test="$vElementType='Boolean'">
-                            <xsl:value-of select=" concat('      return Strings.isTrue(', $vNodeNameLocal, '.textValue(&quot;', $vElementName, '&quot;));' , '&#10;')"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                             <xsl:value-of select=" concat('      return ', $vNodeNameLocal, '.textValue(&quot;', $vElementName, '&quot;);' , '&#10;')"/>
-                        </xsl:otherwise>
-                       </xsl:choose>
-                   </xsl:when>
-                    
-                    
+
+                    <xsl:when test="$vIsComplexType=false() and contains($vMaxOccurs, 'unbounded')=false()">
+                        <xsl:choose>
+                            <xsl:when test="$vElementType='Boolean'">
+                                <xsl:value-of select=" concat('      return Strings.isTrue(', $vNodeNameLocal, '.textValue(&quot;', $vElementName, '&quot;));' , '&#10;')"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select=" concat('      return ', $vNodeNameLocal, '.textValue(&quot;', $vElementName, '&quot;);' , '&#10;')"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:when>
+
+
                     <xsl:otherwise>
                         <xsl:value-of select=" concat('      return ', xdd:checkForClassType(xdd:createCamelizedName($vElementName)), ';' , '&#10;')"/>
                     </xsl:otherwise>
@@ -773,7 +813,8 @@
     <!-- ****** Function which writes the imports           *** -->
     <!-- ****************************************************** -->
     <xsl:function name="xdd:writeImports">
-        <xsl:param name="vIsApi" as="xs:boolean"/> <xsl:choose>
+        <xsl:param name="vIsApi" as="xs:boolean"/>
+        <xsl:choose>
             <xsl:when test="$vIsApi=true()">
                 <xsl:for-each select="$gPackageApis">
                     <xsl:value-of select="concat('import ', @name, '.*;&#10;')"/>
@@ -807,7 +848,8 @@
     <!-- ****** Function which checks an enum type          *** -->
     <!-- ****************************************************** -->
     <xsl:function name="xdd:isEnumType" as="xs:boolean">
-        <xsl:param name="pType" as="xs:string"/> <xsl:choose>
+        <xsl:param name="pType" as="xs:string"/>
+        <xsl:choose>
             <xsl:when test=" contains($pType, ':')">
                 <xsl:value-of select="xdd:isEnumType(substring-after($pType, ':'))"/>
             </xsl:when>
@@ -820,7 +862,8 @@
     <!-- ****** Function which checks a data type           *** -->
     <!-- ****************************************************** -->
     <xsl:function name="xdd:isDataType" as="xs:boolean">
-        <xsl:param name="pType" as="xs:string"/> <xsl:choose>
+        <xsl:param name="pType" as="xs:string"/>
+        <xsl:choose>
             <xsl:when test="starts-with($pType, 'xsd:')">
                 <xsl:sequence select="boolean(true())"/>
             </xsl:when>
@@ -837,27 +880,34 @@
     <!-- ****** a java data type, if possible               *** -->
     <!-- ****************************************************** -->
     <xsl:function name="xdd:CheckDataType" as="xs:string">
-        <xsl:param name="pTypeName"/> <xsl:choose>
+        <xsl:param name="pTypeName"/>
+        <xsl:choose>
             <xsl:when test=" starts-with($pTypeName, 'xsd:')">
                 <xsl:sequence select="xdd:getJavaDataType($pTypeName)"/>
-            </xsl:when> <xsl:when test="starts-with($pTypeName, 'javaee:')">
+            </xsl:when>
+            <xsl:when test="starts-with($pTypeName, 'javaee:')">
                 <xsl:sequence select="xdd:CheckDataType( substring-after($pTypeName, 'javaee:'))"/>
-            </xsl:when> <xsl:otherwise>
+            </xsl:when>
+            <xsl:otherwise>
                 <xsl:for-each select="$gDataTypes/datatype">
                     <xsl:if test="@name=$pTypeName">
                         <xsl:if test="starts-with(@mappedTo, 'xsd:')">
                             <xsl:sequence select="xdd:getJavaDataType(@mappedTo)"/>
-                        </xsl:if> <xsl:if test="starts-with(@mappedTo, 'javaee:')">
+                        </xsl:if>
+                        <xsl:if test="starts-with(@mappedTo, 'javaee:')">
                             <xsl:sequence select="xdd:CheckDataType(substring-after(@mappedTo, 'javaee:'))"/>
                         </xsl:if>
                     </xsl:if>
-                </xsl:for-each> </xsl:otherwise> </xsl:choose>
+                </xsl:for-each>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:function>
     <!-- ****************************************************** -->
     <!-- ****** Function which returns a java data type     *** -->
     <!-- ****************************************************** -->
     <xsl:function name="xdd:getJavaDataType" as="xs:string">
-        <xsl:param name="pText" as="xs:string"/> <xsl:choose>
+        <xsl:param name="pText" as="xs:string"/>
+        <xsl:choose>
             <xsl:when test="$pText='xsd:long'">
                 <xsl:sequence select="'Long'"/>
             </xsl:when>
