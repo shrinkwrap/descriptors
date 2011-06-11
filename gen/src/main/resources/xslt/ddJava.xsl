@@ -786,6 +786,7 @@
             <xsl:when test="$vIsComplexType=true() and contains($vMaxOccurs, 'unbounded')">
                 <xsl:choose>
                     <xsl:when test="$vIsInterface=true()">
+                        <xsl:text>// vIsComplexType=true() and contains($vMaxOccurs, 'unbounded';&#10;</xsl:text>
                         <xsl:value-of select="concat($vStandardSetSignature, ';&#10;')"/>
                     </xsl:when>
                     <xsl:otherwise>
@@ -801,6 +802,7 @@
             <xsl:when test="$pIsAttribute=true()">
                 <xsl:choose>
                     <xsl:when test="$vIsInterface=true()">
+                        <xsl:text>// pIsAttribute=true();&#10;</xsl:text>
                         <xsl:value-of select="concat($vStandardSetSignature, ';&#10;')"/>
                     </xsl:when>
                     <xsl:otherwise>
@@ -817,6 +819,7 @@
             <xsl:otherwise>
                 <xsl:choose>
                     <xsl:when test="$vIsInterface=true()">
+                        <xsl:text>// otherwise;&#10;</xsl:text>
                         <xsl:value-of select="concat($vStandardSetSignature, ';&#10;')"/>
                     </xsl:when>
                     <xsl:otherwise>
@@ -848,16 +851,25 @@
         <xsl:param name="vNodeNameLocal"/>
 
         <xsl:variable name="vStandardGetSignature" select="concat('public ', xdd:createPascalizedName($vElementType,''), ' get', xdd:checkForClassType($vMethodName), '()')"/>
+        <xsl:variable name="vStandardGetComplexSignature" select="concat('public ', xdd:createPascalizedName($vElementType,''), ' get', xdd:checkForClassType($vMethodName), '()')"/>
         <xsl:variable name="vStandardGetListSignature" select="concat('public List&lt;', xdd:createPascalizedName($vElementType,''), '&gt; get', xdd:checkForClassType($vMethodName), 'List()')"/>
 
         <xsl:choose>
             <xsl:when test="$vIsComplexType=true()">
                 <xsl:choose>
                     <xsl:when test="$vIsInterface=true()">
-                        <xsl:value-of select=" concat('   ', $vStandardGetSignature, ';&#10;')"/>
+                        <xsl:value-of select=" concat('   ', $vStandardGetComplexSignature, ';&#10;')"/>
                     </xsl:when>
+                    
+                    <xsl:when test="contains($vMaxOccurs, 'unbounded')=true()">
+                        <xsl:value-of select=" concat('   ', $vStandardGetComplexSignature, '&#10;   {&#10;')"/>
+                        <xsl:variable name="vConstructor" select="concat(substring-before($vElementType, '&lt;'), 'Impl&lt;', $vClassType, '&gt;')"/>
+                        <xsl:value-of select=" concat('      return new ', $vConstructor, '(this, &quot;&quot;, ', $vNodeNameLocal, ');', '&#10;')"/>
+                        <xsl:text>   }&#10;</xsl:text>
+                    </xsl:when>
+                    
                     <xsl:otherwise>
-                        <xsl:value-of select=" concat('   ', $vStandardGetSignature, '&#10;   {&#10;')"/>
+                        <xsl:value-of select=" concat('   ', $vStandardGetComplexSignature, '&#10;   {&#10;')"/>
                         <xsl:variable name="vConstructor" select="concat(substring-before($vElementType, '&lt;'), 'Impl&lt;', $vClassType, '&gt;')"/>
                         <xsl:value-of select=" concat('      if( ', xdd:checkForClassType(xdd:createCamelizedName($vElementName)), ' == null)' , '&#10;')"/>
                         <xsl:value-of select=" concat('      {', '&#10;')"/>
