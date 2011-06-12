@@ -1,5 +1,8 @@
 package org.jboss.shrinkwrap.descriptor.impl.webapp30; 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbLocalRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbRefType;
@@ -15,7 +18,6 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceUnitRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceEnvRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleType;
-import org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13.ServiceRefType;
 import org.jboss.shrinkwrap.descriptor.api.jsp22.JspConfigType;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebApp30Descriptor;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.AbsoluteOrderingType;
@@ -31,6 +33,7 @@ import org.jboss.shrinkwrap.descriptor.api.webcommon30.ServletType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.SessionConfigType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.WelcomeFileListType;
 import org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase;
+import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
 import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.DataSourceTypeImpl;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.EjbLocalRefTypeImpl;
@@ -47,7 +50,6 @@ import org.jboss.shrinkwrap.descriptor.impl.javaee6.PersistenceUnitRefTypeImpl;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.ResourceEnvRefTypeImpl;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.ResourceRefTypeImpl;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.SecurityRoleTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient13.ServiceRefTypeImpl;
 import org.jboss.shrinkwrap.descriptor.impl.jsp22.JspConfigTypeImpl;
 import org.jboss.shrinkwrap.descriptor.impl.webcommon30.AbsoluteOrderingTypeImpl;
 import org.jboss.shrinkwrap.descriptor.impl.webcommon30.ErrorPageTypeImpl;
@@ -66,7 +68,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-06T19:59:35.573+02:00
+ * Generation date :2011-06-12T08:56:23.309+02:00
  */
 public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebApp30Descriptor<WebApp30DescriptorImpl>
 {
@@ -75,40 +77,72 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
    // -------------------------------------------------------------------------------------||
 
    private Node model;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private String moduleName;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private AbsoluteOrderingType<WebApp30DescriptorImpl> absoluteOrdering;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private Boolean distributable;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private ParamValueType<WebApp30DescriptorImpl> contextParam;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private FilterType<WebApp30DescriptorImpl> filter;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private FilterMappingType<WebApp30DescriptorImpl> filterMapping;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private ListenerType<WebApp30DescriptorImpl> listener;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private ServletType<WebApp30DescriptorImpl> servlet;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private ServletMappingType<WebApp30DescriptorImpl> servletMapping;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private SessionConfigType<WebApp30DescriptorImpl> sessionConfig;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private MimeMappingType<WebApp30DescriptorImpl> mimeMapping;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private WelcomeFileListType<WebApp30DescriptorImpl> welcomeFileList;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private ErrorPageType<WebApp30DescriptorImpl> errorPage;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private JspConfigType<WebApp30DescriptorImpl> jspConfig;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private SecurityConstraintType<WebApp30DescriptorImpl> securityConstraint;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private LoginConfigType<WebApp30DescriptorImpl> loginConfig;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private SecurityRoleType<WebApp30DescriptorImpl> securityRole;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private MessageDestinationType<WebApp30DescriptorImpl> messageDestination;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private LocaleEncodingMappingListType<WebApp30DescriptorImpl> localeEncodingMappingList;
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
    private String description;
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
    private String displayName;
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
    private IconType<WebApp30DescriptorImpl> icon;
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
    private EnvEntryType<WebApp30DescriptorImpl> envEntry;
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
    private EjbRefType<WebApp30DescriptorImpl> ejbRef;
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
    private EjbLocalRefType<WebApp30DescriptorImpl> ejbLocalRef;
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
    private ResourceRefType<WebApp30DescriptorImpl> resourceRef;
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
    private ResourceEnvRefType<WebApp30DescriptorImpl> resourceEnvRef;
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
    private MessageDestinationRefType<WebApp30DescriptorImpl> messageDestinationRef;
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
    private PersistenceContextRefType<WebApp30DescriptorImpl> persistenceContextRef;
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
    private PersistenceUnitRefType<WebApp30DescriptorImpl> persistenceUnitRef;
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
    private LifecycleCallbackType<WebApp30DescriptorImpl> postConstruct;
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
    private LifecycleCallbackType<WebApp30DescriptorImpl> preDestroy;
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
    private DataSourceType<WebApp30DescriptorImpl> dataSource;
-   private ServiceRefType<WebApp30DescriptorImpl> serviceRef;
    private String version;
    private Boolean metadataComplete;
 
@@ -140,9 +174,9 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
    {
       return new XMLExporter();
    }
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public WebApp30DescriptorImpl setModuleName(String moduleName)
-   {
+   public WebApp30DescriptorImpl setModuleName(String moduleName)   {
       this.moduleName = moduleName;
       model.getOrCreate("module-name").text(moduleName);
       return this;
@@ -150,12 +184,12 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public String getModuleName()
    {
-      return moduleName;
+      return model.textValue("module-name");
    }
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public WebApp30DescriptorImpl setAbsoluteOrdering(AbsoluteOrderingType<WebApp30DescriptorImpl> absoluteOrdering)
-   {
+   public WebApp30DescriptorImpl setAbsoluteOrdering(AbsoluteOrderingType<WebApp30DescriptorImpl> absoluteOrdering)   {
       this.absoluteOrdering = absoluteOrdering;
       model.getOrCreate("absolute-ordering").text(absoluteOrdering);
       return this;
@@ -171,9 +205,9 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public WebApp30DescriptorImpl setDistributable(Boolean distributable)
-   {
+   public WebApp30DescriptorImpl setDistributable(Boolean distributable)   {
       this.distributable = distributable;
       model.getOrCreate("distributable").text(distributable);
       return this;
@@ -181,12 +215,12 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public Boolean getDistributable()
    {
-      return distributable;
+      return Strings.isTrue(model.textValue("distributable"));
    }
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public WebApp30DescriptorImpl setContextParam(ParamValueType<WebApp30DescriptorImpl> contextParam)
-   {
+   public WebApp30DescriptorImpl setContextParam(ParamValueType<WebApp30DescriptorImpl> contextParam)   {
       this.contextParam = contextParam;
       model.getOrCreate("context-param").text(contextParam);
       return this;
@@ -202,9 +236,9 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public WebApp30DescriptorImpl setFilter(FilterType<WebApp30DescriptorImpl> filter)
-   {
+   public WebApp30DescriptorImpl setFilter(FilterType<WebApp30DescriptorImpl> filter)   {
       this.filter = filter;
       model.getOrCreate("filter").text(filter);
       return this;
@@ -220,9 +254,9 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public WebApp30DescriptorImpl setFilterMapping(FilterMappingType<WebApp30DescriptorImpl> filterMapping)
-   {
+   public WebApp30DescriptorImpl setFilterMapping(FilterMappingType<WebApp30DescriptorImpl> filterMapping)   {
       this.filterMapping = filterMapping;
       model.getOrCreate("filter-mapping").text(filterMapping);
       return this;
@@ -238,9 +272,9 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public WebApp30DescriptorImpl setListener(ListenerType<WebApp30DescriptorImpl> listener)
-   {
+   public WebApp30DescriptorImpl setListener(ListenerType<WebApp30DescriptorImpl> listener)   {
       this.listener = listener;
       model.getOrCreate("listener").text(listener);
       return this;
@@ -256,9 +290,9 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public WebApp30DescriptorImpl setServlet(ServletType<WebApp30DescriptorImpl> servlet)
-   {
+   public WebApp30DescriptorImpl setServlet(ServletType<WebApp30DescriptorImpl> servlet)   {
       this.servlet = servlet;
       model.getOrCreate("servlet").text(servlet);
       return this;
@@ -274,9 +308,9 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public WebApp30DescriptorImpl setServletMapping(ServletMappingType<WebApp30DescriptorImpl> servletMapping)
-   {
+   public WebApp30DescriptorImpl setServletMapping(ServletMappingType<WebApp30DescriptorImpl> servletMapping)   {
       this.servletMapping = servletMapping;
       model.getOrCreate("servlet-mapping").text(servletMapping);
       return this;
@@ -292,9 +326,9 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public WebApp30DescriptorImpl setSessionConfig(SessionConfigType<WebApp30DescriptorImpl> sessionConfig)
-   {
+   public WebApp30DescriptorImpl setSessionConfig(SessionConfigType<WebApp30DescriptorImpl> sessionConfig)   {
       this.sessionConfig = sessionConfig;
       model.getOrCreate("session-config").text(sessionConfig);
       return this;
@@ -310,9 +344,9 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public WebApp30DescriptorImpl setMimeMapping(MimeMappingType<WebApp30DescriptorImpl> mimeMapping)
-   {
+   public WebApp30DescriptorImpl setMimeMapping(MimeMappingType<WebApp30DescriptorImpl> mimeMapping)   {
       this.mimeMapping = mimeMapping;
       model.getOrCreate("mime-mapping").text(mimeMapping);
       return this;
@@ -328,9 +362,9 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public WebApp30DescriptorImpl setWelcomeFileList(WelcomeFileListType<WebApp30DescriptorImpl> welcomeFileList)
-   {
+   public WebApp30DescriptorImpl setWelcomeFileList(WelcomeFileListType<WebApp30DescriptorImpl> welcomeFileList)   {
       this.welcomeFileList = welcomeFileList;
       model.getOrCreate("welcome-file-list").text(welcomeFileList);
       return this;
@@ -346,9 +380,9 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public WebApp30DescriptorImpl setErrorPage(ErrorPageType<WebApp30DescriptorImpl> errorPage)
-   {
+   public WebApp30DescriptorImpl setErrorPage(ErrorPageType<WebApp30DescriptorImpl> errorPage)   {
       this.errorPage = errorPage;
       model.getOrCreate("error-page").text(errorPage);
       return this;
@@ -364,9 +398,9 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public WebApp30DescriptorImpl setJspConfig(JspConfigType<WebApp30DescriptorImpl> jspConfig)
-   {
+   public WebApp30DescriptorImpl setJspConfig(JspConfigType<WebApp30DescriptorImpl> jspConfig)   {
       this.jspConfig = jspConfig;
       model.getOrCreate("jsp-config").text(jspConfig);
       return this;
@@ -382,9 +416,9 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public WebApp30DescriptorImpl setSecurityConstraint(SecurityConstraintType<WebApp30DescriptorImpl> securityConstraint)
-   {
+   public WebApp30DescriptorImpl setSecurityConstraint(SecurityConstraintType<WebApp30DescriptorImpl> securityConstraint)   {
       this.securityConstraint = securityConstraint;
       model.getOrCreate("security-constraint").text(securityConstraint);
       return this;
@@ -400,9 +434,9 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public WebApp30DescriptorImpl setLoginConfig(LoginConfigType<WebApp30DescriptorImpl> loginConfig)
-   {
+   public WebApp30DescriptorImpl setLoginConfig(LoginConfigType<WebApp30DescriptorImpl> loginConfig)   {
       this.loginConfig = loginConfig;
       model.getOrCreate("login-config").text(loginConfig);
       return this;
@@ -418,9 +452,9 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public WebApp30DescriptorImpl setSecurityRole(SecurityRoleType<WebApp30DescriptorImpl> securityRole)
-   {
+   public WebApp30DescriptorImpl setSecurityRole(SecurityRoleType<WebApp30DescriptorImpl> securityRole)   {
       this.securityRole = securityRole;
       model.getOrCreate("security-role").text(securityRole);
       return this;
@@ -436,9 +470,9 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public WebApp30DescriptorImpl setMessageDestination(MessageDestinationType<WebApp30DescriptorImpl> messageDestination)
-   {
+   public WebApp30DescriptorImpl setMessageDestination(MessageDestinationType<WebApp30DescriptorImpl> messageDestination)   {
       this.messageDestination = messageDestination;
       model.getOrCreate("message-destination").text(messageDestination);
       return this;
@@ -454,9 +488,9 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public WebApp30DescriptorImpl setLocaleEncodingMappingList(LocaleEncodingMappingListType<WebApp30DescriptorImpl> localeEncodingMappingList)
-   {
+   public WebApp30DescriptorImpl setLocaleEncodingMappingList(LocaleEncodingMappingListType<WebApp30DescriptorImpl> localeEncodingMappingList)   {
       this.localeEncodingMappingList = localeEncodingMappingList;
       model.getOrCreate("locale-encoding-mapping-list").text(localeEncodingMappingList);
       return this;
@@ -472,6 +506,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
    }
 
 
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
 
    public WebApp30DescriptorImpl setDescription(String description)
    {
@@ -479,11 +514,27 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
       return this;
    }
 
-   public String getDescription()
+   public WebApp30DescriptorImpl setDescription(String ... values)
    {
-      return description;
+      for(String name: values)
+      {
+         setDescription(description);
+      }
+         return this;
    }
 
+   public List<String> getDescriptionList()
+   {
+      List<String> result = new ArrayList<String>();
+      List<Node> nodes = model.get("description");
+      for (Node node : nodes)
+      {
+         result.add(node.text());
+      }
+      return result;
+   }
+
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
 
    public WebApp30DescriptorImpl setDisplayName(String displayName)
    {
@@ -491,11 +542,27 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
       return this;
    }
 
-   public String getDisplayName()
+   public WebApp30DescriptorImpl setDisplayName(String ... values)
    {
-      return displayName;
+      for(String name: values)
+      {
+         setDisplayName(displayName);
+      }
+         return this;
    }
 
+   public List<String> getDisplayNameList()
+   {
+      List<String> result = new ArrayList<String>();
+      List<Node> nodes = model.get("display-name");
+      for (Node node : nodes)
+      {
+         result.add(node.text());
+      }
+      return result;
+   }
+
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
 
    public WebApp30DescriptorImpl setIcon(IconType<WebApp30DescriptorImpl> icon)
    {
@@ -505,14 +572,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public IconType<WebApp30DescriptorImpl> getIcon()
    {
-      if( icon == null)
+      return new IconTypeImpl<WebApp30DescriptorImpl>(this, "", model);
+   }
+
+   public List<IconType<WebApp30DescriptorImpl>> getIconList()
+   {
+      List<IconType<WebApp30DescriptorImpl>> list = new ArrayList<IconType<WebApp30DescriptorImpl>>();
+      List<Node> nodeList = model.get(IconTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          icon = new IconTypeImpl<WebApp30DescriptorImpl>(this, "", model);
+         IconType<WebApp30DescriptorImpl>  type = new IconTypeImpl<WebApp30DescriptorImpl>(this, "", model, node);
+         list.add(type);
       }
-      return icon;
+      return list;
    }
 
 
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
 
    public WebApp30DescriptorImpl setEnvEntry(EnvEntryType<WebApp30DescriptorImpl> envEntry)
    {
@@ -522,14 +598,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public EnvEntryType<WebApp30DescriptorImpl> getEnvEntry()
    {
-      if( envEntry == null)
+      return new EnvEntryTypeImpl<WebApp30DescriptorImpl>(this, "", model);
+   }
+
+   public List<EnvEntryType<WebApp30DescriptorImpl>> getEnvEntryList()
+   {
+      List<EnvEntryType<WebApp30DescriptorImpl>> list = new ArrayList<EnvEntryType<WebApp30DescriptorImpl>>();
+      List<Node> nodeList = model.get(EnvEntryTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          envEntry = new EnvEntryTypeImpl<WebApp30DescriptorImpl>(this, "", model);
+         EnvEntryType<WebApp30DescriptorImpl>  type = new EnvEntryTypeImpl<WebApp30DescriptorImpl>(this, "", model, node);
+         list.add(type);
       }
-      return envEntry;
+      return list;
    }
 
 
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
 
    public WebApp30DescriptorImpl setEjbRef(EjbRefType<WebApp30DescriptorImpl> ejbRef)
    {
@@ -539,14 +624,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public EjbRefType<WebApp30DescriptorImpl> getEjbRef()
    {
-      if( ejbRef == null)
+      return new EjbRefTypeImpl<WebApp30DescriptorImpl>(this, "", model);
+   }
+
+   public List<EjbRefType<WebApp30DescriptorImpl>> getEjbRefList()
+   {
+      List<EjbRefType<WebApp30DescriptorImpl>> list = new ArrayList<EjbRefType<WebApp30DescriptorImpl>>();
+      List<Node> nodeList = model.get(EjbRefTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          ejbRef = new EjbRefTypeImpl<WebApp30DescriptorImpl>(this, "", model);
+         EjbRefType<WebApp30DescriptorImpl>  type = new EjbRefTypeImpl<WebApp30DescriptorImpl>(this, "", model, node);
+         list.add(type);
       }
-      return ejbRef;
+      return list;
    }
 
 
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
 
    public WebApp30DescriptorImpl setEjbLocalRef(EjbLocalRefType<WebApp30DescriptorImpl> ejbLocalRef)
    {
@@ -556,14 +650,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public EjbLocalRefType<WebApp30DescriptorImpl> getEjbLocalRef()
    {
-      if( ejbLocalRef == null)
+      return new EjbLocalRefTypeImpl<WebApp30DescriptorImpl>(this, "", model);
+   }
+
+   public List<EjbLocalRefType<WebApp30DescriptorImpl>> getEjbLocalRefList()
+   {
+      List<EjbLocalRefType<WebApp30DescriptorImpl>> list = new ArrayList<EjbLocalRefType<WebApp30DescriptorImpl>>();
+      List<Node> nodeList = model.get(EjbLocalRefTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          ejbLocalRef = new EjbLocalRefTypeImpl<WebApp30DescriptorImpl>(this, "", model);
+         EjbLocalRefType<WebApp30DescriptorImpl>  type = new EjbLocalRefTypeImpl<WebApp30DescriptorImpl>(this, "", model, node);
+         list.add(type);
       }
-      return ejbLocalRef;
+      return list;
    }
 
 
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
 
    public WebApp30DescriptorImpl setResourceRef(ResourceRefType<WebApp30DescriptorImpl> resourceRef)
    {
@@ -573,14 +676,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public ResourceRefType<WebApp30DescriptorImpl> getResourceRef()
    {
-      if( resourceRef == null)
+      return new ResourceRefTypeImpl<WebApp30DescriptorImpl>(this, "", model);
+   }
+
+   public List<ResourceRefType<WebApp30DescriptorImpl>> getResourceRefList()
+   {
+      List<ResourceRefType<WebApp30DescriptorImpl>> list = new ArrayList<ResourceRefType<WebApp30DescriptorImpl>>();
+      List<Node> nodeList = model.get(ResourceRefTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          resourceRef = new ResourceRefTypeImpl<WebApp30DescriptorImpl>(this, "", model);
+         ResourceRefType<WebApp30DescriptorImpl>  type = new ResourceRefTypeImpl<WebApp30DescriptorImpl>(this, "", model, node);
+         list.add(type);
       }
-      return resourceRef;
+      return list;
    }
 
 
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
 
    public WebApp30DescriptorImpl setResourceEnvRef(ResourceEnvRefType<WebApp30DescriptorImpl> resourceEnvRef)
    {
@@ -590,14 +702,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public ResourceEnvRefType<WebApp30DescriptorImpl> getResourceEnvRef()
    {
-      if( resourceEnvRef == null)
+      return new ResourceEnvRefTypeImpl<WebApp30DescriptorImpl>(this, "", model);
+   }
+
+   public List<ResourceEnvRefType<WebApp30DescriptorImpl>> getResourceEnvRefList()
+   {
+      List<ResourceEnvRefType<WebApp30DescriptorImpl>> list = new ArrayList<ResourceEnvRefType<WebApp30DescriptorImpl>>();
+      List<Node> nodeList = model.get(ResourceEnvRefTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          resourceEnvRef = new ResourceEnvRefTypeImpl<WebApp30DescriptorImpl>(this, "", model);
+         ResourceEnvRefType<WebApp30DescriptorImpl>  type = new ResourceEnvRefTypeImpl<WebApp30DescriptorImpl>(this, "", model, node);
+         list.add(type);
       }
-      return resourceEnvRef;
+      return list;
    }
 
 
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
 
    public WebApp30DescriptorImpl setMessageDestinationRef(MessageDestinationRefType<WebApp30DescriptorImpl> messageDestinationRef)
    {
@@ -607,14 +728,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public MessageDestinationRefType<WebApp30DescriptorImpl> getMessageDestinationRef()
    {
-      if( messageDestinationRef == null)
+      return new MessageDestinationRefTypeImpl<WebApp30DescriptorImpl>(this, "", model);
+   }
+
+   public List<MessageDestinationRefType<WebApp30DescriptorImpl>> getMessageDestinationRefList()
+   {
+      List<MessageDestinationRefType<WebApp30DescriptorImpl>> list = new ArrayList<MessageDestinationRefType<WebApp30DescriptorImpl>>();
+      List<Node> nodeList = model.get(MessageDestinationRefTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          messageDestinationRef = new MessageDestinationRefTypeImpl<WebApp30DescriptorImpl>(this, "", model);
+         MessageDestinationRefType<WebApp30DescriptorImpl>  type = new MessageDestinationRefTypeImpl<WebApp30DescriptorImpl>(this, "", model, node);
+         list.add(type);
       }
-      return messageDestinationRef;
+      return list;
    }
 
 
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
 
    public WebApp30DescriptorImpl setPersistenceContextRef(PersistenceContextRefType<WebApp30DescriptorImpl> persistenceContextRef)
    {
@@ -624,14 +754,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public PersistenceContextRefType<WebApp30DescriptorImpl> getPersistenceContextRef()
    {
-      if( persistenceContextRef == null)
+      return new PersistenceContextRefTypeImpl<WebApp30DescriptorImpl>(this, "", model);
+   }
+
+   public List<PersistenceContextRefType<WebApp30DescriptorImpl>> getPersistenceContextRefList()
+   {
+      List<PersistenceContextRefType<WebApp30DescriptorImpl>> list = new ArrayList<PersistenceContextRefType<WebApp30DescriptorImpl>>();
+      List<Node> nodeList = model.get(PersistenceContextRefTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          persistenceContextRef = new PersistenceContextRefTypeImpl<WebApp30DescriptorImpl>(this, "", model);
+         PersistenceContextRefType<WebApp30DescriptorImpl>  type = new PersistenceContextRefTypeImpl<WebApp30DescriptorImpl>(this, "", model, node);
+         list.add(type);
       }
-      return persistenceContextRef;
+      return list;
    }
 
 
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
 
    public WebApp30DescriptorImpl setPersistenceUnitRef(PersistenceUnitRefType<WebApp30DescriptorImpl> persistenceUnitRef)
    {
@@ -641,14 +780,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public PersistenceUnitRefType<WebApp30DescriptorImpl> getPersistenceUnitRef()
    {
-      if( persistenceUnitRef == null)
+      return new PersistenceUnitRefTypeImpl<WebApp30DescriptorImpl>(this, "", model);
+   }
+
+   public List<PersistenceUnitRefType<WebApp30DescriptorImpl>> getPersistenceUnitRefList()
+   {
+      List<PersistenceUnitRefType<WebApp30DescriptorImpl>> list = new ArrayList<PersistenceUnitRefType<WebApp30DescriptorImpl>>();
+      List<Node> nodeList = model.get(PersistenceUnitRefTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          persistenceUnitRef = new PersistenceUnitRefTypeImpl<WebApp30DescriptorImpl>(this, "", model);
+         PersistenceUnitRefType<WebApp30DescriptorImpl>  type = new PersistenceUnitRefTypeImpl<WebApp30DescriptorImpl>(this, "", model, node);
+         list.add(type);
       }
-      return persistenceUnitRef;
+      return list;
    }
 
 
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
 
    public WebApp30DescriptorImpl setPostConstruct(LifecycleCallbackType<WebApp30DescriptorImpl> postConstruct)
    {
@@ -658,14 +806,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public LifecycleCallbackType<WebApp30DescriptorImpl> getPostConstruct()
    {
-      if( postConstruct == null)
+      return new LifecycleCallbackTypeImpl<WebApp30DescriptorImpl>(this, "", model);
+   }
+
+   public List<LifecycleCallbackType<WebApp30DescriptorImpl>> getPostConstructList()
+   {
+      List<LifecycleCallbackType<WebApp30DescriptorImpl>> list = new ArrayList<LifecycleCallbackType<WebApp30DescriptorImpl>>();
+      List<Node> nodeList = model.get(LifecycleCallbackTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          postConstruct = new LifecycleCallbackTypeImpl<WebApp30DescriptorImpl>(this, "", model);
+         LifecycleCallbackType<WebApp30DescriptorImpl>  type = new LifecycleCallbackTypeImpl<WebApp30DescriptorImpl>(this, "", model, node);
+         list.add(type);
       }
-      return postConstruct;
+      return list;
    }
 
 
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
 
    public WebApp30DescriptorImpl setPreDestroy(LifecycleCallbackType<WebApp30DescriptorImpl> preDestroy)
    {
@@ -675,14 +832,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public LifecycleCallbackType<WebApp30DescriptorImpl> getPreDestroy()
    {
-      if( preDestroy == null)
+      return new LifecycleCallbackTypeImpl<WebApp30DescriptorImpl>(this, "", model);
+   }
+
+   public List<LifecycleCallbackType<WebApp30DescriptorImpl>> getPreDestroyList()
+   {
+      List<LifecycleCallbackType<WebApp30DescriptorImpl>> list = new ArrayList<LifecycleCallbackType<WebApp30DescriptorImpl>>();
+      List<Node> nodeList = model.get(LifecycleCallbackTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          preDestroy = new LifecycleCallbackTypeImpl<WebApp30DescriptorImpl>(this, "", model);
+         LifecycleCallbackType<WebApp30DescriptorImpl>  type = new LifecycleCallbackTypeImpl<WebApp30DescriptorImpl>(this, "", model, node);
+         list.add(type);
       }
-      return preDestroy;
+      return list;
    }
 
 
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
 
    public WebApp30DescriptorImpl setDataSource(DataSourceType<WebApp30DescriptorImpl> dataSource)
    {
@@ -692,28 +858,19 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public DataSourceType<WebApp30DescriptorImpl> getDataSource()
    {
-      if( dataSource == null)
-      {
-          dataSource = new DataSourceTypeImpl<WebApp30DescriptorImpl>(this, "", model);
-      }
-      return dataSource;
+      return new DataSourceTypeImpl<WebApp30DescriptorImpl>(this, "", model);
    }
 
-
-
-   public WebApp30DescriptorImpl setServiceRef(ServiceRefType<WebApp30DescriptorImpl> serviceRef)
+   public List<DataSourceType<WebApp30DescriptorImpl>> getDataSourceList()
    {
-      model.create("service-ref").text(serviceRef);
-      return this;
-   }
-
-   public ServiceRefType<WebApp30DescriptorImpl> getServiceRef()
-   {
-      if( serviceRef == null)
+      List<DataSourceType<WebApp30DescriptorImpl>> list = new ArrayList<DataSourceType<WebApp30DescriptorImpl>>();
+      List<Node> nodeList = model.get(DataSourceTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          serviceRef = new ServiceRefTypeImpl<WebApp30DescriptorImpl>(this, "", model);
+         DataSourceType<WebApp30DescriptorImpl>  type = new DataSourceTypeImpl<WebApp30DescriptorImpl>(this, "", model, node);
+         list.add(type);
       }
-      return serviceRef;
+      return list;
    }
 
 
@@ -727,7 +884,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public String getVersion()
    {
-      return version;
+      return model.textValue("version");
    }
 
 
@@ -740,7 +897,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements WebA
 
    public Boolean getMetadataComplete()
    {
-      return metadataComplete;
+      return Strings.isTrue(model.textValue("metadata-complete"));
    }
 
 

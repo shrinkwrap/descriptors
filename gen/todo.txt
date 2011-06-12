@@ -1,9 +1,9 @@
 IconTypeImpl:
 ------------
 
-public final static String nodeName = "icon";
+public final static String nodeName = "icon"; --> done
 
-public IconTypeImpl(T t, String descriptorName, Node node, Node childNode)
+public IconTypeImpl(T t, String descriptorName, Node node, Node childNode) --> done
    {
       this.t = t;
       this.node = node;

@@ -1,15 +1,20 @@
 package org.jboss.shrinkwrap.descriptor.impl.webcommon30; 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jboss.shrinkwrap.descriptor.api.Child;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.WebResourceCollectionType;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-06T19:59:35.573+02:00
+ * Generation date :2011-06-12T08:56:23.309+02:00
  */
 public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCollectionType<T>
 {
+   public final static String nodeName = "web-resource-collection";
+
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -17,23 +22,32 @@ public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCo
    private T t;
    private Node node;
    private Node childNode;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String webResourceName;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String description;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String urlPattern;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String httpMethod;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String httpMethodOmission;
-
-
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public WebResourceCollectionTypeImpl(T t, String descriptorName, Node node)
-   {
+   public WebResourceCollectionTypeImpl(T t, String descriptorName, Node node)   {
       this.t = t;
       this.node = node;
-      this.childNode = node.create("web-resource-collection");   }
+      this.childNode = node.create(nodeName);
+   }
+
+   public WebResourceCollectionTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+      this.t = t;
+      this.node = node;
+      this.childNode = childNode;
+   }
 
 
    public T up()
@@ -42,9 +56,9 @@ public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCo
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public WebResourceCollectionType<T> setWebResourceName(String webResourceName)
-   {
+   public WebResourceCollectionType<T> setWebResourceName(String webResourceName)   {
       this.webResourceName = webResourceName;
       childNode.getOrCreate("web-resource-name").text(webResourceName);
       return this;
@@ -52,10 +66,11 @@ public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCo
 
    public String getWebResourceName()
    {
-      return webResourceName;
+      return childNode.textValue("web-resource-name");
    }
 
 
+   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
 
    public WebResourceCollectionType<T> setDescription(String description)
    {
@@ -63,12 +78,28 @@ public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCo
       return this;
    }
 
-   public String getDescription()
+   public WebResourceCollectionType<T> setDescription(String ... values)
    {
-      return description;
+      for(String name: values)
+      {
+         setDescription(description);
+      }
+         return this;
+   }
+
+   public List<String> getDescriptionList()
+   {
+      List<String> result = new ArrayList<String>();
+      List<Node> nodes = childNode.get("description");
+      for (Node node : nodes)
+      {
+         result.add(node.text());
+      }
+      return result;
    }
 
 
+   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
 
    public WebResourceCollectionType<T> setUrlPattern(String urlPattern)
    {
@@ -76,12 +107,28 @@ public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCo
       return this;
    }
 
-   public String getUrlPattern()
+   public WebResourceCollectionType<T> setUrlPattern(String ... values)
    {
-      return urlPattern;
+      for(String name: values)
+      {
+         setUrlPattern(urlPattern);
+      }
+         return this;
+   }
+
+   public List<String> getUrlPatternList()
+   {
+      List<String> result = new ArrayList<String>();
+      List<Node> nodes = childNode.get("url-pattern");
+      for (Node node : nodes)
+      {
+         result.add(node.text());
+      }
+      return result;
    }
 
 
+   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
 
    public WebResourceCollectionType<T> setHttpMethod(String httpMethod)
    {
@@ -89,12 +136,28 @@ public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCo
       return this;
    }
 
-   public String getHttpMethod()
+   public WebResourceCollectionType<T> setHttpMethod(String ... values)
    {
-      return httpMethod;
+      for(String name: values)
+      {
+         setHttpMethod(httpMethod);
+      }
+         return this;
+   }
+
+   public List<String> getHttpMethodList()
+   {
+      List<String> result = new ArrayList<String>();
+      List<Node> nodes = childNode.get("http-method");
+      for (Node node : nodes)
+      {
+         result.add(node.text());
+      }
+      return result;
    }
 
 
+   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
 
    public WebResourceCollectionType<T> setHttpMethodOmission(String httpMethodOmission)
    {
@@ -102,9 +165,24 @@ public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCo
       return this;
    }
 
-   public String getHttpMethodOmission()
+   public WebResourceCollectionType<T> setHttpMethodOmission(String ... values)
    {
-      return httpMethodOmission;
+      for(String name: values)
+      {
+         setHttpMethodOmission(httpMethodOmission);
+      }
+         return this;
+   }
+
+   public List<String> getHttpMethodOmissionList()
+   {
+      List<String> result = new ArrayList<String>();
+      List<Node> nodes = childNode.get("http-method-omission");
+      for (Node node : nodes)
+      {
+         result.add(node.text());
+      }
+      return result;
    }
 
 }

@@ -1,5 +1,8 @@
 package org.jboss.shrinkwrap.descriptor.impl.application6; 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jboss.shrinkwrap.descriptor.api.application6.Application6Descriptor;
 import org.jboss.shrinkwrap.descriptor.api.application6.ModuleType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
@@ -14,7 +17,6 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceUnitRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceEnvRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleType;
-import org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13.ServiceRefType;
 import org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase;
 import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.DataSourceTypeImpl;
@@ -29,13 +31,12 @@ import org.jboss.shrinkwrap.descriptor.impl.javaee6.PersistenceUnitRefTypeImpl;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.ResourceEnvRefTypeImpl;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.ResourceRefTypeImpl;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.SecurityRoleTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient13.ServiceRefTypeImpl;
 import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-06T19:59:35.573+02:00
+ * Generation date :2011-06-12T08:56:23.309+02:00
  */
 public class Application6DescriptorImpl extends NodeProviderImplBase implements Application6Descriptor<Application6DescriptorImpl>
 {
@@ -44,25 +45,42 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
    // -------------------------------------------------------------------------------------||
 
    private Node model;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private String applicationName;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private String initializeInOrder;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private ModuleType<Application6DescriptorImpl> module;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private SecurityRoleType<Application6DescriptorImpl> securityRole;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private String libraryDirectory;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private EnvEntryType<Application6DescriptorImpl> envEntry;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private EjbRefType<Application6DescriptorImpl> ejbRef;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private EjbLocalRefType<Application6DescriptorImpl> ejbLocalRef;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private ResourceRefType<Application6DescriptorImpl> resourceRef;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private ResourceEnvRefType<Application6DescriptorImpl> resourceEnvRef;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private MessageDestinationRefType<Application6DescriptorImpl> messageDestinationRef;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private PersistenceContextRefType<Application6DescriptorImpl> persistenceContextRef;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private PersistenceUnitRefType<Application6DescriptorImpl> persistenceUnitRef;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private MessageDestinationType<Application6DescriptorImpl> messageDestination;
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
    private DataSourceType<Application6DescriptorImpl> dataSource;
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
    private String description;
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
    private String displayName;
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
    private IconType<Application6DescriptorImpl> icon;
-   private ServiceRefType<Application6DescriptorImpl> serviceRef;
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
@@ -92,9 +110,9 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
    {
       return new XMLExporter();
    }
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public Application6DescriptorImpl setApplicationName(String applicationName)
-   {
+   public Application6DescriptorImpl setApplicationName(String applicationName)   {
       this.applicationName = applicationName;
       model.getOrCreate("application-name").text(applicationName);
       return this;
@@ -102,12 +120,12 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
 
    public String getApplicationName()
    {
-      return applicationName;
+      return model.textValue("application-name");
    }
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public Application6DescriptorImpl setInitializeInOrder(String initializeInOrder)
-   {
+   public Application6DescriptorImpl setInitializeInOrder(String initializeInOrder)   {
       this.initializeInOrder = initializeInOrder;
       model.getOrCreate("initialize-in-order").text(initializeInOrder);
       return this;
@@ -115,12 +133,12 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
 
    public String getInitializeInOrder()
    {
-      return initializeInOrder;
+      return model.textValue("initialize-in-order");
    }
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public Application6DescriptorImpl setModule(ModuleType<Application6DescriptorImpl> module)
-   {
+   public Application6DescriptorImpl setModule(ModuleType<Application6DescriptorImpl> module)   {
       this.module = module;
       model.getOrCreate("module").text(module);
       return this;
@@ -136,9 +154,9 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public Application6DescriptorImpl setSecurityRole(SecurityRoleType<Application6DescriptorImpl> securityRole)
-   {
+   public Application6DescriptorImpl setSecurityRole(SecurityRoleType<Application6DescriptorImpl> securityRole)   {
       this.securityRole = securityRole;
       model.getOrCreate("security-role").text(securityRole);
       return this;
@@ -154,9 +172,9 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public Application6DescriptorImpl setLibraryDirectory(String libraryDirectory)
-   {
+   public Application6DescriptorImpl setLibraryDirectory(String libraryDirectory)   {
       this.libraryDirectory = libraryDirectory;
       model.getOrCreate("library-directory").text(libraryDirectory);
       return this;
@@ -164,12 +182,12 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
 
    public String getLibraryDirectory()
    {
-      return libraryDirectory;
+      return model.textValue("library-directory");
    }
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public Application6DescriptorImpl setEnvEntry(EnvEntryType<Application6DescriptorImpl> envEntry)
-   {
+   public Application6DescriptorImpl setEnvEntry(EnvEntryType<Application6DescriptorImpl> envEntry)   {
       this.envEntry = envEntry;
       model.getOrCreate("env-entry").text(envEntry);
       return this;
@@ -185,9 +203,9 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public Application6DescriptorImpl setEjbRef(EjbRefType<Application6DescriptorImpl> ejbRef)
-   {
+   public Application6DescriptorImpl setEjbRef(EjbRefType<Application6DescriptorImpl> ejbRef)   {
       this.ejbRef = ejbRef;
       model.getOrCreate("ejb-ref").text(ejbRef);
       return this;
@@ -203,9 +221,9 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public Application6DescriptorImpl setEjbLocalRef(EjbLocalRefType<Application6DescriptorImpl> ejbLocalRef)
-   {
+   public Application6DescriptorImpl setEjbLocalRef(EjbLocalRefType<Application6DescriptorImpl> ejbLocalRef)   {
       this.ejbLocalRef = ejbLocalRef;
       model.getOrCreate("ejb-local-ref").text(ejbLocalRef);
       return this;
@@ -221,9 +239,9 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public Application6DescriptorImpl setResourceRef(ResourceRefType<Application6DescriptorImpl> resourceRef)
-   {
+   public Application6DescriptorImpl setResourceRef(ResourceRefType<Application6DescriptorImpl> resourceRef)   {
       this.resourceRef = resourceRef;
       model.getOrCreate("resource-ref").text(resourceRef);
       return this;
@@ -239,9 +257,9 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public Application6DescriptorImpl setResourceEnvRef(ResourceEnvRefType<Application6DescriptorImpl> resourceEnvRef)
-   {
+   public Application6DescriptorImpl setResourceEnvRef(ResourceEnvRefType<Application6DescriptorImpl> resourceEnvRef)   {
       this.resourceEnvRef = resourceEnvRef;
       model.getOrCreate("resource-env-ref").text(resourceEnvRef);
       return this;
@@ -257,9 +275,9 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public Application6DescriptorImpl setMessageDestinationRef(MessageDestinationRefType<Application6DescriptorImpl> messageDestinationRef)
-   {
+   public Application6DescriptorImpl setMessageDestinationRef(MessageDestinationRefType<Application6DescriptorImpl> messageDestinationRef)   {
       this.messageDestinationRef = messageDestinationRef;
       model.getOrCreate("message-destination-ref").text(messageDestinationRef);
       return this;
@@ -275,9 +293,9 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public Application6DescriptorImpl setPersistenceContextRef(PersistenceContextRefType<Application6DescriptorImpl> persistenceContextRef)
-   {
+   public Application6DescriptorImpl setPersistenceContextRef(PersistenceContextRefType<Application6DescriptorImpl> persistenceContextRef)   {
       this.persistenceContextRef = persistenceContextRef;
       model.getOrCreate("persistence-context-ref").text(persistenceContextRef);
       return this;
@@ -293,9 +311,9 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public Application6DescriptorImpl setPersistenceUnitRef(PersistenceUnitRefType<Application6DescriptorImpl> persistenceUnitRef)
-   {
+   public Application6DescriptorImpl setPersistenceUnitRef(PersistenceUnitRefType<Application6DescriptorImpl> persistenceUnitRef)   {
       this.persistenceUnitRef = persistenceUnitRef;
       model.getOrCreate("persistence-unit-ref").text(persistenceUnitRef);
       return this;
@@ -311,9 +329,9 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public Application6DescriptorImpl setMessageDestination(MessageDestinationType<Application6DescriptorImpl> messageDestination)
-   {
+   public Application6DescriptorImpl setMessageDestination(MessageDestinationType<Application6DescriptorImpl> messageDestination)   {
       this.messageDestination = messageDestination;
       model.getOrCreate("message-destination").text(messageDestination);
       return this;
@@ -329,9 +347,9 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
    }
 
 
+   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-   public Application6DescriptorImpl setDataSource(DataSourceType<Application6DescriptorImpl> dataSource)
-   {
+   public Application6DescriptorImpl setDataSource(DataSourceType<Application6DescriptorImpl> dataSource)   {
       this.dataSource = dataSource;
       model.getOrCreate("data-source").text(dataSource);
       return this;
@@ -347,6 +365,7 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
    }
 
 
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
 
    public Application6DescriptorImpl setDescription(String description)
    {
@@ -354,11 +373,27 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
       return this;
    }
 
-   public String getDescription()
+   public Application6DescriptorImpl setDescription(String ... values)
    {
-      return description;
+      for(String name: values)
+      {
+         setDescription(description);
+      }
+         return this;
    }
 
+   public List<String> getDescriptionList()
+   {
+      List<String> result = new ArrayList<String>();
+      List<Node> nodes = model.get("description");
+      for (Node node : nodes)
+      {
+         result.add(node.text());
+      }
+      return result;
+   }
+
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
 
    public Application6DescriptorImpl setDisplayName(String displayName)
    {
@@ -366,11 +401,27 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
       return this;
    }
 
-   public String getDisplayName()
+   public Application6DescriptorImpl setDisplayName(String ... values)
    {
-      return displayName;
+      for(String name: values)
+      {
+         setDisplayName(displayName);
+      }
+         return this;
    }
 
+   public List<String> getDisplayNameList()
+   {
+      List<String> result = new ArrayList<String>();
+      List<Node> nodes = model.get("display-name");
+      for (Node node : nodes)
+      {
+         result.add(node.text());
+      }
+      return result;
+   }
+
+   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
 
    public Application6DescriptorImpl setIcon(IconType<Application6DescriptorImpl> icon)
    {
@@ -380,28 +431,19 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
 
    public IconType<Application6DescriptorImpl> getIcon()
    {
-      if( icon == null)
-      {
-          icon = new IconTypeImpl<Application6DescriptorImpl>(this, "", model);
-      }
-      return icon;
+      return new IconTypeImpl<Application6DescriptorImpl>(this, "", model);
    }
 
-
-
-   public Application6DescriptorImpl setServiceRef(ServiceRefType<Application6DescriptorImpl> serviceRef)
+   public List<IconType<Application6DescriptorImpl>> getIconList()
    {
-      model.create("service-ref").text(serviceRef);
-      return this;
-   }
-
-   public ServiceRefType<Application6DescriptorImpl> getServiceRef()
-   {
-      if( serviceRef == null)
+      List<IconType<Application6DescriptorImpl>> list = new ArrayList<IconType<Application6DescriptorImpl>>();
+      List<Node> nodeList = model.get(IconTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          serviceRef = new ServiceRefTypeImpl<Application6DescriptorImpl>(this, "", model);
+         IconType<Application6DescriptorImpl>  type = new IconTypeImpl<Application6DescriptorImpl>(this, "", model, node);
+         list.add(type);
       }
-      return serviceRef;
+      return list;
    }
 
 

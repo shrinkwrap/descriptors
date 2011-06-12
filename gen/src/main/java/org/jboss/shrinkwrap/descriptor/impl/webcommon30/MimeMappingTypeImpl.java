@@ -6,10 +6,12 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-06T19:59:35.573+02:00
+ * Generation date :2011-06-12T08:56:23.309+02:00
  */
 public class MimeMappingTypeImpl<T> implements Child<T>, MimeMappingType<T>
 {
+   public final static String nodeName = "mime-mapping";
+
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -17,20 +19,26 @@ public class MimeMappingTypeImpl<T> implements Child<T>, MimeMappingType<T>
    private T t;
    private Node node;
    private Node childNode;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String extension;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String mimeType;
-
-
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public MimeMappingTypeImpl(T t, String descriptorName, Node node)
-   {
+   public MimeMappingTypeImpl(T t, String descriptorName, Node node)   {
       this.t = t;
       this.node = node;
-      this.childNode = node.create("mime-mapping");   }
+      this.childNode = node.create(nodeName);
+   }
+
+   public MimeMappingTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+      this.t = t;
+      this.node = node;
+      this.childNode = childNode;
+   }
 
 
    public T up()
@@ -39,9 +47,9 @@ public class MimeMappingTypeImpl<T> implements Child<T>, MimeMappingType<T>
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public MimeMappingType<T> setExtension(String extension)
-   {
+   public MimeMappingType<T> setExtension(String extension)   {
       this.extension = extension;
       childNode.getOrCreate("extension").text(extension);
       return this;
@@ -49,13 +57,13 @@ public class MimeMappingTypeImpl<T> implements Child<T>, MimeMappingType<T>
 
    public String getExtension()
    {
-      return extension;
+      return childNode.textValue("extension");
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public MimeMappingType<T> setMimeType(String mimeType)
-   {
+   public MimeMappingType<T> setMimeType(String mimeType)   {
       this.mimeType = mimeType;
       childNode.getOrCreate("mime-type").text(mimeType);
       return this;
@@ -63,7 +71,7 @@ public class MimeMappingTypeImpl<T> implements Child<T>, MimeMappingType<T>
 
    public String getMimeType()
    {
-      return mimeType;
+      return childNode.textValue("mime-type");
    }
 
 }

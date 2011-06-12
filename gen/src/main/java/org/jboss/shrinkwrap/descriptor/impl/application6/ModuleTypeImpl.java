@@ -7,10 +7,12 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-06T19:59:35.573+02:00
+ * Generation date :2011-06-12T08:56:23.309+02:00
  */
 public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
 {
+   public final static String nodeName = "module";
+
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -18,23 +20,32 @@ public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
    private T t;
    private Node node;
    private Node childNode;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String altDd;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String connector;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String ejb;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String java;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private WebType<ModuleType<T>> web;
-
-
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public ModuleTypeImpl(T t, String descriptorName, Node node)
-   {
+   public ModuleTypeImpl(T t, String descriptorName, Node node)   {
       this.t = t;
       this.node = node;
-      this.childNode = node.create("module");   }
+      this.childNode = node.create(nodeName);
+   }
+
+   public ModuleTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+      this.t = t;
+      this.node = node;
+      this.childNode = childNode;
+   }
 
 
    public T up()
@@ -43,9 +54,9 @@ public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public ModuleType<T> setAltDd(String altDd)
-   {
+   public ModuleType<T> setAltDd(String altDd)   {
       this.altDd = altDd;
       childNode.getOrCreate("alt-dd").text(altDd);
       return this;
@@ -53,13 +64,13 @@ public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
 
    public String getAltDd()
    {
-      return altDd;
+      return childNode.textValue("alt-dd");
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public ModuleType<T> setConnector(String connector)
-   {
+   public ModuleType<T> setConnector(String connector)   {
       this.connector = connector;
       childNode.getOrCreate("connector").text(connector);
       return this;
@@ -67,13 +78,13 @@ public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
 
    public String getConnector()
    {
-      return connector;
+      return childNode.textValue("connector");
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public ModuleType<T> setEjb(String ejb)
-   {
+   public ModuleType<T> setEjb(String ejb)   {
       this.ejb = ejb;
       childNode.getOrCreate("ejb").text(ejb);
       return this;
@@ -81,13 +92,13 @@ public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
 
    public String getEjb()
    {
-      return ejb;
+      return childNode.textValue("ejb");
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public ModuleType<T> setJava(String java)
-   {
+   public ModuleType<T> setJava(String java)   {
       this.java = java;
       childNode.getOrCreate("java").text(java);
       return this;
@@ -95,13 +106,13 @@ public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
 
    public String getJava()
    {
-      return java;
+      return childNode.textValue("java");
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public ModuleType<T> setWeb(WebType<ModuleType<T>> web)
-   {
+   public ModuleType<T> setWeb(WebType<ModuleType<T>> web)   {
       this.web = web;
       childNode.getOrCreate("web").text(web);
       return this;

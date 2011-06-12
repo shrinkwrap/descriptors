@@ -1,15 +1,20 @@
 package org.jboss.shrinkwrap.descriptor.impl.javaee6; 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jboss.shrinkwrap.descriptor.api.Child;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.ParamValueType;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-06T19:59:35.573+02:00
+ * Generation date :2011-06-12T08:56:23.309+02:00
  */
 public class ParamValueTypeImpl<T> implements Child<T>, ParamValueType<T>
 {
+   public final static String nodeName = "context-param";
+
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -17,21 +22,28 @@ public class ParamValueTypeImpl<T> implements Child<T>, ParamValueType<T>
    private T t;
    private Node node;
    private Node childNode;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String description;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String paramName;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String paramValue;
-
-
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public ParamValueTypeImpl(T t, String descriptorName, Node node)
-   {
+   public ParamValueTypeImpl(T t, String descriptorName, Node node)   {
       this.t = t;
       this.node = node;
-      this.childNode = node.create("context-param");   }
+      this.childNode = node.create(nodeName);
+   }
+
+   public ParamValueTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+      this.t = t;
+      this.node = node;
+      this.childNode = childNode;
+   }
 
 
    public T up()
@@ -40,6 +52,7 @@ public class ParamValueTypeImpl<T> implements Child<T>, ParamValueType<T>
    }
 
 
+   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
 
    public ParamValueType<T> setDescription(String description)
    {
@@ -47,15 +60,30 @@ public class ParamValueTypeImpl<T> implements Child<T>, ParamValueType<T>
       return this;
    }
 
-   public String getDescription()
+   public ParamValueType<T> setDescription(String ... values)
    {
-      return description;
+      for(String name: values)
+      {
+         setDescription(description);
+      }
+         return this;
+   }
+
+   public List<String> getDescriptionList()
+   {
+      List<String> result = new ArrayList<String>();
+      List<Node> nodes = childNode.get("description");
+      for (Node node : nodes)
+      {
+         result.add(node.text());
+      }
+      return result;
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public ParamValueType<T> setParamName(String paramName)
-   {
+   public ParamValueType<T> setParamName(String paramName)   {
       this.paramName = paramName;
       childNode.getOrCreate("param-name").text(paramName);
       return this;
@@ -63,13 +91,13 @@ public class ParamValueTypeImpl<T> implements Child<T>, ParamValueType<T>
 
    public String getParamName()
    {
-      return paramName;
+      return childNode.textValue("param-name");
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public ParamValueType<T> setParamValue(String paramValue)
-   {
+   public ParamValueType<T> setParamValue(String paramValue)   {
       this.paramValue = paramValue;
       childNode.getOrCreate("param-value").text(paramValue);
       return this;
@@ -77,7 +105,7 @@ public class ParamValueTypeImpl<T> implements Child<T>, ParamValueType<T>
 
    public String getParamValue()
    {
-      return paramValue;
+      return childNode.textValue("param-value");
    }
 
 }

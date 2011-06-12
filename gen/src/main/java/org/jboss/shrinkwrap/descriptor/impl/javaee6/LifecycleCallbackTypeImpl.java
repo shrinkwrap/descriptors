@@ -6,10 +6,12 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-06T19:59:35.573+02:00
+ * Generation date :2011-06-12T08:56:23.309+02:00
  */
 public class LifecycleCallbackTypeImpl<T> implements Child<T>, LifecycleCallbackType<T>
 {
+   public final static String nodeName = "post-construct";
+
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -17,20 +19,26 @@ public class LifecycleCallbackTypeImpl<T> implements Child<T>, LifecycleCallback
    private T t;
    private Node node;
    private Node childNode;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String lifecycleCallbackClass;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String lifecycleCallbackMethod;
-
-
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public LifecycleCallbackTypeImpl(T t, String descriptorName, Node node)
-   {
+   public LifecycleCallbackTypeImpl(T t, String descriptorName, Node node)   {
       this.t = t;
       this.node = node;
-      this.childNode = node.create("post-construct");   }
+      this.childNode = node.create(nodeName);
+   }
+
+   public LifecycleCallbackTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+      this.t = t;
+      this.node = node;
+      this.childNode = childNode;
+   }
 
 
    public T up()
@@ -39,9 +47,9 @@ public class LifecycleCallbackTypeImpl<T> implements Child<T>, LifecycleCallback
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public LifecycleCallbackType<T> setLifecycleCallbackClass(String lifecycleCallbackClass)
-   {
+   public LifecycleCallbackType<T> setLifecycleCallbackClass(String lifecycleCallbackClass)   {
       this.lifecycleCallbackClass = lifecycleCallbackClass;
       childNode.getOrCreate("lifecycle-callback-class").text(lifecycleCallbackClass);
       return this;
@@ -49,13 +57,13 @@ public class LifecycleCallbackTypeImpl<T> implements Child<T>, LifecycleCallback
 
    public String getLifecycleCallbackClass()
    {
-      return lifecycleCallbackClass;
+      return childNode.textValue("lifecycle-callback-class");
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public LifecycleCallbackType<T> setLifecycleCallbackMethod(String lifecycleCallbackMethod)
-   {
+   public LifecycleCallbackType<T> setLifecycleCallbackMethod(String lifecycleCallbackMethod)   {
       this.lifecycleCallbackMethod = lifecycleCallbackMethod;
       childNode.getOrCreate("lifecycle-callback-method").text(lifecycleCallbackMethod);
       return this;
@@ -63,7 +71,7 @@ public class LifecycleCallbackTypeImpl<T> implements Child<T>, LifecycleCallback
 
    public String getLifecycleCallbackMethod()
    {
-      return lifecycleCallbackMethod;
+      return childNode.textValue("lifecycle-callback-method");
    }
 
 }

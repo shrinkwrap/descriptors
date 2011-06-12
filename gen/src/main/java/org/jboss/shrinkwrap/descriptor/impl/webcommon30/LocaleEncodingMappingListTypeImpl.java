@@ -1,5 +1,8 @@
 package org.jboss.shrinkwrap.descriptor.impl.webcommon30; 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jboss.shrinkwrap.descriptor.api.Child;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.LocaleEncodingMappingListType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.LocaleEncodingMappingType;
@@ -7,10 +10,12 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-06T19:59:35.573+02:00
+ * Generation date :2011-06-12T08:56:23.309+02:00
  */
 public class LocaleEncodingMappingListTypeImpl<T> implements Child<T>, LocaleEncodingMappingListType<T>
 {
+   public final static String nodeName = "locale-encoding-mapping-list";
+
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -18,19 +23,24 @@ public class LocaleEncodingMappingListTypeImpl<T> implements Child<T>, LocaleEnc
    private T t;
    private Node node;
    private Node childNode;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private LocaleEncodingMappingType<LocaleEncodingMappingListType<T>> localeEncodingMapping;
-
-
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public LocaleEncodingMappingListTypeImpl(T t, String descriptorName, Node node)
-   {
+   public LocaleEncodingMappingListTypeImpl(T t, String descriptorName, Node node)   {
       this.t = t;
       this.node = node;
-      this.childNode = node.create("locale-encoding-mapping-list");   }
+      this.childNode = node.create(nodeName);
+   }
+
+   public LocaleEncodingMappingListTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+      this.t = t;
+      this.node = node;
+      this.childNode = childNode;
+   }
 
 
    public T up()
@@ -39,6 +49,7 @@ public class LocaleEncodingMappingListTypeImpl<T> implements Child<T>, LocaleEnc
    }
 
 
+   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
 
    public LocaleEncodingMappingListType<T> setLocaleEncodingMapping(LocaleEncodingMappingType<LocaleEncodingMappingListType<T>> localeEncodingMapping)
    {
@@ -48,11 +59,19 @@ public class LocaleEncodingMappingListTypeImpl<T> implements Child<T>, LocaleEnc
 
    public LocaleEncodingMappingType<LocaleEncodingMappingListType<T>> getLocaleEncodingMapping()
    {
-      if( localeEncodingMapping == null)
+      return new LocaleEncodingMappingTypeImpl<LocaleEncodingMappingListType<T>>(this, "", childNode);
+   }
+
+   public List<LocaleEncodingMappingType<LocaleEncodingMappingListType<T>>> getLocaleEncodingMappingList()
+   {
+      List<LocaleEncodingMappingType<LocaleEncodingMappingListType<T>>> list = new ArrayList<LocaleEncodingMappingType<LocaleEncodingMappingListType<T>>>();
+      List<Node> nodeList = childNode.get(LocaleEncodingMappingTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          localeEncodingMapping = new LocaleEncodingMappingTypeImpl<LocaleEncodingMappingListType<T>>(this, "", childNode);
+         LocaleEncodingMappingType<LocaleEncodingMappingListType<T>>  type = new LocaleEncodingMappingTypeImpl<LocaleEncodingMappingListType<T>>(this, "", childNode, node);
+         list.add(type);
       }
-      return localeEncodingMapping;
+      return list;
    }
 
 

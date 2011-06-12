@@ -6,10 +6,12 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-06T19:59:35.573+02:00
+ * Generation date :2011-06-12T08:56:23.309+02:00
  */
 public class FilterMappingTypeImpl<T> implements Child<T>, FilterMappingType<T>
 {
+   public final static String nodeName = "filter-mapping";
+
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -17,22 +19,30 @@ public class FilterMappingTypeImpl<T> implements Child<T>, FilterMappingType<T>
    private T t;
    private Node node;
    private Node childNode;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String filterName;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String dispatcher;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String urlPattern;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String servletName;
-
-
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public FilterMappingTypeImpl(T t, String descriptorName, Node node)
-   {
+   public FilterMappingTypeImpl(T t, String descriptorName, Node node)   {
       this.t = t;
       this.node = node;
-      this.childNode = node.create("filter-mapping");   }
+      this.childNode = node.create(nodeName);
+   }
+
+   public FilterMappingTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+      this.t = t;
+      this.node = node;
+      this.childNode = childNode;
+   }
 
 
    public T up()
@@ -41,9 +51,9 @@ public class FilterMappingTypeImpl<T> implements Child<T>, FilterMappingType<T>
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public FilterMappingType<T> setFilterName(String filterName)
-   {
+   public FilterMappingType<T> setFilterName(String filterName)   {
       this.filterName = filterName;
       childNode.getOrCreate("filter-name").text(filterName);
       return this;
@@ -51,13 +61,13 @@ public class FilterMappingTypeImpl<T> implements Child<T>, FilterMappingType<T>
 
    public String getFilterName()
    {
-      return filterName;
+      return childNode.textValue("filter-name");
    }
 
 
+   // maxOccurs = -5   // isGeneric = true   // isAttribute = false
 
-   public FilterMappingType<T> setDispatcher(String dispatcher)
-   {
+   public FilterMappingType<T> setDispatcher(String dispatcher)   {
       this.dispatcher = dispatcher;
       childNode.getOrCreate("dispatcher").text(dispatcher);
       return this;
@@ -65,13 +75,13 @@ public class FilterMappingTypeImpl<T> implements Child<T>, FilterMappingType<T>
 
    public String getDispatcher()
    {
-      return dispatcher;
+      return childNode.textValue("dispatcher");
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public FilterMappingType<T> setUrlPattern(String urlPattern)
-   {
+   public FilterMappingType<T> setUrlPattern(String urlPattern)   {
       this.urlPattern = urlPattern;
       childNode.getOrCreate("url-pattern").text(urlPattern);
       return this;
@@ -79,13 +89,13 @@ public class FilterMappingTypeImpl<T> implements Child<T>, FilterMappingType<T>
 
    public String getUrlPattern()
    {
-      return urlPattern;
+      return childNode.textValue("url-pattern");
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public FilterMappingType<T> setServletName(String servletName)
-   {
+   public FilterMappingType<T> setServletName(String servletName)   {
       this.servletName = servletName;
       childNode.getOrCreate("servlet-name").text(servletName);
       return this;
@@ -93,7 +103,7 @@ public class FilterMappingTypeImpl<T> implements Child<T>, FilterMappingType<T>
 
    public String getServletName()
    {
-      return servletName;
+      return childNode.textValue("servlet-name");
    }
 
 }

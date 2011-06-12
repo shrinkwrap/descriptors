@@ -7,10 +7,12 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-06T19:59:35.573+02:00
+ * Generation date :2011-06-12T08:56:23.309+02:00
  */
 public class LoginConfigTypeImpl<T> implements Child<T>, LoginConfigType<T>
 {
+   public final static String nodeName = "login-config";
+
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -18,21 +20,28 @@ public class LoginConfigTypeImpl<T> implements Child<T>, LoginConfigType<T>
    private T t;
    private Node node;
    private Node childNode;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String authMethod;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String realmName;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private FormLoginConfigType<LoginConfigType<T>> formLoginConfig;
-
-
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public LoginConfigTypeImpl(T t, String descriptorName, Node node)
-   {
+   public LoginConfigTypeImpl(T t, String descriptorName, Node node)   {
       this.t = t;
       this.node = node;
-      this.childNode = node.create("login-config");   }
+      this.childNode = node.create(nodeName);
+   }
+
+   public LoginConfigTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+      this.t = t;
+      this.node = node;
+      this.childNode = childNode;
+   }
 
 
    public T up()
@@ -41,9 +50,9 @@ public class LoginConfigTypeImpl<T> implements Child<T>, LoginConfigType<T>
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public LoginConfigType<T> setAuthMethod(String authMethod)
-   {
+   public LoginConfigType<T> setAuthMethod(String authMethod)   {
       this.authMethod = authMethod;
       childNode.getOrCreate("auth-method").text(authMethod);
       return this;
@@ -51,13 +60,13 @@ public class LoginConfigTypeImpl<T> implements Child<T>, LoginConfigType<T>
 
    public String getAuthMethod()
    {
-      return authMethod;
+      return childNode.textValue("auth-method");
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public LoginConfigType<T> setRealmName(String realmName)
-   {
+   public LoginConfigType<T> setRealmName(String realmName)   {
       this.realmName = realmName;
       childNode.getOrCreate("realm-name").text(realmName);
       return this;
@@ -65,13 +74,13 @@ public class LoginConfigTypeImpl<T> implements Child<T>, LoginConfigType<T>
 
    public String getRealmName()
    {
-      return realmName;
+      return childNode.textValue("realm-name");
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public LoginConfigType<T> setFormLoginConfig(FormLoginConfigType<LoginConfigType<T>> formLoginConfig)
-   {
+   public LoginConfigType<T> setFormLoginConfig(FormLoginConfigType<LoginConfigType<T>> formLoginConfig)   {
       this.formLoginConfig = formLoginConfig;
       childNode.getOrCreate("form-login-config").text(formLoginConfig);
       return this;

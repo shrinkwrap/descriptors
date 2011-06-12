@@ -6,10 +6,12 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-06T19:59:35.573+02:00
+ * Generation date :2011-06-12T08:56:23.309+02:00
  */
 public class LocaleEncodingMappingTypeImpl<T> implements Child<T>, LocaleEncodingMappingType<T>
 {
+   public final static String nodeName = "locale-encoding-mapping";
+
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -17,20 +19,26 @@ public class LocaleEncodingMappingTypeImpl<T> implements Child<T>, LocaleEncodin
    private T t;
    private Node node;
    private Node childNode;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String locale;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String encoding;
-
-
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public LocaleEncodingMappingTypeImpl(T t, String descriptorName, Node node)
-   {
+   public LocaleEncodingMappingTypeImpl(T t, String descriptorName, Node node)   {
       this.t = t;
       this.node = node;
-      this.childNode = node.create("locale-encoding-mapping");   }
+      this.childNode = node.create(nodeName);
+   }
+
+   public LocaleEncodingMappingTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+      this.t = t;
+      this.node = node;
+      this.childNode = childNode;
+   }
 
 
    public T up()
@@ -39,9 +47,9 @@ public class LocaleEncodingMappingTypeImpl<T> implements Child<T>, LocaleEncodin
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public LocaleEncodingMappingType<T> setLocale(String locale)
-   {
+   public LocaleEncodingMappingType<T> setLocale(String locale)   {
       this.locale = locale;
       childNode.getOrCreate("locale").text(locale);
       return this;
@@ -49,13 +57,13 @@ public class LocaleEncodingMappingTypeImpl<T> implements Child<T>, LocaleEncodin
 
    public String getLocale()
    {
-      return locale;
+      return childNode.textValue("locale");
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public LocaleEncodingMappingType<T> setEncoding(String encoding)
-   {
+   public LocaleEncodingMappingType<T> setEncoding(String encoding)   {
       this.encoding = encoding;
       childNode.getOrCreate("encoding").text(encoding);
       return this;
@@ -63,7 +71,7 @@ public class LocaleEncodingMappingTypeImpl<T> implements Child<T>, LocaleEncodin
 
    public String getEncoding()
    {
-      return encoding;
+      return childNode.textValue("encoding");
    }
 
 }

@@ -6,10 +6,12 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-06T19:59:35.573+02:00
+ * Generation date :2011-06-12T08:56:23.309+02:00
  */
 public class TaglibTypeImpl<T> implements Child<T>, TaglibType<T>
 {
+   public final static String nodeName = "taglib";
+
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -17,20 +19,26 @@ public class TaglibTypeImpl<T> implements Child<T>, TaglibType<T>
    private T t;
    private Node node;
    private Node childNode;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String taglibUri;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String taglibLocation;
-
-
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public TaglibTypeImpl(T t, String descriptorName, Node node)
-   {
+   public TaglibTypeImpl(T t, String descriptorName, Node node)   {
       this.t = t;
       this.node = node;
-      this.childNode = node.create("taglib");   }
+      this.childNode = node.create(nodeName);
+   }
+
+   public TaglibTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+      this.t = t;
+      this.node = node;
+      this.childNode = childNode;
+   }
 
 
    public T up()
@@ -39,9 +47,9 @@ public class TaglibTypeImpl<T> implements Child<T>, TaglibType<T>
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public TaglibType<T> setTaglibUri(String taglibUri)
-   {
+   public TaglibType<T> setTaglibUri(String taglibUri)   {
       this.taglibUri = taglibUri;
       childNode.getOrCreate("taglib-uri").text(taglibUri);
       return this;
@@ -49,13 +57,13 @@ public class TaglibTypeImpl<T> implements Child<T>, TaglibType<T>
 
    public String getTaglibUri()
    {
-      return taglibUri;
+      return childNode.textValue("taglib-uri");
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public TaglibType<T> setTaglibLocation(String taglibLocation)
-   {
+   public TaglibType<T> setTaglibLocation(String taglibLocation)   {
       this.taglibLocation = taglibLocation;
       childNode.getOrCreate("taglib-location").text(taglibLocation);
       return this;
@@ -63,7 +71,7 @@ public class TaglibTypeImpl<T> implements Child<T>, TaglibType<T>
 
    public String getTaglibLocation()
    {
-      return taglibLocation;
+      return childNode.textValue("taglib-location");
    }
 
 }

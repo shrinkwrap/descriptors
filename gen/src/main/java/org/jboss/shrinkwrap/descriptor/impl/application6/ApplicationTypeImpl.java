@@ -1,5 +1,8 @@
 package org.jboss.shrinkwrap.descriptor.impl.application6; 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jboss.shrinkwrap.descriptor.api.Child;
 import org.jboss.shrinkwrap.descriptor.api.application6.ApplicationType;
 import org.jboss.shrinkwrap.descriptor.api.application6.ModuleType;
@@ -15,7 +18,6 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceUnitRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceEnvRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleType;
-import org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13.ServiceRefType;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.DataSourceTypeImpl;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.EjbLocalRefTypeImpl;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.EjbRefTypeImpl;
@@ -28,15 +30,16 @@ import org.jboss.shrinkwrap.descriptor.impl.javaee6.PersistenceUnitRefTypeImpl;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.ResourceEnvRefTypeImpl;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.ResourceRefTypeImpl;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.SecurityRoleTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient13.ServiceRefTypeImpl;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-06T19:59:35.573+02:00
+ * Generation date :2011-06-12T08:56:23.309+02:00
  */
 public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
 {
+   public final static String nodeName = "";
+
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -44,37 +47,58 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    private T t;
    private Node node;
    private Node childNode;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String applicationName;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String initializeInOrder;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private ModuleType<ApplicationType<T>> module;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private SecurityRoleType<ApplicationType<T>> securityRole;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String libraryDirectory;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private EnvEntryType<ApplicationType<T>> envEntry;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private EjbRefType<ApplicationType<T>> ejbRef;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private EjbLocalRefType<ApplicationType<T>> ejbLocalRef;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private ResourceRefType<ApplicationType<T>> resourceRef;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private ResourceEnvRefType<ApplicationType<T>> resourceEnvRef;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private MessageDestinationRefType<ApplicationType<T>> messageDestinationRef;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private PersistenceContextRefType<ApplicationType<T>> persistenceContextRef;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private PersistenceUnitRefType<ApplicationType<T>> persistenceUnitRef;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private MessageDestinationType<ApplicationType<T>> messageDestination;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private DataSourceType<ApplicationType<T>> dataSource;
 
+   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
    private String description;
+   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
    private String displayName;
+   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
    private IconType<ApplicationType<T>> icon;
-   private ServiceRefType<ApplicationType<T>> serviceRef;
-
-
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public ApplicationTypeImpl(T t, String descriptorName, Node node)
-   {
+   public ApplicationTypeImpl(T t, String descriptorName, Node node)   {
       this.t = t;
       this.node = node;
-      this.childNode = node.create("");   }
+      this.childNode = node.create(nodeName);
+   }
+
+   public ApplicationTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+      this.t = t;
+      this.node = node;
+      this.childNode = childNode;
+   }
 
 
    public T up()
@@ -83,6 +107,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    }
 
 
+   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
 
    public ApplicationType<T> setDescription(String description)
    {
@@ -90,11 +115,27 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
       return this;
    }
 
-   public String getDescription()
+   public ApplicationType<T> setDescription(String ... values)
    {
-      return description;
+      for(String name: values)
+      {
+         setDescription(description);
+      }
+         return this;
    }
 
+   public List<String> getDescriptionList()
+   {
+      List<String> result = new ArrayList<String>();
+      List<Node> nodes = childNode.get("description");
+      for (Node node : nodes)
+      {
+         result.add(node.text());
+      }
+      return result;
+   }
+
+   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
 
    public ApplicationType<T> setDisplayName(String displayName)
    {
@@ -102,11 +143,27 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
       return this;
    }
 
-   public String getDisplayName()
+   public ApplicationType<T> setDisplayName(String ... values)
    {
-      return displayName;
+      for(String name: values)
+      {
+         setDisplayName(displayName);
+      }
+         return this;
    }
 
+   public List<String> getDisplayNameList()
+   {
+      List<String> result = new ArrayList<String>();
+      List<Node> nodes = childNode.get("display-name");
+      for (Node node : nodes)
+      {
+         result.add(node.text());
+      }
+      return result;
+   }
+
+   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
 
    public ApplicationType<T> setIcon(IconType<ApplicationType<T>> icon)
    {
@@ -116,34 +173,25 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
 
    public IconType<ApplicationType<T>> getIcon()
    {
-      if( icon == null)
+      return new IconTypeImpl<ApplicationType<T>>(this, "", childNode);
+   }
+
+   public List<IconType<ApplicationType<T>>> getIconList()
+   {
+      List<IconType<ApplicationType<T>>> list = new ArrayList<IconType<ApplicationType<T>>>();
+      List<Node> nodeList = childNode.get(IconTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          icon = new IconTypeImpl<ApplicationType<T>>(this, "", childNode);
+         IconType<ApplicationType<T>>  type = new IconTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         list.add(type);
       }
-      return icon;
+      return list;
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public ApplicationType<T> setServiceRef(ServiceRefType<ApplicationType<T>> serviceRef)
-   {
-      childNode.create("service-ref").text(serviceRef);
-      return this;
-   }
-
-   public ServiceRefType<ApplicationType<T>> getServiceRef()
-   {
-      if( serviceRef == null)
-      {
-          serviceRef = new ServiceRefTypeImpl<ApplicationType<T>>(this, "", childNode);
-      }
-      return serviceRef;
-   }
-
-
-
-   public ApplicationType<T> setApplicationName(String applicationName)
-   {
+   public ApplicationType<T> setApplicationName(String applicationName)   {
       this.applicationName = applicationName;
       childNode.getOrCreate("application-name").text(applicationName);
       return this;
@@ -151,13 +199,13 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
 
    public String getApplicationName()
    {
-      return applicationName;
+      return childNode.textValue("application-name");
    }
 
 
+   // maxOccurs = -1   // isGeneric = true   // isAttribute = false
 
-   public ApplicationType<T> setInitializeInOrder(String initializeInOrder)
-   {
+   public ApplicationType<T> setInitializeInOrder(String initializeInOrder)   {
       this.initializeInOrder = initializeInOrder;
       childNode.getOrCreate("initialize-in-order").text(initializeInOrder);
       return this;
@@ -165,10 +213,11 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
 
    public String getInitializeInOrder()
    {
-      return initializeInOrder;
+      return childNode.textValue("initialize-in-order");
    }
 
 
+   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
 
    public ApplicationType<T> setModule(ModuleType<ApplicationType<T>> module)
    {
@@ -178,15 +227,24 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
 
    public ModuleType<ApplicationType<T>> getModule()
    {
-      if( module == null)
+      return new ModuleTypeImpl<ApplicationType<T>>(this, "", childNode);
+   }
+
+   public List<ModuleType<ApplicationType<T>>> getModuleList()
+   {
+      List<ModuleType<ApplicationType<T>>> list = new ArrayList<ModuleType<ApplicationType<T>>>();
+      List<Node> nodeList = childNode.get(ModuleTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          module = new ModuleTypeImpl<ApplicationType<T>>(this, "", childNode);
+         ModuleType<ApplicationType<T>>  type = new ModuleTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         list.add(type);
       }
-      return module;
+      return list;
    }
 
 
 
+   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
 
    public ApplicationType<T> setSecurityRole(SecurityRoleType<ApplicationType<T>> securityRole)
    {
@@ -196,18 +254,26 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
 
    public SecurityRoleType<ApplicationType<T>> getSecurityRole()
    {
-      if( securityRole == null)
+      return new SecurityRoleTypeImpl<ApplicationType<T>>(this, "", childNode);
+   }
+
+   public List<SecurityRoleType<ApplicationType<T>>> getSecurityRoleList()
+   {
+      List<SecurityRoleType<ApplicationType<T>>> list = new ArrayList<SecurityRoleType<ApplicationType<T>>>();
+      List<Node> nodeList = childNode.get(SecurityRoleTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          securityRole = new SecurityRoleTypeImpl<ApplicationType<T>>(this, "", childNode);
+         SecurityRoleType<ApplicationType<T>>  type = new SecurityRoleTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         list.add(type);
       }
-      return securityRole;
+      return list;
    }
 
 
 
+   // maxOccurs = -1   // isGeneric = true   // isAttribute = false
 
-   public ApplicationType<T> setLibraryDirectory(String libraryDirectory)
-   {
+   public ApplicationType<T> setLibraryDirectory(String libraryDirectory)   {
       this.libraryDirectory = libraryDirectory;
       childNode.getOrCreate("library-directory").text(libraryDirectory);
       return this;
@@ -215,10 +281,11 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
 
    public String getLibraryDirectory()
    {
-      return libraryDirectory;
+      return childNode.textValue("library-directory");
    }
 
 
+   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
 
    public ApplicationType<T> setEnvEntry(EnvEntryType<ApplicationType<T>> envEntry)
    {
@@ -228,15 +295,24 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
 
    public EnvEntryType<ApplicationType<T>> getEnvEntry()
    {
-      if( envEntry == null)
+      return new EnvEntryTypeImpl<ApplicationType<T>>(this, "", childNode);
+   }
+
+   public List<EnvEntryType<ApplicationType<T>>> getEnvEntryList()
+   {
+      List<EnvEntryType<ApplicationType<T>>> list = new ArrayList<EnvEntryType<ApplicationType<T>>>();
+      List<Node> nodeList = childNode.get(EnvEntryTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          envEntry = new EnvEntryTypeImpl<ApplicationType<T>>(this, "", childNode);
+         EnvEntryType<ApplicationType<T>>  type = new EnvEntryTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         list.add(type);
       }
-      return envEntry;
+      return list;
    }
 
 
 
+   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
 
    public ApplicationType<T> setEjbRef(EjbRefType<ApplicationType<T>> ejbRef)
    {
@@ -246,15 +322,24 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
 
    public EjbRefType<ApplicationType<T>> getEjbRef()
    {
-      if( ejbRef == null)
+      return new EjbRefTypeImpl<ApplicationType<T>>(this, "", childNode);
+   }
+
+   public List<EjbRefType<ApplicationType<T>>> getEjbRefList()
+   {
+      List<EjbRefType<ApplicationType<T>>> list = new ArrayList<EjbRefType<ApplicationType<T>>>();
+      List<Node> nodeList = childNode.get(EjbRefTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          ejbRef = new EjbRefTypeImpl<ApplicationType<T>>(this, "", childNode);
+         EjbRefType<ApplicationType<T>>  type = new EjbRefTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         list.add(type);
       }
-      return ejbRef;
+      return list;
    }
 
 
 
+   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
 
    public ApplicationType<T> setEjbLocalRef(EjbLocalRefType<ApplicationType<T>> ejbLocalRef)
    {
@@ -264,15 +349,24 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
 
    public EjbLocalRefType<ApplicationType<T>> getEjbLocalRef()
    {
-      if( ejbLocalRef == null)
+      return new EjbLocalRefTypeImpl<ApplicationType<T>>(this, "", childNode);
+   }
+
+   public List<EjbLocalRefType<ApplicationType<T>>> getEjbLocalRefList()
+   {
+      List<EjbLocalRefType<ApplicationType<T>>> list = new ArrayList<EjbLocalRefType<ApplicationType<T>>>();
+      List<Node> nodeList = childNode.get(EjbLocalRefTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          ejbLocalRef = new EjbLocalRefTypeImpl<ApplicationType<T>>(this, "", childNode);
+         EjbLocalRefType<ApplicationType<T>>  type = new EjbLocalRefTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         list.add(type);
       }
-      return ejbLocalRef;
+      return list;
    }
 
 
 
+   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
 
    public ApplicationType<T> setResourceRef(ResourceRefType<ApplicationType<T>> resourceRef)
    {
@@ -282,15 +376,24 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
 
    public ResourceRefType<ApplicationType<T>> getResourceRef()
    {
-      if( resourceRef == null)
+      return new ResourceRefTypeImpl<ApplicationType<T>>(this, "", childNode);
+   }
+
+   public List<ResourceRefType<ApplicationType<T>>> getResourceRefList()
+   {
+      List<ResourceRefType<ApplicationType<T>>> list = new ArrayList<ResourceRefType<ApplicationType<T>>>();
+      List<Node> nodeList = childNode.get(ResourceRefTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          resourceRef = new ResourceRefTypeImpl<ApplicationType<T>>(this, "", childNode);
+         ResourceRefType<ApplicationType<T>>  type = new ResourceRefTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         list.add(type);
       }
-      return resourceRef;
+      return list;
    }
 
 
 
+   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
 
    public ApplicationType<T> setResourceEnvRef(ResourceEnvRefType<ApplicationType<T>> resourceEnvRef)
    {
@@ -300,15 +403,24 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
 
    public ResourceEnvRefType<ApplicationType<T>> getResourceEnvRef()
    {
-      if( resourceEnvRef == null)
+      return new ResourceEnvRefTypeImpl<ApplicationType<T>>(this, "", childNode);
+   }
+
+   public List<ResourceEnvRefType<ApplicationType<T>>> getResourceEnvRefList()
+   {
+      List<ResourceEnvRefType<ApplicationType<T>>> list = new ArrayList<ResourceEnvRefType<ApplicationType<T>>>();
+      List<Node> nodeList = childNode.get(ResourceEnvRefTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          resourceEnvRef = new ResourceEnvRefTypeImpl<ApplicationType<T>>(this, "", childNode);
+         ResourceEnvRefType<ApplicationType<T>>  type = new ResourceEnvRefTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         list.add(type);
       }
-      return resourceEnvRef;
+      return list;
    }
 
 
 
+   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
 
    public ApplicationType<T> setMessageDestinationRef(MessageDestinationRefType<ApplicationType<T>> messageDestinationRef)
    {
@@ -318,15 +430,24 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
 
    public MessageDestinationRefType<ApplicationType<T>> getMessageDestinationRef()
    {
-      if( messageDestinationRef == null)
+      return new MessageDestinationRefTypeImpl<ApplicationType<T>>(this, "", childNode);
+   }
+
+   public List<MessageDestinationRefType<ApplicationType<T>>> getMessageDestinationRefList()
+   {
+      List<MessageDestinationRefType<ApplicationType<T>>> list = new ArrayList<MessageDestinationRefType<ApplicationType<T>>>();
+      List<Node> nodeList = childNode.get(MessageDestinationRefTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          messageDestinationRef = new MessageDestinationRefTypeImpl<ApplicationType<T>>(this, "", childNode);
+         MessageDestinationRefType<ApplicationType<T>>  type = new MessageDestinationRefTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         list.add(type);
       }
-      return messageDestinationRef;
+      return list;
    }
 
 
 
+   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
 
    public ApplicationType<T> setPersistenceContextRef(PersistenceContextRefType<ApplicationType<T>> persistenceContextRef)
    {
@@ -336,15 +457,24 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
 
    public PersistenceContextRefType<ApplicationType<T>> getPersistenceContextRef()
    {
-      if( persistenceContextRef == null)
+      return new PersistenceContextRefTypeImpl<ApplicationType<T>>(this, "", childNode);
+   }
+
+   public List<PersistenceContextRefType<ApplicationType<T>>> getPersistenceContextRefList()
+   {
+      List<PersistenceContextRefType<ApplicationType<T>>> list = new ArrayList<PersistenceContextRefType<ApplicationType<T>>>();
+      List<Node> nodeList = childNode.get(PersistenceContextRefTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          persistenceContextRef = new PersistenceContextRefTypeImpl<ApplicationType<T>>(this, "", childNode);
+         PersistenceContextRefType<ApplicationType<T>>  type = new PersistenceContextRefTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         list.add(type);
       }
-      return persistenceContextRef;
+      return list;
    }
 
 
 
+   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
 
    public ApplicationType<T> setPersistenceUnitRef(PersistenceUnitRefType<ApplicationType<T>> persistenceUnitRef)
    {
@@ -354,15 +484,24 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
 
    public PersistenceUnitRefType<ApplicationType<T>> getPersistenceUnitRef()
    {
-      if( persistenceUnitRef == null)
+      return new PersistenceUnitRefTypeImpl<ApplicationType<T>>(this, "", childNode);
+   }
+
+   public List<PersistenceUnitRefType<ApplicationType<T>>> getPersistenceUnitRefList()
+   {
+      List<PersistenceUnitRefType<ApplicationType<T>>> list = new ArrayList<PersistenceUnitRefType<ApplicationType<T>>>();
+      List<Node> nodeList = childNode.get(PersistenceUnitRefTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          persistenceUnitRef = new PersistenceUnitRefTypeImpl<ApplicationType<T>>(this, "", childNode);
+         PersistenceUnitRefType<ApplicationType<T>>  type = new PersistenceUnitRefTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         list.add(type);
       }
-      return persistenceUnitRef;
+      return list;
    }
 
 
 
+   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
 
    public ApplicationType<T> setMessageDestination(MessageDestinationType<ApplicationType<T>> messageDestination)
    {
@@ -372,15 +511,24 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
 
    public MessageDestinationType<ApplicationType<T>> getMessageDestination()
    {
-      if( messageDestination == null)
+      return new MessageDestinationTypeImpl<ApplicationType<T>>(this, "", childNode);
+   }
+
+   public List<MessageDestinationType<ApplicationType<T>>> getMessageDestinationList()
+   {
+      List<MessageDestinationType<ApplicationType<T>>> list = new ArrayList<MessageDestinationType<ApplicationType<T>>>();
+      List<Node> nodeList = childNode.get(MessageDestinationTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          messageDestination = new MessageDestinationTypeImpl<ApplicationType<T>>(this, "", childNode);
+         MessageDestinationType<ApplicationType<T>>  type = new MessageDestinationTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         list.add(type);
       }
-      return messageDestination;
+      return list;
    }
 
 
 
+   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
 
    public ApplicationType<T> setDataSource(DataSourceType<ApplicationType<T>> dataSource)
    {
@@ -390,11 +538,19 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
 
    public DataSourceType<ApplicationType<T>> getDataSource()
    {
-      if( dataSource == null)
+      return new DataSourceTypeImpl<ApplicationType<T>>(this, "", childNode);
+   }
+
+   public List<DataSourceType<ApplicationType<T>>> getDataSourceList()
+   {
+      List<DataSourceType<ApplicationType<T>>> list = new ArrayList<DataSourceType<ApplicationType<T>>>();
+      List<Node> nodeList = childNode.get(DataSourceTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          dataSource = new DataSourceTypeImpl<ApplicationType<T>>(this, "", childNode);
+         DataSourceType<ApplicationType<T>>  type = new DataSourceTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         list.add(type);
       }
-      return dataSource;
+      return list;
    }
 
 

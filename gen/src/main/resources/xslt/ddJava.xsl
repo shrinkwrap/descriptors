@@ -226,6 +226,10 @@
                 <xsl:value-of select="xdd:classHeaderComment('')"/>
                 <!--                <xsl:variable name="vNodeName" select="$pClass/element/@name"/>-->
                 <!--                <xsl:value-of select="xdd:classNodeInfo($pClass/element/@name)"/>-->
+                
+                 <xsl:variable name="vName" select="@name"/>
+                <xsl:variable name="vNodeName" select="//class/element[contains(@type, $vName)][1]/@name"/>
+                
                 <xsl:value-of select="xdd:classHeaderDeclaration('class', $vClassnameImpl)"/>
                 <xsl:text>&lt;T&gt;</xsl:text>
                 <xsl:text> implements Child&lt;T&gt;, </xsl:text>
@@ -234,6 +238,7 @@
                 <xsl:text>{</xsl:text>
                 <xsl:text>&#10;</xsl:text>
                 <!-- write constructor attributes -->
+                <xsl:value-of select="concat('   public final static String nodeName = &quot;', $vNodeName[1], '&quot;;&#10;&#10;')"/>
                 <xsl:value-of select=" xdd:writeAttribute('T', 't', true())"/>
                 <xsl:value-of select=" xdd:writeAttribute('Node', 'node', false())"/>
                 <xsl:value-of select=" xdd:writeAttribute('Node', 'childNode', false())"/>
@@ -251,11 +256,9 @@
                 <xsl:for-each select="include">
                     <xsl:value-of select="xdd:includeGroupRefs($vInterfaceName, text(), true(), false(), true(),'childNode')"/>
                 </xsl:for-each>
-                <xsl:text>&#10;</xsl:text>
-                <xsl:text>&#10;</xsl:text>
-                <xsl:variable name="vName" select="@name"/>
-                <xsl:variable name="vNodeName" select="//class/element[contains(@type, $vName)][1]/@name"/>
-                <xsl:value-of select=" xdd:writeImplClassConstructor($vClassnameImpl, $vNodeName[1], 'childNode')"/>
+               <!-- <xsl:variable name="vName" select="@name"/>
+                <xsl:variable name="vNodeName" select="//class/element[contains(@type, $vName)][1]/@name"/>-->
+                <xsl:value-of select=" xdd:writeImplClassConstructor($vClassnameImpl, 'nodeName', 'childNode')"/>
                 <xsl:value-of select="xdd:writeChildUp()"/>
                 <xsl:for-each select="include">
                     <xsl:value-of select="xdd:includeGroupRefs($vInterfaceName, text(), false(), false(), true(), 'childNode')"/>
@@ -489,15 +492,23 @@
         <xsl:text>   // Constructor -------------------------------------------------------------------------||&#10;</xsl:text>
         <xsl:text>   // -------------------------------------------------------------------------------------||&#10;</xsl:text>
         <xsl:text>&#10;</xsl:text>
-        <xsl:value-of select="concat('   public ', $pClassName, '(T t, String descriptorName, Node node)')"/>
-        <xsl:text>&#10;</xsl:text>
+        <xsl:value-of select="concat('   public ', $pClassName, '(T t, String descriptorName, Node node)'&#10;)"/>
         <xsl:text>   {&#10;</xsl:text>
         <xsl:text>      this.t = t;&#10;</xsl:text>
         <xsl:text>      this.node = node;&#10;</xsl:text>
-        <xsl:value-of select="concat('      this.', $pNodeNameLocal ,' = node.create(&quot;', $pNodeName,'&quot;);')"/>
+        <xsl:value-of select="concat('      this.', $pNodeNameLocal ,' = node.create(', $pNodeName,');&#10;')"/>
+        <xsl:text>   }&#10;</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        
+        <xsl:value-of select="concat('   public ', $pClassName, '(T t, String descriptorName, Node node, Node childNode)'&#10;)"/>
+        <xsl:text>   {&#10;</xsl:text>
+        <xsl:text>      this.t = t;&#10;</xsl:text>
+        <xsl:text>      this.node = node;&#10;</xsl:text>
+        <xsl:value-of select="concat('      this.', $pNodeNameLocal ,' = childNode;&#10;')"/>
         <xsl:text>   }&#10;</xsl:text>
         <xsl:text>&#10;</xsl:text>
         <xsl:text>&#10;</xsl:text>
+       
     </xsl:function>
 
 
@@ -666,8 +677,8 @@
                         <xsl:value-of select="concat('   private ', 'Boolean', ' ', xdd:createCamelizedName($pElementName), ';&#10;')"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, 'Boolean', $pElementName, '-', $pWriteInterface, false(), $pNodeNameLocal, $pIsAttribute)"/>
-                        <xsl:value-of select="xdd:writeGetMethodSignature($vReturn, 'Boolean', concat($vMethodName, ''), $pElementName, '-', $pWriteInterface, false(), $pNodeNameLocal)"/>
+                        <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, 'Boolean', $pElementName, '-', $pWriteInterface, false(), $pIsGeneric, $pNodeNameLocal, $pIsAttribute)"/>
+                        <xsl:value-of select="xdd:writeGetMethodSignature($vReturn, 'Boolean', concat($vMethodName, ''), $pElementName, '-', $pWriteInterface, false(), $pIsGeneric, $pNodeNameLocal)"/>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
@@ -679,8 +690,8 @@
                     </xsl:when>
                     <xsl:otherwise>
                         <!--                        <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, $pElementType, $pElementName, $pMaxOccurs, true())"/>-->
-                        <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, 'String', $pElementName, '-', $pWriteInterface, false(), $pNodeNameLocal, $pIsAttribute)"/>
-                        <xsl:value-of select="xdd:writeGetMethodSignature($vReturn, 'String', concat($vMethodName, ''), $pElementName, '-', $pWriteInterface, false(), $pNodeNameLocal)"/>
+                        <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, 'String', $pElementName, '-', $pWriteInterface, false(), $pIsGeneric, $pNodeNameLocal, $pIsAttribute)"/>
+                        <xsl:value-of select="xdd:writeGetMethodSignature($vReturn, 'String', concat($vMethodName, ''), $pElementName, '-', $pWriteInterface, false(), $pIsGeneric, $pNodeNameLocal)"/>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
@@ -697,8 +708,8 @@
                             <!-\-                    <xsl:value-of select="xdd:writeGetMethodSignature('Class&lt;?&gt;', $vMethodName, $pMaxOccurs, true())"/>-\->
                             <xsl:text>&#10;</xsl:text>
                         </xsl:if>-->
-                        <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, $vDataType, $pElementName, $pMaxOccurs, $pWriteInterface, false(), $pNodeNameLocal, $pIsAttribute)"/>
-                        <xsl:value-of select="xdd:writeGetMethodSignature($vReturn, $vDataType, $vMethodName, $pElementName, $pMaxOccurs, $pWriteInterface, false(), $pNodeNameLocal)"/>
+                        <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, $vDataType, $pElementName, $pMaxOccurs, $pWriteInterface, false(), $pIsGeneric, $pNodeNameLocal, $pIsAttribute)"/>
+                        <xsl:value-of select="xdd:writeGetMethodSignature($vReturn, $vDataType, $vMethodName, $pElementName, $pMaxOccurs, $pWriteInterface, false(), $pIsGeneric, $pNodeNameLocal)"/>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
@@ -710,8 +721,8 @@
                         <xsl:value-of select="concat('   private ', $vReturnGeneric, ' ', xdd:createCamelizedName($pElementName), ';&#10;')"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:value-of select="xdd:writeSetMethodSignature($pClassName, $vMethodName, $vElementTypeGeneric, $pElementName, $pMaxOccurs, $pWriteInterface, true(), $pNodeNameLocal, $pIsAttribute)"/>
-                        <xsl:value-of select="xdd:writeGetMethodSignature($pClassName, $vReturnGeneric, $vMethodName, $pElementName, $pMaxOccurs, $pWriteInterface, true(), $pNodeNameLocal)"/>
+                        <xsl:value-of select="xdd:writeSetMethodSignature($pClassName, $vMethodName, $vElementTypeGeneric, $pElementName, $pMaxOccurs, $pWriteInterface, true(), $pIsGeneric, $pNodeNameLocal, $pIsAttribute)"/>
+                        <xsl:value-of select="xdd:writeGetMethodSignature($pClassName, $vReturnGeneric, $vMethodName, $pElementName, $pMaxOccurs, $pWriteInterface, true(), $pIsGeneric, $pNodeNameLocal)"/>
                         <xsl:text>&#10;</xsl:text>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -725,8 +736,8 @@
                         <xsl:value-of select="concat('   private ', $vReturnGeneric, ' ', xdd:createCamelizedName($pElementName), ';&#10;')"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, $vElementTypeGeneric, $pElementName, $pMaxOccurs, $pWriteInterface, true(), $pNodeNameLocal, $pIsAttribute)"/>
-                        <xsl:value-of select="xdd:writeGetMethodSignature($vReturn, $vReturnGeneric, $vMethodName, $pElementName, $pMaxOccurs, $pWriteInterface, true(), $pNodeNameLocal)"/>
+                        <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, $vElementTypeGeneric, $pElementName, $pMaxOccurs, $pWriteInterface, true(), $pIsGeneric, $pNodeNameLocal, $pIsAttribute)"/>
+                        <xsl:value-of select="xdd:writeGetMethodSignature($vReturn, $vReturnGeneric, $vMethodName, $pElementName, $pMaxOccurs, $pWriteInterface, true(), $pIsGeneric, $pNodeNameLocal)"/>
                         <xsl:text>&#10;</xsl:text>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -746,6 +757,7 @@
         <xsl:param name="vMaxOccurs"/>
         <xsl:param name="vIsInterface" as="xs:boolean"/>
         <xsl:param name="vIsComplexType"/>
+        <xsl:param name="pIsGeneric" as="xs:boolean"/>
         <xsl:param name="vNodeNameLocal"/>
         <xsl:param name="pIsAttribute" as="xs:boolean"/>
         <xsl:variable name="vClassType" select="xdd:createPascalizedName($vElementType,'')"/>
@@ -848,6 +860,7 @@
         <xsl:param name="vMaxOccurs"/>
         <xsl:param name="vIsInterface" as="xs:boolean"/>
         <xsl:param name="vIsComplexType"/>
+        <xsl:param name="pIsGeneric" as="xs:boolean"/>
         <xsl:param name="vNodeNameLocal"/>
 
         <xsl:variable name="vStandardGetSignature" select="concat('public ', xdd:createPascalizedName($vElementType,''), ' get', xdd:checkForClassType($vMethodName), '()')"/>
@@ -857,15 +870,37 @@
         <xsl:choose>
             <xsl:when test="$vIsComplexType=true()">
                 <xsl:choose>
-                    <xsl:when test="$vIsInterface=true()">
+                    <xsl:when test="$vIsInterface=true() and contains($vMaxOccurs, 'unbounded')=false()">
                         <xsl:value-of select=" concat('   ', $vStandardGetComplexSignature, ';&#10;')"/>
+                    </xsl:when>
+                    
+                     <xsl:when test="$vIsInterface=true() and contains($vMaxOccurs, 'unbounded')=true()">
+                        <xsl:value-of select=" concat('   ', $vStandardGetComplexSignature, ';&#10;')"/>
+                        <xsl:value-of select=" concat('   ', $vStandardGetListSignature, ';&#10;')"/>
                     </xsl:when>
                     
                     <xsl:when test="contains($vMaxOccurs, 'unbounded')=true()">
                         <xsl:value-of select=" concat('   ', $vStandardGetComplexSignature, '&#10;   {&#10;')"/>
                         <xsl:variable name="vConstructor" select="concat(substring-before($vElementType, '&lt;'), 'Impl&lt;', $vClassType, '&gt;')"/>
                         <xsl:value-of select=" concat('      return new ', $vConstructor, '(this, &quot;&quot;, ', $vNodeNameLocal, ');', '&#10;')"/>
+                        <xsl:text>   }&#10;&#10;</xsl:text>
+                        
+                        <xsl:value-of select=" concat('   ', $vStandardGetListSignature, '&#10;   {&#10;')"/>
+                       <xsl:variable name="vinterfaceClass" select="substring-before($vElementType, '&lt;')"/>
+                        
+                        <xsl:variable name="vConstructor" select="concat($vinterfaceClass, '&lt;', $vClassType, '&gt;')"/>  
+                        <xsl:variable name="vConstructorImpl" select="concat($vinterfaceClass, 'Impl&lt;', $vClassType, '&gt;')"/> 
+                        
+                        <xsl:value-of select="concat('      List', '&lt;', $vConstructor, '&gt;', ' list = new ArrayList', '&lt;', $vConstructor, '&gt;', '();', '&#10;')"/>
+                        <xsl:value-of select="concat('      List', '&lt;', 'Node', '&gt;', ' nodeList = ', $vNodeNameLocal , '.get(', $vinterfaceClass, 'Impl.nodeName', ');', '&#10;')"/>
+                        <xsl:value-of select="concat('      for(Node node: nodeList)', '&#10;')"/>
+                        <xsl:value-of select="concat('      {', '&#10;')"/>
+                        <xsl:value-of select="concat('         ', $vConstructor, '  type = new ', $vConstructorImpl, '(this, &quot;&quot;, ', $vNodeNameLocal, ', node);', '&#10;')"/>
+                        <xsl:value-of select="concat('         list.add(type);', '&#10;')"/>
+                        <xsl:value-of select="concat('      }', '&#10;')"/>
+                        <xsl:value-of select="concat('      return list;', '&#10;')"/>
                         <xsl:text>   }&#10;</xsl:text>
+                        
                     </xsl:when>
                     
                     <xsl:otherwise>

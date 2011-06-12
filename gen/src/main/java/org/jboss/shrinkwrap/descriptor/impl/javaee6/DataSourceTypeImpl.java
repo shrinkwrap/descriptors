@@ -1,16 +1,22 @@
 package org.jboss.shrinkwrap.descriptor.impl.javaee6; 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jboss.shrinkwrap.descriptor.api.Child;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.PropertyType;
+import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-06T19:59:35.573+02:00
+ * Generation date :2011-06-12T08:56:23.309+02:00
  */
 public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
 {
+   public final static String nodeName = "data-source";
+
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -18,36 +24,58 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
    private T t;
    private Node node;
    private Node childNode;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String description;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String name;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String className;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String serverName;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private Integer portNumber;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String databaseName;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String url;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String user;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String password;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private PropertyType<DataSourceType<T>> property;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private Integer loginTimeout;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private Boolean transactional;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private String isolationLevel;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private Integer initialPoolSize;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private Integer maxPoolSize;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private Integer minPoolSize;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private Integer maxIdleTime;
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
    private Integer maxStatements;
-
-
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public DataSourceTypeImpl(T t, String descriptorName, Node node)
-   {
+   public DataSourceTypeImpl(T t, String descriptorName, Node node)   {
       this.t = t;
       this.node = node;
-      this.childNode = node.create("data-source");   }
+      this.childNode = node.create(nodeName);
+   }
+
+   public DataSourceTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+      this.t = t;
+      this.node = node;
+      this.childNode = childNode;
+   }
 
 
    public T up()
@@ -56,9 +84,9 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public DataSourceType<T> setDescription(String description)
-   {
+   public DataSourceType<T> setDescription(String description)   {
       this.description = description;
       childNode.getOrCreate("description").text(description);
       return this;
@@ -66,13 +94,13 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
 
    public String getDescription()
    {
-      return description;
+      return childNode.textValue("description");
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public DataSourceType<T> setName(String name)
-   {
+   public DataSourceType<T> setName(String name)   {
       this.name = name;
       childNode.getOrCreate("name").text(name);
       return this;
@@ -80,13 +108,13 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
 
    public String getName()
    {
-      return name;
+      return childNode.textValue("name");
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public DataSourceType<T> setClassName(String className)
-   {
+   public DataSourceType<T> setClassName(String className)   {
       this.className = className;
       childNode.getOrCreate("class-name").text(className);
       return this;
@@ -94,13 +122,13 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
 
    public String getClassName()
    {
-      return className;
+      return childNode.textValue("class-name");
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public DataSourceType<T> setServerName(String serverName)
-   {
+   public DataSourceType<T> setServerName(String serverName)   {
       this.serverName = serverName;
       childNode.getOrCreate("server-name").text(serverName);
       return this;
@@ -108,13 +136,13 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
 
    public String getServerName()
    {
-      return serverName;
+      return childNode.textValue("server-name");
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public DataSourceType<T> setPortNumber(Integer portNumber)
-   {
+   public DataSourceType<T> setPortNumber(Integer portNumber)   {
       this.portNumber = portNumber;
       childNode.getOrCreate("port-number").text(portNumber);
       return this;
@@ -122,13 +150,13 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
 
    public Integer getPortNumber()
    {
-      return portNumber;
+      return Integer.valueOf(childNode.textValue("port-number"));
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public DataSourceType<T> setDatabaseName(String databaseName)
-   {
+   public DataSourceType<T> setDatabaseName(String databaseName)   {
       this.databaseName = databaseName;
       childNode.getOrCreate("database-name").text(databaseName);
       return this;
@@ -136,13 +164,13 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
 
    public String getDatabaseName()
    {
-      return databaseName;
+      return childNode.textValue("database-name");
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public DataSourceType<T> setUrl(String url)
-   {
+   public DataSourceType<T> setUrl(String url)   {
       this.url = url;
       childNode.getOrCreate("url").text(url);
       return this;
@@ -150,13 +178,13 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
 
    public String getUrl()
    {
-      return url;
+      return childNode.textValue("url");
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public DataSourceType<T> setUser(String user)
-   {
+   public DataSourceType<T> setUser(String user)   {
       this.user = user;
       childNode.getOrCreate("user").text(user);
       return this;
@@ -164,13 +192,13 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
 
    public String getUser()
    {
-      return user;
+      return childNode.textValue("user");
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public DataSourceType<T> setPassword(String password)
-   {
+   public DataSourceType<T> setPassword(String password)   {
       this.password = password;
       childNode.getOrCreate("password").text(password);
       return this;
@@ -178,10 +206,11 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
 
    public String getPassword()
    {
-      return password;
+      return childNode.textValue("password");
    }
 
 
+   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
 
    public DataSourceType<T> setProperty(PropertyType<DataSourceType<T>> property)
    {
@@ -191,18 +220,26 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
 
    public PropertyType<DataSourceType<T>> getProperty()
    {
-      if( property == null)
+      return new PropertyTypeImpl<DataSourceType<T>>(this, "", childNode);
+   }
+
+   public List<PropertyType<DataSourceType<T>>> getPropertyList()
+   {
+      List<PropertyType<DataSourceType<T>>> list = new ArrayList<PropertyType<DataSourceType<T>>>();
+      List<Node> nodeList = childNode.get(PropertyTypeImpl.nodeName);
+      for(Node node: nodeList)
       {
-          property = new PropertyTypeImpl<DataSourceType<T>>(this, "", childNode);
+         PropertyType<DataSourceType<T>>  type = new PropertyTypeImpl<DataSourceType<T>>(this, "", childNode, node);
+         list.add(type);
       }
-      return property;
+      return list;
    }
 
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public DataSourceType<T> setLoginTimeout(Integer loginTimeout)
-   {
+   public DataSourceType<T> setLoginTimeout(Integer loginTimeout)   {
       this.loginTimeout = loginTimeout;
       childNode.getOrCreate("login-timeout").text(loginTimeout);
       return this;
@@ -210,13 +247,13 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
 
    public Integer getLoginTimeout()
    {
-      return loginTimeout;
+      return Integer.valueOf(childNode.textValue("login-timeout"));
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public DataSourceType<T> setTransactional(Boolean transactional)
-   {
+   public DataSourceType<T> setTransactional(Boolean transactional)   {
       this.transactional = transactional;
       childNode.getOrCreate("transactional").text(transactional);
       return this;
@@ -224,13 +261,13 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
 
    public Boolean getTransactional()
    {
-      return transactional;
+      return Strings.isTrue(childNode.textValue("transactional"));
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public DataSourceType<T> setIsolationLevel(String isolationLevel)
-   {
+   public DataSourceType<T> setIsolationLevel(String isolationLevel)   {
       this.isolationLevel = isolationLevel;
       childNode.getOrCreate("isolation-level").text(isolationLevel);
       return this;
@@ -238,13 +275,13 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
 
    public String getIsolationLevel()
    {
-      return isolationLevel;
+      return childNode.textValue("isolation-level");
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public DataSourceType<T> setInitialPoolSize(Integer initialPoolSize)
-   {
+   public DataSourceType<T> setInitialPoolSize(Integer initialPoolSize)   {
       this.initialPoolSize = initialPoolSize;
       childNode.getOrCreate("initial-pool-size").text(initialPoolSize);
       return this;
@@ -252,13 +289,13 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
 
    public Integer getInitialPoolSize()
    {
-      return initialPoolSize;
+      return Integer.valueOf(childNode.textValue("initial-pool-size"));
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public DataSourceType<T> setMaxPoolSize(Integer maxPoolSize)
-   {
+   public DataSourceType<T> setMaxPoolSize(Integer maxPoolSize)   {
       this.maxPoolSize = maxPoolSize;
       childNode.getOrCreate("max-pool-size").text(maxPoolSize);
       return this;
@@ -266,13 +303,13 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
 
    public Integer getMaxPoolSize()
    {
-      return maxPoolSize;
+      return Integer.valueOf(childNode.textValue("max-pool-size"));
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public DataSourceType<T> setMinPoolSize(Integer minPoolSize)
-   {
+   public DataSourceType<T> setMinPoolSize(Integer minPoolSize)   {
       this.minPoolSize = minPoolSize;
       childNode.getOrCreate("min-pool-size").text(minPoolSize);
       return this;
@@ -280,13 +317,13 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
 
    public Integer getMinPoolSize()
    {
-      return minPoolSize;
+      return Integer.valueOf(childNode.textValue("min-pool-size"));
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public DataSourceType<T> setMaxIdleTime(Integer maxIdleTime)
-   {
+   public DataSourceType<T> setMaxIdleTime(Integer maxIdleTime)   {
       this.maxIdleTime = maxIdleTime;
       childNode.getOrCreate("max-idle-time").text(maxIdleTime);
       return this;
@@ -294,13 +331,13 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
 
    public Integer getMaxIdleTime()
    {
-      return maxIdleTime;
+      return Integer.valueOf(childNode.textValue("max-idle-time"));
    }
 
 
+   // maxOccurs = -   // isGeneric = true   // isAttribute = false
 
-   public DataSourceType<T> setMaxStatements(Integer maxStatements)
-   {
+   public DataSourceType<T> setMaxStatements(Integer maxStatements)   {
       this.maxStatements = maxStatements;
       childNode.getOrCreate("max-statements").text(maxStatements);
       return this;
@@ -308,7 +345,7 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
 
    public Integer getMaxStatements()
    {
-      return maxStatements;
+      return Integer.valueOf(childNode.textValue("max-statements"));
    }
 
 }
