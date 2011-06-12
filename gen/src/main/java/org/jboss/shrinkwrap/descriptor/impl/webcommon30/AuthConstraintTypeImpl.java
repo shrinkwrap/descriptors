@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.impl.webcommon30; 
+package org.jboss.shrinkwrap.descriptor.impl.webcommon30;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T08:56:23.309+02:00
+ * Generation date :2011-06-12T13:26:32.882+02:00
  */
 public class AuthConstraintTypeImpl<T> implements Child<T>, AuthConstraintType<T>
 {
@@ -20,51 +20,51 @@ public class AuthConstraintTypeImpl<T> implements Child<T>, AuthConstraintType<T
    // -------------------------------------------------------------------------------------||
 
    private T t;
+
    private Node node;
+
    private Node childNode;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String description;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String roleName;
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public AuthConstraintTypeImpl(T t, String descriptorName, Node node)   {
+   public AuthConstraintTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public AuthConstraintTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public AuthConstraintTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
-
 
    public T up()
    {
       return t;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
+   // -------------------------------------------------------------------------------------||
+   // Element type : description
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
    public AuthConstraintType<T> setDescription(String description)
    {
       childNode.create("description").text(description);
       return this;
    }
 
-   public AuthConstraintType<T> setDescription(String ... values)
+   public AuthConstraintType<T> setDescription(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
-         setDescription(description);
+         setDescription(name);
       }
-         return this;
+      return this;
    }
 
    public List<String> getDescriptionList()
@@ -78,22 +78,23 @@ public class AuthConstraintTypeImpl<T> implements Child<T>, AuthConstraintType<T
       return result;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
+   // -------------------------------------------------------------------------------------||
+   // Element type : role-name
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
    public AuthConstraintType<T> setRoleName(String roleName)
    {
       childNode.create("role-name").text(roleName);
       return this;
    }
 
-   public AuthConstraintType<T> setRoleName(String ... values)
+   public AuthConstraintType<T> setRoleName(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
-         setRoleName(roleName);
+         setRoleName(name);
       }
-         return this;
+      return this;
    }
 
    public List<String> getRoleNameList()

@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.impl.javaee6; 
+package org.jboss.shrinkwrap.descriptor.impl.javaee6;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T08:56:23.309+02:00
+ * Generation date :2011-06-12T13:26:32.882+02:00
  */
 public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
 {
@@ -22,72 +22,40 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
+
    private Node node;
+
    private Node childNode;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String description;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String name;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String className;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String serverName;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private Integer portNumber;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String databaseName;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String url;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String user;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String password;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private PropertyType<DataSourceType<T>> property;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private Integer loginTimeout;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private Boolean transactional;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String isolationLevel;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private Integer initialPoolSize;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private Integer maxPoolSize;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private Integer minPoolSize;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private Integer maxIdleTime;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private Integer maxStatements;
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public DataSourceTypeImpl(T t, String descriptorName, Node node)   {
+   public DataSourceTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public DataSourceTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public DataSourceTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
-
 
    public T up()
    {
       return t;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public DataSourceType<T> setDescription(String description)   {
-      this.description = description;
+   // -------------------------------------------------------------------------------------||
+   // Element type : description
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public DataSourceType<T> setDescription(String description)
+   {
       childNode.getOrCreate("description").text(description);
       return this;
    }
@@ -97,11 +65,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return childNode.textValue("description");
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public DataSourceType<T> setName(String name)   {
-      this.name = name;
+   // -------------------------------------------------------------------------------------||
+   // Element type : name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public DataSourceType<T> setName(String name)
+   {
       childNode.getOrCreate("name").text(name);
       return this;
    }
@@ -111,11 +80,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return childNode.textValue("name");
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public DataSourceType<T> setClassName(String className)   {
-      this.className = className;
+   // -------------------------------------------------------------------------------------||
+   // Element type : class-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public DataSourceType<T> setClassName(String className)
+   {
       childNode.getOrCreate("class-name").text(className);
       return this;
    }
@@ -125,11 +95,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return childNode.textValue("class-name");
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public DataSourceType<T> setServerName(String serverName)   {
-      this.serverName = serverName;
+   // -------------------------------------------------------------------------------------||
+   // Element type : server-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public DataSourceType<T> setServerName(String serverName)
+   {
       childNode.getOrCreate("server-name").text(serverName);
       return this;
    }
@@ -139,11 +110,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return childNode.textValue("server-name");
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public DataSourceType<T> setPortNumber(Integer portNumber)   {
-      this.portNumber = portNumber;
+   // -------------------------------------------------------------------------------------||
+   // Element type : port-number
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public DataSourceType<T> setPortNumber(Integer portNumber)
+   {
       childNode.getOrCreate("port-number").text(portNumber);
       return this;
    }
@@ -153,11 +125,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return Integer.valueOf(childNode.textValue("port-number"));
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public DataSourceType<T> setDatabaseName(String databaseName)   {
-      this.databaseName = databaseName;
+   // -------------------------------------------------------------------------------------||
+   // Element type : database-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public DataSourceType<T> setDatabaseName(String databaseName)
+   {
       childNode.getOrCreate("database-name").text(databaseName);
       return this;
    }
@@ -167,11 +140,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return childNode.textValue("database-name");
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public DataSourceType<T> setUrl(String url)   {
-      this.url = url;
+   // -------------------------------------------------------------------------------------||
+   // Element type : url
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public DataSourceType<T> setUrl(String url)
+   {
       childNode.getOrCreate("url").text(url);
       return this;
    }
@@ -181,11 +155,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return childNode.textValue("url");
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public DataSourceType<T> setUser(String user)   {
-      this.user = user;
+   // -------------------------------------------------------------------------------------||
+   // Element type : user
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public DataSourceType<T> setUser(String user)
+   {
       childNode.getOrCreate("user").text(user);
       return this;
    }
@@ -195,11 +170,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return childNode.textValue("user");
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public DataSourceType<T> setPassword(String password)   {
-      this.password = password;
+   // -------------------------------------------------------------------------------------||
+   // Element type : password
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public DataSourceType<T> setPassword(String password)
+   {
       childNode.getOrCreate("password").text(password);
       return this;
    }
@@ -209,12 +185,13 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return childNode.textValue("password");
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public DataSourceType<T> setProperty(PropertyType<DataSourceType<T>> property)
+   // -------------------------------------------------------------------------------------||
+   // Element type : property
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public DataSourceType<T> removeAllProperty()
    {
-      childNode.create("property").text(property);
+      childNode.remove("property");
       return this;
    }
 
@@ -227,20 +204,20 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
    {
       List<PropertyType<DataSourceType<T>>> list = new ArrayList<PropertyType<DataSourceType<T>>>();
       List<Node> nodeList = childNode.get(PropertyTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         PropertyType<DataSourceType<T>>  type = new PropertyTypeImpl<DataSourceType<T>>(this, "", childNode, node);
+         PropertyType<DataSourceType<T>> type = new PropertyTypeImpl<DataSourceType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public DataSourceType<T> setLoginTimeout(Integer loginTimeout)   {
-      this.loginTimeout = loginTimeout;
+   // -------------------------------------------------------------------------------------||
+   // Element type : login-timeout
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public DataSourceType<T> setLoginTimeout(Integer loginTimeout)
+   {
       childNode.getOrCreate("login-timeout").text(loginTimeout);
       return this;
    }
@@ -250,25 +227,27 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return Integer.valueOf(childNode.textValue("login-timeout"));
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public DataSourceType<T> setTransactional(Boolean transactional)   {
-      this.transactional = transactional;
+   // -------------------------------------------------------------------------------------||
+   // Element type : transactional
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public DataSourceType<T> setTransactional(Boolean transactional)
+   {
       childNode.getOrCreate("transactional").text(transactional);
       return this;
    }
 
-   public Boolean getTransactional()
+   public Boolean isTransactional()
    {
       return Strings.isTrue(childNode.textValue("transactional"));
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public DataSourceType<T> setIsolationLevel(String isolationLevel)   {
-      this.isolationLevel = isolationLevel;
+   // -------------------------------------------------------------------------------------||
+   // Element type : isolation-level
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public DataSourceType<T> setIsolationLevel(String isolationLevel)
+   {
       childNode.getOrCreate("isolation-level").text(isolationLevel);
       return this;
    }
@@ -278,11 +257,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return childNode.textValue("isolation-level");
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public DataSourceType<T> setInitialPoolSize(Integer initialPoolSize)   {
-      this.initialPoolSize = initialPoolSize;
+   // -------------------------------------------------------------------------------------||
+   // Element type : initial-pool-size
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public DataSourceType<T> setInitialPoolSize(Integer initialPoolSize)
+   {
       childNode.getOrCreate("initial-pool-size").text(initialPoolSize);
       return this;
    }
@@ -292,11 +272,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return Integer.valueOf(childNode.textValue("initial-pool-size"));
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public DataSourceType<T> setMaxPoolSize(Integer maxPoolSize)   {
-      this.maxPoolSize = maxPoolSize;
+   // -------------------------------------------------------------------------------------||
+   // Element type : max-pool-size
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public DataSourceType<T> setMaxPoolSize(Integer maxPoolSize)
+   {
       childNode.getOrCreate("max-pool-size").text(maxPoolSize);
       return this;
    }
@@ -306,11 +287,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return Integer.valueOf(childNode.textValue("max-pool-size"));
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public DataSourceType<T> setMinPoolSize(Integer minPoolSize)   {
-      this.minPoolSize = minPoolSize;
+   // -------------------------------------------------------------------------------------||
+   // Element type : min-pool-size
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public DataSourceType<T> setMinPoolSize(Integer minPoolSize)
+   {
       childNode.getOrCreate("min-pool-size").text(minPoolSize);
       return this;
    }
@@ -320,11 +302,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return Integer.valueOf(childNode.textValue("min-pool-size"));
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public DataSourceType<T> setMaxIdleTime(Integer maxIdleTime)   {
-      this.maxIdleTime = maxIdleTime;
+   // -------------------------------------------------------------------------------------||
+   // Element type : max-idle-time
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public DataSourceType<T> setMaxIdleTime(Integer maxIdleTime)
+   {
       childNode.getOrCreate("max-idle-time").text(maxIdleTime);
       return this;
    }
@@ -334,11 +317,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return Integer.valueOf(childNode.textValue("max-idle-time"));
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public DataSourceType<T> setMaxStatements(Integer maxStatements)   {
-      this.maxStatements = maxStatements;
+   // -------------------------------------------------------------------------------------||
+   // Element type : max-statements
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public DataSourceType<T> setMaxStatements(Integer maxStatements)
+   {
       childNode.getOrCreate("max-statements").text(maxStatements);
       return this;
    }

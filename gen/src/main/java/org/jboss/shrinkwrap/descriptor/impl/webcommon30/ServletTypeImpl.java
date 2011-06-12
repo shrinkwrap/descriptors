@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.impl.webcommon30; 
+package org.jboss.shrinkwrap.descriptor.impl.webcommon30;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T08:56:23.309+02:00
+ * Generation date :2011-06-12T13:26:32.882+02:00
  */
 public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
 {
@@ -30,73 +30,51 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
-   private Node node;
-   private Node childNode;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String servletName;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private ParamValueType<ServletType<T>> initParam;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private Boolean loadOnStartup;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private Boolean enabled;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private Boolean asyncSupported;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private RunAsType<ServletType<T>> runAs;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private SecurityRoleRefType<ServletType<T>> securityRoleRef;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private MultipartConfigType<ServletType<T>> multipartConfig;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String servletClass;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String jspFile;
 
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private String description;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private String displayName;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private IconType<ServletType<T>> icon;
+   private Node node;
+
+   private Node childNode;
+
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public ServletTypeImpl(T t, String descriptorName, Node node)   {
+   public ServletTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public ServletTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public ServletTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
-
 
    public T up()
    {
       return t;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
+   // -------------------------------------------------------------------------------------||
+   // Element type : description
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
    public ServletType<T> setDescription(String description)
    {
       childNode.create("description").text(description);
       return this;
    }
 
-   public ServletType<T> setDescription(String ... values)
+   public ServletType<T> setDescription(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
-         setDescription(description);
+         setDescription(name);
       }
-         return this;
+      return this;
    }
 
    public List<String> getDescriptionList()
@@ -110,21 +88,23 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
       return result;
    }
 
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
+   // -------------------------------------------------------------------------------------||
+   // Element type : display-name
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
    public ServletType<T> setDisplayName(String displayName)
    {
       childNode.create("display-name").text(displayName);
       return this;
    }
 
-   public ServletType<T> setDisplayName(String ... values)
+   public ServletType<T> setDisplayName(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
-         setDisplayName(displayName);
+         setDisplayName(name);
       }
-         return this;
+      return this;
    }
 
    public List<String> getDisplayNameList()
@@ -138,11 +118,13 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
       return result;
    }
 
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public ServletType<T> setIcon(IconType<ServletType<T>> icon)
+   // -------------------------------------------------------------------------------------||
+   // Element type : icon
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public ServletType<T> removeAllIcon()
    {
-      childNode.create("icon").text(icon);
+      childNode.remove("icon");
       return this;
    }
 
@@ -155,19 +137,20 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
    {
       List<IconType<ServletType<T>>> list = new ArrayList<IconType<ServletType<T>>>();
       List<Node> nodeList = childNode.get(IconTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         IconType<ServletType<T>>  type = new IconTypeImpl<ServletType<T>>(this, "", childNode, node);
+         IconType<ServletType<T>> type = new IconTypeImpl<ServletType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public ServletType<T> setServletName(String servletName)   {
-      this.servletName = servletName;
+   // -------------------------------------------------------------------------------------||
+   // Element type : servlet-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public ServletType<T> setServletName(String servletName)
+   {
       childNode.getOrCreate("servlet-name").text(servletName);
       return this;
    }
@@ -177,12 +160,13 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
       return childNode.textValue("servlet-name");
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public ServletType<T> setInitParam(ParamValueType<ServletType<T>> initParam)
+   // -------------------------------------------------------------------------------------||
+   // Element type : init-param
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public ServletType<T> removeAllInitParam()
    {
-      childNode.create("init-param").text(initParam);
+      childNode.remove("init-param");
       return this;
    }
 
@@ -195,82 +179,83 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
    {
       List<ParamValueType<ServletType<T>>> list = new ArrayList<ParamValueType<ServletType<T>>>();
       List<Node> nodeList = childNode.get(ParamValueTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         ParamValueType<ServletType<T>>  type = new ParamValueTypeImpl<ServletType<T>>(this, "", childNode, node);
+         ParamValueType<ServletType<T>> type = new ParamValueTypeImpl<ServletType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public ServletType<T> setLoadOnStartup(Boolean loadOnStartup)   {
-      this.loadOnStartup = loadOnStartup;
+   // -------------------------------------------------------------------------------------||
+   // Element type : load-on-startup
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public ServletType<T> setLoadOnStartup(Boolean loadOnStartup)
+   {
       childNode.getOrCreate("load-on-startup").text(loadOnStartup);
       return this;
    }
 
-   public Boolean getLoadOnStartup()
+   public Boolean isLoadOnStartup()
    {
       return Strings.isTrue(childNode.textValue("load-on-startup"));
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public ServletType<T> setEnabled(Boolean enabled)   {
-      this.enabled = enabled;
+   // -------------------------------------------------------------------------------------||
+   // Element type : enabled
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public ServletType<T> setEnabled(Boolean enabled)
+   {
       childNode.getOrCreate("enabled").text(enabled);
       return this;
    }
 
-   public Boolean getEnabled()
+   public Boolean isEnabled()
    {
       return Strings.isTrue(childNode.textValue("enabled"));
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public ServletType<T> setAsyncSupported(Boolean asyncSupported)   {
-      this.asyncSupported = asyncSupported;
+   // -------------------------------------------------------------------------------------||
+   // Element type : async-supported
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public ServletType<T> setAsyncSupported(Boolean asyncSupported)
+   {
       childNode.getOrCreate("async-supported").text(asyncSupported);
       return this;
    }
 
-   public Boolean getAsyncSupported()
+   public Boolean isAsyncSupported()
    {
       return Strings.isTrue(childNode.textValue("async-supported"));
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public ServletType<T> setRunAs(RunAsType<ServletType<T>> runAs)   {
-      this.runAs = runAs;
-      childNode.getOrCreate("run-as").text(runAs);
+   // -------------------------------------------------------------------------------------||
+   // Element type : run-as
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public ServletType<T> removeRunAs()
+   {
+      childNode.remove("run-as");
       return this;
    }
 
    public RunAsType<ServletType<T>> getRunAs()
    {
-      if( runAs == null)
-      {
-          runAs = new RunAsTypeImpl<ServletType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(RunAsTypeImpl.nodeName);
+      RunAsType<ServletType<T>> runAs = new RunAsTypeImpl<ServletType<T>>(this, "", childNode, node);
       return runAs;
    }
 
-
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public ServletType<T> setSecurityRoleRef(SecurityRoleRefType<ServletType<T>> securityRoleRef)
+   // -------------------------------------------------------------------------------------||
+   // Element type : security-role-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public ServletType<T> removeAllSecurityRoleRef()
    {
-      childNode.create("security-role-ref").text(securityRoleRef);
+      childNode.remove("security-role-ref");
       return this;
    }
 
@@ -283,39 +268,39 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
    {
       List<SecurityRoleRefType<ServletType<T>>> list = new ArrayList<SecurityRoleRefType<ServletType<T>>>();
       List<Node> nodeList = childNode.get(SecurityRoleRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         SecurityRoleRefType<ServletType<T>>  type = new SecurityRoleRefTypeImpl<ServletType<T>>(this, "", childNode, node);
+         SecurityRoleRefType<ServletType<T>> type = new SecurityRoleRefTypeImpl<ServletType<T>>(this, "", childNode,
+               node);
          list.add(type);
       }
       return list;
    }
 
-
-
-   // maxOccurs = -1   // isGeneric = true   // isAttribute = false
-
-   public ServletType<T> setMultipartConfig(MultipartConfigType<ServletType<T>> multipartConfig)   {
-      this.multipartConfig = multipartConfig;
-      childNode.getOrCreate("multipart-config").text(multipartConfig);
+   // -------------------------------------------------------------------------------------||
+   // Element type : multipart-config
+   // isComplexType: true   maxOccurs: -1   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public ServletType<T> removeMultipartConfig()
+   {
+      childNode.remove("multipart-config");
       return this;
    }
 
    public MultipartConfigType<ServletType<T>> getMultipartConfig()
    {
-      if( multipartConfig == null)
-      {
-          multipartConfig = new MultipartConfigTypeImpl<ServletType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(MultipartConfigTypeImpl.nodeName);
+      MultipartConfigType<ServletType<T>> multipartConfig = new MultipartConfigTypeImpl<ServletType<T>>(this, "",
+            childNode, node);
       return multipartConfig;
    }
 
-
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public ServletType<T> setServletClass(String servletClass)   {
-      this.servletClass = servletClass;
+   // -------------------------------------------------------------------------------------||
+   // Element type : servlet-class
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public ServletType<T> setServletClass(String servletClass)
+   {
       childNode.getOrCreate("servlet-class").text(servletClass);
       return this;
    }
@@ -325,11 +310,12 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
       return childNode.textValue("servlet-class");
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public ServletType<T> setJspFile(String jspFile)   {
-      this.jspFile = jspFile;
+   // -------------------------------------------------------------------------------------||
+   // Element type : jsp-file
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public ServletType<T> setJspFile(String jspFile)
+   {
       childNode.getOrCreate("jsp-file").text(jspFile);
       return this;
    }

@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.impl.javaee6; 
+package org.jboss.shrinkwrap.descriptor.impl.javaee6;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T08:56:23.309+02:00
+ * Generation date :2011-06-12T13:26:32.882+02:00
  */
 public class SecurityRoleRefTypeImpl<T> implements Child<T>, SecurityRoleRefType<T>
 {
@@ -20,53 +20,51 @@ public class SecurityRoleRefTypeImpl<T> implements Child<T>, SecurityRoleRefType
    // -------------------------------------------------------------------------------------||
 
    private T t;
+
    private Node node;
+
    private Node childNode;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String description;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String roleName;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String roleLink;
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public SecurityRoleRefTypeImpl(T t, String descriptorName, Node node)   {
+   public SecurityRoleRefTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public SecurityRoleRefTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public SecurityRoleRefTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
-
 
    public T up()
    {
       return t;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
+   // -------------------------------------------------------------------------------------||
+   // Element type : description
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
    public SecurityRoleRefType<T> setDescription(String description)
    {
       childNode.create("description").text(description);
       return this;
    }
 
-   public SecurityRoleRefType<T> setDescription(String ... values)
+   public SecurityRoleRefType<T> setDescription(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
-         setDescription(description);
+         setDescription(name);
       }
-         return this;
+      return this;
    }
 
    public List<String> getDescriptionList()
@@ -80,11 +78,12 @@ public class SecurityRoleRefTypeImpl<T> implements Child<T>, SecurityRoleRefType
       return result;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public SecurityRoleRefType<T> setRoleName(String roleName)   {
-      this.roleName = roleName;
+   // -------------------------------------------------------------------------------------||
+   // Element type : role-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public SecurityRoleRefType<T> setRoleName(String roleName)
+   {
       childNode.getOrCreate("role-name").text(roleName);
       return this;
    }
@@ -94,11 +93,12 @@ public class SecurityRoleRefTypeImpl<T> implements Child<T>, SecurityRoleRefType
       return childNode.textValue("role-name");
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public SecurityRoleRefType<T> setRoleLink(String roleLink)   {
-      this.roleLink = roleLink;
+   // -------------------------------------------------------------------------------------||
+   // Element type : role-link
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public SecurityRoleRefType<T> setRoleLink(String roleLink)
+   {
       childNode.getOrCreate("role-link").text(roleLink);
       return this;
    }

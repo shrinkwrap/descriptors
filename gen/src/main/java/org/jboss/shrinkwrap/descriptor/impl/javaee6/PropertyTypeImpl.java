@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.impl.javaee6; 
+package org.jboss.shrinkwrap.descriptor.impl.javaee6;
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.PropertyType;
@@ -6,7 +6,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T08:56:23.309+02:00
+ * Generation date :2011-06-12T13:26:32.882+02:00
  */
 public class PropertyTypeImpl<T> implements Child<T>, PropertyType<T>
 {
@@ -17,40 +17,40 @@ public class PropertyTypeImpl<T> implements Child<T>, PropertyType<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
+
    private Node node;
+
    private Node childNode;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String name;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String value;
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public PropertyTypeImpl(T t, String descriptorName, Node node)   {
+   public PropertyTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public PropertyTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public PropertyTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
-
 
    public T up()
    {
       return t;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public PropertyType<T> setName(String name)   {
-      this.name = name;
+   // -------------------------------------------------------------------------------------||
+   // Element type : name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public PropertyType<T> setName(String name)
+   {
       childNode.getOrCreate("name").text(name);
       return this;
    }
@@ -60,11 +60,12 @@ public class PropertyTypeImpl<T> implements Child<T>, PropertyType<T>
       return childNode.textValue("name");
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public PropertyType<T> setValue(String value)   {
-      this.value = value;
+   // -------------------------------------------------------------------------------------||
+   // Element type : value
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public PropertyType<T> setValue(String value)
+   {
       childNode.getOrCreate("value").text(value);
       return this;
    }

@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.impl.javaee6; 
+package org.jboss.shrinkwrap.descriptor.impl.javaee6;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T08:56:23.309+02:00
+ * Generation date :2011-06-12T13:26:32.882+02:00
  */
 public class EjbLocalRefTypeImpl<T> implements Child<T>, EjbLocalRefType<T>
 {
@@ -21,54 +21,40 @@ public class EjbLocalRefTypeImpl<T> implements Child<T>, EjbLocalRefType<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
-   private Node node;
-   private Node childNode;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String description;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String ejbRefName;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String ejbRefType;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String localHome;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String local;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String ejbLink;
 
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String lookupName;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String mappedName;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private InjectionTargetType<EjbLocalRefType<T>> injectionTarget;
+   private Node node;
+
+   private Node childNode;
+
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public EjbLocalRefTypeImpl(T t, String descriptorName, Node node)   {
+   public EjbLocalRefTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public EjbLocalRefTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public EjbLocalRefTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
-
 
    public T up()
    {
       return t;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public EjbLocalRefType<T> setLookupName(String lookupName)   {
-      this.lookupName = lookupName;
+   // -------------------------------------------------------------------------------------||
+   // Element type : lookup-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public EjbLocalRefType<T> setLookupName(String lookupName)
+   {
       childNode.getOrCreate("lookup-name").text(lookupName);
       return this;
    }
@@ -78,10 +64,12 @@ public class EjbLocalRefTypeImpl<T> implements Child<T>, EjbLocalRefType<T>
       return childNode.textValue("lookup-name");
    }
 
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public EjbLocalRefType<T> setMappedName(String mappedName)   {
-      this.mappedName = mappedName;
+   // -------------------------------------------------------------------------------------||
+   // Element type : mapped-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public EjbLocalRefType<T> setMappedName(String mappedName)
+   {
       childNode.getOrCreate("mapped-name").text(mappedName);
       return this;
    }
@@ -91,11 +79,13 @@ public class EjbLocalRefTypeImpl<T> implements Child<T>, EjbLocalRefType<T>
       return childNode.textValue("mapped-name");
    }
 
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public EjbLocalRefType<T> setInjectionTarget(InjectionTargetType<EjbLocalRefType<T>> injectionTarget)
+   // -------------------------------------------------------------------------------------||
+   // Element type : injection-target
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public EjbLocalRefType<T> removeAllInjectionTarget()
    {
-      childNode.create("injection-target").text(injectionTarget);
+      childNode.remove("injection-target");
       return this;
    }
 
@@ -108,30 +98,32 @@ public class EjbLocalRefTypeImpl<T> implements Child<T>, EjbLocalRefType<T>
    {
       List<InjectionTargetType<EjbLocalRefType<T>>> list = new ArrayList<InjectionTargetType<EjbLocalRefType<T>>>();
       List<Node> nodeList = childNode.get(InjectionTargetTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         InjectionTargetType<EjbLocalRefType<T>>  type = new InjectionTargetTypeImpl<EjbLocalRefType<T>>(this, "", childNode, node);
+         InjectionTargetType<EjbLocalRefType<T>> type = new InjectionTargetTypeImpl<EjbLocalRefType<T>>(this, "",
+               childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
+   // -------------------------------------------------------------------------------------||
+   // Element type : description
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
    public EjbLocalRefType<T> setDescription(String description)
    {
       childNode.create("description").text(description);
       return this;
    }
 
-   public EjbLocalRefType<T> setDescription(String ... values)
+   public EjbLocalRefType<T> setDescription(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
-         setDescription(description);
+         setDescription(name);
       }
-         return this;
+      return this;
    }
 
    public List<String> getDescriptionList()
@@ -145,11 +137,12 @@ public class EjbLocalRefTypeImpl<T> implements Child<T>, EjbLocalRefType<T>
       return result;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public EjbLocalRefType<T> setEjbRefName(String ejbRefName)   {
-      this.ejbRefName = ejbRefName;
+   // -------------------------------------------------------------------------------------||
+   // Element type : ejb-ref-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public EjbLocalRefType<T> setEjbRefName(String ejbRefName)
+   {
       childNode.getOrCreate("ejb-ref-name").text(ejbRefName);
       return this;
    }
@@ -159,11 +152,12 @@ public class EjbLocalRefTypeImpl<T> implements Child<T>, EjbLocalRefType<T>
       return childNode.textValue("ejb-ref-name");
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public EjbLocalRefType<T> setEjbRefType(String ejbRefType)   {
-      this.ejbRefType = ejbRefType;
+   // -------------------------------------------------------------------------------------||
+   // Element type : ejb-ref-type
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public EjbLocalRefType<T> setEjbRefType(String ejbRefType)
+   {
       childNode.getOrCreate("ejb-ref-type").text(ejbRefType);
       return this;
    }
@@ -173,11 +167,12 @@ public class EjbLocalRefTypeImpl<T> implements Child<T>, EjbLocalRefType<T>
       return childNode.textValue("ejb-ref-type");
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public EjbLocalRefType<T> setLocalHome(String localHome)   {
-      this.localHome = localHome;
+   // -------------------------------------------------------------------------------------||
+   // Element type : local-home
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public EjbLocalRefType<T> setLocalHome(String localHome)
+   {
       childNode.getOrCreate("local-home").text(localHome);
       return this;
    }
@@ -187,11 +182,12 @@ public class EjbLocalRefTypeImpl<T> implements Child<T>, EjbLocalRefType<T>
       return childNode.textValue("local-home");
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public EjbLocalRefType<T> setLocal(String local)   {
-      this.local = local;
+   // -------------------------------------------------------------------------------------||
+   // Element type : local
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public EjbLocalRefType<T> setLocal(String local)
+   {
       childNode.getOrCreate("local").text(local);
       return this;
    }
@@ -201,11 +197,12 @@ public class EjbLocalRefTypeImpl<T> implements Child<T>, EjbLocalRefType<T>
       return childNode.textValue("local");
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public EjbLocalRefType<T> setEjbLink(String ejbLink)   {
-      this.ejbLink = ejbLink;
+   // -------------------------------------------------------------------------------------||
+   // Element type : ejb-link
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public EjbLocalRefType<T> setEjbLink(String ejbLink)
+   {
       childNode.getOrCreate("ejb-link").text(ejbLink);
       return this;
    }

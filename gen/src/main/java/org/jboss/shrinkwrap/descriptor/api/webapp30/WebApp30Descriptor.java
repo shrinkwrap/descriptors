@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.api.webapp30; 
+package org.jboss.shrinkwrap.descriptor.api.webapp30;
 
 import java.util.List;
 
@@ -34,292 +34,177 @@ import org.jboss.shrinkwrap.descriptor.api.webcommon30.WelcomeFileListType;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T08:56:23.309+02:00
+ * Generation date :2011-06-12T13:26:32.882+02:00
  */
 public interface WebApp30Descriptor<T> extends Descriptor
 {
-   // maxOccurs = -   // isGeneric = false   // isAttribute = false
 
-// otherwise;
    public T setDistributable(Boolean distributable);
 
-   public Boolean getDistributable();
+   public Boolean isDistributable();
 
-   // maxOccurs = -   // isGeneric = false   // isAttribute = false
-
-// otherwise;
-   public T setContextParam(ParamValueType<T> contextParam);
+   public T removeContextParam();
 
    public ParamValueType<T> getContextParam();
 
-
-   // maxOccurs = -   // isGeneric = false   // isAttribute = false
-
-// otherwise;
-   public T setFilter(FilterType<T> filter);
+   public T removeFilter();
 
    public FilterType<T> getFilter();
 
-
-   // maxOccurs = -   // isGeneric = false   // isAttribute = false
-
-// otherwise;
-   public T setFilterMapping(FilterMappingType<T> filterMapping);
+   public T removeFilterMapping();
 
    public FilterMappingType<T> getFilterMapping();
 
-
-   // maxOccurs = -   // isGeneric = false   // isAttribute = false
-
-// otherwise;
-   public T setListener(ListenerType<T> listener);
+   public T removeListener();
 
    public ListenerType<T> getListener();
 
-
-   // maxOccurs = -   // isGeneric = false   // isAttribute = false
-
-// otherwise;
-   public T setServlet(ServletType<T> servlet);
+   public T removeServlet();
 
    public ServletType<T> getServlet();
 
-
-   // maxOccurs = -   // isGeneric = false   // isAttribute = false
-
-// otherwise;
-   public T setServletMapping(ServletMappingType<T> servletMapping);
+   public T removeServletMapping();
 
    public ServletMappingType<T> getServletMapping();
 
-
-   // maxOccurs = -   // isGeneric = false   // isAttribute = false
-
-// otherwise;
-   public T setSessionConfig(SessionConfigType<T> sessionConfig);
+   public T removeSessionConfig();
 
    public SessionConfigType<T> getSessionConfig();
 
-
-   // maxOccurs = -   // isGeneric = false   // isAttribute = false
-
-// otherwise;
-   public T setMimeMapping(MimeMappingType<T> mimeMapping);
+   public T removeMimeMapping();
 
    public MimeMappingType<T> getMimeMapping();
 
-
-   // maxOccurs = -   // isGeneric = false   // isAttribute = false
-
-// otherwise;
-   public T setWelcomeFileList(WelcomeFileListType<T> welcomeFileList);
+   public T removeWelcomeFileList();
 
    public WelcomeFileListType<T> getWelcomeFileList();
 
-
-   // maxOccurs = -   // isGeneric = false   // isAttribute = false
-
-// otherwise;
-   public T setErrorPage(ErrorPageType<T> errorPage);
+   public T removeErrorPage();
 
    public ErrorPageType<T> getErrorPage();
 
-
-   // maxOccurs = -   // isGeneric = false   // isAttribute = false
-
-// otherwise;
-   public T setJspConfig(JspConfigType<T> jspConfig);
+   public T removeJspConfig();
 
    public JspConfigType<T> getJspConfig();
 
-
-   // maxOccurs = -   // isGeneric = false   // isAttribute = false
-
-// otherwise;
-   public T setSecurityConstraint(SecurityConstraintType<T> securityConstraint);
+   public T removeSecurityConstraint();
 
    public SecurityConstraintType<T> getSecurityConstraint();
 
-
-   // maxOccurs = -   // isGeneric = false   // isAttribute = false
-
-// otherwise;
-   public T setLoginConfig(LoginConfigType<T> loginConfig);
+   public T removeLoginConfig();
 
    public LoginConfigType<T> getLoginConfig();
 
-
-   // maxOccurs = -   // isGeneric = false   // isAttribute = false
-
-// otherwise;
-   public T setSecurityRole(SecurityRoleType<T> securityRole);
+   public T removeSecurityRole();
 
    public SecurityRoleType<T> getSecurityRole();
 
-
-   // maxOccurs = -   // isGeneric = false   // isAttribute = false
-
-// otherwise;
-   public T setMessageDestination(MessageDestinationType<T> messageDestination);
+   public T removeMessageDestination();
 
    public MessageDestinationType<T> getMessageDestination();
 
-
-   // maxOccurs = -   // isGeneric = false   // isAttribute = false
-
-// otherwise;
-   public T setLocaleEncodingMappingList(LocaleEncodingMappingListType<T> localeEncodingMappingList);
+   public T removeLocaleEncodingMappingList();
 
    public LocaleEncodingMappingListType<T> getLocaleEncodingMappingList();
 
-
-   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
-
    public T setDescription(String description);
-   public T setDescription(String ... values);
+
+   public T setDescription(String... values);
 
    public List<String> getDescriptionList();
 
-   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
-
    public T setDisplayName(String displayName);
-   public T setDisplayName(String ... values);
+
+   public T setDisplayName(String... values);
 
    public List<String> getDisplayNameList();
 
-   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
-
-// vIsComplexType=true() and contains($vMaxOccurs, 'unbounded';
-   public T setIcon(IconType<T> icon);
+   public T removeAllIcon();
 
    public IconType<T> getIcon();
+
    public List<IconType<T>> getIconList();
 
-
-   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
-
-// vIsComplexType=true() and contains($vMaxOccurs, 'unbounded';
-   public T setEnvEntry(EnvEntryType<T> envEntry);
+   public T removeAllEnvEntry();
 
    public EnvEntryType<T> getEnvEntry();
+
    public List<EnvEntryType<T>> getEnvEntryList();
 
-
-   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
-
-// vIsComplexType=true() and contains($vMaxOccurs, 'unbounded';
-   public T setEjbRef(EjbRefType<T> ejbRef);
+   public T removeAllEjbRef();
 
    public EjbRefType<T> getEjbRef();
+
    public List<EjbRefType<T>> getEjbRefList();
 
-
-   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
-
-// vIsComplexType=true() and contains($vMaxOccurs, 'unbounded';
-   public T setEjbLocalRef(EjbLocalRefType<T> ejbLocalRef);
+   public T removeAllEjbLocalRef();
 
    public EjbLocalRefType<T> getEjbLocalRef();
+
    public List<EjbLocalRefType<T>> getEjbLocalRefList();
 
-
-   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
-
-// vIsComplexType=true() and contains($vMaxOccurs, 'unbounded';
-   public T setResourceRef(ResourceRefType<T> resourceRef);
+   public T removeAllResourceRef();
 
    public ResourceRefType<T> getResourceRef();
+
    public List<ResourceRefType<T>> getResourceRefList();
 
-
-   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
-
-// vIsComplexType=true() and contains($vMaxOccurs, 'unbounded';
-   public T setResourceEnvRef(ResourceEnvRefType<T> resourceEnvRef);
+   public T removeAllResourceEnvRef();
 
    public ResourceEnvRefType<T> getResourceEnvRef();
+
    public List<ResourceEnvRefType<T>> getResourceEnvRefList();
 
-
-   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
-
-// vIsComplexType=true() and contains($vMaxOccurs, 'unbounded';
-   public T setMessageDestinationRef(MessageDestinationRefType<T> messageDestinationRef);
+   public T removeAllMessageDestinationRef();
 
    public MessageDestinationRefType<T> getMessageDestinationRef();
+
    public List<MessageDestinationRefType<T>> getMessageDestinationRefList();
 
-
-   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
-
-// vIsComplexType=true() and contains($vMaxOccurs, 'unbounded';
-   public T setPersistenceContextRef(PersistenceContextRefType<T> persistenceContextRef);
+   public T removeAllPersistenceContextRef();
 
    public PersistenceContextRefType<T> getPersistenceContextRef();
+
    public List<PersistenceContextRefType<T>> getPersistenceContextRefList();
 
-
-   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
-
-// vIsComplexType=true() and contains($vMaxOccurs, 'unbounded';
-   public T setPersistenceUnitRef(PersistenceUnitRefType<T> persistenceUnitRef);
+   public T removeAllPersistenceUnitRef();
 
    public PersistenceUnitRefType<T> getPersistenceUnitRef();
+
    public List<PersistenceUnitRefType<T>> getPersistenceUnitRefList();
 
-
-   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
-
-// vIsComplexType=true() and contains($vMaxOccurs, 'unbounded';
-   public T setPostConstruct(LifecycleCallbackType<T> postConstruct);
+   public T removeAllPostConstruct();
 
    public LifecycleCallbackType<T> getPostConstruct();
+
    public List<LifecycleCallbackType<T>> getPostConstructList();
 
-
-   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
-
-// vIsComplexType=true() and contains($vMaxOccurs, 'unbounded';
-   public T setPreDestroy(LifecycleCallbackType<T> preDestroy);
+   public T removeAllPreDestroy();
 
    public LifecycleCallbackType<T> getPreDestroy();
+
    public List<LifecycleCallbackType<T>> getPreDestroyList();
 
-
-   // maxOccurs = -unbounded   // isGeneric = false   // isAttribute = false
-
-// vIsComplexType=true() and contains($vMaxOccurs, 'unbounded';
-   public T setDataSource(DataSourceType<T> dataSource);
+   public T removeAllDataSource();
 
    public DataSourceType<T> getDataSource();
+
    public List<DataSourceType<T>> getDataSourceList();
 
-
-
-// pIsAttribute=true();
    public T setVersion(String version);
 
    public String getVersion();
 
-
-// pIsAttribute=true();
    public T setMetadataComplete(Boolean metadataComplete);
 
-   public Boolean getMetadataComplete();
+   public Boolean isMetadataComplete();
 
-   // maxOccurs = -   // isGeneric = false   // isAttribute = false
-
-// otherwise;
    public T setModuleName(String moduleName);
 
    public String getModuleName();
 
-   // maxOccurs = -   // isGeneric = false   // isAttribute = false
-
-// otherwise;
-   public T setAbsoluteOrdering(AbsoluteOrderingType<T> absoluteOrdering);
+   public T removeAbsoluteOrdering();
 
    public AbsoluteOrderingType<T> getAbsoluteOrdering();
-
 
 }

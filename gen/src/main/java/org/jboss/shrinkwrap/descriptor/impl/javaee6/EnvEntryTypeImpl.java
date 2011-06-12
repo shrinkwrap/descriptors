@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.impl.javaee6; 
+package org.jboss.shrinkwrap.descriptor.impl.javaee6;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T08:56:23.309+02:00
+ * Generation date :2011-06-12T13:26:32.882+02:00
  */
 public class EnvEntryTypeImpl<T> implements Child<T>, EnvEntryType<T>
 {
@@ -21,50 +21,40 @@ public class EnvEntryTypeImpl<T> implements Child<T>, EnvEntryType<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
-   private Node node;
-   private Node childNode;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String description;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String envEntryName;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String envEntryType;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String envEntryValue;
 
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String lookupName;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String mappedName;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private InjectionTargetType<EnvEntryType<T>> injectionTarget;
+   private Node node;
+
+   private Node childNode;
+
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public EnvEntryTypeImpl(T t, String descriptorName, Node node)   {
+   public EnvEntryTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public EnvEntryTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public EnvEntryTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
-
 
    public T up()
    {
       return t;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public EnvEntryType<T> setLookupName(String lookupName)   {
-      this.lookupName = lookupName;
+   // -------------------------------------------------------------------------------------||
+   // Element type : lookup-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public EnvEntryType<T> setLookupName(String lookupName)
+   {
       childNode.getOrCreate("lookup-name").text(lookupName);
       return this;
    }
@@ -74,10 +64,12 @@ public class EnvEntryTypeImpl<T> implements Child<T>, EnvEntryType<T>
       return childNode.textValue("lookup-name");
    }
 
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public EnvEntryType<T> setMappedName(String mappedName)   {
-      this.mappedName = mappedName;
+   // -------------------------------------------------------------------------------------||
+   // Element type : mapped-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public EnvEntryType<T> setMappedName(String mappedName)
+   {
       childNode.getOrCreate("mapped-name").text(mappedName);
       return this;
    }
@@ -87,11 +79,13 @@ public class EnvEntryTypeImpl<T> implements Child<T>, EnvEntryType<T>
       return childNode.textValue("mapped-name");
    }
 
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public EnvEntryType<T> setInjectionTarget(InjectionTargetType<EnvEntryType<T>> injectionTarget)
+   // -------------------------------------------------------------------------------------||
+   // Element type : injection-target
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public EnvEntryType<T> removeAllInjectionTarget()
    {
-      childNode.create("injection-target").text(injectionTarget);
+      childNode.remove("injection-target");
       return this;
    }
 
@@ -104,30 +98,32 @@ public class EnvEntryTypeImpl<T> implements Child<T>, EnvEntryType<T>
    {
       List<InjectionTargetType<EnvEntryType<T>>> list = new ArrayList<InjectionTargetType<EnvEntryType<T>>>();
       List<Node> nodeList = childNode.get(InjectionTargetTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         InjectionTargetType<EnvEntryType<T>>  type = new InjectionTargetTypeImpl<EnvEntryType<T>>(this, "", childNode, node);
+         InjectionTargetType<EnvEntryType<T>> type = new InjectionTargetTypeImpl<EnvEntryType<T>>(this, "", childNode,
+               node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
+   // -------------------------------------------------------------------------------------||
+   // Element type : description
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
    public EnvEntryType<T> setDescription(String description)
    {
       childNode.create("description").text(description);
       return this;
    }
 
-   public EnvEntryType<T> setDescription(String ... values)
+   public EnvEntryType<T> setDescription(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
-         setDescription(description);
+         setDescription(name);
       }
-         return this;
+      return this;
    }
 
    public List<String> getDescriptionList()
@@ -141,11 +137,12 @@ public class EnvEntryTypeImpl<T> implements Child<T>, EnvEntryType<T>
       return result;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public EnvEntryType<T> setEnvEntryName(String envEntryName)   {
-      this.envEntryName = envEntryName;
+   // -------------------------------------------------------------------------------------||
+   // Element type : env-entry-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public EnvEntryType<T> setEnvEntryName(String envEntryName)
+   {
       childNode.getOrCreate("env-entry-name").text(envEntryName);
       return this;
    }
@@ -155,11 +152,12 @@ public class EnvEntryTypeImpl<T> implements Child<T>, EnvEntryType<T>
       return childNode.textValue("env-entry-name");
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public EnvEntryType<T> setEnvEntryType(String envEntryType)   {
-      this.envEntryType = envEntryType;
+   // -------------------------------------------------------------------------------------||
+   // Element type : env-entry-type
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public EnvEntryType<T> setEnvEntryType(String envEntryType)
+   {
       childNode.getOrCreate("env-entry-type").text(envEntryType);
       return this;
    }
@@ -169,11 +167,12 @@ public class EnvEntryTypeImpl<T> implements Child<T>, EnvEntryType<T>
       return childNode.textValue("env-entry-type");
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public EnvEntryType<T> setEnvEntryValue(String envEntryValue)   {
-      this.envEntryValue = envEntryValue;
+   // -------------------------------------------------------------------------------------||
+   // Element type : env-entry-value
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public EnvEntryType<T> setEnvEntryValue(String envEntryValue)
+   {
       childNode.getOrCreate("env-entry-value").text(envEntryValue);
       return this;
    }

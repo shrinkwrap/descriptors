@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.impl.webcommon30; 
+package org.jboss.shrinkwrap.descriptor.impl.webcommon30;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T08:56:23.309+02:00
+ * Generation date :2011-06-12T13:26:32.882+02:00
  */
 public class SecurityConstraintTypeImpl<T> implements Child<T>, SecurityConstraintType<T>
 {
@@ -23,55 +23,51 @@ public class SecurityConstraintTypeImpl<T> implements Child<T>, SecurityConstrai
    // -------------------------------------------------------------------------------------||
 
    private T t;
+
    private Node node;
+
    private Node childNode;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String displayName;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private WebResourceCollectionType<SecurityConstraintType<T>> webResourceCollection;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private AuthConstraintType<SecurityConstraintType<T>> authConstraint;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private UserDataConstraintType<SecurityConstraintType<T>> userDataConstraint;
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public SecurityConstraintTypeImpl(T t, String descriptorName, Node node)   {
+   public SecurityConstraintTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public SecurityConstraintTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public SecurityConstraintTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
-
 
    public T up()
    {
       return t;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
+   // -------------------------------------------------------------------------------------||
+   // Element type : display-name
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
    public SecurityConstraintType<T> setDisplayName(String displayName)
    {
       childNode.create("display-name").text(displayName);
       return this;
    }
 
-   public SecurityConstraintType<T> setDisplayName(String ... values)
+   public SecurityConstraintType<T> setDisplayName(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
-         setDisplayName(displayName);
+         setDisplayName(name);
       }
-         return this;
+      return this;
    }
 
    public List<String> getDisplayNameList()
@@ -85,12 +81,13 @@ public class SecurityConstraintTypeImpl<T> implements Child<T>, SecurityConstrai
       return result;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public SecurityConstraintType<T> setWebResourceCollection(WebResourceCollectionType<SecurityConstraintType<T>> webResourceCollection)
+   // -------------------------------------------------------------------------------------||
+   // Element type : web-resource-collection
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public SecurityConstraintType<T> removeAllWebResourceCollection()
    {
-      childNode.create("web-resource-collection").text(webResourceCollection);
+      childNode.remove("web-resource-collection");
       return this;
    }
 
@@ -103,51 +100,49 @@ public class SecurityConstraintTypeImpl<T> implements Child<T>, SecurityConstrai
    {
       List<WebResourceCollectionType<SecurityConstraintType<T>>> list = new ArrayList<WebResourceCollectionType<SecurityConstraintType<T>>>();
       List<Node> nodeList = childNode.get(WebResourceCollectionTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         WebResourceCollectionType<SecurityConstraintType<T>>  type = new WebResourceCollectionTypeImpl<SecurityConstraintType<T>>(this, "", childNode, node);
+         WebResourceCollectionType<SecurityConstraintType<T>> type = new WebResourceCollectionTypeImpl<SecurityConstraintType<T>>(
+               this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public SecurityConstraintType<T> setAuthConstraint(AuthConstraintType<SecurityConstraintType<T>> authConstraint)   {
-      this.authConstraint = authConstraint;
-      childNode.getOrCreate("auth-constraint").text(authConstraint);
+   // -------------------------------------------------------------------------------------||
+   // Element type : auth-constraint
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public SecurityConstraintType<T> removeAuthConstraint()
+   {
+      childNode.remove("auth-constraint");
       return this;
    }
 
    public AuthConstraintType<SecurityConstraintType<T>> getAuthConstraint()
    {
-      if( authConstraint == null)
-      {
-          authConstraint = new AuthConstraintTypeImpl<SecurityConstraintType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(AuthConstraintTypeImpl.nodeName);
+      AuthConstraintType<SecurityConstraintType<T>> authConstraint = new AuthConstraintTypeImpl<SecurityConstraintType<T>>(
+            this, "", childNode, node);
       return authConstraint;
    }
 
-
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public SecurityConstraintType<T> setUserDataConstraint(UserDataConstraintType<SecurityConstraintType<T>> userDataConstraint)   {
-      this.userDataConstraint = userDataConstraint;
-      childNode.getOrCreate("user-data-constraint").text(userDataConstraint);
+   // -------------------------------------------------------------------------------------||
+   // Element type : user-data-constraint
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public SecurityConstraintType<T> removeUserDataConstraint()
+   {
+      childNode.remove("user-data-constraint");
       return this;
    }
 
    public UserDataConstraintType<SecurityConstraintType<T>> getUserDataConstraint()
    {
-      if( userDataConstraint == null)
-      {
-          userDataConstraint = new UserDataConstraintTypeImpl<SecurityConstraintType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(UserDataConstraintTypeImpl.nodeName);
+      UserDataConstraintType<SecurityConstraintType<T>> userDataConstraint = new UserDataConstraintTypeImpl<SecurityConstraintType<T>>(
+            this, "", childNode, node);
       return userDataConstraint;
    }
-
 
 }

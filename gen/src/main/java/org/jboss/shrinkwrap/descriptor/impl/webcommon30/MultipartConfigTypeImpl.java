@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.impl.webcommon30; 
+package org.jboss.shrinkwrap.descriptor.impl.webcommon30;
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.MultipartConfigType;
@@ -6,7 +6,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T08:56:23.309+02:00
+ * Generation date :2011-06-12T13:26:32.882+02:00
  */
 public class MultipartConfigTypeImpl<T> implements Child<T>, MultipartConfigType<T>
 {
@@ -17,44 +17,40 @@ public class MultipartConfigTypeImpl<T> implements Child<T>, MultipartConfigType
    // -------------------------------------------------------------------------------------||
 
    private T t;
+
    private Node node;
+
    private Node childNode;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String location;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private Long maxFileSize;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private Long maxRequestSize;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private Integer fileSizeThreshold;
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public MultipartConfigTypeImpl(T t, String descriptorName, Node node)   {
+   public MultipartConfigTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public MultipartConfigTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public MultipartConfigTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
-
 
    public T up()
    {
       return t;
    }
 
-
-   // maxOccurs = -1   // isGeneric = true   // isAttribute = false
-
-   public MultipartConfigType<T> setLocation(String location)   {
-      this.location = location;
+   // -------------------------------------------------------------------------------------||
+   // Element type : location
+   // isComplexType: false   maxOccurs: -1   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public MultipartConfigType<T> setLocation(String location)
+   {
       childNode.getOrCreate("location").text(location);
       return this;
    }
@@ -64,11 +60,12 @@ public class MultipartConfigTypeImpl<T> implements Child<T>, MultipartConfigType
       return childNode.textValue("location");
    }
 
-
-   // maxOccurs = -1   // isGeneric = true   // isAttribute = false
-
-   public MultipartConfigType<T> setMaxFileSize(Long maxFileSize)   {
-      this.maxFileSize = maxFileSize;
+   // -------------------------------------------------------------------------------------||
+   // Element type : max-file-size
+   // isComplexType: false   maxOccurs: -1   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public MultipartConfigType<T> setMaxFileSize(Long maxFileSize)
+   {
       childNode.getOrCreate("max-file-size").text(maxFileSize);
       return this;
    }
@@ -78,11 +75,12 @@ public class MultipartConfigTypeImpl<T> implements Child<T>, MultipartConfigType
       return Long.valueOf(childNode.textValue("max-file-size"));
    }
 
-
-   // maxOccurs = -1   // isGeneric = true   // isAttribute = false
-
-   public MultipartConfigType<T> setMaxRequestSize(Long maxRequestSize)   {
-      this.maxRequestSize = maxRequestSize;
+   // -------------------------------------------------------------------------------------||
+   // Element type : max-request-size
+   // isComplexType: false   maxOccurs: -1   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public MultipartConfigType<T> setMaxRequestSize(Long maxRequestSize)
+   {
       childNode.getOrCreate("max-request-size").text(maxRequestSize);
       return this;
    }
@@ -92,11 +90,12 @@ public class MultipartConfigTypeImpl<T> implements Child<T>, MultipartConfigType
       return Long.valueOf(childNode.textValue("max-request-size"));
    }
 
-
-   // maxOccurs = -1   // isGeneric = true   // isAttribute = false
-
-   public MultipartConfigType<T> setFileSizeThreshold(Integer fileSizeThreshold)   {
-      this.fileSizeThreshold = fileSizeThreshold;
+   // -------------------------------------------------------------------------------------||
+   // Element type : file-size-threshold
+   // isComplexType: false   maxOccurs: -1   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public MultipartConfigType<T> setFileSizeThreshold(Integer fileSizeThreshold)
+   {
       childNode.getOrCreate("file-size-threshold").text(fileSizeThreshold);
       return this;
    }

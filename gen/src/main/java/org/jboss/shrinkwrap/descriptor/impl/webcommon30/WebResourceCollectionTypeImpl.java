@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.impl.webcommon30; 
+package org.jboss.shrinkwrap.descriptor.impl.webcommon30;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T08:56:23.309+02:00
+ * Generation date :2011-06-12T13:26:32.882+02:00
  */
 public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCollectionType<T>
 {
@@ -20,46 +20,40 @@ public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCo
    // -------------------------------------------------------------------------------------||
 
    private T t;
+
    private Node node;
+
    private Node childNode;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String webResourceName;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String description;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String urlPattern;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String httpMethod;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String httpMethodOmission;
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public WebResourceCollectionTypeImpl(T t, String descriptorName, Node node)   {
+   public WebResourceCollectionTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public WebResourceCollectionTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public WebResourceCollectionTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
-
 
    public T up()
    {
       return t;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebResourceCollectionType<T> setWebResourceName(String webResourceName)   {
-      this.webResourceName = webResourceName;
+   // -------------------------------------------------------------------------------------||
+   // Element type : web-resource-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebResourceCollectionType<T> setWebResourceName(String webResourceName)
+   {
       childNode.getOrCreate("web-resource-name").text(webResourceName);
       return this;
    }
@@ -69,22 +63,23 @@ public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCo
       return childNode.textValue("web-resource-name");
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
+   // -------------------------------------------------------------------------------------||
+   // Element type : description
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
    public WebResourceCollectionType<T> setDescription(String description)
    {
       childNode.create("description").text(description);
       return this;
    }
 
-   public WebResourceCollectionType<T> setDescription(String ... values)
+   public WebResourceCollectionType<T> setDescription(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
-         setDescription(description);
+         setDescription(name);
       }
-         return this;
+      return this;
    }
 
    public List<String> getDescriptionList()
@@ -98,22 +93,23 @@ public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCo
       return result;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
+   // -------------------------------------------------------------------------------------||
+   // Element type : url-pattern
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
    public WebResourceCollectionType<T> setUrlPattern(String urlPattern)
    {
       childNode.create("url-pattern").text(urlPattern);
       return this;
    }
 
-   public WebResourceCollectionType<T> setUrlPattern(String ... values)
+   public WebResourceCollectionType<T> setUrlPattern(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
-         setUrlPattern(urlPattern);
+         setUrlPattern(name);
       }
-         return this;
+      return this;
    }
 
    public List<String> getUrlPatternList()
@@ -127,22 +123,23 @@ public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCo
       return result;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
+   // -------------------------------------------------------------------------------------||
+   // Element type : http-method
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
    public WebResourceCollectionType<T> setHttpMethod(String httpMethod)
    {
       childNode.create("http-method").text(httpMethod);
       return this;
    }
 
-   public WebResourceCollectionType<T> setHttpMethod(String ... values)
+   public WebResourceCollectionType<T> setHttpMethod(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
-         setHttpMethod(httpMethod);
+         setHttpMethod(name);
       }
-         return this;
+      return this;
    }
 
    public List<String> getHttpMethodList()
@@ -156,22 +153,23 @@ public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCo
       return result;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
+   // -------------------------------------------------------------------------------------||
+   // Element type : http-method-omission
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
    public WebResourceCollectionType<T> setHttpMethodOmission(String httpMethodOmission)
    {
       childNode.create("http-method-omission").text(httpMethodOmission);
       return this;
    }
 
-   public WebResourceCollectionType<T> setHttpMethodOmission(String ... values)
+   public WebResourceCollectionType<T> setHttpMethodOmission(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
-         setHttpMethodOmission(httpMethodOmission);
+         setHttpMethodOmission(name);
       }
-         return this;
+      return this;
    }
 
    public List<String> getHttpMethodOmissionList()

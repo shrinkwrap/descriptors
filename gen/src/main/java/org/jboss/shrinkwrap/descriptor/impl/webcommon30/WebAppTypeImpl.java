@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.impl.webcommon30; 
+package org.jboss.shrinkwrap.descriptor.impl.webcommon30;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +54,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T08:56:23.309+02:00
+ * Generation date :2011-06-12T13:26:32.882+02:00
  */
 public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
 {
@@ -65,416 +65,345 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
-   private Node node;
-   private Node childNode;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String moduleName;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private AbsoluteOrderingType<WebAppType<T>> absoluteOrdering;
 
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private Boolean distributable;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private ParamValueType<WebAppType<T>> contextParam;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private FilterType<WebAppType<T>> filter;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private FilterMappingType<WebAppType<T>> filterMapping;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private ListenerType<WebAppType<T>> listener;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private ServletType<WebAppType<T>> servlet;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private ServletMappingType<WebAppType<T>> servletMapping;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private SessionConfigType<WebAppType<T>> sessionConfig;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private MimeMappingType<WebAppType<T>> mimeMapping;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private WelcomeFileListType<WebAppType<T>> welcomeFileList;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private ErrorPageType<WebAppType<T>> errorPage;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private JspConfigType<WebAppType<T>> jspConfig;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private SecurityConstraintType<WebAppType<T>> securityConstraint;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private LoginConfigType<WebAppType<T>> loginConfig;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private SecurityRoleType<WebAppType<T>> securityRole;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private MessageDestinationType<WebAppType<T>> messageDestination;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private LocaleEncodingMappingListType<WebAppType<T>> localeEncodingMappingList;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private String description;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private String displayName;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private IconType<WebAppType<T>> icon;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private EnvEntryType<WebAppType<T>> envEntry;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private EjbRefType<WebAppType<T>> ejbRef;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private EjbLocalRefType<WebAppType<T>> ejbLocalRef;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private ResourceRefType<WebAppType<T>> resourceRef;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private ResourceEnvRefType<WebAppType<T>> resourceEnvRef;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private MessageDestinationRefType<WebAppType<T>> messageDestinationRef;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private PersistenceContextRefType<WebAppType<T>> persistenceContextRef;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private PersistenceUnitRefType<WebAppType<T>> persistenceUnitRef;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private LifecycleCallbackType<WebAppType<T>> postConstruct;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private LifecycleCallbackType<WebAppType<T>> preDestroy;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private DataSourceType<WebAppType<T>> dataSource;
-   private String version;
-   private Boolean metadataComplete;
+   private Node node;
+
+   private Node childNode;
+
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public WebAppTypeImpl(T t, String descriptorName, Node node)   {
+   public WebAppTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public WebAppTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public WebAppTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
-
 
    public T up()
    {
       return t;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setDistributable(Boolean distributable)   {
-      this.distributable = distributable;
+   // -------------------------------------------------------------------------------------||
+   // Element type : distributable
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> setDistributable(Boolean distributable)
+   {
       childNode.getOrCreate("distributable").text(distributable);
       return this;
    }
 
-   public Boolean getDistributable()
+   public Boolean isDistributable()
    {
       return Strings.isTrue(childNode.textValue("distributable"));
    }
 
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setContextParam(ParamValueType<WebAppType<T>> contextParam)   {
-      this.contextParam = contextParam;
-      childNode.getOrCreate("context-param").text(contextParam);
+   // -------------------------------------------------------------------------------------||
+   // Element type : context-param
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeContextParam()
+   {
+      childNode.remove("context-param");
       return this;
    }
 
    public ParamValueType<WebAppType<T>> getContextParam()
    {
-      if( contextParam == null)
-      {
-          contextParam = new ParamValueTypeImpl<WebAppType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(ParamValueTypeImpl.nodeName);
+      ParamValueType<WebAppType<T>> contextParam = new ParamValueTypeImpl<WebAppType<T>>(this, "", childNode, node);
       return contextParam;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setFilter(FilterType<WebAppType<T>> filter)   {
-      this.filter = filter;
-      childNode.getOrCreate("filter").text(filter);
+   // -------------------------------------------------------------------------------------||
+   // Element type : filter
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeFilter()
+   {
+      childNode.remove("filter");
       return this;
    }
 
    public FilterType<WebAppType<T>> getFilter()
    {
-      if( filter == null)
-      {
-          filter = new FilterTypeImpl<WebAppType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(FilterTypeImpl.nodeName);
+      FilterType<WebAppType<T>> filter = new FilterTypeImpl<WebAppType<T>>(this, "", childNode, node);
       return filter;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setFilterMapping(FilterMappingType<WebAppType<T>> filterMapping)   {
-      this.filterMapping = filterMapping;
-      childNode.getOrCreate("filter-mapping").text(filterMapping);
+   // -------------------------------------------------------------------------------------||
+   // Element type : filter-mapping
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeFilterMapping()
+   {
+      childNode.remove("filter-mapping");
       return this;
    }
 
    public FilterMappingType<WebAppType<T>> getFilterMapping()
    {
-      if( filterMapping == null)
-      {
-          filterMapping = new FilterMappingTypeImpl<WebAppType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(FilterMappingTypeImpl.nodeName);
+      FilterMappingType<WebAppType<T>> filterMapping = new FilterMappingTypeImpl<WebAppType<T>>(this, "", childNode,
+            node);
       return filterMapping;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setListener(ListenerType<WebAppType<T>> listener)   {
-      this.listener = listener;
-      childNode.getOrCreate("listener").text(listener);
+   // -------------------------------------------------------------------------------------||
+   // Element type : listener
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeListener()
+   {
+      childNode.remove("listener");
       return this;
    }
 
    public ListenerType<WebAppType<T>> getListener()
    {
-      if( listener == null)
-      {
-          listener = new ListenerTypeImpl<WebAppType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(ListenerTypeImpl.nodeName);
+      ListenerType<WebAppType<T>> listener = new ListenerTypeImpl<WebAppType<T>>(this, "", childNode, node);
       return listener;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setServlet(ServletType<WebAppType<T>> servlet)   {
-      this.servlet = servlet;
-      childNode.getOrCreate("servlet").text(servlet);
+   // -------------------------------------------------------------------------------------||
+   // Element type : servlet
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeServlet()
+   {
+      childNode.remove("servlet");
       return this;
    }
 
    public ServletType<WebAppType<T>> getServlet()
    {
-      if( servlet == null)
-      {
-          servlet = new ServletTypeImpl<WebAppType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(ServletTypeImpl.nodeName);
+      ServletType<WebAppType<T>> servlet = new ServletTypeImpl<WebAppType<T>>(this, "", childNode, node);
       return servlet;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setServletMapping(ServletMappingType<WebAppType<T>> servletMapping)   {
-      this.servletMapping = servletMapping;
-      childNode.getOrCreate("servlet-mapping").text(servletMapping);
+   // -------------------------------------------------------------------------------------||
+   // Element type : servlet-mapping
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeServletMapping()
+   {
+      childNode.remove("servlet-mapping");
       return this;
    }
 
    public ServletMappingType<WebAppType<T>> getServletMapping()
    {
-      if( servletMapping == null)
-      {
-          servletMapping = new ServletMappingTypeImpl<WebAppType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(ServletMappingTypeImpl.nodeName);
+      ServletMappingType<WebAppType<T>> servletMapping = new ServletMappingTypeImpl<WebAppType<T>>(this, "", childNode,
+            node);
       return servletMapping;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setSessionConfig(SessionConfigType<WebAppType<T>> sessionConfig)   {
-      this.sessionConfig = sessionConfig;
-      childNode.getOrCreate("session-config").text(sessionConfig);
+   // -------------------------------------------------------------------------------------||
+   // Element type : session-config
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeSessionConfig()
+   {
+      childNode.remove("session-config");
       return this;
    }
 
    public SessionConfigType<WebAppType<T>> getSessionConfig()
    {
-      if( sessionConfig == null)
-      {
-          sessionConfig = new SessionConfigTypeImpl<WebAppType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(SessionConfigTypeImpl.nodeName);
+      SessionConfigType<WebAppType<T>> sessionConfig = new SessionConfigTypeImpl<WebAppType<T>>(this, "", childNode,
+            node);
       return sessionConfig;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setMimeMapping(MimeMappingType<WebAppType<T>> mimeMapping)   {
-      this.mimeMapping = mimeMapping;
-      childNode.getOrCreate("mime-mapping").text(mimeMapping);
+   // -------------------------------------------------------------------------------------||
+   // Element type : mime-mapping
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeMimeMapping()
+   {
+      childNode.remove("mime-mapping");
       return this;
    }
 
    public MimeMappingType<WebAppType<T>> getMimeMapping()
    {
-      if( mimeMapping == null)
-      {
-          mimeMapping = new MimeMappingTypeImpl<WebAppType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(MimeMappingTypeImpl.nodeName);
+      MimeMappingType<WebAppType<T>> mimeMapping = new MimeMappingTypeImpl<WebAppType<T>>(this, "", childNode, node);
       return mimeMapping;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setWelcomeFileList(WelcomeFileListType<WebAppType<T>> welcomeFileList)   {
-      this.welcomeFileList = welcomeFileList;
-      childNode.getOrCreate("welcome-file-list").text(welcomeFileList);
+   // -------------------------------------------------------------------------------------||
+   // Element type : welcome-file-list
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeWelcomeFileList()
+   {
+      childNode.remove("welcome-file-list");
       return this;
    }
 
    public WelcomeFileListType<WebAppType<T>> getWelcomeFileList()
    {
-      if( welcomeFileList == null)
-      {
-          welcomeFileList = new WelcomeFileListTypeImpl<WebAppType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(WelcomeFileListTypeImpl.nodeName);
+      WelcomeFileListType<WebAppType<T>> welcomeFileList = new WelcomeFileListTypeImpl<WebAppType<T>>(this, "",
+            childNode, node);
       return welcomeFileList;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setErrorPage(ErrorPageType<WebAppType<T>> errorPage)   {
-      this.errorPage = errorPage;
-      childNode.getOrCreate("error-page").text(errorPage);
+   // -------------------------------------------------------------------------------------||
+   // Element type : error-page
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeErrorPage()
+   {
+      childNode.remove("error-page");
       return this;
    }
 
    public ErrorPageType<WebAppType<T>> getErrorPage()
    {
-      if( errorPage == null)
-      {
-          errorPage = new ErrorPageTypeImpl<WebAppType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(ErrorPageTypeImpl.nodeName);
+      ErrorPageType<WebAppType<T>> errorPage = new ErrorPageTypeImpl<WebAppType<T>>(this, "", childNode, node);
       return errorPage;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setJspConfig(JspConfigType<WebAppType<T>> jspConfig)   {
-      this.jspConfig = jspConfig;
-      childNode.getOrCreate("jsp-config").text(jspConfig);
+   // -------------------------------------------------------------------------------------||
+   // Element type : jsp-config
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeJspConfig()
+   {
+      childNode.remove("jsp-config");
       return this;
    }
 
    public JspConfigType<WebAppType<T>> getJspConfig()
    {
-      if( jspConfig == null)
-      {
-          jspConfig = new JspConfigTypeImpl<WebAppType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(JspConfigTypeImpl.nodeName);
+      JspConfigType<WebAppType<T>> jspConfig = new JspConfigTypeImpl<WebAppType<T>>(this, "", childNode, node);
       return jspConfig;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setSecurityConstraint(SecurityConstraintType<WebAppType<T>> securityConstraint)   {
-      this.securityConstraint = securityConstraint;
-      childNode.getOrCreate("security-constraint").text(securityConstraint);
+   // -------------------------------------------------------------------------------------||
+   // Element type : security-constraint
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeSecurityConstraint()
+   {
+      childNode.remove("security-constraint");
       return this;
    }
 
    public SecurityConstraintType<WebAppType<T>> getSecurityConstraint()
    {
-      if( securityConstraint == null)
-      {
-          securityConstraint = new SecurityConstraintTypeImpl<WebAppType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(SecurityConstraintTypeImpl.nodeName);
+      SecurityConstraintType<WebAppType<T>> securityConstraint = new SecurityConstraintTypeImpl<WebAppType<T>>(this,
+            "", childNode, node);
       return securityConstraint;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setLoginConfig(LoginConfigType<WebAppType<T>> loginConfig)   {
-      this.loginConfig = loginConfig;
-      childNode.getOrCreate("login-config").text(loginConfig);
+   // -------------------------------------------------------------------------------------||
+   // Element type : login-config
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeLoginConfig()
+   {
+      childNode.remove("login-config");
       return this;
    }
 
    public LoginConfigType<WebAppType<T>> getLoginConfig()
    {
-      if( loginConfig == null)
-      {
-          loginConfig = new LoginConfigTypeImpl<WebAppType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(LoginConfigTypeImpl.nodeName);
+      LoginConfigType<WebAppType<T>> loginConfig = new LoginConfigTypeImpl<WebAppType<T>>(this, "", childNode, node);
       return loginConfig;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setSecurityRole(SecurityRoleType<WebAppType<T>> securityRole)   {
-      this.securityRole = securityRole;
-      childNode.getOrCreate("security-role").text(securityRole);
+   // -------------------------------------------------------------------------------------||
+   // Element type : security-role
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeSecurityRole()
+   {
+      childNode.remove("security-role");
       return this;
    }
 
    public SecurityRoleType<WebAppType<T>> getSecurityRole()
    {
-      if( securityRole == null)
-      {
-          securityRole = new SecurityRoleTypeImpl<WebAppType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(SecurityRoleTypeImpl.nodeName);
+      SecurityRoleType<WebAppType<T>> securityRole = new SecurityRoleTypeImpl<WebAppType<T>>(this, "", childNode, node);
       return securityRole;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setMessageDestination(MessageDestinationType<WebAppType<T>> messageDestination)   {
-      this.messageDestination = messageDestination;
-      childNode.getOrCreate("message-destination").text(messageDestination);
+   // -------------------------------------------------------------------------------------||
+   // Element type : message-destination
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeMessageDestination()
+   {
+      childNode.remove("message-destination");
       return this;
    }
 
    public MessageDestinationType<WebAppType<T>> getMessageDestination()
    {
-      if( messageDestination == null)
-      {
-          messageDestination = new MessageDestinationTypeImpl<WebAppType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(MessageDestinationTypeImpl.nodeName);
+      MessageDestinationType<WebAppType<T>> messageDestination = new MessageDestinationTypeImpl<WebAppType<T>>(this,
+            "", childNode, node);
       return messageDestination;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setLocaleEncodingMappingList(LocaleEncodingMappingListType<WebAppType<T>> localeEncodingMappingList)   {
-      this.localeEncodingMappingList = localeEncodingMappingList;
-      childNode.getOrCreate("locale-encoding-mapping-list").text(localeEncodingMappingList);
+   // -------------------------------------------------------------------------------------||
+   // Element type : locale-encoding-mapping-list
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeLocaleEncodingMappingList()
+   {
+      childNode.remove("locale-encoding-mapping-list");
       return this;
    }
 
    public LocaleEncodingMappingListType<WebAppType<T>> getLocaleEncodingMappingList()
    {
-      if( localeEncodingMappingList == null)
-      {
-          localeEncodingMappingList = new LocaleEncodingMappingListTypeImpl<WebAppType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(LocaleEncodingMappingListTypeImpl.nodeName);
+      LocaleEncodingMappingListType<WebAppType<T>> localeEncodingMappingList = new LocaleEncodingMappingListTypeImpl<WebAppType<T>>(
+            this, "", childNode, node);
       return localeEncodingMappingList;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
+   // -------------------------------------------------------------------------------------||
+   // Element type : description
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
    public WebAppType<T> setDescription(String description)
    {
       childNode.create("description").text(description);
       return this;
    }
 
-   public WebAppType<T> setDescription(String ... values)
+   public WebAppType<T> setDescription(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
-         setDescription(description);
+         setDescription(name);
       }
-         return this;
+      return this;
    }
 
    public List<String> getDescriptionList()
@@ -488,21 +417,23 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return result;
    }
 
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
+   // -------------------------------------------------------------------------------------||
+   // Element type : display-name
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
    public WebAppType<T> setDisplayName(String displayName)
    {
       childNode.create("display-name").text(displayName);
       return this;
    }
 
-   public WebAppType<T> setDisplayName(String ... values)
+   public WebAppType<T> setDisplayName(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
-         setDisplayName(displayName);
+         setDisplayName(name);
       }
-         return this;
+      return this;
    }
 
    public List<String> getDisplayNameList()
@@ -516,11 +447,13 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return result;
    }
 
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setIcon(IconType<WebAppType<T>> icon)
+   // -------------------------------------------------------------------------------------||
+   // Element type : icon
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeAllIcon()
    {
-      childNode.create("icon").text(icon);
+      childNode.remove("icon");
       return this;
    }
 
@@ -533,20 +466,21 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    {
       List<IconType<WebAppType<T>>> list = new ArrayList<IconType<WebAppType<T>>>();
       List<Node> nodeList = childNode.get(IconTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         IconType<WebAppType<T>>  type = new IconTypeImpl<WebAppType<T>>(this, "", childNode, node);
+         IconType<WebAppType<T>> type = new IconTypeImpl<WebAppType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setEnvEntry(EnvEntryType<WebAppType<T>> envEntry)
+   // -------------------------------------------------------------------------------------||
+   // Element type : env-entry
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeAllEnvEntry()
    {
-      childNode.create("env-entry").text(envEntry);
+      childNode.remove("env-entry");
       return this;
    }
 
@@ -559,20 +493,21 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    {
       List<EnvEntryType<WebAppType<T>>> list = new ArrayList<EnvEntryType<WebAppType<T>>>();
       List<Node> nodeList = childNode.get(EnvEntryTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         EnvEntryType<WebAppType<T>>  type = new EnvEntryTypeImpl<WebAppType<T>>(this, "", childNode, node);
+         EnvEntryType<WebAppType<T>> type = new EnvEntryTypeImpl<WebAppType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setEjbRef(EjbRefType<WebAppType<T>> ejbRef)
+   // -------------------------------------------------------------------------------------||
+   // Element type : ejb-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeAllEjbRef()
    {
-      childNode.create("ejb-ref").text(ejbRef);
+      childNode.remove("ejb-ref");
       return this;
    }
 
@@ -585,20 +520,21 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    {
       List<EjbRefType<WebAppType<T>>> list = new ArrayList<EjbRefType<WebAppType<T>>>();
       List<Node> nodeList = childNode.get(EjbRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         EjbRefType<WebAppType<T>>  type = new EjbRefTypeImpl<WebAppType<T>>(this, "", childNode, node);
+         EjbRefType<WebAppType<T>> type = new EjbRefTypeImpl<WebAppType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setEjbLocalRef(EjbLocalRefType<WebAppType<T>> ejbLocalRef)
+   // -------------------------------------------------------------------------------------||
+   // Element type : ejb-local-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeAllEjbLocalRef()
    {
-      childNode.create("ejb-local-ref").text(ejbLocalRef);
+      childNode.remove("ejb-local-ref");
       return this;
    }
 
@@ -611,20 +547,21 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    {
       List<EjbLocalRefType<WebAppType<T>>> list = new ArrayList<EjbLocalRefType<WebAppType<T>>>();
       List<Node> nodeList = childNode.get(EjbLocalRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         EjbLocalRefType<WebAppType<T>>  type = new EjbLocalRefTypeImpl<WebAppType<T>>(this, "", childNode, node);
+         EjbLocalRefType<WebAppType<T>> type = new EjbLocalRefTypeImpl<WebAppType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setResourceRef(ResourceRefType<WebAppType<T>> resourceRef)
+   // -------------------------------------------------------------------------------------||
+   // Element type : resource-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeAllResourceRef()
    {
-      childNode.create("resource-ref").text(resourceRef);
+      childNode.remove("resource-ref");
       return this;
    }
 
@@ -637,20 +574,21 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    {
       List<ResourceRefType<WebAppType<T>>> list = new ArrayList<ResourceRefType<WebAppType<T>>>();
       List<Node> nodeList = childNode.get(ResourceRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         ResourceRefType<WebAppType<T>>  type = new ResourceRefTypeImpl<WebAppType<T>>(this, "", childNode, node);
+         ResourceRefType<WebAppType<T>> type = new ResourceRefTypeImpl<WebAppType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setResourceEnvRef(ResourceEnvRefType<WebAppType<T>> resourceEnvRef)
+   // -------------------------------------------------------------------------------------||
+   // Element type : resource-env-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeAllResourceEnvRef()
    {
-      childNode.create("resource-env-ref").text(resourceEnvRef);
+      childNode.remove("resource-env-ref");
       return this;
    }
 
@@ -663,20 +601,21 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    {
       List<ResourceEnvRefType<WebAppType<T>>> list = new ArrayList<ResourceEnvRefType<WebAppType<T>>>();
       List<Node> nodeList = childNode.get(ResourceEnvRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         ResourceEnvRefType<WebAppType<T>>  type = new ResourceEnvRefTypeImpl<WebAppType<T>>(this, "", childNode, node);
+         ResourceEnvRefType<WebAppType<T>> type = new ResourceEnvRefTypeImpl<WebAppType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setMessageDestinationRef(MessageDestinationRefType<WebAppType<T>> messageDestinationRef)
+   // -------------------------------------------------------------------------------------||
+   // Element type : message-destination-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeAllMessageDestinationRef()
    {
-      childNode.create("message-destination-ref").text(messageDestinationRef);
+      childNode.remove("message-destination-ref");
       return this;
    }
 
@@ -689,20 +628,22 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    {
       List<MessageDestinationRefType<WebAppType<T>>> list = new ArrayList<MessageDestinationRefType<WebAppType<T>>>();
       List<Node> nodeList = childNode.get(MessageDestinationRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         MessageDestinationRefType<WebAppType<T>>  type = new MessageDestinationRefTypeImpl<WebAppType<T>>(this, "", childNode, node);
+         MessageDestinationRefType<WebAppType<T>> type = new MessageDestinationRefTypeImpl<WebAppType<T>>(this, "",
+               childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setPersistenceContextRef(PersistenceContextRefType<WebAppType<T>> persistenceContextRef)
+   // -------------------------------------------------------------------------------------||
+   // Element type : persistence-context-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeAllPersistenceContextRef()
    {
-      childNode.create("persistence-context-ref").text(persistenceContextRef);
+      childNode.remove("persistence-context-ref");
       return this;
    }
 
@@ -715,20 +656,22 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    {
       List<PersistenceContextRefType<WebAppType<T>>> list = new ArrayList<PersistenceContextRefType<WebAppType<T>>>();
       List<Node> nodeList = childNode.get(PersistenceContextRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         PersistenceContextRefType<WebAppType<T>>  type = new PersistenceContextRefTypeImpl<WebAppType<T>>(this, "", childNode, node);
+         PersistenceContextRefType<WebAppType<T>> type = new PersistenceContextRefTypeImpl<WebAppType<T>>(this, "",
+               childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setPersistenceUnitRef(PersistenceUnitRefType<WebAppType<T>> persistenceUnitRef)
+   // -------------------------------------------------------------------------------------||
+   // Element type : persistence-unit-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeAllPersistenceUnitRef()
    {
-      childNode.create("persistence-unit-ref").text(persistenceUnitRef);
+      childNode.remove("persistence-unit-ref");
       return this;
    }
 
@@ -741,20 +684,22 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    {
       List<PersistenceUnitRefType<WebAppType<T>>> list = new ArrayList<PersistenceUnitRefType<WebAppType<T>>>();
       List<Node> nodeList = childNode.get(PersistenceUnitRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         PersistenceUnitRefType<WebAppType<T>>  type = new PersistenceUnitRefTypeImpl<WebAppType<T>>(this, "", childNode, node);
+         PersistenceUnitRefType<WebAppType<T>> type = new PersistenceUnitRefTypeImpl<WebAppType<T>>(this, "",
+               childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setPostConstruct(LifecycleCallbackType<WebAppType<T>> postConstruct)
+   // -------------------------------------------------------------------------------------||
+   // Element type : post-construct
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeAllPostConstruct()
    {
-      childNode.create("post-construct").text(postConstruct);
+      childNode.remove("post-construct");
       return this;
    }
 
@@ -767,20 +712,22 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    {
       List<LifecycleCallbackType<WebAppType<T>>> list = new ArrayList<LifecycleCallbackType<WebAppType<T>>>();
       List<Node> nodeList = childNode.get(LifecycleCallbackTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         LifecycleCallbackType<WebAppType<T>>  type = new LifecycleCallbackTypeImpl<WebAppType<T>>(this, "", childNode, node);
+         LifecycleCallbackType<WebAppType<T>> type = new LifecycleCallbackTypeImpl<WebAppType<T>>(this, "", childNode,
+               node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setPreDestroy(LifecycleCallbackType<WebAppType<T>> preDestroy)
+   // -------------------------------------------------------------------------------------||
+   // Element type : pre-destroy
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeAllPreDestroy()
    {
-      childNode.create("pre-destroy").text(preDestroy);
+      childNode.remove("pre-destroy");
       return this;
    }
 
@@ -793,20 +740,22 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    {
       List<LifecycleCallbackType<WebAppType<T>>> list = new ArrayList<LifecycleCallbackType<WebAppType<T>>>();
       List<Node> nodeList = childNode.get(LifecycleCallbackTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         LifecycleCallbackType<WebAppType<T>>  type = new LifecycleCallbackTypeImpl<WebAppType<T>>(this, "", childNode, node);
+         LifecycleCallbackType<WebAppType<T>> type = new LifecycleCallbackTypeImpl<WebAppType<T>>(this, "", childNode,
+               node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setDataSource(DataSourceType<WebAppType<T>> dataSource)
+   // -------------------------------------------------------------------------------------||
+   // Element type : data-source
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeAllDataSource()
    {
-      childNode.create("data-source").text(dataSource);
+      childNode.remove("data-source");
       return this;
    }
 
@@ -819,19 +768,20 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    {
       List<DataSourceType<WebAppType<T>>> list = new ArrayList<DataSourceType<WebAppType<T>>>();
       List<Node> nodeList = childNode.get(DataSourceTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         DataSourceType<WebAppType<T>>  type = new DataSourceTypeImpl<WebAppType<T>>(this, "", childNode, node);
+         DataSourceType<WebAppType<T>> type = new DataSourceTypeImpl<WebAppType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-
+   // -------------------------------------------------------------------------------------||
+   // Element type : version
+   // isComplexType: false   maxOccurs: -   isAttribute: true
+   // -------------------------------------------------------------------------------------||
    public WebAppType<T> setVersion(String version)
    {
-      this.version = version;
       childNode.attribute("version", version);
       return this;
    }
@@ -841,23 +791,27 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return childNode.textValue("version");
    }
 
-
+   // -------------------------------------------------------------------------------------||
+   // Element type : metadata-complete
+   // isComplexType: false   maxOccurs: -   isAttribute: true
+   // -------------------------------------------------------------------------------------||
    public WebAppType<T> setMetadataComplete(Boolean metadataComplete)
    {
-      this.metadataComplete = metadataComplete;
       childNode.attribute("metadata-complete", metadataComplete);
       return this;
    }
 
-   public Boolean getMetadataComplete()
+   public Boolean isMetadataComplete()
    {
       return Strings.isTrue(childNode.textValue("metadata-complete"));
    }
 
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setModuleName(String moduleName)   {
-      this.moduleName = moduleName;
+   // -------------------------------------------------------------------------------------||
+   // Element type : module-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> setModuleName(String moduleName)
+   {
       childNode.getOrCreate("module-name").text(moduleName);
       return this;
    }
@@ -867,23 +821,22 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return childNode.textValue("module-name");
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebAppType<T> setAbsoluteOrdering(AbsoluteOrderingType<WebAppType<T>> absoluteOrdering)   {
-      this.absoluteOrdering = absoluteOrdering;
-      childNode.getOrCreate("absolute-ordering").text(absoluteOrdering);
+   // -------------------------------------------------------------------------------------||
+   // Element type : absolute-ordering
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebAppType<T> removeAbsoluteOrdering()
+   {
+      childNode.remove("absolute-ordering");
       return this;
    }
 
    public AbsoluteOrderingType<WebAppType<T>> getAbsoluteOrdering()
    {
-      if( absoluteOrdering == null)
-      {
-          absoluteOrdering = new AbsoluteOrderingTypeImpl<WebAppType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(AbsoluteOrderingTypeImpl.nodeName);
+      AbsoluteOrderingType<WebAppType<T>> absoluteOrdering = new AbsoluteOrderingTypeImpl<WebAppType<T>>(this, "",
+            childNode, node);
       return absoluteOrdering;
    }
-
 
 }

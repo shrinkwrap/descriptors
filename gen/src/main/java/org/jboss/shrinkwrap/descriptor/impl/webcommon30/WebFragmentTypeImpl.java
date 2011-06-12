@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.impl.webcommon30; 
+package org.jboss.shrinkwrap.descriptor.impl.webcommon30;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +54,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T08:56:23.309+02:00
+ * Generation date :2011-06-12T13:26:32.882+02:00
  */
 public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
 {
@@ -65,416 +65,349 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
-   private Node node;
-   private Node childNode;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String name;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private OrderingType<WebFragmentType<T>> ordering;
 
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private Boolean distributable;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private ParamValueType<WebFragmentType<T>> contextParam;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private FilterType<WebFragmentType<T>> filter;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private FilterMappingType<WebFragmentType<T>> filterMapping;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private ListenerType<WebFragmentType<T>> listener;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private ServletType<WebFragmentType<T>> servlet;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private ServletMappingType<WebFragmentType<T>> servletMapping;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private SessionConfigType<WebFragmentType<T>> sessionConfig;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private MimeMappingType<WebFragmentType<T>> mimeMapping;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private WelcomeFileListType<WebFragmentType<T>> welcomeFileList;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private ErrorPageType<WebFragmentType<T>> errorPage;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private JspConfigType<WebFragmentType<T>> jspConfig;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private SecurityConstraintType<WebFragmentType<T>> securityConstraint;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private LoginConfigType<WebFragmentType<T>> loginConfig;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private SecurityRoleType<WebFragmentType<T>> securityRole;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private MessageDestinationType<WebFragmentType<T>> messageDestination;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private LocaleEncodingMappingListType<WebFragmentType<T>> localeEncodingMappingList;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private String description;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private String displayName;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private IconType<WebFragmentType<T>> icon;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private EnvEntryType<WebFragmentType<T>> envEntry;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private EjbRefType<WebFragmentType<T>> ejbRef;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private EjbLocalRefType<WebFragmentType<T>> ejbLocalRef;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private ResourceRefType<WebFragmentType<T>> resourceRef;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private ResourceEnvRefType<WebFragmentType<T>> resourceEnvRef;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private MessageDestinationRefType<WebFragmentType<T>> messageDestinationRef;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private PersistenceContextRefType<WebFragmentType<T>> persistenceContextRef;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private PersistenceUnitRefType<WebFragmentType<T>> persistenceUnitRef;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private LifecycleCallbackType<WebFragmentType<T>> postConstruct;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private LifecycleCallbackType<WebFragmentType<T>> preDestroy;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private DataSourceType<WebFragmentType<T>> dataSource;
-   private String version;
-   private Boolean metadataComplete;
+   private Node node;
+
+   private Node childNode;
+
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public WebFragmentTypeImpl(T t, String descriptorName, Node node)   {
+   public WebFragmentTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public WebFragmentTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public WebFragmentTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
-
 
    public T up()
    {
       return t;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setDistributable(Boolean distributable)   {
-      this.distributable = distributable;
+   // -------------------------------------------------------------------------------------||
+   // Element type : distributable
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> setDistributable(Boolean distributable)
+   {
       childNode.getOrCreate("distributable").text(distributable);
       return this;
    }
 
-   public Boolean getDistributable()
+   public Boolean isDistributable()
    {
       return Strings.isTrue(childNode.textValue("distributable"));
    }
 
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setContextParam(ParamValueType<WebFragmentType<T>> contextParam)   {
-      this.contextParam = contextParam;
-      childNode.getOrCreate("context-param").text(contextParam);
+   // -------------------------------------------------------------------------------------||
+   // Element type : context-param
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeContextParam()
+   {
+      childNode.remove("context-param");
       return this;
    }
 
    public ParamValueType<WebFragmentType<T>> getContextParam()
    {
-      if( contextParam == null)
-      {
-          contextParam = new ParamValueTypeImpl<WebFragmentType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(ParamValueTypeImpl.nodeName);
+      ParamValueType<WebFragmentType<T>> contextParam = new ParamValueTypeImpl<WebFragmentType<T>>(this, "", childNode,
+            node);
       return contextParam;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setFilter(FilterType<WebFragmentType<T>> filter)   {
-      this.filter = filter;
-      childNode.getOrCreate("filter").text(filter);
+   // -------------------------------------------------------------------------------------||
+   // Element type : filter
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeFilter()
+   {
+      childNode.remove("filter");
       return this;
    }
 
    public FilterType<WebFragmentType<T>> getFilter()
    {
-      if( filter == null)
-      {
-          filter = new FilterTypeImpl<WebFragmentType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(FilterTypeImpl.nodeName);
+      FilterType<WebFragmentType<T>> filter = new FilterTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
       return filter;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setFilterMapping(FilterMappingType<WebFragmentType<T>> filterMapping)   {
-      this.filterMapping = filterMapping;
-      childNode.getOrCreate("filter-mapping").text(filterMapping);
+   // -------------------------------------------------------------------------------------||
+   // Element type : filter-mapping
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeFilterMapping()
+   {
+      childNode.remove("filter-mapping");
       return this;
    }
 
    public FilterMappingType<WebFragmentType<T>> getFilterMapping()
    {
-      if( filterMapping == null)
-      {
-          filterMapping = new FilterMappingTypeImpl<WebFragmentType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(FilterMappingTypeImpl.nodeName);
+      FilterMappingType<WebFragmentType<T>> filterMapping = new FilterMappingTypeImpl<WebFragmentType<T>>(this, "",
+            childNode, node);
       return filterMapping;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setListener(ListenerType<WebFragmentType<T>> listener)   {
-      this.listener = listener;
-      childNode.getOrCreate("listener").text(listener);
+   // -------------------------------------------------------------------------------------||
+   // Element type : listener
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeListener()
+   {
+      childNode.remove("listener");
       return this;
    }
 
    public ListenerType<WebFragmentType<T>> getListener()
    {
-      if( listener == null)
-      {
-          listener = new ListenerTypeImpl<WebFragmentType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(ListenerTypeImpl.nodeName);
+      ListenerType<WebFragmentType<T>> listener = new ListenerTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
       return listener;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setServlet(ServletType<WebFragmentType<T>> servlet)   {
-      this.servlet = servlet;
-      childNode.getOrCreate("servlet").text(servlet);
+   // -------------------------------------------------------------------------------------||
+   // Element type : servlet
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeServlet()
+   {
+      childNode.remove("servlet");
       return this;
    }
 
    public ServletType<WebFragmentType<T>> getServlet()
    {
-      if( servlet == null)
-      {
-          servlet = new ServletTypeImpl<WebFragmentType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(ServletTypeImpl.nodeName);
+      ServletType<WebFragmentType<T>> servlet = new ServletTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
       return servlet;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setServletMapping(ServletMappingType<WebFragmentType<T>> servletMapping)   {
-      this.servletMapping = servletMapping;
-      childNode.getOrCreate("servlet-mapping").text(servletMapping);
+   // -------------------------------------------------------------------------------------||
+   // Element type : servlet-mapping
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeServletMapping()
+   {
+      childNode.remove("servlet-mapping");
       return this;
    }
 
    public ServletMappingType<WebFragmentType<T>> getServletMapping()
    {
-      if( servletMapping == null)
-      {
-          servletMapping = new ServletMappingTypeImpl<WebFragmentType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(ServletMappingTypeImpl.nodeName);
+      ServletMappingType<WebFragmentType<T>> servletMapping = new ServletMappingTypeImpl<WebFragmentType<T>>(this, "",
+            childNode, node);
       return servletMapping;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setSessionConfig(SessionConfigType<WebFragmentType<T>> sessionConfig)   {
-      this.sessionConfig = sessionConfig;
-      childNode.getOrCreate("session-config").text(sessionConfig);
+   // -------------------------------------------------------------------------------------||
+   // Element type : session-config
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeSessionConfig()
+   {
+      childNode.remove("session-config");
       return this;
    }
 
    public SessionConfigType<WebFragmentType<T>> getSessionConfig()
    {
-      if( sessionConfig == null)
-      {
-          sessionConfig = new SessionConfigTypeImpl<WebFragmentType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(SessionConfigTypeImpl.nodeName);
+      SessionConfigType<WebFragmentType<T>> sessionConfig = new SessionConfigTypeImpl<WebFragmentType<T>>(this, "",
+            childNode, node);
       return sessionConfig;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setMimeMapping(MimeMappingType<WebFragmentType<T>> mimeMapping)   {
-      this.mimeMapping = mimeMapping;
-      childNode.getOrCreate("mime-mapping").text(mimeMapping);
+   // -------------------------------------------------------------------------------------||
+   // Element type : mime-mapping
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeMimeMapping()
+   {
+      childNode.remove("mime-mapping");
       return this;
    }
 
    public MimeMappingType<WebFragmentType<T>> getMimeMapping()
    {
-      if( mimeMapping == null)
-      {
-          mimeMapping = new MimeMappingTypeImpl<WebFragmentType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(MimeMappingTypeImpl.nodeName);
+      MimeMappingType<WebFragmentType<T>> mimeMapping = new MimeMappingTypeImpl<WebFragmentType<T>>(this, "",
+            childNode, node);
       return mimeMapping;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setWelcomeFileList(WelcomeFileListType<WebFragmentType<T>> welcomeFileList)   {
-      this.welcomeFileList = welcomeFileList;
-      childNode.getOrCreate("welcome-file-list").text(welcomeFileList);
+   // -------------------------------------------------------------------------------------||
+   // Element type : welcome-file-list
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeWelcomeFileList()
+   {
+      childNode.remove("welcome-file-list");
       return this;
    }
 
    public WelcomeFileListType<WebFragmentType<T>> getWelcomeFileList()
    {
-      if( welcomeFileList == null)
-      {
-          welcomeFileList = new WelcomeFileListTypeImpl<WebFragmentType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(WelcomeFileListTypeImpl.nodeName);
+      WelcomeFileListType<WebFragmentType<T>> welcomeFileList = new WelcomeFileListTypeImpl<WebFragmentType<T>>(this,
+            "", childNode, node);
       return welcomeFileList;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setErrorPage(ErrorPageType<WebFragmentType<T>> errorPage)   {
-      this.errorPage = errorPage;
-      childNode.getOrCreate("error-page").text(errorPage);
+   // -------------------------------------------------------------------------------------||
+   // Element type : error-page
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeErrorPage()
+   {
+      childNode.remove("error-page");
       return this;
    }
 
    public ErrorPageType<WebFragmentType<T>> getErrorPage()
    {
-      if( errorPage == null)
-      {
-          errorPage = new ErrorPageTypeImpl<WebFragmentType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(ErrorPageTypeImpl.nodeName);
+      ErrorPageType<WebFragmentType<T>> errorPage = new ErrorPageTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
       return errorPage;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setJspConfig(JspConfigType<WebFragmentType<T>> jspConfig)   {
-      this.jspConfig = jspConfig;
-      childNode.getOrCreate("jsp-config").text(jspConfig);
+   // -------------------------------------------------------------------------------------||
+   // Element type : jsp-config
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeJspConfig()
+   {
+      childNode.remove("jsp-config");
       return this;
    }
 
    public JspConfigType<WebFragmentType<T>> getJspConfig()
    {
-      if( jspConfig == null)
-      {
-          jspConfig = new JspConfigTypeImpl<WebFragmentType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(JspConfigTypeImpl.nodeName);
+      JspConfigType<WebFragmentType<T>> jspConfig = new JspConfigTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
       return jspConfig;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setSecurityConstraint(SecurityConstraintType<WebFragmentType<T>> securityConstraint)   {
-      this.securityConstraint = securityConstraint;
-      childNode.getOrCreate("security-constraint").text(securityConstraint);
+   // -------------------------------------------------------------------------------------||
+   // Element type : security-constraint
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeSecurityConstraint()
+   {
+      childNode.remove("security-constraint");
       return this;
    }
 
    public SecurityConstraintType<WebFragmentType<T>> getSecurityConstraint()
    {
-      if( securityConstraint == null)
-      {
-          securityConstraint = new SecurityConstraintTypeImpl<WebFragmentType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(SecurityConstraintTypeImpl.nodeName);
+      SecurityConstraintType<WebFragmentType<T>> securityConstraint = new SecurityConstraintTypeImpl<WebFragmentType<T>>(
+            this, "", childNode, node);
       return securityConstraint;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setLoginConfig(LoginConfigType<WebFragmentType<T>> loginConfig)   {
-      this.loginConfig = loginConfig;
-      childNode.getOrCreate("login-config").text(loginConfig);
+   // -------------------------------------------------------------------------------------||
+   // Element type : login-config
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeLoginConfig()
+   {
+      childNode.remove("login-config");
       return this;
    }
 
    public LoginConfigType<WebFragmentType<T>> getLoginConfig()
    {
-      if( loginConfig == null)
-      {
-          loginConfig = new LoginConfigTypeImpl<WebFragmentType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(LoginConfigTypeImpl.nodeName);
+      LoginConfigType<WebFragmentType<T>> loginConfig = new LoginConfigTypeImpl<WebFragmentType<T>>(this, "",
+            childNode, node);
       return loginConfig;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setSecurityRole(SecurityRoleType<WebFragmentType<T>> securityRole)   {
-      this.securityRole = securityRole;
-      childNode.getOrCreate("security-role").text(securityRole);
+   // -------------------------------------------------------------------------------------||
+   // Element type : security-role
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeSecurityRole()
+   {
+      childNode.remove("security-role");
       return this;
    }
 
    public SecurityRoleType<WebFragmentType<T>> getSecurityRole()
    {
-      if( securityRole == null)
-      {
-          securityRole = new SecurityRoleTypeImpl<WebFragmentType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(SecurityRoleTypeImpl.nodeName);
+      SecurityRoleType<WebFragmentType<T>> securityRole = new SecurityRoleTypeImpl<WebFragmentType<T>>(this, "",
+            childNode, node);
       return securityRole;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setMessageDestination(MessageDestinationType<WebFragmentType<T>> messageDestination)   {
-      this.messageDestination = messageDestination;
-      childNode.getOrCreate("message-destination").text(messageDestination);
+   // -------------------------------------------------------------------------------------||
+   // Element type : message-destination
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeMessageDestination()
+   {
+      childNode.remove("message-destination");
       return this;
    }
 
    public MessageDestinationType<WebFragmentType<T>> getMessageDestination()
    {
-      if( messageDestination == null)
-      {
-          messageDestination = new MessageDestinationTypeImpl<WebFragmentType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(MessageDestinationTypeImpl.nodeName);
+      MessageDestinationType<WebFragmentType<T>> messageDestination = new MessageDestinationTypeImpl<WebFragmentType<T>>(
+            this, "", childNode, node);
       return messageDestination;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setLocaleEncodingMappingList(LocaleEncodingMappingListType<WebFragmentType<T>> localeEncodingMappingList)   {
-      this.localeEncodingMappingList = localeEncodingMappingList;
-      childNode.getOrCreate("locale-encoding-mapping-list").text(localeEncodingMappingList);
+   // -------------------------------------------------------------------------------------||
+   // Element type : locale-encoding-mapping-list
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeLocaleEncodingMappingList()
+   {
+      childNode.remove("locale-encoding-mapping-list");
       return this;
    }
 
    public LocaleEncodingMappingListType<WebFragmentType<T>> getLocaleEncodingMappingList()
    {
-      if( localeEncodingMappingList == null)
-      {
-          localeEncodingMappingList = new LocaleEncodingMappingListTypeImpl<WebFragmentType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(LocaleEncodingMappingListTypeImpl.nodeName);
+      LocaleEncodingMappingListType<WebFragmentType<T>> localeEncodingMappingList = new LocaleEncodingMappingListTypeImpl<WebFragmentType<T>>(
+            this, "", childNode, node);
       return localeEncodingMappingList;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
+   // -------------------------------------------------------------------------------------||
+   // Element type : description
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> setDescription(String description)
    {
       childNode.create("description").text(description);
       return this;
    }
 
-   public WebFragmentType<T> setDescription(String ... values)
+   public WebFragmentType<T> setDescription(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
-         setDescription(description);
+         setDescription(name);
       }
-         return this;
+      return this;
    }
 
    public List<String> getDescriptionList()
@@ -488,21 +421,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return result;
    }
 
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
+   // -------------------------------------------------------------------------------------||
+   // Element type : display-name
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> setDisplayName(String displayName)
    {
       childNode.create("display-name").text(displayName);
       return this;
    }
 
-   public WebFragmentType<T> setDisplayName(String ... values)
+   public WebFragmentType<T> setDisplayName(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
-         setDisplayName(displayName);
+         setDisplayName(name);
       }
-         return this;
+      return this;
    }
 
    public List<String> getDisplayNameList()
@@ -516,11 +451,13 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return result;
    }
 
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setIcon(IconType<WebFragmentType<T>> icon)
+   // -------------------------------------------------------------------------------------||
+   // Element type : icon
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeAllIcon()
    {
-      childNode.create("icon").text(icon);
+      childNode.remove("icon");
       return this;
    }
 
@@ -533,20 +470,21 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    {
       List<IconType<WebFragmentType<T>>> list = new ArrayList<IconType<WebFragmentType<T>>>();
       List<Node> nodeList = childNode.get(IconTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         IconType<WebFragmentType<T>>  type = new IconTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
+         IconType<WebFragmentType<T>> type = new IconTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setEnvEntry(EnvEntryType<WebFragmentType<T>> envEntry)
+   // -------------------------------------------------------------------------------------||
+   // Element type : env-entry
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeAllEnvEntry()
    {
-      childNode.create("env-entry").text(envEntry);
+      childNode.remove("env-entry");
       return this;
    }
 
@@ -559,20 +497,21 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    {
       List<EnvEntryType<WebFragmentType<T>>> list = new ArrayList<EnvEntryType<WebFragmentType<T>>>();
       List<Node> nodeList = childNode.get(EnvEntryTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         EnvEntryType<WebFragmentType<T>>  type = new EnvEntryTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
+         EnvEntryType<WebFragmentType<T>> type = new EnvEntryTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setEjbRef(EjbRefType<WebFragmentType<T>> ejbRef)
+   // -------------------------------------------------------------------------------------||
+   // Element type : ejb-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeAllEjbRef()
    {
-      childNode.create("ejb-ref").text(ejbRef);
+      childNode.remove("ejb-ref");
       return this;
    }
 
@@ -585,20 +524,21 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    {
       List<EjbRefType<WebFragmentType<T>>> list = new ArrayList<EjbRefType<WebFragmentType<T>>>();
       List<Node> nodeList = childNode.get(EjbRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         EjbRefType<WebFragmentType<T>>  type = new EjbRefTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
+         EjbRefType<WebFragmentType<T>> type = new EjbRefTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setEjbLocalRef(EjbLocalRefType<WebFragmentType<T>> ejbLocalRef)
+   // -------------------------------------------------------------------------------------||
+   // Element type : ejb-local-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeAllEjbLocalRef()
    {
-      childNode.create("ejb-local-ref").text(ejbLocalRef);
+      childNode.remove("ejb-local-ref");
       return this;
    }
 
@@ -611,20 +551,22 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    {
       List<EjbLocalRefType<WebFragmentType<T>>> list = new ArrayList<EjbLocalRefType<WebFragmentType<T>>>();
       List<Node> nodeList = childNode.get(EjbLocalRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         EjbLocalRefType<WebFragmentType<T>>  type = new EjbLocalRefTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
+         EjbLocalRefType<WebFragmentType<T>> type = new EjbLocalRefTypeImpl<WebFragmentType<T>>(this, "", childNode,
+               node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setResourceRef(ResourceRefType<WebFragmentType<T>> resourceRef)
+   // -------------------------------------------------------------------------------------||
+   // Element type : resource-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeAllResourceRef()
    {
-      childNode.create("resource-ref").text(resourceRef);
+      childNode.remove("resource-ref");
       return this;
    }
 
@@ -637,20 +579,22 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    {
       List<ResourceRefType<WebFragmentType<T>>> list = new ArrayList<ResourceRefType<WebFragmentType<T>>>();
       List<Node> nodeList = childNode.get(ResourceRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         ResourceRefType<WebFragmentType<T>>  type = new ResourceRefTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
+         ResourceRefType<WebFragmentType<T>> type = new ResourceRefTypeImpl<WebFragmentType<T>>(this, "", childNode,
+               node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setResourceEnvRef(ResourceEnvRefType<WebFragmentType<T>> resourceEnvRef)
+   // -------------------------------------------------------------------------------------||
+   // Element type : resource-env-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeAllResourceEnvRef()
    {
-      childNode.create("resource-env-ref").text(resourceEnvRef);
+      childNode.remove("resource-env-ref");
       return this;
    }
 
@@ -663,20 +607,22 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    {
       List<ResourceEnvRefType<WebFragmentType<T>>> list = new ArrayList<ResourceEnvRefType<WebFragmentType<T>>>();
       List<Node> nodeList = childNode.get(ResourceEnvRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         ResourceEnvRefType<WebFragmentType<T>>  type = new ResourceEnvRefTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
+         ResourceEnvRefType<WebFragmentType<T>> type = new ResourceEnvRefTypeImpl<WebFragmentType<T>>(this, "",
+               childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setMessageDestinationRef(MessageDestinationRefType<WebFragmentType<T>> messageDestinationRef)
+   // -------------------------------------------------------------------------------------||
+   // Element type : message-destination-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeAllMessageDestinationRef()
    {
-      childNode.create("message-destination-ref").text(messageDestinationRef);
+      childNode.remove("message-destination-ref");
       return this;
    }
 
@@ -689,20 +635,22 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    {
       List<MessageDestinationRefType<WebFragmentType<T>>> list = new ArrayList<MessageDestinationRefType<WebFragmentType<T>>>();
       List<Node> nodeList = childNode.get(MessageDestinationRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         MessageDestinationRefType<WebFragmentType<T>>  type = new MessageDestinationRefTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
+         MessageDestinationRefType<WebFragmentType<T>> type = new MessageDestinationRefTypeImpl<WebFragmentType<T>>(
+               this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setPersistenceContextRef(PersistenceContextRefType<WebFragmentType<T>> persistenceContextRef)
+   // -------------------------------------------------------------------------------------||
+   // Element type : persistence-context-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeAllPersistenceContextRef()
    {
-      childNode.create("persistence-context-ref").text(persistenceContextRef);
+      childNode.remove("persistence-context-ref");
       return this;
    }
 
@@ -715,20 +663,22 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    {
       List<PersistenceContextRefType<WebFragmentType<T>>> list = new ArrayList<PersistenceContextRefType<WebFragmentType<T>>>();
       List<Node> nodeList = childNode.get(PersistenceContextRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         PersistenceContextRefType<WebFragmentType<T>>  type = new PersistenceContextRefTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
+         PersistenceContextRefType<WebFragmentType<T>> type = new PersistenceContextRefTypeImpl<WebFragmentType<T>>(
+               this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setPersistenceUnitRef(PersistenceUnitRefType<WebFragmentType<T>> persistenceUnitRef)
+   // -------------------------------------------------------------------------------------||
+   // Element type : persistence-unit-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeAllPersistenceUnitRef()
    {
-      childNode.create("persistence-unit-ref").text(persistenceUnitRef);
+      childNode.remove("persistence-unit-ref");
       return this;
    }
 
@@ -741,20 +691,22 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    {
       List<PersistenceUnitRefType<WebFragmentType<T>>> list = new ArrayList<PersistenceUnitRefType<WebFragmentType<T>>>();
       List<Node> nodeList = childNode.get(PersistenceUnitRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         PersistenceUnitRefType<WebFragmentType<T>>  type = new PersistenceUnitRefTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
+         PersistenceUnitRefType<WebFragmentType<T>> type = new PersistenceUnitRefTypeImpl<WebFragmentType<T>>(this, "",
+               childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setPostConstruct(LifecycleCallbackType<WebFragmentType<T>> postConstruct)
+   // -------------------------------------------------------------------------------------||
+   // Element type : post-construct
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeAllPostConstruct()
    {
-      childNode.create("post-construct").text(postConstruct);
+      childNode.remove("post-construct");
       return this;
    }
 
@@ -767,20 +719,22 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    {
       List<LifecycleCallbackType<WebFragmentType<T>>> list = new ArrayList<LifecycleCallbackType<WebFragmentType<T>>>();
       List<Node> nodeList = childNode.get(LifecycleCallbackTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         LifecycleCallbackType<WebFragmentType<T>>  type = new LifecycleCallbackTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
+         LifecycleCallbackType<WebFragmentType<T>> type = new LifecycleCallbackTypeImpl<WebFragmentType<T>>(this, "",
+               childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setPreDestroy(LifecycleCallbackType<WebFragmentType<T>> preDestroy)
+   // -------------------------------------------------------------------------------------||
+   // Element type : pre-destroy
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeAllPreDestroy()
    {
-      childNode.create("pre-destroy").text(preDestroy);
+      childNode.remove("pre-destroy");
       return this;
    }
 
@@ -793,20 +747,22 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    {
       List<LifecycleCallbackType<WebFragmentType<T>>> list = new ArrayList<LifecycleCallbackType<WebFragmentType<T>>>();
       List<Node> nodeList = childNode.get(LifecycleCallbackTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         LifecycleCallbackType<WebFragmentType<T>>  type = new LifecycleCallbackTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
+         LifecycleCallbackType<WebFragmentType<T>> type = new LifecycleCallbackTypeImpl<WebFragmentType<T>>(this, "",
+               childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setDataSource(DataSourceType<WebFragmentType<T>> dataSource)
+   // -------------------------------------------------------------------------------------||
+   // Element type : data-source
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeAllDataSource()
    {
-      childNode.create("data-source").text(dataSource);
+      childNode.remove("data-source");
       return this;
    }
 
@@ -819,19 +775,20 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    {
       List<DataSourceType<WebFragmentType<T>>> list = new ArrayList<DataSourceType<WebFragmentType<T>>>();
       List<Node> nodeList = childNode.get(DataSourceTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         DataSourceType<WebFragmentType<T>>  type = new DataSourceTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
+         DataSourceType<WebFragmentType<T>> type = new DataSourceTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-
+   // -------------------------------------------------------------------------------------||
+   // Element type : version
+   // isComplexType: false   maxOccurs: -   isAttribute: true
+   // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> setVersion(String version)
    {
-      this.version = version;
       childNode.attribute("version", version);
       return this;
    }
@@ -841,23 +798,27 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return childNode.textValue("version");
    }
 
-
+   // -------------------------------------------------------------------------------------||
+   // Element type : metadata-complete
+   // isComplexType: false   maxOccurs: -   isAttribute: true
+   // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> setMetadataComplete(Boolean metadataComplete)
    {
-      this.metadataComplete = metadataComplete;
       childNode.attribute("metadata-complete", metadataComplete);
       return this;
    }
 
-   public Boolean getMetadataComplete()
+   public Boolean isMetadataComplete()
    {
       return Strings.isTrue(childNode.textValue("metadata-complete"));
    }
 
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setName(String name)   {
-      this.name = name;
+   // -------------------------------------------------------------------------------------||
+   // Element type : name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> setName(String name)
+   {
       childNode.getOrCreate("name").text(name);
       return this;
    }
@@ -867,23 +828,21 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return childNode.textValue("name");
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public WebFragmentType<T> setOrdering(OrderingType<WebFragmentType<T>> ordering)   {
-      this.ordering = ordering;
-      childNode.getOrCreate("ordering").text(ordering);
+   // -------------------------------------------------------------------------------------||
+   // Element type : ordering
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> removeOrdering()
+   {
+      childNode.remove("ordering");
       return this;
    }
 
    public OrderingType<WebFragmentType<T>> getOrdering()
    {
-      if( ordering == null)
-      {
-          ordering = new OrderingTypeImpl<WebFragmentType<T>>(this, "", childNode);
-      }
+      Node node = childNode.getOrCreate(OrderingTypeImpl.nodeName);
+      OrderingType<WebFragmentType<T>> ordering = new OrderingTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
       return ordering;
    }
-
 
 }

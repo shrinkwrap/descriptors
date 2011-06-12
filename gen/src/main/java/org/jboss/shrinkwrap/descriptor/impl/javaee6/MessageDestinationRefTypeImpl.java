@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.impl.javaee6; 
+package org.jboss.shrinkwrap.descriptor.impl.javaee6;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T08:56:23.309+02:00
+ * Generation date :2011-06-12T13:26:32.882+02:00
  */
 public class MessageDestinationRefTypeImpl<T> implements Child<T>, MessageDestinationRefType<T>
 {
@@ -21,52 +21,40 @@ public class MessageDestinationRefTypeImpl<T> implements Child<T>, MessageDestin
    // -------------------------------------------------------------------------------------||
 
    private T t;
-   private Node node;
-   private Node childNode;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String description;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String messageDestinationRefName;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String messageDestinationType;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String messageDestinationUsage;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String messageDestinationLink;
 
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String lookupName;
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-   private String mappedName;
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-   private InjectionTargetType<MessageDestinationRefType<T>> injectionTarget;
+   private Node node;
+
+   private Node childNode;
+
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public MessageDestinationRefTypeImpl(T t, String descriptorName, Node node)   {
+   public MessageDestinationRefTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public MessageDestinationRefTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public MessageDestinationRefTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
-
 
    public T up()
    {
       return t;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public MessageDestinationRefType<T> setLookupName(String lookupName)   {
-      this.lookupName = lookupName;
+   // -------------------------------------------------------------------------------------||
+   // Element type : lookup-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public MessageDestinationRefType<T> setLookupName(String lookupName)
+   {
       childNode.getOrCreate("lookup-name").text(lookupName);
       return this;
    }
@@ -76,10 +64,12 @@ public class MessageDestinationRefTypeImpl<T> implements Child<T>, MessageDestin
       return childNode.textValue("lookup-name");
    }
 
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public MessageDestinationRefType<T> setMappedName(String mappedName)   {
-      this.mappedName = mappedName;
+   // -------------------------------------------------------------------------------------||
+   // Element type : mapped-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public MessageDestinationRefType<T> setMappedName(String mappedName)
+   {
       childNode.getOrCreate("mapped-name").text(mappedName);
       return this;
    }
@@ -89,11 +79,13 @@ public class MessageDestinationRefTypeImpl<T> implements Child<T>, MessageDestin
       return childNode.textValue("mapped-name");
    }
 
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
-   public MessageDestinationRefType<T> setInjectionTarget(InjectionTargetType<MessageDestinationRefType<T>> injectionTarget)
+   // -------------------------------------------------------------------------------------||
+   // Element type : injection-target
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public MessageDestinationRefType<T> removeAllInjectionTarget()
    {
-      childNode.create("injection-target").text(injectionTarget);
+      childNode.remove("injection-target");
       return this;
    }
 
@@ -106,30 +98,32 @@ public class MessageDestinationRefTypeImpl<T> implements Child<T>, MessageDestin
    {
       List<InjectionTargetType<MessageDestinationRefType<T>>> list = new ArrayList<InjectionTargetType<MessageDestinationRefType<T>>>();
       List<Node> nodeList = childNode.get(InjectionTargetTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         InjectionTargetType<MessageDestinationRefType<T>>  type = new InjectionTargetTypeImpl<MessageDestinationRefType<T>>(this, "", childNode, node);
+         InjectionTargetType<MessageDestinationRefType<T>> type = new InjectionTargetTypeImpl<MessageDestinationRefType<T>>(
+               this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-   // maxOccurs = -unbounded   // isGeneric = true   // isAttribute = false
-
+   // -------------------------------------------------------------------------------------||
+   // Element type : description
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
    public MessageDestinationRefType<T> setDescription(String description)
    {
       childNode.create("description").text(description);
       return this;
    }
 
-   public MessageDestinationRefType<T> setDescription(String ... values)
+   public MessageDestinationRefType<T> setDescription(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
-         setDescription(description);
+         setDescription(name);
       }
-         return this;
+      return this;
    }
 
    public List<String> getDescriptionList()
@@ -143,11 +137,12 @@ public class MessageDestinationRefTypeImpl<T> implements Child<T>, MessageDestin
       return result;
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public MessageDestinationRefType<T> setMessageDestinationRefName(String messageDestinationRefName)   {
-      this.messageDestinationRefName = messageDestinationRefName;
+   // -------------------------------------------------------------------------------------||
+   // Element type : message-destination-ref-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public MessageDestinationRefType<T> setMessageDestinationRefName(String messageDestinationRefName)
+   {
       childNode.getOrCreate("message-destination-ref-name").text(messageDestinationRefName);
       return this;
    }
@@ -157,11 +152,12 @@ public class MessageDestinationRefTypeImpl<T> implements Child<T>, MessageDestin
       return childNode.textValue("message-destination-ref-name");
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public MessageDestinationRefType<T> setMessageDestinationType(String messageDestinationType)   {
-      this.messageDestinationType = messageDestinationType;
+   // -------------------------------------------------------------------------------------||
+   // Element type : message-destination-type
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public MessageDestinationRefType<T> setMessageDestinationType(String messageDestinationType)
+   {
       childNode.getOrCreate("message-destination-type").text(messageDestinationType);
       return this;
    }
@@ -171,11 +167,12 @@ public class MessageDestinationRefTypeImpl<T> implements Child<T>, MessageDestin
       return childNode.textValue("message-destination-type");
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public MessageDestinationRefType<T> setMessageDestinationUsage(String messageDestinationUsage)   {
-      this.messageDestinationUsage = messageDestinationUsage;
+   // -------------------------------------------------------------------------------------||
+   // Element type : message-destination-usage
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public MessageDestinationRefType<T> setMessageDestinationUsage(String messageDestinationUsage)
+   {
       childNode.getOrCreate("message-destination-usage").text(messageDestinationUsage);
       return this;
    }
@@ -185,11 +182,12 @@ public class MessageDestinationRefTypeImpl<T> implements Child<T>, MessageDestin
       return childNode.textValue("message-destination-usage");
    }
 
-
-   // maxOccurs = -   // isGeneric = true   // isAttribute = false
-
-   public MessageDestinationRefType<T> setMessageDestinationLink(String messageDestinationLink)   {
-      this.messageDestinationLink = messageDestinationLink;
+   // -------------------------------------------------------------------------------------||
+   // Element type : message-destination-link
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+   public MessageDestinationRefType<T> setMessageDestinationLink(String messageDestinationLink)
+   {
       childNode.getOrCreate("message-destination-link").text(messageDestinationLink);
       return this;
    }
