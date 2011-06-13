@@ -10,7 +10,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class EnvEntryTypeImpl<T> implements Child<T>, EnvEntryType<T>
 {
@@ -59,6 +59,12 @@ public class EnvEntryTypeImpl<T> implements Child<T>, EnvEntryType<T>
       return this;
    }
 
+   public EnvEntryType<T> removeLookupName()
+   {
+      childNode.remove("lookup-name");
+      return this;
+   }
+
    public String getLookupName()
    {
       return childNode.textValue("lookup-name");
@@ -71,6 +77,12 @@ public class EnvEntryTypeImpl<T> implements Child<T>, EnvEntryType<T>
    public EnvEntryType<T> setMappedName(String mappedName)
    {
       childNode.getOrCreate("mapped-name").text(mappedName);
+      return this;
+   }
+
+   public EnvEntryType<T> removeMappedName()
+   {
+      childNode.remove("mapped-name");
       return this;
    }
 
@@ -89,7 +101,7 @@ public class EnvEntryTypeImpl<T> implements Child<T>, EnvEntryType<T>
       return this;
    }
 
-   public InjectionTargetType<EnvEntryType<T>> getInjectionTarget()
+   public InjectionTargetType<EnvEntryType<T>> injectionTarget()
    {
       return new InjectionTargetTypeImpl<EnvEntryType<T>>(this, "", childNode);
    }
@@ -117,12 +129,18 @@ public class EnvEntryTypeImpl<T> implements Child<T>, EnvEntryType<T>
       return this;
    }
 
-   public EnvEntryType<T> setDescription(String... values)
+   public EnvEntryType<T> setDescriptionList(String... values)
    {
       for (String name : values)
       {
          setDescription(name);
       }
+      return this;
+   }
+
+   public EnvEntryType<T> removeAllDescription()
+   {
+      childNode.remove("description");
       return this;
    }
 
@@ -147,6 +165,12 @@ public class EnvEntryTypeImpl<T> implements Child<T>, EnvEntryType<T>
       return this;
    }
 
+   public EnvEntryType<T> removeEnvEntryName()
+   {
+      childNode.remove("env-entry-name");
+      return this;
+   }
+
    public String getEnvEntryName()
    {
       return childNode.textValue("env-entry-name");
@@ -162,6 +186,12 @@ public class EnvEntryTypeImpl<T> implements Child<T>, EnvEntryType<T>
       return this;
    }
 
+   public EnvEntryType<T> removeEnvEntryType()
+   {
+      childNode.remove("env-entry-type");
+      return this;
+   }
+
    public String getEnvEntryType()
    {
       return childNode.textValue("env-entry-type");
@@ -174,6 +204,12 @@ public class EnvEntryTypeImpl<T> implements Child<T>, EnvEntryType<T>
    public EnvEntryType<T> setEnvEntryValue(String envEntryValue)
    {
       childNode.getOrCreate("env-entry-value").text(envEntryValue);
+      return this;
+   }
+
+   public EnvEntryType<T> removeEnvEntryValue()
+   {
+      childNode.remove("env-entry-value");
       return this;
    }
 

@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class OrderingTypeImpl<T> implements Child<T>, OrderingType<T>
 {
@@ -56,7 +56,7 @@ public class OrderingTypeImpl<T> implements Child<T>, OrderingType<T>
       return this;
    }
 
-   public OrderingOrderingType<OrderingType<T>> getAfter()
+   public OrderingOrderingType<OrderingType<T>> after()
    {
       Node node = childNode.getOrCreate(OrderingOrderingTypeImpl.nodeName);
       OrderingOrderingType<OrderingType<T>> after = new OrderingOrderingTypeImpl<OrderingType<T>>(this, "", childNode,
@@ -74,7 +74,7 @@ public class OrderingTypeImpl<T> implements Child<T>, OrderingType<T>
       return this;
    }
 
-   public OrderingOrderingType<OrderingType<T>> getBefore()
+   public OrderingOrderingType<OrderingType<T>> before()
    {
       Node node = childNode.getOrCreate(OrderingOrderingTypeImpl.nodeName);
       OrderingOrderingType<OrderingType<T>> before = new OrderingOrderingTypeImpl<OrderingType<T>>(this, "", childNode,

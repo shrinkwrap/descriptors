@@ -11,7 +11,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
 {
@@ -60,6 +60,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return this;
    }
 
+   public DataSourceType<T> removeDescription()
+   {
+      childNode.remove("description");
+      return this;
+   }
+
    public String getDescription()
    {
       return childNode.textValue("description");
@@ -72,6 +78,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
    public DataSourceType<T> setName(String name)
    {
       childNode.getOrCreate("name").text(name);
+      return this;
+   }
+
+   public DataSourceType<T> removeName()
+   {
+      childNode.remove("name");
       return this;
    }
 
@@ -90,6 +102,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return this;
    }
 
+   public DataSourceType<T> removeClassName()
+   {
+      childNode.remove("class-name");
+      return this;
+   }
+
    public String getClassName()
    {
       return childNode.textValue("class-name");
@@ -102,6 +120,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
    public DataSourceType<T> setServerName(String serverName)
    {
       childNode.getOrCreate("server-name").text(serverName);
+      return this;
+   }
+
+   public DataSourceType<T> removeServerName()
+   {
+      childNode.remove("server-name");
       return this;
    }
 
@@ -120,6 +144,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return this;
    }
 
+   public DataSourceType<T> removePortNumber()
+   {
+      childNode.remove("port-number");
+      return this;
+   }
+
    public Integer getPortNumber()
    {
       return Integer.valueOf(childNode.textValue("port-number"));
@@ -132,6 +162,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
    public DataSourceType<T> setDatabaseName(String databaseName)
    {
       childNode.getOrCreate("database-name").text(databaseName);
+      return this;
+   }
+
+   public DataSourceType<T> removeDatabaseName()
+   {
+      childNode.remove("database-name");
       return this;
    }
 
@@ -150,6 +186,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return this;
    }
 
+   public DataSourceType<T> removeUrl()
+   {
+      childNode.remove("url");
+      return this;
+   }
+
    public String getUrl()
    {
       return childNode.textValue("url");
@@ -162,6 +204,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
    public DataSourceType<T> setUser(String user)
    {
       childNode.getOrCreate("user").text(user);
+      return this;
+   }
+
+   public DataSourceType<T> removeUser()
+   {
+      childNode.remove("user");
       return this;
    }
 
@@ -180,6 +228,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return this;
    }
 
+   public DataSourceType<T> removePassword()
+   {
+      childNode.remove("password");
+      return this;
+   }
+
    public String getPassword()
    {
       return childNode.textValue("password");
@@ -195,7 +249,7 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return this;
    }
 
-   public PropertyType<DataSourceType<T>> getProperty()
+   public PropertyType<DataSourceType<T>> property()
    {
       return new PropertyTypeImpl<DataSourceType<T>>(this, "", childNode);
    }
@@ -222,6 +276,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return this;
    }
 
+   public DataSourceType<T> removeLoginTimeout()
+   {
+      childNode.remove("login-timeout");
+      return this;
+   }
+
    public Integer getLoginTimeout()
    {
       return Integer.valueOf(childNode.textValue("login-timeout"));
@@ -234,6 +294,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
    public DataSourceType<T> setTransactional(Boolean transactional)
    {
       childNode.getOrCreate("transactional").text(transactional);
+      return this;
+   }
+
+   public DataSourceType<T> removeTransactional()
+   {
+      childNode.remove("transactional");
       return this;
    }
 
@@ -252,6 +318,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return this;
    }
 
+   public DataSourceType<T> removeIsolationLevel()
+   {
+      childNode.remove("isolation-level");
+      return this;
+   }
+
    public String getIsolationLevel()
    {
       return childNode.textValue("isolation-level");
@@ -264,6 +336,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
    public DataSourceType<T> setInitialPoolSize(Integer initialPoolSize)
    {
       childNode.getOrCreate("initial-pool-size").text(initialPoolSize);
+      return this;
+   }
+
+   public DataSourceType<T> removeInitialPoolSize()
+   {
+      childNode.remove("initial-pool-size");
       return this;
    }
 
@@ -282,6 +360,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return this;
    }
 
+   public DataSourceType<T> removeMaxPoolSize()
+   {
+      childNode.remove("max-pool-size");
+      return this;
+   }
+
    public Integer getMaxPoolSize()
    {
       return Integer.valueOf(childNode.textValue("max-pool-size"));
@@ -294,6 +378,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
    public DataSourceType<T> setMinPoolSize(Integer minPoolSize)
    {
       childNode.getOrCreate("min-pool-size").text(minPoolSize);
+      return this;
+   }
+
+   public DataSourceType<T> removeMinPoolSize()
+   {
+      childNode.remove("min-pool-size");
       return this;
    }
 
@@ -312,6 +402,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return this;
    }
 
+   public DataSourceType<T> removeMaxIdleTime()
+   {
+      childNode.remove("max-idle-time");
+      return this;
+   }
+
    public Integer getMaxIdleTime()
    {
       return Integer.valueOf(childNode.textValue("max-idle-time"));
@@ -324,6 +420,12 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
    public DataSourceType<T> setMaxStatements(Integer maxStatements)
    {
       childNode.getOrCreate("max-statements").text(maxStatements);
+      return this;
+   }
+
+   public DataSourceType<T> removeMaxStatements()
+   {
+      childNode.remove("max-statements");
       return this;
    }
 

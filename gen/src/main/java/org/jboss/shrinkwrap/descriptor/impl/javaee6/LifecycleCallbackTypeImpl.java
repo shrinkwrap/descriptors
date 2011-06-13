@@ -6,7 +6,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class LifecycleCallbackTypeImpl<T> implements Child<T>, LifecycleCallbackType<T>
 {
@@ -55,6 +55,12 @@ public class LifecycleCallbackTypeImpl<T> implements Child<T>, LifecycleCallback
       return this;
    }
 
+   public LifecycleCallbackType<T> removeLifecycleCallbackClass()
+   {
+      childNode.remove("lifecycle-callback-class");
+      return this;
+   }
+
    public String getLifecycleCallbackClass()
    {
       return childNode.textValue("lifecycle-callback-class");
@@ -67,6 +73,12 @@ public class LifecycleCallbackTypeImpl<T> implements Child<T>, LifecycleCallback
    public LifecycleCallbackType<T> setLifecycleCallbackMethod(String lifecycleCallbackMethod)
    {
       childNode.getOrCreate("lifecycle-callback-method").text(lifecycleCallbackMethod);
+      return this;
+   }
+
+   public LifecycleCallbackType<T> removeLifecycleCallbackMethod()
+   {
+      childNode.remove("lifecycle-callback-method");
       return this;
    }
 

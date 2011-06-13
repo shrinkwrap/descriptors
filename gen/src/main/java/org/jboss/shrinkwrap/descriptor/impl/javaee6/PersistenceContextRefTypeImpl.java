@@ -11,7 +11,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class PersistenceContextRefTypeImpl<T> implements Child<T>, PersistenceContextRefType<T>
 {
@@ -60,6 +60,12 @@ public class PersistenceContextRefTypeImpl<T> implements Child<T>, PersistenceCo
       return this;
    }
 
+   public PersistenceContextRefType<T> removeMappedName()
+   {
+      childNode.remove("mapped-name");
+      return this;
+   }
+
    public String getMappedName()
    {
       return childNode.textValue("mapped-name");
@@ -75,7 +81,7 @@ public class PersistenceContextRefTypeImpl<T> implements Child<T>, PersistenceCo
       return this;
    }
 
-   public InjectionTargetType<PersistenceContextRefType<T>> getInjectionTarget()
+   public InjectionTargetType<PersistenceContextRefType<T>> injectionTarget()
    {
       return new InjectionTargetTypeImpl<PersistenceContextRefType<T>>(this, "", childNode);
    }
@@ -103,12 +109,18 @@ public class PersistenceContextRefTypeImpl<T> implements Child<T>, PersistenceCo
       return this;
    }
 
-   public PersistenceContextRefType<T> setDescription(String... values)
+   public PersistenceContextRefType<T> setDescriptionList(String... values)
    {
       for (String name : values)
       {
          setDescription(name);
       }
+      return this;
+   }
+
+   public PersistenceContextRefType<T> removeAllDescription()
+   {
+      childNode.remove("description");
       return this;
    }
 
@@ -133,6 +145,12 @@ public class PersistenceContextRefTypeImpl<T> implements Child<T>, PersistenceCo
       return this;
    }
 
+   public PersistenceContextRefType<T> removePersistenceContextRefName()
+   {
+      childNode.remove("persistence-context-ref-name");
+      return this;
+   }
+
    public String getPersistenceContextRefName()
    {
       return childNode.textValue("persistence-context-ref-name");
@@ -145,6 +163,12 @@ public class PersistenceContextRefTypeImpl<T> implements Child<T>, PersistenceCo
    public PersistenceContextRefType<T> setPersistenceUnitName(String persistenceUnitName)
    {
       childNode.getOrCreate("persistence-unit-name").text(persistenceUnitName);
+      return this;
+   }
+
+   public PersistenceContextRefType<T> removePersistenceUnitName()
+   {
+      childNode.remove("persistence-unit-name");
       return this;
    }
 
@@ -163,6 +187,12 @@ public class PersistenceContextRefTypeImpl<T> implements Child<T>, PersistenceCo
       return this;
    }
 
+   public PersistenceContextRefType<T> removePersistenceContextType()
+   {
+      childNode.remove("persistence-context-type");
+      return this;
+   }
+
    public String getPersistenceContextType()
    {
       return childNode.textValue("persistence-context-type");
@@ -178,7 +208,7 @@ public class PersistenceContextRefTypeImpl<T> implements Child<T>, PersistenceCo
       return this;
    }
 
-   public PropertyType<PersistenceContextRefType<T>> getPersistenceProperty()
+   public PropertyType<PersistenceContextRefType<T>> persistenceProperty()
    {
       return new PropertyTypeImpl<PersistenceContextRefType<T>>(this, "", childNode);
    }

@@ -36,7 +36,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class Application6DescriptorImpl extends NodeProviderImplBase
       implements
@@ -87,6 +87,12 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
       return this;
    }
 
+   public Application6DescriptorImpl removeApplicationName()
+   {
+      model.remove("application-name");
+      return this;
+   }
+
    public String getApplicationName()
    {
       return model.textValue("application-name");
@@ -99,6 +105,12 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
    public Application6DescriptorImpl setInitializeInOrder(String initializeInOrder)
    {
       model.getOrCreate("initialize-in-order").text(initializeInOrder);
+      return this;
+   }
+
+   public Application6DescriptorImpl removeInitializeInOrder()
+   {
+      model.remove("initialize-in-order");
       return this;
    }
 
@@ -117,7 +129,7 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
       return this;
    }
 
-   public ModuleType<Application6DescriptorImpl> getModule()
+   public ModuleType<Application6DescriptorImpl> module()
    {
       Node node = model.getOrCreate(ModuleTypeImpl.nodeName);
       ModuleType<Application6DescriptorImpl> module = new ModuleTypeImpl<Application6DescriptorImpl>(this, "", model,
@@ -135,7 +147,7 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
       return this;
    }
 
-   public SecurityRoleType<Application6DescriptorImpl> getSecurityRole()
+   public SecurityRoleType<Application6DescriptorImpl> securityRole()
    {
       Node node = model.getOrCreate(SecurityRoleTypeImpl.nodeName);
       SecurityRoleType<Application6DescriptorImpl> securityRole = new SecurityRoleTypeImpl<Application6DescriptorImpl>(
@@ -150,6 +162,12 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
    public Application6DescriptorImpl setLibraryDirectory(String libraryDirectory)
    {
       model.getOrCreate("library-directory").text(libraryDirectory);
+      return this;
+   }
+
+   public Application6DescriptorImpl removeLibraryDirectory()
+   {
+      model.remove("library-directory");
       return this;
    }
 
@@ -168,7 +186,7 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
       return this;
    }
 
-   public EnvEntryType<Application6DescriptorImpl> getEnvEntry()
+   public EnvEntryType<Application6DescriptorImpl> envEntry()
    {
       Node node = model.getOrCreate(EnvEntryTypeImpl.nodeName);
       EnvEntryType<Application6DescriptorImpl> envEntry = new EnvEntryTypeImpl<Application6DescriptorImpl>(this, "",
@@ -186,7 +204,7 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
       return this;
    }
 
-   public EjbRefType<Application6DescriptorImpl> getEjbRef()
+   public EjbRefType<Application6DescriptorImpl> ejbRef()
    {
       Node node = model.getOrCreate(EjbRefTypeImpl.nodeName);
       EjbRefType<Application6DescriptorImpl> ejbRef = new EjbRefTypeImpl<Application6DescriptorImpl>(this, "", model,
@@ -204,7 +222,7 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
       return this;
    }
 
-   public EjbLocalRefType<Application6DescriptorImpl> getEjbLocalRef()
+   public EjbLocalRefType<Application6DescriptorImpl> ejbLocalRef()
    {
       Node node = model.getOrCreate(EjbLocalRefTypeImpl.nodeName);
       EjbLocalRefType<Application6DescriptorImpl> ejbLocalRef = new EjbLocalRefTypeImpl<Application6DescriptorImpl>(
@@ -222,7 +240,7 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
       return this;
    }
 
-   public ResourceRefType<Application6DescriptorImpl> getResourceRef()
+   public ResourceRefType<Application6DescriptorImpl> resourceRef()
    {
       Node node = model.getOrCreate(ResourceRefTypeImpl.nodeName);
       ResourceRefType<Application6DescriptorImpl> resourceRef = new ResourceRefTypeImpl<Application6DescriptorImpl>(
@@ -240,7 +258,7 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
       return this;
    }
 
-   public ResourceEnvRefType<Application6DescriptorImpl> getResourceEnvRef()
+   public ResourceEnvRefType<Application6DescriptorImpl> resourceEnvRef()
    {
       Node node = model.getOrCreate(ResourceEnvRefTypeImpl.nodeName);
       ResourceEnvRefType<Application6DescriptorImpl> resourceEnvRef = new ResourceEnvRefTypeImpl<Application6DescriptorImpl>(
@@ -258,7 +276,7 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
       return this;
    }
 
-   public MessageDestinationRefType<Application6DescriptorImpl> getMessageDestinationRef()
+   public MessageDestinationRefType<Application6DescriptorImpl> messageDestinationRef()
    {
       Node node = model.getOrCreate(MessageDestinationRefTypeImpl.nodeName);
       MessageDestinationRefType<Application6DescriptorImpl> messageDestinationRef = new MessageDestinationRefTypeImpl<Application6DescriptorImpl>(
@@ -276,7 +294,7 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
       return this;
    }
 
-   public PersistenceContextRefType<Application6DescriptorImpl> getPersistenceContextRef()
+   public PersistenceContextRefType<Application6DescriptorImpl> persistenceContextRef()
    {
       Node node = model.getOrCreate(PersistenceContextRefTypeImpl.nodeName);
       PersistenceContextRefType<Application6DescriptorImpl> persistenceContextRef = new PersistenceContextRefTypeImpl<Application6DescriptorImpl>(
@@ -294,7 +312,7 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
       return this;
    }
 
-   public PersistenceUnitRefType<Application6DescriptorImpl> getPersistenceUnitRef()
+   public PersistenceUnitRefType<Application6DescriptorImpl> persistenceUnitRef()
    {
       Node node = model.getOrCreate(PersistenceUnitRefTypeImpl.nodeName);
       PersistenceUnitRefType<Application6DescriptorImpl> persistenceUnitRef = new PersistenceUnitRefTypeImpl<Application6DescriptorImpl>(
@@ -312,7 +330,7 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
       return this;
    }
 
-   public MessageDestinationType<Application6DescriptorImpl> getMessageDestination()
+   public MessageDestinationType<Application6DescriptorImpl> messageDestination()
    {
       Node node = model.getOrCreate(MessageDestinationTypeImpl.nodeName);
       MessageDestinationType<Application6DescriptorImpl> messageDestination = new MessageDestinationTypeImpl<Application6DescriptorImpl>(
@@ -330,7 +348,7 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
       return this;
    }
 
-   public DataSourceType<Application6DescriptorImpl> getDataSource()
+   public DataSourceType<Application6DescriptorImpl> dataSource()
    {
       Node node = model.getOrCreate(DataSourceTypeImpl.nodeName);
       DataSourceType<Application6DescriptorImpl> dataSource = new DataSourceTypeImpl<Application6DescriptorImpl>(this,
@@ -348,12 +366,18 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
       return this;
    }
 
-   public Application6DescriptorImpl setDescription(String... values)
+   public Application6DescriptorImpl setDescriptionList(String... values)
    {
       for (String name : values)
       {
          setDescription(name);
       }
+      return this;
+   }
+
+   public Application6DescriptorImpl removeAllDescription()
+   {
+      model.remove("description");
       return this;
    }
 
@@ -378,12 +402,18 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
       return this;
    }
 
-   public Application6DescriptorImpl setDisplayName(String... values)
+   public Application6DescriptorImpl setDisplayNameList(String... values)
    {
       for (String name : values)
       {
          setDisplayName(name);
       }
+      return this;
+   }
+
+   public Application6DescriptorImpl removeAllDisplayName()
+   {
+      model.remove("display-name");
       return this;
    }
 
@@ -408,7 +438,7 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
       return this;
    }
 
-   public IconType<Application6DescriptorImpl> getIcon()
+   public IconType<Application6DescriptorImpl> icon()
    {
       return new IconTypeImpl<Application6DescriptorImpl>(this, "", model);
    }

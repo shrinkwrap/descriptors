@@ -10,7 +10,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class AbsoluteOrderingTypeImpl<T> implements Child<T>, AbsoluteOrderingType<T>
 {
@@ -59,12 +59,18 @@ public class AbsoluteOrderingTypeImpl<T> implements Child<T>, AbsoluteOrderingTy
       return this;
    }
 
-   public AbsoluteOrderingType<T> setName(String... values)
+   public AbsoluteOrderingType<T> setNameList(String... values)
    {
       for (String name : values)
       {
          setName(name);
       }
+      return this;
+   }
+
+   public AbsoluteOrderingType<T> removeAllName()
+   {
+      childNode.remove("name");
       return this;
    }
 
@@ -86,6 +92,12 @@ public class AbsoluteOrderingTypeImpl<T> implements Child<T>, AbsoluteOrderingTy
    public AbsoluteOrderingType<T> setOthers(Boolean others)
    {
       childNode.getOrCreate("others").text(others);
+      return this;
+   }
+
+   public AbsoluteOrderingType<T> removeOthers()
+   {
+      childNode.remove("others");
       return this;
    }
 

@@ -9,7 +9,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class UserDataConstraintTypeImpl<T> implements Child<T>, UserDataConstraintType<T>
 {
@@ -58,12 +58,18 @@ public class UserDataConstraintTypeImpl<T> implements Child<T>, UserDataConstrai
       return this;
    }
 
-   public UserDataConstraintType<T> setDescription(String... values)
+   public UserDataConstraintType<T> setDescriptionList(String... values)
    {
       for (String name : values)
       {
          setDescription(name);
       }
+      return this;
+   }
+
+   public UserDataConstraintType<T> removeAllDescription()
+   {
+      childNode.remove("description");
       return this;
    }
 
@@ -85,6 +91,12 @@ public class UserDataConstraintTypeImpl<T> implements Child<T>, UserDataConstrai
    public UserDataConstraintType<T> setTransportGuarantee(String transportGuarantee)
    {
       childNode.getOrCreate("transport-guarantee").text(transportGuarantee);
+      return this;
+   }
+
+   public UserDataConstraintType<T> removeTransportGuarantee()
+   {
+      childNode.remove("transport-guarantee");
       return this;
    }
 

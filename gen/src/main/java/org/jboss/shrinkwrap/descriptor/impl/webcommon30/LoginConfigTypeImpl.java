@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class LoginConfigTypeImpl<T> implements Child<T>, LoginConfigType<T>
 {
@@ -56,6 +56,12 @@ public class LoginConfigTypeImpl<T> implements Child<T>, LoginConfigType<T>
       return this;
    }
 
+   public LoginConfigType<T> removeAuthMethod()
+   {
+      childNode.remove("auth-method");
+      return this;
+   }
+
    public String getAuthMethod()
    {
       return childNode.textValue("auth-method");
@@ -68,6 +74,12 @@ public class LoginConfigTypeImpl<T> implements Child<T>, LoginConfigType<T>
    public LoginConfigType<T> setRealmName(String realmName)
    {
       childNode.getOrCreate("realm-name").text(realmName);
+      return this;
+   }
+
+   public LoginConfigType<T> removeRealmName()
+   {
+      childNode.remove("realm-name");
       return this;
    }
 
@@ -86,7 +98,7 @@ public class LoginConfigTypeImpl<T> implements Child<T>, LoginConfigType<T>
       return this;
    }
 
-   public FormLoginConfigType<LoginConfigType<T>> getFormLoginConfig()
+   public FormLoginConfigType<LoginConfigType<T>> formLoginConfig()
    {
       Node node = childNode.getOrCreate(FormLoginConfigTypeImpl.nodeName);
       FormLoginConfigType<LoginConfigType<T>> formLoginConfig = new FormLoginConfigTypeImpl<LoginConfigType<T>>(this,

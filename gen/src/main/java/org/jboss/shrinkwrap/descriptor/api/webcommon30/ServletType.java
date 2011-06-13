@@ -10,70 +10,86 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleRefType;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public interface ServletType<T> extends Child<T>
 {
 
    public ServletType<T> setDescription(String description);
 
-   public ServletType<T> setDescription(String... values);
+   public ServletType<T> setDescriptionList(String... values);
+
+   public ServletType<T> removeAllDescription();
 
    public List<String> getDescriptionList();
 
    public ServletType<T> setDisplayName(String displayName);
 
-   public ServletType<T> setDisplayName(String... values);
+   public ServletType<T> setDisplayNameList(String... values);
+
+   public ServletType<T> removeAllDisplayName();
 
    public List<String> getDisplayNameList();
 
    public ServletType<T> removeAllIcon();
 
-   public IconType<ServletType<T>> getIcon();
+   public IconType<ServletType<T>> icon();
 
    public List<IconType<ServletType<T>>> getIconList();
 
    public ServletType<T> setServletName(String servletName);
 
+   public ServletType<T> removeServletName();
+
    public String getServletName();
 
    public ServletType<T> removeAllInitParam();
 
-   public ParamValueType<ServletType<T>> getInitParam();
+   public ParamValueType<ServletType<T>> initParam();
 
    public List<ParamValueType<ServletType<T>>> getInitParamList();
 
    public ServletType<T> setLoadOnStartup(Boolean loadOnStartup);
 
+   public ServletType<T> removeLoadOnStartup();
+
    public Boolean isLoadOnStartup();
 
    public ServletType<T> setEnabled(Boolean enabled);
+
+   public ServletType<T> removeEnabled();
 
    public Boolean isEnabled();
 
    public ServletType<T> setAsyncSupported(Boolean asyncSupported);
 
+   public ServletType<T> removeAsyncSupported();
+
    public Boolean isAsyncSupported();
 
    public ServletType<T> removeRunAs();
 
-   public RunAsType<ServletType<T>> getRunAs();
+   public RunAsType<ServletType<T>> runAs();
 
    public ServletType<T> removeAllSecurityRoleRef();
 
-   public SecurityRoleRefType<ServletType<T>> getSecurityRoleRef();
+   public SecurityRoleRefType<ServletType<T>> securityRoleRef();
 
    public List<SecurityRoleRefType<ServletType<T>>> getSecurityRoleRefList();
 
    public ServletType<T> removeMultipartConfig();
 
-   public MultipartConfigType<ServletType<T>> getMultipartConfig();
+   public MultipartConfigType<ServletType<T>> multipartConfig();
 
    public ServletType<T> setServletClass(String servletClass);
+
+   public ServletType<T> removeServletClass();
 
    public String getServletClass();
 
    public ServletType<T> setJspFile(String jspFile);
+
+   public ServletType<T> removeJspFile();
 
    public String getJspFile();
 

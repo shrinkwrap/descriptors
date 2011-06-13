@@ -9,7 +9,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class SecurityRoleRefTypeImpl<T> implements Child<T>, SecurityRoleRefType<T>
 {
@@ -58,12 +58,18 @@ public class SecurityRoleRefTypeImpl<T> implements Child<T>, SecurityRoleRefType
       return this;
    }
 
-   public SecurityRoleRefType<T> setDescription(String... values)
+   public SecurityRoleRefType<T> setDescriptionList(String... values)
    {
       for (String name : values)
       {
          setDescription(name);
       }
+      return this;
+   }
+
+   public SecurityRoleRefType<T> removeAllDescription()
+   {
+      childNode.remove("description");
       return this;
    }
 
@@ -88,6 +94,12 @@ public class SecurityRoleRefTypeImpl<T> implements Child<T>, SecurityRoleRefType
       return this;
    }
 
+   public SecurityRoleRefType<T> removeRoleName()
+   {
+      childNode.remove("role-name");
+      return this;
+   }
+
    public String getRoleName()
    {
       return childNode.textValue("role-name");
@@ -100,6 +112,12 @@ public class SecurityRoleRefTypeImpl<T> implements Child<T>, SecurityRoleRefType
    public SecurityRoleRefType<T> setRoleLink(String roleLink)
    {
       childNode.getOrCreate("role-link").text(roleLink);
+      return this;
+   }
+
+   public SecurityRoleRefType<T> removeRoleLink()
+   {
+      childNode.remove("role-link");
       return this;
    }
 

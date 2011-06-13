@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class SessionConfigTypeImpl<T> implements Child<T>, SessionConfigType<T>
 {
@@ -56,6 +56,12 @@ public class SessionConfigTypeImpl<T> implements Child<T>, SessionConfigType<T>
       return this;
    }
 
+   public SessionConfigType<T> removeSessionTimeout()
+   {
+      childNode.remove("session-timeout");
+      return this;
+   }
+
    public Integer getSessionTimeout()
    {
       return Integer.valueOf(childNode.textValue("session-timeout"));
@@ -71,7 +77,7 @@ public class SessionConfigTypeImpl<T> implements Child<T>, SessionConfigType<T>
       return this;
    }
 
-   public CookieConfigType<SessionConfigType<T>> getCookieConfig()
+   public CookieConfigType<SessionConfigType<T>> cookieConfig()
    {
       Node node = childNode.getOrCreate(CookieConfigTypeImpl.nodeName);
       CookieConfigType<SessionConfigType<T>> cookieConfig = new CookieConfigTypeImpl<SessionConfigType<T>>(this, "",
@@ -86,6 +92,12 @@ public class SessionConfigTypeImpl<T> implements Child<T>, SessionConfigType<T>
    public SessionConfigType<T> setTrackingMode(String trackingMode)
    {
       childNode.getOrCreate("tracking-mode").text(trackingMode);
+      return this;
+   }
+
+   public SessionConfigType<T> removeTrackingMode()
+   {
+      childNode.remove("tracking-mode");
       return this;
    }
 

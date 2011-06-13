@@ -6,7 +6,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class FormLoginConfigTypeImpl<T> implements Child<T>, FormLoginConfigType<T>
 {
@@ -55,6 +55,12 @@ public class FormLoginConfigTypeImpl<T> implements Child<T>, FormLoginConfigType
       return this;
    }
 
+   public FormLoginConfigType<T> removeFormLoginPage()
+   {
+      childNode.remove("form-login-page");
+      return this;
+   }
+
    public String getFormLoginPage()
    {
       return childNode.textValue("form-login-page");
@@ -67,6 +73,12 @@ public class FormLoginConfigTypeImpl<T> implements Child<T>, FormLoginConfigType
    public FormLoginConfigType<T> setFormErrorPage(String formErrorPage)
    {
       childNode.getOrCreate("form-error-page").text(formErrorPage);
+      return this;
+   }
+
+   public FormLoginConfigType<T> removeFormErrorPage()
+   {
+      childNode.remove("form-error-page");
       return this;
    }
 

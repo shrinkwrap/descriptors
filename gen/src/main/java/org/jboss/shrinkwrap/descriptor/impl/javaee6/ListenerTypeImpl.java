@@ -10,7 +10,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class ListenerTypeImpl<T> implements Child<T>, ListenerType<T>
 {
@@ -59,12 +59,18 @@ public class ListenerTypeImpl<T> implements Child<T>, ListenerType<T>
       return this;
    }
 
-   public ListenerType<T> setDescription(String... values)
+   public ListenerType<T> setDescriptionList(String... values)
    {
       for (String name : values)
       {
          setDescription(name);
       }
+      return this;
+   }
+
+   public ListenerType<T> removeAllDescription()
+   {
+      childNode.remove("description");
       return this;
    }
 
@@ -89,12 +95,18 @@ public class ListenerTypeImpl<T> implements Child<T>, ListenerType<T>
       return this;
    }
 
-   public ListenerType<T> setDisplayName(String... values)
+   public ListenerType<T> setDisplayNameList(String... values)
    {
       for (String name : values)
       {
          setDisplayName(name);
       }
+      return this;
+   }
+
+   public ListenerType<T> removeAllDisplayName()
+   {
+      childNode.remove("display-name");
       return this;
    }
 
@@ -119,7 +131,7 @@ public class ListenerTypeImpl<T> implements Child<T>, ListenerType<T>
       return this;
    }
 
-   public IconType<ListenerType<T>> getIcon()
+   public IconType<ListenerType<T>> icon()
    {
       return new IconTypeImpl<ListenerType<T>>(this, "", childNode);
    }
@@ -143,6 +155,12 @@ public class ListenerTypeImpl<T> implements Child<T>, ListenerType<T>
    public ListenerType<T> setListenerClass(String listenerClass)
    {
       childNode.getOrCreate("listener-class").text(listenerClass);
+      return this;
+   }
+
+   public ListenerType<T> removeListenerClass()
+   {
+      childNode.remove("listener-class");
       return this;
    }
 

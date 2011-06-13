@@ -19,7 +19,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
 {
@@ -68,12 +68,18 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
       return this;
    }
 
-   public ServletType<T> setDescription(String... values)
+   public ServletType<T> setDescriptionList(String... values)
    {
       for (String name : values)
       {
          setDescription(name);
       }
+      return this;
+   }
+
+   public ServletType<T> removeAllDescription()
+   {
+      childNode.remove("description");
       return this;
    }
 
@@ -98,12 +104,18 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
       return this;
    }
 
-   public ServletType<T> setDisplayName(String... values)
+   public ServletType<T> setDisplayNameList(String... values)
    {
       for (String name : values)
       {
          setDisplayName(name);
       }
+      return this;
+   }
+
+   public ServletType<T> removeAllDisplayName()
+   {
+      childNode.remove("display-name");
       return this;
    }
 
@@ -128,7 +140,7 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
       return this;
    }
 
-   public IconType<ServletType<T>> getIcon()
+   public IconType<ServletType<T>> icon()
    {
       return new IconTypeImpl<ServletType<T>>(this, "", childNode);
    }
@@ -155,6 +167,12 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
       return this;
    }
 
+   public ServletType<T> removeServletName()
+   {
+      childNode.remove("servlet-name");
+      return this;
+   }
+
    public String getServletName()
    {
       return childNode.textValue("servlet-name");
@@ -170,7 +188,7 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
       return this;
    }
 
-   public ParamValueType<ServletType<T>> getInitParam()
+   public ParamValueType<ServletType<T>> initParam()
    {
       return new ParamValueTypeImpl<ServletType<T>>(this, "", childNode);
    }
@@ -197,6 +215,12 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
       return this;
    }
 
+   public ServletType<T> removeLoadOnStartup()
+   {
+      childNode.remove("load-on-startup");
+      return this;
+   }
+
    public Boolean isLoadOnStartup()
    {
       return Strings.isTrue(childNode.textValue("load-on-startup"));
@@ -209,6 +233,12 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
    public ServletType<T> setEnabled(Boolean enabled)
    {
       childNode.getOrCreate("enabled").text(enabled);
+      return this;
+   }
+
+   public ServletType<T> removeEnabled()
+   {
+      childNode.remove("enabled");
       return this;
    }
 
@@ -227,6 +257,12 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
       return this;
    }
 
+   public ServletType<T> removeAsyncSupported()
+   {
+      childNode.remove("async-supported");
+      return this;
+   }
+
    public Boolean isAsyncSupported()
    {
       return Strings.isTrue(childNode.textValue("async-supported"));
@@ -242,7 +278,7 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
       return this;
    }
 
-   public RunAsType<ServletType<T>> getRunAs()
+   public RunAsType<ServletType<T>> runAs()
    {
       Node node = childNode.getOrCreate(RunAsTypeImpl.nodeName);
       RunAsType<ServletType<T>> runAs = new RunAsTypeImpl<ServletType<T>>(this, "", childNode, node);
@@ -259,7 +295,7 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
       return this;
    }
 
-   public SecurityRoleRefType<ServletType<T>> getSecurityRoleRef()
+   public SecurityRoleRefType<ServletType<T>> securityRoleRef()
    {
       return new SecurityRoleRefTypeImpl<ServletType<T>>(this, "", childNode);
    }
@@ -287,7 +323,7 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
       return this;
    }
 
-   public MultipartConfigType<ServletType<T>> getMultipartConfig()
+   public MultipartConfigType<ServletType<T>> multipartConfig()
    {
       Node node = childNode.getOrCreate(MultipartConfigTypeImpl.nodeName);
       MultipartConfigType<ServletType<T>> multipartConfig = new MultipartConfigTypeImpl<ServletType<T>>(this, "",
@@ -305,6 +341,12 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
       return this;
    }
 
+   public ServletType<T> removeServletClass()
+   {
+      childNode.remove("servlet-class");
+      return this;
+   }
+
    public String getServletClass()
    {
       return childNode.textValue("servlet-class");
@@ -317,6 +359,12 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
    public ServletType<T> setJspFile(String jspFile)
    {
       childNode.getOrCreate("jsp-file").text(jspFile);
+      return this;
+   }
+
+   public ServletType<T> removeJspFile()
+   {
+      childNode.remove("jsp-file");
       return this;
    }
 

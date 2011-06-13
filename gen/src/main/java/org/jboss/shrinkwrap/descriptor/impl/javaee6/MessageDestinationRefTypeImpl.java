@@ -10,7 +10,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class MessageDestinationRefTypeImpl<T> implements Child<T>, MessageDestinationRefType<T>
 {
@@ -59,6 +59,12 @@ public class MessageDestinationRefTypeImpl<T> implements Child<T>, MessageDestin
       return this;
    }
 
+   public MessageDestinationRefType<T> removeLookupName()
+   {
+      childNode.remove("lookup-name");
+      return this;
+   }
+
    public String getLookupName()
    {
       return childNode.textValue("lookup-name");
@@ -71,6 +77,12 @@ public class MessageDestinationRefTypeImpl<T> implements Child<T>, MessageDestin
    public MessageDestinationRefType<T> setMappedName(String mappedName)
    {
       childNode.getOrCreate("mapped-name").text(mappedName);
+      return this;
+   }
+
+   public MessageDestinationRefType<T> removeMappedName()
+   {
+      childNode.remove("mapped-name");
       return this;
    }
 
@@ -89,7 +101,7 @@ public class MessageDestinationRefTypeImpl<T> implements Child<T>, MessageDestin
       return this;
    }
 
-   public InjectionTargetType<MessageDestinationRefType<T>> getInjectionTarget()
+   public InjectionTargetType<MessageDestinationRefType<T>> injectionTarget()
    {
       return new InjectionTargetTypeImpl<MessageDestinationRefType<T>>(this, "", childNode);
    }
@@ -117,12 +129,18 @@ public class MessageDestinationRefTypeImpl<T> implements Child<T>, MessageDestin
       return this;
    }
 
-   public MessageDestinationRefType<T> setDescription(String... values)
+   public MessageDestinationRefType<T> setDescriptionList(String... values)
    {
       for (String name : values)
       {
          setDescription(name);
       }
+      return this;
+   }
+
+   public MessageDestinationRefType<T> removeAllDescription()
+   {
+      childNode.remove("description");
       return this;
    }
 
@@ -147,6 +165,12 @@ public class MessageDestinationRefTypeImpl<T> implements Child<T>, MessageDestin
       return this;
    }
 
+   public MessageDestinationRefType<T> removeMessageDestinationRefName()
+   {
+      childNode.remove("message-destination-ref-name");
+      return this;
+   }
+
    public String getMessageDestinationRefName()
    {
       return childNode.textValue("message-destination-ref-name");
@@ -159,6 +183,12 @@ public class MessageDestinationRefTypeImpl<T> implements Child<T>, MessageDestin
    public MessageDestinationRefType<T> setMessageDestinationType(String messageDestinationType)
    {
       childNode.getOrCreate("message-destination-type").text(messageDestinationType);
+      return this;
+   }
+
+   public MessageDestinationRefType<T> removeMessageDestinationType()
+   {
+      childNode.remove("message-destination-type");
       return this;
    }
 
@@ -177,6 +207,12 @@ public class MessageDestinationRefTypeImpl<T> implements Child<T>, MessageDestin
       return this;
    }
 
+   public MessageDestinationRefType<T> removeMessageDestinationUsage()
+   {
+      childNode.remove("message-destination-usage");
+      return this;
+   }
+
    public String getMessageDestinationUsage()
    {
       return childNode.textValue("message-destination-usage");
@@ -189,6 +225,12 @@ public class MessageDestinationRefTypeImpl<T> implements Child<T>, MessageDestin
    public MessageDestinationRefType<T> setMessageDestinationLink(String messageDestinationLink)
    {
       childNode.getOrCreate("message-destination-link").text(messageDestinationLink);
+      return this;
+   }
+
+   public MessageDestinationRefType<T> removeMessageDestinationLink()
+   {
+      childNode.remove("message-destination-link");
       return this;
    }
 

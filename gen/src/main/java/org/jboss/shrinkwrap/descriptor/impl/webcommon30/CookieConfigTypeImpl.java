@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class CookieConfigTypeImpl<T> implements Child<T>, CookieConfigType<T>
 {
@@ -56,6 +56,12 @@ public class CookieConfigTypeImpl<T> implements Child<T>, CookieConfigType<T>
       return this;
    }
 
+   public CookieConfigType<T> removeName()
+   {
+      childNode.remove("name");
+      return this;
+   }
+
    public String getName()
    {
       return childNode.textValue("name");
@@ -68,6 +74,12 @@ public class CookieConfigTypeImpl<T> implements Child<T>, CookieConfigType<T>
    public CookieConfigType<T> setDomain(String domain)
    {
       childNode.getOrCreate("domain").text(domain);
+      return this;
+   }
+
+   public CookieConfigType<T> removeDomain()
+   {
+      childNode.remove("domain");
       return this;
    }
 
@@ -86,6 +98,12 @@ public class CookieConfigTypeImpl<T> implements Child<T>, CookieConfigType<T>
       return this;
    }
 
+   public CookieConfigType<T> removePath()
+   {
+      childNode.remove("path");
+      return this;
+   }
+
    public String getPath()
    {
       return childNode.textValue("path");
@@ -98,6 +116,12 @@ public class CookieConfigTypeImpl<T> implements Child<T>, CookieConfigType<T>
    public CookieConfigType<T> setComment(String comment)
    {
       childNode.getOrCreate("comment").text(comment);
+      return this;
+   }
+
+   public CookieConfigType<T> removeComment()
+   {
+      childNode.remove("comment");
       return this;
    }
 
@@ -116,6 +140,12 @@ public class CookieConfigTypeImpl<T> implements Child<T>, CookieConfigType<T>
       return this;
    }
 
+   public CookieConfigType<T> removeHttpOnly()
+   {
+      childNode.remove("http-only");
+      return this;
+   }
+
    public Boolean isHttpOnly()
    {
       return Strings.isTrue(childNode.textValue("http-only"));
@@ -131,6 +161,12 @@ public class CookieConfigTypeImpl<T> implements Child<T>, CookieConfigType<T>
       return this;
    }
 
+   public CookieConfigType<T> removeSecure()
+   {
+      childNode.remove("secure");
+      return this;
+   }
+
    public Boolean isSecure()
    {
       return Strings.isTrue(childNode.textValue("secure"));
@@ -143,6 +179,12 @@ public class CookieConfigTypeImpl<T> implements Child<T>, CookieConfigType<T>
    public CookieConfigType<T> setMaxAge(Integer maxAge)
    {
       childNode.getOrCreate("max-age").text(maxAge);
+      return this;
+   }
+
+   public CookieConfigType<T> removeMaxAge()
+   {
+      childNode.remove("max-age");
       return this;
    }
 

@@ -9,7 +9,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class ServletMappingTypeImpl<T> implements Child<T>, ServletMappingType<T>
 {
@@ -58,6 +58,12 @@ public class ServletMappingTypeImpl<T> implements Child<T>, ServletMappingType<T
       return this;
    }
 
+   public ServletMappingType<T> removeServletName()
+   {
+      childNode.remove("servlet-name");
+      return this;
+   }
+
    public String getServletName()
    {
       return childNode.textValue("servlet-name");
@@ -73,12 +79,18 @@ public class ServletMappingTypeImpl<T> implements Child<T>, ServletMappingType<T
       return this;
    }
 
-   public ServletMappingType<T> setUrlPattern(String... values)
+   public ServletMappingType<T> setUrlPatternList(String... values)
    {
       for (String name : values)
       {
          setUrlPattern(name);
       }
+      return this;
+   }
+
+   public ServletMappingType<T> removeAllUrlPattern()
+   {
+      childNode.remove("url-pattern");
       return this;
    }
 

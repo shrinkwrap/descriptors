@@ -6,7 +6,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class TaglibTypeImpl<T> implements Child<T>, TaglibType<T>
 {
@@ -55,6 +55,12 @@ public class TaglibTypeImpl<T> implements Child<T>, TaglibType<T>
       return this;
    }
 
+   public TaglibType<T> removeTaglibUri()
+   {
+      childNode.remove("taglib-uri");
+      return this;
+   }
+
    public String getTaglibUri()
    {
       return childNode.textValue("taglib-uri");
@@ -67,6 +73,12 @@ public class TaglibTypeImpl<T> implements Child<T>, TaglibType<T>
    public TaglibType<T> setTaglibLocation(String taglibLocation)
    {
       childNode.getOrCreate("taglib-location").text(taglibLocation);
+      return this;
+   }
+
+   public TaglibType<T> removeTaglibLocation()
+   {
+      childNode.remove("taglib-location");
       return this;
    }
 

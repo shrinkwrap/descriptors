@@ -6,29 +6,31 @@ import org.jboss.shrinkwrap.descriptor.api.Child;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public interface SecurityConstraintType<T> extends Child<T>
 {
 
    public SecurityConstraintType<T> setDisplayName(String displayName);
 
-   public SecurityConstraintType<T> setDisplayName(String... values);
+   public SecurityConstraintType<T> setDisplayNameList(String... values);
+
+   public SecurityConstraintType<T> removeAllDisplayName();
 
    public List<String> getDisplayNameList();
 
    public SecurityConstraintType<T> removeAllWebResourceCollection();
 
-   public WebResourceCollectionType<SecurityConstraintType<T>> getWebResourceCollection();
+   public WebResourceCollectionType<SecurityConstraintType<T>> webResourceCollection();
 
    public List<WebResourceCollectionType<SecurityConstraintType<T>>> getWebResourceCollectionList();
 
    public SecurityConstraintType<T> removeAuthConstraint();
 
-   public AuthConstraintType<SecurityConstraintType<T>> getAuthConstraint();
+   public AuthConstraintType<SecurityConstraintType<T>> authConstraint();
 
    public SecurityConstraintType<T> removeUserDataConstraint();
 
-   public UserDataConstraintType<SecurityConstraintType<T>> getUserDataConstraint();
+   public UserDataConstraintType<SecurityConstraintType<T>> userDataConstraint();
 
 }

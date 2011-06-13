@@ -17,6 +17,46 @@
   <name>ShrinkWrap Descriptors XSLT Transformation</name>
   <description>Generates various deployment descriptors via XSLT transformation</description>
 
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>xml-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>transform</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <transformationSets>
+            <transformationSet>
+              <dir>src/main/resources/xslt</dir>
+              <stylesheet>src/main/resources/xslt/metadata.xsl</stylesheet>
+ <!--             <parameters>
+                <parameter>
+                  <name>gOutputFolder</name>
+                  <value>src/main/java</value>
+                </parameter>
+              </parameters>-->
+              
+              
+            </transformationSet>
+          </transformationSets>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>net.sf.saxon</groupId>
+            <artifactId>saxon</artifactId>
+            <version>8.7</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      
+    </plugins>
+    
+  </build>
   <dependencies>
 
     <dependency>

@@ -54,7 +54,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
 {
@@ -103,6 +103,12 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
+   public WebAppType<T> removeDistributable()
+   {
+      childNode.remove("distributable");
+      return this;
+   }
+
    public Boolean isDistributable()
    {
       return Strings.isTrue(childNode.textValue("distributable"));
@@ -118,7 +124,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public ParamValueType<WebAppType<T>> getContextParam()
+   public ParamValueType<WebAppType<T>> contextParam()
    {
       Node node = childNode.getOrCreate(ParamValueTypeImpl.nodeName);
       ParamValueType<WebAppType<T>> contextParam = new ParamValueTypeImpl<WebAppType<T>>(this, "", childNode, node);
@@ -135,7 +141,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public FilterType<WebAppType<T>> getFilter()
+   public FilterType<WebAppType<T>> filter()
    {
       Node node = childNode.getOrCreate(FilterTypeImpl.nodeName);
       FilterType<WebAppType<T>> filter = new FilterTypeImpl<WebAppType<T>>(this, "", childNode, node);
@@ -152,7 +158,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public FilterMappingType<WebAppType<T>> getFilterMapping()
+   public FilterMappingType<WebAppType<T>> filterMapping()
    {
       Node node = childNode.getOrCreate(FilterMappingTypeImpl.nodeName);
       FilterMappingType<WebAppType<T>> filterMapping = new FilterMappingTypeImpl<WebAppType<T>>(this, "", childNode,
@@ -170,7 +176,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public ListenerType<WebAppType<T>> getListener()
+   public ListenerType<WebAppType<T>> listener()
    {
       Node node = childNode.getOrCreate(ListenerTypeImpl.nodeName);
       ListenerType<WebAppType<T>> listener = new ListenerTypeImpl<WebAppType<T>>(this, "", childNode, node);
@@ -187,7 +193,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public ServletType<WebAppType<T>> getServlet()
+   public ServletType<WebAppType<T>> servlet()
    {
       Node node = childNode.getOrCreate(ServletTypeImpl.nodeName);
       ServletType<WebAppType<T>> servlet = new ServletTypeImpl<WebAppType<T>>(this, "", childNode, node);
@@ -204,7 +210,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public ServletMappingType<WebAppType<T>> getServletMapping()
+   public ServletMappingType<WebAppType<T>> servletMapping()
    {
       Node node = childNode.getOrCreate(ServletMappingTypeImpl.nodeName);
       ServletMappingType<WebAppType<T>> servletMapping = new ServletMappingTypeImpl<WebAppType<T>>(this, "", childNode,
@@ -222,7 +228,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public SessionConfigType<WebAppType<T>> getSessionConfig()
+   public SessionConfigType<WebAppType<T>> sessionConfig()
    {
       Node node = childNode.getOrCreate(SessionConfigTypeImpl.nodeName);
       SessionConfigType<WebAppType<T>> sessionConfig = new SessionConfigTypeImpl<WebAppType<T>>(this, "", childNode,
@@ -240,7 +246,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public MimeMappingType<WebAppType<T>> getMimeMapping()
+   public MimeMappingType<WebAppType<T>> mimeMapping()
    {
       Node node = childNode.getOrCreate(MimeMappingTypeImpl.nodeName);
       MimeMappingType<WebAppType<T>> mimeMapping = new MimeMappingTypeImpl<WebAppType<T>>(this, "", childNode, node);
@@ -257,7 +263,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public WelcomeFileListType<WebAppType<T>> getWelcomeFileList()
+   public WelcomeFileListType<WebAppType<T>> welcomeFileList()
    {
       Node node = childNode.getOrCreate(WelcomeFileListTypeImpl.nodeName);
       WelcomeFileListType<WebAppType<T>> welcomeFileList = new WelcomeFileListTypeImpl<WebAppType<T>>(this, "",
@@ -275,7 +281,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public ErrorPageType<WebAppType<T>> getErrorPage()
+   public ErrorPageType<WebAppType<T>> errorPage()
    {
       Node node = childNode.getOrCreate(ErrorPageTypeImpl.nodeName);
       ErrorPageType<WebAppType<T>> errorPage = new ErrorPageTypeImpl<WebAppType<T>>(this, "", childNode, node);
@@ -292,7 +298,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public JspConfigType<WebAppType<T>> getJspConfig()
+   public JspConfigType<WebAppType<T>> jspConfig()
    {
       Node node = childNode.getOrCreate(JspConfigTypeImpl.nodeName);
       JspConfigType<WebAppType<T>> jspConfig = new JspConfigTypeImpl<WebAppType<T>>(this, "", childNode, node);
@@ -309,7 +315,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public SecurityConstraintType<WebAppType<T>> getSecurityConstraint()
+   public SecurityConstraintType<WebAppType<T>> securityConstraint()
    {
       Node node = childNode.getOrCreate(SecurityConstraintTypeImpl.nodeName);
       SecurityConstraintType<WebAppType<T>> securityConstraint = new SecurityConstraintTypeImpl<WebAppType<T>>(this,
@@ -327,7 +333,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public LoginConfigType<WebAppType<T>> getLoginConfig()
+   public LoginConfigType<WebAppType<T>> loginConfig()
    {
       Node node = childNode.getOrCreate(LoginConfigTypeImpl.nodeName);
       LoginConfigType<WebAppType<T>> loginConfig = new LoginConfigTypeImpl<WebAppType<T>>(this, "", childNode, node);
@@ -344,7 +350,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public SecurityRoleType<WebAppType<T>> getSecurityRole()
+   public SecurityRoleType<WebAppType<T>> securityRole()
    {
       Node node = childNode.getOrCreate(SecurityRoleTypeImpl.nodeName);
       SecurityRoleType<WebAppType<T>> securityRole = new SecurityRoleTypeImpl<WebAppType<T>>(this, "", childNode, node);
@@ -361,7 +367,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public MessageDestinationType<WebAppType<T>> getMessageDestination()
+   public MessageDestinationType<WebAppType<T>> messageDestination()
    {
       Node node = childNode.getOrCreate(MessageDestinationTypeImpl.nodeName);
       MessageDestinationType<WebAppType<T>> messageDestination = new MessageDestinationTypeImpl<WebAppType<T>>(this,
@@ -379,7 +385,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public LocaleEncodingMappingListType<WebAppType<T>> getLocaleEncodingMappingList()
+   public LocaleEncodingMappingListType<WebAppType<T>> localeEncodingMappingList()
    {
       Node node = childNode.getOrCreate(LocaleEncodingMappingListTypeImpl.nodeName);
       LocaleEncodingMappingListType<WebAppType<T>> localeEncodingMappingList = new LocaleEncodingMappingListTypeImpl<WebAppType<T>>(
@@ -397,12 +403,18 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public WebAppType<T> setDescription(String... values)
+   public WebAppType<T> setDescriptionList(String... values)
    {
       for (String name : values)
       {
          setDescription(name);
       }
+      return this;
+   }
+
+   public WebAppType<T> removeAllDescription()
+   {
+      childNode.remove("description");
       return this;
    }
 
@@ -427,12 +439,18 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public WebAppType<T> setDisplayName(String... values)
+   public WebAppType<T> setDisplayNameList(String... values)
    {
       for (String name : values)
       {
          setDisplayName(name);
       }
+      return this;
+   }
+
+   public WebAppType<T> removeAllDisplayName()
+   {
+      childNode.remove("display-name");
       return this;
    }
 
@@ -457,7 +475,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public IconType<WebAppType<T>> getIcon()
+   public IconType<WebAppType<T>> icon()
    {
       return new IconTypeImpl<WebAppType<T>>(this, "", childNode);
    }
@@ -484,7 +502,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public EnvEntryType<WebAppType<T>> getEnvEntry()
+   public EnvEntryType<WebAppType<T>> envEntry()
    {
       return new EnvEntryTypeImpl<WebAppType<T>>(this, "", childNode);
    }
@@ -511,7 +529,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public EjbRefType<WebAppType<T>> getEjbRef()
+   public EjbRefType<WebAppType<T>> ejbRef()
    {
       return new EjbRefTypeImpl<WebAppType<T>>(this, "", childNode);
    }
@@ -538,7 +556,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public EjbLocalRefType<WebAppType<T>> getEjbLocalRef()
+   public EjbLocalRefType<WebAppType<T>> ejbLocalRef()
    {
       return new EjbLocalRefTypeImpl<WebAppType<T>>(this, "", childNode);
    }
@@ -565,7 +583,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public ResourceRefType<WebAppType<T>> getResourceRef()
+   public ResourceRefType<WebAppType<T>> resourceRef()
    {
       return new ResourceRefTypeImpl<WebAppType<T>>(this, "", childNode);
    }
@@ -592,7 +610,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public ResourceEnvRefType<WebAppType<T>> getResourceEnvRef()
+   public ResourceEnvRefType<WebAppType<T>> resourceEnvRef()
    {
       return new ResourceEnvRefTypeImpl<WebAppType<T>>(this, "", childNode);
    }
@@ -619,7 +637,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public MessageDestinationRefType<WebAppType<T>> getMessageDestinationRef()
+   public MessageDestinationRefType<WebAppType<T>> messageDestinationRef()
    {
       return new MessageDestinationRefTypeImpl<WebAppType<T>>(this, "", childNode);
    }
@@ -647,7 +665,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public PersistenceContextRefType<WebAppType<T>> getPersistenceContextRef()
+   public PersistenceContextRefType<WebAppType<T>> persistenceContextRef()
    {
       return new PersistenceContextRefTypeImpl<WebAppType<T>>(this, "", childNode);
    }
@@ -675,7 +693,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public PersistenceUnitRefType<WebAppType<T>> getPersistenceUnitRef()
+   public PersistenceUnitRefType<WebAppType<T>> persistenceUnitRef()
    {
       return new PersistenceUnitRefTypeImpl<WebAppType<T>>(this, "", childNode);
    }
@@ -703,7 +721,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public LifecycleCallbackType<WebAppType<T>> getPostConstruct()
+   public LifecycleCallbackType<WebAppType<T>> postConstruct()
    {
       return new LifecycleCallbackTypeImpl<WebAppType<T>>(this, "", childNode);
    }
@@ -731,7 +749,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public LifecycleCallbackType<WebAppType<T>> getPreDestroy()
+   public LifecycleCallbackType<WebAppType<T>> preDestroy()
    {
       return new LifecycleCallbackTypeImpl<WebAppType<T>>(this, "", childNode);
    }
@@ -759,7 +777,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public DataSourceType<WebAppType<T>> getDataSource()
+   public DataSourceType<WebAppType<T>> dataSource()
    {
       return new DataSourceTypeImpl<WebAppType<T>>(this, "", childNode);
    }
@@ -816,6 +834,12 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
+   public WebAppType<T> removeModuleName()
+   {
+      childNode.remove("module-name");
+      return this;
+   }
+
    public String getModuleName()
    {
       return childNode.textValue("module-name");
@@ -831,7 +855,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return this;
    }
 
-   public AbsoluteOrderingType<WebAppType<T>> getAbsoluteOrdering()
+   public AbsoluteOrderingType<WebAppType<T>> absoluteOrdering()
    {
       Node node = childNode.getOrCreate(AbsoluteOrderingTypeImpl.nodeName);
       AbsoluteOrderingType<WebAppType<T>> absoluteOrdering = new AbsoluteOrderingTypeImpl<WebAppType<T>>(this, "",

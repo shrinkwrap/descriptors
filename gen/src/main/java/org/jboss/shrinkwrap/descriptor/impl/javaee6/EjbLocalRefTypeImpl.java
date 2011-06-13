@@ -10,7 +10,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class EjbLocalRefTypeImpl<T> implements Child<T>, EjbLocalRefType<T>
 {
@@ -59,6 +59,12 @@ public class EjbLocalRefTypeImpl<T> implements Child<T>, EjbLocalRefType<T>
       return this;
    }
 
+   public EjbLocalRefType<T> removeLookupName()
+   {
+      childNode.remove("lookup-name");
+      return this;
+   }
+
    public String getLookupName()
    {
       return childNode.textValue("lookup-name");
@@ -71,6 +77,12 @@ public class EjbLocalRefTypeImpl<T> implements Child<T>, EjbLocalRefType<T>
    public EjbLocalRefType<T> setMappedName(String mappedName)
    {
       childNode.getOrCreate("mapped-name").text(mappedName);
+      return this;
+   }
+
+   public EjbLocalRefType<T> removeMappedName()
+   {
+      childNode.remove("mapped-name");
       return this;
    }
 
@@ -89,7 +101,7 @@ public class EjbLocalRefTypeImpl<T> implements Child<T>, EjbLocalRefType<T>
       return this;
    }
 
-   public InjectionTargetType<EjbLocalRefType<T>> getInjectionTarget()
+   public InjectionTargetType<EjbLocalRefType<T>> injectionTarget()
    {
       return new InjectionTargetTypeImpl<EjbLocalRefType<T>>(this, "", childNode);
    }
@@ -117,12 +129,18 @@ public class EjbLocalRefTypeImpl<T> implements Child<T>, EjbLocalRefType<T>
       return this;
    }
 
-   public EjbLocalRefType<T> setDescription(String... values)
+   public EjbLocalRefType<T> setDescriptionList(String... values)
    {
       for (String name : values)
       {
          setDescription(name);
       }
+      return this;
+   }
+
+   public EjbLocalRefType<T> removeAllDescription()
+   {
+      childNode.remove("description");
       return this;
    }
 
@@ -147,6 +165,12 @@ public class EjbLocalRefTypeImpl<T> implements Child<T>, EjbLocalRefType<T>
       return this;
    }
 
+   public EjbLocalRefType<T> removeEjbRefName()
+   {
+      childNode.remove("ejb-ref-name");
+      return this;
+   }
+
    public String getEjbRefName()
    {
       return childNode.textValue("ejb-ref-name");
@@ -159,6 +183,12 @@ public class EjbLocalRefTypeImpl<T> implements Child<T>, EjbLocalRefType<T>
    public EjbLocalRefType<T> setEjbRefType(String ejbRefType)
    {
       childNode.getOrCreate("ejb-ref-type").text(ejbRefType);
+      return this;
+   }
+
+   public EjbLocalRefType<T> removeEjbRefType()
+   {
+      childNode.remove("ejb-ref-type");
       return this;
    }
 
@@ -177,6 +207,12 @@ public class EjbLocalRefTypeImpl<T> implements Child<T>, EjbLocalRefType<T>
       return this;
    }
 
+   public EjbLocalRefType<T> removeLocalHome()
+   {
+      childNode.remove("local-home");
+      return this;
+   }
+
    public String getLocalHome()
    {
       return childNode.textValue("local-home");
@@ -192,6 +228,12 @@ public class EjbLocalRefTypeImpl<T> implements Child<T>, EjbLocalRefType<T>
       return this;
    }
 
+   public EjbLocalRefType<T> removeLocal()
+   {
+      childNode.remove("local");
+      return this;
+   }
+
    public String getLocal()
    {
       return childNode.textValue("local");
@@ -204,6 +246,12 @@ public class EjbLocalRefTypeImpl<T> implements Child<T>, EjbLocalRefType<T>
    public EjbLocalRefType<T> setEjbLink(String ejbLink)
    {
       childNode.getOrCreate("ejb-link").text(ejbLink);
+      return this;
+   }
+
+   public EjbLocalRefType<T> removeEjbLink()
+   {
+      childNode.remove("ejb-link");
       return this;
    }
 

@@ -4,36 +4,50 @@ import org.jboss.shrinkwrap.descriptor.api.Child;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public interface CookieConfigType<T> extends Child<T>
 {
 
    public CookieConfigType<T> setName(String name);
 
+   public CookieConfigType<T> removeName();
+
    public String getName();
 
    public CookieConfigType<T> setDomain(String domain);
+
+   public CookieConfigType<T> removeDomain();
 
    public String getDomain();
 
    public CookieConfigType<T> setPath(String path);
 
+   public CookieConfigType<T> removePath();
+
    public String getPath();
 
    public CookieConfigType<T> setComment(String comment);
+
+   public CookieConfigType<T> removeComment();
 
    public String getComment();
 
    public CookieConfigType<T> setHttpOnly(Boolean httpOnly);
 
+   public CookieConfigType<T> removeHttpOnly();
+
    public Boolean isHttpOnly();
 
    public CookieConfigType<T> setSecure(Boolean secure);
 
+   public CookieConfigType<T> removeSecure();
+
    public Boolean isSecure();
 
    public CookieConfigType<T> setMaxAge(Integer maxAge);
+
+   public CookieConfigType<T> removeMaxAge();
 
    public Integer getMaxAge();
 

@@ -54,7 +54,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
 {
@@ -103,6 +103,12 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
+   public WebFragmentType<T> removeDistributable()
+   {
+      childNode.remove("distributable");
+      return this;
+   }
+
    public Boolean isDistributable()
    {
       return Strings.isTrue(childNode.textValue("distributable"));
@@ -118,7 +124,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public ParamValueType<WebFragmentType<T>> getContextParam()
+   public ParamValueType<WebFragmentType<T>> contextParam()
    {
       Node node = childNode.getOrCreate(ParamValueTypeImpl.nodeName);
       ParamValueType<WebFragmentType<T>> contextParam = new ParamValueTypeImpl<WebFragmentType<T>>(this, "", childNode,
@@ -136,7 +142,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public FilterType<WebFragmentType<T>> getFilter()
+   public FilterType<WebFragmentType<T>> filter()
    {
       Node node = childNode.getOrCreate(FilterTypeImpl.nodeName);
       FilterType<WebFragmentType<T>> filter = new FilterTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
@@ -153,7 +159,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public FilterMappingType<WebFragmentType<T>> getFilterMapping()
+   public FilterMappingType<WebFragmentType<T>> filterMapping()
    {
       Node node = childNode.getOrCreate(FilterMappingTypeImpl.nodeName);
       FilterMappingType<WebFragmentType<T>> filterMapping = new FilterMappingTypeImpl<WebFragmentType<T>>(this, "",
@@ -171,7 +177,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public ListenerType<WebFragmentType<T>> getListener()
+   public ListenerType<WebFragmentType<T>> listener()
    {
       Node node = childNode.getOrCreate(ListenerTypeImpl.nodeName);
       ListenerType<WebFragmentType<T>> listener = new ListenerTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
@@ -188,7 +194,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public ServletType<WebFragmentType<T>> getServlet()
+   public ServletType<WebFragmentType<T>> servlet()
    {
       Node node = childNode.getOrCreate(ServletTypeImpl.nodeName);
       ServletType<WebFragmentType<T>> servlet = new ServletTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
@@ -205,7 +211,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public ServletMappingType<WebFragmentType<T>> getServletMapping()
+   public ServletMappingType<WebFragmentType<T>> servletMapping()
    {
       Node node = childNode.getOrCreate(ServletMappingTypeImpl.nodeName);
       ServletMappingType<WebFragmentType<T>> servletMapping = new ServletMappingTypeImpl<WebFragmentType<T>>(this, "",
@@ -223,7 +229,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public SessionConfigType<WebFragmentType<T>> getSessionConfig()
+   public SessionConfigType<WebFragmentType<T>> sessionConfig()
    {
       Node node = childNode.getOrCreate(SessionConfigTypeImpl.nodeName);
       SessionConfigType<WebFragmentType<T>> sessionConfig = new SessionConfigTypeImpl<WebFragmentType<T>>(this, "",
@@ -241,7 +247,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public MimeMappingType<WebFragmentType<T>> getMimeMapping()
+   public MimeMappingType<WebFragmentType<T>> mimeMapping()
    {
       Node node = childNode.getOrCreate(MimeMappingTypeImpl.nodeName);
       MimeMappingType<WebFragmentType<T>> mimeMapping = new MimeMappingTypeImpl<WebFragmentType<T>>(this, "",
@@ -259,7 +265,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public WelcomeFileListType<WebFragmentType<T>> getWelcomeFileList()
+   public WelcomeFileListType<WebFragmentType<T>> welcomeFileList()
    {
       Node node = childNode.getOrCreate(WelcomeFileListTypeImpl.nodeName);
       WelcomeFileListType<WebFragmentType<T>> welcomeFileList = new WelcomeFileListTypeImpl<WebFragmentType<T>>(this,
@@ -277,7 +283,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public ErrorPageType<WebFragmentType<T>> getErrorPage()
+   public ErrorPageType<WebFragmentType<T>> errorPage()
    {
       Node node = childNode.getOrCreate(ErrorPageTypeImpl.nodeName);
       ErrorPageType<WebFragmentType<T>> errorPage = new ErrorPageTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
@@ -294,7 +300,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public JspConfigType<WebFragmentType<T>> getJspConfig()
+   public JspConfigType<WebFragmentType<T>> jspConfig()
    {
       Node node = childNode.getOrCreate(JspConfigTypeImpl.nodeName);
       JspConfigType<WebFragmentType<T>> jspConfig = new JspConfigTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
@@ -311,7 +317,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public SecurityConstraintType<WebFragmentType<T>> getSecurityConstraint()
+   public SecurityConstraintType<WebFragmentType<T>> securityConstraint()
    {
       Node node = childNode.getOrCreate(SecurityConstraintTypeImpl.nodeName);
       SecurityConstraintType<WebFragmentType<T>> securityConstraint = new SecurityConstraintTypeImpl<WebFragmentType<T>>(
@@ -329,7 +335,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public LoginConfigType<WebFragmentType<T>> getLoginConfig()
+   public LoginConfigType<WebFragmentType<T>> loginConfig()
    {
       Node node = childNode.getOrCreate(LoginConfigTypeImpl.nodeName);
       LoginConfigType<WebFragmentType<T>> loginConfig = new LoginConfigTypeImpl<WebFragmentType<T>>(this, "",
@@ -347,7 +353,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public SecurityRoleType<WebFragmentType<T>> getSecurityRole()
+   public SecurityRoleType<WebFragmentType<T>> securityRole()
    {
       Node node = childNode.getOrCreate(SecurityRoleTypeImpl.nodeName);
       SecurityRoleType<WebFragmentType<T>> securityRole = new SecurityRoleTypeImpl<WebFragmentType<T>>(this, "",
@@ -365,7 +371,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public MessageDestinationType<WebFragmentType<T>> getMessageDestination()
+   public MessageDestinationType<WebFragmentType<T>> messageDestination()
    {
       Node node = childNode.getOrCreate(MessageDestinationTypeImpl.nodeName);
       MessageDestinationType<WebFragmentType<T>> messageDestination = new MessageDestinationTypeImpl<WebFragmentType<T>>(
@@ -383,7 +389,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public LocaleEncodingMappingListType<WebFragmentType<T>> getLocaleEncodingMappingList()
+   public LocaleEncodingMappingListType<WebFragmentType<T>> localeEncodingMappingList()
    {
       Node node = childNode.getOrCreate(LocaleEncodingMappingListTypeImpl.nodeName);
       LocaleEncodingMappingListType<WebFragmentType<T>> localeEncodingMappingList = new LocaleEncodingMappingListTypeImpl<WebFragmentType<T>>(
@@ -401,12 +407,18 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public WebFragmentType<T> setDescription(String... values)
+   public WebFragmentType<T> setDescriptionList(String... values)
    {
       for (String name : values)
       {
          setDescription(name);
       }
+      return this;
+   }
+
+   public WebFragmentType<T> removeAllDescription()
+   {
+      childNode.remove("description");
       return this;
    }
 
@@ -431,12 +443,18 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public WebFragmentType<T> setDisplayName(String... values)
+   public WebFragmentType<T> setDisplayNameList(String... values)
    {
       for (String name : values)
       {
          setDisplayName(name);
       }
+      return this;
+   }
+
+   public WebFragmentType<T> removeAllDisplayName()
+   {
+      childNode.remove("display-name");
       return this;
    }
 
@@ -461,7 +479,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public IconType<WebFragmentType<T>> getIcon()
+   public IconType<WebFragmentType<T>> icon()
    {
       return new IconTypeImpl<WebFragmentType<T>>(this, "", childNode);
    }
@@ -488,7 +506,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public EnvEntryType<WebFragmentType<T>> getEnvEntry()
+   public EnvEntryType<WebFragmentType<T>> envEntry()
    {
       return new EnvEntryTypeImpl<WebFragmentType<T>>(this, "", childNode);
    }
@@ -515,7 +533,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public EjbRefType<WebFragmentType<T>> getEjbRef()
+   public EjbRefType<WebFragmentType<T>> ejbRef()
    {
       return new EjbRefTypeImpl<WebFragmentType<T>>(this, "", childNode);
    }
@@ -542,7 +560,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public EjbLocalRefType<WebFragmentType<T>> getEjbLocalRef()
+   public EjbLocalRefType<WebFragmentType<T>> ejbLocalRef()
    {
       return new EjbLocalRefTypeImpl<WebFragmentType<T>>(this, "", childNode);
    }
@@ -570,7 +588,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public ResourceRefType<WebFragmentType<T>> getResourceRef()
+   public ResourceRefType<WebFragmentType<T>> resourceRef()
    {
       return new ResourceRefTypeImpl<WebFragmentType<T>>(this, "", childNode);
    }
@@ -598,7 +616,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public ResourceEnvRefType<WebFragmentType<T>> getResourceEnvRef()
+   public ResourceEnvRefType<WebFragmentType<T>> resourceEnvRef()
    {
       return new ResourceEnvRefTypeImpl<WebFragmentType<T>>(this, "", childNode);
    }
@@ -626,7 +644,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public MessageDestinationRefType<WebFragmentType<T>> getMessageDestinationRef()
+   public MessageDestinationRefType<WebFragmentType<T>> messageDestinationRef()
    {
       return new MessageDestinationRefTypeImpl<WebFragmentType<T>>(this, "", childNode);
    }
@@ -654,7 +672,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public PersistenceContextRefType<WebFragmentType<T>> getPersistenceContextRef()
+   public PersistenceContextRefType<WebFragmentType<T>> persistenceContextRef()
    {
       return new PersistenceContextRefTypeImpl<WebFragmentType<T>>(this, "", childNode);
    }
@@ -682,7 +700,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public PersistenceUnitRefType<WebFragmentType<T>> getPersistenceUnitRef()
+   public PersistenceUnitRefType<WebFragmentType<T>> persistenceUnitRef()
    {
       return new PersistenceUnitRefTypeImpl<WebFragmentType<T>>(this, "", childNode);
    }
@@ -710,7 +728,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public LifecycleCallbackType<WebFragmentType<T>> getPostConstruct()
+   public LifecycleCallbackType<WebFragmentType<T>> postConstruct()
    {
       return new LifecycleCallbackTypeImpl<WebFragmentType<T>>(this, "", childNode);
    }
@@ -738,7 +756,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public LifecycleCallbackType<WebFragmentType<T>> getPreDestroy()
+   public LifecycleCallbackType<WebFragmentType<T>> preDestroy()
    {
       return new LifecycleCallbackTypeImpl<WebFragmentType<T>>(this, "", childNode);
    }
@@ -766,7 +784,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public DataSourceType<WebFragmentType<T>> getDataSource()
+   public DataSourceType<WebFragmentType<T>> dataSource()
    {
       return new DataSourceTypeImpl<WebFragmentType<T>>(this, "", childNode);
    }
@@ -823,6 +841,12 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
+   public WebFragmentType<T> removeName()
+   {
+      childNode.remove("name");
+      return this;
+   }
+
    public String getName()
    {
       return childNode.textValue("name");
@@ -838,7 +862,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
-   public OrderingType<WebFragmentType<T>> getOrdering()
+   public OrderingType<WebFragmentType<T>> ordering()
    {
       Node node = childNode.getOrCreate(OrderingTypeImpl.nodeName);
       OrderingType<WebFragmentType<T>> ordering = new OrderingTypeImpl<WebFragmentType<T>>(this, "", childNode, node);

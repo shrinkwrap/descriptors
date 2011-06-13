@@ -12,7 +12,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupType<T>
 {
@@ -61,12 +61,18 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       return this;
    }
 
-   public JspPropertyGroupType<T> setDescription(String... values)
+   public JspPropertyGroupType<T> setDescriptionList(String... values)
    {
       for (String name : values)
       {
          setDescription(name);
       }
+      return this;
+   }
+
+   public JspPropertyGroupType<T> removeAllDescription()
+   {
+      childNode.remove("description");
       return this;
    }
 
@@ -91,12 +97,18 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       return this;
    }
 
-   public JspPropertyGroupType<T> setDisplayName(String... values)
+   public JspPropertyGroupType<T> setDisplayNameList(String... values)
    {
       for (String name : values)
       {
          setDisplayName(name);
       }
+      return this;
+   }
+
+   public JspPropertyGroupType<T> removeAllDisplayName()
+   {
+      childNode.remove("display-name");
       return this;
    }
 
@@ -121,7 +133,7 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       return this;
    }
 
-   public IconType<JspPropertyGroupType<T>> getIcon()
+   public IconType<JspPropertyGroupType<T>> icon()
    {
       return new IconTypeImpl<JspPropertyGroupType<T>>(this, "", childNode);
    }
@@ -148,12 +160,18 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       return this;
    }
 
-   public JspPropertyGroupType<T> setUrlPattern(String... values)
+   public JspPropertyGroupType<T> setUrlPatternList(String... values)
    {
       for (String name : values)
       {
          setUrlPattern(name);
       }
+      return this;
+   }
+
+   public JspPropertyGroupType<T> removeAllUrlPattern()
+   {
+      childNode.remove("url-pattern");
       return this;
    }
 
@@ -178,6 +196,12 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       return this;
    }
 
+   public JspPropertyGroupType<T> removeElIgnored()
+   {
+      childNode.remove("el-ignored");
+      return this;
+   }
+
    public Boolean isElIgnored()
    {
       return Strings.isTrue(childNode.textValue("el-ignored"));
@@ -190,6 +214,12 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
    public JspPropertyGroupType<T> setPageEncoding(String pageEncoding)
    {
       childNode.getOrCreate("page-encoding").text(pageEncoding);
+      return this;
+   }
+
+   public JspPropertyGroupType<T> removePageEncoding()
+   {
+      childNode.remove("page-encoding");
       return this;
    }
 
@@ -208,6 +238,12 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       return this;
    }
 
+   public JspPropertyGroupType<T> removeScriptingInvalid()
+   {
+      childNode.remove("scripting-invalid");
+      return this;
+   }
+
    public Boolean isScriptingInvalid()
    {
       return Strings.isTrue(childNode.textValue("scripting-invalid"));
@@ -220,6 +256,12 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
    public JspPropertyGroupType<T> setIsXml(Boolean isXml)
    {
       childNode.getOrCreate("is-xml").text(isXml);
+      return this;
+   }
+
+   public JspPropertyGroupType<T> removeIsXml()
+   {
+      childNode.remove("is-xml");
       return this;
    }
 
@@ -238,12 +280,18 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       return this;
    }
 
-   public JspPropertyGroupType<T> setIncludePrelude(String... values)
+   public JspPropertyGroupType<T> setIncludePreludeList(String... values)
    {
       for (String name : values)
       {
          setIncludePrelude(name);
       }
+      return this;
+   }
+
+   public JspPropertyGroupType<T> removeAllIncludePrelude()
+   {
+      childNode.remove("include-prelude");
       return this;
    }
 
@@ -268,12 +316,18 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       return this;
    }
 
-   public JspPropertyGroupType<T> setIncludeCoda(String... values)
+   public JspPropertyGroupType<T> setIncludeCodaList(String... values)
    {
       for (String name : values)
       {
          setIncludeCoda(name);
       }
+      return this;
+   }
+
+   public JspPropertyGroupType<T> removeAllIncludeCoda()
+   {
+      childNode.remove("include-coda");
       return this;
    }
 
@@ -298,6 +352,12 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       return this;
    }
 
+   public JspPropertyGroupType<T> removeDeferredSyntaxAllowedAsLiteral()
+   {
+      childNode.remove("deferred-syntax-allowed-as-literal");
+      return this;
+   }
+
    public Boolean isDeferredSyntaxAllowedAsLiteral()
    {
       return Strings.isTrue(childNode.textValue("deferred-syntax-allowed-as-literal"));
@@ -310,6 +370,12 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
    public JspPropertyGroupType<T> setTrimDirectiveWhitespaces(Boolean trimDirectiveWhitespaces)
    {
       childNode.getOrCreate("trim-directive-whitespaces").text(trimDirectiveWhitespaces);
+      return this;
+   }
+
+   public JspPropertyGroupType<T> removeTrimDirectiveWhitespaces()
+   {
+      childNode.remove("trim-directive-whitespaces");
       return this;
    }
 
@@ -328,6 +394,12 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       return this;
    }
 
+   public JspPropertyGroupType<T> removeDefaultContentType()
+   {
+      childNode.remove("default-content-type");
+      return this;
+   }
+
    public String getDefaultContentType()
    {
       return childNode.textValue("default-content-type");
@@ -343,6 +415,12 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       return this;
    }
 
+   public JspPropertyGroupType<T> removeBuffer()
+   {
+      childNode.remove("buffer");
+      return this;
+   }
+
    public String getBuffer()
    {
       return childNode.textValue("buffer");
@@ -355,6 +433,12 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
    public JspPropertyGroupType<T> setErrorOnUndeclaredNamespace(Boolean errorOnUndeclaredNamespace)
    {
       childNode.getOrCreate("error-on-undeclared-namespace").text(errorOnUndeclaredNamespace);
+      return this;
+   }
+
+   public JspPropertyGroupType<T> removeErrorOnUndeclaredNamespace()
+   {
+      childNode.remove("error-on-undeclared-namespace");
       return this;
    }
 

@@ -6,7 +6,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class FilterMappingTypeImpl<T> implements Child<T>, FilterMappingType<T>
 {
@@ -55,6 +55,12 @@ public class FilterMappingTypeImpl<T> implements Child<T>, FilterMappingType<T>
       return this;
    }
 
+   public FilterMappingType<T> removeFilterName()
+   {
+      childNode.remove("filter-name");
+      return this;
+   }
+
    public String getFilterName()
    {
       return childNode.textValue("filter-name");
@@ -67,6 +73,12 @@ public class FilterMappingTypeImpl<T> implements Child<T>, FilterMappingType<T>
    public FilterMappingType<T> setDispatcher(String dispatcher)
    {
       childNode.getOrCreate("dispatcher").text(dispatcher);
+      return this;
+   }
+
+   public FilterMappingType<T> removeDispatcher()
+   {
+      childNode.remove("dispatcher");
       return this;
    }
 
@@ -85,6 +97,12 @@ public class FilterMappingTypeImpl<T> implements Child<T>, FilterMappingType<T>
       return this;
    }
 
+   public FilterMappingType<T> removeUrlPattern()
+   {
+      childNode.remove("url-pattern");
+      return this;
+   }
+
    public String getUrlPattern()
    {
       return childNode.textValue("url-pattern");
@@ -97,6 +115,12 @@ public class FilterMappingTypeImpl<T> implements Child<T>, FilterMappingType<T>
    public FilterMappingType<T> setServletName(String servletName)
    {
       childNode.getOrCreate("servlet-name").text(servletName);
+      return this;
+   }
+
+   public FilterMappingType<T> removeServletName()
+   {
+      childNode.remove("servlet-name");
       return this;
    }
 

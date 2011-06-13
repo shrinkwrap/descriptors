@@ -22,160 +22,166 @@ import org.jboss.shrinkwrap.descriptor.api.jsp22.JspConfigType;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public interface WebFragmentType<T> extends Child<T>
 {
 
    public WebFragmentType<T> setDistributable(Boolean distributable);
 
+   public WebFragmentType<T> removeDistributable();
+
    public Boolean isDistributable();
 
    public WebFragmentType<T> removeContextParam();
 
-   public ParamValueType<WebFragmentType<T>> getContextParam();
+   public ParamValueType<WebFragmentType<T>> contextParam();
 
    public WebFragmentType<T> removeFilter();
 
-   public FilterType<WebFragmentType<T>> getFilter();
+   public FilterType<WebFragmentType<T>> filter();
 
    public WebFragmentType<T> removeFilterMapping();
 
-   public FilterMappingType<WebFragmentType<T>> getFilterMapping();
+   public FilterMappingType<WebFragmentType<T>> filterMapping();
 
    public WebFragmentType<T> removeListener();
 
-   public ListenerType<WebFragmentType<T>> getListener();
+   public ListenerType<WebFragmentType<T>> listener();
 
    public WebFragmentType<T> removeServlet();
 
-   public ServletType<WebFragmentType<T>> getServlet();
+   public ServletType<WebFragmentType<T>> servlet();
 
    public WebFragmentType<T> removeServletMapping();
 
-   public ServletMappingType<WebFragmentType<T>> getServletMapping();
+   public ServletMappingType<WebFragmentType<T>> servletMapping();
 
    public WebFragmentType<T> removeSessionConfig();
 
-   public SessionConfigType<WebFragmentType<T>> getSessionConfig();
+   public SessionConfigType<WebFragmentType<T>> sessionConfig();
 
    public WebFragmentType<T> removeMimeMapping();
 
-   public MimeMappingType<WebFragmentType<T>> getMimeMapping();
+   public MimeMappingType<WebFragmentType<T>> mimeMapping();
 
    public WebFragmentType<T> removeWelcomeFileList();
 
-   public WelcomeFileListType<WebFragmentType<T>> getWelcomeFileList();
+   public WelcomeFileListType<WebFragmentType<T>> welcomeFileList();
 
    public WebFragmentType<T> removeErrorPage();
 
-   public ErrorPageType<WebFragmentType<T>> getErrorPage();
+   public ErrorPageType<WebFragmentType<T>> errorPage();
 
    public WebFragmentType<T> removeJspConfig();
 
-   public JspConfigType<WebFragmentType<T>> getJspConfig();
+   public JspConfigType<WebFragmentType<T>> jspConfig();
 
    public WebFragmentType<T> removeSecurityConstraint();
 
-   public SecurityConstraintType<WebFragmentType<T>> getSecurityConstraint();
+   public SecurityConstraintType<WebFragmentType<T>> securityConstraint();
 
    public WebFragmentType<T> removeLoginConfig();
 
-   public LoginConfigType<WebFragmentType<T>> getLoginConfig();
+   public LoginConfigType<WebFragmentType<T>> loginConfig();
 
    public WebFragmentType<T> removeSecurityRole();
 
-   public SecurityRoleType<WebFragmentType<T>> getSecurityRole();
+   public SecurityRoleType<WebFragmentType<T>> securityRole();
 
    public WebFragmentType<T> removeMessageDestination();
 
-   public MessageDestinationType<WebFragmentType<T>> getMessageDestination();
+   public MessageDestinationType<WebFragmentType<T>> messageDestination();
 
    public WebFragmentType<T> removeLocaleEncodingMappingList();
 
-   public LocaleEncodingMappingListType<WebFragmentType<T>> getLocaleEncodingMappingList();
+   public LocaleEncodingMappingListType<WebFragmentType<T>> localeEncodingMappingList();
 
    public WebFragmentType<T> setDescription(String description);
 
-   public WebFragmentType<T> setDescription(String... values);
+   public WebFragmentType<T> setDescriptionList(String... values);
+
+   public WebFragmentType<T> removeAllDescription();
 
    public List<String> getDescriptionList();
 
    public WebFragmentType<T> setDisplayName(String displayName);
 
-   public WebFragmentType<T> setDisplayName(String... values);
+   public WebFragmentType<T> setDisplayNameList(String... values);
+
+   public WebFragmentType<T> removeAllDisplayName();
 
    public List<String> getDisplayNameList();
 
    public WebFragmentType<T> removeAllIcon();
 
-   public IconType<WebFragmentType<T>> getIcon();
+   public IconType<WebFragmentType<T>> icon();
 
    public List<IconType<WebFragmentType<T>>> getIconList();
 
    public WebFragmentType<T> removeAllEnvEntry();
 
-   public EnvEntryType<WebFragmentType<T>> getEnvEntry();
+   public EnvEntryType<WebFragmentType<T>> envEntry();
 
    public List<EnvEntryType<WebFragmentType<T>>> getEnvEntryList();
 
    public WebFragmentType<T> removeAllEjbRef();
 
-   public EjbRefType<WebFragmentType<T>> getEjbRef();
+   public EjbRefType<WebFragmentType<T>> ejbRef();
 
    public List<EjbRefType<WebFragmentType<T>>> getEjbRefList();
 
    public WebFragmentType<T> removeAllEjbLocalRef();
 
-   public EjbLocalRefType<WebFragmentType<T>> getEjbLocalRef();
+   public EjbLocalRefType<WebFragmentType<T>> ejbLocalRef();
 
    public List<EjbLocalRefType<WebFragmentType<T>>> getEjbLocalRefList();
 
    public WebFragmentType<T> removeAllResourceRef();
 
-   public ResourceRefType<WebFragmentType<T>> getResourceRef();
+   public ResourceRefType<WebFragmentType<T>> resourceRef();
 
    public List<ResourceRefType<WebFragmentType<T>>> getResourceRefList();
 
    public WebFragmentType<T> removeAllResourceEnvRef();
 
-   public ResourceEnvRefType<WebFragmentType<T>> getResourceEnvRef();
+   public ResourceEnvRefType<WebFragmentType<T>> resourceEnvRef();
 
    public List<ResourceEnvRefType<WebFragmentType<T>>> getResourceEnvRefList();
 
    public WebFragmentType<T> removeAllMessageDestinationRef();
 
-   public MessageDestinationRefType<WebFragmentType<T>> getMessageDestinationRef();
+   public MessageDestinationRefType<WebFragmentType<T>> messageDestinationRef();
 
    public List<MessageDestinationRefType<WebFragmentType<T>>> getMessageDestinationRefList();
 
    public WebFragmentType<T> removeAllPersistenceContextRef();
 
-   public PersistenceContextRefType<WebFragmentType<T>> getPersistenceContextRef();
+   public PersistenceContextRefType<WebFragmentType<T>> persistenceContextRef();
 
    public List<PersistenceContextRefType<WebFragmentType<T>>> getPersistenceContextRefList();
 
    public WebFragmentType<T> removeAllPersistenceUnitRef();
 
-   public PersistenceUnitRefType<WebFragmentType<T>> getPersistenceUnitRef();
+   public PersistenceUnitRefType<WebFragmentType<T>> persistenceUnitRef();
 
    public List<PersistenceUnitRefType<WebFragmentType<T>>> getPersistenceUnitRefList();
 
    public WebFragmentType<T> removeAllPostConstruct();
 
-   public LifecycleCallbackType<WebFragmentType<T>> getPostConstruct();
+   public LifecycleCallbackType<WebFragmentType<T>> postConstruct();
 
    public List<LifecycleCallbackType<WebFragmentType<T>>> getPostConstructList();
 
    public WebFragmentType<T> removeAllPreDestroy();
 
-   public LifecycleCallbackType<WebFragmentType<T>> getPreDestroy();
+   public LifecycleCallbackType<WebFragmentType<T>> preDestroy();
 
    public List<LifecycleCallbackType<WebFragmentType<T>>> getPreDestroyList();
 
    public WebFragmentType<T> removeAllDataSource();
 
-   public DataSourceType<WebFragmentType<T>> getDataSource();
+   public DataSourceType<WebFragmentType<T>> dataSource();
 
    public List<DataSourceType<WebFragmentType<T>>> getDataSourceList();
 
@@ -189,10 +195,12 @@ public interface WebFragmentType<T> extends Child<T>
 
    public WebFragmentType<T> setName(String name);
 
+   public WebFragmentType<T> removeName();
+
    public String getName();
 
    public WebFragmentType<T> removeOrdering();
 
-   public OrderingType<WebFragmentType<T>> getOrdering();
+   public OrderingType<WebFragmentType<T>> ordering();
 
 }

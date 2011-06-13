@@ -10,7 +10,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class ResourceEnvRefTypeImpl<T> implements Child<T>, ResourceEnvRefType<T>
 {
@@ -59,6 +59,12 @@ public class ResourceEnvRefTypeImpl<T> implements Child<T>, ResourceEnvRefType<T
       return this;
    }
 
+   public ResourceEnvRefType<T> removeLookupName()
+   {
+      childNode.remove("lookup-name");
+      return this;
+   }
+
    public String getLookupName()
    {
       return childNode.textValue("lookup-name");
@@ -71,6 +77,12 @@ public class ResourceEnvRefTypeImpl<T> implements Child<T>, ResourceEnvRefType<T
    public ResourceEnvRefType<T> setMappedName(String mappedName)
    {
       childNode.getOrCreate("mapped-name").text(mappedName);
+      return this;
+   }
+
+   public ResourceEnvRefType<T> removeMappedName()
+   {
+      childNode.remove("mapped-name");
       return this;
    }
 
@@ -89,7 +101,7 @@ public class ResourceEnvRefTypeImpl<T> implements Child<T>, ResourceEnvRefType<T
       return this;
    }
 
-   public InjectionTargetType<ResourceEnvRefType<T>> getInjectionTarget()
+   public InjectionTargetType<ResourceEnvRefType<T>> injectionTarget()
    {
       return new InjectionTargetTypeImpl<ResourceEnvRefType<T>>(this, "", childNode);
    }
@@ -117,12 +129,18 @@ public class ResourceEnvRefTypeImpl<T> implements Child<T>, ResourceEnvRefType<T
       return this;
    }
 
-   public ResourceEnvRefType<T> setDescription(String... values)
+   public ResourceEnvRefType<T> setDescriptionList(String... values)
    {
       for (String name : values)
       {
          setDescription(name);
       }
+      return this;
+   }
+
+   public ResourceEnvRefType<T> removeAllDescription()
+   {
+      childNode.remove("description");
       return this;
    }
 
@@ -147,6 +165,12 @@ public class ResourceEnvRefTypeImpl<T> implements Child<T>, ResourceEnvRefType<T
       return this;
    }
 
+   public ResourceEnvRefType<T> removeResourceEnvRefName()
+   {
+      childNode.remove("resource-env-ref-name");
+      return this;
+   }
+
    public String getResourceEnvRefName()
    {
       return childNode.textValue("resource-env-ref-name");
@@ -159,6 +183,12 @@ public class ResourceEnvRefTypeImpl<T> implements Child<T>, ResourceEnvRefType<T
    public ResourceEnvRefType<T> setResourceEnvRefType(String resourceEnvRefType)
    {
       childNode.getOrCreate("resource-env-ref-type").text(resourceEnvRefType);
+      return this;
+   }
+
+   public ResourceEnvRefType<T> removeResourceEnvRefType()
+   {
+      childNode.remove("resource-env-ref-type");
       return this;
    }
 

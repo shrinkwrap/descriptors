@@ -9,7 +9,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class ParamValueTypeImpl<T> implements Child<T>, ParamValueType<T>
 {
@@ -58,12 +58,18 @@ public class ParamValueTypeImpl<T> implements Child<T>, ParamValueType<T>
       return this;
    }
 
-   public ParamValueType<T> setDescription(String... values)
+   public ParamValueType<T> setDescriptionList(String... values)
    {
       for (String name : values)
       {
          setDescription(name);
       }
+      return this;
+   }
+
+   public ParamValueType<T> removeAllDescription()
+   {
+      childNode.remove("description");
       return this;
    }
 
@@ -88,6 +94,12 @@ public class ParamValueTypeImpl<T> implements Child<T>, ParamValueType<T>
       return this;
    }
 
+   public ParamValueType<T> removeParamName()
+   {
+      childNode.remove("param-name");
+      return this;
+   }
+
    public String getParamName()
    {
       return childNode.textValue("param-name");
@@ -100,6 +112,12 @@ public class ParamValueTypeImpl<T> implements Child<T>, ParamValueType<T>
    public ParamValueType<T> setParamValue(String paramValue)
    {
       childNode.getOrCreate("param-value").text(paramValue);
+      return this;
+   }
+
+   public ParamValueType<T> removeParamValue()
+   {
+      childNode.remove("param-value");
       return this;
    }
 

@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
 {
@@ -56,6 +56,12 @@ public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
       return this;
    }
 
+   public ModuleType<T> removeAltDd()
+   {
+      childNode.remove("alt-dd");
+      return this;
+   }
+
    public String getAltDd()
    {
       return childNode.textValue("alt-dd");
@@ -68,6 +74,12 @@ public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
    public ModuleType<T> setConnector(String connector)
    {
       childNode.getOrCreate("connector").text(connector);
+      return this;
+   }
+
+   public ModuleType<T> removeConnector()
+   {
+      childNode.remove("connector");
       return this;
    }
 
@@ -86,6 +98,12 @@ public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
       return this;
    }
 
+   public ModuleType<T> removeEjb()
+   {
+      childNode.remove("ejb");
+      return this;
+   }
+
    public String getEjb()
    {
       return childNode.textValue("ejb");
@@ -98,6 +116,12 @@ public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
    public ModuleType<T> setJava(String java)
    {
       childNode.getOrCreate("java").text(java);
+      return this;
+   }
+
+   public ModuleType<T> removeJava()
+   {
+      childNode.remove("java");
       return this;
    }
 
@@ -116,7 +140,7 @@ public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
       return this;
    }
 
-   public WebType<ModuleType<T>> getWeb()
+   public WebType<ModuleType<T>> web()
    {
       Node node = childNode.getOrCreate(WebTypeImpl.nodeName);
       WebType<ModuleType<T>> web = new WebTypeImpl<ModuleType<T>>(this, "", childNode, node);

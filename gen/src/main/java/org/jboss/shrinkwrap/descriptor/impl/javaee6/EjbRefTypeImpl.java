@@ -10,7 +10,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class EjbRefTypeImpl<T> implements Child<T>, EjbRefType<T>
 {
@@ -59,6 +59,12 @@ public class EjbRefTypeImpl<T> implements Child<T>, EjbRefType<T>
       return this;
    }
 
+   public EjbRefType<T> removeLookupName()
+   {
+      childNode.remove("lookup-name");
+      return this;
+   }
+
    public String getLookupName()
    {
       return childNode.textValue("lookup-name");
@@ -71,6 +77,12 @@ public class EjbRefTypeImpl<T> implements Child<T>, EjbRefType<T>
    public EjbRefType<T> setMappedName(String mappedName)
    {
       childNode.getOrCreate("mapped-name").text(mappedName);
+      return this;
+   }
+
+   public EjbRefType<T> removeMappedName()
+   {
+      childNode.remove("mapped-name");
       return this;
    }
 
@@ -89,7 +101,7 @@ public class EjbRefTypeImpl<T> implements Child<T>, EjbRefType<T>
       return this;
    }
 
-   public InjectionTargetType<EjbRefType<T>> getInjectionTarget()
+   public InjectionTargetType<EjbRefType<T>> injectionTarget()
    {
       return new InjectionTargetTypeImpl<EjbRefType<T>>(this, "", childNode);
    }
@@ -116,12 +128,18 @@ public class EjbRefTypeImpl<T> implements Child<T>, EjbRefType<T>
       return this;
    }
 
-   public EjbRefType<T> setDescription(String... values)
+   public EjbRefType<T> setDescriptionList(String... values)
    {
       for (String name : values)
       {
          setDescription(name);
       }
+      return this;
+   }
+
+   public EjbRefType<T> removeAllDescription()
+   {
+      childNode.remove("description");
       return this;
    }
 
@@ -146,6 +164,12 @@ public class EjbRefTypeImpl<T> implements Child<T>, EjbRefType<T>
       return this;
    }
 
+   public EjbRefType<T> removeEjbRefName()
+   {
+      childNode.remove("ejb-ref-name");
+      return this;
+   }
+
    public String getEjbRefName()
    {
       return childNode.textValue("ejb-ref-name");
@@ -158,6 +182,12 @@ public class EjbRefTypeImpl<T> implements Child<T>, EjbRefType<T>
    public EjbRefType<T> setEjbRefType(String ejbRefType)
    {
       childNode.getOrCreate("ejb-ref-type").text(ejbRefType);
+      return this;
+   }
+
+   public EjbRefType<T> removeEjbRefType()
+   {
+      childNode.remove("ejb-ref-type");
       return this;
    }
 
@@ -176,6 +206,12 @@ public class EjbRefTypeImpl<T> implements Child<T>, EjbRefType<T>
       return this;
    }
 
+   public EjbRefType<T> removeHome()
+   {
+      childNode.remove("home");
+      return this;
+   }
+
    public String getHome()
    {
       return childNode.textValue("home");
@@ -191,6 +227,12 @@ public class EjbRefTypeImpl<T> implements Child<T>, EjbRefType<T>
       return this;
    }
 
+   public EjbRefType<T> removeRemote()
+   {
+      childNode.remove("remote");
+      return this;
+   }
+
    public String getRemote()
    {
       return childNode.textValue("remote");
@@ -203,6 +245,12 @@ public class EjbRefTypeImpl<T> implements Child<T>, EjbRefType<T>
    public EjbRefType<T> setEjbLink(String ejbLink)
    {
       childNode.getOrCreate("ejb-link").text(ejbLink);
+      return this;
+   }
+
+   public EjbRefType<T> removeEjbLink()
+   {
+      childNode.remove("ejb-link");
       return this;
    }
 

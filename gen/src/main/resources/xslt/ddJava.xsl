@@ -414,6 +414,15 @@
 
 
     <!-- ****************************************************** -->
+    <!-- ****** Function which creates a type   name     ****** -->
+    <!-- ****************************************************** -->
+    <xsl:function name="xdd:LowerCaseFirstChar">
+        <xsl:param name="name"/>
+        <xsl:sequence select="concat(lower-case(substring($name,1,1)), substring($name,2))"/>
+    </xsl:function>
+
+
+    <!-- ****************************************************** -->
     <!-- ****** Function which normalizes a string       ****** -->
     <!-- ****************************************************** -->
     <xsl:function name="xdd:normalizeString">
@@ -769,7 +778,7 @@
 
         <xsl:text>&#10;</xsl:text>
         <xsl:variable name="vStandardSetSignature" select="concat('   public ', $vReturnType, ' set', xdd:checkForClassType($vMethodName), '(',  xdd:createPascalizedName($vElementType,''),' ',xdd:checkForClassType(xdd:createCamelizedName($vElementName)), ')')"/>
-        <xsl:variable name="vStandardSetVarArgSignature" select="concat('   public ', $vReturnType, ' set', xdd:checkForClassType($vMethodName), '(',  xdd:createPascalizedName($vElementType,''),' ... values)')"/>
+        <xsl:variable name="vStandardSetVarArgSignature" select="concat('   public ', $vReturnType, ' set', xdd:checkForClassType($vMethodName), 'List(',  xdd:createPascalizedName($vElementType,''),' ... values)')"/>
 
         <xsl:variable name="vStandardRemoveSignature" select="concat('   public ', $vReturnType, ' remove', xdd:checkForClassType($vMethodName), '()')"/>
         <xsl:variable name="vStandardRemoveAllSignature" select="concat('   public ', $vReturnType, ' removeAll', xdd:checkForClassType($vMethodName), '()')"/>
@@ -780,6 +789,7 @@
                     <xsl:when test="$vIsInterface=true()">
                         <xsl:value-of select="concat($vStandardSetSignature, ';&#10;')"/>
                         <xsl:value-of select="concat($vStandardSetVarArgSignature, ';&#10;')"/>
+                         <xsl:value-of select="concat($vStandardRemoveAllSignature, ';&#10;')"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select=" xdd:writeTypeCommentLines($vElementName, $vMaxOccurs, $vIsComplexType, $pIsGeneric, $pIsAttribute)"/>
@@ -789,13 +799,19 @@
                         <xsl:value-of select="'      return this;&#10;'"/>
                         <xsl:text>   }&#10;&#10;</xsl:text>
                         
-                         <xsl:value-of select="$vStandardSetVarArgSignature"/>
+                        <xsl:value-of select="$vStandardSetVarArgSignature"/>
                         <xsl:text>&#10;   {&#10;</xsl:text>             
                         <xsl:value-of select="concat('      for(', xdd:createPascalizedName($vElementType,''), ' name: values)', '&#10;')"/>
                         <xsl:text>      {&#10;</xsl:text>
                         <xsl:value-of select="concat('         set', xdd:checkForClassType($vMethodName), '(', 'name', ');&#10;')"/>
                         <xsl:text>      }&#10;</xsl:text>
                         <xsl:value-of select="'         return this;&#10;'"/>
+                        <xsl:text>   }&#10;&#10;</xsl:text>
+                        
+                        <xsl:value-of select="$vStandardRemoveAllSignature"/>
+                        <xsl:text>&#10;   {&#10;</xsl:text>
+                        <xsl:value-of select="concat('      ', $vNodeNameLocal, '.remove(&quot;', $vElementName, '&quot;', ');', '&#10;')"/>
+                        <xsl:value-of select="'      return this;&#10;'"/>
                         <xsl:text>   }&#10;</xsl:text>
                         
                     </xsl:otherwise>
@@ -854,12 +870,19 @@
                 <xsl:choose>
                     <xsl:when test="$vIsInterface=true()">
                         <xsl:value-of select="concat($vStandardSetSignature, ';&#10;')"/>
+                        <xsl:value-of select="concat($vStandardRemoveSignature, ';&#10;')"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select=" xdd:writeTypeCommentLines($vElementName, $vMaxOccurs, $vIsComplexType, $pIsGeneric, $pIsAttribute)"/>
                         <xsl:value-of select="$vStandardSetSignature"/>
                         <xsl:text>   {&#10;</xsl:text>
                         <xsl:value-of select="concat('      ', $vNodeNameLocal, '.getOrCreate(&quot;', $vElementName, '&quot;).text(', xdd:checkForClassType(xdd:createCamelizedName($vElementName)) , ');', '&#10;')"/>
+                        <xsl:value-of select="'      return this;&#10;'"/>
+                        <xsl:text>   }&#10;&#10;</xsl:text>
+                        
+                        <xsl:value-of select="$vStandardRemoveSignature"/>
+                        <xsl:text>&#10;   {&#10;</xsl:text>
+                        <xsl:value-of select="concat('      ', $vNodeNameLocal, '.remove(&quot;', $vElementName, '&quot;', ');', '&#10;')"/>
                         <xsl:value-of select="'      return this;&#10;'"/>
                         <xsl:text>   }&#10;</xsl:text>
                     </xsl:otherwise>
@@ -886,7 +909,7 @@
 
         <xsl:variable name="vStandardGetSignature" select="concat('public ', xdd:createPascalizedName($vElementType,''), ' get', xdd:checkForClassType($vMethodName), '()')"/>
         <xsl:variable name="vStandardGetBooleanSignature" select="concat('public ', xdd:createPascalizedName($vElementType,''), ' is', xdd:checkForClassType($vMethodName), '()')"/>
-        <xsl:variable name="vStandardGetComplexSignature" select="concat('public ', xdd:createPascalizedName($vElementType,''), ' get', xdd:checkForClassType($vMethodName), '()')"/>
+        <xsl:variable name="vStandardGetComplexSignature" select="concat('public ', xdd:createPascalizedName($vElementType,''), ' ', xdd:checkForClassType( xdd:LowerCaseFirstChar($vMethodName)), '()')"/>
         <xsl:variable name="vStandardGetListSignature" select="concat('public List&lt;', xdd:createPascalizedName($vElementType,''), '&gt; get', xdd:checkForClassType($vMethodName), 'List()')"/>
 
         <xsl:choose>

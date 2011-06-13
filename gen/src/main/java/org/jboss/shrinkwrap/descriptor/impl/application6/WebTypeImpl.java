@@ -6,7 +6,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class WebTypeImpl<T> implements Child<T>, WebType<T>
 {
@@ -55,6 +55,12 @@ public class WebTypeImpl<T> implements Child<T>, WebType<T>
       return this;
    }
 
+   public WebType<T> removeWebUri()
+   {
+      childNode.remove("web-uri");
+      return this;
+   }
+
    public String getWebUri()
    {
       return childNode.textValue("web-uri");
@@ -67,6 +73,12 @@ public class WebTypeImpl<T> implements Child<T>, WebType<T>
    public WebType<T> setContextRoot(String contextRoot)
    {
       childNode.getOrCreate("context-root").text(contextRoot);
+      return this;
+   }
+
+   public WebType<T> removeContextRoot()
+   {
+      childNode.remove("context-root");
       return this;
    }
 

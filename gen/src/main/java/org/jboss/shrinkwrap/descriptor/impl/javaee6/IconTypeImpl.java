@@ -6,7 +6,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class IconTypeImpl<T> implements Child<T>, IconType<T>
 {
@@ -55,6 +55,12 @@ public class IconTypeImpl<T> implements Child<T>, IconType<T>
       return this;
    }
 
+   public IconType<T> removeSmallIcon()
+   {
+      childNode.remove("small-icon");
+      return this;
+   }
+
    public String getSmallIcon()
    {
       return childNode.textValue("small-icon");
@@ -67,6 +73,12 @@ public class IconTypeImpl<T> implements Child<T>, IconType<T>
    public IconType<T> setLargeIcon(String largeIcon)
    {
       childNode.getOrCreate("large-icon").text(largeIcon);
+      return this;
+   }
+
+   public IconType<T> removeLargeIcon()
+   {
+      childNode.remove("large-icon");
       return this;
    }
 

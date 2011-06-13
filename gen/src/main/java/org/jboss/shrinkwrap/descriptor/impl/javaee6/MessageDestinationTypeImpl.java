@@ -10,7 +10,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinationType<T>
 {
@@ -59,12 +59,18 @@ public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinati
       return this;
    }
 
-   public MessageDestinationType<T> setDescription(String... values)
+   public MessageDestinationType<T> setDescriptionList(String... values)
    {
       for (String name : values)
       {
          setDescription(name);
       }
+      return this;
+   }
+
+   public MessageDestinationType<T> removeAllDescription()
+   {
+      childNode.remove("description");
       return this;
    }
 
@@ -89,12 +95,18 @@ public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinati
       return this;
    }
 
-   public MessageDestinationType<T> setDisplayName(String... values)
+   public MessageDestinationType<T> setDisplayNameList(String... values)
    {
       for (String name : values)
       {
          setDisplayName(name);
       }
+      return this;
+   }
+
+   public MessageDestinationType<T> removeAllDisplayName()
+   {
+      childNode.remove("display-name");
       return this;
    }
 
@@ -119,7 +131,7 @@ public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinati
       return this;
    }
 
-   public IconType<MessageDestinationType<T>> getIcon()
+   public IconType<MessageDestinationType<T>> icon()
    {
       return new IconTypeImpl<MessageDestinationType<T>>(this, "", childNode);
    }
@@ -147,6 +159,12 @@ public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinati
       return this;
    }
 
+   public MessageDestinationType<T> removeMessageDestinationName()
+   {
+      childNode.remove("message-destination-name");
+      return this;
+   }
+
    public String getMessageDestinationName()
    {
       return childNode.textValue("message-destination-name");
@@ -162,6 +180,12 @@ public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinati
       return this;
    }
 
+   public MessageDestinationType<T> removeMappedName()
+   {
+      childNode.remove("mapped-name");
+      return this;
+   }
+
    public String getMappedName()
    {
       return childNode.textValue("mapped-name");
@@ -174,6 +198,12 @@ public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinati
    public MessageDestinationType<T> setLookupName(String lookupName)
    {
       childNode.getOrCreate("lookup-name").text(lookupName);
+      return this;
+   }
+
+   public MessageDestinationType<T> removeLookupName()
+   {
+      childNode.remove("lookup-name");
       return this;
    }
 

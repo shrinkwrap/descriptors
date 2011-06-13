@@ -9,7 +9,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class RunAsTypeImpl<T> implements Child<T>, RunAsType<T>
 {
@@ -58,12 +58,18 @@ public class RunAsTypeImpl<T> implements Child<T>, RunAsType<T>
       return this;
    }
 
-   public RunAsType<T> setDescription(String... values)
+   public RunAsType<T> setDescriptionList(String... values)
    {
       for (String name : values)
       {
          setDescription(name);
       }
+      return this;
+   }
+
+   public RunAsType<T> removeAllDescription()
+   {
+      childNode.remove("description");
       return this;
    }
 
@@ -85,6 +91,12 @@ public class RunAsTypeImpl<T> implements Child<T>, RunAsType<T>
    public RunAsType<T> setRoleName(String roleName)
    {
       childNode.getOrCreate("role-name").text(roleName);
+      return this;
+   }
+
+   public RunAsType<T> removeRoleName()
+   {
+      childNode.remove("role-name");
       return this;
    }
 

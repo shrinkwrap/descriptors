@@ -12,7 +12,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class SecurityConstraintTypeImpl<T> implements Child<T>, SecurityConstraintType<T>
 {
@@ -61,12 +61,18 @@ public class SecurityConstraintTypeImpl<T> implements Child<T>, SecurityConstrai
       return this;
    }
 
-   public SecurityConstraintType<T> setDisplayName(String... values)
+   public SecurityConstraintType<T> setDisplayNameList(String... values)
    {
       for (String name : values)
       {
          setDisplayName(name);
       }
+      return this;
+   }
+
+   public SecurityConstraintType<T> removeAllDisplayName()
+   {
+      childNode.remove("display-name");
       return this;
    }
 
@@ -91,7 +97,7 @@ public class SecurityConstraintTypeImpl<T> implements Child<T>, SecurityConstrai
       return this;
    }
 
-   public WebResourceCollectionType<SecurityConstraintType<T>> getWebResourceCollection()
+   public WebResourceCollectionType<SecurityConstraintType<T>> webResourceCollection()
    {
       return new WebResourceCollectionTypeImpl<SecurityConstraintType<T>>(this, "", childNode);
    }
@@ -119,7 +125,7 @@ public class SecurityConstraintTypeImpl<T> implements Child<T>, SecurityConstrai
       return this;
    }
 
-   public AuthConstraintType<SecurityConstraintType<T>> getAuthConstraint()
+   public AuthConstraintType<SecurityConstraintType<T>> authConstraint()
    {
       Node node = childNode.getOrCreate(AuthConstraintTypeImpl.nodeName);
       AuthConstraintType<SecurityConstraintType<T>> authConstraint = new AuthConstraintTypeImpl<SecurityConstraintType<T>>(
@@ -137,7 +143,7 @@ public class SecurityConstraintTypeImpl<T> implements Child<T>, SecurityConstrai
       return this;
    }
 
-   public UserDataConstraintType<SecurityConstraintType<T>> getUserDataConstraint()
+   public UserDataConstraintType<SecurityConstraintType<T>> userDataConstraint()
    {
       Node node = childNode.getOrCreate(UserDataConstraintTypeImpl.nodeName);
       UserDataConstraintType<SecurityConstraintType<T>> userDataConstraint = new UserDataConstraintTypeImpl<SecurityConstraintType<T>>(

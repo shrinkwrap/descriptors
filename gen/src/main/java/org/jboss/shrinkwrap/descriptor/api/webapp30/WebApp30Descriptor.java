@@ -34,160 +34,166 @@ import org.jboss.shrinkwrap.descriptor.api.webcommon30.WelcomeFileListType;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public interface WebApp30Descriptor<T> extends Descriptor
 {
 
    public T setDistributable(Boolean distributable);
 
+   public T removeDistributable();
+
    public Boolean isDistributable();
 
    public T removeContextParam();
 
-   public ParamValueType<T> getContextParam();
+   public ParamValueType<T> contextParam();
 
    public T removeFilter();
 
-   public FilterType<T> getFilter();
+   public FilterType<T> filter();
 
    public T removeFilterMapping();
 
-   public FilterMappingType<T> getFilterMapping();
+   public FilterMappingType<T> filterMapping();
 
    public T removeListener();
 
-   public ListenerType<T> getListener();
+   public ListenerType<T> listener();
 
    public T removeServlet();
 
-   public ServletType<T> getServlet();
+   public ServletType<T> servlet();
 
    public T removeServletMapping();
 
-   public ServletMappingType<T> getServletMapping();
+   public ServletMappingType<T> servletMapping();
 
    public T removeSessionConfig();
 
-   public SessionConfigType<T> getSessionConfig();
+   public SessionConfigType<T> sessionConfig();
 
    public T removeMimeMapping();
 
-   public MimeMappingType<T> getMimeMapping();
+   public MimeMappingType<T> mimeMapping();
 
    public T removeWelcomeFileList();
 
-   public WelcomeFileListType<T> getWelcomeFileList();
+   public WelcomeFileListType<T> welcomeFileList();
 
    public T removeErrorPage();
 
-   public ErrorPageType<T> getErrorPage();
+   public ErrorPageType<T> errorPage();
 
    public T removeJspConfig();
 
-   public JspConfigType<T> getJspConfig();
+   public JspConfigType<T> jspConfig();
 
    public T removeSecurityConstraint();
 
-   public SecurityConstraintType<T> getSecurityConstraint();
+   public SecurityConstraintType<T> securityConstraint();
 
    public T removeLoginConfig();
 
-   public LoginConfigType<T> getLoginConfig();
+   public LoginConfigType<T> loginConfig();
 
    public T removeSecurityRole();
 
-   public SecurityRoleType<T> getSecurityRole();
+   public SecurityRoleType<T> securityRole();
 
    public T removeMessageDestination();
 
-   public MessageDestinationType<T> getMessageDestination();
+   public MessageDestinationType<T> messageDestination();
 
    public T removeLocaleEncodingMappingList();
 
-   public LocaleEncodingMappingListType<T> getLocaleEncodingMappingList();
+   public LocaleEncodingMappingListType<T> localeEncodingMappingList();
 
    public T setDescription(String description);
 
-   public T setDescription(String... values);
+   public T setDescriptionList(String... values);
+
+   public T removeAllDescription();
 
    public List<String> getDescriptionList();
 
    public T setDisplayName(String displayName);
 
-   public T setDisplayName(String... values);
+   public T setDisplayNameList(String... values);
+
+   public T removeAllDisplayName();
 
    public List<String> getDisplayNameList();
 
    public T removeAllIcon();
 
-   public IconType<T> getIcon();
+   public IconType<T> icon();
 
    public List<IconType<T>> getIconList();
 
    public T removeAllEnvEntry();
 
-   public EnvEntryType<T> getEnvEntry();
+   public EnvEntryType<T> envEntry();
 
    public List<EnvEntryType<T>> getEnvEntryList();
 
    public T removeAllEjbRef();
 
-   public EjbRefType<T> getEjbRef();
+   public EjbRefType<T> ejbRef();
 
    public List<EjbRefType<T>> getEjbRefList();
 
    public T removeAllEjbLocalRef();
 
-   public EjbLocalRefType<T> getEjbLocalRef();
+   public EjbLocalRefType<T> ejbLocalRef();
 
    public List<EjbLocalRefType<T>> getEjbLocalRefList();
 
    public T removeAllResourceRef();
 
-   public ResourceRefType<T> getResourceRef();
+   public ResourceRefType<T> resourceRef();
 
    public List<ResourceRefType<T>> getResourceRefList();
 
    public T removeAllResourceEnvRef();
 
-   public ResourceEnvRefType<T> getResourceEnvRef();
+   public ResourceEnvRefType<T> resourceEnvRef();
 
    public List<ResourceEnvRefType<T>> getResourceEnvRefList();
 
    public T removeAllMessageDestinationRef();
 
-   public MessageDestinationRefType<T> getMessageDestinationRef();
+   public MessageDestinationRefType<T> messageDestinationRef();
 
    public List<MessageDestinationRefType<T>> getMessageDestinationRefList();
 
    public T removeAllPersistenceContextRef();
 
-   public PersistenceContextRefType<T> getPersistenceContextRef();
+   public PersistenceContextRefType<T> persistenceContextRef();
 
    public List<PersistenceContextRefType<T>> getPersistenceContextRefList();
 
    public T removeAllPersistenceUnitRef();
 
-   public PersistenceUnitRefType<T> getPersistenceUnitRef();
+   public PersistenceUnitRefType<T> persistenceUnitRef();
 
    public List<PersistenceUnitRefType<T>> getPersistenceUnitRefList();
 
    public T removeAllPostConstruct();
 
-   public LifecycleCallbackType<T> getPostConstruct();
+   public LifecycleCallbackType<T> postConstruct();
 
    public List<LifecycleCallbackType<T>> getPostConstructList();
 
    public T removeAllPreDestroy();
 
-   public LifecycleCallbackType<T> getPreDestroy();
+   public LifecycleCallbackType<T> preDestroy();
 
    public List<LifecycleCallbackType<T>> getPreDestroyList();
 
    public T removeAllDataSource();
 
-   public DataSourceType<T> getDataSource();
+   public DataSourceType<T> dataSource();
 
    public List<DataSourceType<T>> getDataSourceList();
 
@@ -201,10 +207,12 @@ public interface WebApp30Descriptor<T> extends Descriptor
 
    public T setModuleName(String moduleName);
 
+   public T removeModuleName();
+
    public String getModuleName();
 
    public T removeAbsoluteOrdering();
 
-   public AbsoluteOrderingType<T> getAbsoluteOrdering();
+   public AbsoluteOrderingType<T> absoluteOrdering();
 
 }

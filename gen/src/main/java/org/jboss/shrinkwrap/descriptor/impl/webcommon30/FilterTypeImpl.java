@@ -14,7 +14,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
 {
@@ -63,12 +63,18 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
       return this;
    }
 
-   public FilterType<T> setDescription(String... values)
+   public FilterType<T> setDescriptionList(String... values)
    {
       for (String name : values)
       {
          setDescription(name);
       }
+      return this;
+   }
+
+   public FilterType<T> removeAllDescription()
+   {
+      childNode.remove("description");
       return this;
    }
 
@@ -93,12 +99,18 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
       return this;
    }
 
-   public FilterType<T> setDisplayName(String... values)
+   public FilterType<T> setDisplayNameList(String... values)
    {
       for (String name : values)
       {
          setDisplayName(name);
       }
+      return this;
+   }
+
+   public FilterType<T> removeAllDisplayName()
+   {
+      childNode.remove("display-name");
       return this;
    }
 
@@ -123,7 +135,7 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
       return this;
    }
 
-   public IconType<FilterType<T>> getIcon()
+   public IconType<FilterType<T>> icon()
    {
       return new IconTypeImpl<FilterType<T>>(this, "", childNode);
    }
@@ -150,6 +162,12 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
       return this;
    }
 
+   public FilterType<T> removeFilterName()
+   {
+      childNode.remove("filter-name");
+      return this;
+   }
+
    public String getFilterName()
    {
       return childNode.textValue("filter-name");
@@ -162,6 +180,12 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
    public FilterType<T> setFilterClass(String filterClass)
    {
       childNode.getOrCreate("filter-class").text(filterClass);
+      return this;
+   }
+
+   public FilterType<T> removeFilterClass()
+   {
+      childNode.remove("filter-class");
       return this;
    }
 
@@ -180,6 +204,12 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
       return this;
    }
 
+   public FilterType<T> removeAsyncSupported()
+   {
+      childNode.remove("async-supported");
+      return this;
+   }
+
    public Boolean isAsyncSupported()
    {
       return Strings.isTrue(childNode.textValue("async-supported"));
@@ -195,7 +225,7 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
       return this;
    }
 
-   public ParamValueType<FilterType<T>> getInitParam()
+   public ParamValueType<FilterType<T>> initParam()
    {
       return new ParamValueTypeImpl<FilterType<T>>(this, "", childNode);
    }

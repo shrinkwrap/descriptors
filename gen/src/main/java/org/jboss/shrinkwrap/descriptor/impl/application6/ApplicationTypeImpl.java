@@ -34,7 +34,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
 {
@@ -83,12 +83,18 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
       return this;
    }
 
-   public ApplicationType<T> setDescription(String... values)
+   public ApplicationType<T> setDescriptionList(String... values)
    {
       for (String name : values)
       {
          setDescription(name);
       }
+      return this;
+   }
+
+   public ApplicationType<T> removeAllDescription()
+   {
+      childNode.remove("description");
       return this;
    }
 
@@ -113,12 +119,18 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
       return this;
    }
 
-   public ApplicationType<T> setDisplayName(String... values)
+   public ApplicationType<T> setDisplayNameList(String... values)
    {
       for (String name : values)
       {
          setDisplayName(name);
       }
+      return this;
+   }
+
+   public ApplicationType<T> removeAllDisplayName()
+   {
+      childNode.remove("display-name");
       return this;
    }
 
@@ -143,7 +155,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
       return this;
    }
 
-   public IconType<ApplicationType<T>> getIcon()
+   public IconType<ApplicationType<T>> icon()
    {
       return new IconTypeImpl<ApplicationType<T>>(this, "", childNode);
    }
@@ -170,6 +182,12 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
       return this;
    }
 
+   public ApplicationType<T> removeApplicationName()
+   {
+      childNode.remove("application-name");
+      return this;
+   }
+
    public String getApplicationName()
    {
       return childNode.textValue("application-name");
@@ -182,6 +200,12 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    public ApplicationType<T> setInitializeInOrder(String initializeInOrder)
    {
       childNode.getOrCreate("initialize-in-order").text(initializeInOrder);
+      return this;
+   }
+
+   public ApplicationType<T> removeInitializeInOrder()
+   {
+      childNode.remove("initialize-in-order");
       return this;
    }
 
@@ -200,7 +224,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
       return this;
    }
 
-   public ModuleType<ApplicationType<T>> getModule()
+   public ModuleType<ApplicationType<T>> module()
    {
       return new ModuleTypeImpl<ApplicationType<T>>(this, "", childNode);
    }
@@ -227,7 +251,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
       return this;
    }
 
-   public SecurityRoleType<ApplicationType<T>> getSecurityRole()
+   public SecurityRoleType<ApplicationType<T>> securityRole()
    {
       return new SecurityRoleTypeImpl<ApplicationType<T>>(this, "", childNode);
    }
@@ -255,6 +279,12 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
       return this;
    }
 
+   public ApplicationType<T> removeLibraryDirectory()
+   {
+      childNode.remove("library-directory");
+      return this;
+   }
+
    public String getLibraryDirectory()
    {
       return childNode.textValue("library-directory");
@@ -270,7 +300,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
       return this;
    }
 
-   public EnvEntryType<ApplicationType<T>> getEnvEntry()
+   public EnvEntryType<ApplicationType<T>> envEntry()
    {
       return new EnvEntryTypeImpl<ApplicationType<T>>(this, "", childNode);
    }
@@ -297,7 +327,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
       return this;
    }
 
-   public EjbRefType<ApplicationType<T>> getEjbRef()
+   public EjbRefType<ApplicationType<T>> ejbRef()
    {
       return new EjbRefTypeImpl<ApplicationType<T>>(this, "", childNode);
    }
@@ -324,7 +354,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
       return this;
    }
 
-   public EjbLocalRefType<ApplicationType<T>> getEjbLocalRef()
+   public EjbLocalRefType<ApplicationType<T>> ejbLocalRef()
    {
       return new EjbLocalRefTypeImpl<ApplicationType<T>>(this, "", childNode);
    }
@@ -352,7 +382,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
       return this;
    }
 
-   public ResourceRefType<ApplicationType<T>> getResourceRef()
+   public ResourceRefType<ApplicationType<T>> resourceRef()
    {
       return new ResourceRefTypeImpl<ApplicationType<T>>(this, "", childNode);
    }
@@ -380,7 +410,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
       return this;
    }
 
-   public ResourceEnvRefType<ApplicationType<T>> getResourceEnvRef()
+   public ResourceEnvRefType<ApplicationType<T>> resourceEnvRef()
    {
       return new ResourceEnvRefTypeImpl<ApplicationType<T>>(this, "", childNode);
    }
@@ -408,7 +438,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
       return this;
    }
 
-   public MessageDestinationRefType<ApplicationType<T>> getMessageDestinationRef()
+   public MessageDestinationRefType<ApplicationType<T>> messageDestinationRef()
    {
       return new MessageDestinationRefTypeImpl<ApplicationType<T>>(this, "", childNode);
    }
@@ -436,7 +466,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
       return this;
    }
 
-   public PersistenceContextRefType<ApplicationType<T>> getPersistenceContextRef()
+   public PersistenceContextRefType<ApplicationType<T>> persistenceContextRef()
    {
       return new PersistenceContextRefTypeImpl<ApplicationType<T>>(this, "", childNode);
    }
@@ -464,7 +494,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
       return this;
    }
 
-   public PersistenceUnitRefType<ApplicationType<T>> getPersistenceUnitRef()
+   public PersistenceUnitRefType<ApplicationType<T>> persistenceUnitRef()
    {
       return new PersistenceUnitRefTypeImpl<ApplicationType<T>>(this, "", childNode);
    }
@@ -492,7 +522,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
       return this;
    }
 
-   public MessageDestinationType<ApplicationType<T>> getMessageDestination()
+   public MessageDestinationType<ApplicationType<T>> messageDestination()
    {
       return new MessageDestinationTypeImpl<ApplicationType<T>>(this, "", childNode);
    }
@@ -520,7 +550,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
       return this;
    }
 
-   public DataSourceType<ApplicationType<T>> getDataSource()
+   public DataSourceType<ApplicationType<T>> dataSource()
    {
       return new DataSourceTypeImpl<ApplicationType<T>>(this, "", childNode);
    }

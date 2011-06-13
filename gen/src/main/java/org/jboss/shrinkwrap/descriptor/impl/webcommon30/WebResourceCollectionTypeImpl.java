@@ -9,7 +9,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-12T13:26:32.882+02:00
+ * Generation date :2011-06-13T14:03:48.938+02:00
  */
 public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCollectionType<T>
 {
@@ -58,6 +58,12 @@ public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCo
       return this;
    }
 
+   public WebResourceCollectionType<T> removeWebResourceName()
+   {
+      childNode.remove("web-resource-name");
+      return this;
+   }
+
    public String getWebResourceName()
    {
       return childNode.textValue("web-resource-name");
@@ -73,12 +79,18 @@ public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCo
       return this;
    }
 
-   public WebResourceCollectionType<T> setDescription(String... values)
+   public WebResourceCollectionType<T> setDescriptionList(String... values)
    {
       for (String name : values)
       {
          setDescription(name);
       }
+      return this;
+   }
+
+   public WebResourceCollectionType<T> removeAllDescription()
+   {
+      childNode.remove("description");
       return this;
    }
 
@@ -103,12 +115,18 @@ public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCo
       return this;
    }
 
-   public WebResourceCollectionType<T> setUrlPattern(String... values)
+   public WebResourceCollectionType<T> setUrlPatternList(String... values)
    {
       for (String name : values)
       {
          setUrlPattern(name);
       }
+      return this;
+   }
+
+   public WebResourceCollectionType<T> removeAllUrlPattern()
+   {
+      childNode.remove("url-pattern");
       return this;
    }
 
@@ -133,12 +151,18 @@ public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCo
       return this;
    }
 
-   public WebResourceCollectionType<T> setHttpMethod(String... values)
+   public WebResourceCollectionType<T> setHttpMethodList(String... values)
    {
       for (String name : values)
       {
          setHttpMethod(name);
       }
+      return this;
+   }
+
+   public WebResourceCollectionType<T> removeAllHttpMethod()
+   {
+      childNode.remove("http-method");
       return this;
    }
 
@@ -163,12 +187,18 @@ public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCo
       return this;
    }
 
-   public WebResourceCollectionType<T> setHttpMethodOmission(String... values)
+   public WebResourceCollectionType<T> setHttpMethodOmissionList(String... values)
    {
       for (String name : values)
       {
          setHttpMethodOmission(name);
       }
+      return this;
+   }
+
+   public WebResourceCollectionType<T> removeAllHttpMethodOmission()
+   {
+      childNode.remove("http-method-omission");
       return this;
    }
 
