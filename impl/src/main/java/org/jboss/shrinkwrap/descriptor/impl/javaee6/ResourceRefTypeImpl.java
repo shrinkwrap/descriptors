@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.impl.javaee6;
+package org.jboss.shrinkwrap.descriptor.impl.javaee6; 
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-13T14:03:48.938+02:00
+ * Generation date :2011-06-15T01:04:55.579+02:00
  */
 public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
 {
@@ -21,40 +21,38 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
-
    private Node node;
-
    private Node childNode;
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public ResourceRefTypeImpl(T t, String descriptorName, Node node)
-   {
+   public ResourceRefTypeImpl(T t, String descriptorName, Node node)   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public ResourceRefTypeImpl(T t, String descriptorName, Node node, Node childNode)
-   {
+   public ResourceRefTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
+
 
    public T up()
    {
       return t;
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : lookup-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public ResourceRefType<T> setLookupName(String lookupName)
-   {
+   public ResourceRefType<T> setLookupName(String lookupName)   {
       childNode.getOrCreate("lookup-name").text(lookupName);
       return this;
    }
@@ -70,12 +68,12 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
       return childNode.textValue("lookup-name");
    }
 
+
    // -------------------------------------------------------------------------------------||
    // Element type : mapped-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public ResourceRefType<T> setMappedName(String mappedName)
-   {
+   public ResourceRefType<T> setMappedName(String mappedName)   {
       childNode.getOrCreate("mapped-name").text(mappedName);
       return this;
    }
@@ -90,6 +88,7 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
    {
       return childNode.textValue("mapped-name");
    }
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : injection-target
@@ -110,14 +109,15 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
    {
       List<InjectionTargetType<ResourceRefType<T>>> list = new ArrayList<InjectionTargetType<ResourceRefType<T>>>();
       List<Node> nodeList = childNode.get(InjectionTargetTypeImpl.nodeName);
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         InjectionTargetType<ResourceRefType<T>> type = new InjectionTargetTypeImpl<ResourceRefType<T>>(this, "",
-               childNode, node);
+         InjectionTargetType<ResourceRefType<T>>  type = new InjectionTargetTypeImpl<ResourceRefType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : description
@@ -129,13 +129,13 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
       return this;
    }
 
-   public ResourceRefType<T> setDescriptionList(String... values)
+   public ResourceRefType<T> setDescriptionList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setDescription(name);
       }
-      return this;
+         return this;
    }
 
    public ResourceRefType<T> removeAllDescription()
@@ -155,12 +155,13 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
       return result;
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : res-ref-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public ResourceRefType<T> setResRefName(String resRefName)
-   {
+   public ResourceRefType<T> setResRefName(String resRefName)   {
       childNode.getOrCreate("res-ref-name").text(resRefName);
       return this;
    }
@@ -176,12 +177,13 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
       return childNode.textValue("res-ref-name");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : res-type
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public ResourceRefType<T> setResType(String resType)
-   {
+   public ResourceRefType<T> setResType(String resType)   {
       childNode.getOrCreate("res-type").text(resType);
       return this;
    }
@@ -197,12 +199,13 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
       return childNode.textValue("res-type");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : res-auth
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public ResourceRefType<T> setResAuth(String resAuth)
-   {
+   public ResourceRefType<T> setResAuth(String resAuth)   {
       childNode.getOrCreate("res-auth").text(resAuth);
       return this;
    }
@@ -218,12 +221,13 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
       return childNode.textValue("res-auth");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : res-sharing-scope
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public ResourceRefType<T> setResSharingScope(String resSharingScope)
-   {
+   public ResourceRefType<T> setResSharingScope(String resSharingScope)   {
       childNode.getOrCreate("res-sharing-scope").text(resSharingScope);
       return this;
    }

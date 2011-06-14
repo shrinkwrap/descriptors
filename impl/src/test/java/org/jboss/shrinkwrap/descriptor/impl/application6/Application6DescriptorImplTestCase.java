@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.application6.Application6Descriptor;
 import org.junit.Test;
 
-public class Application6DescriptorImplTest
+public class Application6DescriptorImplTestCase
 {
    private String applicationName = "appName";
 

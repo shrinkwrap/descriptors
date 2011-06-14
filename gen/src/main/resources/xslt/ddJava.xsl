@@ -691,13 +691,37 @@
         <xsl:choose>
             <xsl:when test="$pElementType='javaee:emptyType' or $pElementType='javaee:ordering-othersType' or 
                             $pElementType='faces-config-ordering-othersType' or $pElementType='extensibleType'">
-                <xsl:choose>
-                    <xsl:when test="$pWriteAttribute=true()">
-<!--                        <xsl:value-of select="concat('   private ', 'Boolean', ' ', xdd:createCamelizedName($pElementName), ';&#10;')"/>-->
+                <xsl:variable name="vStandardSetBooleanEmptySignature" select="concat('   public ', $vReturn, ' ', xdd:checkForClassType( xdd:LowerCaseFirstChar($vMethodName)), '()')"/>
+                <xsl:variable name="vStandardGetBooleanEmptySignature" select="concat('   public Boolean is', xdd:checkForClassType($vMethodName), '()')"/>
+                        
+                <xsl:choose>            
+       
+                    <xsl:when test="$pWriteAttribute=true()">                        
                     </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, 'Boolean', $pElementName, '-', $pWriteInterface, false(), $pIsGeneric, $pNodeNameLocal, $pIsAttribute)"/>
-                        <xsl:value-of select="xdd:writeGetMethodSignature($vReturn, 'Boolean', concat($vMethodName, ''), $pElementName, '-', $pWriteInterface, false(), $pIsGeneric, $pNodeNameLocal)"/>
+                    <xsl:otherwise>                        
+                        <xsl:choose>                        
+                             <xsl:when test="$pWriteInterface=true()">
+                                 <xsl:value-of select="concat($vStandardSetBooleanEmptySignature, ';&#10;')"/>
+                                 <xsl:value-of select="concat($vStandardGetBooleanEmptySignature, ';&#10;')"/>
+                             </xsl:when>
+                             <xsl:otherwise>
+                                 <xsl:value-of select=" xdd:writeTypeCommentLines($pElementName, $pMaxOccurs, false(), $pIsGeneric, $pIsAttribute)"/>
+                                 <xsl:value-of select="concat($vStandardSetBooleanEmptySignature, '&#10;')"/>
+                                 <xsl:text>   {&#10;</xsl:text>
+                                 <xsl:value-of select="concat('      ', $pNodeNameLocal, '.getOrCreate(&quot;', $pElementName, '&quot;);', '&#10;')"/>
+                                 <xsl:value-of select="'      return this;&#10;'"/>
+                                 <xsl:text>   }&#10;&#10;</xsl:text>
+                                 
+                                 <xsl:value-of select="concat($vStandardGetBooleanEmptySignature, '&#10;')"/>
+                                 <xsl:text>   {&#10;</xsl:text>
+                                 <xsl:value-of select="concat('      return ', $pNodeNameLocal, '.attributes().get(&quot;', $pElementName, '&quot;) != null;', '&#10;')"/>
+                                 <xsl:text>   }&#10;&#10;</xsl:text>
+                                 
+                                 <!--
+                                 <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, 'Boolean', $pElementName, '-', $pWriteInterface, false(), $pIsGeneric, $pNodeNameLocal, $pIsAttribute)"/>
+                                 <xsl:value-of select="xdd:writeGetMethodSignature($vReturn, 'Boolean', concat($vMethodName, ''), $pElementName, '-', $pWriteInterface, false(), $pIsGeneric, $pNodeNameLocal, $pIsAttribute)"/>-->
+                             </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
@@ -710,7 +734,7 @@
                     <xsl:otherwise>
                         <!--                        <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, $pElementType, $pElementName, $pMaxOccurs, true())"/>-->
                         <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, 'String', $pElementName, '-', $pWriteInterface, false(), $pIsGeneric, $pNodeNameLocal, $pIsAttribute)"/>
-                        <xsl:value-of select="xdd:writeGetMethodSignature($vReturn, 'String', concat($vMethodName, ''), $pElementName, '-', $pWriteInterface, false(), $pIsGeneric, $pNodeNameLocal)"/>
+                        <xsl:value-of select="xdd:writeGetMethodSignature($vReturn, 'String', concat($vMethodName, ''), $pElementName, '-', $pWriteInterface, false(), $pIsGeneric, $pNodeNameLocal, $pIsAttribute)"/>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
@@ -723,7 +747,7 @@
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, $vDataType, $pElementName, $pMaxOccurs, $pWriteInterface, false(), $pIsGeneric, $pNodeNameLocal, $pIsAttribute)"/>
-                        <xsl:value-of select="xdd:writeGetMethodSignature($vReturn, $vDataType, $vMethodName, $pElementName, $pMaxOccurs, $pWriteInterface, false(), $pIsGeneric, $pNodeNameLocal)"/>
+                        <xsl:value-of select="xdd:writeGetMethodSignature($vReturn, $vDataType, $vMethodName, $pElementName, $pMaxOccurs, $pWriteInterface, false(), $pIsGeneric, $pNodeNameLocal, $pIsAttribute)"/>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
@@ -736,7 +760,7 @@
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="xdd:writeSetMethodSignature($pClassName, $vMethodName, $vElementTypeGeneric, $pElementName, $pMaxOccurs, $pWriteInterface, true(), $pIsGeneric, $pNodeNameLocal, $pIsAttribute)"/>
-                        <xsl:value-of select="xdd:writeGetMethodSignature($pClassName, $vReturnGeneric, $vMethodName, $pElementName, $pMaxOccurs, $pWriteInterface, true(), $pIsGeneric, $pNodeNameLocal)"/>
+                        <xsl:value-of select="xdd:writeGetMethodSignature($pClassName, $vReturnGeneric, $vMethodName, $pElementName, $pMaxOccurs, $pWriteInterface, true(), $pIsGeneric, $pNodeNameLocal, $pIsAttribute)"/>
                         <xsl:text>&#10;</xsl:text>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -751,7 +775,7 @@
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="xdd:writeSetMethodSignature($vReturn, $vMethodName, $vElementTypeGeneric, $pElementName, $pMaxOccurs, $pWriteInterface, true(), $pIsGeneric, $pNodeNameLocal, $pIsAttribute)"/>
-                        <xsl:value-of select="xdd:writeGetMethodSignature($vReturn, $vReturnGeneric, $vMethodName, $pElementName, $pMaxOccurs, $pWriteInterface, true(), $pIsGeneric, $pNodeNameLocal)"/>
+                        <xsl:value-of select="xdd:writeGetMethodSignature($vReturn, $vReturnGeneric, $vMethodName, $pElementName, $pMaxOccurs, $pWriteInterface, true(), $pIsGeneric, $pNodeNameLocal, $pIsAttribute)"/>
                         <xsl:text>&#10;</xsl:text>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -906,6 +930,7 @@
         <xsl:param name="vIsComplexType"/>
         <xsl:param name="pIsGeneric" as="xs:boolean"/>
         <xsl:param name="vNodeNameLocal"/>
+        <xsl:param name="pIsAttribute" as="xs:boolean"/>
 
         <xsl:variable name="vStandardGetSignature" select="concat('public ', xdd:createPascalizedName($vElementType,''), ' get', xdd:checkForClassType($vMethodName), '()')"/>
         <xsl:variable name="vStandardGetBooleanSignature" select="concat('public ', xdd:createPascalizedName($vElementType,''), ' is', xdd:checkForClassType($vMethodName), '()')"/>
@@ -955,6 +980,35 @@
                         <xsl:value-of select=" concat('      ', xdd:createPascalizedName($vElementType,''), ' ', xdd:checkForClassType(xdd:createCamelizedName($vElementName)), ' = new ', $vConstructor, '(this, &quot;&quot;, ', $vNodeNameLocal, ', node);', '&#10;')"/>
                         <xsl:value-of select=" concat('      return ', xdd:createCamelizedName($vElementName), ';&#10;')"/>
                         <xsl:text>   }&#10;</xsl:text>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+            
+             <xsl:when test="$pIsAttribute=true()">
+                <xsl:choose>
+                    <xsl:when test="$vIsInterface=true()">
+                        <xsl:choose>
+                            <xsl:when test="$vElementType='Boolean'">
+                                <xsl:value-of select=" concat('   ', $vStandardGetBooleanSignature, ';&#10;')"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select=" concat('   ', $vStandardGetSignature, ';&#10;')"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:choose>
+                            <xsl:when test="$vElementType='Boolean'">
+                                <xsl:value-of select=" concat('   ', $vStandardGetBooleanSignature, '&#10;   {&#10;')"/>
+                                <xsl:value-of select=" concat('      return Strings.isTrue(', $vNodeNameLocal, '.textValue(&quot;', $vElementName, '&quot;));' , '&#10;')"/>
+                                <xsl:text>   }&#10;</xsl:text>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select=" concat('   ', $vStandardGetSignature, '&#10;   {&#10;')"/>
+                                <xsl:value-of select=" concat('      return ', $vNodeNameLocal, '.attributes().get(&quot;', $vElementName, '&quot;);' , '&#10;')"/>
+                                <xsl:text>   }&#10;</xsl:text>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>

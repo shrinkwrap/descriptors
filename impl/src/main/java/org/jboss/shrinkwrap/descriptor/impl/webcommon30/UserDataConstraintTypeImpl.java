@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.impl.webcommon30;
+package org.jboss.shrinkwrap.descriptor.impl.webcommon30; 
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-13T14:03:48.938+02:00
+ * Generation date :2011-06-15T01:04:55.579+02:00
  */
 public class UserDataConstraintTypeImpl<T> implements Child<T>, UserDataConstraintType<T>
 {
@@ -20,33 +20,32 @@ public class UserDataConstraintTypeImpl<T> implements Child<T>, UserDataConstrai
    // -------------------------------------------------------------------------------------||
 
    private T t;
-
    private Node node;
-
    private Node childNode;
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public UserDataConstraintTypeImpl(T t, String descriptorName, Node node)
-   {
+   public UserDataConstraintTypeImpl(T t, String descriptorName, Node node)   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public UserDataConstraintTypeImpl(T t, String descriptorName, Node node, Node childNode)
-   {
+   public UserDataConstraintTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
+
    public T up()
    {
       return t;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : description
@@ -58,13 +57,13 @@ public class UserDataConstraintTypeImpl<T> implements Child<T>, UserDataConstrai
       return this;
    }
 
-   public UserDataConstraintType<T> setDescriptionList(String... values)
+   public UserDataConstraintType<T> setDescriptionList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setDescription(name);
       }
-      return this;
+         return this;
    }
 
    public UserDataConstraintType<T> removeAllDescription()
@@ -84,12 +83,13 @@ public class UserDataConstraintTypeImpl<T> implements Child<T>, UserDataConstrai
       return result;
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : transport-guarantee
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public UserDataConstraintType<T> setTransportGuarantee(String transportGuarantee)
-   {
+   public UserDataConstraintType<T> setTransportGuarantee(String transportGuarantee)   {
       childNode.getOrCreate("transport-guarantee").text(transportGuarantee);
       return this;
    }

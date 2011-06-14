@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.impl.webcommon30;
+package org.jboss.shrinkwrap.descriptor.impl.webcommon30; 
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-13T14:03:48.938+02:00
+ * Generation date :2011-06-15T01:04:55.579+02:00
  */
 public class SecurityConstraintTypeImpl<T> implements Child<T>, SecurityConstraintType<T>
 {
@@ -23,33 +23,32 @@ public class SecurityConstraintTypeImpl<T> implements Child<T>, SecurityConstrai
    // -------------------------------------------------------------------------------------||
 
    private T t;
-
    private Node node;
-
    private Node childNode;
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public SecurityConstraintTypeImpl(T t, String descriptorName, Node node)
-   {
+   public SecurityConstraintTypeImpl(T t, String descriptorName, Node node)   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public SecurityConstraintTypeImpl(T t, String descriptorName, Node node, Node childNode)
-   {
+   public SecurityConstraintTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
+
    public T up()
    {
       return t;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : display-name
@@ -61,13 +60,13 @@ public class SecurityConstraintTypeImpl<T> implements Child<T>, SecurityConstrai
       return this;
    }
 
-   public SecurityConstraintType<T> setDisplayNameList(String... values)
+   public SecurityConstraintType<T> setDisplayNameList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setDisplayName(name);
       }
-      return this;
+         return this;
    }
 
    public SecurityConstraintType<T> removeAllDisplayName()
@@ -86,6 +85,8 @@ public class SecurityConstraintTypeImpl<T> implements Child<T>, SecurityConstrai
       }
       return result;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : web-resource-collection
@@ -106,14 +107,16 @@ public class SecurityConstraintTypeImpl<T> implements Child<T>, SecurityConstrai
    {
       List<WebResourceCollectionType<SecurityConstraintType<T>>> list = new ArrayList<WebResourceCollectionType<SecurityConstraintType<T>>>();
       List<Node> nodeList = childNode.get(WebResourceCollectionTypeImpl.nodeName);
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         WebResourceCollectionType<SecurityConstraintType<T>> type = new WebResourceCollectionTypeImpl<SecurityConstraintType<T>>(
-               this, "", childNode, node);
+         WebResourceCollectionType<SecurityConstraintType<T>>  type = new WebResourceCollectionTypeImpl<SecurityConstraintType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : auth-constraint
@@ -128,10 +131,12 @@ public class SecurityConstraintTypeImpl<T> implements Child<T>, SecurityConstrai
    public AuthConstraintType<SecurityConstraintType<T>> authConstraint()
    {
       Node node = childNode.getOrCreate(AuthConstraintTypeImpl.nodeName);
-      AuthConstraintType<SecurityConstraintType<T>> authConstraint = new AuthConstraintTypeImpl<SecurityConstraintType<T>>(
-            this, "", childNode, node);
+      AuthConstraintType<SecurityConstraintType<T>> authConstraint = new AuthConstraintTypeImpl<SecurityConstraintType<T>>(this, "", childNode, node);
       return authConstraint;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : user-data-constraint
@@ -146,9 +151,9 @@ public class SecurityConstraintTypeImpl<T> implements Child<T>, SecurityConstrai
    public UserDataConstraintType<SecurityConstraintType<T>> userDataConstraint()
    {
       Node node = childNode.getOrCreate(UserDataConstraintTypeImpl.nodeName);
-      UserDataConstraintType<SecurityConstraintType<T>> userDataConstraint = new UserDataConstraintTypeImpl<SecurityConstraintType<T>>(
-            this, "", childNode, node);
+      UserDataConstraintType<SecurityConstraintType<T>> userDataConstraint = new UserDataConstraintTypeImpl<SecurityConstraintType<T>>(this, "", childNode, node);
       return userDataConstraint;
    }
+
 
 }

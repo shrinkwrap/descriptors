@@ -1,21 +1,18 @@
-package org.jboss.shrinkwrap.descriptor.api.javaee6;
+package org.jboss.shrinkwrap.descriptor.api.javaee6; 
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-13T14:03:48.938+02:00
+ * Generation date :2011-06-15T01:04:55.579+02:00
  */
-public enum EjbRefTypeType {
-   _ENTITY("Entity"), _SESSION("Session");
+public enum EjbRefTypeType
+{
+   _ENTITY("Entity"),
+   _SESSION("Session");
 
    private String value;
 
-   EjbRefTypeType(String value)
-   {
-      this.value = value;
-   }
+   EjbRefTypeType (String value) { this.value = value; }
 
-   public String toString()
-   {
-      return value;
-   }
+   public String toString() {return value;}
 }
+
