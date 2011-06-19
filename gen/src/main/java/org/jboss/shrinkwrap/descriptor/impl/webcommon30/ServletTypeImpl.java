@@ -19,7 +19,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-15T01:04:55.579+02:00
+ * Generation date :2011-06-19T19:10:14.736-04:00
  */
 public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
 {

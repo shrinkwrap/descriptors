@@ -27,15 +27,14 @@ More detailed:
 Step 1: schemas.xml  --> metadata.xsl  --> metadata.xml
 Step 2: metadata.xml --> ddJava.xsl    --> interfaces and classes (Api and Impl)
 
-schemas.xml:    This is root of all. This file describes which schemas are part of the transformation. 
-It defines for each schema the packages and optionally, if a deployment descriptor interface and impl class 
-should be produced. This is required because some of the schemas are a kind of a reusable 
-function library, e.g. javaee6.xml is an example.
+schemas.xml:    This is the root of all. This file describes which schemas are part of the transformation. 
+metadata.xsl:   Produces the metadata.xml based on the configured schemas in schemas.xml
+ddJava.xsl:     Produces the interface and implementation classes. Requires as input the metadata.xml file.
 
 
 Required Libraries
 ------------------_
-The transformation is based on the saxon 9.3 xslt library. The transformation itself uses xslt 2.0.
+The transformation is based on the saxon 9.3 xslt library but version 8.7 onwards works as well. The transformation itself uses xslt 2.0.
 
 
 Maven Integration
@@ -48,6 +47,8 @@ Moving the classes
 At the moment, the classes will be produced in the gen module only. After producing the 
 classes, a manual copy step to the API and IMPL folder is required.
 
+Note: Before moving the generated classes, please run via Eclipse 'Source/Organize Imports' for
+      all generated packages.
 
 TODO
 ----
@@ -56,5 +57,5 @@ From the code generation point of view, the following is not done yet:
 - Providing the enums as arguments. The enums are generated but not integrated into the interfaces.
 - Namespace handling. This should probably part of the the descriptor API and not of each descriptor itself
 - Each node implements the descriptor interface. In the current version, all subnodes inherit from the descriptorImpl,
-  which is from the reusability point of view, problematic.
+  which is from the re-usability point of view, problematic.
 

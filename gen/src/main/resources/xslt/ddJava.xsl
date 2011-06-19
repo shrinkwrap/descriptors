@@ -3,7 +3,7 @@
     <!--    <xsl:output method="text"/>-->
 
     <xsl:output method="text" indent="yes" media-type="text/plain"/>
-    <xsl:param name="gOutputFolder" select="'..'"/>
+    <xsl:param name="gOutputFolder" select="'../../../../src/main/java'"/>
     <xsl:variable name="vLower" select="'abcdefghijklmnopqrstuvwxyz'"/>
     <xsl:variable name="vUpper" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
     <xsl:variable name="gDataTypes" select="//datatypes"/>
@@ -186,6 +186,7 @@
             <xsl:result-document href="{$vFilename}">
                 <xsl:value-of select="xdd:writePackageLine($vPackage)"/>
                 <xsl:value-of select="xdd:writeImports(true())"/>
+                <xsl:value-of select="xdd:writeImports(false())"/>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.api.Descriptor;&#10;&#10;</xsl:text>
                 <xsl:value-of select="xdd:classHeaderComment('')"/>
                 <xsl:value-of select="xdd:classHeaderDeclaration('interface', $vClassname)"/>
@@ -297,6 +298,7 @@
             <xsl:result-document href="{$vFilename}">
                 <xsl:value-of select="xdd:writePackageLine($vPackage)"/>
                 <xsl:value-of select="xdd:writeImports(true())"/>
+                <xsl:value-of select="xdd:writeImports(false())"/>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase;&#10;</xsl:text>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.Node;&#10;</xsl:text>
                 <xsl:text>&#10;</xsl:text>
@@ -1136,6 +1138,9 @@
                 </xsl:for-each>
             </xsl:when>
             <xsl:otherwise>
+                <xsl:value-of select="'import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;&#10;'"></xsl:value-of>
+                <xsl:value-of select="'import org.jboss.shrinkwrap.descriptor.impl.base.Strings;&#10;'"></xsl:value-of>
+                <xsl:value-of select="'import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;&#10;'"></xsl:value-of>
                 <xsl:for-each select="$gPackageImpls">
                     <xsl:value-of select="concat('import ', @name, '.*;&#10;')"/>
                 </xsl:for-each>

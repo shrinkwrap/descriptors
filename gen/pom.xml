@@ -19,32 +19,53 @@
 
   <build>
     <plugins>
+
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>xml-maven-plugin</artifactId>
+        <groupId>net.sf.xsltmp</groupId>
+        <artifactId>xslt-generator-maven-plugin</artifactId>
+        <version>1.6</version>
         <executions>
+          
+          <!-- 
+               This is the first step. 
+               All schema files configured in the schemas.xml
+               are parsed in this fist transformation. The result of this is a xml file 
+               called metadata.xml containing all required information to produce
+               the deployment descriptor API and IMPL classes
+          -->
           <execution>
+            <id>transform-to-metadata</id>
             <goals>
-              <goal>transform</goal>
+              <goal>many-to-one</goal>
             </goals>
+            <configuration>
+              <xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate>
+              <srcDir>src/main/resources/xsd</srcDir>
+              <srcIncludes>**/*.xsd</srcIncludes>
+              <srcFile>src/main/resources/xslt/schemas.xml</srcFile>
+              <destFile>src/main/resources/xslt/metadata.xml</destFile>
+            </configuration>
+          </execution>
+          
+          <!-- 
+            This is the second step. 
+            The metada.xml produced in step 1 is transformed into 
+            the API and IMPL classes.
+          -->
+          <execution>
+            <id>transform-to-java</id>
+            <goals>
+              <goal>many-to-one</goal>
+            </goals>
+            <configuration>
+              <xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
+              <srcDir>src/main/resources/xslt</srcDir>
+              <srcIncludes>**/*.xml</srcIncludes>
+              <srcFile>src/main/resources/xslt/metadata.xml</srcFile>
+              <destFile>src/main/resources/xslt/ddJava.xml</destFile>
+            </configuration>
           </execution>
         </executions>
-        <configuration>
-          <transformationSets>
-            <transformationSet>
-              <dir>src/main/resources/xslt</dir>
-              <stylesheet>src/main/resources/xslt/metadata.xsl</stylesheet>
- <!--             <parameters>
-                <parameter>
-                  <name>gOutputFolder</name>
-                  <value>src/main/java</value>
-                </parameter>
-              </parameters>-->
-              
-              
-            </transformationSet>
-          </transformationSets>
-        </configuration>
         <dependencies>
           <dependency>
             <groupId>net.sf.saxon</groupId>
@@ -53,10 +74,9 @@
           </dependency>
         </dependencies>
       </plugin>
-      
     </plugins>
-    
   </build>
+
   <dependencies>
 
     <dependency>
@@ -77,6 +97,12 @@
       <scope>test</scope>
     </dependency>
 
+    <dependency>
+      <groupId>net.sf.saxon</groupId>
+      <artifactId>saxon</artifactId>
+      <version>8.7</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
 </project>
