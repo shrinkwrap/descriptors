@@ -1,21 +1,22 @@
-package org.jboss.shrinkwrap.descriptor.api.javaee6; 
+package org.jboss.shrinkwrap.descriptor.api.javaee6;
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
+
 /**
  * This class is a generated class.
- * Generation date :2011-06-15T01:04:55.579+02:00
+ * Generation date :2011-06-19T21:45:00.466-04:00
  */
 public interface IconType<T> extends Child<T>
 {
 
    public IconType<T> setSmallIcon(String smallIcon);
+
    public IconType<T> removeSmallIcon();
 
    public String getSmallIcon();
 
-
-
    public IconType<T> setLargeIcon(String largeIcon);
+
    public IconType<T> removeLargeIcon();
 
    public String getLargeIcon();

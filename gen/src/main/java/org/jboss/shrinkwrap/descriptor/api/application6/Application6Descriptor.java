@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.api.application6; 
+package org.jboss.shrinkwrap.descriptor.api.application6;
 
 import java.util.List;
 
@@ -18,119 +18,97 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleType;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T19:10:14.736-04:00
+ * Generation date :2011-06-19T21:45:00.466-04:00
  */
-public interface Application6Descriptor<T> extends Descriptor
+public interface Application6Descriptor extends Descriptor
 {
 
-   public T setDescription(String description);
-   public T setDescriptionList(String ... values);
-   public T removeAllDescription();
+   public Application6Descriptor setDescription(String description);
+
+   public Application6Descriptor setDescriptionList(String... values);
+
+   public Application6Descriptor removeAllDescription();
 
    public List<String> getDescriptionList();
 
+   public Application6Descriptor setDisplayName(String displayName);
 
-   public T setDisplayName(String displayName);
-   public T setDisplayNameList(String ... values);
-   public T removeAllDisplayName();
+   public Application6Descriptor setDisplayNameList(String... values);
+
+   public Application6Descriptor removeAllDisplayName();
 
    public List<String> getDisplayNameList();
 
+   public Application6Descriptor removeAllIcon();
 
-   public T removeAllIcon();
+   public IconType<Application6Descriptor> icon();
 
-   public IconType<T> icon();
-   public List<IconType<T>> getIconList();
+   public List<IconType<Application6Descriptor>> getIconList();
 
+   public Application6Descriptor setApplicationName(String applicationName);
 
-
-   public T setApplicationName(String applicationName);
-   public T removeApplicationName();
+   public Application6Descriptor removeApplicationName();
 
    public String getApplicationName();
 
+   public Application6Descriptor setInitializeInOrder(String initializeInOrder);
 
-   public T setInitializeInOrder(String initializeInOrder);
-   public T removeInitializeInOrder();
+   public Application6Descriptor removeInitializeInOrder();
 
    public String getInitializeInOrder();
 
+   public Application6Descriptor removeModule();
 
-   public T removeModule();
+   public ModuleType<Application6Descriptor> module();
 
-   public ModuleType<T> module();
+   public Application6Descriptor removeSecurityRole();
 
+   public SecurityRoleType<Application6Descriptor> securityRole();
 
+   public Application6Descriptor setLibraryDirectory(String libraryDirectory);
 
-   public T removeSecurityRole();
-
-   public SecurityRoleType<T> securityRole();
-
-
-
-   public T setLibraryDirectory(String libraryDirectory);
-   public T removeLibraryDirectory();
+   public Application6Descriptor removeLibraryDirectory();
 
    public String getLibraryDirectory();
 
+   public Application6Descriptor removeEnvEntry();
 
-   public T removeEnvEntry();
+   public EnvEntryType<Application6Descriptor> envEntry();
 
-   public EnvEntryType<T> envEntry();
+   public Application6Descriptor removeEjbRef();
 
+   public EjbRefType<Application6Descriptor> ejbRef();
 
+   public Application6Descriptor removeEjbLocalRef();
 
-   public T removeEjbRef();
+   public EjbLocalRefType<Application6Descriptor> ejbLocalRef();
 
-   public EjbRefType<T> ejbRef();
+   public Application6Descriptor removeResourceRef();
 
+   public ResourceRefType<Application6Descriptor> resourceRef();
 
+   public Application6Descriptor removeResourceEnvRef();
 
-   public T removeEjbLocalRef();
+   public ResourceEnvRefType<Application6Descriptor> resourceEnvRef();
 
-   public EjbLocalRefType<T> ejbLocalRef();
+   public Application6Descriptor removeMessageDestinationRef();
 
+   public MessageDestinationRefType<Application6Descriptor> messageDestinationRef();
 
+   public Application6Descriptor removePersistenceContextRef();
 
-   public T removeResourceRef();
+   public PersistenceContextRefType<Application6Descriptor> persistenceContextRef();
 
-   public ResourceRefType<T> resourceRef();
+   public Application6Descriptor removePersistenceUnitRef();
 
+   public PersistenceUnitRefType<Application6Descriptor> persistenceUnitRef();
 
+   public Application6Descriptor removeMessageDestination();
 
-   public T removeResourceEnvRef();
+   public MessageDestinationType<Application6Descriptor> messageDestination();
 
-   public ResourceEnvRefType<T> resourceEnvRef();
+   public Application6Descriptor removeDataSource();
 
-
-
-   public T removeMessageDestinationRef();
-
-   public MessageDestinationRefType<T> messageDestinationRef();
-
-
-
-   public T removePersistenceContextRef();
-
-   public PersistenceContextRefType<T> persistenceContextRef();
-
-
-
-   public T removePersistenceUnitRef();
-
-   public PersistenceUnitRefType<T> persistenceUnitRef();
-
-
-
-   public T removeMessageDestination();
-
-   public MessageDestinationType<T> messageDestination();
-
-
-
-   public T removeDataSource();
-
-   public DataSourceType<T> dataSource();
-
+   public DataSourceType<Application6Descriptor> dataSource();
 
 }

@@ -186,19 +186,19 @@
             <xsl:result-document href="{$vFilename}">
                 <xsl:value-of select="xdd:writePackageLine($vPackage)"/>
                 <xsl:value-of select="xdd:writeImports(true())"/>
-                <xsl:value-of select="xdd:writeImports(false())"/>
+<!--                <xsl:value-of select="xdd:writeImports(false())"/>-->
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.api.Descriptor;&#10;&#10;</xsl:text>
                 <xsl:value-of select="xdd:classHeaderComment('')"/>
                 <xsl:value-of select="xdd:classHeaderDeclaration('interface', $vClassname)"/>
-                <xsl:text>&lt;T&gt; extends Descriptor</xsl:text>
+                <xsl:text> extends Descriptor</xsl:text>
                 <xsl:text>&#10;{&#10;</xsl:text>
                 <xsl:variable name="vType" select=" substring-after($pDescriptor/element/@type, ':')"/>
                 <xsl:for-each select="//classes/class[@name=$vType]">
                     <xsl:for-each select="include">
-                        <xsl:value-of select="xdd:includeGroupRefs('T', text(), false(), true(), false(), '')"/>
+                        <xsl:value-of select="xdd:includeGroupRefs($vClassname, text(), false(), true(), false(), '')"/>
                     </xsl:for-each>
                     <xsl:for-each select="element">
-                        <xsl:value-of select="xdd:writeMethodOrAttribute('T', @name, @type, '-', false(), true(), false(), '', false())"/>
+                        <xsl:value-of select="xdd:writeMethodOrAttribute($vClassname, @name, @type, '-', false(), true(), false(), '', false())"/>
                     </xsl:for-each>
                 </xsl:for-each>
                 <xsl:text>}&#10;</xsl:text>
@@ -305,7 +305,7 @@
                 <xsl:value-of select="xdd:classHeaderComment('')"/>
                 <xsl:value-of select="xdd:classHeaderDeclaration('class', $vClassnameImpl)"/>
                 <xsl:text> extends NodeProviderImplBase implements </xsl:text>
-                <xsl:value-of select="xdd:createPascalizedName($vInterfaceName, concat('&lt;', $vClassnameImpl ,'&gt;'))"/>
+                <xsl:value-of select="xdd:createPascalizedName($vInterfaceName, '')"/>
                 <xsl:text>&#10;{</xsl:text>
                 <xsl:text>&#10;</xsl:text>
                 <!-- write all attributes -->
@@ -314,10 +314,10 @@
                     <xsl:variable name="vType" select=" substring-after(@type, ':')"/>
                     <xsl:for-each select="//classes/class[@name=$vType]">
                         <xsl:for-each select="element">
-                            <xsl:value-of select="xdd:writeMethodOrAttribute($vClassnameImpl, @name, @type, '-', true(), false(), false(), $vNodeName, false())"/>
+                            <xsl:value-of select="xdd:writeMethodOrAttribute($vInterfaceName, @name, @type, '-', true(), false(), false(), $vNodeName, false())"/>
                         </xsl:for-each>
                         <xsl:for-each select="include">
-                            <xsl:value-of select="xdd:includeGroupRefs($vClassnameImpl, text(), true(), false(), false(), 'node')"/>
+                            <xsl:value-of select="xdd:includeGroupRefs($vInterfaceName, text(), true(), false(), false(), 'node')"/>
                         </xsl:for-each>
                     </xsl:for-each>
                 </xsl:for-each>
@@ -331,10 +331,10 @@
                     <xsl:variable name="vType" select=" substring-after(@type, ':')"/>
                     <xsl:for-each select="//classes/class[@name=$vType]">
                         <xsl:for-each select="element">
-                            <xsl:value-of select="xdd:writeMethodOrAttribute($vClassnameImpl, @name, @type, '-', false(), false(), false(), $vNodeName, false())"/>
+                            <xsl:value-of select="xdd:writeMethodOrAttribute($vInterfaceName, @name, @type, '-', false(), false(), false(), $vNodeName, false())"/>
                         </xsl:for-each>
                         <xsl:for-each select="include">
-                            <xsl:value-of select="xdd:includeGroupRefs($vClassnameImpl, text(), false(), false(), false(), $vNodeName)"/>
+                            <xsl:value-of select="xdd:includeGroupRefs($vInterfaceName, text(), false(), false(), false(), $vNodeName)"/>
                         </xsl:for-each>
                     </xsl:for-each>
                 </xsl:for-each>

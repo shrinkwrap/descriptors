@@ -1,19 +1,21 @@
-package org.jboss.shrinkwrap.descriptor.api.webcommon30; 
+package org.jboss.shrinkwrap.descriptor.api.webcommon30;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T19:10:14.736-04:00
+ * Generation date :2011-06-19T21:45:00.466-04:00
  */
-public enum TransportGuaranteeType
-{
-   _NONE("NONE"),
-   _INTEGRAL("INTEGRAL"),
-   _CONFIDENTIAL("CONFIDENTIAL");
+public enum TransportGuaranteeType {
+   _NONE("NONE"), _INTEGRAL("INTEGRAL"), _CONFIDENTIAL("CONFIDENTIAL");
 
    private String value;
 
-   TransportGuaranteeType (String value) { this.value = value; }
+   TransportGuaranteeType(String value)
+   {
+      this.value = value;
+   }
 
-   public String toString() {return value;}
+   public String toString()
+   {
+      return value;
+   }
 }
-

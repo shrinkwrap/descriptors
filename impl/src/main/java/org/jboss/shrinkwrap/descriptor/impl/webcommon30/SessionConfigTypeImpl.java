@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.impl.webcommon30; 
+package org.jboss.shrinkwrap.descriptor.impl.webcommon30;
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.CookieConfigType;
@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-15T01:04:55.579+02:00
+ * Generation date :2011-06-19T21:45:00.466-04:00
  */
 public class SessionConfigTypeImpl<T> implements Child<T>, SessionConfigType<T>
 {
@@ -18,38 +18,40 @@ public class SessionConfigTypeImpl<T> implements Child<T>, SessionConfigType<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
+
    private Node node;
+
    private Node childNode;
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public SessionConfigTypeImpl(T t, String descriptorName, Node node)   {
+   public SessionConfigTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public SessionConfigTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public SessionConfigTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
-
 
    public T up()
    {
       return t;
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : session-timeout
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public SessionConfigType<T> setSessionTimeout(Integer sessionTimeout)   {
+   public SessionConfigType<T> setSessionTimeout(Integer sessionTimeout)
+   {
       childNode.getOrCreate("session-timeout").text(sessionTimeout);
       return this;
    }
@@ -65,8 +67,6 @@ public class SessionConfigTypeImpl<T> implements Child<T>, SessionConfigType<T>
       return Integer.valueOf(childNode.textValue("session-timeout"));
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : cookie-config
    // isComplexType: true   maxOccurs: -   isAttribute: false
@@ -80,18 +80,17 @@ public class SessionConfigTypeImpl<T> implements Child<T>, SessionConfigType<T>
    public CookieConfigType<SessionConfigType<T>> cookieConfig()
    {
       Node node = childNode.getOrCreate(CookieConfigTypeImpl.nodeName);
-      CookieConfigType<SessionConfigType<T>> cookieConfig = new CookieConfigTypeImpl<SessionConfigType<T>>(this, "", childNode, node);
+      CookieConfigType<SessionConfigType<T>> cookieConfig = new CookieConfigTypeImpl<SessionConfigType<T>>(this, "",
+            childNode, node);
       return cookieConfig;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : tracking-mode
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public SessionConfigType<T> setTrackingMode(String trackingMode)   {
+   public SessionConfigType<T> setTrackingMode(String trackingMode)
+   {
       childNode.getOrCreate("tracking-mode").text(trackingMode);
       return this;
    }

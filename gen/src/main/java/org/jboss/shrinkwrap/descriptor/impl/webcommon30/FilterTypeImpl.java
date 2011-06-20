@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.impl.webcommon30; 
+package org.jboss.shrinkwrap.descriptor.impl.webcommon30;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T19:10:14.736-04:00
+ * Generation date :2011-06-19T21:45:00.466-04:00
  */
 public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
 {
@@ -25,32 +25,33 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
+
    private Node node;
+
    private Node childNode;
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public FilterTypeImpl(T t, String descriptorName, Node node)   {
+   public FilterTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public FilterTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public FilterTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
-
    public T up()
    {
       return t;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : description
@@ -62,13 +63,13 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
       return this;
    }
 
-   public FilterType<T> setDescriptionList(String ... values)
+   public FilterType<T> setDescriptionList(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
          setDescription(name);
       }
-         return this;
+      return this;
    }
 
    public FilterType<T> removeAllDescription()
@@ -88,7 +89,6 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
       return result;
    }
 
-
    // -------------------------------------------------------------------------------------||
    // Element type : display-name
    // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
@@ -99,13 +99,13 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
       return this;
    }
 
-   public FilterType<T> setDisplayNameList(String ... values)
+   public FilterType<T> setDisplayNameList(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
          setDisplayName(name);
       }
-         return this;
+      return this;
    }
 
    public FilterType<T> removeAllDisplayName()
@@ -124,7 +124,6 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
       }
       return result;
    }
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : icon
@@ -145,21 +144,20 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
    {
       List<IconType<FilterType<T>>> list = new ArrayList<IconType<FilterType<T>>>();
       List<Node> nodeList = childNode.get(IconTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         IconType<FilterType<T>>  type = new IconTypeImpl<FilterType<T>>(this, "", childNode, node);
+         IconType<FilterType<T>> type = new IconTypeImpl<FilterType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : filter-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public FilterType<T> setFilterName(String filterName)   {
+   public FilterType<T> setFilterName(String filterName)
+   {
       childNode.getOrCreate("filter-name").text(filterName);
       return this;
    }
@@ -175,13 +173,12 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
       return childNode.textValue("filter-name");
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : filter-class
    // isComplexType: false   maxOccurs: -1   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public FilterType<T> setFilterClass(String filterClass)   {
+   public FilterType<T> setFilterClass(String filterClass)
+   {
       childNode.getOrCreate("filter-class").text(filterClass);
       return this;
    }
@@ -197,13 +194,12 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
       return childNode.textValue("filter-class");
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : async-supported
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public FilterType<T> setAsyncSupported(Boolean asyncSupported)   {
+   public FilterType<T> setAsyncSupported(Boolean asyncSupported)
+   {
       childNode.getOrCreate("async-supported").text(asyncSupported);
       return this;
    }
@@ -218,8 +214,6 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
    {
       return Strings.isTrue(childNode.textValue("async-supported"));
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : init-param
@@ -240,13 +234,12 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
    {
       List<ParamValueType<FilterType<T>>> list = new ArrayList<ParamValueType<FilterType<T>>>();
       List<Node> nodeList = childNode.get(ParamValueTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         ParamValueType<FilterType<T>>  type = new ParamValueTypeImpl<FilterType<T>>(this, "", childNode, node);
+         ParamValueType<FilterType<T>> type = new ParamValueTypeImpl<FilterType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
-
 
 }

@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.impl.javaee6; 
+package org.jboss.shrinkwrap.descriptor.impl.javaee6;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T19:10:14.736-04:00
+ * Generation date :2011-06-19T21:45:00.466-04:00
  */
 public class RunAsTypeImpl<T> implements Child<T>, RunAsType<T>
 {
@@ -20,32 +20,33 @@ public class RunAsTypeImpl<T> implements Child<T>, RunAsType<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
+
    private Node node;
+
    private Node childNode;
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public RunAsTypeImpl(T t, String descriptorName, Node node)   {
+   public RunAsTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public RunAsTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public RunAsTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
-
    public T up()
    {
       return t;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : description
@@ -57,13 +58,13 @@ public class RunAsTypeImpl<T> implements Child<T>, RunAsType<T>
       return this;
    }
 
-   public RunAsType<T> setDescriptionList(String ... values)
+   public RunAsType<T> setDescriptionList(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
          setDescription(name);
       }
-         return this;
+      return this;
    }
 
    public RunAsType<T> removeAllDescription()
@@ -83,13 +84,12 @@ public class RunAsTypeImpl<T> implements Child<T>, RunAsType<T>
       return result;
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : role-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public RunAsType<T> setRoleName(String roleName)   {
+   public RunAsType<T> setRoleName(String roleName)
+   {
       childNode.getOrCreate("role-name").text(roleName);
       return this;
    }

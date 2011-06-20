@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.impl.webcommon30; 
+package org.jboss.shrinkwrap.descriptor.impl.webcommon30;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-15T01:04:55.579+02:00
+ * Generation date :2011-06-19T21:45:00.466-04:00
  */
 public class OrderingOrderingTypeImpl<T> implements Child<T>, OrderingOrderingType<T>
 {
@@ -20,32 +20,33 @@ public class OrderingOrderingTypeImpl<T> implements Child<T>, OrderingOrderingTy
    // -------------------------------------------------------------------------------------||
 
    private T t;
+
    private Node node;
+
    private Node childNode;
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public OrderingOrderingTypeImpl(T t, String descriptorName, Node node)   {
+   public OrderingOrderingTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public OrderingOrderingTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public OrderingOrderingTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
-
    public T up()
    {
       return t;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : name
@@ -57,13 +58,13 @@ public class OrderingOrderingTypeImpl<T> implements Child<T>, OrderingOrderingTy
       return this;
    }
 
-   public OrderingOrderingType<T> setNameList(String ... values)
+   public OrderingOrderingType<T> setNameList(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
          setName(name);
       }
-         return this;
+      return this;
    }
 
    public OrderingOrderingType<T> removeAllName()
@@ -82,7 +83,6 @@ public class OrderingOrderingTypeImpl<T> implements Child<T>, OrderingOrderingTy
       }
       return result;
    }
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : others

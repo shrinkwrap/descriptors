@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.impl.javaee6; 
+package org.jboss.shrinkwrap.descriptor.impl.javaee6;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-15T01:04:55.579+02:00
+ * Generation date :2011-06-19T21:45:00.466-04:00
  */
 public class ResourceEnvRefTypeImpl<T> implements Child<T>, ResourceEnvRefType<T>
 {
@@ -21,38 +21,40 @@ public class ResourceEnvRefTypeImpl<T> implements Child<T>, ResourceEnvRefType<T
    // -------------------------------------------------------------------------------------||
 
    private T t;
+
    private Node node;
+
    private Node childNode;
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public ResourceEnvRefTypeImpl(T t, String descriptorName, Node node)   {
+   public ResourceEnvRefTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public ResourceEnvRefTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public ResourceEnvRefTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
-
 
    public T up()
    {
       return t;
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : lookup-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public ResourceEnvRefType<T> setLookupName(String lookupName)   {
+   public ResourceEnvRefType<T> setLookupName(String lookupName)
+   {
       childNode.getOrCreate("lookup-name").text(lookupName);
       return this;
    }
@@ -68,12 +70,12 @@ public class ResourceEnvRefTypeImpl<T> implements Child<T>, ResourceEnvRefType<T
       return childNode.textValue("lookup-name");
    }
 
-
    // -------------------------------------------------------------------------------------||
    // Element type : mapped-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public ResourceEnvRefType<T> setMappedName(String mappedName)   {
+   public ResourceEnvRefType<T> setMappedName(String mappedName)
+   {
       childNode.getOrCreate("mapped-name").text(mappedName);
       return this;
    }
@@ -88,7 +90,6 @@ public class ResourceEnvRefTypeImpl<T> implements Child<T>, ResourceEnvRefType<T
    {
       return childNode.textValue("mapped-name");
    }
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : injection-target
@@ -109,15 +110,14 @@ public class ResourceEnvRefTypeImpl<T> implements Child<T>, ResourceEnvRefType<T
    {
       List<InjectionTargetType<ResourceEnvRefType<T>>> list = new ArrayList<InjectionTargetType<ResourceEnvRefType<T>>>();
       List<Node> nodeList = childNode.get(InjectionTargetTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         InjectionTargetType<ResourceEnvRefType<T>>  type = new InjectionTargetTypeImpl<ResourceEnvRefType<T>>(this, "", childNode, node);
+         InjectionTargetType<ResourceEnvRefType<T>> type = new InjectionTargetTypeImpl<ResourceEnvRefType<T>>(this, "",
+               childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : description
@@ -129,13 +129,13 @@ public class ResourceEnvRefTypeImpl<T> implements Child<T>, ResourceEnvRefType<T
       return this;
    }
 
-   public ResourceEnvRefType<T> setDescriptionList(String ... values)
+   public ResourceEnvRefType<T> setDescriptionList(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
          setDescription(name);
       }
-         return this;
+      return this;
    }
 
    public ResourceEnvRefType<T> removeAllDescription()
@@ -155,13 +155,12 @@ public class ResourceEnvRefTypeImpl<T> implements Child<T>, ResourceEnvRefType<T
       return result;
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : resource-env-ref-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public ResourceEnvRefType<T> setResourceEnvRefName(String resourceEnvRefName)   {
+   public ResourceEnvRefType<T> setResourceEnvRefName(String resourceEnvRefName)
+   {
       childNode.getOrCreate("resource-env-ref-name").text(resourceEnvRefName);
       return this;
    }
@@ -177,13 +176,12 @@ public class ResourceEnvRefTypeImpl<T> implements Child<T>, ResourceEnvRefType<T
       return childNode.textValue("resource-env-ref-name");
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : resource-env-ref-type
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public ResourceEnvRefType<T> setResourceEnvRefType(String resourceEnvRefType)   {
+   public ResourceEnvRefType<T> setResourceEnvRefType(String resourceEnvRefType)
+   {
       childNode.getOrCreate("resource-env-ref-type").text(resourceEnvRefType);
       return this;
    }

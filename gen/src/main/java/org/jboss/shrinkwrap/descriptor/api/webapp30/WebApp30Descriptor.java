@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.api.webapp30; 
+package org.jboss.shrinkwrap.descriptor.api.webapp30;
 
 import java.util.List;
 
@@ -34,226 +34,182 @@ import org.jboss.shrinkwrap.descriptor.api.webcommon30.WelcomeFileListType;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T19:10:14.736-04:00
+ * Generation date :2011-06-19T21:45:00.466-04:00
  */
-public interface WebApp30Descriptor<T> extends Descriptor
+public interface WebApp30Descriptor extends Descriptor
 {
-   public T distributable();
+   public WebApp30Descriptor distributable();
+
    public Boolean isDistributable();
 
-   public T removeContextParam();
+   public WebApp30Descriptor removeContextParam();
 
-   public ParamValueType<T> contextParam();
+   public ParamValueType<WebApp30Descriptor> contextParam();
 
+   public WebApp30Descriptor removeFilter();
 
+   public FilterType<WebApp30Descriptor> filter();
 
-   public T removeFilter();
+   public WebApp30Descriptor removeFilterMapping();
 
-   public FilterType<T> filter();
+   public FilterMappingType<WebApp30Descriptor> filterMapping();
 
+   public WebApp30Descriptor removeListener();
 
+   public ListenerType<WebApp30Descriptor> listener();
 
-   public T removeFilterMapping();
+   public WebApp30Descriptor removeServlet();
 
-   public FilterMappingType<T> filterMapping();
+   public ServletType<WebApp30Descriptor> servlet();
 
+   public WebApp30Descriptor removeServletMapping();
 
+   public ServletMappingType<WebApp30Descriptor> servletMapping();
 
-   public T removeListener();
+   public WebApp30Descriptor removeSessionConfig();
 
-   public ListenerType<T> listener();
+   public SessionConfigType<WebApp30Descriptor> sessionConfig();
 
+   public WebApp30Descriptor removeMimeMapping();
 
+   public MimeMappingType<WebApp30Descriptor> mimeMapping();
 
-   public T removeServlet();
+   public WebApp30Descriptor removeWelcomeFileList();
 
-   public ServletType<T> servlet();
+   public WelcomeFileListType<WebApp30Descriptor> welcomeFileList();
 
+   public WebApp30Descriptor removeErrorPage();
 
+   public ErrorPageType<WebApp30Descriptor> errorPage();
 
-   public T removeServletMapping();
+   public WebApp30Descriptor removeJspConfig();
 
-   public ServletMappingType<T> servletMapping();
+   public JspConfigType<WebApp30Descriptor> jspConfig();
 
+   public WebApp30Descriptor removeSecurityConstraint();
 
+   public SecurityConstraintType<WebApp30Descriptor> securityConstraint();
 
-   public T removeSessionConfig();
+   public WebApp30Descriptor removeLoginConfig();
 
-   public SessionConfigType<T> sessionConfig();
+   public LoginConfigType<WebApp30Descriptor> loginConfig();
 
+   public WebApp30Descriptor removeSecurityRole();
 
+   public SecurityRoleType<WebApp30Descriptor> securityRole();
 
-   public T removeMimeMapping();
+   public WebApp30Descriptor removeMessageDestination();
 
-   public MimeMappingType<T> mimeMapping();
+   public MessageDestinationType<WebApp30Descriptor> messageDestination();
 
+   public WebApp30Descriptor removeLocaleEncodingMappingList();
 
+   public LocaleEncodingMappingListType<WebApp30Descriptor> localeEncodingMappingList();
 
-   public T removeWelcomeFileList();
+   public WebApp30Descriptor setDescription(String description);
 
-   public WelcomeFileListType<T> welcomeFileList();
+   public WebApp30Descriptor setDescriptionList(String... values);
 
-
-
-   public T removeErrorPage();
-
-   public ErrorPageType<T> errorPage();
-
-
-
-   public T removeJspConfig();
-
-   public JspConfigType<T> jspConfig();
-
-
-
-   public T removeSecurityConstraint();
-
-   public SecurityConstraintType<T> securityConstraint();
-
-
-
-   public T removeLoginConfig();
-
-   public LoginConfigType<T> loginConfig();
-
-
-
-   public T removeSecurityRole();
-
-   public SecurityRoleType<T> securityRole();
-
-
-
-   public T removeMessageDestination();
-
-   public MessageDestinationType<T> messageDestination();
-
-
-
-   public T removeLocaleEncodingMappingList();
-
-   public LocaleEncodingMappingListType<T> localeEncodingMappingList();
-
-
-
-   public T setDescription(String description);
-   public T setDescriptionList(String ... values);
-   public T removeAllDescription();
+   public WebApp30Descriptor removeAllDescription();
 
    public List<String> getDescriptionList();
 
+   public WebApp30Descriptor setDisplayName(String displayName);
 
-   public T setDisplayName(String displayName);
-   public T setDisplayNameList(String ... values);
-   public T removeAllDisplayName();
+   public WebApp30Descriptor setDisplayNameList(String... values);
+
+   public WebApp30Descriptor removeAllDisplayName();
 
    public List<String> getDisplayNameList();
 
+   public WebApp30Descriptor removeAllIcon();
 
-   public T removeAllIcon();
+   public IconType<WebApp30Descriptor> icon();
 
-   public IconType<T> icon();
-   public List<IconType<T>> getIconList();
+   public List<IconType<WebApp30Descriptor>> getIconList();
 
+   public WebApp30Descriptor removeAllEnvEntry();
 
+   public EnvEntryType<WebApp30Descriptor> envEntry();
 
-   public T removeAllEnvEntry();
+   public List<EnvEntryType<WebApp30Descriptor>> getEnvEntryList();
 
-   public EnvEntryType<T> envEntry();
-   public List<EnvEntryType<T>> getEnvEntryList();
+   public WebApp30Descriptor removeAllEjbRef();
 
+   public EjbRefType<WebApp30Descriptor> ejbRef();
 
+   public List<EjbRefType<WebApp30Descriptor>> getEjbRefList();
 
-   public T removeAllEjbRef();
+   public WebApp30Descriptor removeAllEjbLocalRef();
 
-   public EjbRefType<T> ejbRef();
-   public List<EjbRefType<T>> getEjbRefList();
+   public EjbLocalRefType<WebApp30Descriptor> ejbLocalRef();
 
+   public List<EjbLocalRefType<WebApp30Descriptor>> getEjbLocalRefList();
 
+   public WebApp30Descriptor removeAllResourceRef();
 
-   public T removeAllEjbLocalRef();
+   public ResourceRefType<WebApp30Descriptor> resourceRef();
 
-   public EjbLocalRefType<T> ejbLocalRef();
-   public List<EjbLocalRefType<T>> getEjbLocalRefList();
+   public List<ResourceRefType<WebApp30Descriptor>> getResourceRefList();
 
+   public WebApp30Descriptor removeAllResourceEnvRef();
 
+   public ResourceEnvRefType<WebApp30Descriptor> resourceEnvRef();
 
-   public T removeAllResourceRef();
+   public List<ResourceEnvRefType<WebApp30Descriptor>> getResourceEnvRefList();
 
-   public ResourceRefType<T> resourceRef();
-   public List<ResourceRefType<T>> getResourceRefList();
+   public WebApp30Descriptor removeAllMessageDestinationRef();
 
+   public MessageDestinationRefType<WebApp30Descriptor> messageDestinationRef();
 
+   public List<MessageDestinationRefType<WebApp30Descriptor>> getMessageDestinationRefList();
 
-   public T removeAllResourceEnvRef();
+   public WebApp30Descriptor removeAllPersistenceContextRef();
 
-   public ResourceEnvRefType<T> resourceEnvRef();
-   public List<ResourceEnvRefType<T>> getResourceEnvRefList();
+   public PersistenceContextRefType<WebApp30Descriptor> persistenceContextRef();
 
+   public List<PersistenceContextRefType<WebApp30Descriptor>> getPersistenceContextRefList();
 
+   public WebApp30Descriptor removeAllPersistenceUnitRef();
 
-   public T removeAllMessageDestinationRef();
+   public PersistenceUnitRefType<WebApp30Descriptor> persistenceUnitRef();
 
-   public MessageDestinationRefType<T> messageDestinationRef();
-   public List<MessageDestinationRefType<T>> getMessageDestinationRefList();
+   public List<PersistenceUnitRefType<WebApp30Descriptor>> getPersistenceUnitRefList();
 
+   public WebApp30Descriptor removeAllPostConstruct();
 
+   public LifecycleCallbackType<WebApp30Descriptor> postConstruct();
 
-   public T removeAllPersistenceContextRef();
+   public List<LifecycleCallbackType<WebApp30Descriptor>> getPostConstructList();
 
-   public PersistenceContextRefType<T> persistenceContextRef();
-   public List<PersistenceContextRefType<T>> getPersistenceContextRefList();
+   public WebApp30Descriptor removeAllPreDestroy();
 
+   public LifecycleCallbackType<WebApp30Descriptor> preDestroy();
 
+   public List<LifecycleCallbackType<WebApp30Descriptor>> getPreDestroyList();
 
-   public T removeAllPersistenceUnitRef();
+   public WebApp30Descriptor removeAllDataSource();
 
-   public PersistenceUnitRefType<T> persistenceUnitRef();
-   public List<PersistenceUnitRefType<T>> getPersistenceUnitRefList();
+   public DataSourceType<WebApp30Descriptor> dataSource();
 
+   public List<DataSourceType<WebApp30Descriptor>> getDataSourceList();
 
-
-   public T removeAllPostConstruct();
-
-   public LifecycleCallbackType<T> postConstruct();
-   public List<LifecycleCallbackType<T>> getPostConstructList();
-
-
-
-   public T removeAllPreDestroy();
-
-   public LifecycleCallbackType<T> preDestroy();
-   public List<LifecycleCallbackType<T>> getPreDestroyList();
-
-
-
-   public T removeAllDataSource();
-
-   public DataSourceType<T> dataSource();
-   public List<DataSourceType<T>> getDataSourceList();
-
-
-
-   public T setVersion(String version);
+   public WebApp30Descriptor setVersion(String version);
 
    public String getVersion();
 
-
-   public T setMetadataComplete(Boolean metadataComplete);
+   public WebApp30Descriptor setMetadataComplete(Boolean metadataComplete);
 
    public Boolean isMetadataComplete();
 
+   public WebApp30Descriptor setModuleName(String moduleName);
 
-   public T setModuleName(String moduleName);
-   public T removeModuleName();
+   public WebApp30Descriptor removeModuleName();
 
    public String getModuleName();
 
+   public WebApp30Descriptor removeAbsoluteOrdering();
 
-   public T removeAbsoluteOrdering();
-
-   public AbsoluteOrderingType<T> absoluteOrdering();
-
+   public AbsoluteOrderingType<WebApp30Descriptor> absoluteOrdering();
 
 }

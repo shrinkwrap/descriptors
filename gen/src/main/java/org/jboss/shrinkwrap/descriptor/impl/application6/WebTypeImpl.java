@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.impl.application6; 
+package org.jboss.shrinkwrap.descriptor.impl.application6;
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
 import org.jboss.shrinkwrap.descriptor.api.application6.WebType;
@@ -6,7 +6,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T19:10:14.736-04:00
+ * Generation date :2011-06-19T21:45:00.466-04:00
  */
 public class WebTypeImpl<T> implements Child<T>, WebType<T>
 {
@@ -17,38 +17,40 @@ public class WebTypeImpl<T> implements Child<T>, WebType<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
+
    private Node node;
+
    private Node childNode;
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public WebTypeImpl(T t, String descriptorName, Node node)   {
+   public WebTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public WebTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public WebTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
-
 
    public T up()
    {
       return t;
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : web-uri
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public WebType<T> setWebUri(String webUri)   {
+   public WebType<T> setWebUri(String webUri)
+   {
       childNode.getOrCreate("web-uri").text(webUri);
       return this;
    }
@@ -64,13 +66,12 @@ public class WebTypeImpl<T> implements Child<T>, WebType<T>
       return childNode.textValue("web-uri");
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : context-root
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public WebType<T> setContextRoot(String contextRoot)   {
+   public WebType<T> setContextRoot(String contextRoot)
+   {
       childNode.getOrCreate("context-root").text(contextRoot);
       return this;
    }

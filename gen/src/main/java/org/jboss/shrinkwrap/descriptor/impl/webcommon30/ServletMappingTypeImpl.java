@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.impl.webcommon30; 
+package org.jboss.shrinkwrap.descriptor.impl.webcommon30;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T19:10:14.736-04:00
+ * Generation date :2011-06-19T21:45:00.466-04:00
  */
 public class ServletMappingTypeImpl<T> implements Child<T>, ServletMappingType<T>
 {
@@ -20,38 +20,40 @@ public class ServletMappingTypeImpl<T> implements Child<T>, ServletMappingType<T
    // -------------------------------------------------------------------------------------||
 
    private T t;
+
    private Node node;
+
    private Node childNode;
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public ServletMappingTypeImpl(T t, String descriptorName, Node node)   {
+   public ServletMappingTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public ServletMappingTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public ServletMappingTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
-
 
    public T up()
    {
       return t;
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : servlet-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public ServletMappingType<T> setServletName(String servletName)   {
+   public ServletMappingType<T> setServletName(String servletName)
+   {
       childNode.getOrCreate("servlet-name").text(servletName);
       return this;
    }
@@ -67,8 +69,6 @@ public class ServletMappingTypeImpl<T> implements Child<T>, ServletMappingType<T
       return childNode.textValue("servlet-name");
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : url-pattern
    // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
@@ -79,13 +79,13 @@ public class ServletMappingTypeImpl<T> implements Child<T>, ServletMappingType<T
       return this;
    }
 
-   public ServletMappingType<T> setUrlPatternList(String ... values)
+   public ServletMappingType<T> setUrlPatternList(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
          setUrlPattern(name);
       }
-         return this;
+      return this;
    }
 
    public ServletMappingType<T> removeAllUrlPattern()

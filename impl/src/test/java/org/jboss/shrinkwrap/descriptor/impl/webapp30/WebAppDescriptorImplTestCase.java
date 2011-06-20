@@ -18,6 +18,7 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
 import org.jboss.shrinkwrap.descriptor.api.jsp22.JspPropertyGroupType;
 import org.jboss.shrinkwrap.descriptor.api.jsp22.TaglibType;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebApp30Descriptor;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.FilterType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.TrackingModeType;
 import org.jboss.shrinkwrap.descriptor.impl.base.XMLImporter;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
@@ -234,7 +235,7 @@ public class WebAppDescriptorImplTestCase
                        .icon().setSmallIcon("small2").setLargeIcon("large2").up()
                     .up();
 
-     List<IconType> list = web.filter().getIconList();
+     List<IconType<FilterType<WebApp30Descriptor>>> list = web.filter().getIconList();
      assertTrue(list.size() == 2);
      for (IconType icon: list) 
      {
@@ -363,7 +364,7 @@ public class WebAppDescriptorImplTestCase
    // Helper Methods ----------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
    
-   private WebApp30Descriptor<WebApp30DescriptorImpl> create()
+   private WebApp30Descriptor create()
    {
       return Descriptors.create(WebApp30Descriptor.class);
    }

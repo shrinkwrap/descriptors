@@ -141,7 +141,7 @@ public class Application6DescriptorImplTestCase
    // Helper Methods ----------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
    
-   private Application6Descriptor<Application6DescriptorImpl> create()
+   private Application6Descriptor create()
    {
       return Descriptors.create(Application6Descriptor.class);
    }

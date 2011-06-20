@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.impl.webcommon30; 
+package org.jboss.shrinkwrap.descriptor.impl.webcommon30;
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.FilterMappingType;
@@ -6,7 +6,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-15T01:04:55.579+02:00
+ * Generation date :2011-06-19T21:45:00.466-04:00
  */
 public class FilterMappingTypeImpl<T> implements Child<T>, FilterMappingType<T>
 {
@@ -17,38 +17,40 @@ public class FilterMappingTypeImpl<T> implements Child<T>, FilterMappingType<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
+
    private Node node;
+
    private Node childNode;
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public FilterMappingTypeImpl(T t, String descriptorName, Node node)   {
+   public FilterMappingTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public FilterMappingTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public FilterMappingTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
-
 
    public T up()
    {
       return t;
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : filter-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public FilterMappingType<T> setFilterName(String filterName)   {
+   public FilterMappingType<T> setFilterName(String filterName)
+   {
       childNode.getOrCreate("filter-name").text(filterName);
       return this;
    }
@@ -64,13 +66,12 @@ public class FilterMappingTypeImpl<T> implements Child<T>, FilterMappingType<T>
       return childNode.textValue("filter-name");
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : dispatcher
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public FilterMappingType<T> setDispatcher(String dispatcher)   {
+   public FilterMappingType<T> setDispatcher(String dispatcher)
+   {
       childNode.getOrCreate("dispatcher").text(dispatcher);
       return this;
    }
@@ -86,13 +87,12 @@ public class FilterMappingTypeImpl<T> implements Child<T>, FilterMappingType<T>
       return childNode.textValue("dispatcher");
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : url-pattern
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public FilterMappingType<T> setUrlPattern(String urlPattern)   {
+   public FilterMappingType<T> setUrlPattern(String urlPattern)
+   {
       childNode.getOrCreate("url-pattern").text(urlPattern);
       return this;
    }
@@ -108,13 +108,12 @@ public class FilterMappingTypeImpl<T> implements Child<T>, FilterMappingType<T>
       return childNode.textValue("url-pattern");
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : servlet-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public FilterMappingType<T> setServletName(String servletName)   {
+   public FilterMappingType<T> setServletName(String servletName)
+   {
       childNode.getOrCreate("servlet-name").text(servletName);
       return this;
    }

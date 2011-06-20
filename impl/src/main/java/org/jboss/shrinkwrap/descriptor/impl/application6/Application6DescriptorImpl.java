@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptor.impl.application6; 
+package org.jboss.shrinkwrap.descriptor.impl.application6;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,9 +36,9 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-15T01:04:55.579+02:00
+ * Generation date :2011-06-19T21:45:00.466-04:00
  */
-public class Application6DescriptorImpl extends NodeProviderImplBase implements Application6Descriptor<Application6DescriptorImpl>
+public class Application6DescriptorImpl extends NodeProviderImplBase implements Application6Descriptor
 {
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
@@ -52,7 +52,7 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
 
    public Application6DescriptorImpl(String descriptorName)
    {
-       this(descriptorName, new Node("application"));
+      this(descriptorName, new Node("application"));
    }
 
    public Application6DescriptorImpl(String descriptorName, Node node)
@@ -79,12 +79,13 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
    // Element type : application-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public Application6DescriptorImpl setApplicationName(String applicationName)   {
+   public Application6Descriptor setApplicationName(String applicationName)
+   {
       model.getOrCreate("application-name").text(applicationName);
       return this;
    }
 
-   public Application6DescriptorImpl removeApplicationName()
+   public Application6Descriptor removeApplicationName()
    {
       model.remove("application-name");
       return this;
@@ -95,17 +96,17 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
       return model.textValue("application-name");
    }
 
-
    // -------------------------------------------------------------------------------------||
    // Element type : initialize-in-order
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public Application6DescriptorImpl setInitializeInOrder(String initializeInOrder)   {
+   public Application6Descriptor setInitializeInOrder(String initializeInOrder)
+   {
       model.getOrCreate("initialize-in-order").text(initializeInOrder);
       return this;
    }
 
-   public Application6DescriptorImpl removeInitializeInOrder()
+   public Application6Descriptor removeInitializeInOrder()
    {
       model.remove("initialize-in-order");
       return this;
@@ -116,55 +117,52 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
       return model.textValue("initialize-in-order");
    }
 
-
    // -------------------------------------------------------------------------------------||
    // Element type : module
    // isComplexType: true   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public Application6DescriptorImpl removeModule()
+   public Application6Descriptor removeModule()
    {
       model.remove("module");
       return this;
    }
 
-   public ModuleType<Application6DescriptorImpl> module()
+   public ModuleType<Application6Descriptor> module()
    {
       Node node = model.getOrCreate(ModuleTypeImpl.nodeName);
-      ModuleType<Application6DescriptorImpl> module = new ModuleTypeImpl<Application6DescriptorImpl>(this, "", model, node);
+      ModuleType<Application6Descriptor> module = new ModuleTypeImpl<Application6Descriptor>(this, "", model, node);
       return module;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : security-role
    // isComplexType: true   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public Application6DescriptorImpl removeSecurityRole()
+   public Application6Descriptor removeSecurityRole()
    {
       model.remove("security-role");
       return this;
    }
 
-   public SecurityRoleType<Application6DescriptorImpl> securityRole()
+   public SecurityRoleType<Application6Descriptor> securityRole()
    {
       Node node = model.getOrCreate(SecurityRoleTypeImpl.nodeName);
-      SecurityRoleType<Application6DescriptorImpl> securityRole = new SecurityRoleTypeImpl<Application6DescriptorImpl>(this, "", model, node);
+      SecurityRoleType<Application6Descriptor> securityRole = new SecurityRoleTypeImpl<Application6Descriptor>(this,
+            "", model, node);
       return securityRole;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : library-directory
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public Application6DescriptorImpl setLibraryDirectory(String libraryDirectory)   {
+   public Application6Descriptor setLibraryDirectory(String libraryDirectory)
+   {
       model.getOrCreate("library-directory").text(libraryDirectory);
       return this;
    }
 
-   public Application6DescriptorImpl removeLibraryDirectory()
+   public Application6Descriptor removeLibraryDirectory()
    {
       model.remove("library-directory");
       return this;
@@ -175,217 +173,205 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
       return model.textValue("library-directory");
    }
 
-
    // -------------------------------------------------------------------------------------||
    // Element type : env-entry
    // isComplexType: true   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public Application6DescriptorImpl removeEnvEntry()
+   public Application6Descriptor removeEnvEntry()
    {
       model.remove("env-entry");
       return this;
    }
 
-   public EnvEntryType<Application6DescriptorImpl> envEntry()
+   public EnvEntryType<Application6Descriptor> envEntry()
    {
       Node node = model.getOrCreate(EnvEntryTypeImpl.nodeName);
-      EnvEntryType<Application6DescriptorImpl> envEntry = new EnvEntryTypeImpl<Application6DescriptorImpl>(this, "", model, node);
+      EnvEntryType<Application6Descriptor> envEntry = new EnvEntryTypeImpl<Application6Descriptor>(this, "", model,
+            node);
       return envEntry;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : ejb-ref
    // isComplexType: true   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public Application6DescriptorImpl removeEjbRef()
+   public Application6Descriptor removeEjbRef()
    {
       model.remove("ejb-ref");
       return this;
    }
 
-   public EjbRefType<Application6DescriptorImpl> ejbRef()
+   public EjbRefType<Application6Descriptor> ejbRef()
    {
       Node node = model.getOrCreate(EjbRefTypeImpl.nodeName);
-      EjbRefType<Application6DescriptorImpl> ejbRef = new EjbRefTypeImpl<Application6DescriptorImpl>(this, "", model, node);
+      EjbRefType<Application6Descriptor> ejbRef = new EjbRefTypeImpl<Application6Descriptor>(this, "", model, node);
       return ejbRef;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : ejb-local-ref
    // isComplexType: true   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public Application6DescriptorImpl removeEjbLocalRef()
+   public Application6Descriptor removeEjbLocalRef()
    {
       model.remove("ejb-local-ref");
       return this;
    }
 
-   public EjbLocalRefType<Application6DescriptorImpl> ejbLocalRef()
+   public EjbLocalRefType<Application6Descriptor> ejbLocalRef()
    {
       Node node = model.getOrCreate(EjbLocalRefTypeImpl.nodeName);
-      EjbLocalRefType<Application6DescriptorImpl> ejbLocalRef = new EjbLocalRefTypeImpl<Application6DescriptorImpl>(this, "", model, node);
+      EjbLocalRefType<Application6Descriptor> ejbLocalRef = new EjbLocalRefTypeImpl<Application6Descriptor>(this, "",
+            model, node);
       return ejbLocalRef;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : resource-ref
    // isComplexType: true   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public Application6DescriptorImpl removeResourceRef()
+   public Application6Descriptor removeResourceRef()
    {
       model.remove("resource-ref");
       return this;
    }
 
-   public ResourceRefType<Application6DescriptorImpl> resourceRef()
+   public ResourceRefType<Application6Descriptor> resourceRef()
    {
       Node node = model.getOrCreate(ResourceRefTypeImpl.nodeName);
-      ResourceRefType<Application6DescriptorImpl> resourceRef = new ResourceRefTypeImpl<Application6DescriptorImpl>(this, "", model, node);
+      ResourceRefType<Application6Descriptor> resourceRef = new ResourceRefTypeImpl<Application6Descriptor>(this, "",
+            model, node);
       return resourceRef;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : resource-env-ref
    // isComplexType: true   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public Application6DescriptorImpl removeResourceEnvRef()
+   public Application6Descriptor removeResourceEnvRef()
    {
       model.remove("resource-env-ref");
       return this;
    }
 
-   public ResourceEnvRefType<Application6DescriptorImpl> resourceEnvRef()
+   public ResourceEnvRefType<Application6Descriptor> resourceEnvRef()
    {
       Node node = model.getOrCreate(ResourceEnvRefTypeImpl.nodeName);
-      ResourceEnvRefType<Application6DescriptorImpl> resourceEnvRef = new ResourceEnvRefTypeImpl<Application6DescriptorImpl>(this, "", model, node);
+      ResourceEnvRefType<Application6Descriptor> resourceEnvRef = new ResourceEnvRefTypeImpl<Application6Descriptor>(
+            this, "", model, node);
       return resourceEnvRef;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : message-destination-ref
    // isComplexType: true   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public Application6DescriptorImpl removeMessageDestinationRef()
+   public Application6Descriptor removeMessageDestinationRef()
    {
       model.remove("message-destination-ref");
       return this;
    }
 
-   public MessageDestinationRefType<Application6DescriptorImpl> messageDestinationRef()
+   public MessageDestinationRefType<Application6Descriptor> messageDestinationRef()
    {
       Node node = model.getOrCreate(MessageDestinationRefTypeImpl.nodeName);
-      MessageDestinationRefType<Application6DescriptorImpl> messageDestinationRef = new MessageDestinationRefTypeImpl<Application6DescriptorImpl>(this, "", model, node);
+      MessageDestinationRefType<Application6Descriptor> messageDestinationRef = new MessageDestinationRefTypeImpl<Application6Descriptor>(
+            this, "", model, node);
       return messageDestinationRef;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : persistence-context-ref
    // isComplexType: true   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public Application6DescriptorImpl removePersistenceContextRef()
+   public Application6Descriptor removePersistenceContextRef()
    {
       model.remove("persistence-context-ref");
       return this;
    }
 
-   public PersistenceContextRefType<Application6DescriptorImpl> persistenceContextRef()
+   public PersistenceContextRefType<Application6Descriptor> persistenceContextRef()
    {
       Node node = model.getOrCreate(PersistenceContextRefTypeImpl.nodeName);
-      PersistenceContextRefType<Application6DescriptorImpl> persistenceContextRef = new PersistenceContextRefTypeImpl<Application6DescriptorImpl>(this, "", model, node);
+      PersistenceContextRefType<Application6Descriptor> persistenceContextRef = new PersistenceContextRefTypeImpl<Application6Descriptor>(
+            this, "", model, node);
       return persistenceContextRef;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : persistence-unit-ref
    // isComplexType: true   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public Application6DescriptorImpl removePersistenceUnitRef()
+   public Application6Descriptor removePersistenceUnitRef()
    {
       model.remove("persistence-unit-ref");
       return this;
    }
 
-   public PersistenceUnitRefType<Application6DescriptorImpl> persistenceUnitRef()
+   public PersistenceUnitRefType<Application6Descriptor> persistenceUnitRef()
    {
       Node node = model.getOrCreate(PersistenceUnitRefTypeImpl.nodeName);
-      PersistenceUnitRefType<Application6DescriptorImpl> persistenceUnitRef = new PersistenceUnitRefTypeImpl<Application6DescriptorImpl>(this, "", model, node);
+      PersistenceUnitRefType<Application6Descriptor> persistenceUnitRef = new PersistenceUnitRefTypeImpl<Application6Descriptor>(
+            this, "", model, node);
       return persistenceUnitRef;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : message-destination
    // isComplexType: true   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public Application6DescriptorImpl removeMessageDestination()
+   public Application6Descriptor removeMessageDestination()
    {
       model.remove("message-destination");
       return this;
    }
 
-   public MessageDestinationType<Application6DescriptorImpl> messageDestination()
+   public MessageDestinationType<Application6Descriptor> messageDestination()
    {
       Node node = model.getOrCreate(MessageDestinationTypeImpl.nodeName);
-      MessageDestinationType<Application6DescriptorImpl> messageDestination = new MessageDestinationTypeImpl<Application6DescriptorImpl>(this, "", model, node);
+      MessageDestinationType<Application6Descriptor> messageDestination = new MessageDestinationTypeImpl<Application6Descriptor>(
+            this, "", model, node);
       return messageDestination;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : data-source
    // isComplexType: true   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public Application6DescriptorImpl removeDataSource()
+   public Application6Descriptor removeDataSource()
    {
       model.remove("data-source");
       return this;
    }
 
-   public DataSourceType<Application6DescriptorImpl> dataSource()
+   public DataSourceType<Application6Descriptor> dataSource()
    {
       Node node = model.getOrCreate(DataSourceTypeImpl.nodeName);
-      DataSourceType<Application6DescriptorImpl> dataSource = new DataSourceTypeImpl<Application6DescriptorImpl>(this, "", model, node);
+      DataSourceType<Application6Descriptor> dataSource = new DataSourceTypeImpl<Application6Descriptor>(this, "",
+            model, node);
       return dataSource;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : description
    // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public Application6DescriptorImpl setDescription(String description)
+   public Application6Descriptor setDescription(String description)
    {
       model.create("description").text(description);
       return this;
    }
 
-   public Application6DescriptorImpl setDescriptionList(String ... values)
+   public Application6Descriptor setDescriptionList(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
          setDescription(name);
       }
-         return this;
+      return this;
    }
 
-   public Application6DescriptorImpl removeAllDescription()
+   public Application6Descriptor removeAllDescription()
    {
       model.remove("description");
       return this;
@@ -402,27 +388,26 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
       return result;
    }
 
-
    // -------------------------------------------------------------------------------------||
    // Element type : display-name
    // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public Application6DescriptorImpl setDisplayName(String displayName)
+   public Application6Descriptor setDisplayName(String displayName)
    {
       model.create("display-name").text(displayName);
       return this;
    }
 
-   public Application6DescriptorImpl setDisplayNameList(String ... values)
+   public Application6Descriptor setDisplayNameList(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
          setDisplayName(name);
       }
-         return this;
+      return this;
    }
 
-   public Application6DescriptorImpl removeAllDisplayName()
+   public Application6Descriptor removeAllDisplayName()
    {
       model.remove("display-name");
       return this;
@@ -439,34 +424,31 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
       return result;
    }
 
-
    // -------------------------------------------------------------------------------------||
    // Element type : icon
    // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public Application6DescriptorImpl removeAllIcon()
+   public Application6Descriptor removeAllIcon()
    {
       model.remove("icon");
       return this;
    }
 
-   public IconType<Application6DescriptorImpl> icon()
+   public IconType<Application6Descriptor> icon()
    {
-      return new IconTypeImpl<Application6DescriptorImpl>(this, "", model);
+      return new IconTypeImpl<Application6Descriptor>(this, "", model);
    }
 
-   public List<IconType<Application6DescriptorImpl>> getIconList()
+   public List<IconType<Application6Descriptor>> getIconList()
    {
-      List<IconType<Application6DescriptorImpl>> list = new ArrayList<IconType<Application6DescriptorImpl>>();
+      List<IconType<Application6Descriptor>> list = new ArrayList<IconType<Application6Descriptor>>();
       List<Node> nodeList = model.get(IconTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         IconType<Application6DescriptorImpl>  type = new IconTypeImpl<Application6DescriptorImpl>(this, "", model, node);
+         IconType<Application6Descriptor> type = new IconTypeImpl<Application6Descriptor>(this, "", model, node);
          list.add(type);
       }
       return list;
    }
-
-
 
 }
