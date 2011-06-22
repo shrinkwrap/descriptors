@@ -4,7 +4,24 @@ import org.jboss.shrinkwrap.descriptor.api.Child;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T12:04:36.305-04:00
+ *
+ * Original Documentation:
+ *
+ *
+ * The lifecycle-callback type specifies a method on a
+ * class to be called when a lifecycle event occurs.
+ * Note that each class may have only one lifecycle callback
+ * method for any given event and that the method may not
+ * be overloaded.
+ *
+ * If the lifefycle-callback-class element is missing then
+ * the class defining the callback is assumed to be the
+ * component class in scope at the place in the descriptor
+ * in which the callback definition appears.
+ *
+ *
+ *
  */
 public interface LifecycleCallbackType<T> extends Child<T>
 {

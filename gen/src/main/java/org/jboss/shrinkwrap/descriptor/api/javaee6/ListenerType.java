@@ -6,7 +6,16 @@ import org.jboss.shrinkwrap.descriptor.api.Child;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T14:39:12.971-04:00
+ *
+ * Original Documentation:
+ *
+ *
+ * The listenerType indicates the deployment properties for a web
+ * application listener bean.
+ *
+ *
+ *
  */
 public interface ListenerType<T> extends Child<T>
 {

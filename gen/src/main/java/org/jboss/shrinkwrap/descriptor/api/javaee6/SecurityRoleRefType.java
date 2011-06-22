@@ -6,7 +6,21 @@ import org.jboss.shrinkwrap.descriptor.api.Child;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T14:39:12.971-04:00
+ *
+ * Original Documentation:
+ *
+ *
+ * The security-role-refType contains the declaration of a
+ * security role reference in a component's or a
+ * Deployment Component's code. The declaration consists of an
+ * optional description, the security role name used in the
+ * code, and an optional link to a security role. If the
+ * security role is not specified, the Deployer must choose an
+ * appropriate security role.
+ *
+ *
+ *
  */
 public interface SecurityRoleRefType<T> extends Child<T>
 {

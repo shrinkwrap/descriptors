@@ -19,7 +19,21 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T14:39:12.971-04:00
+ *
+ * Original Documentation:
+ *
+ *
+ * The servletType is used to declare a servlet.
+ * It contains the declarative data of a
+ * servlet. If a jsp-file is specified and the load-on-startup
+ * element is present, then the JSP should be precompiled and
+ * loaded.
+ *
+ * Used in: web-app
+ *
+ *
+ *
  */
 public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
 {

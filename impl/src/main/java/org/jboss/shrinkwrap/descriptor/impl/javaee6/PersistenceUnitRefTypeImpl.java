@@ -10,7 +10,39 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T12:04:36.305-04:00
+ *
+ * Original Documentation:
+ *
+ * [
+ * The persistence-unit-ref element contains a declaration
+ * of Deployment Component's reference to a persistence unit
+ * associated within a Deployment Component's
+ * environment. It consists of:
+ *
+ * - an optional description
+ * - the persistence unit reference name
+ * - an optional persistence unit name. If not specified,
+ * the default persistence unit is assumed.
+ * - optional injection targets
+ *
+ * Examples:
+ *
+ * <persistence-unit-ref>
+ * <persistence-unit-ref-name>myPersistenceUnit
+ * </persistence-unit-ref-name>
+ * </persistence-unit-ref>
+ *
+ * <persistence-unit-ref>
+ * <persistence-unit-ref-name>myPersistenceUnit
+ * </persistence-unit-ref-name>
+ * <persistence-unit-name>PersistenceUnit1
+ * </persistence-unit-name>
+ * </persistence-unit-ref>
+ *
+ *
+ *
+ *
  */
 public class PersistenceUnitRefTypeImpl<T> implements Child<T>, PersistenceUnitRefType<T>
 {

@@ -6,7 +6,22 @@ import org.jboss.shrinkwrap.descriptor.api.Child;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T12:04:36.305-04:00
+ *
+ * Original Documentation:
+ *
+ *
+ * This element contains a sequence of "name" elements, each of
+ * which
+ * refers to an application configuration resource by the "name"
+ * declared on its web.xml fragment. This element can also contain
+ * a single "others" element which specifies that this document
+ * comes
+ * before or after other documents within the application.
+ * See section 8.2.2 of the specification for details.
+ *
+ *
+ *
  */
 public interface OrderingOrderingType<T> extends Child<T>
 {

@@ -18,16 +18,16 @@
     <!-- ****************************************************** -->
     <xsl:template name="GenerateStatistic">
         <statistics>
-            <xsl:for-each select="//schemaName">
+            <xsl:for-each select="//schema">
                 <xsl:call-template name="WriteStatistic">
-                    <xsl:with-param name="pDocument" select="text()"/>
+                    <xsl:with-param name="pDocument" select="@name"/>
                     <xsl:with-param name="pArea" select="'groups'"/>
                 </xsl:call-template>
             </xsl:for-each>
 
-            <xsl:for-each select="//schemaName">
+            <xsl:for-each select="//schema">
                 <xsl:call-template name="WriteStatistic">
-                    <xsl:with-param name="pDocument" select="text()"/>
+                    <xsl:with-param name="pDocument" select="@name"/>
                     <xsl:with-param name="pArea" select="'enums'"/>
                 </xsl:call-template>
             </xsl:for-each>
@@ -41,9 +41,9 @@
     <!-- ****************************************************** -->
     <xsl:template name="GenerateDataTypes">
         <datatypes>
-            <xsl:for-each select="//schemaName">
+            <xsl:for-each select="//schema">
                 <xsl:call-template name="WriteDataTypes">
-                    <xsl:with-param name="pDocument" select="text()"/>
+                    <xsl:with-param name="pDocument" select="@name"/>
                 </xsl:call-template>
             </xsl:for-each>
         </datatypes>
@@ -80,9 +80,9 @@
     <!-- ****************************************************** -->
     <xsl:template name="GenerateEnums">
         <enums>
-            <xsl:for-each select="//schemaName">
+            <xsl:for-each select="//schema">
                 <xsl:call-template name="WriteEnums">
-                    <xsl:with-param name="pDocument" select="text()"/>
+                    <xsl:with-param name="pDocument" select="@name"/>
                     <xsl:with-param name="pPackage" select="@packageApi"/>
                 </xsl:call-template>
             </xsl:for-each>
@@ -97,9 +97,9 @@
     <!-- ****************************************************** -->
     <xsl:template name="GenerateGroups">
         <groups>
-            <xsl:for-each select="//schemaName">
+            <xsl:for-each select="//schema">
                 <xsl:call-template name="WriteGroups">
-                    <xsl:with-param name="pDocument" select="text()"/>
+                    <xsl:with-param name="pDocument" select="@name"/>
                     <xsl:with-param name="pPackage" select="@packageApi"/>
                 </xsl:call-template>
             </xsl:for-each>
@@ -112,9 +112,9 @@
     <!-- ****************************************************** -->
     <xsl:template name="GenerateClasses">
         <classes>
-            <xsl:for-each select="//schemaName">
+            <xsl:for-each select="//schema">
                 <xsl:call-template name="WriteClasses">
-                    <xsl:with-param name="pDocument" select="text()"/>
+                    <xsl:with-param name="pDocument" select="@name"/>
                     <xsl:with-param name="pPackageApi" select="@packageApi"/>
                     <xsl:with-param name="pPackageImpl" select="@packageImpl"/>
                 </xsl:call-template>
@@ -128,11 +128,12 @@
     <!-- ****************************************************** -->
     <xsl:template name="GenerateDescriptors">
         <descriptors>
-            <xsl:for-each select="//schemaName">
+            <xsl:for-each select="//schema">
                 <xsl:if test="@generateDDClass='true'">
+                    <xsl:variable name="vNameSpaces" select="namespace/text()"/>
                     <descriptor>
                         <xsl:attribute name="schemaName">
-                            <xsl:value-of select="text()"/>
+                            <xsl:value-of select="@name"/>
                         </xsl:attribute>
                         <xsl:attribute name="packageApi">
                             <xsl:value-of select="@packageApi"/>
@@ -140,7 +141,19 @@
                         <xsl:attribute name="packageImpl">
                             <xsl:value-of select="@packageImpl"/>
                         </xsl:attribute>
-                        <xsl:for-each select="document(text())/*/xsd:element">
+                        
+                        <xsl:for-each select="namespace">
+                            <namespace>
+                                <xsl:attribute name="name">
+                                    <xsl:value-of select="@name"/>
+                                </xsl:attribute>
+                                <xsl:attribute name="value">
+                                    <xsl:value-of select="@value"/>
+                                </xsl:attribute>
+                            </namespace>
+                        </xsl:for-each>
+                        
+                        <xsl:for-each select="document(@name)/*/xsd:element">
                             <!--                            <xsl:if test="local-name() = 'element'">-->
                             <element>
                                 <xsl:attribute name="name">
@@ -148,6 +161,9 @@
                                 </xsl:attribute>
                                 <xsl:attribute name="type">
                                     <xsl:value-of select="@type"/>
+                                </xsl:attribute>
+                                <xsl:attribute name="defaultNamespaces">
+                                    <xsl:value-of select="$vNameSpaces"/>
                                 </xsl:attribute>
                             </element>
                             <!--                            </xsl:if>-->
@@ -295,9 +311,11 @@
         <xsl:param name="pPackage"/>
         <xsl:for-each select="document($pDocument)//xsd:complexType">
             <xsl:variable name="complexTypeName" select="@name"/>
+            <xsl:variable name="vDocumentation" select="xsd:annotation/xsd:documentation/text()"/>
             <xsl:for-each select="xsd:simpleContent/xsd:restriction">
                 <xsl:if test="@base='javaee:string'">
                     <xsl:if test="count(xsd:enumeration) > 0">
+                        <xsl:message select="concat('Metadata describing enum: ', $complexTypeName)"/>
                         <xsl:text>&#10;</xsl:text>
                         <enum>
                             <xsl:attribute name="name">
@@ -308,6 +326,9 @@
                             </xsl:attribute>
                             <xsl:attribute name="package">
                                 <xsl:value-of select="$pPackage"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="documentation">
+                                <xsl:value-of select="$vDocumentation"/>
                             </xsl:attribute>
                             <xsl:for-each select="xsd:enumeration">
                                 <value>
@@ -321,9 +342,11 @@
         </xsl:for-each>
         <xsl:for-each select="document($pDocument)//xsd:simpleType">
             <xsl:variable name="complexTypeName" select="@name"/>
+            <xsl:variable name="vDocumentation" select="xsd:annotation/xsd:documentation/text()"/>
             <xsl:for-each select="xsd:restriction">
                 <xsl:if test="@base='javaee:string' or 'xsd:string'">
                     <xsl:if test="count(xsd:enumeration) > 0">
+                        <xsl:message select="concat('Metadata describing enum: ', $complexTypeName)"/>
                         <xsl:text>&#10;</xsl:text>
                         <enum>
                             <xsl:attribute name="name">
@@ -334,6 +357,9 @@
                             </xsl:attribute>
                             <xsl:attribute name="package">
                                 <xsl:value-of select="$pPackage"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="documentation">
+                                <xsl:value-of select="$vDocumentation"/>
                             </xsl:attribute>
                             <xsl:for-each select="xsd:enumeration">
                                 <value>
@@ -358,7 +384,7 @@
         <xsl:for-each select="document($pDocument)//xsd:attributeGroup">
             <xsl:if test="@name!=''">
                 <xsl:variable name="groupName" select="@name"/>
-
+                <xsl:message select="concat('Metadata describing group: ', $groupName)"/>
                 <class>
                     <xsl:attribute name="name">
                         <xsl:value-of select="$groupName"/>
@@ -399,6 +425,7 @@
         <xsl:for-each select="document($pDocument)//xsd:group">
             <xsl:if test="@name!=''">
                 <xsl:variable name="groupName" select="@name"/>
+                <xsl:message select="concat('Metadata describing group: ', $groupName)"/>
                 <class>
                     <xsl:attribute name="name">
                         <xsl:value-of select="$groupName"/>
@@ -418,9 +445,9 @@
                                 <xsl:attribute name="type">
                                     <xsl:value-of select="@type"/>
                                 </xsl:attribute>
-                                 <xsl:attribute name="attribute">
-                                        <xsl:value-of select="false()"/>
-                                    </xsl:attribute>
+                                <xsl:attribute name="attribute">
+                                    <xsl:value-of select="false()"/>
+                                </xsl:attribute>
                                 <xsl:if test="@maxOccurs">
                                     <xsl:attribute name="maxOccurs">
                                         <xsl:value-of select="@maxOccurs"/>
@@ -449,7 +476,9 @@
         <xsl:param name="pPackageImpl"/>
         <xsl:for-each select="document($pDocument)//xsd:complexType">
             <xsl:variable name="complexTypeName" select="@name"/>
+            <xsl:variable name="vDocumentation" select="xsd:annotation/xsd:documentation/text()"/>
             <xsl:if test="count(xsd:sequence/xsd:element) > 0 or count(xsd:choice/xsd:element) > 0 or count(xsd:sequence/xsd:choice/xsd:element) > 0 or count(xsd:choice/xsd:group) > 0">
+                <xsl:message select="concat('Metadata describing class: ', $complexTypeName)"/>
                 <class>
                     <xsl:attribute name="name">
                         <xsl:value-of select="$complexTypeName"/>
@@ -462,6 +491,9 @@
                     </xsl:attribute>
                     <xsl:attribute name="packageImpl">
                         <xsl:value-of select="$pPackageImpl"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="documentation">
+                        <xsl:value-of select="$vDocumentation"/>
                     </xsl:attribute>
                     <xsl:for-each select="xsd:sequence/xsd:element">
                         <element>
@@ -476,6 +508,9 @@
                                     <xsl:value-of select="@maxOccurs"/>
                                 </xsl:attribute>
                             </xsl:if>
+                            <!-- <xsl:attribute name="documentation">
+                               <xsl:value-of select="xsd:annotation/xsd:documentation/text()"/>
+                            </xsl:attribute>-->
                         </element>
                     </xsl:for-each>
 
@@ -492,6 +527,9 @@
                                     <xsl:value-of select="@maxOccurs"/>
                                 </xsl:attribute>
                             </xsl:if>
+                            <!--  <xsl:attribute name="documentation">
+                               <xsl:value-of select="xsd:annotation/xsd:documentation/text()"/>
+                            </xsl:attribute>-->
                         </element>
                     </xsl:for-each>
 
@@ -508,6 +546,9 @@
                                     <xsl:value-of select="@maxOccurs"/>
                                 </xsl:attribute>
                             </xsl:if>
+                            <!-- <xsl:attribute name="documentation">
+                               <xsl:value-of select="xsd:annotation/xsd:documentation/text()"/>
+                            </xsl:attribute>-->
                         </element>
                     </xsl:for-each>
 

@@ -6,7 +6,25 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T14:39:12.971-04:00
+ *
+ * Original Documentation:
+ *
+ *
+ * The error-pageType contains a mapping between an error code
+ * or exception type to the path of a resource in the web
+ * application.
+ *
+ * Error-page declarations using the exception-type element in
+ * the deployment descriptor must be unique up to the class name of
+ * the exception-type. Similarly, error-page declarations using the
+ * status-code element must be unique in the deployment descriptor
+ * up to the status code.
+ *
+ * Used in: web-app
+ *
+ *
+ *
  */
 public class ErrorPageTypeImpl<T> implements Child<T>, ErrorPageType<T>
 {

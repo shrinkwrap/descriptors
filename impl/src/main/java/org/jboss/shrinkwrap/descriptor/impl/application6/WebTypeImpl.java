@@ -6,7 +6,16 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T12:04:36.305-04:00
+ *
+ * Original Documentation:
+ *
+ *
+ * The webType defines the web-uri and context-root of
+ * a web application module.
+ *
+ *
+ *
  */
 public class WebTypeImpl<T> implements Child<T>, WebType<T>
 {

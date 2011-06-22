@@ -10,7 +10,16 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T12:04:36.305-04:00
+ *
+ * Original Documentation:
+ *
+ *
+ * The listenerType indicates the deployment properties for a web
+ * application listener bean.
+ *
+ *
+ *
  */
 public class ListenerTypeImpl<T> implements Child<T>, ListenerType<T>
 {

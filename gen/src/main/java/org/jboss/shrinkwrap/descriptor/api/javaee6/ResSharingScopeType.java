@@ -2,7 +2,23 @@ package org.jboss.shrinkwrap.descriptor.api.javaee6;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T14:39:12.971-04:00
+ *
+ * Original Documentation:
+ *
+ *
+ * The res-sharing-scope type specifies whether connections
+ * obtained through the given resource manager connection
+ * factory reference can be shared. The value, if specified,
+ * must be one of the two following:
+ *
+ * Shareable
+ * Unshareable
+ *
+ * The default value is Shareable.
+ *
+ *
+ *
  */
 public enum ResSharingScopeType {
    _SHAREABLE("Shareable"), _UNSHAREABLE("Unshareable");

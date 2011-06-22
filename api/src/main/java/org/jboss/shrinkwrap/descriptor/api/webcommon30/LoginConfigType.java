@@ -4,7 +4,20 @@ import org.jboss.shrinkwrap.descriptor.api.Child;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T12:04:36.305-04:00
+ *
+ * Original Documentation:
+ *
+ *
+ * The login-configType is used to configure the authentication
+ * method that should be used, the realm name that should be
+ * used for this application, and the attributes that are
+ * needed by the form login mechanism.
+ *
+ * Used in: web-app
+ *
+ *
+ *
  */
 public interface LoginConfigType<T> extends Child<T>
 {

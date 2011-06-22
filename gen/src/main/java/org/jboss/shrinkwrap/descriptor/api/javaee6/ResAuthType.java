@@ -2,7 +2,25 @@ package org.jboss.shrinkwrap.descriptor.api.javaee6;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T14:39:12.971-04:00
+ *
+ * Original Documentation:
+ *
+ *
+ * The res-authType specifies whether the Deployment Component
+ * code signs on programmatically to the resource manager, or
+ * whether the Container will sign on to the resource manager
+ * on behalf of the Deployment Component. In the latter case,
+ * the Container uses information that is supplied by the
+ * Deployer.
+ *
+ * The value must be one of the two following:
+ *
+ * Application
+ * Container
+ *
+ *
+ *
  */
 public enum ResAuthType {
    _APPLICATION("Application"), _CONTAINER("Container");

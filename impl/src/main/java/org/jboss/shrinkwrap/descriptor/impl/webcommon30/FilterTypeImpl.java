@@ -14,7 +14,22 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T12:04:36.305-04:00
+ *
+ * Original Documentation:
+ *
+ *
+ * The filterType is used to declare a filter in the web
+ * application. The filter is mapped to either a servlet or a
+ * URL pattern in the filter-mapping element, using the
+ * filter-name value to reference. Filters can access the
+ * initialization parameters declared in the deployment
+ * descriptor at runtime via the FilterConfig interface.
+ *
+ * Used in: web-app
+ *
+ *
+ *
  */
 public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
 {

@@ -10,7 +10,34 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T14:39:12.971-04:00
+ *
+ * Original Documentation:
+ *
+ *
+ * The ejb-refType is used by ejb-ref elements for the
+ * declaration of a reference to an enterprise bean's home or
+ * to the remote business interface of a 3.0 bean.
+ * The declaration consists of:
+ *
+ * - an optional description
+ * - the EJB reference name used in the code of
+ * the Deployment Component that's referencing the enterprise
+ * bean.
+ * - the optional expected type of the referenced enterprise bean
+ * - the optional remote interface of the referenced enterprise bean
+ * or the remote business interface of the referenced enterprise
+ * bean
+ * - the optional expected home interface of the referenced
+ * enterprise bean. Not applicable if this ejb-ref
+ * refers to the remote business interface of a 3.0 bean.
+ * - optional ejb-link information, used to specify the
+ * referenced enterprise bean
+ * - optional elements to define injection of the named enterprise
+ * bean into a component field or property
+ *
+ *
+ *
  */
 public class EjbRefTypeImpl<T> implements Child<T>, EjbRefType<T>
 {

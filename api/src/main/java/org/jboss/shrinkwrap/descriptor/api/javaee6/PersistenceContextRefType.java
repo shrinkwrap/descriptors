@@ -6,7 +6,44 @@ import org.jboss.shrinkwrap.descriptor.api.Child;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T12:04:36.305-04:00
+ *
+ * Original Documentation:
+ *
+ * [
+ * The persistence-context-ref element contains a declaration
+ * of Deployment Component's reference to a persistence context
+ * associated within a Deployment Component's
+ * environment. It consists of:
+ *
+ * - an optional description
+ * - the persistence context reference name
+ * - an optional persistence unit name. If not specified,
+ * the default persistence unit is assumed.
+ * - an optional specification as to whether
+ * the persistence context type is Transaction or
+ * Extended. If not specified, Transaction is assumed.
+ * - an optional list of persistence properties
+ * - optional injection targets
+ *
+ * Examples:
+ *
+ * <persistence-context-ref>
+ * <persistence-context-ref-name>myPersistenceContext
+ * </persistence-context-ref-name>
+ * </persistence-context-ref>
+ *
+ * <persistence-context-ref>
+ * <persistence-context-ref-name>myPersistenceContext
+ * </persistence-context-ref-name>
+ * <persistence-unit-name>PersistenceUnit1
+ * </persistence-unit-name>
+ * <persistence-context-type>Extended</persistence-context-type>
+ * </persistence-context-ref>
+ *
+ *
+ *
+ *
  */
 public interface PersistenceContextRefType<T> extends Child<T>
 {

@@ -4,7 +4,19 @@ import org.jboss.shrinkwrap.descriptor.api.Child;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T12:04:36.305-04:00
+ *
+ * Original Documentation:
+ *
+ *
+ * The taglibType defines the syntax for declaring in
+ * the deployment descriptor that a tag library is
+ * available to the application. This can be done
+ * to override implicit map entries from TLD files and
+ * from the container.
+ *
+ *
+ *
  */
 public interface TaglibType<T> extends Child<T>
 {

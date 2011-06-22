@@ -9,7 +9,28 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T14:39:12.971-04:00
+ *
+ * Original Documentation:
+ *
+ * [
+ * The security-roleType contains the definition of a security
+ * role. The definition consists of an optional description of
+ * the security role, and the security role name.
+ *
+ * Example:
+ *
+ * <security-role>
+ * <description>
+ * This role includes all employees who are authorized
+ * to access the employee service application.
+ * </description>
+ * <role-name>employee</role-name>
+ * </security-role>
+ *
+ *
+ *
+ *
  */
 public class SecurityRoleTypeImpl<T> implements Child<T>, SecurityRoleType<T>
 {

@@ -9,7 +9,25 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T14:39:12.971-04:00
+ *
+ * Original Documentation:
+ *
+ *
+ * The web-resource-collectionType is used to identify the
+ * resources and HTTP methods on those resources to which a
+ * security constraint applies. If no HTTP methods are specified,
+ * then the security constraint applies to all HTTP methods.
+ * If HTTP methods are specified by http-method-omission
+ * elements, the security constraint applies to all methods
+ * except those identified in the collection.
+ * http-method-omission and http-method elements are never
+ * mixed in the same collection.
+ *
+ * Used in: security-constraint
+ *
+ *
+ *
  */
 public class WebResourceCollectionTypeImpl<T> implements Child<T>, WebResourceCollectionType<T>
 {

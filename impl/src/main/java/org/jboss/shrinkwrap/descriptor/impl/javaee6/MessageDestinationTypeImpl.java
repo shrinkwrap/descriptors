@@ -10,7 +10,36 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T12:04:36.305-04:00
+ *
+ * Original Documentation:
+ *
+ * [
+ * The message-destinationType specifies a message
+ * destination. The logical destination described by this
+ * element is mapped to a physical destination by the Deployer.
+ *
+ * The message destination element contains:
+ *
+ * - an optional description
+ * - an optional display-name
+ * - an optional icon
+ * - a message destination name which must be unique
+ * among message destination names within the same
+ * Deployment File.
+ * - an optional mapped name
+ * - an optional lookup name
+ *
+ * Example:
+ *
+ * <message-destination>
+ * <message-destination-name>CorporateStocks
+ * </message-destination-name>
+ * </message-destination>
+ *
+ *
+ *
+ *
  */
 public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinationType<T>
 {

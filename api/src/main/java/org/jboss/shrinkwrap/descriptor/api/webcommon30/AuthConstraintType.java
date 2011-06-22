@@ -6,7 +6,26 @@ import org.jboss.shrinkwrap.descriptor.api.Child;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T12:04:36.305-04:00
+ *
+ * Original Documentation:
+ *
+ *
+ * The auth-constraintType indicates the user roles that
+ * should be permitted access to this resource
+ * collection. The role-name used here must either correspond
+ * to the role-name of one of the security-role elements
+ * defined for this web application, or be the specially
+ * reserved role-name "*" that is a compact syntax for
+ * indicating all roles in the web application. If both "*"
+ * and rolenames appear, the container interprets this as all
+ * roles. If no roles are defined, no user is allowed access
+ * to the portion of the web application described by the
+ * containing security-constraint. The container matches
+ * role names case sensitively when determining access.
+ *
+ *
+ *
  */
 public interface AuthConstraintType<T> extends Child<T>
 {

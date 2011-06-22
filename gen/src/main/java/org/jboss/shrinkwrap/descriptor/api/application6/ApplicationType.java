@@ -18,7 +18,16 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleType;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T14:39:12.971-04:00
+ *
+ * Original Documentation:
+ *
+ *
+ * The applicationType defines the structure of the
+ * application.
+ *
+ *
+ *
  */
 public interface ApplicationType<T> extends Child<T>
 {

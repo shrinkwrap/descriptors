@@ -2,7 +2,9 @@ package org.jboss.shrinkwrap.descriptor.impl.application6;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.jboss.shrinkwrap.descriptor.api.DescriptorNamespace;
 import org.jboss.shrinkwrap.descriptor.api.application6.Application6Descriptor;
 import org.jboss.shrinkwrap.descriptor.api.application6.ModuleType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
@@ -36,9 +38,12 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T12:04:36.305-04:00
  */
-public class Application6DescriptorImpl extends NodeProviderImplBase implements Application6Descriptor
+public class Application6DescriptorImpl extends NodeProviderImplBase
+      implements
+         DescriptorNamespace<Application6Descriptor>,
+         Application6Descriptor
 {
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
@@ -73,6 +78,59 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements 
    protected DescriptorExporter getExporter()
    {
       return new XMLExporter();
+   }
+
+   // -------------------------------------------------------------------------------------||
+   // Namespace ---------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
+
+   public Application6Descriptor addDefaultNamespaces()
+   {
+      addNamespace("xmlns", "http://java.sun.com/xml/ns/javaee");
+      addNamespace("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
+      addNamespace("xsi:schemaLocation",
+            "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd");
+      return this;
+   }
+
+   public Application6Descriptor addNamespace(String name, String value)
+   {
+      model.attribute(name, value);
+      return this;
+   }
+
+   public List<String> getNamespaces()
+   {
+      List<String> namespaceList = new ArrayList<String>();
+      Map<String, String> attributes = model.attributes();
+      for (String name : attributes.keySet())
+      {
+         String value = attributes.get(name);
+         if (value != null && value.startsWith("http://"))
+         {
+            namespaceList.add(name + "=" + value);
+         }
+      }
+      return namespaceList;
+   }
+
+   public Application6Descriptor removeAllNamespaces()
+   {
+      List<String> nameSpaceKeys = new ArrayList<String>();
+      Map<String, String> attributes = model.attributes();
+      for (String name : attributes.keySet())
+      {
+         String value = attributes.get(name);
+         if (value != null && value.startsWith("http://"))
+         {
+            nameSpaceKeys.add(name);
+         }
+      }
+      for (String name : nameSpaceKeys)
+      {
+         model.attributes().remove(name);
+      }
+      return this;
    }
 
    // -------------------------------------------------------------------------------------||

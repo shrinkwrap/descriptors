@@ -4,7 +4,19 @@ import org.jboss.shrinkwrap.descriptor.api.Child;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T14:39:12.971-04:00
+ *
+ * Original Documentation:
+ *
+ *
+ * The moduleType defines a single Java EE module and contains a
+ * connector, ejb, java, or web element, which indicates the
+ * module type and contains a path to the module file, and an
+ * optional alt-dd element, which specifies an optional URI to
+ * the post-assembly version of the deployment descriptor.
+ *
+ *
+ *
  */
 public interface ModuleType<T> extends Child<T>
 {

@@ -3,6 +3,7 @@ package org.jboss.shrinkwrap.descriptor.api.application6;
 import java.util.List;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptor;
+import org.jboss.shrinkwrap.descriptor.api.DescriptorNamespace;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbLocalRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbRefType;
@@ -18,9 +19,9 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleType;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T14:39:12.971-04:00
  */
-public interface Application6Descriptor extends Descriptor
+public interface Application6Descriptor extends Descriptor, DescriptorNamespace<Application6Descriptor>
 {
 
    public Application6Descriptor setDescription(String description);

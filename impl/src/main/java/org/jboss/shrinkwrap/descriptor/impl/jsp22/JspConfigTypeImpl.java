@@ -11,7 +11,17 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T12:04:36.305-04:00
+ *
+ * Original Documentation:
+ *
+ *
+ * The jsp-configType is used to provide global configuration
+ * information for the JSP files in a web application. It has
+ * two subelements, taglib and jsp-property-group.
+ *
+ *
+ *
  */
 public class JspConfigTypeImpl<T> implements Child<T>, JspConfigType<T>
 {

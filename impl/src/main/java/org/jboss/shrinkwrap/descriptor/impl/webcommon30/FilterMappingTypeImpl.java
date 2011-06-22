@@ -6,7 +6,29 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T12:04:36.305-04:00
+ *
+ * Original Documentation:
+ *
+ *
+ * Declaration of the filter mappings in this web
+ * application is done by using filter-mappingType.
+ * The container uses the filter-mapping
+ * declarations to decide which filters to apply to a request,
+ * and in what order. The container matches the request URI to
+ * a Servlet in the normal way. To determine which filters to
+ * apply it matches filter-mapping declarations either on
+ * servlet-name, or on url-pattern for each filter-mapping
+ * element, depending on which style is used. The order in
+ * which filters are invoked is the order in which
+ * filter-mapping declarations that match a request URI for a
+ * servlet appear in the list of filter-mapping elements.The
+ * filter-name value must be the value of the filter-name
+ * sub-elements of one of the filter declarations in the
+ * deployment descriptor.
+ *
+ *
+ *
  */
 public class FilterMappingTypeImpl<T> implements Child<T>, FilterMappingType<T>
 {

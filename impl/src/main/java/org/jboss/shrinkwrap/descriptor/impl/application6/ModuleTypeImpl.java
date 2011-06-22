@@ -7,7 +7,19 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T12:04:36.305-04:00
+ *
+ * Original Documentation:
+ *
+ *
+ * The moduleType defines a single Java EE module and contains a
+ * connector, ejb, java, or web element, which indicates the
+ * module type and contains a path to the module file, and an
+ * optional alt-dd element, which specifies an optional URI to
+ * the post-assembly version of the deployment descriptor.
+ *
+ *
+ *
  */
 public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
 {

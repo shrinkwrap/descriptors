@@ -6,7 +6,28 @@ import org.jboss.shrinkwrap.descriptor.api.Child;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T12:04:36.305-04:00
+ *
+ * Original Documentation:
+ *
+ * [
+ * The security-roleType contains the definition of a security
+ * role. The definition consists of an optional description of
+ * the security role, and the security role name.
+ *
+ * Example:
+ *
+ * <security-role>
+ * <description>
+ * This role includes all employees who are authorized
+ * to access the employee service application.
+ * </description>
+ * <role-name>employee</role-name>
+ * </security-role>
+ *
+ *
+ *
+ *
  */
 public interface SecurityRoleType<T> extends Child<T>
 {

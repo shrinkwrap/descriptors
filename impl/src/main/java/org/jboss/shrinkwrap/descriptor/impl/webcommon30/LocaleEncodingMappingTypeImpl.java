@@ -6,7 +6,18 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T12:04:36.305-04:00
+ *
+ * Original Documentation:
+ *
+ *
+ * The locale-encoding-mapping contains locale name and
+ * encoding name. The locale name must be either "Language-code",
+ * such as "ja", defined by ISO-639 or "Language-code_Country-code",
+ * such as "ja_JP". "Country code" is defined by ISO-3166.
+ *
+ *
+ *
  */
 public class LocaleEncodingMappingTypeImpl<T> implements Child<T>, LocaleEncodingMappingType<T>
 {

@@ -43,7 +43,7 @@
             <xsl:message select="concat('Generating Enum: ', $vClassname)"/>
             <xsl:result-document href="{$vFilename}">
                 <xsl:value-of select="xdd:writePackageLine(@package)"/>
-                <xsl:value-of select="xdd:classHeaderComment('')"/>
+                <xsl:value-of select="xdd:writeComment(@documentation, true())"/>
                 <xsl:value-of select="xdd:classHeaderDeclaration('enum', $vClassname)"/>
                 <xsl:text>&#10;{&#10;</xsl:text>
                 <xsl:for-each select="value">
@@ -108,7 +108,7 @@
             <xsl:result-document href="{$vFilename}">
                 <xsl:value-of select="xdd:writePackageLine(@packageApi)"/>
                 <xsl:value-of select="xdd:writeImports(true())"/>
-                <xsl:value-of select="xdd:classHeaderComment('')"/>
+                <xsl:value-of select="xdd:writeComment(@documentation, true())"/>
                 <xsl:value-of select="xdd:classHeaderDeclaration('interface', $vClassname)"/>
                 <xsl:text>&lt;T&gt;</xsl:text>
                 <xsl:text> extends Child&lt;T&gt;</xsl:text>
@@ -187,10 +187,12 @@
                 <xsl:value-of select="xdd:writePackageLine($vPackage)"/>
                 <xsl:value-of select="xdd:writeImports(true())"/>
 <!--                <xsl:value-of select="xdd:writeImports(false())"/>-->
-                <xsl:text>import org.jboss.shrinkwrap.descriptor.api.Descriptor;&#10;&#10;</xsl:text>
-                <xsl:value-of select="xdd:classHeaderComment('')"/>
+                <xsl:text>import org.jboss.shrinkwrap.descriptor.api.Descriptor;&#10;</xsl:text>
+                <xsl:text>import org.jboss.shrinkwrap.descriptor.api.DescriptorNamespace;&#10;&#10;</xsl:text>
+                <xsl:value-of select="xdd:writeComment(@documentation, true())"/>
                 <xsl:value-of select="xdd:classHeaderDeclaration('interface', $vClassname)"/>
-                <xsl:text> extends Descriptor</xsl:text>
+                <xsl:value-of select="concat(' extends Descriptor, DescriptorNamespace', '&lt;', $vClassname, '&gt;')"/>
+<!--                <xsl:text> extends Descriptor, DescriptorNamespace</xsl:text>-->
                 <xsl:text>&#10;{&#10;</xsl:text>
                 <xsl:variable name="vType" select=" substring-after($pDescriptor/element/@type, ':')"/>
                 <xsl:for-each select="//classes/class[@name=$vType]">
@@ -224,11 +226,8 @@
                 <xsl:value-of select="xdd:writeImports(true())"/>
                 <xsl:value-of select="xdd:writeImports(false())"/>
                 <xsl:text>&#10;</xsl:text>
-                <xsl:value-of select="xdd:classHeaderComment('')"/>
-                <!--                <xsl:variable name="vNodeName" select="$pClass/element/@name"/>-->
-                <!--                <xsl:value-of select="xdd:classNodeInfo($pClass/element/@name)"/>-->
-                
-                 <xsl:variable name="vName" select="@name"/>
+                <xsl:value-of select="xdd:writeComment(@documentation, true())"/>
+                <xsl:variable name="vName" select="@name"/>
                 <xsl:variable name="vNodeName" select="//class/element[contains(@type, $vName)][1]/@name"/>
                 
                 <xsl:value-of select="xdd:classHeaderDeclaration('class', $vClassnameImpl)"/>
@@ -299,12 +298,14 @@
                 <xsl:value-of select="xdd:writePackageLine($vPackage)"/>
                 <xsl:value-of select="xdd:writeImports(true())"/>
                 <xsl:value-of select="xdd:writeImports(false())"/>
+                <xsl:text>import org.jboss.shrinkwrap.descriptor.api.DescriptorNamespace;&#10;&#10;</xsl:text>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase;&#10;</xsl:text>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.Node;&#10;</xsl:text>
                 <xsl:text>&#10;</xsl:text>
-                <xsl:value-of select="xdd:classHeaderComment('')"/>
+                <xsl:value-of select="xdd:writeComment('', true())"/>
                 <xsl:value-of select="xdd:classHeaderDeclaration('class', $vClassnameImpl)"/>
-                <xsl:text> extends NodeProviderImplBase implements </xsl:text>
+<!--                <xsl:text> extends NodeProviderImplBase implements DescriptorNamespace, </xsl:text>-->
+                <xsl:value-of select="concat(' extends NodeProviderImplBase implements DescriptorNamespace', '&lt;', $vInterfaceName, '&gt;', ', ')"/>
                 <xsl:value-of select="xdd:createPascalizedName($vInterfaceName, '')"/>
                 <xsl:text>&#10;{</xsl:text>
                 <xsl:text>&#10;</xsl:text>
@@ -327,6 +328,7 @@
                 <xsl:value-of select="xdd:writeMethodComment()"/>
                 <!-- write all methods -->
                 <xsl:value-of select="xdd:writeNodeProviderMethods($vNodeName)"/>
+                <xsl:value-of select="xdd:writeDescriptorNamespaceMethods($pDescriptor, $vInterfaceName)"/>
                 <xsl:for-each select="element">
                     <xsl:variable name="vType" select=" substring-after(@type, ':')"/>
                     <xsl:for-each select="//classes/class[@name=$vType]">
@@ -590,21 +592,95 @@
         <xsl:text>   }&#10;</xsl:text>
     </xsl:function>
 
+    <!-- ************************************************************ -->
+    <!-- ****** Function which writes the DescriptorNamespace methods -->
+    <!-- ************************************************************ -->
+    <xsl:function name="xdd:writeDescriptorNamespaceMethods">
+        <xsl:param name="pDefaultNamespaces"/>
+        <xsl:param name="pReturnType"/>
+         <xsl:text>&#10;&#10;</xsl:text>
+        <xsl:text>   // -------------------------------------------------------------------------------------||&#10;</xsl:text>
+        <xsl:text>   // Namespace ---------------------------------------------------------------------------||&#10;</xsl:text>
+        <xsl:text>   // -------------------------------------------------------------------------------------||&#10;</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:value-of select="concat('   public ', $pReturnType,' addDefaultNamespaces()', '&#10;')"/>       
+        <xsl:text>   {&#10;</xsl:text>
+        <xsl:for-each select="$pDefaultNamespaces/namespace">
+            <xsl:value-of select="concat('      addNamespace(&quot;', @name, '&quot;, &quot;', @value, '&quot;)', ';&#10;')"/>
+        </xsl:for-each>
+        <xsl:value-of select="concat('      return this;', '&#10;')"/>
+        <xsl:text>   }&#10;</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:value-of select="concat('   public ', $pReturnType,' addNamespace(String name, String value)', '&#10;')"/>
+        <xsl:text>   {&#10;</xsl:text>        
+        <xsl:value-of select="concat('      ', 'model', '.attribute(name, value);', '&#10;')"/>
+        <xsl:value-of select="concat('      return this;', '&#10;')"/>
+        <xsl:text>   }&#10;</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:text>   public List&lt;String&gt; getNamespaces()&#10;</xsl:text>
+        <xsl:text>   {&#10;</xsl:text>
+        <xsl:value-of select="concat('      List&lt;String&gt; namespaceList = new ArrayList&lt;String&gt;();', '&#10;')"/>
+        <xsl:value-of select="concat('      Map&lt;String, String&gt; attributes = model.attributes();', '&#10;')"/>
+        <xsl:value-of select="concat('      for (String name: attributes.keySet())', '&#10;')"/>
+        <xsl:value-of select="concat('      {', '&#10;')"/>
+        <xsl:value-of select="concat('         String value = attributes.get(name);', '&#10;')"/>
+        <xsl:value-of select="concat('         if (value != null &amp;&amp; value.startsWith(&quot;http://&quot;)) ', '&#10;')"/>
+        <xsl:value-of select="concat('         {', '&#10;')"/>
+        <xsl:value-of select="concat('            namespaceList.add(name + &quot;=&quot; + value);', '&#10;')"/>
+        <xsl:value-of select="concat('         }', '&#10;')"/>
+        <xsl:value-of select="concat('      }', '&#10;')"/>      
+        <xsl:value-of select="concat('      return namespaceList;', '&#10;')"/>
+        <xsl:text>   }&#10;</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:value-of select="concat('   public ', $pReturnType,' removeAllNamespaces()', '&#10;')"/>
+        <xsl:text>   {&#10;</xsl:text>        
+        <xsl:value-of select="concat('      List&lt;String&gt; nameSpaceKeys = new ArrayList&lt;String&gt;();', '&#10;')"/>
+        <xsl:value-of select="concat('      Map&lt;String, String&gt; attributes = model.attributes();', '&#10;')"/>
+        <xsl:value-of select="concat('      for (String name: attributes.keySet())', '&#10;')"/>
+        <xsl:value-of select="concat('      {', '&#10;')"/>
+        <xsl:value-of select="concat('         String value = attributes.get(name);', '&#10;')"/>
+        <xsl:value-of select="concat('         if (value != null &amp;&amp; value.startsWith(&quot;http://&quot;)) ', '&#10;')"/>
+        <xsl:value-of select="concat('         {', '&#10;')"/>
+        <xsl:value-of select="concat('            nameSpaceKeys.add(name);', '&#10;')"/>
+        <xsl:value-of select="concat('         }', '&#10;')"/>
+        <xsl:value-of select="concat('      }', '&#10;')"/>
+        <xsl:value-of select="concat('      for (String name: nameSpaceKeys)', '&#10;')"/>
+        <xsl:value-of select="concat('      {', '&#10;')"/>
+        <xsl:value-of select="concat('         model.attributes().remove(name);', '&#10;')"/>
+        <xsl:value-of select="concat('      }', '&#10;')"/>
+        <xsl:value-of select="concat('      return this;', '&#10;')"/>
+        <xsl:text>   }&#10;</xsl:text>
+    </xsl:function>
+
 
     <!-- ****************************************************** -->
     <!-- ****** Function which writes the class header   ****** -->
     <!-- ****************************************************** -->
-    <xsl:function name="xdd:classHeaderComment">
-        <xsl:param name="text"/>
-        <xsl:text>/**</xsl:text>
-        <xsl:text>&#10;</xsl:text>
-        <xsl:text> * This class is a generated class.</xsl:text>
-        <xsl:text>&#10;</xsl:text>
-        <xsl:text> * Generation date :</xsl:text>
-        <xsl:value-of select="current-dateTime()"/>
-        <xsl:text>&#10;</xsl:text>
-        <xsl:text> */</xsl:text>
-        <xsl:text>&#10;</xsl:text>
+    <xsl:function name="xdd:writeComment">
+        <xsl:param name="pText"/>
+        <xsl:param name="pIsClassHeader" as="xs:boolean"/>
+        
+        <xsl:value-of select="'/**&#10;'"/>        
+        <xsl:if test="$pIsClassHeader=true()">
+            <xsl:value-of select="' * This class is a generated class.&#10;'"/>
+            <xsl:value-of select="concat(' * Generation date :', current-dateTime(), '&#10;')"/>
+        </xsl:if>
+        <xsl:if test="$pText!=''"> 
+            <xsl:value-of select="' *&#10;'"/>
+            <xsl:value-of select="' * Original Documentation:&#10;'"/>
+            <xsl:for-each select=" tokenize($pText, '&#xA;')">
+                <xsl:choose>
+                    <xsl:when test="normalize-space(.) != ''">
+                        <xsl:value-of select="concat(' * ', normalize-space(.), '&#10;')"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="' *&#10;'"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+            <xsl:value-of select="' *&#10;'"/>
+        </xsl:if>
+        <xsl:value-of select="' */&#10;'"/>
     </xsl:function>
 
     <!-- ****************************************************** -->
@@ -1132,6 +1208,7 @@
             <xsl:when test="$vIsApi=true()">
                 <xsl:value-of select="'import java.util.ArrayList;&#10;'"/>
                 <xsl:value-of select="'import java.util.List;&#10;'"/>
+                <xsl:value-of select="'import java.util.Map;&#10;'"/>
                 <xsl:value-of select="'import org.jboss.shrinkwrap.descriptor.api.Child;&#10;'"/>
                 <xsl:for-each select="$gPackageApis">
                     <xsl:value-of select="concat('import ', @name, '.*;&#10;')"/>

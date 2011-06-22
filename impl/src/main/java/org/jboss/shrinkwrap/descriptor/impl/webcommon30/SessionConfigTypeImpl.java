@@ -7,7 +7,18 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-19T21:45:00.466-04:00
+ * Generation date :2011-06-22T12:04:36.305-04:00
+ *
+ * Original Documentation:
+ *
+ *
+ * The session-configType defines the session parameters
+ * for this web application.
+ *
+ * Used in: web-app
+ *
+ *
+ *
  */
 public class SessionConfigTypeImpl<T> implements Child<T>, SessionConfigType<T>
 {
