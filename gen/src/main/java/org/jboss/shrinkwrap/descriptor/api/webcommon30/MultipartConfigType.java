@@ -1,10 +1,17 @@
-package org.jboss.shrinkwrap.descriptor.api.webcommon30;
+package org.jboss.shrinkwrap.descriptor.api.webcommon30; 
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import org.jboss.shrinkwrap.descriptor.api.Child;
-
+import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.api.application6.*;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T14:39:12.971-04:00
+ * Generation date :2011-06-26T17:25:18.735-04:00
  *
  * Original Documentation:
  *
@@ -19,25 +26,27 @@ public interface MultipartConfigType<T> extends Child<T>
 {
 
    public MultipartConfigType<T> setLocation(String location);
-
    public MultipartConfigType<T> removeLocation();
 
    public String getLocation();
 
-   public MultipartConfigType<T> setMaxFileSize(Long maxFileSize);
 
+
+   public MultipartConfigType<T> setMaxFileSize(Long maxFileSize);
    public MultipartConfigType<T> removeMaxFileSize();
 
    public Long getMaxFileSize();
 
-   public MultipartConfigType<T> setMaxRequestSize(Long maxRequestSize);
 
+
+   public MultipartConfigType<T> setMaxRequestSize(Long maxRequestSize);
    public MultipartConfigType<T> removeMaxRequestSize();
 
    public Long getMaxRequestSize();
 
-   public MultipartConfigType<T> setFileSizeThreshold(Integer fileSizeThreshold);
 
+
+   public MultipartConfigType<T> setFileSizeThreshold(Integer fileSizeThreshold);
    public MultipartConfigType<T> removeFileSizeThreshold();
 
    public Integer getFileSizeThreshold();

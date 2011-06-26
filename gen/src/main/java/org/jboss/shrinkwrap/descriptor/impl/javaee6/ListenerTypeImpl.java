@@ -1,16 +1,28 @@
-package org.jboss.shrinkwrap.descriptor.impl.javaee6;
+package org.jboss.shrinkwrap.descriptor.impl.javaee6; 
 
+import org.jboss.shrinkwrap.descriptor.spi.Node;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Map;
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.ListenerType;
-import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.api.application6.*;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
+import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
+import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.impl.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.impl.application6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webapp30.*;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T14:39:12.971-04:00
+ * Generation date :2011-06-26T17:25:18.735-04:00
  *
  * Original Documentation:
  *
@@ -30,33 +42,31 @@ public class ListenerTypeImpl<T> implements Child<T>, ListenerType<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
-
    private Node node;
-
    private Node childNode;
-
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public ListenerTypeImpl(T t, String descriptorName, Node node)
-   {
+   public ListenerTypeImpl(T t, String descriptorName, Node node)   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public ListenerTypeImpl(T t, String descriptorName, Node node, Node childNode)
-   {
+   public ListenerTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
+
    public T up()
    {
       return t;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : description
@@ -67,23 +77,21 @@ public class ListenerTypeImpl<T> implements Child<T>, ListenerType<T>
       childNode.create("description").text(description);
       return this;
    }
-
-   public ListenerType<T> setDescriptionList(String... values)
+   public ListenerType<T> setDescriptionList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setDescription(name);
       }
       return this;
    }
-
    public ListenerType<T> removeAllDescription()
    {
       childNode.remove("description");
       return this;
    }
 
-   public List<String> getDescriptionList()
+public List<String> getDescriptionList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("description");
@@ -94,6 +102,7 @@ public class ListenerTypeImpl<T> implements Child<T>, ListenerType<T>
       return result;
    }
 
+
    // -------------------------------------------------------------------------------------||
    // Element type : display-name
    // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
@@ -103,23 +112,21 @@ public class ListenerTypeImpl<T> implements Child<T>, ListenerType<T>
       childNode.create("display-name").text(displayName);
       return this;
    }
-
-   public ListenerType<T> setDisplayNameList(String... values)
+   public ListenerType<T> setDisplayNameList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setDisplayName(name);
       }
       return this;
    }
-
    public ListenerType<T> removeAllDisplayName()
    {
       childNode.remove("display-name");
       return this;
    }
 
-   public List<String> getDisplayNameList()
+public List<String> getDisplayNameList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("display-name");
@@ -129,6 +136,7 @@ public class ListenerTypeImpl<T> implements Child<T>, ListenerType<T>
       }
       return result;
    }
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : icon
@@ -149,13 +157,15 @@ public class ListenerTypeImpl<T> implements Child<T>, ListenerType<T>
    {
       List<IconType<ListenerType<T>>> list = new ArrayList<IconType<ListenerType<T>>>();
       List<Node> nodeList = childNode.get(IconTypeImpl.nodeName);
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         IconType<ListenerType<T>> type = new IconTypeImpl<ListenerType<T>>(this, "", childNode, node);
+         IconType<ListenerType<T>>  type = new IconTypeImpl<ListenerType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : listener-class
@@ -166,7 +176,6 @@ public class ListenerTypeImpl<T> implements Child<T>, ListenerType<T>
       childNode.getOrCreate("listener-class").text(listenerClass);
       return this;
    }
-
    public ListenerType<T> removeListenerClass()
    {
       childNode.remove("listener-class");

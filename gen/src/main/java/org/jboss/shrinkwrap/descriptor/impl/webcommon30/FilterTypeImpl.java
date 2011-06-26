@@ -1,20 +1,28 @@
-package org.jboss.shrinkwrap.descriptor.impl.webcommon30;
+package org.jboss.shrinkwrap.descriptor.impl.webcommon30; 
 
+import org.jboss.shrinkwrap.descriptor.spi.Node;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Map;
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.ParamValueType;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.FilterType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.api.application6.*;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
 import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.IconTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.ParamValueTypeImpl;
-import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.impl.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.impl.application6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webapp30.*;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T14:39:12.971-04:00
+ * Generation date :2011-06-26T17:25:18.735-04:00
  *
  * Original Documentation:
  *
@@ -40,33 +48,31 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
-
    private Node node;
-
    private Node childNode;
-
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public FilterTypeImpl(T t, String descriptorName, Node node)
-   {
+   public FilterTypeImpl(T t, String descriptorName, Node node)   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public FilterTypeImpl(T t, String descriptorName, Node node, Node childNode)
-   {
+   public FilterTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
+
    public T up()
    {
       return t;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : description
@@ -77,23 +83,21 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
       childNode.create("description").text(description);
       return this;
    }
-
-   public FilterType<T> setDescriptionList(String... values)
+   public FilterType<T> setDescriptionList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setDescription(name);
       }
       return this;
    }
-
    public FilterType<T> removeAllDescription()
    {
       childNode.remove("description");
       return this;
    }
 
-   public List<String> getDescriptionList()
+public List<String> getDescriptionList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("description");
@@ -104,6 +108,7 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
       return result;
    }
 
+
    // -------------------------------------------------------------------------------------||
    // Element type : display-name
    // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
@@ -113,23 +118,21 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
       childNode.create("display-name").text(displayName);
       return this;
    }
-
-   public FilterType<T> setDisplayNameList(String... values)
+   public FilterType<T> setDisplayNameList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setDisplayName(name);
       }
       return this;
    }
-
    public FilterType<T> removeAllDisplayName()
    {
       childNode.remove("display-name");
       return this;
    }
 
-   public List<String> getDisplayNameList()
+public List<String> getDisplayNameList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("display-name");
@@ -139,6 +142,7 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
       }
       return result;
    }
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : icon
@@ -159,13 +163,15 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
    {
       List<IconType<FilterType<T>>> list = new ArrayList<IconType<FilterType<T>>>();
       List<Node> nodeList = childNode.get(IconTypeImpl.nodeName);
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         IconType<FilterType<T>> type = new IconTypeImpl<FilterType<T>>(this, "", childNode, node);
+         IconType<FilterType<T>>  type = new IconTypeImpl<FilterType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : filter-name
@@ -176,7 +182,6 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
       childNode.getOrCreate("filter-name").text(filterName);
       return this;
    }
-
    public FilterType<T> removeFilterName()
    {
       childNode.remove("filter-name");
@@ -188,6 +193,8 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
       return childNode.textValue("filter-name");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : filter-class
    // isComplexType: false   maxOccurs: -1   isAttribute: false
@@ -197,7 +204,6 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
       childNode.getOrCreate("filter-class").text(filterClass);
       return this;
    }
-
    public FilterType<T> removeFilterClass()
    {
       childNode.remove("filter-class");
@@ -209,6 +215,8 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
       return childNode.textValue("filter-class");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : async-supported
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -218,7 +226,6 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
       childNode.getOrCreate("async-supported").text(asyncSupported);
       return this;
    }
-
    public FilterType<T> removeAsyncSupported()
    {
       childNode.remove("async-supported");
@@ -229,6 +236,8 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
    {
       return Strings.isTrue(childNode.textValue("async-supported"));
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : init-param
@@ -249,12 +258,13 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
    {
       List<ParamValueType<FilterType<T>>> list = new ArrayList<ParamValueType<FilterType<T>>>();
       List<Node> nodeList = childNode.get(ParamValueTypeImpl.nodeName);
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         ParamValueType<FilterType<T>> type = new ParamValueTypeImpl<FilterType<T>>(this, "", childNode, node);
+         ParamValueType<FilterType<T>>  type = new ParamValueTypeImpl<FilterType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
+
 
 }

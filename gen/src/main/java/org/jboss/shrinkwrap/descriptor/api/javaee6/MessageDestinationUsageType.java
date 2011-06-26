@@ -1,8 +1,8 @@
-package org.jboss.shrinkwrap.descriptor.api.javaee6;
+package org.jboss.shrinkwrap.descriptor.api.javaee6; 
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T14:39:12.971-04:00
+ * Generation date :2011-06-26T17:25:18.735-04:00
  *
  * Original Documentation:
  *
@@ -23,18 +23,27 @@ package org.jboss.shrinkwrap.descriptor.api.javaee6;
  *
  *
  */
-public enum MessageDestinationUsageType {
-   _CONSUMES("Consumes"), _PRODUCES("Produces"), _CONSUMESPRODUCES("ConsumesProduces");
+public enum MessageDestinationUsageType
+{
+   _CONSUMES("Consumes"),
+   _PRODUCES("Produces"),
+   _CONSUMESPRODUCES("ConsumesProduces");
 
    private String value;
 
-   MessageDestinationUsageType(String value)
+   MessageDestinationUsageType (String value) { this.value = value; }
+
+   public String toString() {return value;}
+
+   public static MessageDestinationUsageType getFromStringValue(String value)
    {
-      this.value = value;
+      for(MessageDestinationUsageType type: MessageDestinationUsageType.values())
+      {
+         if(value != null && type.toString().equals(value))
+        { return type;}
+      }
+      return null;
    }
 
-   public String toString()
-   {
-      return value;
-   }
 }
+

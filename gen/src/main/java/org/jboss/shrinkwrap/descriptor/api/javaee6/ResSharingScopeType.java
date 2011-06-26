@@ -1,8 +1,8 @@
-package org.jboss.shrinkwrap.descriptor.api.javaee6;
+package org.jboss.shrinkwrap.descriptor.api.javaee6; 
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T14:39:12.971-04:00
+ * Generation date :2011-06-26T17:25:18.735-04:00
  *
  * Original Documentation:
  *
@@ -20,18 +20,26 @@ package org.jboss.shrinkwrap.descriptor.api.javaee6;
  *
  *
  */
-public enum ResSharingScopeType {
-   _SHAREABLE("Shareable"), _UNSHAREABLE("Unshareable");
+public enum ResSharingScopeType
+{
+   _SHAREABLE("Shareable"),
+   _UNSHAREABLE("Unshareable");
 
    private String value;
 
-   ResSharingScopeType(String value)
+   ResSharingScopeType (String value) { this.value = value; }
+
+   public String toString() {return value;}
+
+   public static ResSharingScopeType getFromStringValue(String value)
    {
-      this.value = value;
+      for(ResSharingScopeType type: ResSharingScopeType.values())
+      {
+         if(value != null && type.toString().equals(value))
+        { return type;}
+      }
+      return null;
    }
 
-   public String toString()
-   {
-      return value;
-   }
 }
+

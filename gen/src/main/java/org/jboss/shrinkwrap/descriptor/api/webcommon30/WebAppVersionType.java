@@ -1,8 +1,8 @@
-package org.jboss.shrinkwrap.descriptor.api.webcommon30;
+package org.jboss.shrinkwrap.descriptor.api.webcommon30; 
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T14:39:12.971-04:00
+ * Generation date :2011-06-26T17:25:18.735-04:00
  *
  * Original Documentation:
  *
@@ -14,18 +14,25 @@ package org.jboss.shrinkwrap.descriptor.api.webcommon30;
  *
  *
  */
-public enum WebAppVersionType {
+public enum WebAppVersionType
+{
    _3_0("3.0");
 
    private String value;
 
-   WebAppVersionType(String value)
+   WebAppVersionType (String value) { this.value = value; }
+
+   public String toString() {return value;}
+
+   public static WebAppVersionType getFromStringValue(String value)
    {
-      this.value = value;
+      for(WebAppVersionType type: WebAppVersionType.values())
+      {
+         if(value != null && type.toString().equals(value))
+        { return type;}
+      }
+      return null;
    }
 
-   public String toString()
-   {
-      return value;
-   }
 }
+

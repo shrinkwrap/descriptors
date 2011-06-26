@@ -141,7 +141,7 @@
                         <xsl:attribute name="packageImpl">
                             <xsl:value-of select="@packageImpl"/>
                         </xsl:attribute>
-                        
+
                         <xsl:for-each select="namespace">
                             <namespace>
                                 <xsl:attribute name="name">
@@ -152,7 +152,7 @@
                                 </xsl:attribute>
                             </namespace>
                         </xsl:for-each>
-                        
+
                         <xsl:for-each select="document(@name)/*/xsd:element">
                             <!--                            <xsl:if test="local-name() = 'element'">-->
                             <element>
@@ -268,7 +268,7 @@
                 <xsl:text>&#10;</xsl:text>
             </xsl:if>
 
-            <xsl:if test="$complexTypeName='protocol-bindingType' or $complexTypeName='protocol-bindingType'">
+            <xsl:if test="$complexTypeName='protocol-bindingType'">
                 <datatype>
                     <xsl:attribute name="name">
                         <xsl:value-of select="$complexTypeName"/>
@@ -474,9 +474,49 @@
         <xsl:param name="pDocument"/>
         <xsl:param name="pPackageApi"/>
         <xsl:param name="pPackageImpl"/>
+
+        <xsl:for-each select="document($pDocument)//xsd:simpleType">
+            <xsl:variable name="complexTypeName" select="@name"/>
+            <xsl:variable name="vDocumentation" select="xsd:annotation/xsd:documentation/text()"/>
+
+            <xsl:if test="$complexTypeName='protocol-bindingListType'">
+                <xsl:message select="concat('Metadata describing class: ', $complexTypeName)"/>
+                <class>
+                    <xsl:attribute name="name">
+                        <xsl:value-of select="$complexTypeName"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="schemaName">
+                        <xsl:value-of select="$pDocument"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="packageApi">
+                        <xsl:value-of select="$pPackageApi"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="packageImpl">
+                        <xsl:value-of select="$pPackageImpl"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="documentation">
+                        <xsl:value-of select="$vDocumentation"/>
+                    </xsl:attribute>
+
+                    <element>
+                        <xsl:attribute name="name">
+                            <xsl:value-of select="'protocol-bindingType'"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="type">
+                            <xsl:value-of select="xsd:list/@itemType"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="maxOccurs">
+                            <xsl:value-of select="'unbounded'"/>
+                        </xsl:attribute>
+                    </element>
+                </class>
+            </xsl:if>
+        </xsl:for-each>
+
         <xsl:for-each select="document($pDocument)//xsd:complexType">
             <xsl:variable name="complexTypeName" select="@name"/>
             <xsl:variable name="vDocumentation" select="xsd:annotation/xsd:documentation/text()"/>
+
             <xsl:if test="count(xsd:sequence/xsd:element) > 0 or count(xsd:choice/xsd:element) > 0 or count(xsd:sequence/xsd:choice/xsd:element) > 0 or count(xsd:choice/xsd:group) > 0">
                 <xsl:message select="concat('Metadata describing class: ', $complexTypeName)"/>
                 <class>
@@ -569,6 +609,7 @@
                             <xsl:value-of select="@ref"/>
                         </include>
                     </xsl:for-each>
+
                 </class>
             </xsl:if>
         </xsl:for-each>
