@@ -20,7 +20,7 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleType;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-27T07:43:58.376-04:00
+ * Generation date :2011-06-27T15:26:42.686-04:00
  */
 public interface Application6Descriptor extends Descriptor, DescriptorNamespace<Application6Descriptor>
 {
@@ -61,13 +61,17 @@ public interface Application6Descriptor extends Descriptor, DescriptorNamespace<
 
    public String getInitializeInOrderAsString();
 
-   public Application6Descriptor removeModule();
+   public Application6Descriptor removeAllModule();
 
    public ModuleType<Application6Descriptor> module();
 
-   public Application6Descriptor removeSecurityRole();
+   public List<ModuleType<Application6Descriptor>> getModuleList();
+
+   public Application6Descriptor removeAllSecurityRole();
 
    public SecurityRoleType<Application6Descriptor> securityRole();
+
+   public List<SecurityRoleType<Application6Descriptor>> getSecurityRoleList();
 
    public Application6Descriptor setLibraryDirectory(String libraryDirectory);
 
@@ -75,44 +79,64 @@ public interface Application6Descriptor extends Descriptor, DescriptorNamespace<
 
    public String getLibraryDirectory();
 
-   public Application6Descriptor removeEnvEntry();
+   public Application6Descriptor removeAllEnvEntry();
 
    public EnvEntryType<Application6Descriptor> envEntry();
 
-   public Application6Descriptor removeEjbRef();
+   public List<EnvEntryType<Application6Descriptor>> getEnvEntryList();
+
+   public Application6Descriptor removeAllEjbRef();
 
    public EjbRefType<Application6Descriptor> ejbRef();
 
-   public Application6Descriptor removeEjbLocalRef();
+   public List<EjbRefType<Application6Descriptor>> getEjbRefList();
+
+   public Application6Descriptor removeAllEjbLocalRef();
 
    public EjbLocalRefType<Application6Descriptor> ejbLocalRef();
 
-   public Application6Descriptor removeResourceRef();
+   public List<EjbLocalRefType<Application6Descriptor>> getEjbLocalRefList();
+
+   public Application6Descriptor removeAllResourceRef();
 
    public ResourceRefType<Application6Descriptor> resourceRef();
 
-   public Application6Descriptor removeResourceEnvRef();
+   public List<ResourceRefType<Application6Descriptor>> getResourceRefList();
+
+   public Application6Descriptor removeAllResourceEnvRef();
 
    public ResourceEnvRefType<Application6Descriptor> resourceEnvRef();
 
-   public Application6Descriptor removeMessageDestinationRef();
+   public List<ResourceEnvRefType<Application6Descriptor>> getResourceEnvRefList();
+
+   public Application6Descriptor removeAllMessageDestinationRef();
 
    public MessageDestinationRefType<Application6Descriptor> messageDestinationRef();
 
-   public Application6Descriptor removePersistenceContextRef();
+   public List<MessageDestinationRefType<Application6Descriptor>> getMessageDestinationRefList();
+
+   public Application6Descriptor removeAllPersistenceContextRef();
 
    public PersistenceContextRefType<Application6Descriptor> persistenceContextRef();
 
-   public Application6Descriptor removePersistenceUnitRef();
+   public List<PersistenceContextRefType<Application6Descriptor>> getPersistenceContextRefList();
+
+   public Application6Descriptor removeAllPersistenceUnitRef();
 
    public PersistenceUnitRefType<Application6Descriptor> persistenceUnitRef();
 
-   public Application6Descriptor removeMessageDestination();
+   public List<PersistenceUnitRefType<Application6Descriptor>> getPersistenceUnitRefList();
+
+   public Application6Descriptor removeAllMessageDestination();
 
    public MessageDestinationType<Application6Descriptor> messageDestination();
 
-   public Application6Descriptor removeDataSource();
+   public List<MessageDestinationType<Application6Descriptor>> getMessageDestinationList();
+
+   public Application6Descriptor removeAllDataSource();
 
    public DataSourceType<Application6Descriptor> dataSource();
+
+   public List<DataSourceType<Application6Descriptor>> getDataSourceList();
 
 }
