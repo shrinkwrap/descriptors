@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="12.2">
+    <meta>
+        <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
+        <options/>
+    </meta>
+    <projectTree name="ddGen.xpr">
+        <folder path="src/main/java/"/>
+        <folder path="src/main/resources/"/>
+    </projectTree>
+</project>

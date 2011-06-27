@@ -57,6 +57,7 @@
   <modules>
     <module>api</module>
     <module>impl</module>
+    <module>gen</module>
   </modules>
 
   <!-- Plugin Configuration -->
