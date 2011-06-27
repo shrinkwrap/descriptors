@@ -6,7 +6,7 @@ import org.jboss.shrinkwrap.descriptor.api.Child;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T12:04:36.305-04:00
+ * Generation date :2011-06-27T07:43:58.376-04:00
  *
  * Original Documentation:
  *
@@ -31,10 +31,12 @@ public interface UserDataConstraintType<T> extends Child<T>
 
    public List<String> getDescriptionList();
 
+   public UserDataConstraintType<T> setTransportGuarantee(TransportGuaranteeType transportGuarantee);
+
    public UserDataConstraintType<T> setTransportGuarantee(String transportGuarantee);
 
-   public UserDataConstraintType<T> removeTransportGuarantee();
+   public TransportGuaranteeType getTransportGuarantee();
 
-   public String getTransportGuarantee();
+   public String getTransportGuaranteeAsString();
 
 }

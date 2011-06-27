@@ -1,12 +1,13 @@
 package org.jboss.shrinkwrap.descriptor.impl.webcommon30;
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.DispatcherType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.FilterMappingType;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T12:04:36.305-04:00
+ * Generation date :2011-06-27T07:43:58.376-04:00
  *
  * Original Documentation:
  *
@@ -92,19 +93,24 @@ public class FilterMappingTypeImpl<T> implements Child<T>, FilterMappingType<T>
    // Element type : dispatcher
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
+   public FilterMappingType<T> setDispatcher(DispatcherType dispatcher)
+   {
+      childNode.getOrCreate("dispatcher").text(dispatcher);
+      return this;
+   }
+
    public FilterMappingType<T> setDispatcher(String dispatcher)
    {
       childNode.getOrCreate("dispatcher").text(dispatcher);
       return this;
    }
 
-   public FilterMappingType<T> removeDispatcher()
+   public DispatcherType getDispatcher()
    {
-      childNode.remove("dispatcher");
-      return this;
+      return DispatcherType.getFromStringValue(childNode.textValue("dispatcher"));
    }
 
-   public String getDispatcher()
+   public String getDispatcherAsString()
    {
       return childNode.textValue("dispatcher");
    }

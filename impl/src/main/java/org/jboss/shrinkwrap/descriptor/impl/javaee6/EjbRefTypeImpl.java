@@ -5,12 +5,13 @@ import java.util.List;
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbRefTypeType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.InjectionTargetType;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T12:04:36.305-04:00
+ * Generation date :2011-06-27T07:43:58.376-04:00
  *
  * Original Documentation:
  *
@@ -124,7 +125,7 @@ public class EjbRefTypeImpl<T> implements Child<T>, EjbRefType<T>
    // -------------------------------------------------------------------------------------||
    public EjbRefType<T> removeAllInjectionTarget()
    {
-      childNode.remove("injection-target");
+      childNode.remove(InjectionTargetTypeImpl.nodeName);
       return this;
    }
 
@@ -206,19 +207,24 @@ public class EjbRefTypeImpl<T> implements Child<T>, EjbRefType<T>
    // Element type : ejb-ref-type
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
+   public EjbRefType<T> setEjbRefType(EjbRefTypeType ejbRefType)
+   {
+      childNode.getOrCreate("ejb-ref-type").text(ejbRefType);
+      return this;
+   }
+
    public EjbRefType<T> setEjbRefType(String ejbRefType)
    {
       childNode.getOrCreate("ejb-ref-type").text(ejbRefType);
       return this;
    }
 
-   public EjbRefType<T> removeEjbRefType()
+   public EjbRefTypeType getEjbRefType()
    {
-      childNode.remove("ejb-ref-type");
-      return this;
+      return EjbRefTypeType.getFromStringValue(childNode.textValue("ejb-ref-type"));
    }
 
-   public String getEjbRefType()
+   public String getEjbRefTypeAsString()
    {
       return childNode.textValue("ejb-ref-type");
    }

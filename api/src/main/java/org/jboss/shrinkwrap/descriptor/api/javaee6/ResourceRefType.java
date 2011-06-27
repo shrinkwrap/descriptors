@@ -6,7 +6,7 @@ import org.jboss.shrinkwrap.descriptor.api.Child;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T12:04:36.305-04:00
+ * Generation date :2011-06-27T07:43:58.376-04:00
  *
  * Original Documentation:
  *
@@ -84,16 +84,20 @@ public interface ResourceRefType<T> extends Child<T>
 
    public String getResType();
 
+   public ResourceRefType<T> setResAuth(ResAuthType resAuth);
+
    public ResourceRefType<T> setResAuth(String resAuth);
 
-   public ResourceRefType<T> removeResAuth();
+   public ResAuthType getResAuth();
 
-   public String getResAuth();
+   public String getResAuthAsString();
+
+   public ResourceRefType<T> setResSharingScope(ResSharingScopeType resSharingScope);
 
    public ResourceRefType<T> setResSharingScope(String resSharingScope);
 
-   public ResourceRefType<T> removeResSharingScope();
+   public ResSharingScopeType getResSharingScope();
 
-   public String getResSharingScope();
+   public String getResSharingScopeAsString();
 
 }

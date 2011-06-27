@@ -31,11 +31,12 @@ import org.jboss.shrinkwrap.descriptor.api.webcommon30.SecurityConstraintType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.ServletMappingType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.ServletType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.SessionConfigType;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.WebAppVersionType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.WelcomeFileListType;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T12:04:36.305-04:00
+ * Generation date :2011-06-27T07:43:58.376-04:00
  */
 public interface WebApp30Descriptor extends Descriptor, DescriptorNamespace<WebApp30Descriptor>
 {
@@ -195,9 +196,13 @@ public interface WebApp30Descriptor extends Descriptor, DescriptorNamespace<WebA
 
    public List<DataSourceType<WebApp30Descriptor>> getDataSourceList();
 
+   public WebApp30Descriptor setVersion(WebAppVersionType version);
+
    public WebApp30Descriptor setVersion(String version);
 
-   public String getVersion();
+   public WebAppVersionType getVersion();
+
+   public String getVersionAsString();
 
    public WebApp30Descriptor setMetadataComplete(Boolean metadataComplete);
 

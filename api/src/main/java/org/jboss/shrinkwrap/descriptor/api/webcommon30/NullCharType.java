@@ -2,7 +2,7 @@ package org.jboss.shrinkwrap.descriptor.api.webcommon30;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T12:04:36.305-04:00
+ * Generation date :2011-06-27T07:43:58.376-04:00
  */
 public enum NullCharType {
    _("");
@@ -18,4 +18,17 @@ public enum NullCharType {
    {
       return value;
    }
+
+   public static NullCharType getFromStringValue(String value)
+   {
+      for (NullCharType type : NullCharType.values())
+      {
+         if (value != null && type.toString().equals(value))
+         {
+            return type;
+         }
+      }
+      return null;
+   }
+
 }

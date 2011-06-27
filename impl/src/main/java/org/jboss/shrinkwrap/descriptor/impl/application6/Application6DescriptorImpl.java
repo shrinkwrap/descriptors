@@ -11,6 +11,7 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbLocalRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.EnvEntryType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.GenericBooleanType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationType;
@@ -38,7 +39,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T12:04:36.305-04:00
+ * Generation date :2011-06-27T07:43:58.376-04:00
  */
 public class Application6DescriptorImpl extends NodeProviderImplBase
       implements
@@ -158,19 +159,24 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
    // Element type : initialize-in-order
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
+   public Application6Descriptor setInitializeInOrder(GenericBooleanType initializeInOrder)
+   {
+      model.getOrCreate("initialize-in-order").text(initializeInOrder);
+      return this;
+   }
+
    public Application6Descriptor setInitializeInOrder(String initializeInOrder)
    {
       model.getOrCreate("initialize-in-order").text(initializeInOrder);
       return this;
    }
 
-   public Application6Descriptor removeInitializeInOrder()
+   public GenericBooleanType getInitializeInOrder()
    {
-      model.remove("initialize-in-order");
-      return this;
+      return GenericBooleanType.getFromStringValue(model.textValue("initialize-in-order"));
    }
 
-   public String getInitializeInOrder()
+   public String getInitializeInOrderAsString()
    {
       return model.textValue("initialize-in-order");
    }
@@ -488,7 +494,7 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public Application6Descriptor removeAllIcon()
    {
-      model.remove("icon");
+      model.remove(IconTypeImpl.nodeName);
       return this;
    }
 

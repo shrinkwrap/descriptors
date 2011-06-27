@@ -1,17 +1,12 @@
-package org.jboss.shrinkwrap.descriptor.api.javaee6; 
+package org.jboss.shrinkwrap.descriptor.api.javaee6;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.api.application6.*;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
+
 /**
  * This class is a generated class.
- * Generation date :2011-06-26T17:25:18.735-04:00
+ * Generation date :2011-06-27T07:43:58.376-04:00
  *
  * Original Documentation:
  *
@@ -58,55 +53,53 @@ public interface MessageDestinationRefType<T> extends Child<T>
 {
 
    public MessageDestinationRefType<T> setLookupName(String lookupName);
+
    public MessageDestinationRefType<T> removeLookupName();
 
    public String getLookupName();
 
-
    public MessageDestinationRefType<T> setMappedName(String mappedName);
+
    public MessageDestinationRefType<T> removeMappedName();
 
    public String getMappedName();
 
-
    public MessageDestinationRefType<T> removeAllInjectionTarget();
 
    public InjectionTargetType<MessageDestinationRefType<T>> injectionTarget();
+
    public List<InjectionTargetType<MessageDestinationRefType<T>>> getInjectionTargetList();
 
-
-
    public MessageDestinationRefType<T> setDescription(String description);
-   public MessageDestinationRefType<T> setDescriptionList(String ... values);
+
+   public MessageDestinationRefType<T> setDescriptionList(String... values);
+
    public MessageDestinationRefType<T> removeAllDescription();
 
    public List<String> getDescriptionList();
 
-
-
    public MessageDestinationRefType<T> setMessageDestinationRefName(String messageDestinationRefName);
+
    public MessageDestinationRefType<T> removeMessageDestinationRefName();
 
    public String getMessageDestinationRefName();
 
-
-
    public MessageDestinationRefType<T> setMessageDestinationType(String messageDestinationType);
+
    public MessageDestinationRefType<T> removeMessageDestinationType();
 
    public String getMessageDestinationType();
 
-
-
    public MessageDestinationRefType<T> setMessageDestinationUsage(MessageDestinationUsageType messageDestinationUsage);
+
    public MessageDestinationRefType<T> setMessageDestinationUsage(String messageDestinationUsage);
 
    public MessageDestinationUsageType getMessageDestinationUsage();
-   public String  getMessageDestinationUsageAsString();
 
-
+   public String getMessageDestinationUsageAsString();
 
    public MessageDestinationRefType<T> setMessageDestinationLink(String messageDestinationLink);
+
    public MessageDestinationRefType<T> removeMessageDestinationLink();
 
    public String getMessageDestinationLink();

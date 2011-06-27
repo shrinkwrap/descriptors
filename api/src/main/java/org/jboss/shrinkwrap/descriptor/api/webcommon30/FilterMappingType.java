@@ -4,7 +4,7 @@ import org.jboss.shrinkwrap.descriptor.api.Child;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T12:04:36.305-04:00
+ * Generation date :2011-06-27T07:43:58.376-04:00
  *
  * Original Documentation:
  *
@@ -37,11 +37,13 @@ public interface FilterMappingType<T> extends Child<T>
 
    public String getFilterName();
 
+   public FilterMappingType<T> setDispatcher(DispatcherType dispatcher);
+
    public FilterMappingType<T> setDispatcher(String dispatcher);
 
-   public FilterMappingType<T> removeDispatcher();
+   public DispatcherType getDispatcher();
 
-   public String getDispatcher();
+   public String getDispatcherAsString();
 
    public FilterMappingType<T> setUrlPattern(String urlPattern);
 

@@ -3,11 +3,12 @@ package org.jboss.shrinkwrap.descriptor.impl.webcommon30;
 import org.jboss.shrinkwrap.descriptor.api.Child;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.CookieConfigType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.SessionConfigType;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.TrackingModeType;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T12:04:36.305-04:00
+ * Generation date :2011-06-27T07:43:58.376-04:00
  *
  * Original Documentation:
  *
@@ -100,19 +101,24 @@ public class SessionConfigTypeImpl<T> implements Child<T>, SessionConfigType<T>
    // Element type : tracking-mode
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
+   public SessionConfigType<T> setTrackingMode(TrackingModeType trackingMode)
+   {
+      childNode.getOrCreate("tracking-mode").text(trackingMode);
+      return this;
+   }
+
    public SessionConfigType<T> setTrackingMode(String trackingMode)
    {
       childNode.getOrCreate("tracking-mode").text(trackingMode);
       return this;
    }
 
-   public SessionConfigType<T> removeTrackingMode()
+   public TrackingModeType getTrackingMode()
    {
-      childNode.remove("tracking-mode");
-      return this;
+      return TrackingModeType.getFromStringValue(childNode.textValue("tracking-mode"));
    }
 
-   public String getTrackingMode()
+   public String getTrackingModeAsString()
    {
       return childNode.textValue("tracking-mode");
    }

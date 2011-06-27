@@ -33,6 +33,7 @@ import org.jboss.shrinkwrap.descriptor.api.webcommon30.SecurityConstraintType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.ServletMappingType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.ServletType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.SessionConfigType;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.WebAppVersionType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.WelcomeFileListType;
 import org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase;
 import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
@@ -70,7 +71,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T12:04:36.305-04:00
+ * Generation date :2011-06-27T07:43:58.376-04:00
  */
 public class WebApp30DescriptorImpl extends NodeProviderImplBase
       implements
@@ -216,7 +217,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
 
    public Boolean isDistributable()
    {
-      return model.attributes().get("distributable") != null;
+      return model.getSingle("distributable") != null;
    }
 
    // -------------------------------------------------------------------------------------||
@@ -580,7 +581,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllIcon()
    {
-      model.remove("icon");
+      model.remove(IconTypeImpl.nodeName);
       return this;
    }
 
@@ -607,7 +608,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllEnvEntry()
    {
-      model.remove("env-entry");
+      model.remove(EnvEntryTypeImpl.nodeName);
       return this;
    }
 
@@ -634,7 +635,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllEjbRef()
    {
-      model.remove("ejb-ref");
+      model.remove(EjbRefTypeImpl.nodeName);
       return this;
    }
 
@@ -661,7 +662,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllEjbLocalRef()
    {
-      model.remove("ejb-local-ref");
+      model.remove(EjbLocalRefTypeImpl.nodeName);
       return this;
    }
 
@@ -688,7 +689,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllResourceRef()
    {
-      model.remove("resource-ref");
+      model.remove(ResourceRefTypeImpl.nodeName);
       return this;
    }
 
@@ -715,7 +716,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllResourceEnvRef()
    {
-      model.remove("resource-env-ref");
+      model.remove(ResourceEnvRefTypeImpl.nodeName);
       return this;
    }
 
@@ -743,7 +744,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllMessageDestinationRef()
    {
-      model.remove("message-destination-ref");
+      model.remove(MessageDestinationRefTypeImpl.nodeName);
       return this;
    }
 
@@ -771,7 +772,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllPersistenceContextRef()
    {
-      model.remove("persistence-context-ref");
+      model.remove(PersistenceContextRefTypeImpl.nodeName);
       return this;
    }
 
@@ -799,7 +800,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllPersistenceUnitRef()
    {
-      model.remove("persistence-unit-ref");
+      model.remove(PersistenceUnitRefTypeImpl.nodeName);
       return this;
    }
 
@@ -827,7 +828,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllPostConstruct()
    {
-      model.remove("post-construct");
+      model.remove(LifecycleCallbackTypeImpl.nodeName);
       return this;
    }
 
@@ -855,7 +856,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllPreDestroy()
    {
-      model.remove("pre-destroy");
+      model.remove(LifecycleCallbackTypeImpl.nodeName);
       return this;
    }
 
@@ -883,7 +884,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllDataSource()
    {
-      model.remove("data-source");
+      model.remove(DataSourceTypeImpl.nodeName);
       return this;
    }
 
@@ -908,15 +909,26 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // Element type : version
    // isComplexType: false   maxOccurs: -   isAttribute: true
    // -------------------------------------------------------------------------------------||
+   public WebApp30Descriptor setVersion(WebAppVersionType version)
+   {
+      model.attribute("version", version);
+      return this;
+   }
+
    public WebApp30Descriptor setVersion(String version)
    {
       model.attribute("version", version);
       return this;
    }
 
-   public String getVersion()
+   public WebAppVersionType getVersion()
    {
-      return model.attributes().get("version");
+      return WebAppVersionType.getFromStringValue(model.attribute("version"));
+   }
+
+   public String getVersionAsString()
+   {
+      return model.attribute("version");
    }
 
    // -------------------------------------------------------------------------------------||
@@ -931,7 +943,7 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
 
    public Boolean isMetadataComplete()
    {
-      return Strings.isTrue(model.textValue("metadata-complete"));
+      return Strings.isTrue(model.attribute("metadata-complete"));
    }
 
 }

@@ -1,28 +1,41 @@
-package org.jboss.shrinkwrap.descriptor.impl.application6; 
+package org.jboss.shrinkwrap.descriptor.impl.application6;
 
-import org.jboss.shrinkwrap.descriptor.spi.Node;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.api.application6.*;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
-import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
-import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.impl.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.impl.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.impl.application6.*;
-import org.jboss.shrinkwrap.descriptor.impl.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.api.application6.ApplicationType;
+import org.jboss.shrinkwrap.descriptor.api.application6.ModuleType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbLocalRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.EnvEntryType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.GenericBooleanType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceContextRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceUnitRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceEnvRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleType;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.DataSourceTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.EjbLocalRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.EjbRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.EnvEntryTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.IconTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.MessageDestinationRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.MessageDestinationTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.PersistenceContextRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.PersistenceUnitRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.ResourceEnvRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.ResourceRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.SecurityRoleTypeImpl;
+import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-26T17:25:18.735-04:00
+ * Generation date :2011-06-27T07:43:58.376-04:00
  *
  * Original Documentation:
  *
@@ -42,31 +55,33 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
+
    private Node node;
+
    private Node childNode;
+
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public ApplicationTypeImpl(T t, String descriptorName, Node node)   {
+   public ApplicationTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public ApplicationTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public ApplicationTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
-
    public T up()
    {
       return t;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : description
@@ -77,21 +92,23 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
       childNode.create("description").text(description);
       return this;
    }
-   public ApplicationType<T> setDescriptionList(String ... values)
+
+   public ApplicationType<T> setDescriptionList(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
          setDescription(name);
       }
       return this;
    }
+
    public ApplicationType<T> removeAllDescription()
    {
       childNode.remove("description");
       return this;
    }
 
-public List<String> getDescriptionList()
+   public List<String> getDescriptionList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("description");
@@ -102,7 +119,6 @@ public List<String> getDescriptionList()
       return result;
    }
 
-
    // -------------------------------------------------------------------------------------||
    // Element type : display-name
    // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
@@ -112,21 +128,23 @@ public List<String> getDescriptionList()
       childNode.create("display-name").text(displayName);
       return this;
    }
-   public ApplicationType<T> setDisplayNameList(String ... values)
+
+   public ApplicationType<T> setDisplayNameList(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
          setDisplayName(name);
       }
       return this;
    }
+
    public ApplicationType<T> removeAllDisplayName()
    {
       childNode.remove("display-name");
       return this;
    }
 
-public List<String> getDisplayNameList()
+   public List<String> getDisplayNameList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("display-name");
@@ -137,14 +155,13 @@ public List<String> getDisplayNameList()
       return result;
    }
 
-
    // -------------------------------------------------------------------------------------||
    // Element type : icon
    // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllIcon()
    {
-      childNode.remove("icon");
+      childNode.remove(IconTypeImpl.nodeName);
       return this;
    }
 
@@ -157,15 +174,13 @@ public List<String> getDisplayNameList()
    {
       List<IconType<ApplicationType<T>>> list = new ArrayList<IconType<ApplicationType<T>>>();
       List<Node> nodeList = childNode.get(IconTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         IconType<ApplicationType<T>>  type = new IconTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         IconType<ApplicationType<T>> type = new IconTypeImpl<ApplicationType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : application-name
@@ -176,6 +191,7 @@ public List<String> getDisplayNameList()
       childNode.getOrCreate("application-name").text(applicationName);
       return this;
    }
+
    public ApplicationType<T> removeApplicationName()
    {
       childNode.remove("application-name");
@@ -187,8 +203,6 @@ public List<String> getDisplayNameList()
       return childNode.textValue("application-name");
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : initialize-in-order
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -198,6 +212,7 @@ public List<String> getDisplayNameList()
       childNode.getOrCreate("initialize-in-order").text(initializeInOrder);
       return this;
    }
+
    public ApplicationType<T> setInitializeInOrder(String initializeInOrder)
    {
       childNode.getOrCreate("initialize-in-order").text(initializeInOrder);
@@ -209,12 +224,10 @@ public List<String> getDisplayNameList()
       return GenericBooleanType.getFromStringValue(childNode.textValue("initialize-in-order"));
    }
 
-   public String  getInitializeInOrderAsString()
+   public String getInitializeInOrderAsString()
    {
       return childNode.textValue("initialize-in-order");
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : module
@@ -222,7 +235,7 @@ public List<String> getDisplayNameList()
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllModule()
    {
-      childNode.remove("module");
+      childNode.remove(ModuleTypeImpl.nodeName);
       return this;
    }
 
@@ -235,16 +248,13 @@ public List<String> getDisplayNameList()
    {
       List<ModuleType<ApplicationType<T>>> list = new ArrayList<ModuleType<ApplicationType<T>>>();
       List<Node> nodeList = childNode.get(ModuleTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         ModuleType<ApplicationType<T>>  type = new ModuleTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         ModuleType<ApplicationType<T>> type = new ModuleTypeImpl<ApplicationType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : security-role
@@ -252,7 +262,7 @@ public List<String> getDisplayNameList()
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllSecurityRole()
    {
-      childNode.remove("security-role");
+      childNode.remove(SecurityRoleTypeImpl.nodeName);
       return this;
    }
 
@@ -265,16 +275,14 @@ public List<String> getDisplayNameList()
    {
       List<SecurityRoleType<ApplicationType<T>>> list = new ArrayList<SecurityRoleType<ApplicationType<T>>>();
       List<Node> nodeList = childNode.get(SecurityRoleTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         SecurityRoleType<ApplicationType<T>>  type = new SecurityRoleTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         SecurityRoleType<ApplicationType<T>> type = new SecurityRoleTypeImpl<ApplicationType<T>>(this, "", childNode,
+               node);
          list.add(type);
       }
       return list;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : library-directory
@@ -285,6 +293,7 @@ public List<String> getDisplayNameList()
       childNode.getOrCreate("library-directory").text(libraryDirectory);
       return this;
    }
+
    public ApplicationType<T> removeLibraryDirectory()
    {
       childNode.remove("library-directory");
@@ -296,15 +305,13 @@ public List<String> getDisplayNameList()
       return childNode.textValue("library-directory");
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : env-entry
    // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllEnvEntry()
    {
-      childNode.remove("env-entry");
+      childNode.remove(EnvEntryTypeImpl.nodeName);
       return this;
    }
 
@@ -317,16 +324,13 @@ public List<String> getDisplayNameList()
    {
       List<EnvEntryType<ApplicationType<T>>> list = new ArrayList<EnvEntryType<ApplicationType<T>>>();
       List<Node> nodeList = childNode.get(EnvEntryTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         EnvEntryType<ApplicationType<T>>  type = new EnvEntryTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         EnvEntryType<ApplicationType<T>> type = new EnvEntryTypeImpl<ApplicationType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : ejb-ref
@@ -334,7 +338,7 @@ public List<String> getDisplayNameList()
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllEjbRef()
    {
-      childNode.remove("ejb-ref");
+      childNode.remove(EjbRefTypeImpl.nodeName);
       return this;
    }
 
@@ -347,16 +351,13 @@ public List<String> getDisplayNameList()
    {
       List<EjbRefType<ApplicationType<T>>> list = new ArrayList<EjbRefType<ApplicationType<T>>>();
       List<Node> nodeList = childNode.get(EjbRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         EjbRefType<ApplicationType<T>>  type = new EjbRefTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         EjbRefType<ApplicationType<T>> type = new EjbRefTypeImpl<ApplicationType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : ejb-local-ref
@@ -364,7 +365,7 @@ public List<String> getDisplayNameList()
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllEjbLocalRef()
    {
-      childNode.remove("ejb-local-ref");
+      childNode.remove(EjbLocalRefTypeImpl.nodeName);
       return this;
    }
 
@@ -377,16 +378,14 @@ public List<String> getDisplayNameList()
    {
       List<EjbLocalRefType<ApplicationType<T>>> list = new ArrayList<EjbLocalRefType<ApplicationType<T>>>();
       List<Node> nodeList = childNode.get(EjbLocalRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         EjbLocalRefType<ApplicationType<T>>  type = new EjbLocalRefTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         EjbLocalRefType<ApplicationType<T>> type = new EjbLocalRefTypeImpl<ApplicationType<T>>(this, "", childNode,
+               node);
          list.add(type);
       }
       return list;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : resource-ref
@@ -394,7 +393,7 @@ public List<String> getDisplayNameList()
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllResourceRef()
    {
-      childNode.remove("resource-ref");
+      childNode.remove(ResourceRefTypeImpl.nodeName);
       return this;
    }
 
@@ -407,16 +406,14 @@ public List<String> getDisplayNameList()
    {
       List<ResourceRefType<ApplicationType<T>>> list = new ArrayList<ResourceRefType<ApplicationType<T>>>();
       List<Node> nodeList = childNode.get(ResourceRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         ResourceRefType<ApplicationType<T>>  type = new ResourceRefTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         ResourceRefType<ApplicationType<T>> type = new ResourceRefTypeImpl<ApplicationType<T>>(this, "", childNode,
+               node);
          list.add(type);
       }
       return list;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : resource-env-ref
@@ -424,7 +421,7 @@ public List<String> getDisplayNameList()
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllResourceEnvRef()
    {
-      childNode.remove("resource-env-ref");
+      childNode.remove(ResourceEnvRefTypeImpl.nodeName);
       return this;
    }
 
@@ -437,16 +434,14 @@ public List<String> getDisplayNameList()
    {
       List<ResourceEnvRefType<ApplicationType<T>>> list = new ArrayList<ResourceEnvRefType<ApplicationType<T>>>();
       List<Node> nodeList = childNode.get(ResourceEnvRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         ResourceEnvRefType<ApplicationType<T>>  type = new ResourceEnvRefTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         ResourceEnvRefType<ApplicationType<T>> type = new ResourceEnvRefTypeImpl<ApplicationType<T>>(this, "",
+               childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : message-destination-ref
@@ -454,7 +449,7 @@ public List<String> getDisplayNameList()
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllMessageDestinationRef()
    {
-      childNode.remove("message-destination-ref");
+      childNode.remove(MessageDestinationRefTypeImpl.nodeName);
       return this;
    }
 
@@ -467,16 +462,14 @@ public List<String> getDisplayNameList()
    {
       List<MessageDestinationRefType<ApplicationType<T>>> list = new ArrayList<MessageDestinationRefType<ApplicationType<T>>>();
       List<Node> nodeList = childNode.get(MessageDestinationRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         MessageDestinationRefType<ApplicationType<T>>  type = new MessageDestinationRefTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         MessageDestinationRefType<ApplicationType<T>> type = new MessageDestinationRefTypeImpl<ApplicationType<T>>(
+               this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : persistence-context-ref
@@ -484,7 +477,7 @@ public List<String> getDisplayNameList()
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllPersistenceContextRef()
    {
-      childNode.remove("persistence-context-ref");
+      childNode.remove(PersistenceContextRefTypeImpl.nodeName);
       return this;
    }
 
@@ -497,16 +490,14 @@ public List<String> getDisplayNameList()
    {
       List<PersistenceContextRefType<ApplicationType<T>>> list = new ArrayList<PersistenceContextRefType<ApplicationType<T>>>();
       List<Node> nodeList = childNode.get(PersistenceContextRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         PersistenceContextRefType<ApplicationType<T>>  type = new PersistenceContextRefTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         PersistenceContextRefType<ApplicationType<T>> type = new PersistenceContextRefTypeImpl<ApplicationType<T>>(
+               this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : persistence-unit-ref
@@ -514,7 +505,7 @@ public List<String> getDisplayNameList()
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllPersistenceUnitRef()
    {
-      childNode.remove("persistence-unit-ref");
+      childNode.remove(PersistenceUnitRefTypeImpl.nodeName);
       return this;
    }
 
@@ -527,16 +518,14 @@ public List<String> getDisplayNameList()
    {
       List<PersistenceUnitRefType<ApplicationType<T>>> list = new ArrayList<PersistenceUnitRefType<ApplicationType<T>>>();
       List<Node> nodeList = childNode.get(PersistenceUnitRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         PersistenceUnitRefType<ApplicationType<T>>  type = new PersistenceUnitRefTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         PersistenceUnitRefType<ApplicationType<T>> type = new PersistenceUnitRefTypeImpl<ApplicationType<T>>(this, "",
+               childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : message-destination
@@ -544,7 +533,7 @@ public List<String> getDisplayNameList()
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllMessageDestination()
    {
-      childNode.remove("message-destination");
+      childNode.remove(MessageDestinationTypeImpl.nodeName);
       return this;
    }
 
@@ -557,16 +546,14 @@ public List<String> getDisplayNameList()
    {
       List<MessageDestinationType<ApplicationType<T>>> list = new ArrayList<MessageDestinationType<ApplicationType<T>>>();
       List<Node> nodeList = childNode.get(MessageDestinationTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         MessageDestinationType<ApplicationType<T>>  type = new MessageDestinationTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         MessageDestinationType<ApplicationType<T>> type = new MessageDestinationTypeImpl<ApplicationType<T>>(this, "",
+               childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : data-source
@@ -574,7 +561,7 @@ public List<String> getDisplayNameList()
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllDataSource()
    {
-      childNode.remove("data-source");
+      childNode.remove(DataSourceTypeImpl.nodeName);
       return this;
    }
 
@@ -587,13 +574,12 @@ public List<String> getDisplayNameList()
    {
       List<DataSourceType<ApplicationType<T>>> list = new ArrayList<DataSourceType<ApplicationType<T>>>();
       List<Node> nodeList = childNode.get(DataSourceTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         DataSourceType<ApplicationType<T>>  type = new DataSourceTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         DataSourceType<ApplicationType<T>> type = new DataSourceTypeImpl<ApplicationType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
-
 
 }

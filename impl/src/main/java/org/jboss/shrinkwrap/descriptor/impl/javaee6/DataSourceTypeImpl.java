@@ -5,13 +5,14 @@ import java.util.List;
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.IsolationLevelType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.PropertyType;
 import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T12:04:36.305-04:00
+ * Generation date :2011-06-27T07:43:58.376-04:00
  *
  * Original Documentation:
  *
@@ -253,7 +254,7 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
    // -------------------------------------------------------------------------------------||
    public DataSourceType<T> removeAllProperty()
    {
-      childNode.remove("property");
+      childNode.remove(PropertyTypeImpl.nodeName);
       return this;
    }
 
@@ -320,19 +321,24 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
    // Element type : isolation-level
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
+   public DataSourceType<T> setIsolationLevel(IsolationLevelType isolationLevel)
+   {
+      childNode.getOrCreate("isolation-level").text(isolationLevel);
+      return this;
+   }
+
    public DataSourceType<T> setIsolationLevel(String isolationLevel)
    {
       childNode.getOrCreate("isolation-level").text(isolationLevel);
       return this;
    }
 
-   public DataSourceType<T> removeIsolationLevel()
+   public IsolationLevelType getIsolationLevel()
    {
-      childNode.remove("isolation-level");
-      return this;
+      return IsolationLevelType.getFromStringValue(childNode.textValue("isolation-level"));
    }
 
-   public String getIsolationLevel()
+   public String getIsolationLevelAsString()
    {
       return childNode.textValue("isolation-level");
    }

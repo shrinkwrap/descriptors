@@ -200,7 +200,7 @@ public class WebApp30DescriptorGeneralTestCase
             source);
      
       web.setVersion("3.0");
-      Assert.assertEquals("3.0", web.getVersion());
+      Assert.assertEquals("3.0", web.getVersionAsString());
       
       // Get as Node structure
       final InputStream stream = new ByteArrayInputStream(web.exportAsString().getBytes());
@@ -208,14 +208,14 @@ public class WebApp30DescriptorGeneralTestCase
       final Node root = importer.importRootNode(stream);
       
       // Preconditions
-      Assert.assertEquals("3.0", web.getVersion());
+      Assert.assertEquals("3.0", web.getVersionAsString());
       Assert.assertTrue(root.attribute("xsi:schemaLocation").contains("web-app_3_0.xsd"));
       
       // Change the version
       web.setVersion("2.5");
      
       // Check that everything was updated
-      Assert.assertEquals("2.5", web.getVersion());
+      Assert.assertEquals("2.5", web.getVersionAsString());
       
       // Log just for fun
       // log.info("web.xml after update: " + web.exportAsString());

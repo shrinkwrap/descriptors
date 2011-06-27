@@ -7,6 +7,7 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbLocalRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.EnvEntryType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.GenericBooleanType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationType;
@@ -18,7 +19,7 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleType;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T12:04:36.305-04:00
+ * Generation date :2011-06-27T07:43:58.376-04:00
  *
  * Original Documentation:
  *
@@ -60,11 +61,13 @@ public interface ApplicationType<T> extends Child<T>
 
    public String getApplicationName();
 
+   public ApplicationType<T> setInitializeInOrder(GenericBooleanType initializeInOrder);
+
    public ApplicationType<T> setInitializeInOrder(String initializeInOrder);
 
-   public ApplicationType<T> removeInitializeInOrder();
+   public GenericBooleanType getInitializeInOrder();
 
-   public String getInitializeInOrder();
+   public String getInitializeInOrderAsString();
 
    public ApplicationType<T> removeAllModule();
 

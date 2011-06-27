@@ -1,28 +1,61 @@
-package org.jboss.shrinkwrap.descriptor.impl.webcommon30; 
+package org.jboss.shrinkwrap.descriptor.impl.webcommon30;
 
-import org.jboss.shrinkwrap.descriptor.spi.Node;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.api.application6.*;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbLocalRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.EnvEntryType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.LifecycleCallbackType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.ListenerType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.ParamValueType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceContextRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceUnitRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceEnvRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleType;
+import org.jboss.shrinkwrap.descriptor.api.jsp22.JspConfigType;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.AbsoluteOrderingType;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.ErrorPageType;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.FilterMappingType;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.FilterType;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.LocaleEncodingMappingListType;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.LoginConfigType;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.MimeMappingType;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.SecurityConstraintType;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.ServletMappingType;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.ServletType;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.SessionConfigType;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.WebAppType;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.WebAppVersionType;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.WelcomeFileListType;
 import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
-import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.impl.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.impl.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.impl.application6.*;
-import org.jboss.shrinkwrap.descriptor.impl.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.DataSourceTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.EjbLocalRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.EjbRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.EnvEntryTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.IconTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.LifecycleCallbackTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.ListenerTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.MessageDestinationRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.MessageDestinationTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.ParamValueTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.PersistenceContextRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.PersistenceUnitRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.ResourceEnvRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.ResourceRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.SecurityRoleTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.jsp22.JspConfigTypeImpl;
+import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-26T17:25:18.735-04:00
+ * Generation date :2011-06-27T07:43:58.376-04:00
  */
 public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
 {
@@ -33,30 +66,33 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
+
    private Node node;
+
    private Node childNode;
+
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public WebAppTypeImpl(T t, String descriptorName, Node node)   {
+   public WebAppTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public WebAppTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public WebAppTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
-
    public T up()
    {
       return t;
    }
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : distributable
@@ -70,9 +106,8 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
 
    public Boolean isDistributable()
    {
-      return childNode.attributes().get("distributable") != null;
+      return childNode.getSingle("distributable") != null;
    }
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : context-param
@@ -91,8 +126,6 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return contextParam;
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : filter
    // isComplexType: true   maxOccurs: -   isAttribute: false
@@ -110,8 +143,6 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return filter;
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : filter-mapping
    // isComplexType: true   maxOccurs: -   isAttribute: false
@@ -125,11 +156,10 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    public FilterMappingType<WebAppType<T>> filterMapping()
    {
       Node node = childNode.getOrCreate(FilterMappingTypeImpl.nodeName);
-      FilterMappingType<WebAppType<T>> filterMapping = new FilterMappingTypeImpl<WebAppType<T>>(this, "", childNode, node);
+      FilterMappingType<WebAppType<T>> filterMapping = new FilterMappingTypeImpl<WebAppType<T>>(this, "", childNode,
+            node);
       return filterMapping;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : listener
@@ -148,8 +178,6 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return listener;
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : servlet
    // isComplexType: true   maxOccurs: -   isAttribute: false
@@ -167,8 +195,6 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return servlet;
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : servlet-mapping
    // isComplexType: true   maxOccurs: -   isAttribute: false
@@ -182,11 +208,10 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    public ServletMappingType<WebAppType<T>> servletMapping()
    {
       Node node = childNode.getOrCreate(ServletMappingTypeImpl.nodeName);
-      ServletMappingType<WebAppType<T>> servletMapping = new ServletMappingTypeImpl<WebAppType<T>>(this, "", childNode, node);
+      ServletMappingType<WebAppType<T>> servletMapping = new ServletMappingTypeImpl<WebAppType<T>>(this, "", childNode,
+            node);
       return servletMapping;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : session-config
@@ -201,11 +226,10 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    public SessionConfigType<WebAppType<T>> sessionConfig()
    {
       Node node = childNode.getOrCreate(SessionConfigTypeImpl.nodeName);
-      SessionConfigType<WebAppType<T>> sessionConfig = new SessionConfigTypeImpl<WebAppType<T>>(this, "", childNode, node);
+      SessionConfigType<WebAppType<T>> sessionConfig = new SessionConfigTypeImpl<WebAppType<T>>(this, "", childNode,
+            node);
       return sessionConfig;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : mime-mapping
@@ -224,8 +248,6 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return mimeMapping;
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : welcome-file-list
    // isComplexType: true   maxOccurs: -   isAttribute: false
@@ -239,11 +261,10 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    public WelcomeFileListType<WebAppType<T>> welcomeFileList()
    {
       Node node = childNode.getOrCreate(WelcomeFileListTypeImpl.nodeName);
-      WelcomeFileListType<WebAppType<T>> welcomeFileList = new WelcomeFileListTypeImpl<WebAppType<T>>(this, "", childNode, node);
+      WelcomeFileListType<WebAppType<T>> welcomeFileList = new WelcomeFileListTypeImpl<WebAppType<T>>(this, "",
+            childNode, node);
       return welcomeFileList;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : error-page
@@ -262,8 +283,6 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return errorPage;
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : jsp-config
    // isComplexType: true   maxOccurs: -   isAttribute: false
@@ -281,8 +300,6 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return jspConfig;
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : security-constraint
    // isComplexType: true   maxOccurs: -   isAttribute: false
@@ -296,11 +313,10 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    public SecurityConstraintType<WebAppType<T>> securityConstraint()
    {
       Node node = childNode.getOrCreate(SecurityConstraintTypeImpl.nodeName);
-      SecurityConstraintType<WebAppType<T>> securityConstraint = new SecurityConstraintTypeImpl<WebAppType<T>>(this, "", childNode, node);
+      SecurityConstraintType<WebAppType<T>> securityConstraint = new SecurityConstraintTypeImpl<WebAppType<T>>(this,
+            "", childNode, node);
       return securityConstraint;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : login-config
@@ -319,8 +335,6 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return loginConfig;
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : security-role
    // isComplexType: true   maxOccurs: -   isAttribute: false
@@ -338,8 +352,6 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       return securityRole;
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : message-destination
    // isComplexType: true   maxOccurs: -   isAttribute: false
@@ -353,11 +365,10 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    public MessageDestinationType<WebAppType<T>> messageDestination()
    {
       Node node = childNode.getOrCreate(MessageDestinationTypeImpl.nodeName);
-      MessageDestinationType<WebAppType<T>> messageDestination = new MessageDestinationTypeImpl<WebAppType<T>>(this, "", childNode, node);
+      MessageDestinationType<WebAppType<T>> messageDestination = new MessageDestinationTypeImpl<WebAppType<T>>(this,
+            "", childNode, node);
       return messageDestination;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : locale-encoding-mapping-list
@@ -372,11 +383,10 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    public LocaleEncodingMappingListType<WebAppType<T>> localeEncodingMappingList()
    {
       Node node = childNode.getOrCreate(LocaleEncodingMappingListTypeImpl.nodeName);
-      LocaleEncodingMappingListType<WebAppType<T>> localeEncodingMappingList = new LocaleEncodingMappingListTypeImpl<WebAppType<T>>(this, "", childNode, node);
+      LocaleEncodingMappingListType<WebAppType<T>> localeEncodingMappingList = new LocaleEncodingMappingListTypeImpl<WebAppType<T>>(
+            this, "", childNode, node);
       return localeEncodingMappingList;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : description
@@ -387,21 +397,23 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
       childNode.create("description").text(description);
       return this;
    }
-   public WebAppType<T> setDescriptionList(String ... values)
+
+   public WebAppType<T> setDescriptionList(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
          setDescription(name);
       }
       return this;
    }
+
    public WebAppType<T> removeAllDescription()
    {
       childNode.remove("description");
       return this;
    }
 
-public List<String> getDescriptionList()
+   public List<String> getDescriptionList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("description");
@@ -412,7 +424,6 @@ public List<String> getDescriptionList()
       return result;
    }
 
-
    // -------------------------------------------------------------------------------------||
    // Element type : display-name
    // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
@@ -422,21 +433,23 @@ public List<String> getDescriptionList()
       childNode.create("display-name").text(displayName);
       return this;
    }
-   public WebAppType<T> setDisplayNameList(String ... values)
+
+   public WebAppType<T> setDisplayNameList(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
          setDisplayName(name);
       }
       return this;
    }
+
    public WebAppType<T> removeAllDisplayName()
    {
       childNode.remove("display-name");
       return this;
    }
 
-public List<String> getDisplayNameList()
+   public List<String> getDisplayNameList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("display-name");
@@ -447,14 +460,13 @@ public List<String> getDisplayNameList()
       return result;
    }
 
-
    // -------------------------------------------------------------------------------------||
    // Element type : icon
    // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
    public WebAppType<T> removeAllIcon()
    {
-      childNode.remove("icon");
+      childNode.remove(IconTypeImpl.nodeName);
       return this;
    }
 
@@ -467,15 +479,13 @@ public List<String> getDisplayNameList()
    {
       List<IconType<WebAppType<T>>> list = new ArrayList<IconType<WebAppType<T>>>();
       List<Node> nodeList = childNode.get(IconTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         IconType<WebAppType<T>>  type = new IconTypeImpl<WebAppType<T>>(this, "", childNode, node);
+         IconType<WebAppType<T>> type = new IconTypeImpl<WebAppType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : env-entry
@@ -483,7 +493,7 @@ public List<String> getDisplayNameList()
    // -------------------------------------------------------------------------------------||
    public WebAppType<T> removeAllEnvEntry()
    {
-      childNode.remove("env-entry");
+      childNode.remove(EnvEntryTypeImpl.nodeName);
       return this;
    }
 
@@ -496,15 +506,13 @@ public List<String> getDisplayNameList()
    {
       List<EnvEntryType<WebAppType<T>>> list = new ArrayList<EnvEntryType<WebAppType<T>>>();
       List<Node> nodeList = childNode.get(EnvEntryTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         EnvEntryType<WebAppType<T>>  type = new EnvEntryTypeImpl<WebAppType<T>>(this, "", childNode, node);
+         EnvEntryType<WebAppType<T>> type = new EnvEntryTypeImpl<WebAppType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : ejb-ref
@@ -512,7 +520,7 @@ public List<String> getDisplayNameList()
    // -------------------------------------------------------------------------------------||
    public WebAppType<T> removeAllEjbRef()
    {
-      childNode.remove("ejb-ref");
+      childNode.remove(EjbRefTypeImpl.nodeName);
       return this;
    }
 
@@ -525,15 +533,13 @@ public List<String> getDisplayNameList()
    {
       List<EjbRefType<WebAppType<T>>> list = new ArrayList<EjbRefType<WebAppType<T>>>();
       List<Node> nodeList = childNode.get(EjbRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         EjbRefType<WebAppType<T>>  type = new EjbRefTypeImpl<WebAppType<T>>(this, "", childNode, node);
+         EjbRefType<WebAppType<T>> type = new EjbRefTypeImpl<WebAppType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : ejb-local-ref
@@ -541,7 +547,7 @@ public List<String> getDisplayNameList()
    // -------------------------------------------------------------------------------------||
    public WebAppType<T> removeAllEjbLocalRef()
    {
-      childNode.remove("ejb-local-ref");
+      childNode.remove(EjbLocalRefTypeImpl.nodeName);
       return this;
    }
 
@@ -554,15 +560,13 @@ public List<String> getDisplayNameList()
    {
       List<EjbLocalRefType<WebAppType<T>>> list = new ArrayList<EjbLocalRefType<WebAppType<T>>>();
       List<Node> nodeList = childNode.get(EjbLocalRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         EjbLocalRefType<WebAppType<T>>  type = new EjbLocalRefTypeImpl<WebAppType<T>>(this, "", childNode, node);
+         EjbLocalRefType<WebAppType<T>> type = new EjbLocalRefTypeImpl<WebAppType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : resource-ref
@@ -570,7 +574,7 @@ public List<String> getDisplayNameList()
    // -------------------------------------------------------------------------------------||
    public WebAppType<T> removeAllResourceRef()
    {
-      childNode.remove("resource-ref");
+      childNode.remove(ResourceRefTypeImpl.nodeName);
       return this;
    }
 
@@ -583,15 +587,13 @@ public List<String> getDisplayNameList()
    {
       List<ResourceRefType<WebAppType<T>>> list = new ArrayList<ResourceRefType<WebAppType<T>>>();
       List<Node> nodeList = childNode.get(ResourceRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         ResourceRefType<WebAppType<T>>  type = new ResourceRefTypeImpl<WebAppType<T>>(this, "", childNode, node);
+         ResourceRefType<WebAppType<T>> type = new ResourceRefTypeImpl<WebAppType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : resource-env-ref
@@ -599,7 +601,7 @@ public List<String> getDisplayNameList()
    // -------------------------------------------------------------------------------------||
    public WebAppType<T> removeAllResourceEnvRef()
    {
-      childNode.remove("resource-env-ref");
+      childNode.remove(ResourceEnvRefTypeImpl.nodeName);
       return this;
    }
 
@@ -612,15 +614,13 @@ public List<String> getDisplayNameList()
    {
       List<ResourceEnvRefType<WebAppType<T>>> list = new ArrayList<ResourceEnvRefType<WebAppType<T>>>();
       List<Node> nodeList = childNode.get(ResourceEnvRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         ResourceEnvRefType<WebAppType<T>>  type = new ResourceEnvRefTypeImpl<WebAppType<T>>(this, "", childNode, node);
+         ResourceEnvRefType<WebAppType<T>> type = new ResourceEnvRefTypeImpl<WebAppType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : message-destination-ref
@@ -628,7 +628,7 @@ public List<String> getDisplayNameList()
    // -------------------------------------------------------------------------------------||
    public WebAppType<T> removeAllMessageDestinationRef()
    {
-      childNode.remove("message-destination-ref");
+      childNode.remove(MessageDestinationRefTypeImpl.nodeName);
       return this;
    }
 
@@ -641,15 +641,14 @@ public List<String> getDisplayNameList()
    {
       List<MessageDestinationRefType<WebAppType<T>>> list = new ArrayList<MessageDestinationRefType<WebAppType<T>>>();
       List<Node> nodeList = childNode.get(MessageDestinationRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         MessageDestinationRefType<WebAppType<T>>  type = new MessageDestinationRefTypeImpl<WebAppType<T>>(this, "", childNode, node);
+         MessageDestinationRefType<WebAppType<T>> type = new MessageDestinationRefTypeImpl<WebAppType<T>>(this, "",
+               childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : persistence-context-ref
@@ -657,7 +656,7 @@ public List<String> getDisplayNameList()
    // -------------------------------------------------------------------------------------||
    public WebAppType<T> removeAllPersistenceContextRef()
    {
-      childNode.remove("persistence-context-ref");
+      childNode.remove(PersistenceContextRefTypeImpl.nodeName);
       return this;
    }
 
@@ -670,15 +669,14 @@ public List<String> getDisplayNameList()
    {
       List<PersistenceContextRefType<WebAppType<T>>> list = new ArrayList<PersistenceContextRefType<WebAppType<T>>>();
       List<Node> nodeList = childNode.get(PersistenceContextRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         PersistenceContextRefType<WebAppType<T>>  type = new PersistenceContextRefTypeImpl<WebAppType<T>>(this, "", childNode, node);
+         PersistenceContextRefType<WebAppType<T>> type = new PersistenceContextRefTypeImpl<WebAppType<T>>(this, "",
+               childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : persistence-unit-ref
@@ -686,7 +684,7 @@ public List<String> getDisplayNameList()
    // -------------------------------------------------------------------------------------||
    public WebAppType<T> removeAllPersistenceUnitRef()
    {
-      childNode.remove("persistence-unit-ref");
+      childNode.remove(PersistenceUnitRefTypeImpl.nodeName);
       return this;
    }
 
@@ -699,15 +697,14 @@ public List<String> getDisplayNameList()
    {
       List<PersistenceUnitRefType<WebAppType<T>>> list = new ArrayList<PersistenceUnitRefType<WebAppType<T>>>();
       List<Node> nodeList = childNode.get(PersistenceUnitRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         PersistenceUnitRefType<WebAppType<T>>  type = new PersistenceUnitRefTypeImpl<WebAppType<T>>(this, "", childNode, node);
+         PersistenceUnitRefType<WebAppType<T>> type = new PersistenceUnitRefTypeImpl<WebAppType<T>>(this, "",
+               childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : post-construct
@@ -715,7 +712,7 @@ public List<String> getDisplayNameList()
    // -------------------------------------------------------------------------------------||
    public WebAppType<T> removeAllPostConstruct()
    {
-      childNode.remove("post-construct");
+      childNode.remove(LifecycleCallbackTypeImpl.nodeName);
       return this;
    }
 
@@ -728,15 +725,14 @@ public List<String> getDisplayNameList()
    {
       List<LifecycleCallbackType<WebAppType<T>>> list = new ArrayList<LifecycleCallbackType<WebAppType<T>>>();
       List<Node> nodeList = childNode.get(LifecycleCallbackTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         LifecycleCallbackType<WebAppType<T>>  type = new LifecycleCallbackTypeImpl<WebAppType<T>>(this, "", childNode, node);
+         LifecycleCallbackType<WebAppType<T>> type = new LifecycleCallbackTypeImpl<WebAppType<T>>(this, "", childNode,
+               node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : pre-destroy
@@ -744,7 +740,7 @@ public List<String> getDisplayNameList()
    // -------------------------------------------------------------------------------------||
    public WebAppType<T> removeAllPreDestroy()
    {
-      childNode.remove("pre-destroy");
+      childNode.remove(LifecycleCallbackTypeImpl.nodeName);
       return this;
    }
 
@@ -757,15 +753,14 @@ public List<String> getDisplayNameList()
    {
       List<LifecycleCallbackType<WebAppType<T>>> list = new ArrayList<LifecycleCallbackType<WebAppType<T>>>();
       List<Node> nodeList = childNode.get(LifecycleCallbackTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         LifecycleCallbackType<WebAppType<T>>  type = new LifecycleCallbackTypeImpl<WebAppType<T>>(this, "", childNode, node);
+         LifecycleCallbackType<WebAppType<T>> type = new LifecycleCallbackTypeImpl<WebAppType<T>>(this, "", childNode,
+               node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : data-source
@@ -773,7 +768,7 @@ public List<String> getDisplayNameList()
    // -------------------------------------------------------------------------------------||
    public WebAppType<T> removeAllDataSource()
    {
-      childNode.remove("data-source");
+      childNode.remove(DataSourceTypeImpl.nodeName);
       return this;
    }
 
@@ -786,15 +781,13 @@ public List<String> getDisplayNameList()
    {
       List<DataSourceType<WebAppType<T>>> list = new ArrayList<DataSourceType<WebAppType<T>>>();
       List<Node> nodeList = childNode.get(DataSourceTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         DataSourceType<WebAppType<T>>  type = new DataSourceTypeImpl<WebAppType<T>>(this, "", childNode, node);
+         DataSourceType<WebAppType<T>> type = new DataSourceTypeImpl<WebAppType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : version
@@ -805,6 +798,7 @@ public List<String> getDisplayNameList()
       childNode.attribute("version", version);
       return this;
    }
+
    public WebAppType<T> setVersion(String version)
    {
       childNode.attribute("version", version);
@@ -813,14 +807,13 @@ public List<String> getDisplayNameList()
 
    public WebAppVersionType getVersion()
    {
-      return WebAppVersionType.getFromStringValue(childNode.textValue("version"));
+      return WebAppVersionType.getFromStringValue(childNode.attribute("version"));
    }
 
-   public String  getVersionAsString()
+   public String getVersionAsString()
    {
-      return childNode.textValue("version");
+      return childNode.attribute("version");
    }
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : metadata-complete
@@ -834,9 +827,8 @@ public List<String> getDisplayNameList()
 
    public Boolean isMetadataComplete()
    {
-      return Strings.isTrue(childNode.textValue("metadata-complete"));
+      return Strings.isTrue(childNode.attribute("metadata-complete"));
    }
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : module-name
@@ -847,6 +839,7 @@ public List<String> getDisplayNameList()
       childNode.getOrCreate("module-name").text(moduleName);
       return this;
    }
+
    public WebAppType<T> removeModuleName()
    {
       childNode.remove("module-name");
@@ -857,8 +850,6 @@ public List<String> getDisplayNameList()
    {
       return childNode.textValue("module-name");
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : absolute-ordering
@@ -873,9 +864,9 @@ public List<String> getDisplayNameList()
    public AbsoluteOrderingType<WebAppType<T>> absoluteOrdering()
    {
       Node node = childNode.getOrCreate(AbsoluteOrderingTypeImpl.nodeName);
-      AbsoluteOrderingType<WebAppType<T>> absoluteOrdering = new AbsoluteOrderingTypeImpl<WebAppType<T>>(this, "", childNode, node);
+      AbsoluteOrderingType<WebAppType<T>> absoluteOrdering = new AbsoluteOrderingTypeImpl<WebAppType<T>>(this, "",
+            childNode, node);
       return absoluteOrdering;
    }
-
 
 }

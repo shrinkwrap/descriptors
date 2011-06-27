@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.TransportGuaranteeType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.UserDataConstraintType;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T12:04:36.305-04:00
+ * Generation date :2011-06-27T07:43:58.376-04:00
  *
  * Original Documentation:
  *
@@ -100,19 +101,24 @@ public class UserDataConstraintTypeImpl<T> implements Child<T>, UserDataConstrai
    // Element type : transport-guarantee
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
+   public UserDataConstraintType<T> setTransportGuarantee(TransportGuaranteeType transportGuarantee)
+   {
+      childNode.getOrCreate("transport-guarantee").text(transportGuarantee);
+      return this;
+   }
+
    public UserDataConstraintType<T> setTransportGuarantee(String transportGuarantee)
    {
       childNode.getOrCreate("transport-guarantee").text(transportGuarantee);
       return this;
    }
 
-   public UserDataConstraintType<T> removeTransportGuarantee()
+   public TransportGuaranteeType getTransportGuarantee()
    {
-      childNode.remove("transport-guarantee");
-      return this;
+      return TransportGuaranteeType.getFromStringValue(childNode.textValue("transport-guarantee"));
    }
 
-   public String getTransportGuarantee()
+   public String getTransportGuaranteeAsString()
    {
       return childNode.textValue("transport-guarantee");
    }

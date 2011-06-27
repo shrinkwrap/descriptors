@@ -1,28 +1,18 @@
-package org.jboss.shrinkwrap.descriptor.impl.javaee6; 
+package org.jboss.shrinkwrap.descriptor.impl.javaee6;
 
-import org.jboss.shrinkwrap.descriptor.spi.Node;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.api.application6.*;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
-import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
-import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.impl.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.impl.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.impl.application6.*;
-import org.jboss.shrinkwrap.descriptor.impl.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.InjectionTargetType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceContextRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceContextTypeType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.PropertyType;
+import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-26T17:25:18.735-04:00
+ * Generation date :2011-06-27T07:43:58.376-04:00
  *
  * Original Documentation:
  *
@@ -70,31 +60,33 @@ public class PersistenceContextRefTypeImpl<T> implements Child<T>, PersistenceCo
    // -------------------------------------------------------------------------------------||
 
    private T t;
+
    private Node node;
+
    private Node childNode;
+
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public PersistenceContextRefTypeImpl(T t, String descriptorName, Node node)   {
+   public PersistenceContextRefTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public PersistenceContextRefTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public PersistenceContextRefTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
-
    public T up()
    {
       return t;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : mapped-name
@@ -105,6 +97,7 @@ public class PersistenceContextRefTypeImpl<T> implements Child<T>, PersistenceCo
       childNode.getOrCreate("mapped-name").text(mappedName);
       return this;
    }
+
    public PersistenceContextRefType<T> removeMappedName()
    {
       childNode.remove("mapped-name");
@@ -116,14 +109,13 @@ public class PersistenceContextRefTypeImpl<T> implements Child<T>, PersistenceCo
       return childNode.textValue("mapped-name");
    }
 
-
    // -------------------------------------------------------------------------------------||
    // Element type : injection-target
    // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
    public PersistenceContextRefType<T> removeAllInjectionTarget()
    {
-      childNode.remove("injection-target");
+      childNode.remove(InjectionTargetTypeImpl.nodeName);
       return this;
    }
 
@@ -136,15 +128,14 @@ public class PersistenceContextRefTypeImpl<T> implements Child<T>, PersistenceCo
    {
       List<InjectionTargetType<PersistenceContextRefType<T>>> list = new ArrayList<InjectionTargetType<PersistenceContextRefType<T>>>();
       List<Node> nodeList = childNode.get(InjectionTargetTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         InjectionTargetType<PersistenceContextRefType<T>>  type = new InjectionTargetTypeImpl<PersistenceContextRefType<T>>(this, "", childNode, node);
+         InjectionTargetType<PersistenceContextRefType<T>> type = new InjectionTargetTypeImpl<PersistenceContextRefType<T>>(
+               this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : description
@@ -155,21 +146,23 @@ public class PersistenceContextRefTypeImpl<T> implements Child<T>, PersistenceCo
       childNode.create("description").text(description);
       return this;
    }
-   public PersistenceContextRefType<T> setDescriptionList(String ... values)
+
+   public PersistenceContextRefType<T> setDescriptionList(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
          setDescription(name);
       }
       return this;
    }
+
    public PersistenceContextRefType<T> removeAllDescription()
    {
       childNode.remove("description");
       return this;
    }
 
-public List<String> getDescriptionList()
+   public List<String> getDescriptionList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("description");
@@ -180,8 +173,6 @@ public List<String> getDescriptionList()
       return result;
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : persistence-context-ref-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -191,6 +182,7 @@ public List<String> getDescriptionList()
       childNode.getOrCreate("persistence-context-ref-name").text(persistenceContextRefName);
       return this;
    }
+
    public PersistenceContextRefType<T> removePersistenceContextRefName()
    {
       childNode.remove("persistence-context-ref-name");
@@ -202,8 +194,6 @@ public List<String> getDescriptionList()
       return childNode.textValue("persistence-context-ref-name");
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : persistence-unit-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -213,6 +203,7 @@ public List<String> getDescriptionList()
       childNode.getOrCreate("persistence-unit-name").text(persistenceUnitName);
       return this;
    }
+
    public PersistenceContextRefType<T> removePersistenceUnitName()
    {
       childNode.remove("persistence-unit-name");
@@ -224,8 +215,6 @@ public List<String> getDescriptionList()
       return childNode.textValue("persistence-unit-name");
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : persistence-context-type
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -235,6 +224,7 @@ public List<String> getDescriptionList()
       childNode.getOrCreate("persistence-context-type").text(persistenceContextType);
       return this;
    }
+
    public PersistenceContextRefType<T> setPersistenceContextType(String persistenceContextType)
    {
       childNode.getOrCreate("persistence-context-type").text(persistenceContextType);
@@ -246,12 +236,10 @@ public List<String> getDescriptionList()
       return PersistenceContextTypeType.getFromStringValue(childNode.textValue("persistence-context-type"));
    }
 
-   public String  getPersistenceContextTypeAsString()
+   public String getPersistenceContextTypeAsString()
    {
       return childNode.textValue("persistence-context-type");
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : persistence-property
@@ -259,7 +247,7 @@ public List<String> getDescriptionList()
    // -------------------------------------------------------------------------------------||
    public PersistenceContextRefType<T> removeAllPersistenceProperty()
    {
-      childNode.remove("persistence-property");
+      childNode.remove(PropertyTypeImpl.nodeName);
       return this;
    }
 
@@ -272,13 +260,13 @@ public List<String> getDescriptionList()
    {
       List<PropertyType<PersistenceContextRefType<T>>> list = new ArrayList<PropertyType<PersistenceContextRefType<T>>>();
       List<Node> nodeList = childNode.get(PropertyTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         PropertyType<PersistenceContextRefType<T>>  type = new PropertyTypeImpl<PersistenceContextRefType<T>>(this, "", childNode, node);
+         PropertyType<PersistenceContextRefType<T>> type = new PropertyTypeImpl<PersistenceContextRefType<T>>(this, "",
+               childNode, node);
          list.add(type);
       }
       return list;
    }
-
 
 }

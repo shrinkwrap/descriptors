@@ -44,11 +44,11 @@ public class WebApp30DescriptorSimpleTypeTestCase
    public void testWebAppVersionType() throws Exception
    {
       final WebApp30Descriptor webApp = create().setVersion("3.0");
-      assertEquals(webApp.getVersion(), "3.0");
+      assertEquals(webApp.getVersionAsString(), "3.0");
       assertXPath(webApp.exportAsString(), "/web-app/@version", "3.0");
       
       webApp.setVersion("3.x");
-      assertEquals(webApp.getVersion(), "3.x");
+      assertEquals(webApp.getVersionAsString(), "3.x");
       assertXPath(webApp.exportAsString(), "/web-app/@version", "3.x");
    }
    

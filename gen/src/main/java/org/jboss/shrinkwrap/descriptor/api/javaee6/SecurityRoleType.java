@@ -1,17 +1,12 @@
-package org.jboss.shrinkwrap.descriptor.api.javaee6; 
+package org.jboss.shrinkwrap.descriptor.api.javaee6;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.api.application6.*;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
+
 /**
  * This class is a generated class.
- * Generation date :2011-06-26T17:25:18.735-04:00
+ * Generation date :2011-06-27T07:43:58.376-04:00
  *
  * Original Documentation:
  *
@@ -38,14 +33,15 @@ public interface SecurityRoleType<T> extends Child<T>
 {
 
    public SecurityRoleType<T> setDescription(String description);
-   public SecurityRoleType<T> setDescriptionList(String ... values);
+
+   public SecurityRoleType<T> setDescriptionList(String... values);
+
    public SecurityRoleType<T> removeAllDescription();
 
    public List<String> getDescriptionList();
 
-
-
    public SecurityRoleType<T> setRoleName(String roleName);
+
    public SecurityRoleType<T> removeRoleName();
 
    public String getRoleName();

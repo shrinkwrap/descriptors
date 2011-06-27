@@ -5,12 +5,14 @@ import java.util.List;
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.InjectionTargetType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.ResAuthType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.ResSharingScopeType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceRefType;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T12:04:36.305-04:00
+ * Generation date :2011-06-27T07:43:58.376-04:00
  *
  * Original Documentation:
  *
@@ -132,7 +134,7 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
    // -------------------------------------------------------------------------------------||
    public ResourceRefType<T> removeAllInjectionTarget()
    {
-      childNode.remove("injection-target");
+      childNode.remove(InjectionTargetTypeImpl.nodeName);
       return this;
    }
 
@@ -236,19 +238,24 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
    // Element type : res-auth
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
+   public ResourceRefType<T> setResAuth(ResAuthType resAuth)
+   {
+      childNode.getOrCreate("res-auth").text(resAuth);
+      return this;
+   }
+
    public ResourceRefType<T> setResAuth(String resAuth)
    {
       childNode.getOrCreate("res-auth").text(resAuth);
       return this;
    }
 
-   public ResourceRefType<T> removeResAuth()
+   public ResAuthType getResAuth()
    {
-      childNode.remove("res-auth");
-      return this;
+      return ResAuthType.getFromStringValue(childNode.textValue("res-auth"));
    }
 
-   public String getResAuth()
+   public String getResAuthAsString()
    {
       return childNode.textValue("res-auth");
    }
@@ -257,19 +264,24 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
    // Element type : res-sharing-scope
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
+   public ResourceRefType<T> setResSharingScope(ResSharingScopeType resSharingScope)
+   {
+      childNode.getOrCreate("res-sharing-scope").text(resSharingScope);
+      return this;
+   }
+
    public ResourceRefType<T> setResSharingScope(String resSharingScope)
    {
       childNode.getOrCreate("res-sharing-scope").text(resSharingScope);
       return this;
    }
 
-   public ResourceRefType<T> removeResSharingScope()
+   public ResSharingScopeType getResSharingScope()
    {
-      childNode.remove("res-sharing-scope");
-      return this;
+      return ResSharingScopeType.getFromStringValue(childNode.textValue("res-sharing-scope"));
    }
 
-   public String getResSharingScope()
+   public String getResSharingScopeAsString()
    {
       return childNode.textValue("res-sharing-scope");
    }

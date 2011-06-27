@@ -32,6 +32,7 @@ import org.jboss.shrinkwrap.descriptor.api.webcommon30.ServletMappingType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.ServletType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.SessionConfigType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.WebAppType;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.WebAppVersionType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.WelcomeFileListType;
 import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.DataSourceTypeImpl;
@@ -54,7 +55,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T12:04:36.305-04:00
+ * Generation date :2011-06-27T07:43:58.376-04:00
  */
 public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
 {
@@ -105,7 +106,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
 
    public Boolean isDistributable()
    {
-      return childNode.attributes().get("distributable") != null;
+      return childNode.getSingle("distributable") != null;
    }
 
    // -------------------------------------------------------------------------------------||
@@ -465,7 +466,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    // -------------------------------------------------------------------------------------||
    public WebAppType<T> removeAllIcon()
    {
-      childNode.remove("icon");
+      childNode.remove(IconTypeImpl.nodeName);
       return this;
    }
 
@@ -492,7 +493,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    // -------------------------------------------------------------------------------------||
    public WebAppType<T> removeAllEnvEntry()
    {
-      childNode.remove("env-entry");
+      childNode.remove(EnvEntryTypeImpl.nodeName);
       return this;
    }
 
@@ -519,7 +520,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    // -------------------------------------------------------------------------------------||
    public WebAppType<T> removeAllEjbRef()
    {
-      childNode.remove("ejb-ref");
+      childNode.remove(EjbRefTypeImpl.nodeName);
       return this;
    }
 
@@ -546,7 +547,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    // -------------------------------------------------------------------------------------||
    public WebAppType<T> removeAllEjbLocalRef()
    {
-      childNode.remove("ejb-local-ref");
+      childNode.remove(EjbLocalRefTypeImpl.nodeName);
       return this;
    }
 
@@ -573,7 +574,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    // -------------------------------------------------------------------------------------||
    public WebAppType<T> removeAllResourceRef()
    {
-      childNode.remove("resource-ref");
+      childNode.remove(ResourceRefTypeImpl.nodeName);
       return this;
    }
 
@@ -600,7 +601,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    // -------------------------------------------------------------------------------------||
    public WebAppType<T> removeAllResourceEnvRef()
    {
-      childNode.remove("resource-env-ref");
+      childNode.remove(ResourceEnvRefTypeImpl.nodeName);
       return this;
    }
 
@@ -627,7 +628,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    // -------------------------------------------------------------------------------------||
    public WebAppType<T> removeAllMessageDestinationRef()
    {
-      childNode.remove("message-destination-ref");
+      childNode.remove(MessageDestinationRefTypeImpl.nodeName);
       return this;
    }
 
@@ -655,7 +656,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    // -------------------------------------------------------------------------------------||
    public WebAppType<T> removeAllPersistenceContextRef()
    {
-      childNode.remove("persistence-context-ref");
+      childNode.remove(PersistenceContextRefTypeImpl.nodeName);
       return this;
    }
 
@@ -683,7 +684,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    // -------------------------------------------------------------------------------------||
    public WebAppType<T> removeAllPersistenceUnitRef()
    {
-      childNode.remove("persistence-unit-ref");
+      childNode.remove(PersistenceUnitRefTypeImpl.nodeName);
       return this;
    }
 
@@ -711,7 +712,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    // -------------------------------------------------------------------------------------||
    public WebAppType<T> removeAllPostConstruct()
    {
-      childNode.remove("post-construct");
+      childNode.remove(LifecycleCallbackTypeImpl.nodeName);
       return this;
    }
 
@@ -739,7 +740,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    // -------------------------------------------------------------------------------------||
    public WebAppType<T> removeAllPreDestroy()
    {
-      childNode.remove("pre-destroy");
+      childNode.remove(LifecycleCallbackTypeImpl.nodeName);
       return this;
    }
 
@@ -767,7 +768,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    // -------------------------------------------------------------------------------------||
    public WebAppType<T> removeAllDataSource()
    {
-      childNode.remove("data-source");
+      childNode.remove(DataSourceTypeImpl.nodeName);
       return this;
    }
 
@@ -792,15 +793,26 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
    // Element type : version
    // isComplexType: false   maxOccurs: -   isAttribute: true
    // -------------------------------------------------------------------------------------||
+   public WebAppType<T> setVersion(WebAppVersionType version)
+   {
+      childNode.attribute("version", version);
+      return this;
+   }
+
    public WebAppType<T> setVersion(String version)
    {
       childNode.attribute("version", version);
       return this;
    }
 
-   public String getVersion()
+   public WebAppVersionType getVersion()
    {
-      return childNode.attributes().get("version");
+      return WebAppVersionType.getFromStringValue(childNode.attribute("version"));
+   }
+
+   public String getVersionAsString()
+   {
+      return childNode.attribute("version");
    }
 
    // -------------------------------------------------------------------------------------||
@@ -815,7 +827,7 @@ public class WebAppTypeImpl<T> implements Child<T>, WebAppType<T>
 
    public Boolean isMetadataComplete()
    {
-      return Strings.isTrue(childNode.textValue("metadata-complete"));
+      return Strings.isTrue(childNode.attribute("metadata-complete"));
    }
 
    // -------------------------------------------------------------------------------------||

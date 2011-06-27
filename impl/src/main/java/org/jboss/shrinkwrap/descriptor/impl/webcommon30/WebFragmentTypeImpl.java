@@ -31,6 +31,7 @@ import org.jboss.shrinkwrap.descriptor.api.webcommon30.SecurityConstraintType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.ServletMappingType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.ServletType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.SessionConfigType;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.WebAppVersionType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.WebFragmentType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.WelcomeFileListType;
 import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
@@ -54,7 +55,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T12:04:36.305-04:00
+ * Generation date :2011-06-27T07:43:58.376-04:00
  */
 public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
 {
@@ -105,7 +106,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
 
    public Boolean isDistributable()
    {
-      return childNode.attributes().get("distributable") != null;
+      return childNode.getSingle("distributable") != null;
    }
 
    // -------------------------------------------------------------------------------------||
@@ -469,7 +470,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllIcon()
    {
-      childNode.remove("icon");
+      childNode.remove(IconTypeImpl.nodeName);
       return this;
    }
 
@@ -496,7 +497,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllEnvEntry()
    {
-      childNode.remove("env-entry");
+      childNode.remove(EnvEntryTypeImpl.nodeName);
       return this;
    }
 
@@ -523,7 +524,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllEjbRef()
    {
-      childNode.remove("ejb-ref");
+      childNode.remove(EjbRefTypeImpl.nodeName);
       return this;
    }
 
@@ -550,7 +551,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllEjbLocalRef()
    {
-      childNode.remove("ejb-local-ref");
+      childNode.remove(EjbLocalRefTypeImpl.nodeName);
       return this;
    }
 
@@ -578,7 +579,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllResourceRef()
    {
-      childNode.remove("resource-ref");
+      childNode.remove(ResourceRefTypeImpl.nodeName);
       return this;
    }
 
@@ -606,7 +607,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllResourceEnvRef()
    {
-      childNode.remove("resource-env-ref");
+      childNode.remove(ResourceEnvRefTypeImpl.nodeName);
       return this;
    }
 
@@ -634,7 +635,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllMessageDestinationRef()
    {
-      childNode.remove("message-destination-ref");
+      childNode.remove(MessageDestinationRefTypeImpl.nodeName);
       return this;
    }
 
@@ -662,7 +663,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllPersistenceContextRef()
    {
-      childNode.remove("persistence-context-ref");
+      childNode.remove(PersistenceContextRefTypeImpl.nodeName);
       return this;
    }
 
@@ -690,7 +691,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllPersistenceUnitRef()
    {
-      childNode.remove("persistence-unit-ref");
+      childNode.remove(PersistenceUnitRefTypeImpl.nodeName);
       return this;
    }
 
@@ -718,7 +719,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllPostConstruct()
    {
-      childNode.remove("post-construct");
+      childNode.remove(LifecycleCallbackTypeImpl.nodeName);
       return this;
    }
 
@@ -746,7 +747,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllPreDestroy()
    {
-      childNode.remove("pre-destroy");
+      childNode.remove(LifecycleCallbackTypeImpl.nodeName);
       return this;
    }
 
@@ -774,7 +775,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllDataSource()
    {
-      childNode.remove("data-source");
+      childNode.remove(DataSourceTypeImpl.nodeName);
       return this;
    }
 
@@ -799,15 +800,26 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // Element type : version
    // isComplexType: false   maxOccurs: -   isAttribute: true
    // -------------------------------------------------------------------------------------||
+   public WebFragmentType<T> setVersion(WebAppVersionType version)
+   {
+      childNode.attribute("version", version);
+      return this;
+   }
+
    public WebFragmentType<T> setVersion(String version)
    {
       childNode.attribute("version", version);
       return this;
    }
 
-   public String getVersion()
+   public WebAppVersionType getVersion()
    {
-      return childNode.attributes().get("version");
+      return WebAppVersionType.getFromStringValue(childNode.attribute("version"));
+   }
+
+   public String getVersionAsString()
+   {
+      return childNode.attribute("version");
    }
 
    // -------------------------------------------------------------------------------------||
@@ -822,7 +834,7 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
 
    public Boolean isMetadataComplete()
    {
-      return Strings.isTrue(childNode.textValue("metadata-complete"));
+      return Strings.isTrue(childNode.attribute("metadata-complete"));
    }
 
    // -------------------------------------------------------------------------------------||

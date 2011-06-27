@@ -6,12 +6,13 @@ import java.util.List;
 import org.jboss.shrinkwrap.descriptor.api.Child;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.InjectionTargetType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceContextRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceContextTypeType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.PropertyType;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T12:04:36.305-04:00
+ * Generation date :2011-06-27T07:43:58.376-04:00
  *
  * Original Documentation:
  *
@@ -114,7 +115,7 @@ public class PersistenceContextRefTypeImpl<T> implements Child<T>, PersistenceCo
    // -------------------------------------------------------------------------------------||
    public PersistenceContextRefType<T> removeAllInjectionTarget()
    {
-      childNode.remove("injection-target");
+      childNode.remove(InjectionTargetTypeImpl.nodeName);
       return this;
    }
 
@@ -218,19 +219,24 @@ public class PersistenceContextRefTypeImpl<T> implements Child<T>, PersistenceCo
    // Element type : persistence-context-type
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
+   public PersistenceContextRefType<T> setPersistenceContextType(PersistenceContextTypeType persistenceContextType)
+   {
+      childNode.getOrCreate("persistence-context-type").text(persistenceContextType);
+      return this;
+   }
+
    public PersistenceContextRefType<T> setPersistenceContextType(String persistenceContextType)
    {
       childNode.getOrCreate("persistence-context-type").text(persistenceContextType);
       return this;
    }
 
-   public PersistenceContextRefType<T> removePersistenceContextType()
+   public PersistenceContextTypeType getPersistenceContextType()
    {
-      childNode.remove("persistence-context-type");
-      return this;
+      return PersistenceContextTypeType.getFromStringValue(childNode.textValue("persistence-context-type"));
    }
 
-   public String getPersistenceContextType()
+   public String getPersistenceContextTypeAsString()
    {
       return childNode.textValue("persistence-context-type");
    }
@@ -241,7 +247,7 @@ public class PersistenceContextRefTypeImpl<T> implements Child<T>, PersistenceCo
    // -------------------------------------------------------------------------------------||
    public PersistenceContextRefType<T> removeAllPersistenceProperty()
    {
-      childNode.remove("persistence-property");
+      childNode.remove(PropertyTypeImpl.nodeName);
       return this;
    }
 

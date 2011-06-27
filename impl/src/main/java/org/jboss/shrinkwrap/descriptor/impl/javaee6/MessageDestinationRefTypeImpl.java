@@ -6,11 +6,12 @@ import java.util.List;
 import org.jboss.shrinkwrap.descriptor.api.Child;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.InjectionTargetType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationUsageType;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T12:04:36.305-04:00
+ * Generation date :2011-06-27T07:43:58.376-04:00
  *
  * Original Documentation:
  *
@@ -138,7 +139,7 @@ public class MessageDestinationRefTypeImpl<T> implements Child<T>, MessageDestin
    // -------------------------------------------------------------------------------------||
    public MessageDestinationRefType<T> removeAllInjectionTarget()
    {
-      childNode.remove("injection-target");
+      childNode.remove(InjectionTargetTypeImpl.nodeName);
       return this;
    }
 
@@ -242,19 +243,24 @@ public class MessageDestinationRefTypeImpl<T> implements Child<T>, MessageDestin
    // Element type : message-destination-usage
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
+   public MessageDestinationRefType<T> setMessageDestinationUsage(MessageDestinationUsageType messageDestinationUsage)
+   {
+      childNode.getOrCreate("message-destination-usage").text(messageDestinationUsage);
+      return this;
+   }
+
    public MessageDestinationRefType<T> setMessageDestinationUsage(String messageDestinationUsage)
    {
       childNode.getOrCreate("message-destination-usage").text(messageDestinationUsage);
       return this;
    }
 
-   public MessageDestinationRefType<T> removeMessageDestinationUsage()
+   public MessageDestinationUsageType getMessageDestinationUsage()
    {
-      childNode.remove("message-destination-usage");
-      return this;
+      return MessageDestinationUsageType.getFromStringValue(childNode.textValue("message-destination-usage"));
    }
 
-   public String getMessageDestinationUsage()
+   public String getMessageDestinationUsageAsString()
    {
       return childNode.textValue("message-destination-usage");
    }

@@ -10,6 +10,7 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbLocalRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.EnvEntryType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.GenericBooleanType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationType;
@@ -34,7 +35,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T12:04:36.305-04:00
+ * Generation date :2011-06-27T07:43:58.376-04:00
  *
  * Original Documentation:
  *
@@ -160,7 +161,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllIcon()
    {
-      childNode.remove("icon");
+      childNode.remove(IconTypeImpl.nodeName);
       return this;
    }
 
@@ -206,19 +207,24 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // Element type : initialize-in-order
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
+   public ApplicationType<T> setInitializeInOrder(GenericBooleanType initializeInOrder)
+   {
+      childNode.getOrCreate("initialize-in-order").text(initializeInOrder);
+      return this;
+   }
+
    public ApplicationType<T> setInitializeInOrder(String initializeInOrder)
    {
       childNode.getOrCreate("initialize-in-order").text(initializeInOrder);
       return this;
    }
 
-   public ApplicationType<T> removeInitializeInOrder()
+   public GenericBooleanType getInitializeInOrder()
    {
-      childNode.remove("initialize-in-order");
-      return this;
+      return GenericBooleanType.getFromStringValue(childNode.textValue("initialize-in-order"));
    }
 
-   public String getInitializeInOrder()
+   public String getInitializeInOrderAsString()
    {
       return childNode.textValue("initialize-in-order");
    }
@@ -229,7 +235,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllModule()
    {
-      childNode.remove("module");
+      childNode.remove(ModuleTypeImpl.nodeName);
       return this;
    }
 
@@ -256,7 +262,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllSecurityRole()
    {
-      childNode.remove("security-role");
+      childNode.remove(SecurityRoleTypeImpl.nodeName);
       return this;
    }
 
@@ -305,7 +311,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllEnvEntry()
    {
-      childNode.remove("env-entry");
+      childNode.remove(EnvEntryTypeImpl.nodeName);
       return this;
    }
 
@@ -332,7 +338,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllEjbRef()
    {
-      childNode.remove("ejb-ref");
+      childNode.remove(EjbRefTypeImpl.nodeName);
       return this;
    }
 
@@ -359,7 +365,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllEjbLocalRef()
    {
-      childNode.remove("ejb-local-ref");
+      childNode.remove(EjbLocalRefTypeImpl.nodeName);
       return this;
    }
 
@@ -387,7 +393,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllResourceRef()
    {
-      childNode.remove("resource-ref");
+      childNode.remove(ResourceRefTypeImpl.nodeName);
       return this;
    }
 
@@ -415,7 +421,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllResourceEnvRef()
    {
-      childNode.remove("resource-env-ref");
+      childNode.remove(ResourceEnvRefTypeImpl.nodeName);
       return this;
    }
 
@@ -443,7 +449,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllMessageDestinationRef()
    {
-      childNode.remove("message-destination-ref");
+      childNode.remove(MessageDestinationRefTypeImpl.nodeName);
       return this;
    }
 
@@ -471,7 +477,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllPersistenceContextRef()
    {
-      childNode.remove("persistence-context-ref");
+      childNode.remove(PersistenceContextRefTypeImpl.nodeName);
       return this;
    }
 
@@ -499,7 +505,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllPersistenceUnitRef()
    {
-      childNode.remove("persistence-unit-ref");
+      childNode.remove(PersistenceUnitRefTypeImpl.nodeName);
       return this;
    }
 
@@ -527,7 +533,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllMessageDestination()
    {
-      childNode.remove("message-destination");
+      childNode.remove(MessageDestinationTypeImpl.nodeName);
       return this;
    }
 
@@ -555,7 +561,7 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllDataSource()
    {
-      childNode.remove("data-source");
+      childNode.remove(DataSourceTypeImpl.nodeName);
       return this;
    }
 

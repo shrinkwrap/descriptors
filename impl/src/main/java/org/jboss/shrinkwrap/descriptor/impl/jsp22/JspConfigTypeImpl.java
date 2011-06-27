@@ -11,7 +11,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-22T12:04:36.305-04:00
+ * Generation date :2011-06-27T07:43:58.376-04:00
  *
  * Original Documentation:
  *
@@ -66,7 +66,7 @@ public class JspConfigTypeImpl<T> implements Child<T>, JspConfigType<T>
    // -------------------------------------------------------------------------------------||
    public JspConfigType<T> removeAllTaglib()
    {
-      childNode.remove("taglib");
+      childNode.remove(TaglibTypeImpl.nodeName);
       return this;
    }
 
@@ -93,7 +93,7 @@ public class JspConfigTypeImpl<T> implements Child<T>, JspConfigType<T>
    // -------------------------------------------------------------------------------------||
    public JspConfigType<T> removeAllJspPropertyGroup()
    {
-      childNode.remove("jsp-property-group");
+      childNode.remove(JspPropertyGroupTypeImpl.nodeName);
       return this;
    }
 
