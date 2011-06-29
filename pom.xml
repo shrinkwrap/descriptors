@@ -76,10 +76,10 @@
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <inherited>true</inherited>
-        <version>2.3.1</version>
+        <version>2.3.2</version>
         <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
+          <source>1.5</source>
+          <target>1.5</target>
           <showDeprecation>false</showDeprecation>
           <showWarnings>true</showWarnings>
           <optimize>true</optimize>
@@ -107,8 +107,7 @@
 
       <!-- Enforce Maven Environment -->
       <plugin>
-        <artifactId>maven-enforcer-plugin
-                      </artifactId>
+        <artifactId>maven-enforcer-plugin</artifactId>
         <executions>
           <execution>
             <id>enforce-maven-environment</id>
@@ -125,8 +124,16 @@
                 http://maven.apache.org/plugins/maven-assembly-plugin/assembly.html -->
             </requireMavenVersion>
             <requireJavaVersion>
-              <version>1.6.0</version> <!-- Must be JDK6 -->
+              <version>[1.5.0,)</version> <!-- Must be at least JDK5 -->
             </requireJavaVersion>
+            <requireProperty>
+              <property>env.JAVA_HOME</property>
+              <message>"JAVA_HOME needs to be set to compile"</message>
+            </requireProperty>
+            <requireProperty>
+              <property>env.JAVA5_HOME</property>
+              <message>"JAVA5_HOME needs to be set to run some tests in the JRE5 runtime"</message>
+            </requireProperty>
           </rules>
         </configuration>
       </plugin>
