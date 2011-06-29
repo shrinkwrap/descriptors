@@ -113,7 +113,7 @@ public class WebApp30DescriptorComplexTypeTestCase
       webApp.localeEncodingMappingList().removeAllLocaleEncodingMapping();
       assertTrue(webApp.exportAsString().indexOf("<locale-encoding-mapping>") == -1);
       
-      webApp.removeLocaleEncodingMappingList();
+      webApp.removeAllLocaleEncodingMappingList();
       assertTrue(webApp.exportAsString().indexOf("<locale-encoding-mapping-list>") == -1);
    }
    

@@ -22,7 +22,7 @@ import org.jboss.shrinkwrap.descriptor.api.jsp22.JspConfigType;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-27T15:26:42.686-04:00
+ * Generation date :2011-06-29T17:02:36.405-04:00
  */
 public interface WebAppType<T> extends Child<T>
 {
@@ -30,69 +30,101 @@ public interface WebAppType<T> extends Child<T>
 
    public Boolean isDistributable();
 
-   public WebAppType<T> removeContextParam();
+   public WebAppType<T> removeAllContextParam();
 
    public ParamValueType<WebAppType<T>> contextParam();
 
-   public WebAppType<T> removeFilter();
+   public List<ParamValueType<WebAppType<T>>> getContextParamList();
+
+   public WebAppType<T> removeAllFilter();
 
    public FilterType<WebAppType<T>> filter();
 
-   public WebAppType<T> removeFilterMapping();
+   public List<FilterType<WebAppType<T>>> getFilterList();
+
+   public WebAppType<T> removeAllFilterMapping();
 
    public FilterMappingType<WebAppType<T>> filterMapping();
 
-   public WebAppType<T> removeListener();
+   public List<FilterMappingType<WebAppType<T>>> getFilterMappingList();
+
+   public WebAppType<T> removeAllListener();
 
    public ListenerType<WebAppType<T>> listener();
 
-   public WebAppType<T> removeServlet();
+   public List<ListenerType<WebAppType<T>>> getListenerList();
+
+   public WebAppType<T> removeAllServlet();
 
    public ServletType<WebAppType<T>> servlet();
 
-   public WebAppType<T> removeServletMapping();
+   public List<ServletType<WebAppType<T>>> getServletList();
+
+   public WebAppType<T> removeAllServletMapping();
 
    public ServletMappingType<WebAppType<T>> servletMapping();
 
-   public WebAppType<T> removeSessionConfig();
+   public List<ServletMappingType<WebAppType<T>>> getServletMappingList();
+
+   public WebAppType<T> removeAllSessionConfig();
 
    public SessionConfigType<WebAppType<T>> sessionConfig();
 
-   public WebAppType<T> removeMimeMapping();
+   public List<SessionConfigType<WebAppType<T>>> getSessionConfigList();
+
+   public WebAppType<T> removeAllMimeMapping();
 
    public MimeMappingType<WebAppType<T>> mimeMapping();
 
-   public WebAppType<T> removeWelcomeFileList();
+   public List<MimeMappingType<WebAppType<T>>> getMimeMappingList();
+
+   public WebAppType<T> removeAllWelcomeFileList();
 
    public WelcomeFileListType<WebAppType<T>> welcomeFileList();
 
-   public WebAppType<T> removeErrorPage();
+   public List<WelcomeFileListType<WebAppType<T>>> getWelcomeFileListList();
+
+   public WebAppType<T> removeAllErrorPage();
 
    public ErrorPageType<WebAppType<T>> errorPage();
 
-   public WebAppType<T> removeJspConfig();
+   public List<ErrorPageType<WebAppType<T>>> getErrorPageList();
+
+   public WebAppType<T> removeAllJspConfig();
 
    public JspConfigType<WebAppType<T>> jspConfig();
 
-   public WebAppType<T> removeSecurityConstraint();
+   public List<JspConfigType<WebAppType<T>>> getJspConfigList();
+
+   public WebAppType<T> removeAllSecurityConstraint();
 
    public SecurityConstraintType<WebAppType<T>> securityConstraint();
 
-   public WebAppType<T> removeLoginConfig();
+   public List<SecurityConstraintType<WebAppType<T>>> getSecurityConstraintList();
+
+   public WebAppType<T> removeAllLoginConfig();
 
    public LoginConfigType<WebAppType<T>> loginConfig();
 
-   public WebAppType<T> removeSecurityRole();
+   public List<LoginConfigType<WebAppType<T>>> getLoginConfigList();
+
+   public WebAppType<T> removeAllSecurityRole();
 
    public SecurityRoleType<WebAppType<T>> securityRole();
 
-   public WebAppType<T> removeMessageDestination();
+   public List<SecurityRoleType<WebAppType<T>>> getSecurityRoleList();
+
+   public WebAppType<T> removeAllMessageDestination();
 
    public MessageDestinationType<WebAppType<T>> messageDestination();
 
-   public WebAppType<T> removeLocaleEncodingMappingList();
+   public List<MessageDestinationType<WebAppType<T>>> getMessageDestinationList();
+
+   public WebAppType<T> removeAllLocaleEncodingMappingList();
 
    public LocaleEncodingMappingListType<WebAppType<T>> localeEncodingMappingList();
+
+   public List<LocaleEncodingMappingListType<WebAppType<T>>> getLocaleEncodingMappingListList();
 
    public WebAppType<T> setDescription(String description);
 
@@ -196,12 +228,16 @@ public interface WebAppType<T> extends Child<T>
 
    public WebAppType<T> setModuleName(String moduleName);
 
-   public WebAppType<T> removeModuleName();
+   public WebAppType<T> setModuleNameList(String... values);
 
-   public String getModuleName();
+   public WebAppType<T> removeAllModuleName();
 
-   public WebAppType<T> removeAbsoluteOrdering();
+   public List<String> getModuleNameList();
+
+   public WebAppType<T> removeAllAbsoluteOrdering();
 
    public AbsoluteOrderingType<WebAppType<T>> absoluteOrdering();
+
+   public List<AbsoluteOrderingType<WebAppType<T>>> getAbsoluteOrderingList();
 
 }

@@ -1,28 +1,18 @@
-package org.jboss.shrinkwrap.descriptor.impl.javaee6; 
+package org.jboss.shrinkwrap.descriptor.impl.javaee6;
 
-import org.jboss.shrinkwrap.descriptor.spi.Node;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.api.application6.*;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.IsolationLevelType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.PropertyType;
 import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
-import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.impl.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.impl.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.impl.application6.*;
-import org.jboss.shrinkwrap.descriptor.impl.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-27T15:30:58.763-04:00
+ * Generation date :2011-06-29T17:02:36.405-04:00
  *
  * Original Documentation:
  *
@@ -41,31 +31,33 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
+
    private Node node;
+
    private Node childNode;
+
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public DataSourceTypeImpl(T t, String descriptorName, Node node)   {
+   public DataSourceTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public DataSourceTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public DataSourceTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
-
    public T up()
    {
       return t;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : description
@@ -76,6 +68,7 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       childNode.getOrCreate("description").text(description);
       return this;
    }
+
    public DataSourceType<T> removeDescription()
    {
       childNode.remove("description");
@@ -87,8 +80,6 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return childNode.textValue("description");
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : name
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -98,6 +89,7 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       childNode.getOrCreate("name").text(name);
       return this;
    }
+
    public DataSourceType<T> removeName()
    {
       childNode.remove("name");
@@ -109,8 +101,6 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return childNode.textValue("name");
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : class-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -120,6 +110,7 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       childNode.getOrCreate("class-name").text(className);
       return this;
    }
+
    public DataSourceType<T> removeClassName()
    {
       childNode.remove("class-name");
@@ -131,8 +122,6 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return childNode.textValue("class-name");
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : server-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -142,6 +131,7 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       childNode.getOrCreate("server-name").text(serverName);
       return this;
    }
+
    public DataSourceType<T> removeServerName()
    {
       childNode.remove("server-name");
@@ -153,8 +143,6 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return childNode.textValue("server-name");
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : port-number
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -164,6 +152,7 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       childNode.getOrCreate("port-number").text(portNumber);
       return this;
    }
+
    public DataSourceType<T> removePortNumber()
    {
       childNode.remove("port-number");
@@ -175,8 +164,6 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return Integer.valueOf(childNode.textValue("port-number"));
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : database-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -186,6 +173,7 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       childNode.getOrCreate("database-name").text(databaseName);
       return this;
    }
+
    public DataSourceType<T> removeDatabaseName()
    {
       childNode.remove("database-name");
@@ -197,8 +185,6 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return childNode.textValue("database-name");
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : url
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -208,6 +194,7 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       childNode.getOrCreate("url").text(url);
       return this;
    }
+
    public DataSourceType<T> removeUrl()
    {
       childNode.remove("url");
@@ -219,8 +206,6 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return childNode.textValue("url");
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : user
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -230,6 +215,7 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       childNode.getOrCreate("user").text(user);
       return this;
    }
+
    public DataSourceType<T> removeUser()
    {
       childNode.remove("user");
@@ -241,8 +227,6 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return childNode.textValue("user");
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : password
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -252,6 +236,7 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       childNode.getOrCreate("password").text(password);
       return this;
    }
+
    public DataSourceType<T> removePassword()
    {
       childNode.remove("password");
@@ -262,8 +247,6 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
    {
       return childNode.textValue("password");
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : property
@@ -284,16 +267,13 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
    {
       List<PropertyType<DataSourceType<T>>> list = new ArrayList<PropertyType<DataSourceType<T>>>();
       List<Node> nodeList = childNode.get(PropertyTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         PropertyType<DataSourceType<T>>  type = new PropertyTypeImpl<DataSourceType<T>>(this, "", childNode, node);
+         PropertyType<DataSourceType<T>> type = new PropertyTypeImpl<DataSourceType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : login-timeout
@@ -304,6 +284,7 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       childNode.getOrCreate("login-timeout").text(loginTimeout);
       return this;
    }
+
    public DataSourceType<T> removeLoginTimeout()
    {
       childNode.remove("login-timeout");
@@ -315,8 +296,6 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return Integer.valueOf(childNode.textValue("login-timeout"));
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : transactional
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -326,6 +305,7 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       childNode.getOrCreate("transactional").text(transactional);
       return this;
    }
+
    public DataSourceType<T> removeTransactional()
    {
       childNode.remove("transactional");
@@ -337,8 +317,6 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return Strings.isTrue(childNode.textValue("transactional"));
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : isolation-level
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -348,6 +326,7 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       childNode.getOrCreate("isolation-level").text(isolationLevel);
       return this;
    }
+
    public DataSourceType<T> setIsolationLevel(String isolationLevel)
    {
       childNode.getOrCreate("isolation-level").text(isolationLevel);
@@ -359,12 +338,10 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return IsolationLevelType.getFromStringValue(childNode.textValue("isolation-level"));
    }
 
-   public String  getIsolationLevelAsString()
+   public String getIsolationLevelAsString()
    {
       return childNode.textValue("isolation-level");
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : initial-pool-size
@@ -375,6 +352,7 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       childNode.getOrCreate("initial-pool-size").text(initialPoolSize);
       return this;
    }
+
    public DataSourceType<T> removeInitialPoolSize()
    {
       childNode.remove("initial-pool-size");
@@ -386,8 +364,6 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return Integer.valueOf(childNode.textValue("initial-pool-size"));
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : max-pool-size
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -397,6 +373,7 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       childNode.getOrCreate("max-pool-size").text(maxPoolSize);
       return this;
    }
+
    public DataSourceType<T> removeMaxPoolSize()
    {
       childNode.remove("max-pool-size");
@@ -408,8 +385,6 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return Integer.valueOf(childNode.textValue("max-pool-size"));
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : min-pool-size
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -419,6 +394,7 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       childNode.getOrCreate("min-pool-size").text(minPoolSize);
       return this;
    }
+
    public DataSourceType<T> removeMinPoolSize()
    {
       childNode.remove("min-pool-size");
@@ -430,8 +406,6 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return Integer.valueOf(childNode.textValue("min-pool-size"));
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : max-idle-time
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -441,6 +415,7 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       childNode.getOrCreate("max-idle-time").text(maxIdleTime);
       return this;
    }
+
    public DataSourceType<T> removeMaxIdleTime()
    {
       childNode.remove("max-idle-time");
@@ -452,8 +427,6 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       return Integer.valueOf(childNode.textValue("max-idle-time"));
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : max-statements
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -463,6 +436,7 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
       childNode.getOrCreate("max-statements").text(maxStatements);
       return this;
    }
+
    public DataSourceType<T> removeMaxStatements()
    {
       childNode.remove("max-statements");

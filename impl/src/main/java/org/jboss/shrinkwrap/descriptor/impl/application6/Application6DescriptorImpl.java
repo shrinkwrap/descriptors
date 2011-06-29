@@ -39,7 +39,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-27T15:26:42.686-04:00
+ * Generation date :2011-06-29T17:02:36.405-04:00
  */
 public class Application6DescriptorImpl extends NodeProviderImplBase
       implements

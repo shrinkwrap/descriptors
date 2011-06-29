@@ -1,28 +1,25 @@
-package org.jboss.shrinkwrap.descriptor.impl.webcommon30; 
+package org.jboss.shrinkwrap.descriptor.impl.webcommon30;
 
-import org.jboss.shrinkwrap.descriptor.spi.Node;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.api.application6.*;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.ParamValueType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.RunAsType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleRefType;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.MultipartConfigType;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.ServletType;
 import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
-import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.impl.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.impl.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.impl.application6.*;
-import org.jboss.shrinkwrap.descriptor.impl.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.IconTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.ParamValueTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.RunAsTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.SecurityRoleRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-27T15:30:58.763-04:00
+ * Generation date :2011-06-29T17:02:36.405-04:00
  *
  * Original Documentation:
  *
@@ -47,31 +44,33 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
+
    private Node node;
+
    private Node childNode;
+
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public ServletTypeImpl(T t, String descriptorName, Node node)   {
+   public ServletTypeImpl(T t, String descriptorName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public ServletTypeImpl(T t, String descriptorName, Node node, Node childNode)   {
+   public ServletTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
-
    public T up()
    {
       return t;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : description
@@ -82,21 +81,23 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
       childNode.create("description").text(description);
       return this;
    }
-   public ServletType<T> setDescriptionList(String ... values)
+
+   public ServletType<T> setDescriptionList(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
          setDescription(name);
       }
       return this;
    }
+
    public ServletType<T> removeAllDescription()
    {
       childNode.remove("description");
       return this;
    }
 
-public List<String> getDescriptionList()
+   public List<String> getDescriptionList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("description");
@@ -107,7 +108,6 @@ public List<String> getDescriptionList()
       return result;
    }
 
-
    // -------------------------------------------------------------------------------------||
    // Element type : display-name
    // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
@@ -117,21 +117,23 @@ public List<String> getDescriptionList()
       childNode.create("display-name").text(displayName);
       return this;
    }
-   public ServletType<T> setDisplayNameList(String ... values)
+
+   public ServletType<T> setDisplayNameList(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
          setDisplayName(name);
       }
       return this;
    }
+
    public ServletType<T> removeAllDisplayName()
    {
       childNode.remove("display-name");
       return this;
    }
 
-public List<String> getDisplayNameList()
+   public List<String> getDisplayNameList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("display-name");
@@ -141,7 +143,6 @@ public List<String> getDisplayNameList()
       }
       return result;
    }
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : icon
@@ -162,15 +163,13 @@ public List<String> getDisplayNameList()
    {
       List<IconType<ServletType<T>>> list = new ArrayList<IconType<ServletType<T>>>();
       List<Node> nodeList = childNode.get(IconTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         IconType<ServletType<T>>  type = new IconTypeImpl<ServletType<T>>(this, "", childNode, node);
+         IconType<ServletType<T>> type = new IconTypeImpl<ServletType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : servlet-name
@@ -181,6 +180,7 @@ public List<String> getDisplayNameList()
       childNode.getOrCreate("servlet-name").text(servletName);
       return this;
    }
+
    public ServletType<T> removeServletName()
    {
       childNode.remove("servlet-name");
@@ -191,8 +191,6 @@ public List<String> getDisplayNameList()
    {
       return childNode.textValue("servlet-name");
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : init-param
@@ -213,16 +211,13 @@ public List<String> getDisplayNameList()
    {
       List<ParamValueType<ServletType<T>>> list = new ArrayList<ParamValueType<ServletType<T>>>();
       List<Node> nodeList = childNode.get(ParamValueTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         ParamValueType<ServletType<T>>  type = new ParamValueTypeImpl<ServletType<T>>(this, "", childNode, node);
+         ParamValueType<ServletType<T>> type = new ParamValueTypeImpl<ServletType<T>>(this, "", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : load-on-startup
@@ -233,6 +228,7 @@ public List<String> getDisplayNameList()
       childNode.getOrCreate("load-on-startup").text(loadOnStartup);
       return this;
    }
+
    public ServletType<T> removeLoadOnStartup()
    {
       childNode.remove("load-on-startup");
@@ -244,8 +240,6 @@ public List<String> getDisplayNameList()
       return Strings.isTrue(childNode.textValue("load-on-startup"));
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : enabled
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -255,6 +249,7 @@ public List<String> getDisplayNameList()
       childNode.getOrCreate("enabled").text(enabled);
       return this;
    }
+
    public ServletType<T> removeEnabled()
    {
       childNode.remove("enabled");
@@ -266,8 +261,6 @@ public List<String> getDisplayNameList()
       return Strings.isTrue(childNode.textValue("enabled"));
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : async-supported
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -277,6 +270,7 @@ public List<String> getDisplayNameList()
       childNode.getOrCreate("async-supported").text(asyncSupported);
       return this;
    }
+
    public ServletType<T> removeAsyncSupported()
    {
       childNode.remove("async-supported");
@@ -287,8 +281,6 @@ public List<String> getDisplayNameList()
    {
       return Strings.isTrue(childNode.textValue("async-supported"));
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : run-as
@@ -306,9 +298,6 @@ public List<String> getDisplayNameList()
       RunAsType<ServletType<T>> runAs = new RunAsTypeImpl<ServletType<T>>(this, "", childNode, node);
       return runAs;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : security-role-ref
@@ -329,16 +318,14 @@ public List<String> getDisplayNameList()
    {
       List<SecurityRoleRefType<ServletType<T>>> list = new ArrayList<SecurityRoleRefType<ServletType<T>>>();
       List<Node> nodeList = childNode.get(SecurityRoleRefTypeImpl.nodeName);
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         SecurityRoleRefType<ServletType<T>>  type = new SecurityRoleRefTypeImpl<ServletType<T>>(this, "", childNode, node);
+         SecurityRoleRefType<ServletType<T>> type = new SecurityRoleRefTypeImpl<ServletType<T>>(this, "", childNode,
+               node);
          list.add(type);
       }
       return list;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : multipart-config
@@ -353,12 +340,10 @@ public List<String> getDisplayNameList()
    public MultipartConfigType<ServletType<T>> multipartConfig()
    {
       Node node = childNode.getOrCreate(MultipartConfigTypeImpl.nodeName);
-      MultipartConfigType<ServletType<T>> multipartConfig = new MultipartConfigTypeImpl<ServletType<T>>(this, "", childNode, node);
+      MultipartConfigType<ServletType<T>> multipartConfig = new MultipartConfigTypeImpl<ServletType<T>>(this, "",
+            childNode, node);
       return multipartConfig;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : servlet-class
@@ -369,6 +354,7 @@ public List<String> getDisplayNameList()
       childNode.getOrCreate("servlet-class").text(servletClass);
       return this;
    }
+
    public ServletType<T> removeServletClass()
    {
       childNode.remove("servlet-class");
@@ -380,8 +366,6 @@ public List<String> getDisplayNameList()
       return childNode.textValue("servlet-class");
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : jsp-file
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -391,6 +375,7 @@ public List<String> getDisplayNameList()
       childNode.getOrCreate("jsp-file").text(jspFile);
       return this;
    }
+
    public ServletType<T> removeJspFile()
    {
       childNode.remove("jsp-file");

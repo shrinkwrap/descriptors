@@ -457,7 +457,15 @@
                         </xsl:if>
                         <xsl:if test="local-name() = 'group'">
                             <include>
-                                <xsl:value-of select="@ref"/>
+                                <xsl:attribute name="name">
+                                    <xsl:value-of select="@ref"/>
+                                </xsl:attribute>
+                                <xsl:if test="@maxOccurs='unbounded' or ../@maxOccurs='unbounded'">
+                                    <xsl:attribute name="maxOccurs">
+                                        <xsl:value-of select="'unbounded'"/>
+                                    </xsl:attribute>
+                                </xsl:if>
+                                <!--                            <xsl:value-of select="@ref"/>-->
                             </include>
                         </xsl:if>
                     </xsl:for-each>
@@ -519,6 +527,11 @@
 
             <xsl:if test="count(xsd:sequence/xsd:element) > 0 or count(xsd:choice/xsd:element) > 0 or count(xsd:sequence/xsd:choice/xsd:element) > 0 or count(xsd:choice/xsd:group) > 0">
                 <xsl:message select="concat('Metadata describing class: ', $complexTypeName)"/>
+
+                <xsl:if test="xsd:choice/@maxOccurs">
+                    <xsl:message select="'Got unbounded!'"/>
+                </xsl:if>
+
                 <class>
                     <xsl:attribute name="name">
                         <xsl:value-of select="$complexTypeName"/>
@@ -581,9 +594,9 @@
                             <xsl:attribute name="type">
                                 <xsl:value-of select="@type"/>
                             </xsl:attribute>
-                            <xsl:if test="@maxOccurs">
+                            <xsl:if test="@maxOccurs='unbounded' or ../@maxOccurs='unbounded'">
                                 <xsl:attribute name="maxOccurs">
-                                    <xsl:value-of select="@maxOccurs"/>
+                                    <xsl:value-of select="'unbounded'"/>
                                 </xsl:attribute>
                             </xsl:if>
                             <!-- <xsl:attribute name="documentation">
@@ -594,19 +607,43 @@
 
                     <xsl:for-each select="xsd:sequence/xsd:group">
                         <include>
-                            <xsl:value-of select="@ref"/>
+                            <xsl:attribute name="name">
+                                <xsl:value-of select="@ref"/>
+                            </xsl:attribute>
+                            <xsl:if test="@maxOccurs='unbounded' or ../@maxOccurs='unbounded'">
+                                <xsl:attribute name="maxOccurs">
+                                    <xsl:value-of select="'unbounded'"/>
+                                </xsl:attribute>
+                            </xsl:if>
+                            <!--                            <xsl:value-of select="@ref"/>-->
                         </include>
                     </xsl:for-each>
 
                     <xsl:for-each select="xsd:choice/xsd:group">
                         <include>
-                            <xsl:value-of select="@ref"/>
+                            <xsl:attribute name="name">
+                                <xsl:value-of select="@ref"/>
+                            </xsl:attribute>
+                            <xsl:if test="@maxOccurs='unbounded' or ../@maxOccurs='unbounded'">
+                                <xsl:attribute name="maxOccurs">
+                                    <xsl:value-of select="'unbounded'"/>
+                                </xsl:attribute>
+                            </xsl:if>
+                            <!--                            <xsl:value-of select="@ref"/>-->
                         </include>
                     </xsl:for-each>
 
                     <xsl:for-each select="xsd:attributeGroup">
                         <include>
-                            <xsl:value-of select="@ref"/>
+                            <xsl:attribute name="name">
+                                <xsl:value-of select="@ref"/>
+                            </xsl:attribute>
+                            <xsl:if test="@maxOccurs='unbounded' or ../@maxOccurs='unbounded'">
+                                <xsl:attribute name="maxOccurs">
+                                    <xsl:value-of select="'unbounded'"/>
+                                </xsl:attribute>
+                            </xsl:if>
+                            <!--                            <xsl:value-of select="@ref"/>-->
                         </include>
                     </xsl:for-each>
 

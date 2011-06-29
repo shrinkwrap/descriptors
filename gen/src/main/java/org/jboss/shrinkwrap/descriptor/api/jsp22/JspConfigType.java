@@ -1,17 +1,12 @@
-package org.jboss.shrinkwrap.descriptor.api.jsp22; 
+package org.jboss.shrinkwrap.descriptor.api.jsp22;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.api.application6.*;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
+
 /**
  * This class is a generated class.
- * Generation date :2011-06-27T15:30:58.763-04:00
+ * Generation date :2011-06-29T17:02:36.405-04:00
  *
  * Original Documentation:
  *
@@ -29,15 +24,13 @@ public interface JspConfigType<T> extends Child<T>
    public JspConfigType<T> removeAllTaglib();
 
    public TaglibType<JspConfigType<T>> taglib();
+
    public List<TaglibType<JspConfigType<T>>> getTaglibList();
-
-
-
 
    public JspConfigType<T> removeAllJspPropertyGroup();
 
    public JspPropertyGroupType<JspConfigType<T>> jspPropertyGroup();
-   public List<JspPropertyGroupType<JspConfigType<T>>> getJspPropertyGroupList();
 
+   public List<JspPropertyGroupType<JspConfigType<T>>> getJspPropertyGroupList();
 
 }

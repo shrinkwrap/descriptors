@@ -2,7 +2,7 @@ package org.jboss.shrinkwrap.descriptor.api.webcommon30;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-27T15:26:42.686-04:00
+ * Generation date :2011-06-29T17:02:36.405-04:00
  *
  * Original Documentation:
  *

@@ -22,7 +22,7 @@ import org.jboss.shrinkwrap.descriptor.api.jsp22.JspConfigType;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-27T15:26:42.686-04:00
+ * Generation date :2011-06-29T17:02:36.405-04:00
  */
 public interface WebFragmentType<T> extends Child<T>
 {
@@ -30,69 +30,101 @@ public interface WebFragmentType<T> extends Child<T>
 
    public Boolean isDistributable();
 
-   public WebFragmentType<T> removeContextParam();
+   public WebFragmentType<T> removeAllContextParam();
 
    public ParamValueType<WebFragmentType<T>> contextParam();
 
-   public WebFragmentType<T> removeFilter();
+   public List<ParamValueType<WebFragmentType<T>>> getContextParamList();
+
+   public WebFragmentType<T> removeAllFilter();
 
    public FilterType<WebFragmentType<T>> filter();
 
-   public WebFragmentType<T> removeFilterMapping();
+   public List<FilterType<WebFragmentType<T>>> getFilterList();
+
+   public WebFragmentType<T> removeAllFilterMapping();
 
    public FilterMappingType<WebFragmentType<T>> filterMapping();
 
-   public WebFragmentType<T> removeListener();
+   public List<FilterMappingType<WebFragmentType<T>>> getFilterMappingList();
+
+   public WebFragmentType<T> removeAllListener();
 
    public ListenerType<WebFragmentType<T>> listener();
 
-   public WebFragmentType<T> removeServlet();
+   public List<ListenerType<WebFragmentType<T>>> getListenerList();
+
+   public WebFragmentType<T> removeAllServlet();
 
    public ServletType<WebFragmentType<T>> servlet();
 
-   public WebFragmentType<T> removeServletMapping();
+   public List<ServletType<WebFragmentType<T>>> getServletList();
+
+   public WebFragmentType<T> removeAllServletMapping();
 
    public ServletMappingType<WebFragmentType<T>> servletMapping();
 
-   public WebFragmentType<T> removeSessionConfig();
+   public List<ServletMappingType<WebFragmentType<T>>> getServletMappingList();
+
+   public WebFragmentType<T> removeAllSessionConfig();
 
    public SessionConfigType<WebFragmentType<T>> sessionConfig();
 
-   public WebFragmentType<T> removeMimeMapping();
+   public List<SessionConfigType<WebFragmentType<T>>> getSessionConfigList();
+
+   public WebFragmentType<T> removeAllMimeMapping();
 
    public MimeMappingType<WebFragmentType<T>> mimeMapping();
 
-   public WebFragmentType<T> removeWelcomeFileList();
+   public List<MimeMappingType<WebFragmentType<T>>> getMimeMappingList();
+
+   public WebFragmentType<T> removeAllWelcomeFileList();
 
    public WelcomeFileListType<WebFragmentType<T>> welcomeFileList();
 
-   public WebFragmentType<T> removeErrorPage();
+   public List<WelcomeFileListType<WebFragmentType<T>>> getWelcomeFileListList();
+
+   public WebFragmentType<T> removeAllErrorPage();
 
    public ErrorPageType<WebFragmentType<T>> errorPage();
 
-   public WebFragmentType<T> removeJspConfig();
+   public List<ErrorPageType<WebFragmentType<T>>> getErrorPageList();
+
+   public WebFragmentType<T> removeAllJspConfig();
 
    public JspConfigType<WebFragmentType<T>> jspConfig();
 
-   public WebFragmentType<T> removeSecurityConstraint();
+   public List<JspConfigType<WebFragmentType<T>>> getJspConfigList();
+
+   public WebFragmentType<T> removeAllSecurityConstraint();
 
    public SecurityConstraintType<WebFragmentType<T>> securityConstraint();
 
-   public WebFragmentType<T> removeLoginConfig();
+   public List<SecurityConstraintType<WebFragmentType<T>>> getSecurityConstraintList();
+
+   public WebFragmentType<T> removeAllLoginConfig();
 
    public LoginConfigType<WebFragmentType<T>> loginConfig();
 
-   public WebFragmentType<T> removeSecurityRole();
+   public List<LoginConfigType<WebFragmentType<T>>> getLoginConfigList();
+
+   public WebFragmentType<T> removeAllSecurityRole();
 
    public SecurityRoleType<WebFragmentType<T>> securityRole();
 
-   public WebFragmentType<T> removeMessageDestination();
+   public List<SecurityRoleType<WebFragmentType<T>>> getSecurityRoleList();
+
+   public WebFragmentType<T> removeAllMessageDestination();
 
    public MessageDestinationType<WebFragmentType<T>> messageDestination();
 
-   public WebFragmentType<T> removeLocaleEncodingMappingList();
+   public List<MessageDestinationType<WebFragmentType<T>>> getMessageDestinationList();
+
+   public WebFragmentType<T> removeAllLocaleEncodingMappingList();
 
    public LocaleEncodingMappingListType<WebFragmentType<T>> localeEncodingMappingList();
+
+   public List<LocaleEncodingMappingListType<WebFragmentType<T>>> getLocaleEncodingMappingListList();
 
    public WebFragmentType<T> setDescription(String description);
 
@@ -196,12 +228,16 @@ public interface WebFragmentType<T> extends Child<T>
 
    public WebFragmentType<T> setName(String name);
 
-   public WebFragmentType<T> removeName();
+   public WebFragmentType<T> setNameList(String... values);
 
-   public String getName();
+   public WebFragmentType<T> removeAllName();
 
-   public WebFragmentType<T> removeOrdering();
+   public List<String> getNameList();
+
+   public WebFragmentType<T> removeAllOrdering();
 
    public OrderingType<WebFragmentType<T>> ordering();
+
+   public List<OrderingType<WebFragmentType<T>>> getOrderingList();
 
 }

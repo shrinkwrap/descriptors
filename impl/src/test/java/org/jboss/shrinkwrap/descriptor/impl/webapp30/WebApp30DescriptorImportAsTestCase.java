@@ -46,7 +46,37 @@ public class WebApp30DescriptorImportAsTestCase
       assertEquals(web.filterMapping().getUrlPattern(), "/*");      
    }
    
-  
+   @Test
+   public void testImportGeneratedTutorialWebXml() throws Exception
+   {
+      String web_source_generated = getResourceContents("src/test/resources/test-web2.xml");
+      
+      final WebApp30Descriptor webapp = Descriptors.importAs(WebApp30Descriptor.class).from(
+            web_source_generated);
+      
+      assertTrue(webapp.getDisplayNameList().size() == 1);
+      assertEquals(webapp.getDisplayNameList().get(0).trim(), "Java EE 6 Pet Catalog");
+      
+      assertTrue(webapp.getContextParamList().size() == 4);
+      assertEquals(webapp.getContextParamList().get(0).getParamName().trim(), "javax.faces.STATE_SAVING_METHOD");
+      assertEquals(webapp.getContextParamList().get(0).getParamValue().trim(), "client");
+      
+      assertEquals(webapp.getContextParamList().get(1).getParamName().trim(), "javax.faces.PROJECT_STAGE");
+      assertEquals(webapp.getContextParamList().get(1).getParamValue().trim(), "Production");
+      
+      assertEquals(webapp.getContextParamList().get(2).getParamName().trim(), "com.sun.faces.resourceUpdateCheckPeriod");
+      assertEquals(webapp.getContextParamList().get(2).getParamValue().trim(), "-1");
+      
+      assertEquals(webapp.getContextParamList().get(3).getParamName().trim(), "com.sun.faces.validateXml");
+      assertEquals(webapp.getContextParamList().get(3).getParamValue().trim(), "true");
+      
+      assertEquals(webapp.getServletMappingList().get(0).getServletName().trim(), "Faces Servlet");
+      assertEquals(webapp.getServletMappingList().get(0).getUrlPatternList().get(0).trim(), "/catalog/*");
+      
+      assertEquals(webapp.getWelcomeFileListList().get(0).getWelcomeFileList().get(0).trim(), "index.html");
+      
+      System.out.println(webapp.exportAsString());
+   }
    
    @Test
    public void testImportGeneratedWebXml() throws Exception
@@ -56,7 +86,7 @@ public class WebApp30DescriptorImportAsTestCase
       final WebApp30Descriptor web = Descriptors.importAs(WebApp30Descriptor.class).from(
             web_source_generated);
       
-      assertEquals(web.getModuleName(), "module-name0");
+      assertEquals(web.getModuleNameList().get(0), "module-name0");
       assertTrue(web.jspConfig().getTaglibList().size() == 2);
       
       assertEquals(web.jspConfig().getTaglibList().get(0).getTaglibUri(), "taglib-uri0");

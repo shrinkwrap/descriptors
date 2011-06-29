@@ -14,9 +14,6 @@
     <xsl:variable name="gPackageImpls" select="//packages/impl"/>
 
     <xsl:template match="/">
-
-        <xsl:message select="concat('is filter-name a data type ',xdd:isDataType('javaee:filter-nameType'))"/>
-
         <xsl:call-template name="GenerateEnums"/>
         <xsl:call-template name="GenerateInterfaces"/>
         <xsl:call-template name="GenerateDescriptors"/>
@@ -132,7 +129,7 @@
                 <xsl:text>{</xsl:text>
                 <xsl:text>&#10;</xsl:text>
                 <xsl:for-each select="include">
-                    <xsl:value-of select="xdd:includeGroupRefs($vClassname, text(), false(), true(), true(), '')"/>
+                    <xsl:value-of select="xdd:includeGroupRefs($vClassname, @name, false(), true(), true(), '', @maxOccurs='unbounded')"/>
                 </xsl:for-each>
                 <xsl:for-each select="element">
                     <xsl:variable name="vMaxOccurs" select="concat('-',  @maxOccurs)"/>
@@ -251,7 +248,7 @@
                 <xsl:variable name="vType" select=" substring-after($pDescriptor/element/@type, ':')"/>
                 <xsl:for-each select="//classes/class[@name=$vType]">
                     <xsl:for-each select="include">
-                        <xsl:value-of select="xdd:includeGroupRefs($vClassname, text(), false(), true(), false(), '')"/>
+                        <xsl:value-of select="xdd:includeGroupRefs($vClassname, @name, false(), true(), false(), '', @maxOccurs='unbounded')"/>
                     </xsl:for-each>
                     <xsl:for-each select="element">
                         <xsl:variable name="vMaxOccurs" select="concat('-',  @maxOccurs)"/>
@@ -300,7 +297,7 @@
                 <xsl:value-of select=" xdd:writeImplClassConstructor($vClassnameImpl, 'nodeName', 'childNode')"/>
                 <xsl:value-of select="xdd:writeChildUp()"/>
                 <xsl:for-each select="include">
-                    <xsl:value-of select="xdd:includeGroupRefs($vInterfaceName, text(), false(), false(), true(), 'childNode')"/>
+                    <xsl:value-of select="xdd:includeGroupRefs($vInterfaceName, @name, false(), false(), true(), 'childNode', @maxOccurs='unbounded')"/>
                 </xsl:for-each>
                 <xsl:for-each select="element">
                     <xsl:variable name="vMaxOccurs" select="concat('-',  @maxOccurs)"/>
@@ -366,7 +363,7 @@
                             <xsl:value-of select="xdd:writeMethodOrAttribute($vInterfaceName, @name, @type, $vMaxOccurs, false(), false(), false(), $vNodeName, false())"/>
                         </xsl:for-each>
                         <xsl:for-each select="include">
-                            <xsl:value-of select="xdd:includeGroupRefs($vInterfaceName, text(), false(), false(), false(), $vNodeName)"/>
+                            <xsl:value-of select="xdd:includeGroupRefs($vInterfaceName, @name, false(), false(), false(), $vNodeName, @maxOccurs='unbounded')"/>
                         </xsl:for-each>
                     </xsl:for-each>
                 </xsl:for-each>
@@ -423,18 +420,31 @@
                                         <xsl:with-param name="pClassNameImpl" select="$vClassnameImpl"/>
                                         <xsl:with-param name="pInterfaceName" select="$vInterfaceName"/>
                                         <xsl:with-param name="pIsDescriptor" select="'true'"/>
+                                        <xsl:with-param name="pIsMaxOccursUnbounded" select="false()"/>
                                     </xsl:call-template>
                                 </xsl:for-each>
-                                <!-- <xsl:for-each select="include">
-                                    <xsl:value-of select="xdd:includeGroupRefs($vInterfaceName, text(), false(), false(), false(), $vNodeName)"/>
-                                </xsl:for-each>-->
+                                <xsl:for-each select="include">
+                                    <xsl:variable name="vIsMaxOccursUnbounded" select="@maxOccurs='unbounded'" as="xs:boolean"/>
+                                    <xsl:variable name="vGroupName" select=" substring-after(@name, ':')"/>
+                                    <xsl:for-each select="$gGroups/class[@name=$vGroupName]/element">
+                                        <xsl:variable name="vMaxOccurs" select="concat('-', @maxOccurs)"/>
+                                        <xsl:call-template name="WriteTestMethods">
+                                            <xsl:with-param name="pElement" select="."/>
+                                            <xsl:with-param name="pClassNameImpl" select="$vClassnameImpl"/>
+                                            <xsl:with-param name="pInterfaceName" select="$vInterfaceName"/>
+                                            <xsl:with-param name="pIsDescriptor" select="$pIsDescriptor"/>
+                                            <xsl:with-param name="pIsMaxOccursUnbounded" select="$vIsMaxOccursUnbounded"/>
+                                        </xsl:call-template>
+                                    </xsl:for-each>
+                                </xsl:for-each>
                             </xsl:for-each>
                         </xsl:for-each>
                     </xsl:when>
 
                     <xsl:otherwise>
                         <xsl:for-each select="include">
-                            <xsl:variable name="vGroupName" select=" substring-after(text(), ':')"/>
+                            <xsl:variable name="vIsMaxOccursUnbounded" select="@maxOccurs='unbounded'" as="xs:boolean"/>
+                            <xsl:variable name="vGroupName" select=" substring-after(@name, ':')"/>
                             <xsl:for-each select="$gGroups/class[@name=$vGroupName]/element">
                                 <xsl:variable name="vMaxOccurs" select="concat('-', @maxOccurs)"/>
                                 <xsl:call-template name="WriteTestMethods">
@@ -442,10 +452,11 @@
                                     <xsl:with-param name="pClassNameImpl" select="$vClassnameImpl"/>
                                     <xsl:with-param name="pInterfaceName" select="$vInterfaceName"/>
                                     <xsl:with-param name="pIsDescriptor" select="$pIsDescriptor"/>
+                                    <xsl:with-param name="pIsMaxOccursUnbounded" select="$vIsMaxOccursUnbounded"/>
                                 </xsl:call-template>
                             </xsl:for-each>
                         </xsl:for-each>
-                        
+
                         <xsl:for-each select="element">
                             <xsl:choose>
                                 <xsl:when test="@type='javaee:ejb-relationship-roleType' and position()=4"/>
@@ -455,6 +466,7 @@
                                         <xsl:with-param name="pClassNameImpl" select="$vClassnameImpl"/>
                                         <xsl:with-param name="pInterfaceName" select="$vInterfaceName"/>
                                         <xsl:with-param name="pIsDescriptor" select="$pIsDescriptor"/>
+                                        <xsl:with-param name="pIsMaxOccursUnbounded" select="false()"/>
                                     </xsl:call-template>
                                 </xsl:otherwise>
                             </xsl:choose>
@@ -480,6 +492,7 @@
         <xsl:param name="pClassNameImpl"/>
         <xsl:param name="pInterfaceName"/>
         <xsl:param name="pIsDescriptor"/>
+        <xsl:param name="pIsMaxOccursUnbounded" as="xs:boolean"/>
 
         <xsl:variable name="vMaxOccurs" select="concat('-',  @maxOccurs)"/>
         <xsl:variable name="vElementName" select="concat('-',  @name)"/>
@@ -493,7 +506,7 @@
                 <xsl:value-of select="concat('   {', '&#10;')"/>
 
                 <xsl:choose>
-                    <xsl:when test="$pIsDescriptor='true'"> 
+                    <xsl:when test="$pIsDescriptor='true'">
                         <xsl:value-of select="concat('      ', $pInterfaceName, ' type = Descriptors.create(', $pInterfaceName, '.class);', '&#10;')"/>
                     </xsl:when>
 
@@ -520,7 +533,7 @@
                         <xsl:value-of select="concat('      }', '&#10;')"/>
                     </xsl:when>
 
-                    <xsl:when test="xdd:isDataType(@type) and (@maxOccurs != 'unbounded' or exists(@maxOccurs)=false())">
+                    <xsl:when test="xdd:isDataType(@type) and (@maxOccurs != 'unbounded' or exists(@maxOccurs)=false()) and $pIsMaxOccursUnbounded=false()">
                         <xsl:variable name="vDataType" select="xdd:CheckDataType(@type)"/>
                         <xsl:choose>
                             <xsl:when test="$vDataType='Boolean'">
@@ -549,7 +562,7 @@
                         </xsl:choose>
                     </xsl:when>
 
-                    <xsl:when test="xdd:isDataType(@type) and @maxOccurs = 'unbounded'">
+                    <xsl:when test="xdd:isDataType(@type) and (@maxOccurs = 'unbounded' or $pIsMaxOccursUnbounded=true())">
                         <xsl:variable name="vDataType" select="xdd:CheckDataType(@type)"/>
                         <xsl:choose>
                             <xsl:when test="$vDataType='Integer'">
@@ -583,13 +596,25 @@
                     <xsl:otherwise>
                         <!-- it is a complex type -->
                         <xsl:choose>
-                            <xsl:when test="@maxOccurs = 'unbounded'">
+                            <xsl:when test="contains($vMaxOccurs, 'unbounded') or $pIsMaxOccursUnbounded=true()">
                                 <xsl:value-of select="concat('      type.', xdd:createCamelizedName(@name), '().up();', '&#10;')"/>
                                 <xsl:value-of select="concat('      type.', xdd:createCamelizedName(@name), '().up();', '&#10;')"/>
                                 <xsl:value-of select="concat('      assertTrue(type.get', xdd:createPascalizedName(@name,''), 'List().size() == 2);', '&#10;')"/>
                                 <xsl:value-of select="concat('      type.removeAll', xdd:createPascalizedName(@name,''), '();', '&#10;')"/>
                                 <xsl:value-of select="concat('      assertTrue(type.get', xdd:createPascalizedName(@name,''), 'List().size() == 0);', '&#10;')"/>
                             </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="concat('      type.', xdd:createCamelizedName(@name), '().up();', '&#10;')"/>
+                                <xsl:value-of select="concat('      type.remove', xdd:createPascalizedName(@name,''), '();', '&#10;')"/>
+                                <xsl:choose>
+                                    <xsl:when test="$pIsDescriptor='true'">
+                                        <xsl:value-of select="concat('      assertNull(((', $pClassNameImpl, ')type).getRootNode().getSingle(', xdd:createPascalizedName(substring-after(@type, ':'), ''), 'Impl.nodeName));', '&#10;')"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:value-of select="concat('      assertNull(provider.getRootNode().getSingle(', xdd:createPascalizedName(substring-after(@type, ':'), ''), 'Impl.nodeName));', '&#10;')"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:otherwise>
                         </xsl:choose>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -968,13 +993,22 @@
         <xsl:param name="pWriteInterface" as="xs:boolean"/>
         <xsl:param name="pIsGeneric" as="xs:boolean"/>
         <xsl:param name="pNodeNameLocal" as="xs:string"/>
+        <xsl:param name="pIsMaxOccursFromParent" as="xs:boolean"/>
         <xsl:variable name="vGroupName" select=" substring-after($pGroupName, ':')"/>
         <xsl:for-each select="$gGroups/class[@name=$vGroupName]/element">
-            <xsl:variable name="vMaxOccurs" select="concat('-', @maxOccurs)"/>
-            <xsl:value-of select=" xdd:writeMethodOrAttribute($pClassname, @name, @type, $vMaxOccurs, $pWriteAttribute, $pWriteInterface, $pIsGeneric, $pNodeNameLocal, @attribute)"/>
+            <xsl:variable name="vMaxOccurs" select="concat('-', @maxOccurs)"/>  
+            <xsl:choose>
+                <xsl:when test="$pIsMaxOccursFromParent=true()">
+                    <xsl:value-of select=" xdd:writeMethodOrAttribute($pClassname, @name, @type, '-unbounded', $pWriteAttribute, $pWriteInterface, $pIsGeneric, $pNodeNameLocal, @attribute)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select=" xdd:writeMethodOrAttribute($pClassname, @name, @type, $vMaxOccurs, $pWriteAttribute, $pWriteInterface, $pIsGeneric, $pNodeNameLocal, @attribute)"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:for-each>
         <xsl:for-each select="$gGroups/class[@name=$vGroupName]/include">
-            <xsl:value-of select="xdd:includeGroupRefs($pClassname, text(), $pWriteAttribute, $pWriteInterface, $pIsGeneric, $pNodeNameLocal)"/>
+            <xsl:variable name="vMaxOccurs" select="concat('-', @maxOccurs)"/>  
+            <xsl:value-of select="xdd:includeGroupRefs($pClassname, @name, $pWriteAttribute, $pWriteInterface, $pIsGeneric, $pNodeNameLocal, @maxOccurs='unbounded')"/>
         </xsl:for-each>
     </xsl:function>
 
@@ -2064,7 +2098,7 @@
 
     <xsl:function name="xdd:writeTestDesriptorClass">
         <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolderTest, 'org.jboss.shrinkwrap.descriptor.gen.test', 'TestDescriptorImpl', 'java')"/>
-        <xsl:message select="$vFilename"/>
+<!--        <xsl:message select="$vFilename"/>-->
         <xsl:result-document href="{$vFilename}">
             <xsl:value-of select="concat('    package org.jboss.shrinkwrap.descriptor.gen.test;', '&#10;&#10;')"/>
             <xsl:value-of select="concat('    import org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase;', '&#10;')"/>

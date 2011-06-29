@@ -71,7 +71,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-27T15:26:42.686-04:00
+ * Generation date :2011-06-29T17:02:36.405-04:00
  */
 public class WebApp30DescriptorImpl extends NodeProviderImplBase
       implements
@@ -168,46 +168,71 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
 
    // -------------------------------------------------------------------------------------||
    // Element type : module-name
-   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor setModuleName(String moduleName)
    {
-      model.getOrCreate("module-name").text(moduleName);
+      model.create("module-name").text(moduleName);
       return this;
    }
 
-   public WebApp30Descriptor removeModuleName()
+   public WebApp30Descriptor setModuleNameList(String... values)
+   {
+      for (String name : values)
+      {
+         setModuleName(name);
+      }
+      return this;
+   }
+
+   public WebApp30Descriptor removeAllModuleName()
    {
       model.remove("module-name");
       return this;
    }
 
-   public String getModuleName()
+   public List<String> getModuleNameList()
    {
-      return model.textValue("module-name");
+      List<String> result = new ArrayList<String>();
+      List<Node> nodes = model.get("module-name");
+      for (Node node : nodes)
+      {
+         result.add(node.text());
+      }
+      return result;
    }
 
    // -------------------------------------------------------------------------------------||
    // Element type : absolute-ordering
-   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public WebApp30Descriptor removeAbsoluteOrdering()
+   public WebApp30Descriptor removeAllAbsoluteOrdering()
    {
-      model.remove("absolute-ordering");
+      model.remove(AbsoluteOrderingTypeImpl.nodeName);
       return this;
    }
 
    public AbsoluteOrderingType<WebApp30Descriptor> absoluteOrdering()
    {
-      Node node = model.getOrCreate(AbsoluteOrderingTypeImpl.nodeName);
-      AbsoluteOrderingType<WebApp30Descriptor> absoluteOrdering = new AbsoluteOrderingTypeImpl<WebApp30Descriptor>(
-            this, "", model, node);
-      return absoluteOrdering;
+      return new AbsoluteOrderingTypeImpl<WebApp30Descriptor>(this, "", model);
+   }
+
+   public List<AbsoluteOrderingType<WebApp30Descriptor>> getAbsoluteOrderingList()
+   {
+      List<AbsoluteOrderingType<WebApp30Descriptor>> list = new ArrayList<AbsoluteOrderingType<WebApp30Descriptor>>();
+      List<Node> nodeList = model.get(AbsoluteOrderingTypeImpl.nodeName);
+      for (Node node : nodeList)
+      {
+         AbsoluteOrderingType<WebApp30Descriptor> type = new AbsoluteOrderingTypeImpl<WebApp30Descriptor>(this, "",
+               model, node);
+         list.add(type);
+      }
+      return list;
    }
 
    // -------------------------------------------------------------------------------------||
    // Element type : distributable
-   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor distributable()
    {
@@ -222,285 +247,441 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
 
    // -------------------------------------------------------------------------------------||
    // Element type : context-param
-   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public WebApp30Descriptor removeContextParam()
+   public WebApp30Descriptor removeAllContextParam()
    {
-      model.remove("context-param");
+      model.remove(ParamValueTypeImpl.nodeName);
       return this;
    }
 
    public ParamValueType<WebApp30Descriptor> contextParam()
    {
-      Node node = model.getOrCreate(ParamValueTypeImpl.nodeName);
-      ParamValueType<WebApp30Descriptor> contextParam = new ParamValueTypeImpl<WebApp30Descriptor>(this, "", model,
-            node);
-      return contextParam;
+      return new ParamValueTypeImpl<WebApp30Descriptor>(this, "", model);
+   }
+
+   public List<ParamValueType<WebApp30Descriptor>> getContextParamList()
+   {
+      List<ParamValueType<WebApp30Descriptor>> list = new ArrayList<ParamValueType<WebApp30Descriptor>>();
+      List<Node> nodeList = model.get(ParamValueTypeImpl.nodeName);
+      for (Node node : nodeList)
+      {
+         ParamValueType<WebApp30Descriptor> type = new ParamValueTypeImpl<WebApp30Descriptor>(this, "", model, node);
+         list.add(type);
+      }
+      return list;
    }
 
    // -------------------------------------------------------------------------------------||
    // Element type : filter
-   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public WebApp30Descriptor removeFilter()
+   public WebApp30Descriptor removeAllFilter()
    {
-      model.remove("filter");
+      model.remove(FilterTypeImpl.nodeName);
       return this;
    }
 
    public FilterType<WebApp30Descriptor> filter()
    {
-      Node node = model.getOrCreate(FilterTypeImpl.nodeName);
-      FilterType<WebApp30Descriptor> filter = new FilterTypeImpl<WebApp30Descriptor>(this, "", model, node);
-      return filter;
+      return new FilterTypeImpl<WebApp30Descriptor>(this, "", model);
+   }
+
+   public List<FilterType<WebApp30Descriptor>> getFilterList()
+   {
+      List<FilterType<WebApp30Descriptor>> list = new ArrayList<FilterType<WebApp30Descriptor>>();
+      List<Node> nodeList = model.get(FilterTypeImpl.nodeName);
+      for (Node node : nodeList)
+      {
+         FilterType<WebApp30Descriptor> type = new FilterTypeImpl<WebApp30Descriptor>(this, "", model, node);
+         list.add(type);
+      }
+      return list;
    }
 
    // -------------------------------------------------------------------------------------||
    // Element type : filter-mapping
-   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public WebApp30Descriptor removeFilterMapping()
+   public WebApp30Descriptor removeAllFilterMapping()
    {
-      model.remove("filter-mapping");
+      model.remove(FilterMappingTypeImpl.nodeName);
       return this;
    }
 
    public FilterMappingType<WebApp30Descriptor> filterMapping()
    {
-      Node node = model.getOrCreate(FilterMappingTypeImpl.nodeName);
-      FilterMappingType<WebApp30Descriptor> filterMapping = new FilterMappingTypeImpl<WebApp30Descriptor>(this, "",
-            model, node);
-      return filterMapping;
+      return new FilterMappingTypeImpl<WebApp30Descriptor>(this, "", model);
+   }
+
+   public List<FilterMappingType<WebApp30Descriptor>> getFilterMappingList()
+   {
+      List<FilterMappingType<WebApp30Descriptor>> list = new ArrayList<FilterMappingType<WebApp30Descriptor>>();
+      List<Node> nodeList = model.get(FilterMappingTypeImpl.nodeName);
+      for (Node node : nodeList)
+      {
+         FilterMappingType<WebApp30Descriptor> type = new FilterMappingTypeImpl<WebApp30Descriptor>(this, "", model,
+               node);
+         list.add(type);
+      }
+      return list;
    }
 
    // -------------------------------------------------------------------------------------||
    // Element type : listener
-   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public WebApp30Descriptor removeListener()
+   public WebApp30Descriptor removeAllListener()
    {
-      model.remove("listener");
+      model.remove(ListenerTypeImpl.nodeName);
       return this;
    }
 
    public ListenerType<WebApp30Descriptor> listener()
    {
-      Node node = model.getOrCreate(ListenerTypeImpl.nodeName);
-      ListenerType<WebApp30Descriptor> listener = new ListenerTypeImpl<WebApp30Descriptor>(this, "", model, node);
-      return listener;
+      return new ListenerTypeImpl<WebApp30Descriptor>(this, "", model);
+   }
+
+   public List<ListenerType<WebApp30Descriptor>> getListenerList()
+   {
+      List<ListenerType<WebApp30Descriptor>> list = new ArrayList<ListenerType<WebApp30Descriptor>>();
+      List<Node> nodeList = model.get(ListenerTypeImpl.nodeName);
+      for (Node node : nodeList)
+      {
+         ListenerType<WebApp30Descriptor> type = new ListenerTypeImpl<WebApp30Descriptor>(this, "", model, node);
+         list.add(type);
+      }
+      return list;
    }
 
    // -------------------------------------------------------------------------------------||
    // Element type : servlet
-   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public WebApp30Descriptor removeServlet()
+   public WebApp30Descriptor removeAllServlet()
    {
-      model.remove("servlet");
+      model.remove(ServletTypeImpl.nodeName);
       return this;
    }
 
    public ServletType<WebApp30Descriptor> servlet()
    {
-      Node node = model.getOrCreate(ServletTypeImpl.nodeName);
-      ServletType<WebApp30Descriptor> servlet = new ServletTypeImpl<WebApp30Descriptor>(this, "", model, node);
-      return servlet;
+      return new ServletTypeImpl<WebApp30Descriptor>(this, "", model);
+   }
+
+   public List<ServletType<WebApp30Descriptor>> getServletList()
+   {
+      List<ServletType<WebApp30Descriptor>> list = new ArrayList<ServletType<WebApp30Descriptor>>();
+      List<Node> nodeList = model.get(ServletTypeImpl.nodeName);
+      for (Node node : nodeList)
+      {
+         ServletType<WebApp30Descriptor> type = new ServletTypeImpl<WebApp30Descriptor>(this, "", model, node);
+         list.add(type);
+      }
+      return list;
    }
 
    // -------------------------------------------------------------------------------------||
    // Element type : servlet-mapping
-   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public WebApp30Descriptor removeServletMapping()
+   public WebApp30Descriptor removeAllServletMapping()
    {
-      model.remove("servlet-mapping");
+      model.remove(ServletMappingTypeImpl.nodeName);
       return this;
    }
 
    public ServletMappingType<WebApp30Descriptor> servletMapping()
    {
-      Node node = model.getOrCreate(ServletMappingTypeImpl.nodeName);
-      ServletMappingType<WebApp30Descriptor> servletMapping = new ServletMappingTypeImpl<WebApp30Descriptor>(this, "",
-            model, node);
-      return servletMapping;
+      return new ServletMappingTypeImpl<WebApp30Descriptor>(this, "", model);
+   }
+
+   public List<ServletMappingType<WebApp30Descriptor>> getServletMappingList()
+   {
+      List<ServletMappingType<WebApp30Descriptor>> list = new ArrayList<ServletMappingType<WebApp30Descriptor>>();
+      List<Node> nodeList = model.get(ServletMappingTypeImpl.nodeName);
+      for (Node node : nodeList)
+      {
+         ServletMappingType<WebApp30Descriptor> type = new ServletMappingTypeImpl<WebApp30Descriptor>(this, "", model,
+               node);
+         list.add(type);
+      }
+      return list;
    }
 
    // -------------------------------------------------------------------------------------||
    // Element type : session-config
-   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public WebApp30Descriptor removeSessionConfig()
+   public WebApp30Descriptor removeAllSessionConfig()
    {
-      model.remove("session-config");
+      model.remove(SessionConfigTypeImpl.nodeName);
       return this;
    }
 
    public SessionConfigType<WebApp30Descriptor> sessionConfig()
    {
-      Node node = model.getOrCreate(SessionConfigTypeImpl.nodeName);
-      SessionConfigType<WebApp30Descriptor> sessionConfig = new SessionConfigTypeImpl<WebApp30Descriptor>(this, "",
-            model, node);
-      return sessionConfig;
+      return new SessionConfigTypeImpl<WebApp30Descriptor>(this, "", model);
+   }
+
+   public List<SessionConfigType<WebApp30Descriptor>> getSessionConfigList()
+   {
+      List<SessionConfigType<WebApp30Descriptor>> list = new ArrayList<SessionConfigType<WebApp30Descriptor>>();
+      List<Node> nodeList = model.get(SessionConfigTypeImpl.nodeName);
+      for (Node node : nodeList)
+      {
+         SessionConfigType<WebApp30Descriptor> type = new SessionConfigTypeImpl<WebApp30Descriptor>(this, "", model,
+               node);
+         list.add(type);
+      }
+      return list;
    }
 
    // -------------------------------------------------------------------------------------||
    // Element type : mime-mapping
-   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public WebApp30Descriptor removeMimeMapping()
+   public WebApp30Descriptor removeAllMimeMapping()
    {
-      model.remove("mime-mapping");
+      model.remove(MimeMappingTypeImpl.nodeName);
       return this;
    }
 
    public MimeMappingType<WebApp30Descriptor> mimeMapping()
    {
-      Node node = model.getOrCreate(MimeMappingTypeImpl.nodeName);
-      MimeMappingType<WebApp30Descriptor> mimeMapping = new MimeMappingTypeImpl<WebApp30Descriptor>(this, "", model,
-            node);
-      return mimeMapping;
+      return new MimeMappingTypeImpl<WebApp30Descriptor>(this, "", model);
+   }
+
+   public List<MimeMappingType<WebApp30Descriptor>> getMimeMappingList()
+   {
+      List<MimeMappingType<WebApp30Descriptor>> list = new ArrayList<MimeMappingType<WebApp30Descriptor>>();
+      List<Node> nodeList = model.get(MimeMappingTypeImpl.nodeName);
+      for (Node node : nodeList)
+      {
+         MimeMappingType<WebApp30Descriptor> type = new MimeMappingTypeImpl<WebApp30Descriptor>(this, "", model, node);
+         list.add(type);
+      }
+      return list;
    }
 
    // -------------------------------------------------------------------------------------||
    // Element type : welcome-file-list
-   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public WebApp30Descriptor removeWelcomeFileList()
+   public WebApp30Descriptor removeAllWelcomeFileList()
    {
-      model.remove("welcome-file-list");
+      model.remove(WelcomeFileListTypeImpl.nodeName);
       return this;
    }
 
    public WelcomeFileListType<WebApp30Descriptor> welcomeFileList()
    {
-      Node node = model.getOrCreate(WelcomeFileListTypeImpl.nodeName);
-      WelcomeFileListType<WebApp30Descriptor> welcomeFileList = new WelcomeFileListTypeImpl<WebApp30Descriptor>(this,
-            "", model, node);
-      return welcomeFileList;
+      return new WelcomeFileListTypeImpl<WebApp30Descriptor>(this, "", model);
+   }
+
+   public List<WelcomeFileListType<WebApp30Descriptor>> getWelcomeFileListList()
+   {
+      List<WelcomeFileListType<WebApp30Descriptor>> list = new ArrayList<WelcomeFileListType<WebApp30Descriptor>>();
+      List<Node> nodeList = model.get(WelcomeFileListTypeImpl.nodeName);
+      for (Node node : nodeList)
+      {
+         WelcomeFileListType<WebApp30Descriptor> type = new WelcomeFileListTypeImpl<WebApp30Descriptor>(this, "",
+               model, node);
+         list.add(type);
+      }
+      return list;
    }
 
    // -------------------------------------------------------------------------------------||
    // Element type : error-page
-   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public WebApp30Descriptor removeErrorPage()
+   public WebApp30Descriptor removeAllErrorPage()
    {
-      model.remove("error-page");
+      model.remove(ErrorPageTypeImpl.nodeName);
       return this;
    }
 
    public ErrorPageType<WebApp30Descriptor> errorPage()
    {
-      Node node = model.getOrCreate(ErrorPageTypeImpl.nodeName);
-      ErrorPageType<WebApp30Descriptor> errorPage = new ErrorPageTypeImpl<WebApp30Descriptor>(this, "", model, node);
-      return errorPage;
+      return new ErrorPageTypeImpl<WebApp30Descriptor>(this, "", model);
+   }
+
+   public List<ErrorPageType<WebApp30Descriptor>> getErrorPageList()
+   {
+      List<ErrorPageType<WebApp30Descriptor>> list = new ArrayList<ErrorPageType<WebApp30Descriptor>>();
+      List<Node> nodeList = model.get(ErrorPageTypeImpl.nodeName);
+      for (Node node : nodeList)
+      {
+         ErrorPageType<WebApp30Descriptor> type = new ErrorPageTypeImpl<WebApp30Descriptor>(this, "", model, node);
+         list.add(type);
+      }
+      return list;
    }
 
    // -------------------------------------------------------------------------------------||
    // Element type : jsp-config
-   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public WebApp30Descriptor removeJspConfig()
+   public WebApp30Descriptor removeAllJspConfig()
    {
-      model.remove("jsp-config");
+      model.remove(JspConfigTypeImpl.nodeName);
       return this;
    }
 
    public JspConfigType<WebApp30Descriptor> jspConfig()
    {
-      Node node = model.getOrCreate(JspConfigTypeImpl.nodeName);
-      JspConfigType<WebApp30Descriptor> jspConfig = new JspConfigTypeImpl<WebApp30Descriptor>(this, "", model, node);
-      return jspConfig;
+      return new JspConfigTypeImpl<WebApp30Descriptor>(this, "", model);
+   }
+
+   public List<JspConfigType<WebApp30Descriptor>> getJspConfigList()
+   {
+      List<JspConfigType<WebApp30Descriptor>> list = new ArrayList<JspConfigType<WebApp30Descriptor>>();
+      List<Node> nodeList = model.get(JspConfigTypeImpl.nodeName);
+      for (Node node : nodeList)
+      {
+         JspConfigType<WebApp30Descriptor> type = new JspConfigTypeImpl<WebApp30Descriptor>(this, "", model, node);
+         list.add(type);
+      }
+      return list;
    }
 
    // -------------------------------------------------------------------------------------||
    // Element type : security-constraint
-   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public WebApp30Descriptor removeSecurityConstraint()
+   public WebApp30Descriptor removeAllSecurityConstraint()
    {
-      model.remove("security-constraint");
+      model.remove(SecurityConstraintTypeImpl.nodeName);
       return this;
    }
 
    public SecurityConstraintType<WebApp30Descriptor> securityConstraint()
    {
-      Node node = model.getOrCreate(SecurityConstraintTypeImpl.nodeName);
-      SecurityConstraintType<WebApp30Descriptor> securityConstraint = new SecurityConstraintTypeImpl<WebApp30Descriptor>(
-            this, "", model, node);
-      return securityConstraint;
+      return new SecurityConstraintTypeImpl<WebApp30Descriptor>(this, "", model);
+   }
+
+   public List<SecurityConstraintType<WebApp30Descriptor>> getSecurityConstraintList()
+   {
+      List<SecurityConstraintType<WebApp30Descriptor>> list = new ArrayList<SecurityConstraintType<WebApp30Descriptor>>();
+      List<Node> nodeList = model.get(SecurityConstraintTypeImpl.nodeName);
+      for (Node node : nodeList)
+      {
+         SecurityConstraintType<WebApp30Descriptor> type = new SecurityConstraintTypeImpl<WebApp30Descriptor>(this, "",
+               model, node);
+         list.add(type);
+      }
+      return list;
    }
 
    // -------------------------------------------------------------------------------------||
    // Element type : login-config
-   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public WebApp30Descriptor removeLoginConfig()
+   public WebApp30Descriptor removeAllLoginConfig()
    {
-      model.remove("login-config");
+      model.remove(LoginConfigTypeImpl.nodeName);
       return this;
    }
 
    public LoginConfigType<WebApp30Descriptor> loginConfig()
    {
-      Node node = model.getOrCreate(LoginConfigTypeImpl.nodeName);
-      LoginConfigType<WebApp30Descriptor> loginConfig = new LoginConfigTypeImpl<WebApp30Descriptor>(this, "", model,
-            node);
-      return loginConfig;
+      return new LoginConfigTypeImpl<WebApp30Descriptor>(this, "", model);
+   }
+
+   public List<LoginConfigType<WebApp30Descriptor>> getLoginConfigList()
+   {
+      List<LoginConfigType<WebApp30Descriptor>> list = new ArrayList<LoginConfigType<WebApp30Descriptor>>();
+      List<Node> nodeList = model.get(LoginConfigTypeImpl.nodeName);
+      for (Node node : nodeList)
+      {
+         LoginConfigType<WebApp30Descriptor> type = new LoginConfigTypeImpl<WebApp30Descriptor>(this, "", model, node);
+         list.add(type);
+      }
+      return list;
    }
 
    // -------------------------------------------------------------------------------------||
    // Element type : security-role
-   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public WebApp30Descriptor removeSecurityRole()
+   public WebApp30Descriptor removeAllSecurityRole()
    {
-      model.remove("security-role");
+      model.remove(SecurityRoleTypeImpl.nodeName);
       return this;
    }
 
    public SecurityRoleType<WebApp30Descriptor> securityRole()
    {
-      Node node = model.getOrCreate(SecurityRoleTypeImpl.nodeName);
-      SecurityRoleType<WebApp30Descriptor> securityRole = new SecurityRoleTypeImpl<WebApp30Descriptor>(this, "", model,
-            node);
-      return securityRole;
+      return new SecurityRoleTypeImpl<WebApp30Descriptor>(this, "", model);
+   }
+
+   public List<SecurityRoleType<WebApp30Descriptor>> getSecurityRoleList()
+   {
+      List<SecurityRoleType<WebApp30Descriptor>> list = new ArrayList<SecurityRoleType<WebApp30Descriptor>>();
+      List<Node> nodeList = model.get(SecurityRoleTypeImpl.nodeName);
+      for (Node node : nodeList)
+      {
+         SecurityRoleType<WebApp30Descriptor> type = new SecurityRoleTypeImpl<WebApp30Descriptor>(this, "", model, node);
+         list.add(type);
+      }
+      return list;
    }
 
    // -------------------------------------------------------------------------------------||
    // Element type : message-destination
-   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public WebApp30Descriptor removeMessageDestination()
+   public WebApp30Descriptor removeAllMessageDestination()
    {
-      model.remove("message-destination");
+      model.remove(MessageDestinationTypeImpl.nodeName);
       return this;
    }
 
    public MessageDestinationType<WebApp30Descriptor> messageDestination()
    {
-      Node node = model.getOrCreate(MessageDestinationTypeImpl.nodeName);
-      MessageDestinationType<WebApp30Descriptor> messageDestination = new MessageDestinationTypeImpl<WebApp30Descriptor>(
-            this, "", model, node);
-      return messageDestination;
+      return new MessageDestinationTypeImpl<WebApp30Descriptor>(this, "", model);
+   }
+
+   public List<MessageDestinationType<WebApp30Descriptor>> getMessageDestinationList()
+   {
+      List<MessageDestinationType<WebApp30Descriptor>> list = new ArrayList<MessageDestinationType<WebApp30Descriptor>>();
+      List<Node> nodeList = model.get(MessageDestinationTypeImpl.nodeName);
+      for (Node node : nodeList)
+      {
+         MessageDestinationType<WebApp30Descriptor> type = new MessageDestinationTypeImpl<WebApp30Descriptor>(this, "",
+               model, node);
+         list.add(type);
+      }
+      return list;
    }
 
    // -------------------------------------------------------------------------------------||
    // Element type : locale-encoding-mapping-list
-   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public WebApp30Descriptor removeLocaleEncodingMappingList()
+   public WebApp30Descriptor removeAllLocaleEncodingMappingList()
    {
-      model.remove("locale-encoding-mapping-list");
+      model.remove(LocaleEncodingMappingListTypeImpl.nodeName);
       return this;
    }
 
    public LocaleEncodingMappingListType<WebApp30Descriptor> localeEncodingMappingList()
    {
-      Node node = model.getOrCreate(LocaleEncodingMappingListTypeImpl.nodeName);
-      LocaleEncodingMappingListType<WebApp30Descriptor> localeEncodingMappingList = new LocaleEncodingMappingListTypeImpl<WebApp30Descriptor>(
-            this, "", model, node);
-      return localeEncodingMappingList;
+      return new LocaleEncodingMappingListTypeImpl<WebApp30Descriptor>(this, "", model);
+   }
+
+   public List<LocaleEncodingMappingListType<WebApp30Descriptor>> getLocaleEncodingMappingListList()
+   {
+      List<LocaleEncodingMappingListType<WebApp30Descriptor>> list = new ArrayList<LocaleEncodingMappingListType<WebApp30Descriptor>>();
+      List<Node> nodeList = model.get(LocaleEncodingMappingListTypeImpl.nodeName);
+      for (Node node : nodeList)
+      {
+         LocaleEncodingMappingListType<WebApp30Descriptor> type = new LocaleEncodingMappingListTypeImpl<WebApp30Descriptor>(
+               this, "", model, node);
+         list.add(type);
+      }
+      return list;
    }
 
    // -------------------------------------------------------------------------------------||

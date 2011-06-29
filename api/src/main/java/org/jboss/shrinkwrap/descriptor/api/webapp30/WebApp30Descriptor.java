@@ -36,7 +36,7 @@ import org.jboss.shrinkwrap.descriptor.api.webcommon30.WelcomeFileListType;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-27T15:26:42.686-04:00
+ * Generation date :2011-06-29T17:02:36.405-04:00
  */
 public interface WebApp30Descriptor extends Descriptor, DescriptorNamespace<WebApp30Descriptor>
 {
@@ -44,69 +44,101 @@ public interface WebApp30Descriptor extends Descriptor, DescriptorNamespace<WebA
 
    public Boolean isDistributable();
 
-   public WebApp30Descriptor removeContextParam();
+   public WebApp30Descriptor removeAllContextParam();
 
    public ParamValueType<WebApp30Descriptor> contextParam();
 
-   public WebApp30Descriptor removeFilter();
+   public List<ParamValueType<WebApp30Descriptor>> getContextParamList();
+
+   public WebApp30Descriptor removeAllFilter();
 
    public FilterType<WebApp30Descriptor> filter();
 
-   public WebApp30Descriptor removeFilterMapping();
+   public List<FilterType<WebApp30Descriptor>> getFilterList();
+
+   public WebApp30Descriptor removeAllFilterMapping();
 
    public FilterMappingType<WebApp30Descriptor> filterMapping();
 
-   public WebApp30Descriptor removeListener();
+   public List<FilterMappingType<WebApp30Descriptor>> getFilterMappingList();
+
+   public WebApp30Descriptor removeAllListener();
 
    public ListenerType<WebApp30Descriptor> listener();
 
-   public WebApp30Descriptor removeServlet();
+   public List<ListenerType<WebApp30Descriptor>> getListenerList();
+
+   public WebApp30Descriptor removeAllServlet();
 
    public ServletType<WebApp30Descriptor> servlet();
 
-   public WebApp30Descriptor removeServletMapping();
+   public List<ServletType<WebApp30Descriptor>> getServletList();
+
+   public WebApp30Descriptor removeAllServletMapping();
 
    public ServletMappingType<WebApp30Descriptor> servletMapping();
 
-   public WebApp30Descriptor removeSessionConfig();
+   public List<ServletMappingType<WebApp30Descriptor>> getServletMappingList();
+
+   public WebApp30Descriptor removeAllSessionConfig();
 
    public SessionConfigType<WebApp30Descriptor> sessionConfig();
 
-   public WebApp30Descriptor removeMimeMapping();
+   public List<SessionConfigType<WebApp30Descriptor>> getSessionConfigList();
+
+   public WebApp30Descriptor removeAllMimeMapping();
 
    public MimeMappingType<WebApp30Descriptor> mimeMapping();
 
-   public WebApp30Descriptor removeWelcomeFileList();
+   public List<MimeMappingType<WebApp30Descriptor>> getMimeMappingList();
+
+   public WebApp30Descriptor removeAllWelcomeFileList();
 
    public WelcomeFileListType<WebApp30Descriptor> welcomeFileList();
 
-   public WebApp30Descriptor removeErrorPage();
+   public List<WelcomeFileListType<WebApp30Descriptor>> getWelcomeFileListList();
+
+   public WebApp30Descriptor removeAllErrorPage();
 
    public ErrorPageType<WebApp30Descriptor> errorPage();
 
-   public WebApp30Descriptor removeJspConfig();
+   public List<ErrorPageType<WebApp30Descriptor>> getErrorPageList();
+
+   public WebApp30Descriptor removeAllJspConfig();
 
    public JspConfigType<WebApp30Descriptor> jspConfig();
 
-   public WebApp30Descriptor removeSecurityConstraint();
+   public List<JspConfigType<WebApp30Descriptor>> getJspConfigList();
+
+   public WebApp30Descriptor removeAllSecurityConstraint();
 
    public SecurityConstraintType<WebApp30Descriptor> securityConstraint();
 
-   public WebApp30Descriptor removeLoginConfig();
+   public List<SecurityConstraintType<WebApp30Descriptor>> getSecurityConstraintList();
+
+   public WebApp30Descriptor removeAllLoginConfig();
 
    public LoginConfigType<WebApp30Descriptor> loginConfig();
 
-   public WebApp30Descriptor removeSecurityRole();
+   public List<LoginConfigType<WebApp30Descriptor>> getLoginConfigList();
+
+   public WebApp30Descriptor removeAllSecurityRole();
 
    public SecurityRoleType<WebApp30Descriptor> securityRole();
 
-   public WebApp30Descriptor removeMessageDestination();
+   public List<SecurityRoleType<WebApp30Descriptor>> getSecurityRoleList();
+
+   public WebApp30Descriptor removeAllMessageDestination();
 
    public MessageDestinationType<WebApp30Descriptor> messageDestination();
 
-   public WebApp30Descriptor removeLocaleEncodingMappingList();
+   public List<MessageDestinationType<WebApp30Descriptor>> getMessageDestinationList();
+
+   public WebApp30Descriptor removeAllLocaleEncodingMappingList();
 
    public LocaleEncodingMappingListType<WebApp30Descriptor> localeEncodingMappingList();
+
+   public List<LocaleEncodingMappingListType<WebApp30Descriptor>> getLocaleEncodingMappingListList();
 
    public WebApp30Descriptor setDescription(String description);
 
@@ -210,12 +242,16 @@ public interface WebApp30Descriptor extends Descriptor, DescriptorNamespace<WebA
 
    public WebApp30Descriptor setModuleName(String moduleName);
 
-   public WebApp30Descriptor removeModuleName();
+   public WebApp30Descriptor setModuleNameList(String... values);
 
-   public String getModuleName();
+   public WebApp30Descriptor removeAllModuleName();
 
-   public WebApp30Descriptor removeAbsoluteOrdering();
+   public List<String> getModuleNameList();
+
+   public WebApp30Descriptor removeAllAbsoluteOrdering();
 
    public AbsoluteOrderingType<WebApp30Descriptor> absoluteOrdering();
+
+   public List<AbsoluteOrderingType<WebApp30Descriptor>> getAbsoluteOrderingList();
 
 }
