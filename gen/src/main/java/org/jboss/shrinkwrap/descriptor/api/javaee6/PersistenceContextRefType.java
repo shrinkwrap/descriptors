@@ -1,20 +1,12 @@
-package org.jboss.shrinkwrap.descriptor.api.javaee6; 
+package org.jboss.shrinkwrap.descriptor.api.javaee6;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.api.application6.*;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
-import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
-import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
+
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T17:26:07.336-04:00
+ * Generation date :2011-07-01T19:50:22.163-04:00
  *
  * Original Documentation:
  *
@@ -57,52 +49,49 @@ public interface PersistenceContextRefType<T> extends Child<T>
 {
 
    public PersistenceContextRefType<T> setMappedName(String mappedName);
+
    public PersistenceContextRefType<T> removeMappedName();
 
    public String getMappedName();
 
-
    public PersistenceContextRefType<T> removeAllInjectionTarget();
 
    public InjectionTargetType<PersistenceContextRefType<T>> injectionTarget();
+
    public List<InjectionTargetType<PersistenceContextRefType<T>>> getInjectionTargetList();
 
-
-
    public PersistenceContextRefType<T> setDescription(String description);
-   public PersistenceContextRefType<T> setDescriptionList(String ... values);
+
+   public PersistenceContextRefType<T> setDescriptionList(String... values);
+
    public PersistenceContextRefType<T> removeAllDescription();
 
    public List<String> getDescriptionList();
 
-
-
    public PersistenceContextRefType<T> setPersistenceContextRefName(String persistenceContextRefName);
+
    public PersistenceContextRefType<T> removePersistenceContextRefName();
 
    public String getPersistenceContextRefName();
 
-
-
    public PersistenceContextRefType<T> setPersistenceUnitName(String persistenceUnitName);
+
    public PersistenceContextRefType<T> removePersistenceUnitName();
 
    public String getPersistenceUnitName();
 
-
-
    public PersistenceContextRefType<T> setPersistenceContextType(PersistenceContextTypeType persistenceContextType);
+
    public PersistenceContextRefType<T> setPersistenceContextType(String persistenceContextType);
 
    public PersistenceContextTypeType getPersistenceContextType();
-   public String  getPersistenceContextTypeAsString();
 
-
+   public String getPersistenceContextTypeAsString();
 
    public PersistenceContextRefType<T> removeAllPersistenceProperty();
 
    public PropertyType<PersistenceContextRefType<T>> persistenceProperty();
-   public List<PropertyType<PersistenceContextRefType<T>>> getPersistencePropertyList();
 
+   public List<PropertyType<PersistenceContextRefType<T>>> getPersistencePropertyList();
 
 }

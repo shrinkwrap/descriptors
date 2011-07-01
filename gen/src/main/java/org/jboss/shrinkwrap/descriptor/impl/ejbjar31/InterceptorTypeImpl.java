@@ -1,34 +1,37 @@
-package org.jboss.shrinkwrap.descriptor.impl.ejbjar31; 
+package org.jboss.shrinkwrap.descriptor.impl.ejbjar31;
 
-import org.jboss.shrinkwrap.descriptor.spi.Node;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.api.application6.*;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
-import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
-import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
-import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
-import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.impl.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.impl.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.impl.application6.*;
-import org.jboss.shrinkwrap.descriptor.impl.webapp30.*;
-import org.jboss.shrinkwrap.descriptor.impl.persistence20.*;
-import org.jboss.shrinkwrap.descriptor.impl.webfragment30.*;
-import org.jboss.shrinkwrap.descriptor.impl.ejbjar31.*;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.AroundInvokeType;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.AroundTimeoutType;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.InterceptorType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbLocalRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.EnvEntryType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.LifecycleCallbackType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceContextRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceUnitRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceEnvRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceRefType;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.DataSourceTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.EjbLocalRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.EjbRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.EnvEntryTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.LifecycleCallbackTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.MessageDestinationRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.PersistenceContextRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.PersistenceUnitRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.ResourceEnvRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.ResourceRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T17:26:07.336-04:00
+ * Generation date :2011-07-01T19:50:22.163-04:00
  *
  * Original Documentation:
  *
@@ -59,31 +62,33 @@ public class InterceptorTypeImpl<T> implements Child<T>, InterceptorType<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
+
    private Node node;
+
    private Node childNode;
+
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public InterceptorTypeImpl(T t, String nodeName, Node node)   {
+   public InterceptorTypeImpl(T t, String nodeName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public InterceptorTypeImpl(T t, String nodeName, Node node, Node childNode)   {
+   public InterceptorTypeImpl(T t, String nodeName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
-
    public T up()
    {
       return t;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : env-entry
@@ -104,15 +109,14 @@ public class InterceptorTypeImpl<T> implements Child<T>, InterceptorType<T>
    {
       List<EnvEntryType<InterceptorType<T>>> list = new ArrayList<EnvEntryType<InterceptorType<T>>>();
       List<Node> nodeList = childNode.get("env-entry");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         EnvEntryType<InterceptorType<T>>  type = new EnvEntryTypeImpl<InterceptorType<T>>(this, "env-entry", childNode, node);
+         EnvEntryType<InterceptorType<T>> type = new EnvEntryTypeImpl<InterceptorType<T>>(this, "env-entry", childNode,
+               node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : ejb-ref
@@ -133,15 +137,13 @@ public class InterceptorTypeImpl<T> implements Child<T>, InterceptorType<T>
    {
       List<EjbRefType<InterceptorType<T>>> list = new ArrayList<EjbRefType<InterceptorType<T>>>();
       List<Node> nodeList = childNode.get("ejb-ref");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         EjbRefType<InterceptorType<T>>  type = new EjbRefTypeImpl<InterceptorType<T>>(this, "ejb-ref", childNode, node);
+         EjbRefType<InterceptorType<T>> type = new EjbRefTypeImpl<InterceptorType<T>>(this, "ejb-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : ejb-local-ref
@@ -162,15 +164,14 @@ public class InterceptorTypeImpl<T> implements Child<T>, InterceptorType<T>
    {
       List<EjbLocalRefType<InterceptorType<T>>> list = new ArrayList<EjbLocalRefType<InterceptorType<T>>>();
       List<Node> nodeList = childNode.get("ejb-local-ref");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         EjbLocalRefType<InterceptorType<T>>  type = new EjbLocalRefTypeImpl<InterceptorType<T>>(this, "ejb-local-ref", childNode, node);
+         EjbLocalRefType<InterceptorType<T>> type = new EjbLocalRefTypeImpl<InterceptorType<T>>(this, "ejb-local-ref",
+               childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : resource-ref
@@ -191,15 +192,14 @@ public class InterceptorTypeImpl<T> implements Child<T>, InterceptorType<T>
    {
       List<ResourceRefType<InterceptorType<T>>> list = new ArrayList<ResourceRefType<InterceptorType<T>>>();
       List<Node> nodeList = childNode.get("resource-ref");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         ResourceRefType<InterceptorType<T>>  type = new ResourceRefTypeImpl<InterceptorType<T>>(this, "resource-ref", childNode, node);
+         ResourceRefType<InterceptorType<T>> type = new ResourceRefTypeImpl<InterceptorType<T>>(this, "resource-ref",
+               childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : resource-env-ref
@@ -220,15 +220,14 @@ public class InterceptorTypeImpl<T> implements Child<T>, InterceptorType<T>
    {
       List<ResourceEnvRefType<InterceptorType<T>>> list = new ArrayList<ResourceEnvRefType<InterceptorType<T>>>();
       List<Node> nodeList = childNode.get("resource-env-ref");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         ResourceEnvRefType<InterceptorType<T>>  type = new ResourceEnvRefTypeImpl<InterceptorType<T>>(this, "resource-env-ref", childNode, node);
+         ResourceEnvRefType<InterceptorType<T>> type = new ResourceEnvRefTypeImpl<InterceptorType<T>>(this,
+               "resource-env-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : message-destination-ref
@@ -249,15 +248,14 @@ public class InterceptorTypeImpl<T> implements Child<T>, InterceptorType<T>
    {
       List<MessageDestinationRefType<InterceptorType<T>>> list = new ArrayList<MessageDestinationRefType<InterceptorType<T>>>();
       List<Node> nodeList = childNode.get("message-destination-ref");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         MessageDestinationRefType<InterceptorType<T>>  type = new MessageDestinationRefTypeImpl<InterceptorType<T>>(this, "message-destination-ref", childNode, node);
+         MessageDestinationRefType<InterceptorType<T>> type = new MessageDestinationRefTypeImpl<InterceptorType<T>>(
+               this, "message-destination-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : persistence-context-ref
@@ -278,15 +276,14 @@ public class InterceptorTypeImpl<T> implements Child<T>, InterceptorType<T>
    {
       List<PersistenceContextRefType<InterceptorType<T>>> list = new ArrayList<PersistenceContextRefType<InterceptorType<T>>>();
       List<Node> nodeList = childNode.get("persistence-context-ref");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         PersistenceContextRefType<InterceptorType<T>>  type = new PersistenceContextRefTypeImpl<InterceptorType<T>>(this, "persistence-context-ref", childNode, node);
+         PersistenceContextRefType<InterceptorType<T>> type = new PersistenceContextRefTypeImpl<InterceptorType<T>>(
+               this, "persistence-context-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : persistence-unit-ref
@@ -307,15 +304,14 @@ public class InterceptorTypeImpl<T> implements Child<T>, InterceptorType<T>
    {
       List<PersistenceUnitRefType<InterceptorType<T>>> list = new ArrayList<PersistenceUnitRefType<InterceptorType<T>>>();
       List<Node> nodeList = childNode.get("persistence-unit-ref");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         PersistenceUnitRefType<InterceptorType<T>>  type = new PersistenceUnitRefTypeImpl<InterceptorType<T>>(this, "persistence-unit-ref", childNode, node);
+         PersistenceUnitRefType<InterceptorType<T>> type = new PersistenceUnitRefTypeImpl<InterceptorType<T>>(this,
+               "persistence-unit-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : post-construct
@@ -336,15 +332,14 @@ public class InterceptorTypeImpl<T> implements Child<T>, InterceptorType<T>
    {
       List<LifecycleCallbackType<InterceptorType<T>>> list = new ArrayList<LifecycleCallbackType<InterceptorType<T>>>();
       List<Node> nodeList = childNode.get("post-construct");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         LifecycleCallbackType<InterceptorType<T>>  type = new LifecycleCallbackTypeImpl<InterceptorType<T>>(this, "post-construct", childNode, node);
+         LifecycleCallbackType<InterceptorType<T>> type = new LifecycleCallbackTypeImpl<InterceptorType<T>>(this,
+               "post-construct", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : pre-destroy
@@ -365,15 +360,14 @@ public class InterceptorTypeImpl<T> implements Child<T>, InterceptorType<T>
    {
       List<LifecycleCallbackType<InterceptorType<T>>> list = new ArrayList<LifecycleCallbackType<InterceptorType<T>>>();
       List<Node> nodeList = childNode.get("pre-destroy");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         LifecycleCallbackType<InterceptorType<T>>  type = new LifecycleCallbackTypeImpl<InterceptorType<T>>(this, "pre-destroy", childNode, node);
+         LifecycleCallbackType<InterceptorType<T>> type = new LifecycleCallbackTypeImpl<InterceptorType<T>>(this,
+               "pre-destroy", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : data-source
@@ -394,15 +388,14 @@ public class InterceptorTypeImpl<T> implements Child<T>, InterceptorType<T>
    {
       List<DataSourceType<InterceptorType<T>>> list = new ArrayList<DataSourceType<InterceptorType<T>>>();
       List<Node> nodeList = childNode.get("data-source");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         DataSourceType<InterceptorType<T>>  type = new DataSourceTypeImpl<InterceptorType<T>>(this, "data-source", childNode, node);
+         DataSourceType<InterceptorType<T>> type = new DataSourceTypeImpl<InterceptorType<T>>(this, "data-source",
+               childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : description
@@ -413,21 +406,23 @@ public class InterceptorTypeImpl<T> implements Child<T>, InterceptorType<T>
       childNode.create("description").text(description);
       return this;
    }
-   public InterceptorType<T> setDescriptionList(String ... values)
+
+   public InterceptorType<T> setDescriptionList(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
          setDescription(name);
       }
       return this;
    }
+
    public InterceptorType<T> removeAllDescription()
    {
       childNode.remove("description");
       return this;
    }
 
-public List<String> getDescriptionList()
+   public List<String> getDescriptionList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("description");
@@ -438,8 +433,6 @@ public List<String> getDescriptionList()
       return result;
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : interceptor-class
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -449,6 +442,7 @@ public List<String> getDescriptionList()
       childNode.getOrCreate("interceptor-class").text(interceptorClass);
       return this;
    }
+
    public InterceptorType<T> removeInterceptorClass()
    {
       childNode.remove("interceptor-class");
@@ -459,8 +453,6 @@ public List<String> getDescriptionList()
    {
       return childNode.textValue("interceptor-class");
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : around-invoke
@@ -481,16 +473,14 @@ public List<String> getDescriptionList()
    {
       List<AroundInvokeType<InterceptorType<T>>> list = new ArrayList<AroundInvokeType<InterceptorType<T>>>();
       List<Node> nodeList = childNode.get("around-invoke");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         AroundInvokeType<InterceptorType<T>>  type = new AroundInvokeTypeImpl<InterceptorType<T>>(this, "around-invoke", childNode, node);
+         AroundInvokeType<InterceptorType<T>> type = new AroundInvokeTypeImpl<InterceptorType<T>>(this,
+               "around-invoke", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : around-timeout
@@ -511,16 +501,14 @@ public List<String> getDescriptionList()
    {
       List<AroundTimeoutType<InterceptorType<T>>> list = new ArrayList<AroundTimeoutType<InterceptorType<T>>>();
       List<Node> nodeList = childNode.get("around-timeout");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         AroundTimeoutType<InterceptorType<T>>  type = new AroundTimeoutTypeImpl<InterceptorType<T>>(this, "around-timeout", childNode, node);
+         AroundTimeoutType<InterceptorType<T>> type = new AroundTimeoutTypeImpl<InterceptorType<T>>(this,
+               "around-timeout", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : post-activate
@@ -541,16 +529,14 @@ public List<String> getDescriptionList()
    {
       List<LifecycleCallbackType<InterceptorType<T>>> list = new ArrayList<LifecycleCallbackType<InterceptorType<T>>>();
       List<Node> nodeList = childNode.get("post-activate");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         LifecycleCallbackType<InterceptorType<T>>  type = new LifecycleCallbackTypeImpl<InterceptorType<T>>(this, "post-activate", childNode, node);
+         LifecycleCallbackType<InterceptorType<T>> type = new LifecycleCallbackTypeImpl<InterceptorType<T>>(this,
+               "post-activate", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : pre-passivate
@@ -571,13 +557,13 @@ public List<String> getDescriptionList()
    {
       List<LifecycleCallbackType<InterceptorType<T>>> list = new ArrayList<LifecycleCallbackType<InterceptorType<T>>>();
       List<Node> nodeList = childNode.get("pre-passivate");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         LifecycleCallbackType<InterceptorType<T>>  type = new LifecycleCallbackTypeImpl<InterceptorType<T>>(this, "pre-passivate", childNode, node);
+         LifecycleCallbackType<InterceptorType<T>> type = new LifecycleCallbackTypeImpl<InterceptorType<T>>(this,
+               "pre-passivate", childNode, node);
          list.add(type);
       }
       return list;
    }
-
 
 }

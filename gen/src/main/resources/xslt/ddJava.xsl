@@ -429,7 +429,9 @@
                                 <xsl:for-each select="include">
                                     <xsl:variable name="vIsMaxOccursUnbounded" select="@maxOccurs='unbounded'" as="xs:boolean"/>
                                     <xsl:variable name="vGroupName" select=" substring-after(@name, ':')"/>
+                                    <xsl:message select="concat('test cass include groupname: ', $vGroupName)"/>
                                     <xsl:for-each select="$gGroups/class[@name=$vGroupName]/element">
+                                        <xsl:message select="concat('test cass include groupname: ', $vGroupName), '  found: ', ../element/@name"/>
                                         <xsl:variable name="vMaxOccurs" select="concat('-', @maxOccurs)"/>
                                         <xsl:call-template name="WriteTestMethods">
                                             <xsl:with-param name="pElement" select="."/>
@@ -540,7 +542,9 @@
                         <xsl:value-of select="concat('      }', '&#10;')"/>
                     </xsl:when>
 
-                    <xsl:when test="exists($pElement/@attribute)"> </xsl:when>
+                    <!--<xsl:when test="exists($pElement/@attribute)"> 
+                    <xsl:message select="concat('attribute called for generating test method: ',@name)"></xsl:message>
+                    </xsl:when>-->
 
                     <xsl:when test="xdd:isDataType(@type) and (@maxOccurs != 'unbounded' or exists(@maxOccurs)=false()) and $pIsMaxOccursUnbounded=false()">
                         <xsl:variable name="vDataType" select="xdd:CheckDataType(@type)"/>

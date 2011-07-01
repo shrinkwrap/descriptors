@@ -1,8 +1,8 @@
-package org.jboss.shrinkwrap.descriptor.api.ejbjar31; 
+package org.jboss.shrinkwrap.descriptor.api.ejbjar31;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T17:26:07.336-04:00
+ * Generation date :2011-07-01T19:50:22.163-04:00
  *
  * Original Documentation:
  *
@@ -18,26 +18,31 @@ package org.jboss.shrinkwrap.descriptor.api.ejbjar31;
  *
  *
  */
-public enum PersistenceTypeType
-{
-   _BEAN("Bean"),
-   _CONTAINER("Container");
+public enum PersistenceTypeType {
+   _BEAN("Bean"), _CONTAINER("Container");
 
    private String value;
 
-   PersistenceTypeType (String value) { this.value = value; }
+   PersistenceTypeType(String value)
+   {
+      this.value = value;
+   }
 
-   public String toString() {return value;}
+   public String toString()
+   {
+      return value;
+   }
 
    public static PersistenceTypeType getFromStringValue(String value)
    {
-      for(PersistenceTypeType type: PersistenceTypeType.values())
+      for (PersistenceTypeType type : PersistenceTypeType.values())
       {
-         if(value != null && type.toString().equals(value))
-        { return type;}
+         if (value != null && type.toString().equals(value))
+         {
+            return type;
+         }
       }
       return null;
    }
 
 }
-

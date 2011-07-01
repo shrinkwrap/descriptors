@@ -1,8 +1,8 @@
-package org.jboss.shrinkwrap.descriptor.api.persistence20; 
+package org.jboss.shrinkwrap.descriptor.api.persistence20;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T17:26:07.336-04:00
+ * Generation date :2011-07-01T19:50:22.163-04:00
  *
  * Original Documentation:
  *
@@ -12,29 +12,32 @@ package org.jboss.shrinkwrap.descriptor.api.persistence20;
  *
  *
  */
-public enum PersistenceUnitCachingType
-{
-   _ALL("ALL"),
-   _NONE("NONE"),
-   _ENABLE_SELECTIVE("ENABLE_SELECTIVE"),
-   _DISABLE_SELECTIVE("DISABLE_SELECTIVE"),
-   _UNSPECIFIED("UNSPECIFIED");
+public enum PersistenceUnitCachingType {
+   _ALL("ALL"), _NONE("NONE"), _ENABLE_SELECTIVE("ENABLE_SELECTIVE"), _DISABLE_SELECTIVE("DISABLE_SELECTIVE"), _UNSPECIFIED(
+         "UNSPECIFIED");
 
    private String value;
 
-   PersistenceUnitCachingType (String value) { this.value = value; }
+   PersistenceUnitCachingType(String value)
+   {
+      this.value = value;
+   }
 
-   public String toString() {return value;}
+   public String toString()
+   {
+      return value;
+   }
 
    public static PersistenceUnitCachingType getFromStringValue(String value)
    {
-      for(PersistenceUnitCachingType type: PersistenceUnitCachingType.values())
+      for (PersistenceUnitCachingType type : PersistenceUnitCachingType.values())
       {
-         if(value != null && type.toString().equals(value))
-        { return type;}
+         if (value != null && type.toString().equals(value))
+         {
+            return type;
+         }
       }
       return null;
    }
 
 }
-

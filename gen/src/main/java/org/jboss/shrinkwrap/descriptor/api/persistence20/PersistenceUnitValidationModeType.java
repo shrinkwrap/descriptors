@@ -1,8 +1,8 @@
-package org.jboss.shrinkwrap.descriptor.api.persistence20; 
+package org.jboss.shrinkwrap.descriptor.api.persistence20;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T17:26:07.336-04:00
+ * Generation date :2011-07-01T19:50:22.163-04:00
  *
  * Original Documentation:
  *
@@ -12,27 +12,31 @@ package org.jboss.shrinkwrap.descriptor.api.persistence20;
  *
  *
  */
-public enum PersistenceUnitValidationModeType
-{
-   _AUTO("AUTO"),
-   _CALLBACK("CALLBACK"),
-   _NONE("NONE");
+public enum PersistenceUnitValidationModeType {
+   _AUTO("AUTO"), _CALLBACK("CALLBACK"), _NONE("NONE");
 
    private String value;
 
-   PersistenceUnitValidationModeType (String value) { this.value = value; }
+   PersistenceUnitValidationModeType(String value)
+   {
+      this.value = value;
+   }
 
-   public String toString() {return value;}
+   public String toString()
+   {
+      return value;
+   }
 
    public static PersistenceUnitValidationModeType getFromStringValue(String value)
    {
-      for(PersistenceUnitValidationModeType type: PersistenceUnitValidationModeType.values())
+      for (PersistenceUnitValidationModeType type : PersistenceUnitValidationModeType.values())
       {
-         if(value != null && type.toString().equals(value))
-        { return type;}
+         if (value != null && type.toString().equals(value))
+         {
+            return type;
+         }
       }
       return null;
    }
 
 }
-

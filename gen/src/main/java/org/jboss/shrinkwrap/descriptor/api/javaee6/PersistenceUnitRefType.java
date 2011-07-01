@@ -1,20 +1,12 @@
-package org.jboss.shrinkwrap.descriptor.api.javaee6; 
+package org.jboss.shrinkwrap.descriptor.api.javaee6;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.api.application6.*;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
-import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
-import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
+
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T17:26:07.336-04:00
+ * Generation date :2011-07-01T19:50:22.163-04:00
  *
  * Original Documentation:
  *
@@ -52,34 +44,33 @@ public interface PersistenceUnitRefType<T> extends Child<T>
 {
 
    public PersistenceUnitRefType<T> setMappedName(String mappedName);
+
    public PersistenceUnitRefType<T> removeMappedName();
 
    public String getMappedName();
 
-
    public PersistenceUnitRefType<T> removeAllInjectionTarget();
 
    public InjectionTargetType<PersistenceUnitRefType<T>> injectionTarget();
+
    public List<InjectionTargetType<PersistenceUnitRefType<T>>> getInjectionTargetList();
 
-
-
    public PersistenceUnitRefType<T> setDescription(String description);
-   public PersistenceUnitRefType<T> setDescriptionList(String ... values);
+
+   public PersistenceUnitRefType<T> setDescriptionList(String... values);
+
    public PersistenceUnitRefType<T> removeAllDescription();
 
    public List<String> getDescriptionList();
 
-
-
    public PersistenceUnitRefType<T> setPersistenceUnitRefName(String persistenceUnitRefName);
+
    public PersistenceUnitRefType<T> removePersistenceUnitRefName();
 
    public String getPersistenceUnitRefName();
 
-
-
    public PersistenceUnitRefType<T> setPersistenceUnitName(String persistenceUnitName);
+
    public PersistenceUnitRefType<T> removePersistenceUnitName();
 
    public String getPersistenceUnitName();

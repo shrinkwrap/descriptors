@@ -1,34 +1,46 @@
-package org.jboss.shrinkwrap.descriptor.impl.ejbjar31; 
+package org.jboss.shrinkwrap.descriptor.impl.ejbjar31;
 
-import org.jboss.shrinkwrap.descriptor.spi.Node;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.api.application6.*;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
-import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
-import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
-import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
-import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.impl.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.impl.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.impl.application6.*;
-import org.jboss.shrinkwrap.descriptor.impl.webapp30.*;
-import org.jboss.shrinkwrap.descriptor.impl.persistence20.*;
-import org.jboss.shrinkwrap.descriptor.impl.webfragment30.*;
-import org.jboss.shrinkwrap.descriptor.impl.ejbjar31.*;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.ActivationConfigType;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.AroundInvokeType;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.AroundTimeoutType;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.MessageDrivenBeanType;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.NamedMethodType;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.SecurityIdentityType;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.TimerType;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.TransactionTypeType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbLocalRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.EnvEntryType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.LifecycleCallbackType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceContextRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceUnitRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceEnvRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleRefType;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.DataSourceTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.EjbLocalRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.EjbRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.EnvEntryTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.IconTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.LifecycleCallbackTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.MessageDestinationRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.PersistenceContextRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.PersistenceUnitRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.ResourceEnvRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.ResourceRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.SecurityRoleRefTypeImpl;
+import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T17:26:07.336-04:00
+ * Generation date :2011-07-01T19:50:22.163-04:00
  *
  * Original Documentation:
  *
@@ -96,31 +108,33 @@ public class MessageDrivenBeanTypeImpl<T> implements Child<T>, MessageDrivenBean
    // -------------------------------------------------------------------------------------||
 
    private T t;
+
    private Node node;
+
    private Node childNode;
+
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public MessageDrivenBeanTypeImpl(T t, String nodeName, Node node)   {
+   public MessageDrivenBeanTypeImpl(T t, String nodeName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public MessageDrivenBeanTypeImpl(T t, String nodeName, Node node, Node childNode)   {
+   public MessageDrivenBeanTypeImpl(T t, String nodeName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
-
    public T up()
    {
       return t;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : description
@@ -131,21 +145,23 @@ public class MessageDrivenBeanTypeImpl<T> implements Child<T>, MessageDrivenBean
       childNode.create("description").text(description);
       return this;
    }
-   public MessageDrivenBeanType<T> setDescriptionList(String ... values)
+
+   public MessageDrivenBeanType<T> setDescriptionList(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
          setDescription(name);
       }
       return this;
    }
+
    public MessageDrivenBeanType<T> removeAllDescription()
    {
       childNode.remove("description");
       return this;
    }
 
-public List<String> getDescriptionList()
+   public List<String> getDescriptionList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("description");
@@ -156,7 +172,6 @@ public List<String> getDescriptionList()
       return result;
    }
 
-
    // -------------------------------------------------------------------------------------||
    // Element type : display-name
    // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
@@ -166,21 +181,23 @@ public List<String> getDescriptionList()
       childNode.create("display-name").text(displayName);
       return this;
    }
-   public MessageDrivenBeanType<T> setDisplayNameList(String ... values)
+
+   public MessageDrivenBeanType<T> setDisplayNameList(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
          setDisplayName(name);
       }
       return this;
    }
+
    public MessageDrivenBeanType<T> removeAllDisplayName()
    {
       childNode.remove("display-name");
       return this;
    }
 
-public List<String> getDisplayNameList()
+   public List<String> getDisplayNameList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("display-name");
@@ -190,7 +207,6 @@ public List<String> getDisplayNameList()
       }
       return result;
    }
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : icon
@@ -211,15 +227,14 @@ public List<String> getDisplayNameList()
    {
       List<IconType<MessageDrivenBeanType<T>>> list = new ArrayList<IconType<MessageDrivenBeanType<T>>>();
       List<Node> nodeList = childNode.get("icon");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         IconType<MessageDrivenBeanType<T>>  type = new IconTypeImpl<MessageDrivenBeanType<T>>(this, "icon", childNode, node);
+         IconType<MessageDrivenBeanType<T>> type = new IconTypeImpl<MessageDrivenBeanType<T>>(this, "icon", childNode,
+               node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : env-entry
@@ -240,15 +255,14 @@ public List<String> getDisplayNameList()
    {
       List<EnvEntryType<MessageDrivenBeanType<T>>> list = new ArrayList<EnvEntryType<MessageDrivenBeanType<T>>>();
       List<Node> nodeList = childNode.get("env-entry");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         EnvEntryType<MessageDrivenBeanType<T>>  type = new EnvEntryTypeImpl<MessageDrivenBeanType<T>>(this, "env-entry", childNode, node);
+         EnvEntryType<MessageDrivenBeanType<T>> type = new EnvEntryTypeImpl<MessageDrivenBeanType<T>>(this,
+               "env-entry", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : ejb-ref
@@ -269,15 +283,14 @@ public List<String> getDisplayNameList()
    {
       List<EjbRefType<MessageDrivenBeanType<T>>> list = new ArrayList<EjbRefType<MessageDrivenBeanType<T>>>();
       List<Node> nodeList = childNode.get("ejb-ref");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         EjbRefType<MessageDrivenBeanType<T>>  type = new EjbRefTypeImpl<MessageDrivenBeanType<T>>(this, "ejb-ref", childNode, node);
+         EjbRefType<MessageDrivenBeanType<T>> type = new EjbRefTypeImpl<MessageDrivenBeanType<T>>(this, "ejb-ref",
+               childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : ejb-local-ref
@@ -298,15 +311,14 @@ public List<String> getDisplayNameList()
    {
       List<EjbLocalRefType<MessageDrivenBeanType<T>>> list = new ArrayList<EjbLocalRefType<MessageDrivenBeanType<T>>>();
       List<Node> nodeList = childNode.get("ejb-local-ref");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         EjbLocalRefType<MessageDrivenBeanType<T>>  type = new EjbLocalRefTypeImpl<MessageDrivenBeanType<T>>(this, "ejb-local-ref", childNode, node);
+         EjbLocalRefType<MessageDrivenBeanType<T>> type = new EjbLocalRefTypeImpl<MessageDrivenBeanType<T>>(this,
+               "ejb-local-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : resource-ref
@@ -327,15 +339,14 @@ public List<String> getDisplayNameList()
    {
       List<ResourceRefType<MessageDrivenBeanType<T>>> list = new ArrayList<ResourceRefType<MessageDrivenBeanType<T>>>();
       List<Node> nodeList = childNode.get("resource-ref");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         ResourceRefType<MessageDrivenBeanType<T>>  type = new ResourceRefTypeImpl<MessageDrivenBeanType<T>>(this, "resource-ref", childNode, node);
+         ResourceRefType<MessageDrivenBeanType<T>> type = new ResourceRefTypeImpl<MessageDrivenBeanType<T>>(this,
+               "resource-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : resource-env-ref
@@ -356,15 +367,14 @@ public List<String> getDisplayNameList()
    {
       List<ResourceEnvRefType<MessageDrivenBeanType<T>>> list = new ArrayList<ResourceEnvRefType<MessageDrivenBeanType<T>>>();
       List<Node> nodeList = childNode.get("resource-env-ref");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         ResourceEnvRefType<MessageDrivenBeanType<T>>  type = new ResourceEnvRefTypeImpl<MessageDrivenBeanType<T>>(this, "resource-env-ref", childNode, node);
+         ResourceEnvRefType<MessageDrivenBeanType<T>> type = new ResourceEnvRefTypeImpl<MessageDrivenBeanType<T>>(this,
+               "resource-env-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : message-destination-ref
@@ -385,15 +395,14 @@ public List<String> getDisplayNameList()
    {
       List<MessageDestinationRefType<MessageDrivenBeanType<T>>> list = new ArrayList<MessageDestinationRefType<MessageDrivenBeanType<T>>>();
       List<Node> nodeList = childNode.get("message-destination-ref");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         MessageDestinationRefType<MessageDrivenBeanType<T>>  type = new MessageDestinationRefTypeImpl<MessageDrivenBeanType<T>>(this, "message-destination-ref", childNode, node);
+         MessageDestinationRefType<MessageDrivenBeanType<T>> type = new MessageDestinationRefTypeImpl<MessageDrivenBeanType<T>>(
+               this, "message-destination-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : persistence-context-ref
@@ -414,15 +423,14 @@ public List<String> getDisplayNameList()
    {
       List<PersistenceContextRefType<MessageDrivenBeanType<T>>> list = new ArrayList<PersistenceContextRefType<MessageDrivenBeanType<T>>>();
       List<Node> nodeList = childNode.get("persistence-context-ref");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         PersistenceContextRefType<MessageDrivenBeanType<T>>  type = new PersistenceContextRefTypeImpl<MessageDrivenBeanType<T>>(this, "persistence-context-ref", childNode, node);
+         PersistenceContextRefType<MessageDrivenBeanType<T>> type = new PersistenceContextRefTypeImpl<MessageDrivenBeanType<T>>(
+               this, "persistence-context-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : persistence-unit-ref
@@ -443,15 +451,14 @@ public List<String> getDisplayNameList()
    {
       List<PersistenceUnitRefType<MessageDrivenBeanType<T>>> list = new ArrayList<PersistenceUnitRefType<MessageDrivenBeanType<T>>>();
       List<Node> nodeList = childNode.get("persistence-unit-ref");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         PersistenceUnitRefType<MessageDrivenBeanType<T>>  type = new PersistenceUnitRefTypeImpl<MessageDrivenBeanType<T>>(this, "persistence-unit-ref", childNode, node);
+         PersistenceUnitRefType<MessageDrivenBeanType<T>> type = new PersistenceUnitRefTypeImpl<MessageDrivenBeanType<T>>(
+               this, "persistence-unit-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : post-construct
@@ -472,15 +479,14 @@ public List<String> getDisplayNameList()
    {
       List<LifecycleCallbackType<MessageDrivenBeanType<T>>> list = new ArrayList<LifecycleCallbackType<MessageDrivenBeanType<T>>>();
       List<Node> nodeList = childNode.get("post-construct");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         LifecycleCallbackType<MessageDrivenBeanType<T>>  type = new LifecycleCallbackTypeImpl<MessageDrivenBeanType<T>>(this, "post-construct", childNode, node);
+         LifecycleCallbackType<MessageDrivenBeanType<T>> type = new LifecycleCallbackTypeImpl<MessageDrivenBeanType<T>>(
+               this, "post-construct", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : pre-destroy
@@ -501,15 +507,14 @@ public List<String> getDisplayNameList()
    {
       List<LifecycleCallbackType<MessageDrivenBeanType<T>>> list = new ArrayList<LifecycleCallbackType<MessageDrivenBeanType<T>>>();
       List<Node> nodeList = childNode.get("pre-destroy");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         LifecycleCallbackType<MessageDrivenBeanType<T>>  type = new LifecycleCallbackTypeImpl<MessageDrivenBeanType<T>>(this, "pre-destroy", childNode, node);
+         LifecycleCallbackType<MessageDrivenBeanType<T>> type = new LifecycleCallbackTypeImpl<MessageDrivenBeanType<T>>(
+               this, "pre-destroy", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : data-source
@@ -530,15 +535,14 @@ public List<String> getDisplayNameList()
    {
       List<DataSourceType<MessageDrivenBeanType<T>>> list = new ArrayList<DataSourceType<MessageDrivenBeanType<T>>>();
       List<Node> nodeList = childNode.get("data-source");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         DataSourceType<MessageDrivenBeanType<T>>  type = new DataSourceTypeImpl<MessageDrivenBeanType<T>>(this, "data-source", childNode, node);
+         DataSourceType<MessageDrivenBeanType<T>> type = new DataSourceTypeImpl<MessageDrivenBeanType<T>>(this,
+               "data-source", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : ejb-name
@@ -549,6 +553,7 @@ public List<String> getDisplayNameList()
       childNode.getOrCreate("ejb-name").text(ejbName);
       return this;
    }
+
    public MessageDrivenBeanType<T> removeEjbName()
    {
       childNode.remove("ejb-name");
@@ -560,8 +565,6 @@ public List<String> getDisplayNameList()
       return childNode.textValue("ejb-name");
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : mapped-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -571,6 +574,7 @@ public List<String> getDisplayNameList()
       childNode.getOrCreate("mapped-name").text(mappedName);
       return this;
    }
+
    public MessageDrivenBeanType<T> removeMappedName()
    {
       childNode.remove("mapped-name");
@@ -582,8 +586,6 @@ public List<String> getDisplayNameList()
       return childNode.textValue("mapped-name");
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : ejb-class
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -593,6 +595,7 @@ public List<String> getDisplayNameList()
       childNode.getOrCreate("ejb-class").text(ejbClass);
       return this;
    }
+
    public MessageDrivenBeanType<T> removeEjbClass()
    {
       childNode.remove("ejb-class");
@@ -604,8 +607,6 @@ public List<String> getDisplayNameList()
       return childNode.textValue("ejb-class");
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : messaging-type
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -615,6 +616,7 @@ public List<String> getDisplayNameList()
       childNode.getOrCreate("messaging-type").text(messagingType);
       return this;
    }
+
    public MessageDrivenBeanType<T> removeMessagingType()
    {
       childNode.remove("messaging-type");
@@ -625,8 +627,6 @@ public List<String> getDisplayNameList()
    {
       return childNode.textValue("messaging-type");
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : timeout-method
@@ -641,12 +641,10 @@ public List<String> getDisplayNameList()
    public NamedMethodType<MessageDrivenBeanType<T>> timeoutMethod()
    {
       Node node = childNode.getOrCreate("timeout-method");
-      NamedMethodType<MessageDrivenBeanType<T>> timeoutMethod = new NamedMethodTypeImpl<MessageDrivenBeanType<T>>(this, "timeout-method", childNode, node);
+      NamedMethodType<MessageDrivenBeanType<T>> timeoutMethod = new NamedMethodTypeImpl<MessageDrivenBeanType<T>>(this,
+            "timeout-method", childNode, node);
       return timeoutMethod;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : timer
@@ -667,16 +665,14 @@ public List<String> getDisplayNameList()
    {
       List<TimerType<MessageDrivenBeanType<T>>> list = new ArrayList<TimerType<MessageDrivenBeanType<T>>>();
       List<Node> nodeList = childNode.get("timer");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         TimerType<MessageDrivenBeanType<T>>  type = new TimerTypeImpl<MessageDrivenBeanType<T>>(this, "timer", childNode, node);
+         TimerType<MessageDrivenBeanType<T>> type = new TimerTypeImpl<MessageDrivenBeanType<T>>(this, "timer",
+               childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : transaction-type
@@ -687,6 +683,7 @@ public List<String> getDisplayNameList()
       childNode.getOrCreate("transaction-type").text(transactionType);
       return this;
    }
+
    public MessageDrivenBeanType<T> setTransactionType(String transactionType)
    {
       childNode.getOrCreate("transaction-type").text(transactionType);
@@ -698,12 +695,10 @@ public List<String> getDisplayNameList()
       return TransactionTypeType.getFromStringValue(childNode.textValue("transaction-type"));
    }
 
-   public String  getTransactionTypeAsString()
+   public String getTransactionTypeAsString()
    {
       return childNode.textValue("transaction-type");
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : message-destination-type
@@ -714,6 +709,7 @@ public List<String> getDisplayNameList()
       childNode.getOrCreate("message-destination-type").text(messageDestinationType);
       return this;
    }
+
    public MessageDrivenBeanType<T> removeMessageDestinationType()
    {
       childNode.remove("message-destination-type");
@@ -725,8 +721,6 @@ public List<String> getDisplayNameList()
       return childNode.textValue("message-destination-type");
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : message-destination-link
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -736,6 +730,7 @@ public List<String> getDisplayNameList()
       childNode.getOrCreate("message-destination-link").text(messageDestinationLink);
       return this;
    }
+
    public MessageDrivenBeanType<T> removeMessageDestinationLink()
    {
       childNode.remove("message-destination-link");
@@ -746,8 +741,6 @@ public List<String> getDisplayNameList()
    {
       return childNode.textValue("message-destination-link");
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : activation-config
@@ -762,12 +755,10 @@ public List<String> getDisplayNameList()
    public ActivationConfigType<MessageDrivenBeanType<T>> activationConfig()
    {
       Node node = childNode.getOrCreate("activation-config");
-      ActivationConfigType<MessageDrivenBeanType<T>> activationConfig = new ActivationConfigTypeImpl<MessageDrivenBeanType<T>>(this, "activation-config", childNode, node);
+      ActivationConfigType<MessageDrivenBeanType<T>> activationConfig = new ActivationConfigTypeImpl<MessageDrivenBeanType<T>>(
+            this, "activation-config", childNode, node);
       return activationConfig;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : around-invoke
@@ -788,16 +779,14 @@ public List<String> getDisplayNameList()
    {
       List<AroundInvokeType<MessageDrivenBeanType<T>>> list = new ArrayList<AroundInvokeType<MessageDrivenBeanType<T>>>();
       List<Node> nodeList = childNode.get("around-invoke");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         AroundInvokeType<MessageDrivenBeanType<T>>  type = new AroundInvokeTypeImpl<MessageDrivenBeanType<T>>(this, "around-invoke", childNode, node);
+         AroundInvokeType<MessageDrivenBeanType<T>> type = new AroundInvokeTypeImpl<MessageDrivenBeanType<T>>(this,
+               "around-invoke", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : around-timeout
@@ -818,16 +807,14 @@ public List<String> getDisplayNameList()
    {
       List<AroundTimeoutType<MessageDrivenBeanType<T>>> list = new ArrayList<AroundTimeoutType<MessageDrivenBeanType<T>>>();
       List<Node> nodeList = childNode.get("around-timeout");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         AroundTimeoutType<MessageDrivenBeanType<T>>  type = new AroundTimeoutTypeImpl<MessageDrivenBeanType<T>>(this, "around-timeout", childNode, node);
+         AroundTimeoutType<MessageDrivenBeanType<T>> type = new AroundTimeoutTypeImpl<MessageDrivenBeanType<T>>(this,
+               "around-timeout", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : security-role-ref
@@ -848,16 +835,14 @@ public List<String> getDisplayNameList()
    {
       List<SecurityRoleRefType<MessageDrivenBeanType<T>>> list = new ArrayList<SecurityRoleRefType<MessageDrivenBeanType<T>>>();
       List<Node> nodeList = childNode.get("security-role-ref");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         SecurityRoleRefType<MessageDrivenBeanType<T>>  type = new SecurityRoleRefTypeImpl<MessageDrivenBeanType<T>>(this, "security-role-ref", childNode, node);
+         SecurityRoleRefType<MessageDrivenBeanType<T>> type = new SecurityRoleRefTypeImpl<MessageDrivenBeanType<T>>(
+               this, "security-role-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : security-identity
@@ -872,9 +857,9 @@ public List<String> getDisplayNameList()
    public SecurityIdentityType<MessageDrivenBeanType<T>> securityIdentity()
    {
       Node node = childNode.getOrCreate("security-identity");
-      SecurityIdentityType<MessageDrivenBeanType<T>> securityIdentity = new SecurityIdentityTypeImpl<MessageDrivenBeanType<T>>(this, "security-identity", childNode, node);
+      SecurityIdentityType<MessageDrivenBeanType<T>> securityIdentity = new SecurityIdentityTypeImpl<MessageDrivenBeanType<T>>(
+            this, "security-identity", childNode, node);
       return securityIdentity;
    }
-
 
 }

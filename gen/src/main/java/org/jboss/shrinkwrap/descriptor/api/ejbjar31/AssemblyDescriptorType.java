@@ -1,20 +1,14 @@
-package org.jboss.shrinkwrap.descriptor.api.ejbjar31; 
+package org.jboss.shrinkwrap.descriptor.api.ejbjar31;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.api.application6.*;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
-import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
-import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleType;
+
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T17:26:07.336-04:00
+ * Generation date :2011-07-01T19:50:22.163-04:00
  *
  * Original Documentation:
  *
@@ -46,54 +40,41 @@ public interface AssemblyDescriptorType<T> extends Child<T>
    public AssemblyDescriptorType<T> removeAllSecurityRole();
 
    public SecurityRoleType<AssemblyDescriptorType<T>> securityRole();
+
    public List<SecurityRoleType<AssemblyDescriptorType<T>>> getSecurityRoleList();
-
-
-
 
    public AssemblyDescriptorType<T> removeAllMethodPermission();
 
    public MethodPermissionType<AssemblyDescriptorType<T>> methodPermission();
+
    public List<MethodPermissionType<AssemblyDescriptorType<T>>> getMethodPermissionList();
-
-
-
 
    public AssemblyDescriptorType<T> removeAllContainerTransaction();
 
    public ContainerTransactionType<AssemblyDescriptorType<T>> containerTransaction();
+
    public List<ContainerTransactionType<AssemblyDescriptorType<T>>> getContainerTransactionList();
-
-
-
 
    public AssemblyDescriptorType<T> removeAllInterceptorBinding();
 
    public InterceptorBindingType<AssemblyDescriptorType<T>> interceptorBinding();
+
    public List<InterceptorBindingType<AssemblyDescriptorType<T>>> getInterceptorBindingList();
-
-
-
 
    public AssemblyDescriptorType<T> removeAllMessageDestination();
 
    public MessageDestinationType<AssemblyDescriptorType<T>> messageDestination();
+
    public List<MessageDestinationType<AssemblyDescriptorType<T>>> getMessageDestinationList();
-
-
-
 
    public AssemblyDescriptorType<T> removeExcludeList();
 
    public ExcludeListType<AssemblyDescriptorType<T>> excludeList();
 
-
-
-
    public AssemblyDescriptorType<T> removeAllApplicationException();
 
    public ApplicationExceptionType<AssemblyDescriptorType<T>> applicationException();
-   public List<ApplicationExceptionType<AssemblyDescriptorType<T>>> getApplicationExceptionList();
 
+   public List<ApplicationExceptionType<AssemblyDescriptorType<T>>> getApplicationExceptionList();
 
 }

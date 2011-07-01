@@ -1,8 +1,8 @@
-package org.jboss.shrinkwrap.descriptor.api.persistence20; 
+package org.jboss.shrinkwrap.descriptor.api.persistence20;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T17:26:07.336-04:00
+ * Generation date :2011-07-01T19:50:22.163-04:00
  *
  * Original Documentation:
  *
@@ -12,26 +12,31 @@ package org.jboss.shrinkwrap.descriptor.api.persistence20;
  *
  *
  */
-public enum PersistenceUnitTransactionType
-{
-   _JTA("JTA"),
-   _RESOURCE_LOCAL("RESOURCE_LOCAL");
+public enum PersistenceUnitTransactionType {
+   _JTA("JTA"), _RESOURCE_LOCAL("RESOURCE_LOCAL");
 
    private String value;
 
-   PersistenceUnitTransactionType (String value) { this.value = value; }
+   PersistenceUnitTransactionType(String value)
+   {
+      this.value = value;
+   }
 
-   public String toString() {return value;}
+   public String toString()
+   {
+      return value;
+   }
 
    public static PersistenceUnitTransactionType getFromStringValue(String value)
    {
-      for(PersistenceUnitTransactionType type: PersistenceUnitTransactionType.values())
+      for (PersistenceUnitTransactionType type : PersistenceUnitTransactionType.values())
       {
-         if(value != null && type.toString().equals(value))
-        { return type;}
+         if (value != null && type.toString().equals(value))
+         {
+            return type;
+         }
       }
       return null;
    }
 
 }
-

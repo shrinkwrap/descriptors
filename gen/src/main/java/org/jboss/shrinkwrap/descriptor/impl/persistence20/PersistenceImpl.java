@@ -1,34 +1,16 @@
-package org.jboss.shrinkwrap.descriptor.impl.persistence20; 
+package org.jboss.shrinkwrap.descriptor.impl.persistence20;
 
-import org.jboss.shrinkwrap.descriptor.spi.Node;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.api.application6.*;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
-import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
-import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
-import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
-import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.impl.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.impl.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.impl.application6.*;
-import org.jboss.shrinkwrap.descriptor.impl.webapp30.*;
-import org.jboss.shrinkwrap.descriptor.impl.persistence20.*;
-import org.jboss.shrinkwrap.descriptor.impl.webfragment30.*;
-import org.jboss.shrinkwrap.descriptor.impl.ejbjar31.*;
+import org.jboss.shrinkwrap.descriptor.api.persistence20.Persistence;
+import org.jboss.shrinkwrap.descriptor.api.persistence20.PersistenceUnit;
+import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T17:26:07.336-04:00
+ * Generation date :2011-07-01T19:50:22.163-04:00
  */
 public class PersistenceImpl<T> implements Child<T>, Persistence<T>
 {
@@ -37,31 +19,33 @@ public class PersistenceImpl<T> implements Child<T>, Persistence<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
+
    private Node node;
+
    private Node childNode;
+
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public PersistenceImpl(T t, String nodeName, Node node)   {
+   public PersistenceImpl(T t, String nodeName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public PersistenceImpl(T t, String nodeName, Node node, Node childNode)   {
+   public PersistenceImpl(T t, String nodeName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
-
    public T up()
    {
       return t;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : persistence-unit
@@ -82,16 +66,14 @@ public class PersistenceImpl<T> implements Child<T>, Persistence<T>
    {
       List<PersistenceUnit<Persistence<T>>> list = new ArrayList<PersistenceUnit<Persistence<T>>>();
       List<Node> nodeList = childNode.get("persistence-unit");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         PersistenceUnit<Persistence<T>>  type = new PersistenceUnitImpl<Persistence<T>>(this, "persistence-unit", childNode, node);
+         PersistenceUnit<Persistence<T>> type = new PersistenceUnitImpl<Persistence<T>>(this, "persistence-unit",
+               childNode, node);
          list.add(type);
       }
       return list;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : version
@@ -102,6 +84,7 @@ public class PersistenceImpl<T> implements Child<T>, Persistence<T>
       childNode.attribute("version", version);
       return this;
    }
+
    public Persistence<T> removeVersion()
    {
       childNode.attributes().remove("version");

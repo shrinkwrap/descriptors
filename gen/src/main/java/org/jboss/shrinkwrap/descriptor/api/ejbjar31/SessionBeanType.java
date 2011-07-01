@@ -1,20 +1,24 @@
-package org.jboss.shrinkwrap.descriptor.api.ejbjar31; 
+package org.jboss.shrinkwrap.descriptor.api.ejbjar31;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.api.application6.*;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
-import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
-import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbLocalRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.EnvEntryType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.LifecycleCallbackType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceContextRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceUnitRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceEnvRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleRefType;
+
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T17:26:07.336-04:00
+ * Generation date :2011-07-01T19:50:22.163-04:00
  *
  * Original Documentation:
  *
@@ -100,334 +104,277 @@ public interface SessionBeanType<T> extends Child<T>
 {
 
    public SessionBeanType<T> setDescription(String description);
-   public SessionBeanType<T> setDescriptionList(String ... values);
+
+   public SessionBeanType<T> setDescriptionList(String... values);
+
    public SessionBeanType<T> removeAllDescription();
 
    public List<String> getDescriptionList();
 
-
    public SessionBeanType<T> setDisplayName(String displayName);
-   public SessionBeanType<T> setDisplayNameList(String ... values);
+
+   public SessionBeanType<T> setDisplayNameList(String... values);
+
    public SessionBeanType<T> removeAllDisplayName();
 
    public List<String> getDisplayNameList();
 
-
    public SessionBeanType<T> removeAllIcon();
 
    public IconType<SessionBeanType<T>> icon();
+
    public List<IconType<SessionBeanType<T>>> getIconList();
-
-
 
    public SessionBeanType<T> removeAllEnvEntry();
 
    public EnvEntryType<SessionBeanType<T>> envEntry();
+
    public List<EnvEntryType<SessionBeanType<T>>> getEnvEntryList();
-
-
 
    public SessionBeanType<T> removeAllEjbRef();
 
    public EjbRefType<SessionBeanType<T>> ejbRef();
+
    public List<EjbRefType<SessionBeanType<T>>> getEjbRefList();
-
-
 
    public SessionBeanType<T> removeAllEjbLocalRef();
 
    public EjbLocalRefType<SessionBeanType<T>> ejbLocalRef();
+
    public List<EjbLocalRefType<SessionBeanType<T>>> getEjbLocalRefList();
-
-
 
    public SessionBeanType<T> removeAllResourceRef();
 
    public ResourceRefType<SessionBeanType<T>> resourceRef();
+
    public List<ResourceRefType<SessionBeanType<T>>> getResourceRefList();
-
-
 
    public SessionBeanType<T> removeAllResourceEnvRef();
 
    public ResourceEnvRefType<SessionBeanType<T>> resourceEnvRef();
+
    public List<ResourceEnvRefType<SessionBeanType<T>>> getResourceEnvRefList();
-
-
 
    public SessionBeanType<T> removeAllMessageDestinationRef();
 
    public MessageDestinationRefType<SessionBeanType<T>> messageDestinationRef();
+
    public List<MessageDestinationRefType<SessionBeanType<T>>> getMessageDestinationRefList();
-
-
 
    public SessionBeanType<T> removeAllPersistenceContextRef();
 
    public PersistenceContextRefType<SessionBeanType<T>> persistenceContextRef();
+
    public List<PersistenceContextRefType<SessionBeanType<T>>> getPersistenceContextRefList();
-
-
 
    public SessionBeanType<T> removeAllPersistenceUnitRef();
 
    public PersistenceUnitRefType<SessionBeanType<T>> persistenceUnitRef();
+
    public List<PersistenceUnitRefType<SessionBeanType<T>>> getPersistenceUnitRefList();
-
-
 
    public SessionBeanType<T> removeAllPostConstruct();
 
    public LifecycleCallbackType<SessionBeanType<T>> postConstruct();
+
    public List<LifecycleCallbackType<SessionBeanType<T>>> getPostConstructList();
-
-
 
    public SessionBeanType<T> removeAllPreDestroy();
 
    public LifecycleCallbackType<SessionBeanType<T>> preDestroy();
+
    public List<LifecycleCallbackType<SessionBeanType<T>>> getPreDestroyList();
-
-
 
    public SessionBeanType<T> removeAllDataSource();
 
    public DataSourceType<SessionBeanType<T>> dataSource();
+
    public List<DataSourceType<SessionBeanType<T>>> getDataSourceList();
 
-
-
    public SessionBeanType<T> setEjbName(String ejbName);
+
    public SessionBeanType<T> removeEjbName();
 
    public String getEjbName();
 
-
-
    public SessionBeanType<T> setMappedName(String mappedName);
+
    public SessionBeanType<T> removeMappedName();
 
    public String getMappedName();
 
-
-
    public SessionBeanType<T> setHome(String home);
+
    public SessionBeanType<T> removeHome();
 
    public String getHome();
 
-
-
    public SessionBeanType<T> setRemote(String remote);
+
    public SessionBeanType<T> removeRemote();
 
    public String getRemote();
 
-
-
    public SessionBeanType<T> setLocalHome(String localHome);
+
    public SessionBeanType<T> removeLocalHome();
 
    public String getLocalHome();
 
-
-
    public SessionBeanType<T> setLocal(String local);
+
    public SessionBeanType<T> removeLocal();
 
    public String getLocal();
 
-
-
    public SessionBeanType<T> setBusinessLocal(String businessLocal);
-   public SessionBeanType<T> setBusinessLocalList(String ... values);
+
+   public SessionBeanType<T> setBusinessLocalList(String... values);
+
    public SessionBeanType<T> removeAllBusinessLocal();
 
    public List<String> getBusinessLocalList();
 
-
-
    public SessionBeanType<T> setBusinessRemote(String businessRemote);
-   public SessionBeanType<T> setBusinessRemoteList(String ... values);
+
+   public SessionBeanType<T> setBusinessRemoteList(String... values);
+
    public SessionBeanType<T> removeAllBusinessRemote();
 
    public List<String> getBusinessRemoteList();
 
-
    public SessionBeanType<T> localBean();
+
    public Boolean isLocalBean();
 
-
    public SessionBeanType<T> setServiceEndpoint(String serviceEndpoint);
+
    public SessionBeanType<T> removeServiceEndpoint();
 
    public String getServiceEndpoint();
 
-
-
    public SessionBeanType<T> setEjbClass(String ejbClass);
+
    public SessionBeanType<T> removeEjbClass();
 
    public String getEjbClass();
 
-
-
    public SessionBeanType<T> setSessionType(SessionTypeType sessionType);
+
    public SessionBeanType<T> setSessionType(String sessionType);
 
    public SessionTypeType getSessionType();
-   public String  getSessionTypeAsString();
 
-
+   public String getSessionTypeAsString();
 
    public SessionBeanType<T> removeStatefulTimeout();
 
    public StatefulTimeoutType<SessionBeanType<T>> statefulTimeout();
 
-
-
-
    public SessionBeanType<T> removeTimeoutMethod();
 
    public NamedMethodType<SessionBeanType<T>> timeoutMethod();
 
-
-
-
    public SessionBeanType<T> removeAllTimer();
 
    public TimerType<SessionBeanType<T>> timer();
+
    public List<TimerType<SessionBeanType<T>>> getTimerList();
 
-
-
-
    public SessionBeanType<T> setInitOnStartup(Boolean initOnStartup);
+
    public SessionBeanType<T> removeInitOnStartup();
 
    public Boolean isInitOnStartup();
 
-
-
    public SessionBeanType<T> setConcurrencyManagementType(ConcurrencyManagementTypeType concurrencyManagementType);
+
    public SessionBeanType<T> setConcurrencyManagementType(String concurrencyManagementType);
 
    public ConcurrencyManagementTypeType getConcurrencyManagementType();
-   public String  getConcurrencyManagementTypeAsString();
 
-
+   public String getConcurrencyManagementTypeAsString();
 
    public SessionBeanType<T> removeAllConcurrentMethod();
 
    public ConcurrentMethodType<SessionBeanType<T>> concurrentMethod();
+
    public List<ConcurrentMethodType<SessionBeanType<T>>> getConcurrentMethodList();
-
-
-
 
    public SessionBeanType<T> removeDependsOn();
 
    public DependsOnType<SessionBeanType<T>> dependsOn();
 
-
-
-
    public SessionBeanType<T> removeAllInitMethod();
 
    public InitMethodType<SessionBeanType<T>> initMethod();
+
    public List<InitMethodType<SessionBeanType<T>>> getInitMethodList();
-
-
-
 
    public SessionBeanType<T> removeAllRemoveMethod();
 
    public RemoveMethodType<SessionBeanType<T>> removeMethod();
+
    public List<RemoveMethodType<SessionBeanType<T>>> getRemoveMethodList();
-
-
-
 
    public SessionBeanType<T> removeAllAsyncMethod();
 
    public AsyncMethodType<SessionBeanType<T>> asyncMethod();
+
    public List<AsyncMethodType<SessionBeanType<T>>> getAsyncMethodList();
 
-
-
-
    public SessionBeanType<T> setTransactionType(TransactionTypeType transactionType);
+
    public SessionBeanType<T> setTransactionType(String transactionType);
 
    public TransactionTypeType getTransactionType();
-   public String  getTransactionTypeAsString();
 
-
+   public String getTransactionTypeAsString();
 
    public SessionBeanType<T> removeAfterBeginMethod();
 
    public NamedMethodType<SessionBeanType<T>> afterBeginMethod();
 
-
-
-
    public SessionBeanType<T> removeBeforeCompletionMethod();
 
    public NamedMethodType<SessionBeanType<T>> beforeCompletionMethod();
-
-
-
 
    public SessionBeanType<T> removeAfterCompletionMethod();
 
    public NamedMethodType<SessionBeanType<T>> afterCompletionMethod();
 
-
-
-
    public SessionBeanType<T> removeAllAroundInvoke();
 
    public AroundInvokeType<SessionBeanType<T>> aroundInvoke();
+
    public List<AroundInvokeType<SessionBeanType<T>>> getAroundInvokeList();
-
-
-
 
    public SessionBeanType<T> removeAllAroundTimeout();
 
    public AroundTimeoutType<SessionBeanType<T>> aroundTimeout();
+
    public List<AroundTimeoutType<SessionBeanType<T>>> getAroundTimeoutList();
-
-
-
 
    public SessionBeanType<T> removeAllPostActivate();
 
    public LifecycleCallbackType<SessionBeanType<T>> postActivate();
+
    public List<LifecycleCallbackType<SessionBeanType<T>>> getPostActivateList();
-
-
-
 
    public SessionBeanType<T> removeAllPrePassivate();
 
    public LifecycleCallbackType<SessionBeanType<T>> prePassivate();
+
    public List<LifecycleCallbackType<SessionBeanType<T>>> getPrePassivateList();
-
-
-
 
    public SessionBeanType<T> removeAllSecurityRoleRef();
 
    public SecurityRoleRefType<SessionBeanType<T>> securityRoleRef();
+
    public List<SecurityRoleRefType<SessionBeanType<T>>> getSecurityRoleRefList();
-
-
-
 
    public SessionBeanType<T> removeSecurityIdentity();
 
    public SecurityIdentityType<SessionBeanType<T>> securityIdentity();
-
 
 }

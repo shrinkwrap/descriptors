@@ -1,34 +1,18 @@
-package org.jboss.shrinkwrap.descriptor.impl.ejbjar31; 
+package org.jboss.shrinkwrap.descriptor.impl.ejbjar31;
 
-import org.jboss.shrinkwrap.descriptor.spi.Node;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.api.application6.*;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
-import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
-import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.InterceptorBindingType;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.InterceptorOrderType;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.NamedMethodType;
 import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
-import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.impl.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.impl.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.impl.application6.*;
-import org.jboss.shrinkwrap.descriptor.impl.webapp30.*;
-import org.jboss.shrinkwrap.descriptor.impl.persistence20.*;
-import org.jboss.shrinkwrap.descriptor.impl.webfragment30.*;
-import org.jboss.shrinkwrap.descriptor.impl.ejbjar31.*;
+import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T17:26:07.336-04:00
+ * Generation date :2011-07-01T19:50:22.163-04:00
  *
  * Original Documentation:
  *
@@ -138,31 +122,33 @@ public class InterceptorBindingTypeImpl<T> implements Child<T>, InterceptorBindi
    // -------------------------------------------------------------------------------------||
 
    private T t;
+
    private Node node;
+
    private Node childNode;
+
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public InterceptorBindingTypeImpl(T t, String nodeName, Node node)   {
+   public InterceptorBindingTypeImpl(T t, String nodeName, Node node)
+   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public InterceptorBindingTypeImpl(T t, String nodeName, Node node, Node childNode)   {
+   public InterceptorBindingTypeImpl(T t, String nodeName, Node node, Node childNode)
+   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
-
    public T up()
    {
       return t;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : description
@@ -173,21 +159,23 @@ public class InterceptorBindingTypeImpl<T> implements Child<T>, InterceptorBindi
       childNode.create("description").text(description);
       return this;
    }
-   public InterceptorBindingType<T> setDescriptionList(String ... values)
+
+   public InterceptorBindingType<T> setDescriptionList(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
          setDescription(name);
       }
       return this;
    }
+
    public InterceptorBindingType<T> removeAllDescription()
    {
       childNode.remove("description");
       return this;
    }
 
-public List<String> getDescriptionList()
+   public List<String> getDescriptionList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("description");
@@ -198,8 +186,6 @@ public List<String> getDescriptionList()
       return result;
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : ejb-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -209,6 +195,7 @@ public List<String> getDescriptionList()
       childNode.getOrCreate("ejb-name").text(ejbName);
       return this;
    }
+
    public InterceptorBindingType<T> removeEjbName()
    {
       childNode.remove("ejb-name");
@@ -220,8 +207,6 @@ public List<String> getDescriptionList()
       return childNode.textValue("ejb-name");
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : exclude-default-interceptors
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -231,6 +216,7 @@ public List<String> getDescriptionList()
       childNode.getOrCreate("exclude-default-interceptors").text(excludeDefaultInterceptors);
       return this;
    }
+
    public InterceptorBindingType<T> removeExcludeDefaultInterceptors()
    {
       childNode.remove("exclude-default-interceptors");
@@ -242,8 +228,6 @@ public List<String> getDescriptionList()
       return Strings.isTrue(childNode.textValue("exclude-default-interceptors"));
    }
 
-
-
    // -------------------------------------------------------------------------------------||
    // Element type : exclude-class-interceptors
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -253,6 +237,7 @@ public List<String> getDescriptionList()
       childNode.getOrCreate("exclude-class-interceptors").text(excludeClassInterceptors);
       return this;
    }
+
    public InterceptorBindingType<T> removeExcludeClassInterceptors()
    {
       childNode.remove("exclude-class-interceptors");
@@ -263,8 +248,6 @@ public List<String> getDescriptionList()
    {
       return Strings.isTrue(childNode.textValue("exclude-class-interceptors"));
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : method
@@ -279,12 +262,10 @@ public List<String> getDescriptionList()
    public NamedMethodType<InterceptorBindingType<T>> method()
    {
       Node node = childNode.getOrCreate("method");
-      NamedMethodType<InterceptorBindingType<T>> method = new NamedMethodTypeImpl<InterceptorBindingType<T>>(this, "method", childNode, node);
+      NamedMethodType<InterceptorBindingType<T>> method = new NamedMethodTypeImpl<InterceptorBindingType<T>>(this,
+            "method", childNode, node);
       return method;
    }
-
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : interceptor-class
@@ -295,21 +276,23 @@ public List<String> getDescriptionList()
       childNode.create("interceptor-class").text(interceptorClass);
       return this;
    }
-   public InterceptorBindingType<T> setInterceptorClassList(String ... values)
+
+   public InterceptorBindingType<T> setInterceptorClassList(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
          setInterceptorClass(name);
       }
       return this;
    }
+
    public InterceptorBindingType<T> removeAllInterceptorClass()
    {
       childNode.remove("interceptor-class");
       return this;
    }
 
-public List<String> getInterceptorClassList()
+   public List<String> getInterceptorClassList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("interceptor-class");
@@ -319,8 +302,6 @@ public List<String> getInterceptorClassList()
       }
       return result;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : interceptor-order
@@ -335,9 +316,9 @@ public List<String> getInterceptorClassList()
    public InterceptorOrderType<InterceptorBindingType<T>> interceptorOrder()
    {
       Node node = childNode.getOrCreate("interceptor-order");
-      InterceptorOrderType<InterceptorBindingType<T>> interceptorOrder = new InterceptorOrderTypeImpl<InterceptorBindingType<T>>(this, "interceptor-order", childNode, node);
+      InterceptorOrderType<InterceptorBindingType<T>> interceptorOrder = new InterceptorOrderTypeImpl<InterceptorBindingType<T>>(
+            this, "interceptor-order", childNode, node);
       return interceptorOrder;
    }
-
 
 }
