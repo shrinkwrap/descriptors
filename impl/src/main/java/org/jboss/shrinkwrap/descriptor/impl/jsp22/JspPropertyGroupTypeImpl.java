@@ -12,7 +12,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:21:34.75-04:00
  *
  * Original Documentation:
  *
@@ -41,8 +41,6 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
  */
 public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupType<T>
 {
-   public final static String nodeName = "jsp-property-group";
-
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -57,14 +55,14 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public JspPropertyGroupTypeImpl(T t, String descriptorName, Node node)
+   public JspPropertyGroupTypeImpl(T t, String nodeName, Node node)
    {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public JspPropertyGroupTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   public JspPropertyGroupTypeImpl(T t, String nodeName, Node node, Node childNode)
    {
       this.t = t;
       this.node = node;
@@ -154,22 +152,23 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
    // -------------------------------------------------------------------------------------||
    public JspPropertyGroupType<T> removeAllIcon()
    {
-      childNode.remove(IconTypeImpl.nodeName);
+      childNode.remove("icon");
       return this;
    }
 
    public IconType<JspPropertyGroupType<T>> icon()
    {
-      return new IconTypeImpl<JspPropertyGroupType<T>>(this, "", childNode);
+      return new IconTypeImpl<JspPropertyGroupType<T>>(this, "icon", childNode);
    }
 
    public List<IconType<JspPropertyGroupType<T>>> getIconList()
    {
       List<IconType<JspPropertyGroupType<T>>> list = new ArrayList<IconType<JspPropertyGroupType<T>>>();
-      List<Node> nodeList = childNode.get(IconTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("icon");
       for (Node node : nodeList)
       {
-         IconType<JspPropertyGroupType<T>> type = new IconTypeImpl<JspPropertyGroupType<T>>(this, "", childNode, node);
+         IconType<JspPropertyGroupType<T>> type = new IconTypeImpl<JspPropertyGroupType<T>>(this, "icon", childNode,
+               node);
          list.add(type);
       }
       return list;

@@ -6,7 +6,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:21:34.75-04:00
  *
  * Original Documentation:
  *
@@ -21,8 +21,6 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
  */
 public class MimeMappingTypeImpl<T> implements Child<T>, MimeMappingType<T>
 {
-   public final static String nodeName = "mime-mapping";
-
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -37,14 +35,14 @@ public class MimeMappingTypeImpl<T> implements Child<T>, MimeMappingType<T>
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public MimeMappingTypeImpl(T t, String descriptorName, Node node)
+   public MimeMappingTypeImpl(T t, String nodeName, Node node)
    {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public MimeMappingTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   public MimeMappingTypeImpl(T t, String nodeName, Node node, Node childNode)
    {
       this.t = t;
       this.node = node;

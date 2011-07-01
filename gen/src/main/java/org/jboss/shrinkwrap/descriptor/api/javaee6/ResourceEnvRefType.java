@@ -1,12 +1,20 @@
-package org.jboss.shrinkwrap.descriptor.api.javaee6;
+package org.jboss.shrinkwrap.descriptor.api.javaee6; 
 
+import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Map;
 import org.jboss.shrinkwrap.descriptor.api.Child;
-
+import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.api.application6.*;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:26:07.336-04:00
  *
  * Original Documentation:
  *
@@ -46,39 +54,40 @@ public interface ResourceEnvRefType<T> extends Child<T>
 {
 
    public ResourceEnvRefType<T> setLookupName(String lookupName);
-
    public ResourceEnvRefType<T> removeLookupName();
 
    public String getLookupName();
 
-   public ResourceEnvRefType<T> setMappedName(String mappedName);
 
+   public ResourceEnvRefType<T> setMappedName(String mappedName);
    public ResourceEnvRefType<T> removeMappedName();
 
    public String getMappedName();
 
+
    public ResourceEnvRefType<T> removeAllInjectionTarget();
 
    public InjectionTargetType<ResourceEnvRefType<T>> injectionTarget();
-
    public List<InjectionTargetType<ResourceEnvRefType<T>>> getInjectionTargetList();
 
+
+
    public ResourceEnvRefType<T> setDescription(String description);
-
-   public ResourceEnvRefType<T> setDescriptionList(String... values);
-
+   public ResourceEnvRefType<T> setDescriptionList(String ... values);
    public ResourceEnvRefType<T> removeAllDescription();
 
    public List<String> getDescriptionList();
 
-   public ResourceEnvRefType<T> setResourceEnvRefName(String resourceEnvRefName);
 
+
+   public ResourceEnvRefType<T> setResourceEnvRefName(String resourceEnvRefName);
    public ResourceEnvRefType<T> removeResourceEnvRefName();
 
    public String getResourceEnvRefName();
 
-   public ResourceEnvRefType<T> setResourceEnvRefType(String resourceEnvRefType);
 
+
+   public ResourceEnvRefType<T> setResourceEnvRefType(String resourceEnvRefType);
    public ResourceEnvRefType<T> removeResourceEnvRefType();
 
    public String getResourceEnvRefType();

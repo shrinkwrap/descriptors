@@ -71,7 +71,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:21:34.75-04:00
  */
 public class WebApp30DescriptorImpl extends NodeProviderImplBase
       implements
@@ -208,23 +208,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllAbsoluteOrdering()
    {
-      model.remove(AbsoluteOrderingTypeImpl.nodeName);
+      model.remove("absolute-ordering");
       return this;
    }
 
    public AbsoluteOrderingType<WebApp30Descriptor> absoluteOrdering()
    {
-      return new AbsoluteOrderingTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new AbsoluteOrderingTypeImpl<WebApp30Descriptor>(this, "absolute-ordering", model);
    }
 
    public List<AbsoluteOrderingType<WebApp30Descriptor>> getAbsoluteOrderingList()
    {
       List<AbsoluteOrderingType<WebApp30Descriptor>> list = new ArrayList<AbsoluteOrderingType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(AbsoluteOrderingTypeImpl.nodeName);
+      List<Node> nodeList = model.get("absolute-ordering");
       for (Node node : nodeList)
       {
-         AbsoluteOrderingType<WebApp30Descriptor> type = new AbsoluteOrderingTypeImpl<WebApp30Descriptor>(this, "",
-               model, node);
+         AbsoluteOrderingType<WebApp30Descriptor> type = new AbsoluteOrderingTypeImpl<WebApp30Descriptor>(this,
+               "absolute-ordering", model, node);
          list.add(type);
       }
       return list;
@@ -251,22 +251,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllContextParam()
    {
-      model.remove(ParamValueTypeImpl.nodeName);
+      model.remove("context-param");
       return this;
    }
 
    public ParamValueType<WebApp30Descriptor> contextParam()
    {
-      return new ParamValueTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new ParamValueTypeImpl<WebApp30Descriptor>(this, "context-param", model);
    }
 
    public List<ParamValueType<WebApp30Descriptor>> getContextParamList()
    {
       List<ParamValueType<WebApp30Descriptor>> list = new ArrayList<ParamValueType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(ParamValueTypeImpl.nodeName);
+      List<Node> nodeList = model.get("context-param");
       for (Node node : nodeList)
       {
-         ParamValueType<WebApp30Descriptor> type = new ParamValueTypeImpl<WebApp30Descriptor>(this, "", model, node);
+         ParamValueType<WebApp30Descriptor> type = new ParamValueTypeImpl<WebApp30Descriptor>(this, "context-param",
+               model, node);
          list.add(type);
       }
       return list;
@@ -278,22 +279,22 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllFilter()
    {
-      model.remove(FilterTypeImpl.nodeName);
+      model.remove("filter");
       return this;
    }
 
    public FilterType<WebApp30Descriptor> filter()
    {
-      return new FilterTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new FilterTypeImpl<WebApp30Descriptor>(this, "filter", model);
    }
 
    public List<FilterType<WebApp30Descriptor>> getFilterList()
    {
       List<FilterType<WebApp30Descriptor>> list = new ArrayList<FilterType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(FilterTypeImpl.nodeName);
+      List<Node> nodeList = model.get("filter");
       for (Node node : nodeList)
       {
-         FilterType<WebApp30Descriptor> type = new FilterTypeImpl<WebApp30Descriptor>(this, "", model, node);
+         FilterType<WebApp30Descriptor> type = new FilterTypeImpl<WebApp30Descriptor>(this, "filter", model, node);
          list.add(type);
       }
       return list;
@@ -305,23 +306,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllFilterMapping()
    {
-      model.remove(FilterMappingTypeImpl.nodeName);
+      model.remove("filter-mapping");
       return this;
    }
 
    public FilterMappingType<WebApp30Descriptor> filterMapping()
    {
-      return new FilterMappingTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new FilterMappingTypeImpl<WebApp30Descriptor>(this, "filter-mapping", model);
    }
 
    public List<FilterMappingType<WebApp30Descriptor>> getFilterMappingList()
    {
       List<FilterMappingType<WebApp30Descriptor>> list = new ArrayList<FilterMappingType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(FilterMappingTypeImpl.nodeName);
+      List<Node> nodeList = model.get("filter-mapping");
       for (Node node : nodeList)
       {
-         FilterMappingType<WebApp30Descriptor> type = new FilterMappingTypeImpl<WebApp30Descriptor>(this, "", model,
-               node);
+         FilterMappingType<WebApp30Descriptor> type = new FilterMappingTypeImpl<WebApp30Descriptor>(this,
+               "filter-mapping", model, node);
          list.add(type);
       }
       return list;
@@ -333,22 +334,22 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllListener()
    {
-      model.remove(ListenerTypeImpl.nodeName);
+      model.remove("listener");
       return this;
    }
 
    public ListenerType<WebApp30Descriptor> listener()
    {
-      return new ListenerTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new ListenerTypeImpl<WebApp30Descriptor>(this, "listener", model);
    }
 
    public List<ListenerType<WebApp30Descriptor>> getListenerList()
    {
       List<ListenerType<WebApp30Descriptor>> list = new ArrayList<ListenerType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(ListenerTypeImpl.nodeName);
+      List<Node> nodeList = model.get("listener");
       for (Node node : nodeList)
       {
-         ListenerType<WebApp30Descriptor> type = new ListenerTypeImpl<WebApp30Descriptor>(this, "", model, node);
+         ListenerType<WebApp30Descriptor> type = new ListenerTypeImpl<WebApp30Descriptor>(this, "listener", model, node);
          list.add(type);
       }
       return list;
@@ -360,22 +361,22 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllServlet()
    {
-      model.remove(ServletTypeImpl.nodeName);
+      model.remove("servlet");
       return this;
    }
 
    public ServletType<WebApp30Descriptor> servlet()
    {
-      return new ServletTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new ServletTypeImpl<WebApp30Descriptor>(this, "servlet", model);
    }
 
    public List<ServletType<WebApp30Descriptor>> getServletList()
    {
       List<ServletType<WebApp30Descriptor>> list = new ArrayList<ServletType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(ServletTypeImpl.nodeName);
+      List<Node> nodeList = model.get("servlet");
       for (Node node : nodeList)
       {
-         ServletType<WebApp30Descriptor> type = new ServletTypeImpl<WebApp30Descriptor>(this, "", model, node);
+         ServletType<WebApp30Descriptor> type = new ServletTypeImpl<WebApp30Descriptor>(this, "servlet", model, node);
          list.add(type);
       }
       return list;
@@ -387,23 +388,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllServletMapping()
    {
-      model.remove(ServletMappingTypeImpl.nodeName);
+      model.remove("servlet-mapping");
       return this;
    }
 
    public ServletMappingType<WebApp30Descriptor> servletMapping()
    {
-      return new ServletMappingTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new ServletMappingTypeImpl<WebApp30Descriptor>(this, "servlet-mapping", model);
    }
 
    public List<ServletMappingType<WebApp30Descriptor>> getServletMappingList()
    {
       List<ServletMappingType<WebApp30Descriptor>> list = new ArrayList<ServletMappingType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(ServletMappingTypeImpl.nodeName);
+      List<Node> nodeList = model.get("servlet-mapping");
       for (Node node : nodeList)
       {
-         ServletMappingType<WebApp30Descriptor> type = new ServletMappingTypeImpl<WebApp30Descriptor>(this, "", model,
-               node);
+         ServletMappingType<WebApp30Descriptor> type = new ServletMappingTypeImpl<WebApp30Descriptor>(this,
+               "servlet-mapping", model, node);
          list.add(type);
       }
       return list;
@@ -415,23 +416,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllSessionConfig()
    {
-      model.remove(SessionConfigTypeImpl.nodeName);
+      model.remove("session-config");
       return this;
    }
 
    public SessionConfigType<WebApp30Descriptor> sessionConfig()
    {
-      return new SessionConfigTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new SessionConfigTypeImpl<WebApp30Descriptor>(this, "session-config", model);
    }
 
    public List<SessionConfigType<WebApp30Descriptor>> getSessionConfigList()
    {
       List<SessionConfigType<WebApp30Descriptor>> list = new ArrayList<SessionConfigType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(SessionConfigTypeImpl.nodeName);
+      List<Node> nodeList = model.get("session-config");
       for (Node node : nodeList)
       {
-         SessionConfigType<WebApp30Descriptor> type = new SessionConfigTypeImpl<WebApp30Descriptor>(this, "", model,
-               node);
+         SessionConfigType<WebApp30Descriptor> type = new SessionConfigTypeImpl<WebApp30Descriptor>(this,
+               "session-config", model, node);
          list.add(type);
       }
       return list;
@@ -443,22 +444,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllMimeMapping()
    {
-      model.remove(MimeMappingTypeImpl.nodeName);
+      model.remove("mime-mapping");
       return this;
    }
 
    public MimeMappingType<WebApp30Descriptor> mimeMapping()
    {
-      return new MimeMappingTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new MimeMappingTypeImpl<WebApp30Descriptor>(this, "mime-mapping", model);
    }
 
    public List<MimeMappingType<WebApp30Descriptor>> getMimeMappingList()
    {
       List<MimeMappingType<WebApp30Descriptor>> list = new ArrayList<MimeMappingType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(MimeMappingTypeImpl.nodeName);
+      List<Node> nodeList = model.get("mime-mapping");
       for (Node node : nodeList)
       {
-         MimeMappingType<WebApp30Descriptor> type = new MimeMappingTypeImpl<WebApp30Descriptor>(this, "", model, node);
+         MimeMappingType<WebApp30Descriptor> type = new MimeMappingTypeImpl<WebApp30Descriptor>(this, "mime-mapping",
+               model, node);
          list.add(type);
       }
       return list;
@@ -470,23 +472,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllWelcomeFileList()
    {
-      model.remove(WelcomeFileListTypeImpl.nodeName);
+      model.remove("welcome-file-list");
       return this;
    }
 
    public WelcomeFileListType<WebApp30Descriptor> welcomeFileList()
    {
-      return new WelcomeFileListTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new WelcomeFileListTypeImpl<WebApp30Descriptor>(this, "welcome-file-list", model);
    }
 
    public List<WelcomeFileListType<WebApp30Descriptor>> getWelcomeFileListList()
    {
       List<WelcomeFileListType<WebApp30Descriptor>> list = new ArrayList<WelcomeFileListType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(WelcomeFileListTypeImpl.nodeName);
+      List<Node> nodeList = model.get("welcome-file-list");
       for (Node node : nodeList)
       {
-         WelcomeFileListType<WebApp30Descriptor> type = new WelcomeFileListTypeImpl<WebApp30Descriptor>(this, "",
-               model, node);
+         WelcomeFileListType<WebApp30Descriptor> type = new WelcomeFileListTypeImpl<WebApp30Descriptor>(this,
+               "welcome-file-list", model, node);
          list.add(type);
       }
       return list;
@@ -498,22 +500,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllErrorPage()
    {
-      model.remove(ErrorPageTypeImpl.nodeName);
+      model.remove("error-page");
       return this;
    }
 
    public ErrorPageType<WebApp30Descriptor> errorPage()
    {
-      return new ErrorPageTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new ErrorPageTypeImpl<WebApp30Descriptor>(this, "error-page", model);
    }
 
    public List<ErrorPageType<WebApp30Descriptor>> getErrorPageList()
    {
       List<ErrorPageType<WebApp30Descriptor>> list = new ArrayList<ErrorPageType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(ErrorPageTypeImpl.nodeName);
+      List<Node> nodeList = model.get("error-page");
       for (Node node : nodeList)
       {
-         ErrorPageType<WebApp30Descriptor> type = new ErrorPageTypeImpl<WebApp30Descriptor>(this, "", model, node);
+         ErrorPageType<WebApp30Descriptor> type = new ErrorPageTypeImpl<WebApp30Descriptor>(this, "error-page", model,
+               node);
          list.add(type);
       }
       return list;
@@ -525,22 +528,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllJspConfig()
    {
-      model.remove(JspConfigTypeImpl.nodeName);
+      model.remove("jsp-config");
       return this;
    }
 
    public JspConfigType<WebApp30Descriptor> jspConfig()
    {
-      return new JspConfigTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new JspConfigTypeImpl<WebApp30Descriptor>(this, "jsp-config", model);
    }
 
    public List<JspConfigType<WebApp30Descriptor>> getJspConfigList()
    {
       List<JspConfigType<WebApp30Descriptor>> list = new ArrayList<JspConfigType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(JspConfigTypeImpl.nodeName);
+      List<Node> nodeList = model.get("jsp-config");
       for (Node node : nodeList)
       {
-         JspConfigType<WebApp30Descriptor> type = new JspConfigTypeImpl<WebApp30Descriptor>(this, "", model, node);
+         JspConfigType<WebApp30Descriptor> type = new JspConfigTypeImpl<WebApp30Descriptor>(this, "jsp-config", model,
+               node);
          list.add(type);
       }
       return list;
@@ -552,23 +556,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllSecurityConstraint()
    {
-      model.remove(SecurityConstraintTypeImpl.nodeName);
+      model.remove("security-constraint");
       return this;
    }
 
    public SecurityConstraintType<WebApp30Descriptor> securityConstraint()
    {
-      return new SecurityConstraintTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new SecurityConstraintTypeImpl<WebApp30Descriptor>(this, "security-constraint", model);
    }
 
    public List<SecurityConstraintType<WebApp30Descriptor>> getSecurityConstraintList()
    {
       List<SecurityConstraintType<WebApp30Descriptor>> list = new ArrayList<SecurityConstraintType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(SecurityConstraintTypeImpl.nodeName);
+      List<Node> nodeList = model.get("security-constraint");
       for (Node node : nodeList)
       {
-         SecurityConstraintType<WebApp30Descriptor> type = new SecurityConstraintTypeImpl<WebApp30Descriptor>(this, "",
-               model, node);
+         SecurityConstraintType<WebApp30Descriptor> type = new SecurityConstraintTypeImpl<WebApp30Descriptor>(this,
+               "security-constraint", model, node);
          list.add(type);
       }
       return list;
@@ -580,22 +584,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllLoginConfig()
    {
-      model.remove(LoginConfigTypeImpl.nodeName);
+      model.remove("login-config");
       return this;
    }
 
    public LoginConfigType<WebApp30Descriptor> loginConfig()
    {
-      return new LoginConfigTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new LoginConfigTypeImpl<WebApp30Descriptor>(this, "login-config", model);
    }
 
    public List<LoginConfigType<WebApp30Descriptor>> getLoginConfigList()
    {
       List<LoginConfigType<WebApp30Descriptor>> list = new ArrayList<LoginConfigType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(LoginConfigTypeImpl.nodeName);
+      List<Node> nodeList = model.get("login-config");
       for (Node node : nodeList)
       {
-         LoginConfigType<WebApp30Descriptor> type = new LoginConfigTypeImpl<WebApp30Descriptor>(this, "", model, node);
+         LoginConfigType<WebApp30Descriptor> type = new LoginConfigTypeImpl<WebApp30Descriptor>(this, "login-config",
+               model, node);
          list.add(type);
       }
       return list;
@@ -607,22 +612,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllSecurityRole()
    {
-      model.remove(SecurityRoleTypeImpl.nodeName);
+      model.remove("security-role");
       return this;
    }
 
    public SecurityRoleType<WebApp30Descriptor> securityRole()
    {
-      return new SecurityRoleTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new SecurityRoleTypeImpl<WebApp30Descriptor>(this, "security-role", model);
    }
 
    public List<SecurityRoleType<WebApp30Descriptor>> getSecurityRoleList()
    {
       List<SecurityRoleType<WebApp30Descriptor>> list = new ArrayList<SecurityRoleType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(SecurityRoleTypeImpl.nodeName);
+      List<Node> nodeList = model.get("security-role");
       for (Node node : nodeList)
       {
-         SecurityRoleType<WebApp30Descriptor> type = new SecurityRoleTypeImpl<WebApp30Descriptor>(this, "", model, node);
+         SecurityRoleType<WebApp30Descriptor> type = new SecurityRoleTypeImpl<WebApp30Descriptor>(this,
+               "security-role", model, node);
          list.add(type);
       }
       return list;
@@ -634,23 +640,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllMessageDestination()
    {
-      model.remove(MessageDestinationTypeImpl.nodeName);
+      model.remove("message-destination");
       return this;
    }
 
    public MessageDestinationType<WebApp30Descriptor> messageDestination()
    {
-      return new MessageDestinationTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new MessageDestinationTypeImpl<WebApp30Descriptor>(this, "message-destination", model);
    }
 
    public List<MessageDestinationType<WebApp30Descriptor>> getMessageDestinationList()
    {
       List<MessageDestinationType<WebApp30Descriptor>> list = new ArrayList<MessageDestinationType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(MessageDestinationTypeImpl.nodeName);
+      List<Node> nodeList = model.get("message-destination");
       for (Node node : nodeList)
       {
-         MessageDestinationType<WebApp30Descriptor> type = new MessageDestinationTypeImpl<WebApp30Descriptor>(this, "",
-               model, node);
+         MessageDestinationType<WebApp30Descriptor> type = new MessageDestinationTypeImpl<WebApp30Descriptor>(this,
+               "message-destination", model, node);
          list.add(type);
       }
       return list;
@@ -662,23 +668,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllLocaleEncodingMappingList()
    {
-      model.remove(LocaleEncodingMappingListTypeImpl.nodeName);
+      model.remove("locale-encoding-mapping-list");
       return this;
    }
 
    public LocaleEncodingMappingListType<WebApp30Descriptor> localeEncodingMappingList()
    {
-      return new LocaleEncodingMappingListTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new LocaleEncodingMappingListTypeImpl<WebApp30Descriptor>(this, "locale-encoding-mapping-list", model);
    }
 
    public List<LocaleEncodingMappingListType<WebApp30Descriptor>> getLocaleEncodingMappingListList()
    {
       List<LocaleEncodingMappingListType<WebApp30Descriptor>> list = new ArrayList<LocaleEncodingMappingListType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(LocaleEncodingMappingListTypeImpl.nodeName);
+      List<Node> nodeList = model.get("locale-encoding-mapping-list");
       for (Node node : nodeList)
       {
          LocaleEncodingMappingListType<WebApp30Descriptor> type = new LocaleEncodingMappingListTypeImpl<WebApp30Descriptor>(
-               this, "", model, node);
+               this, "locale-encoding-mapping-list", model, node);
          list.add(type);
       }
       return list;
@@ -762,22 +768,22 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllIcon()
    {
-      model.remove(IconTypeImpl.nodeName);
+      model.remove("icon");
       return this;
    }
 
    public IconType<WebApp30Descriptor> icon()
    {
-      return new IconTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new IconTypeImpl<WebApp30Descriptor>(this, "icon", model);
    }
 
    public List<IconType<WebApp30Descriptor>> getIconList()
    {
       List<IconType<WebApp30Descriptor>> list = new ArrayList<IconType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(IconTypeImpl.nodeName);
+      List<Node> nodeList = model.get("icon");
       for (Node node : nodeList)
       {
-         IconType<WebApp30Descriptor> type = new IconTypeImpl<WebApp30Descriptor>(this, "", model, node);
+         IconType<WebApp30Descriptor> type = new IconTypeImpl<WebApp30Descriptor>(this, "icon", model, node);
          list.add(type);
       }
       return list;
@@ -789,22 +795,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllEnvEntry()
    {
-      model.remove(EnvEntryTypeImpl.nodeName);
+      model.remove("env-entry");
       return this;
    }
 
    public EnvEntryType<WebApp30Descriptor> envEntry()
    {
-      return new EnvEntryTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new EnvEntryTypeImpl<WebApp30Descriptor>(this, "env-entry", model);
    }
 
    public List<EnvEntryType<WebApp30Descriptor>> getEnvEntryList()
    {
       List<EnvEntryType<WebApp30Descriptor>> list = new ArrayList<EnvEntryType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(EnvEntryTypeImpl.nodeName);
+      List<Node> nodeList = model.get("env-entry");
       for (Node node : nodeList)
       {
-         EnvEntryType<WebApp30Descriptor> type = new EnvEntryTypeImpl<WebApp30Descriptor>(this, "", model, node);
+         EnvEntryType<WebApp30Descriptor> type = new EnvEntryTypeImpl<WebApp30Descriptor>(this, "env-entry", model,
+               node);
          list.add(type);
       }
       return list;
@@ -816,22 +823,22 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllEjbRef()
    {
-      model.remove(EjbRefTypeImpl.nodeName);
+      model.remove("ejb-ref");
       return this;
    }
 
    public EjbRefType<WebApp30Descriptor> ejbRef()
    {
-      return new EjbRefTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new EjbRefTypeImpl<WebApp30Descriptor>(this, "ejb-ref", model);
    }
 
    public List<EjbRefType<WebApp30Descriptor>> getEjbRefList()
    {
       List<EjbRefType<WebApp30Descriptor>> list = new ArrayList<EjbRefType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(EjbRefTypeImpl.nodeName);
+      List<Node> nodeList = model.get("ejb-ref");
       for (Node node : nodeList)
       {
-         EjbRefType<WebApp30Descriptor> type = new EjbRefTypeImpl<WebApp30Descriptor>(this, "", model, node);
+         EjbRefType<WebApp30Descriptor> type = new EjbRefTypeImpl<WebApp30Descriptor>(this, "ejb-ref", model, node);
          list.add(type);
       }
       return list;
@@ -843,22 +850,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllEjbLocalRef()
    {
-      model.remove(EjbLocalRefTypeImpl.nodeName);
+      model.remove("ejb-local-ref");
       return this;
    }
 
    public EjbLocalRefType<WebApp30Descriptor> ejbLocalRef()
    {
-      return new EjbLocalRefTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new EjbLocalRefTypeImpl<WebApp30Descriptor>(this, "ejb-local-ref", model);
    }
 
    public List<EjbLocalRefType<WebApp30Descriptor>> getEjbLocalRefList()
    {
       List<EjbLocalRefType<WebApp30Descriptor>> list = new ArrayList<EjbLocalRefType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(EjbLocalRefTypeImpl.nodeName);
+      List<Node> nodeList = model.get("ejb-local-ref");
       for (Node node : nodeList)
       {
-         EjbLocalRefType<WebApp30Descriptor> type = new EjbLocalRefTypeImpl<WebApp30Descriptor>(this, "", model, node);
+         EjbLocalRefType<WebApp30Descriptor> type = new EjbLocalRefTypeImpl<WebApp30Descriptor>(this, "ejb-local-ref",
+               model, node);
          list.add(type);
       }
       return list;
@@ -870,22 +878,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllResourceRef()
    {
-      model.remove(ResourceRefTypeImpl.nodeName);
+      model.remove("resource-ref");
       return this;
    }
 
    public ResourceRefType<WebApp30Descriptor> resourceRef()
    {
-      return new ResourceRefTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new ResourceRefTypeImpl<WebApp30Descriptor>(this, "resource-ref", model);
    }
 
    public List<ResourceRefType<WebApp30Descriptor>> getResourceRefList()
    {
       List<ResourceRefType<WebApp30Descriptor>> list = new ArrayList<ResourceRefType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(ResourceRefTypeImpl.nodeName);
+      List<Node> nodeList = model.get("resource-ref");
       for (Node node : nodeList)
       {
-         ResourceRefType<WebApp30Descriptor> type = new ResourceRefTypeImpl<WebApp30Descriptor>(this, "", model, node);
+         ResourceRefType<WebApp30Descriptor> type = new ResourceRefTypeImpl<WebApp30Descriptor>(this, "resource-ref",
+               model, node);
          list.add(type);
       }
       return list;
@@ -897,23 +906,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllResourceEnvRef()
    {
-      model.remove(ResourceEnvRefTypeImpl.nodeName);
+      model.remove("resource-env-ref");
       return this;
    }
 
    public ResourceEnvRefType<WebApp30Descriptor> resourceEnvRef()
    {
-      return new ResourceEnvRefTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new ResourceEnvRefTypeImpl<WebApp30Descriptor>(this, "resource-env-ref", model);
    }
 
    public List<ResourceEnvRefType<WebApp30Descriptor>> getResourceEnvRefList()
    {
       List<ResourceEnvRefType<WebApp30Descriptor>> list = new ArrayList<ResourceEnvRefType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(ResourceEnvRefTypeImpl.nodeName);
+      List<Node> nodeList = model.get("resource-env-ref");
       for (Node node : nodeList)
       {
-         ResourceEnvRefType<WebApp30Descriptor> type = new ResourceEnvRefTypeImpl<WebApp30Descriptor>(this, "", model,
-               node);
+         ResourceEnvRefType<WebApp30Descriptor> type = new ResourceEnvRefTypeImpl<WebApp30Descriptor>(this,
+               "resource-env-ref", model, node);
          list.add(type);
       }
       return list;
@@ -925,23 +934,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllMessageDestinationRef()
    {
-      model.remove(MessageDestinationRefTypeImpl.nodeName);
+      model.remove("message-destination-ref");
       return this;
    }
 
    public MessageDestinationRefType<WebApp30Descriptor> messageDestinationRef()
    {
-      return new MessageDestinationRefTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new MessageDestinationRefTypeImpl<WebApp30Descriptor>(this, "message-destination-ref", model);
    }
 
    public List<MessageDestinationRefType<WebApp30Descriptor>> getMessageDestinationRefList()
    {
       List<MessageDestinationRefType<WebApp30Descriptor>> list = new ArrayList<MessageDestinationRefType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(MessageDestinationRefTypeImpl.nodeName);
+      List<Node> nodeList = model.get("message-destination-ref");
       for (Node node : nodeList)
       {
          MessageDestinationRefType<WebApp30Descriptor> type = new MessageDestinationRefTypeImpl<WebApp30Descriptor>(
-               this, "", model, node);
+               this, "message-destination-ref", model, node);
          list.add(type);
       }
       return list;
@@ -953,23 +962,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllPersistenceContextRef()
    {
-      model.remove(PersistenceContextRefTypeImpl.nodeName);
+      model.remove("persistence-context-ref");
       return this;
    }
 
    public PersistenceContextRefType<WebApp30Descriptor> persistenceContextRef()
    {
-      return new PersistenceContextRefTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new PersistenceContextRefTypeImpl<WebApp30Descriptor>(this, "persistence-context-ref", model);
    }
 
    public List<PersistenceContextRefType<WebApp30Descriptor>> getPersistenceContextRefList()
    {
       List<PersistenceContextRefType<WebApp30Descriptor>> list = new ArrayList<PersistenceContextRefType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(PersistenceContextRefTypeImpl.nodeName);
+      List<Node> nodeList = model.get("persistence-context-ref");
       for (Node node : nodeList)
       {
          PersistenceContextRefType<WebApp30Descriptor> type = new PersistenceContextRefTypeImpl<WebApp30Descriptor>(
-               this, "", model, node);
+               this, "persistence-context-ref", model, node);
          list.add(type);
       }
       return list;
@@ -981,23 +990,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllPersistenceUnitRef()
    {
-      model.remove(PersistenceUnitRefTypeImpl.nodeName);
+      model.remove("persistence-unit-ref");
       return this;
    }
 
    public PersistenceUnitRefType<WebApp30Descriptor> persistenceUnitRef()
    {
-      return new PersistenceUnitRefTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new PersistenceUnitRefTypeImpl<WebApp30Descriptor>(this, "persistence-unit-ref", model);
    }
 
    public List<PersistenceUnitRefType<WebApp30Descriptor>> getPersistenceUnitRefList()
    {
       List<PersistenceUnitRefType<WebApp30Descriptor>> list = new ArrayList<PersistenceUnitRefType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(PersistenceUnitRefTypeImpl.nodeName);
+      List<Node> nodeList = model.get("persistence-unit-ref");
       for (Node node : nodeList)
       {
-         PersistenceUnitRefType<WebApp30Descriptor> type = new PersistenceUnitRefTypeImpl<WebApp30Descriptor>(this, "",
-               model, node);
+         PersistenceUnitRefType<WebApp30Descriptor> type = new PersistenceUnitRefTypeImpl<WebApp30Descriptor>(this,
+               "persistence-unit-ref", model, node);
          list.add(type);
       }
       return list;
@@ -1009,23 +1018,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllPostConstruct()
    {
-      model.remove(LifecycleCallbackTypeImpl.nodeName);
+      model.remove("post-construct");
       return this;
    }
 
    public LifecycleCallbackType<WebApp30Descriptor> postConstruct()
    {
-      return new LifecycleCallbackTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new LifecycleCallbackTypeImpl<WebApp30Descriptor>(this, "post-construct", model);
    }
 
    public List<LifecycleCallbackType<WebApp30Descriptor>> getPostConstructList()
    {
       List<LifecycleCallbackType<WebApp30Descriptor>> list = new ArrayList<LifecycleCallbackType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(LifecycleCallbackTypeImpl.nodeName);
+      List<Node> nodeList = model.get("post-construct");
       for (Node node : nodeList)
       {
-         LifecycleCallbackType<WebApp30Descriptor> type = new LifecycleCallbackTypeImpl<WebApp30Descriptor>(this, "",
-               model, node);
+         LifecycleCallbackType<WebApp30Descriptor> type = new LifecycleCallbackTypeImpl<WebApp30Descriptor>(this,
+               "post-construct", model, node);
          list.add(type);
       }
       return list;
@@ -1037,23 +1046,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllPreDestroy()
    {
-      model.remove(LifecycleCallbackTypeImpl.nodeName);
+      model.remove("pre-destroy");
       return this;
    }
 
    public LifecycleCallbackType<WebApp30Descriptor> preDestroy()
    {
-      return new LifecycleCallbackTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new LifecycleCallbackTypeImpl<WebApp30Descriptor>(this, "pre-destroy", model);
    }
 
    public List<LifecycleCallbackType<WebApp30Descriptor>> getPreDestroyList()
    {
       List<LifecycleCallbackType<WebApp30Descriptor>> list = new ArrayList<LifecycleCallbackType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(LifecycleCallbackTypeImpl.nodeName);
+      List<Node> nodeList = model.get("pre-destroy");
       for (Node node : nodeList)
       {
-         LifecycleCallbackType<WebApp30Descriptor> type = new LifecycleCallbackTypeImpl<WebApp30Descriptor>(this, "",
-               model, node);
+         LifecycleCallbackType<WebApp30Descriptor> type = new LifecycleCallbackTypeImpl<WebApp30Descriptor>(this,
+               "pre-destroy", model, node);
          list.add(type);
       }
       return list;
@@ -1065,22 +1074,23 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public WebApp30Descriptor removeAllDataSource()
    {
-      model.remove(DataSourceTypeImpl.nodeName);
+      model.remove("data-source");
       return this;
    }
 
    public DataSourceType<WebApp30Descriptor> dataSource()
    {
-      return new DataSourceTypeImpl<WebApp30Descriptor>(this, "", model);
+      return new DataSourceTypeImpl<WebApp30Descriptor>(this, "data-source", model);
    }
 
    public List<DataSourceType<WebApp30Descriptor>> getDataSourceList()
    {
       List<DataSourceType<WebApp30Descriptor>> list = new ArrayList<DataSourceType<WebApp30Descriptor>>();
-      List<Node> nodeList = model.get(DataSourceTypeImpl.nodeName);
+      List<Node> nodeList = model.get("data-source");
       for (Node node : nodeList)
       {
-         DataSourceType<WebApp30Descriptor> type = new DataSourceTypeImpl<WebApp30Descriptor>(this, "", model, node);
+         DataSourceType<WebApp30Descriptor> type = new DataSourceTypeImpl<WebApp30Descriptor>(this, "data-source",
+               model, node);
          list.add(type);
       }
       return list;
@@ -1102,6 +1112,12 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
       return this;
    }
 
+   public WebApp30Descriptor removeVersion()
+   {
+      model.attributes().remove("version");
+      return this;
+   }
+
    public WebAppVersionType getVersion()
    {
       return WebAppVersionType.getFromStringValue(model.attribute("version"));
@@ -1119,6 +1135,12 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase
    public WebApp30Descriptor setMetadataComplete(Boolean metadataComplete)
    {
       model.attribute("metadata-complete", metadataComplete);
+      return this;
+   }
+
+   public WebApp30Descriptor removeMetadataComplete()
+   {
+      model.attributes().remove("metadata-complete");
       return this;
    }
 

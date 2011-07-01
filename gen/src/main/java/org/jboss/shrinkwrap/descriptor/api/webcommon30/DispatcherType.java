@@ -1,8 +1,8 @@
-package org.jboss.shrinkwrap.descriptor.api.webcommon30;
+package org.jboss.shrinkwrap.descriptor.api.webcommon30; 
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:26:07.336-04:00
  *
  * Original Documentation:
  *
@@ -28,31 +28,29 @@ package org.jboss.shrinkwrap.descriptor.api.webcommon30;
  *
  *
  */
-public enum DispatcherType {
-   _FORWARD("FORWARD"), _INCLUDE("INCLUDE"), _REQUEST("REQUEST"), _ASYNC("ASYNC"), _ERROR("ERROR");
+public enum DispatcherType
+{
+   _FORWARD("FORWARD"),
+   _INCLUDE("INCLUDE"),
+   _REQUEST("REQUEST"),
+   _ASYNC("ASYNC"),
+   _ERROR("ERROR");
 
    private String value;
 
-   DispatcherType(String value)
-   {
-      this.value = value;
-   }
+   DispatcherType (String value) { this.value = value; }
 
-   public String toString()
-   {
-      return value;
-   }
+   public String toString() {return value;}
 
    public static DispatcherType getFromStringValue(String value)
    {
-      for (DispatcherType type : DispatcherType.values())
+      for(DispatcherType type: DispatcherType.values())
       {
-         if (value != null && type.toString().equals(value))
-         {
-            return type;
-         }
+         if(value != null && type.toString().equals(value))
+        { return type;}
       }
       return null;
    }
 
 }
+

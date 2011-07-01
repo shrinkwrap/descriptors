@@ -35,7 +35,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:21:34.75-04:00
  *
  * Original Documentation:
  *
@@ -48,8 +48,6 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
  */
 public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
 {
-   public final static String nodeName = "";
-
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -64,14 +62,14 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public ApplicationTypeImpl(T t, String descriptorName, Node node)
+   public ApplicationTypeImpl(T t, String nodeName, Node node)
    {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public ApplicationTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   public ApplicationTypeImpl(T t, String nodeName, Node node, Node childNode)
    {
       this.t = t;
       this.node = node;
@@ -161,22 +159,22 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllIcon()
    {
-      childNode.remove(IconTypeImpl.nodeName);
+      childNode.remove("icon");
       return this;
    }
 
    public IconType<ApplicationType<T>> icon()
    {
-      return new IconTypeImpl<ApplicationType<T>>(this, "", childNode);
+      return new IconTypeImpl<ApplicationType<T>>(this, "icon", childNode);
    }
 
    public List<IconType<ApplicationType<T>>> getIconList()
    {
       List<IconType<ApplicationType<T>>> list = new ArrayList<IconType<ApplicationType<T>>>();
-      List<Node> nodeList = childNode.get(IconTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("icon");
       for (Node node : nodeList)
       {
-         IconType<ApplicationType<T>> type = new IconTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         IconType<ApplicationType<T>> type = new IconTypeImpl<ApplicationType<T>>(this, "icon", childNode, node);
          list.add(type);
       }
       return list;
@@ -235,22 +233,22 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllModule()
    {
-      childNode.remove(ModuleTypeImpl.nodeName);
+      childNode.remove("module");
       return this;
    }
 
    public ModuleType<ApplicationType<T>> module()
    {
-      return new ModuleTypeImpl<ApplicationType<T>>(this, "", childNode);
+      return new ModuleTypeImpl<ApplicationType<T>>(this, "module", childNode);
    }
 
    public List<ModuleType<ApplicationType<T>>> getModuleList()
    {
       List<ModuleType<ApplicationType<T>>> list = new ArrayList<ModuleType<ApplicationType<T>>>();
-      List<Node> nodeList = childNode.get(ModuleTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("module");
       for (Node node : nodeList)
       {
-         ModuleType<ApplicationType<T>> type = new ModuleTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         ModuleType<ApplicationType<T>> type = new ModuleTypeImpl<ApplicationType<T>>(this, "module", childNode, node);
          list.add(type);
       }
       return list;
@@ -262,23 +260,23 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllSecurityRole()
    {
-      childNode.remove(SecurityRoleTypeImpl.nodeName);
+      childNode.remove("security-role");
       return this;
    }
 
    public SecurityRoleType<ApplicationType<T>> securityRole()
    {
-      return new SecurityRoleTypeImpl<ApplicationType<T>>(this, "", childNode);
+      return new SecurityRoleTypeImpl<ApplicationType<T>>(this, "security-role", childNode);
    }
 
    public List<SecurityRoleType<ApplicationType<T>>> getSecurityRoleList()
    {
       List<SecurityRoleType<ApplicationType<T>>> list = new ArrayList<SecurityRoleType<ApplicationType<T>>>();
-      List<Node> nodeList = childNode.get(SecurityRoleTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("security-role");
       for (Node node : nodeList)
       {
-         SecurityRoleType<ApplicationType<T>> type = new SecurityRoleTypeImpl<ApplicationType<T>>(this, "", childNode,
-               node);
+         SecurityRoleType<ApplicationType<T>> type = new SecurityRoleTypeImpl<ApplicationType<T>>(this,
+               "security-role", childNode, node);
          list.add(type);
       }
       return list;
@@ -311,22 +309,23 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllEnvEntry()
    {
-      childNode.remove(EnvEntryTypeImpl.nodeName);
+      childNode.remove("env-entry");
       return this;
    }
 
    public EnvEntryType<ApplicationType<T>> envEntry()
    {
-      return new EnvEntryTypeImpl<ApplicationType<T>>(this, "", childNode);
+      return new EnvEntryTypeImpl<ApplicationType<T>>(this, "env-entry", childNode);
    }
 
    public List<EnvEntryType<ApplicationType<T>>> getEnvEntryList()
    {
       List<EnvEntryType<ApplicationType<T>>> list = new ArrayList<EnvEntryType<ApplicationType<T>>>();
-      List<Node> nodeList = childNode.get(EnvEntryTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("env-entry");
       for (Node node : nodeList)
       {
-         EnvEntryType<ApplicationType<T>> type = new EnvEntryTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         EnvEntryType<ApplicationType<T>> type = new EnvEntryTypeImpl<ApplicationType<T>>(this, "env-entry", childNode,
+               node);
          list.add(type);
       }
       return list;
@@ -338,22 +337,22 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllEjbRef()
    {
-      childNode.remove(EjbRefTypeImpl.nodeName);
+      childNode.remove("ejb-ref");
       return this;
    }
 
    public EjbRefType<ApplicationType<T>> ejbRef()
    {
-      return new EjbRefTypeImpl<ApplicationType<T>>(this, "", childNode);
+      return new EjbRefTypeImpl<ApplicationType<T>>(this, "ejb-ref", childNode);
    }
 
    public List<EjbRefType<ApplicationType<T>>> getEjbRefList()
    {
       List<EjbRefType<ApplicationType<T>>> list = new ArrayList<EjbRefType<ApplicationType<T>>>();
-      List<Node> nodeList = childNode.get(EjbRefTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("ejb-ref");
       for (Node node : nodeList)
       {
-         EjbRefType<ApplicationType<T>> type = new EjbRefTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         EjbRefType<ApplicationType<T>> type = new EjbRefTypeImpl<ApplicationType<T>>(this, "ejb-ref", childNode, node);
          list.add(type);
       }
       return list;
@@ -365,23 +364,23 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllEjbLocalRef()
    {
-      childNode.remove(EjbLocalRefTypeImpl.nodeName);
+      childNode.remove("ejb-local-ref");
       return this;
    }
 
    public EjbLocalRefType<ApplicationType<T>> ejbLocalRef()
    {
-      return new EjbLocalRefTypeImpl<ApplicationType<T>>(this, "", childNode);
+      return new EjbLocalRefTypeImpl<ApplicationType<T>>(this, "ejb-local-ref", childNode);
    }
 
    public List<EjbLocalRefType<ApplicationType<T>>> getEjbLocalRefList()
    {
       List<EjbLocalRefType<ApplicationType<T>>> list = new ArrayList<EjbLocalRefType<ApplicationType<T>>>();
-      List<Node> nodeList = childNode.get(EjbLocalRefTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("ejb-local-ref");
       for (Node node : nodeList)
       {
-         EjbLocalRefType<ApplicationType<T>> type = new EjbLocalRefTypeImpl<ApplicationType<T>>(this, "", childNode,
-               node);
+         EjbLocalRefType<ApplicationType<T>> type = new EjbLocalRefTypeImpl<ApplicationType<T>>(this, "ejb-local-ref",
+               childNode, node);
          list.add(type);
       }
       return list;
@@ -393,23 +392,23 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllResourceRef()
    {
-      childNode.remove(ResourceRefTypeImpl.nodeName);
+      childNode.remove("resource-ref");
       return this;
    }
 
    public ResourceRefType<ApplicationType<T>> resourceRef()
    {
-      return new ResourceRefTypeImpl<ApplicationType<T>>(this, "", childNode);
+      return new ResourceRefTypeImpl<ApplicationType<T>>(this, "resource-ref", childNode);
    }
 
    public List<ResourceRefType<ApplicationType<T>>> getResourceRefList()
    {
       List<ResourceRefType<ApplicationType<T>>> list = new ArrayList<ResourceRefType<ApplicationType<T>>>();
-      List<Node> nodeList = childNode.get(ResourceRefTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("resource-ref");
       for (Node node : nodeList)
       {
-         ResourceRefType<ApplicationType<T>> type = new ResourceRefTypeImpl<ApplicationType<T>>(this, "", childNode,
-               node);
+         ResourceRefType<ApplicationType<T>> type = new ResourceRefTypeImpl<ApplicationType<T>>(this, "resource-ref",
+               childNode, node);
          list.add(type);
       }
       return list;
@@ -421,23 +420,23 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllResourceEnvRef()
    {
-      childNode.remove(ResourceEnvRefTypeImpl.nodeName);
+      childNode.remove("resource-env-ref");
       return this;
    }
 
    public ResourceEnvRefType<ApplicationType<T>> resourceEnvRef()
    {
-      return new ResourceEnvRefTypeImpl<ApplicationType<T>>(this, "", childNode);
+      return new ResourceEnvRefTypeImpl<ApplicationType<T>>(this, "resource-env-ref", childNode);
    }
 
    public List<ResourceEnvRefType<ApplicationType<T>>> getResourceEnvRefList()
    {
       List<ResourceEnvRefType<ApplicationType<T>>> list = new ArrayList<ResourceEnvRefType<ApplicationType<T>>>();
-      List<Node> nodeList = childNode.get(ResourceEnvRefTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("resource-env-ref");
       for (Node node : nodeList)
       {
-         ResourceEnvRefType<ApplicationType<T>> type = new ResourceEnvRefTypeImpl<ApplicationType<T>>(this, "",
-               childNode, node);
+         ResourceEnvRefType<ApplicationType<T>> type = new ResourceEnvRefTypeImpl<ApplicationType<T>>(this,
+               "resource-env-ref", childNode, node);
          list.add(type);
       }
       return list;
@@ -449,23 +448,23 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllMessageDestinationRef()
    {
-      childNode.remove(MessageDestinationRefTypeImpl.nodeName);
+      childNode.remove("message-destination-ref");
       return this;
    }
 
    public MessageDestinationRefType<ApplicationType<T>> messageDestinationRef()
    {
-      return new MessageDestinationRefTypeImpl<ApplicationType<T>>(this, "", childNode);
+      return new MessageDestinationRefTypeImpl<ApplicationType<T>>(this, "message-destination-ref", childNode);
    }
 
    public List<MessageDestinationRefType<ApplicationType<T>>> getMessageDestinationRefList()
    {
       List<MessageDestinationRefType<ApplicationType<T>>> list = new ArrayList<MessageDestinationRefType<ApplicationType<T>>>();
-      List<Node> nodeList = childNode.get(MessageDestinationRefTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("message-destination-ref");
       for (Node node : nodeList)
       {
          MessageDestinationRefType<ApplicationType<T>> type = new MessageDestinationRefTypeImpl<ApplicationType<T>>(
-               this, "", childNode, node);
+               this, "message-destination-ref", childNode, node);
          list.add(type);
       }
       return list;
@@ -477,23 +476,23 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllPersistenceContextRef()
    {
-      childNode.remove(PersistenceContextRefTypeImpl.nodeName);
+      childNode.remove("persistence-context-ref");
       return this;
    }
 
    public PersistenceContextRefType<ApplicationType<T>> persistenceContextRef()
    {
-      return new PersistenceContextRefTypeImpl<ApplicationType<T>>(this, "", childNode);
+      return new PersistenceContextRefTypeImpl<ApplicationType<T>>(this, "persistence-context-ref", childNode);
    }
 
    public List<PersistenceContextRefType<ApplicationType<T>>> getPersistenceContextRefList()
    {
       List<PersistenceContextRefType<ApplicationType<T>>> list = new ArrayList<PersistenceContextRefType<ApplicationType<T>>>();
-      List<Node> nodeList = childNode.get(PersistenceContextRefTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("persistence-context-ref");
       for (Node node : nodeList)
       {
          PersistenceContextRefType<ApplicationType<T>> type = new PersistenceContextRefTypeImpl<ApplicationType<T>>(
-               this, "", childNode, node);
+               this, "persistence-context-ref", childNode, node);
          list.add(type);
       }
       return list;
@@ -505,23 +504,23 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllPersistenceUnitRef()
    {
-      childNode.remove(PersistenceUnitRefTypeImpl.nodeName);
+      childNode.remove("persistence-unit-ref");
       return this;
    }
 
    public PersistenceUnitRefType<ApplicationType<T>> persistenceUnitRef()
    {
-      return new PersistenceUnitRefTypeImpl<ApplicationType<T>>(this, "", childNode);
+      return new PersistenceUnitRefTypeImpl<ApplicationType<T>>(this, "persistence-unit-ref", childNode);
    }
 
    public List<PersistenceUnitRefType<ApplicationType<T>>> getPersistenceUnitRefList()
    {
       List<PersistenceUnitRefType<ApplicationType<T>>> list = new ArrayList<PersistenceUnitRefType<ApplicationType<T>>>();
-      List<Node> nodeList = childNode.get(PersistenceUnitRefTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("persistence-unit-ref");
       for (Node node : nodeList)
       {
-         PersistenceUnitRefType<ApplicationType<T>> type = new PersistenceUnitRefTypeImpl<ApplicationType<T>>(this, "",
-               childNode, node);
+         PersistenceUnitRefType<ApplicationType<T>> type = new PersistenceUnitRefTypeImpl<ApplicationType<T>>(this,
+               "persistence-unit-ref", childNode, node);
          list.add(type);
       }
       return list;
@@ -533,23 +532,23 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllMessageDestination()
    {
-      childNode.remove(MessageDestinationTypeImpl.nodeName);
+      childNode.remove("message-destination");
       return this;
    }
 
    public MessageDestinationType<ApplicationType<T>> messageDestination()
    {
-      return new MessageDestinationTypeImpl<ApplicationType<T>>(this, "", childNode);
+      return new MessageDestinationTypeImpl<ApplicationType<T>>(this, "message-destination", childNode);
    }
 
    public List<MessageDestinationType<ApplicationType<T>>> getMessageDestinationList()
    {
       List<MessageDestinationType<ApplicationType<T>>> list = new ArrayList<MessageDestinationType<ApplicationType<T>>>();
-      List<Node> nodeList = childNode.get(MessageDestinationTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("message-destination");
       for (Node node : nodeList)
       {
-         MessageDestinationType<ApplicationType<T>> type = new MessageDestinationTypeImpl<ApplicationType<T>>(this, "",
-               childNode, node);
+         MessageDestinationType<ApplicationType<T>> type = new MessageDestinationTypeImpl<ApplicationType<T>>(this,
+               "message-destination", childNode, node);
          list.add(type);
       }
       return list;
@@ -561,22 +560,23 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
    // -------------------------------------------------------------------------------------||
    public ApplicationType<T> removeAllDataSource()
    {
-      childNode.remove(DataSourceTypeImpl.nodeName);
+      childNode.remove("data-source");
       return this;
    }
 
    public DataSourceType<ApplicationType<T>> dataSource()
    {
-      return new DataSourceTypeImpl<ApplicationType<T>>(this, "", childNode);
+      return new DataSourceTypeImpl<ApplicationType<T>>(this, "data-source", childNode);
    }
 
    public List<DataSourceType<ApplicationType<T>>> getDataSourceList()
    {
       List<DataSourceType<ApplicationType<T>>> list = new ArrayList<DataSourceType<ApplicationType<T>>>();
-      List<Node> nodeList = childNode.get(DataSourceTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("data-source");
       for (Node node : nodeList)
       {
-         DataSourceType<ApplicationType<T>> type = new DataSourceTypeImpl<ApplicationType<T>>(this, "", childNode, node);
+         DataSourceType<ApplicationType<T>> type = new DataSourceTypeImpl<ApplicationType<T>>(this, "data-source",
+               childNode, node);
          list.add(type);
       }
       return list;

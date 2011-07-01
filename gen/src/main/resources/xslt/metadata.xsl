@@ -113,11 +113,22 @@
     <xsl:template name="GenerateClasses">
         <classes>
             <xsl:for-each select="//schema">
-                <xsl:call-template name="WriteClasses">
-                    <xsl:with-param name="pDocument" select="@name"/>
-                    <xsl:with-param name="pPackageApi" select="@packageApi"/>
-                    <xsl:with-param name="pPackageImpl" select="@packageImpl"/>
-                </xsl:call-template>
+                <xsl:choose>
+                    <xsl:when test="contains(@name, 'persistence_2_0.xsd')">
+                        <xsl:call-template name="WritePersistenceClasses">
+                            <xsl:with-param name="pDocument" select="@name"/>
+                            <xsl:with-param name="pPackageApi" select="@packageApi"/>
+                            <xsl:with-param name="pPackageImpl" select="@packageImpl"/>
+                        </xsl:call-template>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="WriteClasses">
+                            <xsl:with-param name="pDocument" select="@name"/>
+                            <xsl:with-param name="pPackageApi" select="@packageApi"/>
+                            <xsl:with-param name="pPackageImpl" select="@packageImpl"/>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:for-each>
         </classes>
     </xsl:template>
@@ -132,42 +143,83 @@
                 <xsl:if test="@generateDDClass='true'">
                     <xsl:variable name="vNameSpaces" select="namespace/text()"/>
                     <descriptor>
-                        <xsl:attribute name="schemaName">
-                            <xsl:value-of select="@name"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="packageApi">
-                            <xsl:value-of select="@packageApi"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="packageImpl">
-                            <xsl:value-of select="@packageImpl"/>
-                        </xsl:attribute>
-
-                        <xsl:for-each select="namespace">
-                            <namespace>
-                                <xsl:attribute name="name">
+                        <xsl:choose>
+                            <xsl:when test="contains(@name, 'persistence_2_0.xsd')">
+                                <xsl:attribute name="schemaName">
                                     <xsl:value-of select="@name"/>
                                 </xsl:attribute>
-                                <xsl:attribute name="value">
-                                    <xsl:value-of select="@value"/>
+                                <xsl:attribute name="packageApi">
+                                    <xsl:value-of select="@packageApi"/>
                                 </xsl:attribute>
-                            </namespace>
-                        </xsl:for-each>
+                                <xsl:attribute name="packageImpl">
+                                    <xsl:value-of select="@packageImpl"/>
+                                </xsl:attribute>
 
-                        <xsl:for-each select="document(@name)/*/xsd:element">
-                            <!--                            <xsl:if test="local-name() = 'element'">-->
-                            <element>
-                                <xsl:attribute name="name">
+                                <xsl:for-each select="namespace">
+                                    <namespace>
+                                        <xsl:attribute name="name">
+                                            <xsl:value-of select="@name"/>
+                                        </xsl:attribute>
+                                        <xsl:attribute name="value">
+                                            <xsl:value-of select="@value"/>
+                                        </xsl:attribute>
+                                    </namespace>
+                                </xsl:for-each>
+
+                                <element>
+                                    <xsl:attribute name="name">
+                                        <xsl:value-of select="'persistence'"/>
+                                    </xsl:attribute>
+                                    <xsl:attribute name="type">
+                                        <xsl:value-of select="'dummy:persistence'"/>
+                                    </xsl:attribute>
+                                    <xsl:attribute name="defaultNamespaces">
+                                        <xsl:value-of select="$vNameSpaces"/>
+                                    </xsl:attribute>
+                                </element>
+
+                            </xsl:when>
+
+                            <xsl:otherwise>
+                                <xsl:attribute name="schemaName">
                                     <xsl:value-of select="@name"/>
                                 </xsl:attribute>
-                                <xsl:attribute name="type">
-                                    <xsl:value-of select="@type"/>
+                                <xsl:attribute name="packageApi">
+                                    <xsl:value-of select="@packageApi"/>
                                 </xsl:attribute>
-                                <xsl:attribute name="defaultNamespaces">
-                                    <xsl:value-of select="$vNameSpaces"/>
+                                <xsl:attribute name="packageImpl">
+                                    <xsl:value-of select="@packageImpl"/>
                                 </xsl:attribute>
-                            </element>
-                            <!--                            </xsl:if>-->
-                        </xsl:for-each>
+
+                                <xsl:for-each select="namespace">
+                                    <namespace>
+                                        <xsl:attribute name="name">
+                                            <xsl:value-of select="@name"/>
+                                        </xsl:attribute>
+                                        <xsl:attribute name="value">
+                                            <xsl:value-of select="@value"/>
+                                        </xsl:attribute>
+                                    </namespace>
+                                </xsl:for-each>
+
+                                <xsl:for-each select="document(@name)/*/xsd:element">
+                                    <!--                            <xsl:if test="local-name() = 'element'">-->
+                                    <element>
+                                        <xsl:attribute name="name">
+                                            <xsl:value-of select="@name"/>
+                                        </xsl:attribute>
+                                        <xsl:attribute name="type">
+                                            <xsl:value-of select="@type"/>
+                                        </xsl:attribute>
+                                        <xsl:attribute name="defaultNamespaces">
+                                            <xsl:value-of select="$vNameSpaces"/>
+                                        </xsl:attribute>
+                                    </element>
+                                    <!--                            </xsl:if>-->
+                                </xsl:for-each>
+
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </descriptor>
                 </xsl:if>
             </xsl:for-each>
@@ -259,7 +311,7 @@
                         <xsl:value-of select="$complexTypeName"/>
                     </xsl:attribute>
                     <xsl:attribute name="mappedTo">
-                        <xsl:value-of select="'javaee:xsdBooleanType'"/>
+                        <xsl:value-of select="'xsd:integer'"/>
                     </xsl:attribute>
                     <xsl:attribute name="schemaName">
                         <xsl:value-of select="$pDocument"/>
@@ -413,7 +465,6 @@
                                             <xsl:value-of select="@maxOccurs"/>
                                         </xsl:attribute>
                                     </xsl:if>
-
                                 </element>
                             </xsl:if>
                         </xsl:if>
@@ -478,6 +529,90 @@
     <!-- ****************************************************** -->
     <!-- ****** Template which writes the classes        ****** -->
     <!-- ****************************************************** -->
+    <xsl:template name="WritePersistenceClasses">
+        <xsl:param name="pDocument"/>
+        <xsl:param name="pPackageApi"/>
+        <xsl:param name="pPackageImpl"/>
+        <!--
+        <xsl:for-each select="document($pDocument)//xsd:simpleType">
+            <xsl:variable name="complexTypeName" select="@name"/>
+            <xsl:variable name="vDocumentation" select="xsd:annotation/xsd:documentation/text()"/>
+        </xsl:for-each>-->
+
+        <xsl:for-each select="document($pDocument)//xsd:element">
+            <!--            <xsl:if test="position()!=1">-->
+            <xsl:if test="exists(xsd:complexType)=true()">
+
+                <xsl:variable name="complexTypeName" select="@name"/>
+                <xsl:variable name="vDocumentation" select="xsd:annotation/xsd:documentation/text()"/>
+                <class>
+                    <xsl:attribute name="name">
+                        <xsl:value-of select="$complexTypeName"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="schemaName">
+                        <xsl:value-of select="$pDocument"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="packageApi">
+                        <xsl:value-of select="$pPackageApi"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="packageImpl">
+                        <xsl:value-of select="$pPackageImpl"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="documentation">
+                        <xsl:value-of select="$vDocumentation"/>
+                    </xsl:attribute>
+                    <xsl:call-template name="AddPersistenceElements"/>
+                </class>
+            </xsl:if>
+            <!--            </xsl:if>-->
+        </xsl:for-each>
+    </xsl:template>
+
+    <!-- ****************************************************** -->
+    <!-- ****** Template which writes the classes        ****** -->
+    <!-- ****************************************************** -->
+    <xsl:template name="AddPersistenceElements">
+        <xsl:for-each select="xsd:complexType/xsd:sequence/xsd:element">
+            <element>
+                <xsl:attribute name="name">
+                    <xsl:value-of select="@name"/>
+                </xsl:attribute>
+                <xsl:attribute name="type">
+                    <xsl:choose>
+                        <xsl:when test="exists(@type)">
+                            <xsl:value-of select="@type"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="concat('dummy:', @name)"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:attribute>
+                <xsl:if test="@maxOccurs">
+                    <xsl:attribute name="maxOccurs">
+                        <xsl:value-of select="@maxOccurs"/>
+                    </xsl:attribute>
+                </xsl:if>
+            </element>
+        </xsl:for-each>
+
+        <xsl:for-each select="xsd:complexType/xsd:attribute">
+            <element>
+                <xsl:attribute name="name">
+                    <xsl:value-of select="@name"/>
+                </xsl:attribute>
+                <xsl:attribute name="type">
+                    <xsl:value-of select="@type"/>
+                </xsl:attribute>
+                <xsl:attribute name="attribute">
+                    <xsl:value-of select="'true'"/>
+                </xsl:attribute>
+            </element>
+        </xsl:for-each>
+    </xsl:template>
+
+    <!-- ****************************************************** -->
+    <!-- ****** Template which writes the classes        ****** -->
+    <!-- ****************************************************** -->
     <xsl:template name="WriteClasses">
         <xsl:param name="pDocument"/>
         <xsl:param name="pPackageApi"/>
@@ -525,131 +660,130 @@
             <xsl:variable name="complexTypeName" select="@name"/>
             <xsl:variable name="vDocumentation" select="xsd:annotation/xsd:documentation/text()"/>
 
-            <xsl:if test="count(xsd:sequence/xsd:element) > 0 or count(xsd:choice/xsd:element) > 0 or count(xsd:sequence/xsd:choice/xsd:element) > 0 or count(xsd:choice/xsd:group) > 0">
-                <xsl:message select="concat('Metadata describing class: ', $complexTypeName)"/>
+            <xsl:if test="$complexTypeName">
+                <xsl:if test="count(xsd:sequence/xsd:element) > 0 or count(xsd:choice/xsd:element) > 0 or count(xsd:sequence/xsd:choice/xsd:element) > 0 or count(xsd:choice/xsd:group) > 0">
+                    <xsl:message select="concat('Metadata describing class: ', $complexTypeName)"/>
 
-                <xsl:if test="xsd:choice/@maxOccurs">
-                    <xsl:message select="'Got unbounded!'"/>
+                    <class>
+                        <xsl:attribute name="name">
+                            <xsl:value-of select="$complexTypeName"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="schemaName">
+                            <xsl:value-of select="$pDocument"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="packageApi">
+                            <xsl:value-of select="$pPackageApi"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="packageImpl">
+                            <xsl:value-of select="$pPackageImpl"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="documentation">
+                            <xsl:value-of select="$vDocumentation"/>
+                        </xsl:attribute>
+                        <xsl:for-each select="xsd:sequence/xsd:element">
+                            <element>
+                                <xsl:attribute name="name">
+                                    <xsl:value-of select="@name"/>
+                                </xsl:attribute>
+                                <xsl:attribute name="type">
+                                    <xsl:value-of select="@type"/>
+                                </xsl:attribute>
+                                <xsl:if test="@maxOccurs">
+                                    <xsl:attribute name="maxOccurs">
+                                        <xsl:value-of select="@maxOccurs"/>
+                                    </xsl:attribute>
+                                </xsl:if>
+                                <!-- <xsl:attribute name="documentation">
+                               <xsl:value-of select="xsd:annotation/xsd:documentation/text()"/>
+                            </xsl:attribute>-->
+                            </element>
+                        </xsl:for-each>
+
+                        <xsl:for-each select="xsd:sequence/xsd:choice/xsd:element">
+                            <element>
+                                <xsl:attribute name="name">
+                                    <xsl:value-of select="@name"/>
+                                </xsl:attribute>
+                                <xsl:attribute name="type">
+                                    <xsl:value-of select="@type"/>
+                                </xsl:attribute>
+                                <xsl:if test="@maxOccurs">
+                                    <xsl:attribute name="maxOccurs">
+                                        <xsl:value-of select="@maxOccurs"/>
+                                    </xsl:attribute>
+                                </xsl:if>
+                                <!--  <xsl:attribute name="documentation">
+                               <xsl:value-of select="xsd:annotation/xsd:documentation/text()"/>
+                            </xsl:attribute>-->
+                            </element>
+                        </xsl:for-each>
+
+                        <xsl:for-each select="xsd:choice/xsd:element">
+                            <element>
+                                <xsl:attribute name="name">
+                                    <xsl:value-of select="@name"/>
+                                </xsl:attribute>
+                                <xsl:attribute name="type">
+                                    <xsl:value-of select="@type"/>
+                                </xsl:attribute>
+                                <xsl:if test="@maxOccurs='unbounded' or ../@maxOccurs='unbounded'">
+                                    <xsl:attribute name="maxOccurs">
+                                        <xsl:value-of select="'unbounded'"/>
+                                    </xsl:attribute>
+                                </xsl:if>
+                                <!-- <xsl:attribute name="documentation">
+                               <xsl:value-of select="xsd:annotation/xsd:documentation/text()"/>
+                            </xsl:attribute>-->
+                            </element>
+                        </xsl:for-each>
+
+                        <xsl:for-each select="xsd:sequence/xsd:group">
+                            <include>
+                                <xsl:attribute name="name">
+                                    <xsl:value-of select="@ref"/>
+                                </xsl:attribute>
+                                <xsl:if test="@maxOccurs='unbounded' or ../@maxOccurs='unbounded'">
+                                    <xsl:attribute name="maxOccurs">
+                                        <xsl:value-of select="'unbounded'"/>
+                                    </xsl:attribute>
+                                </xsl:if>
+                                <!--                            <xsl:value-of select="@ref"/>-->
+                            </include>
+                        </xsl:for-each>
+
+                        <xsl:for-each select="xsd:choice/xsd:group">
+                            <include>
+                                <xsl:attribute name="name">
+                                    <xsl:value-of select="@ref"/>
+                                </xsl:attribute>
+                                <xsl:if test="@maxOccurs='unbounded' or ../@maxOccurs='unbounded'">
+                                    <xsl:attribute name="maxOccurs">
+                                        <xsl:value-of select="'unbounded'"/>
+                                    </xsl:attribute>
+                                </xsl:if>
+                                <!--                            <xsl:value-of select="@ref"/>-->
+                            </include>
+                        </xsl:for-each>
+
+                        <xsl:for-each select="xsd:attributeGroup">
+                            <include>
+                                <xsl:attribute name="name">
+                                    <xsl:value-of select="@ref"/>
+                                </xsl:attribute>
+                                <xsl:if test="@maxOccurs='unbounded' or ../@maxOccurs='unbounded'">
+                                    <xsl:attribute name="maxOccurs">
+                                        <xsl:value-of select="'unbounded'"/>
+                                    </xsl:attribute>
+                                </xsl:if>
+                                <!--                            <xsl:value-of select="@ref"/>-->
+                            </include>
+                        </xsl:for-each>
+
+                    </class>
                 </xsl:if>
-
-                <class>
-                    <xsl:attribute name="name">
-                        <xsl:value-of select="$complexTypeName"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="schemaName">
-                        <xsl:value-of select="$pDocument"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="packageApi">
-                        <xsl:value-of select="$pPackageApi"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="packageImpl">
-                        <xsl:value-of select="$pPackageImpl"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="documentation">
-                        <xsl:value-of select="$vDocumentation"/>
-                    </xsl:attribute>
-                    <xsl:for-each select="xsd:sequence/xsd:element">
-                        <element>
-                            <xsl:attribute name="name">
-                                <xsl:value-of select="@name"/>
-                            </xsl:attribute>
-                            <xsl:attribute name="type">
-                                <xsl:value-of select="@type"/>
-                            </xsl:attribute>
-                            <xsl:if test="@maxOccurs">
-                                <xsl:attribute name="maxOccurs">
-                                    <xsl:value-of select="@maxOccurs"/>
-                                </xsl:attribute>
-                            </xsl:if>
-                            <!-- <xsl:attribute name="documentation">
-                               <xsl:value-of select="xsd:annotation/xsd:documentation/text()"/>
-                            </xsl:attribute>-->
-                        </element>
-                    </xsl:for-each>
-
-                    <xsl:for-each select="xsd:sequence/xsd:choice/xsd:element">
-                        <element>
-                            <xsl:attribute name="name">
-                                <xsl:value-of select="@name"/>
-                            </xsl:attribute>
-                            <xsl:attribute name="type">
-                                <xsl:value-of select="@type"/>
-                            </xsl:attribute>
-                            <xsl:if test="@maxOccurs">
-                                <xsl:attribute name="maxOccurs">
-                                    <xsl:value-of select="@maxOccurs"/>
-                                </xsl:attribute>
-                            </xsl:if>
-                            <!--  <xsl:attribute name="documentation">
-                               <xsl:value-of select="xsd:annotation/xsd:documentation/text()"/>
-                            </xsl:attribute>-->
-                        </element>
-                    </xsl:for-each>
-
-                    <xsl:for-each select="xsd:choice/xsd:element">
-                        <element>
-                            <xsl:attribute name="name">
-                                <xsl:value-of select="@name"/>
-                            </xsl:attribute>
-                            <xsl:attribute name="type">
-                                <xsl:value-of select="@type"/>
-                            </xsl:attribute>
-                            <xsl:if test="@maxOccurs='unbounded' or ../@maxOccurs='unbounded'">
-                                <xsl:attribute name="maxOccurs">
-                                    <xsl:value-of select="'unbounded'"/>
-                                </xsl:attribute>
-                            </xsl:if>
-                            <!-- <xsl:attribute name="documentation">
-                               <xsl:value-of select="xsd:annotation/xsd:documentation/text()"/>
-                            </xsl:attribute>-->
-                        </element>
-                    </xsl:for-each>
-
-                    <xsl:for-each select="xsd:sequence/xsd:group">
-                        <include>
-                            <xsl:attribute name="name">
-                                <xsl:value-of select="@ref"/>
-                            </xsl:attribute>
-                            <xsl:if test="@maxOccurs='unbounded' or ../@maxOccurs='unbounded'">
-                                <xsl:attribute name="maxOccurs">
-                                    <xsl:value-of select="'unbounded'"/>
-                                </xsl:attribute>
-                            </xsl:if>
-                            <!--                            <xsl:value-of select="@ref"/>-->
-                        </include>
-                    </xsl:for-each>
-
-                    <xsl:for-each select="xsd:choice/xsd:group">
-                        <include>
-                            <xsl:attribute name="name">
-                                <xsl:value-of select="@ref"/>
-                            </xsl:attribute>
-                            <xsl:if test="@maxOccurs='unbounded' or ../@maxOccurs='unbounded'">
-                                <xsl:attribute name="maxOccurs">
-                                    <xsl:value-of select="'unbounded'"/>
-                                </xsl:attribute>
-                            </xsl:if>
-                            <!--                            <xsl:value-of select="@ref"/>-->
-                        </include>
-                    </xsl:for-each>
-
-                    <xsl:for-each select="xsd:attributeGroup">
-                        <include>
-                            <xsl:attribute name="name">
-                                <xsl:value-of select="@ref"/>
-                            </xsl:attribute>
-                            <xsl:if test="@maxOccurs='unbounded' or ../@maxOccurs='unbounded'">
-                                <xsl:attribute name="maxOccurs">
-                                    <xsl:value-of select="'unbounded'"/>
-                                </xsl:attribute>
-                            </xsl:if>
-                            <!--                            <xsl:value-of select="@ref"/>-->
-                        </include>
-                    </xsl:for-each>
-
-                </class>
             </xsl:if>
         </xsl:for-each>
+
     </xsl:template>
 
 </xsl:stylesheet>

@@ -36,7 +36,7 @@ import org.jboss.shrinkwrap.descriptor.api.webcommon30.WelcomeFileListType;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:21:34.75-04:00
  */
 public interface WebApp30Descriptor extends Descriptor, DescriptorNamespace<WebApp30Descriptor>
 {
@@ -232,11 +232,15 @@ public interface WebApp30Descriptor extends Descriptor, DescriptorNamespace<WebA
 
    public WebApp30Descriptor setVersion(String version);
 
+   public WebApp30Descriptor removeVersion();
+
    public WebAppVersionType getVersion();
 
    public String getVersionAsString();
 
    public WebApp30Descriptor setMetadataComplete(Boolean metadataComplete);
+
+   public WebApp30Descriptor removeMetadataComplete();
 
    public Boolean isMetadataComplete();
 

@@ -1,13 +1,34 @@
-package org.jboss.shrinkwrap.descriptor.impl.application6;
+package org.jboss.shrinkwrap.descriptor.impl.application6; 
 
-import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.application6.ModuleType;
-import org.jboss.shrinkwrap.descriptor.api.application6.WebType;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import org.jboss.shrinkwrap.descriptor.api.Child;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.api.application6.*;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
+import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
+import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.impl.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.impl.application6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.impl.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.impl.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.impl.ejbjar31.*;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:26:07.336-04:00
  *
  * Original Documentation:
  *
@@ -23,40 +44,36 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
  */
 public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
 {
-   public final static String nodeName = "module";
-
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
    private T t;
-
    private Node node;
-
    private Node childNode;
-
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public ModuleTypeImpl(T t, String descriptorName, Node node)
-   {
+   public ModuleTypeImpl(T t, String nodeName, Node node)   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public ModuleTypeImpl(T t, String descriptorName, Node node, Node childNode)
-   {
+   public ModuleTypeImpl(T t, String nodeName, Node node, Node childNode)   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
+
    public T up()
    {
       return t;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : alt-dd
@@ -67,7 +84,6 @@ public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
       childNode.getOrCreate("alt-dd").text(altDd);
       return this;
    }
-
    public ModuleType<T> removeAltDd()
    {
       childNode.remove("alt-dd");
@@ -79,6 +95,8 @@ public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
       return childNode.textValue("alt-dd");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : connector
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -88,7 +106,6 @@ public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
       childNode.getOrCreate("connector").text(connector);
       return this;
    }
-
    public ModuleType<T> removeConnector()
    {
       childNode.remove("connector");
@@ -100,6 +117,8 @@ public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
       return childNode.textValue("connector");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : ejb
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -109,7 +128,6 @@ public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
       childNode.getOrCreate("ejb").text(ejb);
       return this;
    }
-
    public ModuleType<T> removeEjb()
    {
       childNode.remove("ejb");
@@ -121,6 +139,8 @@ public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
       return childNode.textValue("ejb");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : java
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -130,7 +150,6 @@ public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
       childNode.getOrCreate("java").text(java);
       return this;
    }
-
    public ModuleType<T> removeJava()
    {
       childNode.remove("java");
@@ -141,6 +160,8 @@ public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
    {
       return childNode.textValue("java");
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : web
@@ -154,9 +175,10 @@ public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
 
    public WebType<ModuleType<T>> web()
    {
-      Node node = childNode.getOrCreate(WebTypeImpl.nodeName);
-      WebType<ModuleType<T>> web = new WebTypeImpl<ModuleType<T>>(this, "", childNode, node);
+      Node node = childNode.getOrCreate("web");
+      WebType<ModuleType<T>> web = new WebTypeImpl<ModuleType<T>>(this, "web", childNode, node);
       return web;
    }
+
 
 }

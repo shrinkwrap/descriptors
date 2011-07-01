@@ -12,7 +12,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:21:34.75-04:00
  *
  * Original Documentation:
  *
@@ -24,8 +24,6 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
  */
 public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
 {
-   public final static String nodeName = "data-source";
-
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -40,14 +38,14 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public DataSourceTypeImpl(T t, String descriptorName, Node node)
+   public DataSourceTypeImpl(T t, String nodeName, Node node)
    {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public DataSourceTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   public DataSourceTypeImpl(T t, String nodeName, Node node, Node childNode)
    {
       this.t = t;
       this.node = node;
@@ -254,22 +252,23 @@ public class DataSourceTypeImpl<T> implements Child<T>, DataSourceType<T>
    // -------------------------------------------------------------------------------------||
    public DataSourceType<T> removeAllProperty()
    {
-      childNode.remove(PropertyTypeImpl.nodeName);
+      childNode.remove("property");
       return this;
    }
 
    public PropertyType<DataSourceType<T>> property()
    {
-      return new PropertyTypeImpl<DataSourceType<T>>(this, "", childNode);
+      return new PropertyTypeImpl<DataSourceType<T>>(this, "property", childNode);
    }
 
    public List<PropertyType<DataSourceType<T>>> getPropertyList()
    {
       List<PropertyType<DataSourceType<T>>> list = new ArrayList<PropertyType<DataSourceType<T>>>();
-      List<Node> nodeList = childNode.get(PropertyTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("property");
       for (Node node : nodeList)
       {
-         PropertyType<DataSourceType<T>> type = new PropertyTypeImpl<DataSourceType<T>>(this, "", childNode, node);
+         PropertyType<DataSourceType<T>> type = new PropertyTypeImpl<DataSourceType<T>>(this, "property", childNode,
+               node);
          list.add(type);
       }
       return list;

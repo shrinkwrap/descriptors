@@ -9,7 +9,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:21:34.75-04:00
  *
  * Original Documentation:
  *
@@ -28,8 +28,6 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
  */
 public class OrderingOrderingTypeImpl<T> implements Child<T>, OrderingOrderingType<T>
 {
-   public final static String nodeName = "after";
-
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -44,14 +42,14 @@ public class OrderingOrderingTypeImpl<T> implements Child<T>, OrderingOrderingTy
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public OrderingOrderingTypeImpl(T t, String descriptorName, Node node)
+   public OrderingOrderingTypeImpl(T t, String nodeName, Node node)
    {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public OrderingOrderingTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   public OrderingOrderingTypeImpl(T t, String nodeName, Node node, Node childNode)
    {
       this.t = t;
       this.node = node;

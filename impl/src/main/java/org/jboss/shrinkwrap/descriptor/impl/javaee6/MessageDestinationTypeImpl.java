@@ -10,7 +10,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:21:34.75-04:00
  *
  * Original Documentation:
  *
@@ -43,8 +43,6 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
  */
 public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinationType<T>
 {
-   public final static String nodeName = "message-destination";
-
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -59,14 +57,14 @@ public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinati
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public MessageDestinationTypeImpl(T t, String descriptorName, Node node)
+   public MessageDestinationTypeImpl(T t, String nodeName, Node node)
    {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public MessageDestinationTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   public MessageDestinationTypeImpl(T t, String nodeName, Node node, Node childNode)
    {
       this.t = t;
       this.node = node;
@@ -156,23 +154,23 @@ public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinati
    // -------------------------------------------------------------------------------------||
    public MessageDestinationType<T> removeAllIcon()
    {
-      childNode.remove(IconTypeImpl.nodeName);
+      childNode.remove("icon");
       return this;
    }
 
    public IconType<MessageDestinationType<T>> icon()
    {
-      return new IconTypeImpl<MessageDestinationType<T>>(this, "", childNode);
+      return new IconTypeImpl<MessageDestinationType<T>>(this, "icon", childNode);
    }
 
    public List<IconType<MessageDestinationType<T>>> getIconList()
    {
       List<IconType<MessageDestinationType<T>>> list = new ArrayList<IconType<MessageDestinationType<T>>>();
-      List<Node> nodeList = childNode.get(IconTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("icon");
       for (Node node : nodeList)
       {
-         IconType<MessageDestinationType<T>> type = new IconTypeImpl<MessageDestinationType<T>>(this, "", childNode,
-               node);
+         IconType<MessageDestinationType<T>> type = new IconTypeImpl<MessageDestinationType<T>>(this, "icon",
+               childNode, node);
          list.add(type);
       }
       return list;

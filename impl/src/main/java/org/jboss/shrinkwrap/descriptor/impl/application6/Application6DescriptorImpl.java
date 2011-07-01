@@ -39,7 +39,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:21:34.75-04:00
  */
 public class Application6DescriptorImpl extends NodeProviderImplBase
       implements
@@ -187,22 +187,23 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public Application6Descriptor removeAllModule()
    {
-      model.remove(ModuleTypeImpl.nodeName);
+      model.remove("module");
       return this;
    }
 
    public ModuleType<Application6Descriptor> module()
    {
-      return new ModuleTypeImpl<Application6Descriptor>(this, "", model);
+      return new ModuleTypeImpl<Application6Descriptor>(this, "module", model);
    }
 
    public List<ModuleType<Application6Descriptor>> getModuleList()
    {
       List<ModuleType<Application6Descriptor>> list = new ArrayList<ModuleType<Application6Descriptor>>();
-      List<Node> nodeList = model.get(ModuleTypeImpl.nodeName);
+      List<Node> nodeList = model.get("module");
       for (Node node : nodeList)
       {
-         ModuleType<Application6Descriptor> type = new ModuleTypeImpl<Application6Descriptor>(this, "", model, node);
+         ModuleType<Application6Descriptor> type = new ModuleTypeImpl<Application6Descriptor>(this, "module", model,
+               node);
          list.add(type);
       }
       return list;
@@ -214,23 +215,23 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public Application6Descriptor removeAllSecurityRole()
    {
-      model.remove(SecurityRoleTypeImpl.nodeName);
+      model.remove("security-role");
       return this;
    }
 
    public SecurityRoleType<Application6Descriptor> securityRole()
    {
-      return new SecurityRoleTypeImpl<Application6Descriptor>(this, "", model);
+      return new SecurityRoleTypeImpl<Application6Descriptor>(this, "security-role", model);
    }
 
    public List<SecurityRoleType<Application6Descriptor>> getSecurityRoleList()
    {
       List<SecurityRoleType<Application6Descriptor>> list = new ArrayList<SecurityRoleType<Application6Descriptor>>();
-      List<Node> nodeList = model.get(SecurityRoleTypeImpl.nodeName);
+      List<Node> nodeList = model.get("security-role");
       for (Node node : nodeList)
       {
-         SecurityRoleType<Application6Descriptor> type = new SecurityRoleTypeImpl<Application6Descriptor>(this, "",
-               model, node);
+         SecurityRoleType<Application6Descriptor> type = new SecurityRoleTypeImpl<Application6Descriptor>(this,
+               "security-role", model, node);
          list.add(type);
       }
       return list;
@@ -263,22 +264,23 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public Application6Descriptor removeAllEnvEntry()
    {
-      model.remove(EnvEntryTypeImpl.nodeName);
+      model.remove("env-entry");
       return this;
    }
 
    public EnvEntryType<Application6Descriptor> envEntry()
    {
-      return new EnvEntryTypeImpl<Application6Descriptor>(this, "", model);
+      return new EnvEntryTypeImpl<Application6Descriptor>(this, "env-entry", model);
    }
 
    public List<EnvEntryType<Application6Descriptor>> getEnvEntryList()
    {
       List<EnvEntryType<Application6Descriptor>> list = new ArrayList<EnvEntryType<Application6Descriptor>>();
-      List<Node> nodeList = model.get(EnvEntryTypeImpl.nodeName);
+      List<Node> nodeList = model.get("env-entry");
       for (Node node : nodeList)
       {
-         EnvEntryType<Application6Descriptor> type = new EnvEntryTypeImpl<Application6Descriptor>(this, "", model, node);
+         EnvEntryType<Application6Descriptor> type = new EnvEntryTypeImpl<Application6Descriptor>(this, "env-entry",
+               model, node);
          list.add(type);
       }
       return list;
@@ -290,22 +292,23 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public Application6Descriptor removeAllEjbRef()
    {
-      model.remove(EjbRefTypeImpl.nodeName);
+      model.remove("ejb-ref");
       return this;
    }
 
    public EjbRefType<Application6Descriptor> ejbRef()
    {
-      return new EjbRefTypeImpl<Application6Descriptor>(this, "", model);
+      return new EjbRefTypeImpl<Application6Descriptor>(this, "ejb-ref", model);
    }
 
    public List<EjbRefType<Application6Descriptor>> getEjbRefList()
    {
       List<EjbRefType<Application6Descriptor>> list = new ArrayList<EjbRefType<Application6Descriptor>>();
-      List<Node> nodeList = model.get(EjbRefTypeImpl.nodeName);
+      List<Node> nodeList = model.get("ejb-ref");
       for (Node node : nodeList)
       {
-         EjbRefType<Application6Descriptor> type = new EjbRefTypeImpl<Application6Descriptor>(this, "", model, node);
+         EjbRefType<Application6Descriptor> type = new EjbRefTypeImpl<Application6Descriptor>(this, "ejb-ref", model,
+               node);
          list.add(type);
       }
       return list;
@@ -317,23 +320,23 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public Application6Descriptor removeAllEjbLocalRef()
    {
-      model.remove(EjbLocalRefTypeImpl.nodeName);
+      model.remove("ejb-local-ref");
       return this;
    }
 
    public EjbLocalRefType<Application6Descriptor> ejbLocalRef()
    {
-      return new EjbLocalRefTypeImpl<Application6Descriptor>(this, "", model);
+      return new EjbLocalRefTypeImpl<Application6Descriptor>(this, "ejb-local-ref", model);
    }
 
    public List<EjbLocalRefType<Application6Descriptor>> getEjbLocalRefList()
    {
       List<EjbLocalRefType<Application6Descriptor>> list = new ArrayList<EjbLocalRefType<Application6Descriptor>>();
-      List<Node> nodeList = model.get(EjbLocalRefTypeImpl.nodeName);
+      List<Node> nodeList = model.get("ejb-local-ref");
       for (Node node : nodeList)
       {
-         EjbLocalRefType<Application6Descriptor> type = new EjbLocalRefTypeImpl<Application6Descriptor>(this, "",
-               model, node);
+         EjbLocalRefType<Application6Descriptor> type = new EjbLocalRefTypeImpl<Application6Descriptor>(this,
+               "ejb-local-ref", model, node);
          list.add(type);
       }
       return list;
@@ -345,23 +348,23 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public Application6Descriptor removeAllResourceRef()
    {
-      model.remove(ResourceRefTypeImpl.nodeName);
+      model.remove("resource-ref");
       return this;
    }
 
    public ResourceRefType<Application6Descriptor> resourceRef()
    {
-      return new ResourceRefTypeImpl<Application6Descriptor>(this, "", model);
+      return new ResourceRefTypeImpl<Application6Descriptor>(this, "resource-ref", model);
    }
 
    public List<ResourceRefType<Application6Descriptor>> getResourceRefList()
    {
       List<ResourceRefType<Application6Descriptor>> list = new ArrayList<ResourceRefType<Application6Descriptor>>();
-      List<Node> nodeList = model.get(ResourceRefTypeImpl.nodeName);
+      List<Node> nodeList = model.get("resource-ref");
       for (Node node : nodeList)
       {
-         ResourceRefType<Application6Descriptor> type = new ResourceRefTypeImpl<Application6Descriptor>(this, "",
-               model, node);
+         ResourceRefType<Application6Descriptor> type = new ResourceRefTypeImpl<Application6Descriptor>(this,
+               "resource-ref", model, node);
          list.add(type);
       }
       return list;
@@ -373,23 +376,23 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public Application6Descriptor removeAllResourceEnvRef()
    {
-      model.remove(ResourceEnvRefTypeImpl.nodeName);
+      model.remove("resource-env-ref");
       return this;
    }
 
    public ResourceEnvRefType<Application6Descriptor> resourceEnvRef()
    {
-      return new ResourceEnvRefTypeImpl<Application6Descriptor>(this, "", model);
+      return new ResourceEnvRefTypeImpl<Application6Descriptor>(this, "resource-env-ref", model);
    }
 
    public List<ResourceEnvRefType<Application6Descriptor>> getResourceEnvRefList()
    {
       List<ResourceEnvRefType<Application6Descriptor>> list = new ArrayList<ResourceEnvRefType<Application6Descriptor>>();
-      List<Node> nodeList = model.get(ResourceEnvRefTypeImpl.nodeName);
+      List<Node> nodeList = model.get("resource-env-ref");
       for (Node node : nodeList)
       {
-         ResourceEnvRefType<Application6Descriptor> type = new ResourceEnvRefTypeImpl<Application6Descriptor>(this, "",
-               model, node);
+         ResourceEnvRefType<Application6Descriptor> type = new ResourceEnvRefTypeImpl<Application6Descriptor>(this,
+               "resource-env-ref", model, node);
          list.add(type);
       }
       return list;
@@ -401,23 +404,23 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public Application6Descriptor removeAllMessageDestinationRef()
    {
-      model.remove(MessageDestinationRefTypeImpl.nodeName);
+      model.remove("message-destination-ref");
       return this;
    }
 
    public MessageDestinationRefType<Application6Descriptor> messageDestinationRef()
    {
-      return new MessageDestinationRefTypeImpl<Application6Descriptor>(this, "", model);
+      return new MessageDestinationRefTypeImpl<Application6Descriptor>(this, "message-destination-ref", model);
    }
 
    public List<MessageDestinationRefType<Application6Descriptor>> getMessageDestinationRefList()
    {
       List<MessageDestinationRefType<Application6Descriptor>> list = new ArrayList<MessageDestinationRefType<Application6Descriptor>>();
-      List<Node> nodeList = model.get(MessageDestinationRefTypeImpl.nodeName);
+      List<Node> nodeList = model.get("message-destination-ref");
       for (Node node : nodeList)
       {
          MessageDestinationRefType<Application6Descriptor> type = new MessageDestinationRefTypeImpl<Application6Descriptor>(
-               this, "", model, node);
+               this, "message-destination-ref", model, node);
          list.add(type);
       }
       return list;
@@ -429,23 +432,23 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public Application6Descriptor removeAllPersistenceContextRef()
    {
-      model.remove(PersistenceContextRefTypeImpl.nodeName);
+      model.remove("persistence-context-ref");
       return this;
    }
 
    public PersistenceContextRefType<Application6Descriptor> persistenceContextRef()
    {
-      return new PersistenceContextRefTypeImpl<Application6Descriptor>(this, "", model);
+      return new PersistenceContextRefTypeImpl<Application6Descriptor>(this, "persistence-context-ref", model);
    }
 
    public List<PersistenceContextRefType<Application6Descriptor>> getPersistenceContextRefList()
    {
       List<PersistenceContextRefType<Application6Descriptor>> list = new ArrayList<PersistenceContextRefType<Application6Descriptor>>();
-      List<Node> nodeList = model.get(PersistenceContextRefTypeImpl.nodeName);
+      List<Node> nodeList = model.get("persistence-context-ref");
       for (Node node : nodeList)
       {
          PersistenceContextRefType<Application6Descriptor> type = new PersistenceContextRefTypeImpl<Application6Descriptor>(
-               this, "", model, node);
+               this, "persistence-context-ref", model, node);
          list.add(type);
       }
       return list;
@@ -457,23 +460,23 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public Application6Descriptor removeAllPersistenceUnitRef()
    {
-      model.remove(PersistenceUnitRefTypeImpl.nodeName);
+      model.remove("persistence-unit-ref");
       return this;
    }
 
    public PersistenceUnitRefType<Application6Descriptor> persistenceUnitRef()
    {
-      return new PersistenceUnitRefTypeImpl<Application6Descriptor>(this, "", model);
+      return new PersistenceUnitRefTypeImpl<Application6Descriptor>(this, "persistence-unit-ref", model);
    }
 
    public List<PersistenceUnitRefType<Application6Descriptor>> getPersistenceUnitRefList()
    {
       List<PersistenceUnitRefType<Application6Descriptor>> list = new ArrayList<PersistenceUnitRefType<Application6Descriptor>>();
-      List<Node> nodeList = model.get(PersistenceUnitRefTypeImpl.nodeName);
+      List<Node> nodeList = model.get("persistence-unit-ref");
       for (Node node : nodeList)
       {
          PersistenceUnitRefType<Application6Descriptor> type = new PersistenceUnitRefTypeImpl<Application6Descriptor>(
-               this, "", model, node);
+               this, "persistence-unit-ref", model, node);
          list.add(type);
       }
       return list;
@@ -485,23 +488,23 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public Application6Descriptor removeAllMessageDestination()
    {
-      model.remove(MessageDestinationTypeImpl.nodeName);
+      model.remove("message-destination");
       return this;
    }
 
    public MessageDestinationType<Application6Descriptor> messageDestination()
    {
-      return new MessageDestinationTypeImpl<Application6Descriptor>(this, "", model);
+      return new MessageDestinationTypeImpl<Application6Descriptor>(this, "message-destination", model);
    }
 
    public List<MessageDestinationType<Application6Descriptor>> getMessageDestinationList()
    {
       List<MessageDestinationType<Application6Descriptor>> list = new ArrayList<MessageDestinationType<Application6Descriptor>>();
-      List<Node> nodeList = model.get(MessageDestinationTypeImpl.nodeName);
+      List<Node> nodeList = model.get("message-destination");
       for (Node node : nodeList)
       {
          MessageDestinationType<Application6Descriptor> type = new MessageDestinationTypeImpl<Application6Descriptor>(
-               this, "", model, node);
+               this, "message-destination", model, node);
          list.add(type);
       }
       return list;
@@ -513,23 +516,23 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public Application6Descriptor removeAllDataSource()
    {
-      model.remove(DataSourceTypeImpl.nodeName);
+      model.remove("data-source");
       return this;
    }
 
    public DataSourceType<Application6Descriptor> dataSource()
    {
-      return new DataSourceTypeImpl<Application6Descriptor>(this, "", model);
+      return new DataSourceTypeImpl<Application6Descriptor>(this, "data-source", model);
    }
 
    public List<DataSourceType<Application6Descriptor>> getDataSourceList()
    {
       List<DataSourceType<Application6Descriptor>> list = new ArrayList<DataSourceType<Application6Descriptor>>();
-      List<Node> nodeList = model.get(DataSourceTypeImpl.nodeName);
+      List<Node> nodeList = model.get("data-source");
       for (Node node : nodeList)
       {
-         DataSourceType<Application6Descriptor> type = new DataSourceTypeImpl<Application6Descriptor>(this, "", model,
-               node);
+         DataSourceType<Application6Descriptor> type = new DataSourceTypeImpl<Application6Descriptor>(this,
+               "data-source", model, node);
          list.add(type);
       }
       return list;
@@ -613,22 +616,22 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
    // -------------------------------------------------------------------------------------||
    public Application6Descriptor removeAllIcon()
    {
-      model.remove(IconTypeImpl.nodeName);
+      model.remove("icon");
       return this;
    }
 
    public IconType<Application6Descriptor> icon()
    {
-      return new IconTypeImpl<Application6Descriptor>(this, "", model);
+      return new IconTypeImpl<Application6Descriptor>(this, "icon", model);
    }
 
    public List<IconType<Application6Descriptor>> getIconList()
    {
       List<IconType<Application6Descriptor>> list = new ArrayList<IconType<Application6Descriptor>>();
-      List<Node> nodeList = model.get(IconTypeImpl.nodeName);
+      List<Node> nodeList = model.get("icon");
       for (Node node : nodeList)
       {
-         IconType<Application6Descriptor> type = new IconTypeImpl<Application6Descriptor>(this, "", model, node);
+         IconType<Application6Descriptor> type = new IconTypeImpl<Application6Descriptor>(this, "icon", model, node);
          list.add(type);
       }
       return list;

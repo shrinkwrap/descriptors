@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:21:34.75-04:00
  *
  * Original Documentation:
  *
@@ -19,8 +19,6 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
  */
 public class OrderingTypeImpl<T> implements Child<T>, OrderingType<T>
 {
-   public final static String nodeName = "ordering";
-
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -35,14 +33,14 @@ public class OrderingTypeImpl<T> implements Child<T>, OrderingType<T>
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public OrderingTypeImpl(T t, String descriptorName, Node node)
+   public OrderingTypeImpl(T t, String nodeName, Node node)
    {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public OrderingTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   public OrderingTypeImpl(T t, String nodeName, Node node, Node childNode)
    {
       this.t = t;
       this.node = node;
@@ -66,9 +64,9 @@ public class OrderingTypeImpl<T> implements Child<T>, OrderingType<T>
 
    public OrderingOrderingType<OrderingType<T>> after()
    {
-      Node node = childNode.getOrCreate(OrderingOrderingTypeImpl.nodeName);
-      OrderingOrderingType<OrderingType<T>> after = new OrderingOrderingTypeImpl<OrderingType<T>>(this, "", childNode,
-            node);
+      Node node = childNode.getOrCreate("after");
+      OrderingOrderingType<OrderingType<T>> after = new OrderingOrderingTypeImpl<OrderingType<T>>(this, "after",
+            childNode, node);
       return after;
    }
 
@@ -84,9 +82,9 @@ public class OrderingTypeImpl<T> implements Child<T>, OrderingType<T>
 
    public OrderingOrderingType<OrderingType<T>> before()
    {
-      Node node = childNode.getOrCreate(OrderingOrderingTypeImpl.nodeName);
-      OrderingOrderingType<OrderingType<T>> before = new OrderingOrderingTypeImpl<OrderingType<T>>(this, "", childNode,
-            node);
+      Node node = childNode.getOrCreate("before");
+      OrderingOrderingType<OrderingType<T>> before = new OrderingOrderingTypeImpl<OrderingType<T>>(this, "before",
+            childNode, node);
       return before;
    }
 

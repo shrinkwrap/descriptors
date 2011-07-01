@@ -35,9 +35,9 @@ public class WebApp30DescriptorAttributeGroupTestCase
       assertXPath(webApp.exportAsString(), "/web-app/servlet/description[1]", "Description1");
       assertXPath(webApp.exportAsString(), "/web-app/servlet/description[2]", "Description2");
       
-      assertTrue(webApp.servlet().getDescriptionList().size() == 2);
-      webApp.servlet().removeAllDescription();
-      assertTrue(webApp.servlet().getDescriptionList().size() == 0);
+      assertTrue(webApp.getServletList().get(0).getDescriptionList().size() == 2);
+      webApp.getServletList().get(0).removeAllDescription();
+      assertTrue(webApp.getServletList().get(0).getDescriptionList().size() == 0);
    }
    
    @Test
@@ -51,9 +51,9 @@ public class WebApp30DescriptorAttributeGroupTestCase
       assertXPath(webApp.exportAsString(), "/web-app/filter/display-name[1]", "displayName1");
       assertXPath(webApp.exportAsString(), "/web-app/filter/display-name[2]", "displayName2");
       
-      assertTrue(webApp.filter().getDisplayNameList().size() == 2);
-      webApp.filter().removeAllDisplayName();
-      assertTrue(webApp.filter().getDisplayNameList().size() == 0);
+      assertTrue(webApp.getFilterList().get(0).getDisplayNameList().size() == 2);
+      webApp.getFilterList().get(0).removeAllDisplayName();
+      assertTrue(webApp.getFilterList().get(0).getDisplayNameList().size() == 0);
    }
    
    @Test
@@ -66,15 +66,15 @@ public class WebApp30DescriptorAttributeGroupTestCase
       assertXPath(webApp.exportAsString(), "/web-app/filter/icon[1]/large-icon", "largeIcon1");
       assertXPath(webApp.exportAsString(), "/web-app/filter/icon[2]/small-icon", "smallIcon2");
       
-      assertTrue(webApp.filter().getIconList().size() == 2);
+      assertTrue(webApp.getFilterList().get(0).getIconList().size() == 2);
       
-      webApp.filter().getIconList().get(0).removeLargeIcon();
+      webApp.getFilterList().get(0).getIconList().get(0).removeLargeIcon();
       assertTrue(webApp.exportAsString().indexOf("<large-icon>") == -1);
       
-      webApp.filter().getIconList().get(1).removeSmallIcon();
+      webApp.getFilterList().get(0).getIconList().get(1).removeSmallIcon();
       assertTrue(webApp.exportAsString().indexOf("<small-icon>") == -1);
       
-      webApp.filter().removeAllIcon();
+      webApp.getFilterList().get(0).removeAllIcon();
       assertTrue(webApp.filter().getIconList().size() == 0);
    }
    

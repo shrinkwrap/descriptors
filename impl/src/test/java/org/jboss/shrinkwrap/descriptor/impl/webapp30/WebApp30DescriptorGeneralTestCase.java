@@ -116,7 +116,7 @@ public class WebApp30DescriptorGeneralTestCase
                        .icon().setSmallIcon("small2").setLargeIcon("large2").up()
                     .up();
 
-     List<IconType<FilterType<WebApp30Descriptor>>> list = web.filter().getIconList();
+     List<IconType<FilterType<WebApp30Descriptor>>> list = web.getFilterList().get(0).getIconList();
      assertTrue(list.size() == 2);
      for (IconType icon: list) 
      {

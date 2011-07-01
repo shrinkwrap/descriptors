@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:21:34.75-04:00
  *
  * Original Documentation:
  *
@@ -22,8 +22,6 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
  */
 public class CookieConfigTypeImpl<T> implements Child<T>, CookieConfigType<T>
 {
-   public final static String nodeName = "cookie-config";
-
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -38,14 +36,14 @@ public class CookieConfigTypeImpl<T> implements Child<T>, CookieConfigType<T>
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public CookieConfigTypeImpl(T t, String descriptorName, Node node)
+   public CookieConfigTypeImpl(T t, String nodeName, Node node)
    {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public CookieConfigTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   public CookieConfigTypeImpl(T t, String nodeName, Node node, Node childNode)
    {
       this.t = t;
       this.node = node;

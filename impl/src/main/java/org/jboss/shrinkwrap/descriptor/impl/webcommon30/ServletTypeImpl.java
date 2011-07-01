@@ -19,7 +19,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:21:34.75-04:00
  *
  * Original Documentation:
  *
@@ -37,8 +37,6 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
  */
 public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
 {
-   public final static String nodeName = "servlet";
-
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -53,14 +51,14 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public ServletTypeImpl(T t, String descriptorName, Node node)
+   public ServletTypeImpl(T t, String nodeName, Node node)
    {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public ServletTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   public ServletTypeImpl(T t, String nodeName, Node node, Node childNode)
    {
       this.t = t;
       this.node = node;
@@ -150,22 +148,22 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
    // -------------------------------------------------------------------------------------||
    public ServletType<T> removeAllIcon()
    {
-      childNode.remove(IconTypeImpl.nodeName);
+      childNode.remove("icon");
       return this;
    }
 
    public IconType<ServletType<T>> icon()
    {
-      return new IconTypeImpl<ServletType<T>>(this, "", childNode);
+      return new IconTypeImpl<ServletType<T>>(this, "icon", childNode);
    }
 
    public List<IconType<ServletType<T>>> getIconList()
    {
       List<IconType<ServletType<T>>> list = new ArrayList<IconType<ServletType<T>>>();
-      List<Node> nodeList = childNode.get(IconTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("icon");
       for (Node node : nodeList)
       {
-         IconType<ServletType<T>> type = new IconTypeImpl<ServletType<T>>(this, "", childNode, node);
+         IconType<ServletType<T>> type = new IconTypeImpl<ServletType<T>>(this, "icon", childNode, node);
          list.add(type);
       }
       return list;
@@ -198,22 +196,23 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
    // -------------------------------------------------------------------------------------||
    public ServletType<T> removeAllInitParam()
    {
-      childNode.remove(ParamValueTypeImpl.nodeName);
+      childNode.remove("init-param");
       return this;
    }
 
    public ParamValueType<ServletType<T>> initParam()
    {
-      return new ParamValueTypeImpl<ServletType<T>>(this, "", childNode);
+      return new ParamValueTypeImpl<ServletType<T>>(this, "init-param", childNode);
    }
 
    public List<ParamValueType<ServletType<T>>> getInitParamList()
    {
       List<ParamValueType<ServletType<T>>> list = new ArrayList<ParamValueType<ServletType<T>>>();
-      List<Node> nodeList = childNode.get(ParamValueTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("init-param");
       for (Node node : nodeList)
       {
-         ParamValueType<ServletType<T>> type = new ParamValueTypeImpl<ServletType<T>>(this, "", childNode, node);
+         ParamValueType<ServletType<T>> type = new ParamValueTypeImpl<ServletType<T>>(this, "init-param", childNode,
+               node);
          list.add(type);
       }
       return list;
@@ -223,7 +222,7 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
    // Element type : load-on-startup
    // isComplexType: false   maxOccurs: -   isAttribute: false
    // -------------------------------------------------------------------------------------||
-   public ServletType<T> setLoadOnStartup(Boolean loadOnStartup)
+   public ServletType<T> setLoadOnStartup(Integer loadOnStartup)
    {
       childNode.getOrCreate("load-on-startup").text(loadOnStartup);
       return this;
@@ -235,9 +234,9 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
       return this;
    }
 
-   public Boolean isLoadOnStartup()
+   public Integer getLoadOnStartup()
    {
-      return Strings.isTrue(childNode.textValue("load-on-startup"));
+      return Integer.valueOf(childNode.textValue("load-on-startup"));
    }
 
    // -------------------------------------------------------------------------------------||
@@ -294,8 +293,8 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
 
    public RunAsType<ServletType<T>> runAs()
    {
-      Node node = childNode.getOrCreate(RunAsTypeImpl.nodeName);
-      RunAsType<ServletType<T>> runAs = new RunAsTypeImpl<ServletType<T>>(this, "", childNode, node);
+      Node node = childNode.getOrCreate("run-as");
+      RunAsType<ServletType<T>> runAs = new RunAsTypeImpl<ServletType<T>>(this, "run-as", childNode, node);
       return runAs;
    }
 
@@ -305,23 +304,23 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
    // -------------------------------------------------------------------------------------||
    public ServletType<T> removeAllSecurityRoleRef()
    {
-      childNode.remove(SecurityRoleRefTypeImpl.nodeName);
+      childNode.remove("security-role-ref");
       return this;
    }
 
    public SecurityRoleRefType<ServletType<T>> securityRoleRef()
    {
-      return new SecurityRoleRefTypeImpl<ServletType<T>>(this, "", childNode);
+      return new SecurityRoleRefTypeImpl<ServletType<T>>(this, "security-role-ref", childNode);
    }
 
    public List<SecurityRoleRefType<ServletType<T>>> getSecurityRoleRefList()
    {
       List<SecurityRoleRefType<ServletType<T>>> list = new ArrayList<SecurityRoleRefType<ServletType<T>>>();
-      List<Node> nodeList = childNode.get(SecurityRoleRefTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("security-role-ref");
       for (Node node : nodeList)
       {
-         SecurityRoleRefType<ServletType<T>> type = new SecurityRoleRefTypeImpl<ServletType<T>>(this, "", childNode,
-               node);
+         SecurityRoleRefType<ServletType<T>> type = new SecurityRoleRefTypeImpl<ServletType<T>>(this,
+               "security-role-ref", childNode, node);
          list.add(type);
       }
       return list;
@@ -339,9 +338,9 @@ public class ServletTypeImpl<T> implements Child<T>, ServletType<T>
 
    public MultipartConfigType<ServletType<T>> multipartConfig()
    {
-      Node node = childNode.getOrCreate(MultipartConfigTypeImpl.nodeName);
-      MultipartConfigType<ServletType<T>> multipartConfig = new MultipartConfigTypeImpl<ServletType<T>>(this, "",
-            childNode, node);
+      Node node = childNode.getOrCreate("multipart-config");
+      MultipartConfigType<ServletType<T>> multipartConfig = new MultipartConfigTypeImpl<ServletType<T>>(this,
+            "multipart-config", childNode, node);
       return multipartConfig;
    }
 

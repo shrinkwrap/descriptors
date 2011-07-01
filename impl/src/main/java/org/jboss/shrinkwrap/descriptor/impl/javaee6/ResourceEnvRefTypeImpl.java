@@ -10,7 +10,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:21:34.75-04:00
  *
  * Original Documentation:
  *
@@ -48,8 +48,6 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
  */
 public class ResourceEnvRefTypeImpl<T> implements Child<T>, ResourceEnvRefType<T>
 {
-   public final static String nodeName = "resource-env-ref";
-
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -64,14 +62,14 @@ public class ResourceEnvRefTypeImpl<T> implements Child<T>, ResourceEnvRefType<T
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public ResourceEnvRefTypeImpl(T t, String descriptorName, Node node)
+   public ResourceEnvRefTypeImpl(T t, String nodeName, Node node)
    {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public ResourceEnvRefTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   public ResourceEnvRefTypeImpl(T t, String nodeName, Node node, Node childNode)
    {
       this.t = t;
       this.node = node;
@@ -131,23 +129,23 @@ public class ResourceEnvRefTypeImpl<T> implements Child<T>, ResourceEnvRefType<T
    // -------------------------------------------------------------------------------------||
    public ResourceEnvRefType<T> removeAllInjectionTarget()
    {
-      childNode.remove(InjectionTargetTypeImpl.nodeName);
+      childNode.remove("injection-target");
       return this;
    }
 
    public InjectionTargetType<ResourceEnvRefType<T>> injectionTarget()
    {
-      return new InjectionTargetTypeImpl<ResourceEnvRefType<T>>(this, "", childNode);
+      return new InjectionTargetTypeImpl<ResourceEnvRefType<T>>(this, "injection-target", childNode);
    }
 
    public List<InjectionTargetType<ResourceEnvRefType<T>>> getInjectionTargetList()
    {
       List<InjectionTargetType<ResourceEnvRefType<T>>> list = new ArrayList<InjectionTargetType<ResourceEnvRefType<T>>>();
-      List<Node> nodeList = childNode.get(InjectionTargetTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("injection-target");
       for (Node node : nodeList)
       {
-         InjectionTargetType<ResourceEnvRefType<T>> type = new InjectionTargetTypeImpl<ResourceEnvRefType<T>>(this, "",
-               childNode, node);
+         InjectionTargetType<ResourceEnvRefType<T>> type = new InjectionTargetTypeImpl<ResourceEnvRefType<T>>(this,
+               "injection-target", childNode, node);
          list.add(type);
       }
       return list;

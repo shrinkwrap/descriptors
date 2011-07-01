@@ -12,7 +12,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:21:34.75-04:00
  *
  * Original Documentation:
  *
@@ -53,8 +53,6 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
  */
 public class PersistenceContextRefTypeImpl<T> implements Child<T>, PersistenceContextRefType<T>
 {
-   public final static String nodeName = "persistence-context-ref";
-
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -69,14 +67,14 @@ public class PersistenceContextRefTypeImpl<T> implements Child<T>, PersistenceCo
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public PersistenceContextRefTypeImpl(T t, String descriptorName, Node node)
+   public PersistenceContextRefTypeImpl(T t, String nodeName, Node node)
    {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public PersistenceContextRefTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   public PersistenceContextRefTypeImpl(T t, String nodeName, Node node, Node childNode)
    {
       this.t = t;
       this.node = node;
@@ -115,23 +113,23 @@ public class PersistenceContextRefTypeImpl<T> implements Child<T>, PersistenceCo
    // -------------------------------------------------------------------------------------||
    public PersistenceContextRefType<T> removeAllInjectionTarget()
    {
-      childNode.remove(InjectionTargetTypeImpl.nodeName);
+      childNode.remove("injection-target");
       return this;
    }
 
    public InjectionTargetType<PersistenceContextRefType<T>> injectionTarget()
    {
-      return new InjectionTargetTypeImpl<PersistenceContextRefType<T>>(this, "", childNode);
+      return new InjectionTargetTypeImpl<PersistenceContextRefType<T>>(this, "injection-target", childNode);
    }
 
    public List<InjectionTargetType<PersistenceContextRefType<T>>> getInjectionTargetList()
    {
       List<InjectionTargetType<PersistenceContextRefType<T>>> list = new ArrayList<InjectionTargetType<PersistenceContextRefType<T>>>();
-      List<Node> nodeList = childNode.get(InjectionTargetTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("injection-target");
       for (Node node : nodeList)
       {
          InjectionTargetType<PersistenceContextRefType<T>> type = new InjectionTargetTypeImpl<PersistenceContextRefType<T>>(
-               this, "", childNode, node);
+               this, "injection-target", childNode, node);
          list.add(type);
       }
       return list;
@@ -247,23 +245,23 @@ public class PersistenceContextRefTypeImpl<T> implements Child<T>, PersistenceCo
    // -------------------------------------------------------------------------------------||
    public PersistenceContextRefType<T> removeAllPersistenceProperty()
    {
-      childNode.remove(PropertyTypeImpl.nodeName);
+      childNode.remove("persistence-property");
       return this;
    }
 
    public PropertyType<PersistenceContextRefType<T>> persistenceProperty()
    {
-      return new PropertyTypeImpl<PersistenceContextRefType<T>>(this, "", childNode);
+      return new PropertyTypeImpl<PersistenceContextRefType<T>>(this, "persistence-property", childNode);
    }
 
    public List<PropertyType<PersistenceContextRefType<T>>> getPersistencePropertyList()
    {
       List<PropertyType<PersistenceContextRefType<T>>> list = new ArrayList<PropertyType<PersistenceContextRefType<T>>>();
-      List<Node> nodeList = childNode.get(PropertyTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("persistence-property");
       for (Node node : nodeList)
       {
-         PropertyType<PersistenceContextRefType<T>> type = new PropertyTypeImpl<PersistenceContextRefType<T>>(this, "",
-               childNode, node);
+         PropertyType<PersistenceContextRefType<T>> type = new PropertyTypeImpl<PersistenceContextRefType<T>>(this,
+               "persistence-property", childNode, node);
          list.add(type);
       }
       return list;

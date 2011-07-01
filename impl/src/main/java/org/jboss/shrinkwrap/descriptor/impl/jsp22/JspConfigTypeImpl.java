@@ -11,7 +11,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:21:34.75-04:00
  *
  * Original Documentation:
  *
@@ -25,8 +25,6 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
  */
 public class JspConfigTypeImpl<T> implements Child<T>, JspConfigType<T>
 {
-   public final static String nodeName = "jsp-config";
-
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -41,14 +39,14 @@ public class JspConfigTypeImpl<T> implements Child<T>, JspConfigType<T>
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public JspConfigTypeImpl(T t, String descriptorName, Node node)
+   public JspConfigTypeImpl(T t, String nodeName, Node node)
    {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public JspConfigTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   public JspConfigTypeImpl(T t, String nodeName, Node node, Node childNode)
    {
       this.t = t;
       this.node = node;
@@ -66,22 +64,22 @@ public class JspConfigTypeImpl<T> implements Child<T>, JspConfigType<T>
    // -------------------------------------------------------------------------------------||
    public JspConfigType<T> removeAllTaglib()
    {
-      childNode.remove(TaglibTypeImpl.nodeName);
+      childNode.remove("taglib");
       return this;
    }
 
    public TaglibType<JspConfigType<T>> taglib()
    {
-      return new TaglibTypeImpl<JspConfigType<T>>(this, "", childNode);
+      return new TaglibTypeImpl<JspConfigType<T>>(this, "taglib", childNode);
    }
 
    public List<TaglibType<JspConfigType<T>>> getTaglibList()
    {
       List<TaglibType<JspConfigType<T>>> list = new ArrayList<TaglibType<JspConfigType<T>>>();
-      List<Node> nodeList = childNode.get(TaglibTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("taglib");
       for (Node node : nodeList)
       {
-         TaglibType<JspConfigType<T>> type = new TaglibTypeImpl<JspConfigType<T>>(this, "", childNode, node);
+         TaglibType<JspConfigType<T>> type = new TaglibTypeImpl<JspConfigType<T>>(this, "taglib", childNode, node);
          list.add(type);
       }
       return list;
@@ -93,23 +91,23 @@ public class JspConfigTypeImpl<T> implements Child<T>, JspConfigType<T>
    // -------------------------------------------------------------------------------------||
    public JspConfigType<T> removeAllJspPropertyGroup()
    {
-      childNode.remove(JspPropertyGroupTypeImpl.nodeName);
+      childNode.remove("jsp-property-group");
       return this;
    }
 
    public JspPropertyGroupType<JspConfigType<T>> jspPropertyGroup()
    {
-      return new JspPropertyGroupTypeImpl<JspConfigType<T>>(this, "", childNode);
+      return new JspPropertyGroupTypeImpl<JspConfigType<T>>(this, "jsp-property-group", childNode);
    }
 
    public List<JspPropertyGroupType<JspConfigType<T>>> getJspPropertyGroupList()
    {
       List<JspPropertyGroupType<JspConfigType<T>>> list = new ArrayList<JspPropertyGroupType<JspConfigType<T>>>();
-      List<Node> nodeList = childNode.get(JspPropertyGroupTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("jsp-property-group");
       for (Node node : nodeList)
       {
-         JspPropertyGroupType<JspConfigType<T>> type = new JspPropertyGroupTypeImpl<JspConfigType<T>>(this, "",
-               childNode, node);
+         JspPropertyGroupType<JspConfigType<T>> type = new JspPropertyGroupTypeImpl<JspConfigType<T>>(this,
+               "jsp-property-group", childNode, node);
          list.add(type);
       }
       return list;

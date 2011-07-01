@@ -55,12 +55,10 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:21:34.75-04:00
  */
 public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
 {
-   public final static String nodeName = "";
-
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -75,14 +73,14 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public WebFragmentTypeImpl(T t, String descriptorName, Node node)
+   public WebFragmentTypeImpl(T t, String nodeName, Node node)
    {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public WebFragmentTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   public WebFragmentTypeImpl(T t, String nodeName, Node node, Node childNode)
    {
       this.t = t;
       this.node = node;
@@ -115,22 +113,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllContextParam()
    {
-      childNode.remove(ParamValueTypeImpl.nodeName);
+      childNode.remove("context-param");
       return this;
    }
 
    public ParamValueType<WebFragmentType<T>> contextParam()
    {
-      return new ParamValueTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new ParamValueTypeImpl<WebFragmentType<T>>(this, "context-param", childNode);
    }
 
    public List<ParamValueType<WebFragmentType<T>>> getContextParamList()
    {
       List<ParamValueType<WebFragmentType<T>>> list = new ArrayList<ParamValueType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(ParamValueTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("context-param");
       for (Node node : nodeList)
       {
-         ParamValueType<WebFragmentType<T>> type = new ParamValueTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
+         ParamValueType<WebFragmentType<T>> type = new ParamValueTypeImpl<WebFragmentType<T>>(this, "context-param",
+               childNode, node);
          list.add(type);
       }
       return list;
@@ -142,22 +141,22 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllFilter()
    {
-      childNode.remove(FilterTypeImpl.nodeName);
+      childNode.remove("filter");
       return this;
    }
 
    public FilterType<WebFragmentType<T>> filter()
    {
-      return new FilterTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new FilterTypeImpl<WebFragmentType<T>>(this, "filter", childNode);
    }
 
    public List<FilterType<WebFragmentType<T>>> getFilterList()
    {
       List<FilterType<WebFragmentType<T>>> list = new ArrayList<FilterType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(FilterTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("filter");
       for (Node node : nodeList)
       {
-         FilterType<WebFragmentType<T>> type = new FilterTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
+         FilterType<WebFragmentType<T>> type = new FilterTypeImpl<WebFragmentType<T>>(this, "filter", childNode, node);
          list.add(type);
       }
       return list;
@@ -169,23 +168,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllFilterMapping()
    {
-      childNode.remove(FilterMappingTypeImpl.nodeName);
+      childNode.remove("filter-mapping");
       return this;
    }
 
    public FilterMappingType<WebFragmentType<T>> filterMapping()
    {
-      return new FilterMappingTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new FilterMappingTypeImpl<WebFragmentType<T>>(this, "filter-mapping", childNode);
    }
 
    public List<FilterMappingType<WebFragmentType<T>>> getFilterMappingList()
    {
       List<FilterMappingType<WebFragmentType<T>>> list = new ArrayList<FilterMappingType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(FilterMappingTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("filter-mapping");
       for (Node node : nodeList)
       {
-         FilterMappingType<WebFragmentType<T>> type = new FilterMappingTypeImpl<WebFragmentType<T>>(this, "",
-               childNode, node);
+         FilterMappingType<WebFragmentType<T>> type = new FilterMappingTypeImpl<WebFragmentType<T>>(this,
+               "filter-mapping", childNode, node);
          list.add(type);
       }
       return list;
@@ -197,22 +196,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllListener()
    {
-      childNode.remove(ListenerTypeImpl.nodeName);
+      childNode.remove("listener");
       return this;
    }
 
    public ListenerType<WebFragmentType<T>> listener()
    {
-      return new ListenerTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new ListenerTypeImpl<WebFragmentType<T>>(this, "listener", childNode);
    }
 
    public List<ListenerType<WebFragmentType<T>>> getListenerList()
    {
       List<ListenerType<WebFragmentType<T>>> list = new ArrayList<ListenerType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(ListenerTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("listener");
       for (Node node : nodeList)
       {
-         ListenerType<WebFragmentType<T>> type = new ListenerTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
+         ListenerType<WebFragmentType<T>> type = new ListenerTypeImpl<WebFragmentType<T>>(this, "listener", childNode,
+               node);
          list.add(type);
       }
       return list;
@@ -224,22 +224,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllServlet()
    {
-      childNode.remove(ServletTypeImpl.nodeName);
+      childNode.remove("servlet");
       return this;
    }
 
    public ServletType<WebFragmentType<T>> servlet()
    {
-      return new ServletTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new ServletTypeImpl<WebFragmentType<T>>(this, "servlet", childNode);
    }
 
    public List<ServletType<WebFragmentType<T>>> getServletList()
    {
       List<ServletType<WebFragmentType<T>>> list = new ArrayList<ServletType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(ServletTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("servlet");
       for (Node node : nodeList)
       {
-         ServletType<WebFragmentType<T>> type = new ServletTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
+         ServletType<WebFragmentType<T>> type = new ServletTypeImpl<WebFragmentType<T>>(this, "servlet", childNode,
+               node);
          list.add(type);
       }
       return list;
@@ -251,23 +252,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllServletMapping()
    {
-      childNode.remove(ServletMappingTypeImpl.nodeName);
+      childNode.remove("servlet-mapping");
       return this;
    }
 
    public ServletMappingType<WebFragmentType<T>> servletMapping()
    {
-      return new ServletMappingTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new ServletMappingTypeImpl<WebFragmentType<T>>(this, "servlet-mapping", childNode);
    }
 
    public List<ServletMappingType<WebFragmentType<T>>> getServletMappingList()
    {
       List<ServletMappingType<WebFragmentType<T>>> list = new ArrayList<ServletMappingType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(ServletMappingTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("servlet-mapping");
       for (Node node : nodeList)
       {
-         ServletMappingType<WebFragmentType<T>> type = new ServletMappingTypeImpl<WebFragmentType<T>>(this, "",
-               childNode, node);
+         ServletMappingType<WebFragmentType<T>> type = new ServletMappingTypeImpl<WebFragmentType<T>>(this,
+               "servlet-mapping", childNode, node);
          list.add(type);
       }
       return list;
@@ -279,23 +280,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllSessionConfig()
    {
-      childNode.remove(SessionConfigTypeImpl.nodeName);
+      childNode.remove("session-config");
       return this;
    }
 
    public SessionConfigType<WebFragmentType<T>> sessionConfig()
    {
-      return new SessionConfigTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new SessionConfigTypeImpl<WebFragmentType<T>>(this, "session-config", childNode);
    }
 
    public List<SessionConfigType<WebFragmentType<T>>> getSessionConfigList()
    {
       List<SessionConfigType<WebFragmentType<T>>> list = new ArrayList<SessionConfigType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(SessionConfigTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("session-config");
       for (Node node : nodeList)
       {
-         SessionConfigType<WebFragmentType<T>> type = new SessionConfigTypeImpl<WebFragmentType<T>>(this, "",
-               childNode, node);
+         SessionConfigType<WebFragmentType<T>> type = new SessionConfigTypeImpl<WebFragmentType<T>>(this,
+               "session-config", childNode, node);
          list.add(type);
       }
       return list;
@@ -307,23 +308,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllMimeMapping()
    {
-      childNode.remove(MimeMappingTypeImpl.nodeName);
+      childNode.remove("mime-mapping");
       return this;
    }
 
    public MimeMappingType<WebFragmentType<T>> mimeMapping()
    {
-      return new MimeMappingTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new MimeMappingTypeImpl<WebFragmentType<T>>(this, "mime-mapping", childNode);
    }
 
    public List<MimeMappingType<WebFragmentType<T>>> getMimeMappingList()
    {
       List<MimeMappingType<WebFragmentType<T>>> list = new ArrayList<MimeMappingType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(MimeMappingTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("mime-mapping");
       for (Node node : nodeList)
       {
-         MimeMappingType<WebFragmentType<T>> type = new MimeMappingTypeImpl<WebFragmentType<T>>(this, "", childNode,
-               node);
+         MimeMappingType<WebFragmentType<T>> type = new MimeMappingTypeImpl<WebFragmentType<T>>(this, "mime-mapping",
+               childNode, node);
          list.add(type);
       }
       return list;
@@ -335,23 +336,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllWelcomeFileList()
    {
-      childNode.remove(WelcomeFileListTypeImpl.nodeName);
+      childNode.remove("welcome-file-list");
       return this;
    }
 
    public WelcomeFileListType<WebFragmentType<T>> welcomeFileList()
    {
-      return new WelcomeFileListTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new WelcomeFileListTypeImpl<WebFragmentType<T>>(this, "welcome-file-list", childNode);
    }
 
    public List<WelcomeFileListType<WebFragmentType<T>>> getWelcomeFileListList()
    {
       List<WelcomeFileListType<WebFragmentType<T>>> list = new ArrayList<WelcomeFileListType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(WelcomeFileListTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("welcome-file-list");
       for (Node node : nodeList)
       {
-         WelcomeFileListType<WebFragmentType<T>> type = new WelcomeFileListTypeImpl<WebFragmentType<T>>(this, "",
-               childNode, node);
+         WelcomeFileListType<WebFragmentType<T>> type = new WelcomeFileListTypeImpl<WebFragmentType<T>>(this,
+               "welcome-file-list", childNode, node);
          list.add(type);
       }
       return list;
@@ -363,22 +364,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllErrorPage()
    {
-      childNode.remove(ErrorPageTypeImpl.nodeName);
+      childNode.remove("error-page");
       return this;
    }
 
    public ErrorPageType<WebFragmentType<T>> errorPage()
    {
-      return new ErrorPageTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new ErrorPageTypeImpl<WebFragmentType<T>>(this, "error-page", childNode);
    }
 
    public List<ErrorPageType<WebFragmentType<T>>> getErrorPageList()
    {
       List<ErrorPageType<WebFragmentType<T>>> list = new ArrayList<ErrorPageType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(ErrorPageTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("error-page");
       for (Node node : nodeList)
       {
-         ErrorPageType<WebFragmentType<T>> type = new ErrorPageTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
+         ErrorPageType<WebFragmentType<T>> type = new ErrorPageTypeImpl<WebFragmentType<T>>(this, "error-page",
+               childNode, node);
          list.add(type);
       }
       return list;
@@ -390,22 +392,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllJspConfig()
    {
-      childNode.remove(JspConfigTypeImpl.nodeName);
+      childNode.remove("jsp-config");
       return this;
    }
 
    public JspConfigType<WebFragmentType<T>> jspConfig()
    {
-      return new JspConfigTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new JspConfigTypeImpl<WebFragmentType<T>>(this, "jsp-config", childNode);
    }
 
    public List<JspConfigType<WebFragmentType<T>>> getJspConfigList()
    {
       List<JspConfigType<WebFragmentType<T>>> list = new ArrayList<JspConfigType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(JspConfigTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("jsp-config");
       for (Node node : nodeList)
       {
-         JspConfigType<WebFragmentType<T>> type = new JspConfigTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
+         JspConfigType<WebFragmentType<T>> type = new JspConfigTypeImpl<WebFragmentType<T>>(this, "jsp-config",
+               childNode, node);
          list.add(type);
       }
       return list;
@@ -417,23 +420,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllSecurityConstraint()
    {
-      childNode.remove(SecurityConstraintTypeImpl.nodeName);
+      childNode.remove("security-constraint");
       return this;
    }
 
    public SecurityConstraintType<WebFragmentType<T>> securityConstraint()
    {
-      return new SecurityConstraintTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new SecurityConstraintTypeImpl<WebFragmentType<T>>(this, "security-constraint", childNode);
    }
 
    public List<SecurityConstraintType<WebFragmentType<T>>> getSecurityConstraintList()
    {
       List<SecurityConstraintType<WebFragmentType<T>>> list = new ArrayList<SecurityConstraintType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(SecurityConstraintTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("security-constraint");
       for (Node node : nodeList)
       {
-         SecurityConstraintType<WebFragmentType<T>> type = new SecurityConstraintTypeImpl<WebFragmentType<T>>(this, "",
-               childNode, node);
+         SecurityConstraintType<WebFragmentType<T>> type = new SecurityConstraintTypeImpl<WebFragmentType<T>>(this,
+               "security-constraint", childNode, node);
          list.add(type);
       }
       return list;
@@ -445,23 +448,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllLoginConfig()
    {
-      childNode.remove(LoginConfigTypeImpl.nodeName);
+      childNode.remove("login-config");
       return this;
    }
 
    public LoginConfigType<WebFragmentType<T>> loginConfig()
    {
-      return new LoginConfigTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new LoginConfigTypeImpl<WebFragmentType<T>>(this, "login-config", childNode);
    }
 
    public List<LoginConfigType<WebFragmentType<T>>> getLoginConfigList()
    {
       List<LoginConfigType<WebFragmentType<T>>> list = new ArrayList<LoginConfigType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(LoginConfigTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("login-config");
       for (Node node : nodeList)
       {
-         LoginConfigType<WebFragmentType<T>> type = new LoginConfigTypeImpl<WebFragmentType<T>>(this, "", childNode,
-               node);
+         LoginConfigType<WebFragmentType<T>> type = new LoginConfigTypeImpl<WebFragmentType<T>>(this, "login-config",
+               childNode, node);
          list.add(type);
       }
       return list;
@@ -473,23 +476,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllSecurityRole()
    {
-      childNode.remove(SecurityRoleTypeImpl.nodeName);
+      childNode.remove("security-role");
       return this;
    }
 
    public SecurityRoleType<WebFragmentType<T>> securityRole()
    {
-      return new SecurityRoleTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new SecurityRoleTypeImpl<WebFragmentType<T>>(this, "security-role", childNode);
    }
 
    public List<SecurityRoleType<WebFragmentType<T>>> getSecurityRoleList()
    {
       List<SecurityRoleType<WebFragmentType<T>>> list = new ArrayList<SecurityRoleType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(SecurityRoleTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("security-role");
       for (Node node : nodeList)
       {
-         SecurityRoleType<WebFragmentType<T>> type = new SecurityRoleTypeImpl<WebFragmentType<T>>(this, "", childNode,
-               node);
+         SecurityRoleType<WebFragmentType<T>> type = new SecurityRoleTypeImpl<WebFragmentType<T>>(this,
+               "security-role", childNode, node);
          list.add(type);
       }
       return list;
@@ -501,23 +504,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllMessageDestination()
    {
-      childNode.remove(MessageDestinationTypeImpl.nodeName);
+      childNode.remove("message-destination");
       return this;
    }
 
    public MessageDestinationType<WebFragmentType<T>> messageDestination()
    {
-      return new MessageDestinationTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new MessageDestinationTypeImpl<WebFragmentType<T>>(this, "message-destination", childNode);
    }
 
    public List<MessageDestinationType<WebFragmentType<T>>> getMessageDestinationList()
    {
       List<MessageDestinationType<WebFragmentType<T>>> list = new ArrayList<MessageDestinationType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(MessageDestinationTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("message-destination");
       for (Node node : nodeList)
       {
-         MessageDestinationType<WebFragmentType<T>> type = new MessageDestinationTypeImpl<WebFragmentType<T>>(this, "",
-               childNode, node);
+         MessageDestinationType<WebFragmentType<T>> type = new MessageDestinationTypeImpl<WebFragmentType<T>>(this,
+               "message-destination", childNode, node);
          list.add(type);
       }
       return list;
@@ -529,23 +532,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllLocaleEncodingMappingList()
    {
-      childNode.remove(LocaleEncodingMappingListTypeImpl.nodeName);
+      childNode.remove("locale-encoding-mapping-list");
       return this;
    }
 
    public LocaleEncodingMappingListType<WebFragmentType<T>> localeEncodingMappingList()
    {
-      return new LocaleEncodingMappingListTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new LocaleEncodingMappingListTypeImpl<WebFragmentType<T>>(this, "locale-encoding-mapping-list", childNode);
    }
 
    public List<LocaleEncodingMappingListType<WebFragmentType<T>>> getLocaleEncodingMappingListList()
    {
       List<LocaleEncodingMappingListType<WebFragmentType<T>>> list = new ArrayList<LocaleEncodingMappingListType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(LocaleEncodingMappingListTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("locale-encoding-mapping-list");
       for (Node node : nodeList)
       {
          LocaleEncodingMappingListType<WebFragmentType<T>> type = new LocaleEncodingMappingListTypeImpl<WebFragmentType<T>>(
-               this, "", childNode, node);
+               this, "locale-encoding-mapping-list", childNode, node);
          list.add(type);
       }
       return list;
@@ -629,22 +632,22 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllIcon()
    {
-      childNode.remove(IconTypeImpl.nodeName);
+      childNode.remove("icon");
       return this;
    }
 
    public IconType<WebFragmentType<T>> icon()
    {
-      return new IconTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new IconTypeImpl<WebFragmentType<T>>(this, "icon", childNode);
    }
 
    public List<IconType<WebFragmentType<T>>> getIconList()
    {
       List<IconType<WebFragmentType<T>>> list = new ArrayList<IconType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(IconTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("icon");
       for (Node node : nodeList)
       {
-         IconType<WebFragmentType<T>> type = new IconTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
+         IconType<WebFragmentType<T>> type = new IconTypeImpl<WebFragmentType<T>>(this, "icon", childNode, node);
          list.add(type);
       }
       return list;
@@ -656,22 +659,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllEnvEntry()
    {
-      childNode.remove(EnvEntryTypeImpl.nodeName);
+      childNode.remove("env-entry");
       return this;
    }
 
    public EnvEntryType<WebFragmentType<T>> envEntry()
    {
-      return new EnvEntryTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new EnvEntryTypeImpl<WebFragmentType<T>>(this, "env-entry", childNode);
    }
 
    public List<EnvEntryType<WebFragmentType<T>>> getEnvEntryList()
    {
       List<EnvEntryType<WebFragmentType<T>>> list = new ArrayList<EnvEntryType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(EnvEntryTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("env-entry");
       for (Node node : nodeList)
       {
-         EnvEntryType<WebFragmentType<T>> type = new EnvEntryTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
+         EnvEntryType<WebFragmentType<T>> type = new EnvEntryTypeImpl<WebFragmentType<T>>(this, "env-entry", childNode,
+               node);
          list.add(type);
       }
       return list;
@@ -683,22 +687,22 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllEjbRef()
    {
-      childNode.remove(EjbRefTypeImpl.nodeName);
+      childNode.remove("ejb-ref");
       return this;
    }
 
    public EjbRefType<WebFragmentType<T>> ejbRef()
    {
-      return new EjbRefTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new EjbRefTypeImpl<WebFragmentType<T>>(this, "ejb-ref", childNode);
    }
 
    public List<EjbRefType<WebFragmentType<T>>> getEjbRefList()
    {
       List<EjbRefType<WebFragmentType<T>>> list = new ArrayList<EjbRefType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(EjbRefTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("ejb-ref");
       for (Node node : nodeList)
       {
-         EjbRefType<WebFragmentType<T>> type = new EjbRefTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
+         EjbRefType<WebFragmentType<T>> type = new EjbRefTypeImpl<WebFragmentType<T>>(this, "ejb-ref", childNode, node);
          list.add(type);
       }
       return list;
@@ -710,23 +714,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllEjbLocalRef()
    {
-      childNode.remove(EjbLocalRefTypeImpl.nodeName);
+      childNode.remove("ejb-local-ref");
       return this;
    }
 
    public EjbLocalRefType<WebFragmentType<T>> ejbLocalRef()
    {
-      return new EjbLocalRefTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new EjbLocalRefTypeImpl<WebFragmentType<T>>(this, "ejb-local-ref", childNode);
    }
 
    public List<EjbLocalRefType<WebFragmentType<T>>> getEjbLocalRefList()
    {
       List<EjbLocalRefType<WebFragmentType<T>>> list = new ArrayList<EjbLocalRefType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(EjbLocalRefTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("ejb-local-ref");
       for (Node node : nodeList)
       {
-         EjbLocalRefType<WebFragmentType<T>> type = new EjbLocalRefTypeImpl<WebFragmentType<T>>(this, "", childNode,
-               node);
+         EjbLocalRefType<WebFragmentType<T>> type = new EjbLocalRefTypeImpl<WebFragmentType<T>>(this, "ejb-local-ref",
+               childNode, node);
          list.add(type);
       }
       return list;
@@ -738,23 +742,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllResourceRef()
    {
-      childNode.remove(ResourceRefTypeImpl.nodeName);
+      childNode.remove("resource-ref");
       return this;
    }
 
    public ResourceRefType<WebFragmentType<T>> resourceRef()
    {
-      return new ResourceRefTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new ResourceRefTypeImpl<WebFragmentType<T>>(this, "resource-ref", childNode);
    }
 
    public List<ResourceRefType<WebFragmentType<T>>> getResourceRefList()
    {
       List<ResourceRefType<WebFragmentType<T>>> list = new ArrayList<ResourceRefType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(ResourceRefTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("resource-ref");
       for (Node node : nodeList)
       {
-         ResourceRefType<WebFragmentType<T>> type = new ResourceRefTypeImpl<WebFragmentType<T>>(this, "", childNode,
-               node);
+         ResourceRefType<WebFragmentType<T>> type = new ResourceRefTypeImpl<WebFragmentType<T>>(this, "resource-ref",
+               childNode, node);
          list.add(type);
       }
       return list;
@@ -766,23 +770,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllResourceEnvRef()
    {
-      childNode.remove(ResourceEnvRefTypeImpl.nodeName);
+      childNode.remove("resource-env-ref");
       return this;
    }
 
    public ResourceEnvRefType<WebFragmentType<T>> resourceEnvRef()
    {
-      return new ResourceEnvRefTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new ResourceEnvRefTypeImpl<WebFragmentType<T>>(this, "resource-env-ref", childNode);
    }
 
    public List<ResourceEnvRefType<WebFragmentType<T>>> getResourceEnvRefList()
    {
       List<ResourceEnvRefType<WebFragmentType<T>>> list = new ArrayList<ResourceEnvRefType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(ResourceEnvRefTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("resource-env-ref");
       for (Node node : nodeList)
       {
-         ResourceEnvRefType<WebFragmentType<T>> type = new ResourceEnvRefTypeImpl<WebFragmentType<T>>(this, "",
-               childNode, node);
+         ResourceEnvRefType<WebFragmentType<T>> type = new ResourceEnvRefTypeImpl<WebFragmentType<T>>(this,
+               "resource-env-ref", childNode, node);
          list.add(type);
       }
       return list;
@@ -794,23 +798,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllMessageDestinationRef()
    {
-      childNode.remove(MessageDestinationRefTypeImpl.nodeName);
+      childNode.remove("message-destination-ref");
       return this;
    }
 
    public MessageDestinationRefType<WebFragmentType<T>> messageDestinationRef()
    {
-      return new MessageDestinationRefTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new MessageDestinationRefTypeImpl<WebFragmentType<T>>(this, "message-destination-ref", childNode);
    }
 
    public List<MessageDestinationRefType<WebFragmentType<T>>> getMessageDestinationRefList()
    {
       List<MessageDestinationRefType<WebFragmentType<T>>> list = new ArrayList<MessageDestinationRefType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(MessageDestinationRefTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("message-destination-ref");
       for (Node node : nodeList)
       {
          MessageDestinationRefType<WebFragmentType<T>> type = new MessageDestinationRefTypeImpl<WebFragmentType<T>>(
-               this, "", childNode, node);
+               this, "message-destination-ref", childNode, node);
          list.add(type);
       }
       return list;
@@ -822,23 +826,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllPersistenceContextRef()
    {
-      childNode.remove(PersistenceContextRefTypeImpl.nodeName);
+      childNode.remove("persistence-context-ref");
       return this;
    }
 
    public PersistenceContextRefType<WebFragmentType<T>> persistenceContextRef()
    {
-      return new PersistenceContextRefTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new PersistenceContextRefTypeImpl<WebFragmentType<T>>(this, "persistence-context-ref", childNode);
    }
 
    public List<PersistenceContextRefType<WebFragmentType<T>>> getPersistenceContextRefList()
    {
       List<PersistenceContextRefType<WebFragmentType<T>>> list = new ArrayList<PersistenceContextRefType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(PersistenceContextRefTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("persistence-context-ref");
       for (Node node : nodeList)
       {
          PersistenceContextRefType<WebFragmentType<T>> type = new PersistenceContextRefTypeImpl<WebFragmentType<T>>(
-               this, "", childNode, node);
+               this, "persistence-context-ref", childNode, node);
          list.add(type);
       }
       return list;
@@ -850,23 +854,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllPersistenceUnitRef()
    {
-      childNode.remove(PersistenceUnitRefTypeImpl.nodeName);
+      childNode.remove("persistence-unit-ref");
       return this;
    }
 
    public PersistenceUnitRefType<WebFragmentType<T>> persistenceUnitRef()
    {
-      return new PersistenceUnitRefTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new PersistenceUnitRefTypeImpl<WebFragmentType<T>>(this, "persistence-unit-ref", childNode);
    }
 
    public List<PersistenceUnitRefType<WebFragmentType<T>>> getPersistenceUnitRefList()
    {
       List<PersistenceUnitRefType<WebFragmentType<T>>> list = new ArrayList<PersistenceUnitRefType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(PersistenceUnitRefTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("persistence-unit-ref");
       for (Node node : nodeList)
       {
-         PersistenceUnitRefType<WebFragmentType<T>> type = new PersistenceUnitRefTypeImpl<WebFragmentType<T>>(this, "",
-               childNode, node);
+         PersistenceUnitRefType<WebFragmentType<T>> type = new PersistenceUnitRefTypeImpl<WebFragmentType<T>>(this,
+               "persistence-unit-ref", childNode, node);
          list.add(type);
       }
       return list;
@@ -878,23 +882,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllPostConstruct()
    {
-      childNode.remove(LifecycleCallbackTypeImpl.nodeName);
+      childNode.remove("post-construct");
       return this;
    }
 
    public LifecycleCallbackType<WebFragmentType<T>> postConstruct()
    {
-      return new LifecycleCallbackTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new LifecycleCallbackTypeImpl<WebFragmentType<T>>(this, "post-construct", childNode);
    }
 
    public List<LifecycleCallbackType<WebFragmentType<T>>> getPostConstructList()
    {
       List<LifecycleCallbackType<WebFragmentType<T>>> list = new ArrayList<LifecycleCallbackType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(LifecycleCallbackTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("post-construct");
       for (Node node : nodeList)
       {
-         LifecycleCallbackType<WebFragmentType<T>> type = new LifecycleCallbackTypeImpl<WebFragmentType<T>>(this, "",
-               childNode, node);
+         LifecycleCallbackType<WebFragmentType<T>> type = new LifecycleCallbackTypeImpl<WebFragmentType<T>>(this,
+               "post-construct", childNode, node);
          list.add(type);
       }
       return list;
@@ -906,23 +910,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllPreDestroy()
    {
-      childNode.remove(LifecycleCallbackTypeImpl.nodeName);
+      childNode.remove("pre-destroy");
       return this;
    }
 
    public LifecycleCallbackType<WebFragmentType<T>> preDestroy()
    {
-      return new LifecycleCallbackTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new LifecycleCallbackTypeImpl<WebFragmentType<T>>(this, "pre-destroy", childNode);
    }
 
    public List<LifecycleCallbackType<WebFragmentType<T>>> getPreDestroyList()
    {
       List<LifecycleCallbackType<WebFragmentType<T>>> list = new ArrayList<LifecycleCallbackType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(LifecycleCallbackTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("pre-destroy");
       for (Node node : nodeList)
       {
-         LifecycleCallbackType<WebFragmentType<T>> type = new LifecycleCallbackTypeImpl<WebFragmentType<T>>(this, "",
-               childNode, node);
+         LifecycleCallbackType<WebFragmentType<T>> type = new LifecycleCallbackTypeImpl<WebFragmentType<T>>(this,
+               "pre-destroy", childNode, node);
          list.add(type);
       }
       return list;
@@ -934,22 +938,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllDataSource()
    {
-      childNode.remove(DataSourceTypeImpl.nodeName);
+      childNode.remove("data-source");
       return this;
    }
 
    public DataSourceType<WebFragmentType<T>> dataSource()
    {
-      return new DataSourceTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new DataSourceTypeImpl<WebFragmentType<T>>(this, "data-source", childNode);
    }
 
    public List<DataSourceType<WebFragmentType<T>>> getDataSourceList()
    {
       List<DataSourceType<WebFragmentType<T>>> list = new ArrayList<DataSourceType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(DataSourceTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("data-source");
       for (Node node : nodeList)
       {
-         DataSourceType<WebFragmentType<T>> type = new DataSourceTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
+         DataSourceType<WebFragmentType<T>> type = new DataSourceTypeImpl<WebFragmentType<T>>(this, "data-source",
+               childNode, node);
          list.add(type);
       }
       return list;
@@ -971,6 +976,12 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
       return this;
    }
 
+   public WebFragmentType<T> removeVersion()
+   {
+      childNode.attributes().remove("version");
+      return this;
+   }
+
    public WebAppVersionType getVersion()
    {
       return WebAppVersionType.getFromStringValue(childNode.attribute("version"));
@@ -988,6 +999,12 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    public WebFragmentType<T> setMetadataComplete(Boolean metadataComplete)
    {
       childNode.attribute("metadata-complete", metadataComplete);
+      return this;
+   }
+
+   public WebFragmentType<T> removeMetadataComplete()
+   {
+      childNode.attributes().remove("metadata-complete");
       return this;
    }
 
@@ -1038,22 +1055,23 @@ public class WebFragmentTypeImpl<T> implements Child<T>, WebFragmentType<T>
    // -------------------------------------------------------------------------------------||
    public WebFragmentType<T> removeAllOrdering()
    {
-      childNode.remove(OrderingTypeImpl.nodeName);
+      childNode.remove("ordering");
       return this;
    }
 
    public OrderingType<WebFragmentType<T>> ordering()
    {
-      return new OrderingTypeImpl<WebFragmentType<T>>(this, "", childNode);
+      return new OrderingTypeImpl<WebFragmentType<T>>(this, "ordering", childNode);
    }
 
    public List<OrderingType<WebFragmentType<T>>> getOrderingList()
    {
       List<OrderingType<WebFragmentType<T>>> list = new ArrayList<OrderingType<WebFragmentType<T>>>();
-      List<Node> nodeList = childNode.get(OrderingTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("ordering");
       for (Node node : nodeList)
       {
-         OrderingType<WebFragmentType<T>> type = new OrderingTypeImpl<WebFragmentType<T>>(this, "", childNode, node);
+         OrderingType<WebFragmentType<T>> type = new OrderingTypeImpl<WebFragmentType<T>>(this, "ordering", childNode,
+               node);
          list.add(type);
       }
       return list;

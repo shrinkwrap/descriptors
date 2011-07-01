@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:21:34.75-04:00
  *
  * Original Documentation:
  *

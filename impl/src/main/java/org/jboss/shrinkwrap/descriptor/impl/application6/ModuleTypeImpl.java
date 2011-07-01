@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:21:34.75-04:00
  *
  * Original Documentation:
  *
@@ -23,8 +23,6 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
  */
 public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
 {
-   public final static String nodeName = "module";
-
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -39,14 +37,14 @@ public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public ModuleTypeImpl(T t, String descriptorName, Node node)
+   public ModuleTypeImpl(T t, String nodeName, Node node)
    {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public ModuleTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   public ModuleTypeImpl(T t, String nodeName, Node node, Node childNode)
    {
       this.t = t;
       this.node = node;
@@ -154,8 +152,8 @@ public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
 
    public WebType<ModuleType<T>> web()
    {
-      Node node = childNode.getOrCreate(WebTypeImpl.nodeName);
-      WebType<ModuleType<T>> web = new WebTypeImpl<ModuleType<T>>(this, "", childNode, node);
+      Node node = childNode.getOrCreate("web");
+      WebType<ModuleType<T>> web = new WebTypeImpl<ModuleType<T>>(this, "web", childNode, node);
       return web;
    }
 

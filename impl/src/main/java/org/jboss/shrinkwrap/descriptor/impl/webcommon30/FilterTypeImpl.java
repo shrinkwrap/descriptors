@@ -14,7 +14,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:21:34.75-04:00
  *
  * Original Documentation:
  *
@@ -33,8 +33,6 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
  */
 public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
 {
-   public final static String nodeName = "filter";
-
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -49,14 +47,14 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public FilterTypeImpl(T t, String descriptorName, Node node)
+   public FilterTypeImpl(T t, String nodeName, Node node)
    {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public FilterTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   public FilterTypeImpl(T t, String nodeName, Node node, Node childNode)
    {
       this.t = t;
       this.node = node;
@@ -146,22 +144,22 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
    // -------------------------------------------------------------------------------------||
    public FilterType<T> removeAllIcon()
    {
-      childNode.remove(IconTypeImpl.nodeName);
+      childNode.remove("icon");
       return this;
    }
 
    public IconType<FilterType<T>> icon()
    {
-      return new IconTypeImpl<FilterType<T>>(this, "", childNode);
+      return new IconTypeImpl<FilterType<T>>(this, "icon", childNode);
    }
 
    public List<IconType<FilterType<T>>> getIconList()
    {
       List<IconType<FilterType<T>>> list = new ArrayList<IconType<FilterType<T>>>();
-      List<Node> nodeList = childNode.get(IconTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("icon");
       for (Node node : nodeList)
       {
-         IconType<FilterType<T>> type = new IconTypeImpl<FilterType<T>>(this, "", childNode, node);
+         IconType<FilterType<T>> type = new IconTypeImpl<FilterType<T>>(this, "icon", childNode, node);
          list.add(type);
       }
       return list;
@@ -236,22 +234,22 @@ public class FilterTypeImpl<T> implements Child<T>, FilterType<T>
    // -------------------------------------------------------------------------------------||
    public FilterType<T> removeAllInitParam()
    {
-      childNode.remove(ParamValueTypeImpl.nodeName);
+      childNode.remove("init-param");
       return this;
    }
 
    public ParamValueType<FilterType<T>> initParam()
    {
-      return new ParamValueTypeImpl<FilterType<T>>(this, "", childNode);
+      return new ParamValueTypeImpl<FilterType<T>>(this, "init-param", childNode);
    }
 
    public List<ParamValueType<FilterType<T>>> getInitParamList()
    {
       List<ParamValueType<FilterType<T>>> list = new ArrayList<ParamValueType<FilterType<T>>>();
-      List<Node> nodeList = childNode.get(ParamValueTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("init-param");
       for (Node node : nodeList)
       {
-         ParamValueType<FilterType<T>> type = new ParamValueTypeImpl<FilterType<T>>(this, "", childNode, node);
+         ParamValueType<FilterType<T>> type = new ParamValueTypeImpl<FilterType<T>>(this, "init-param", childNode, node);
          list.add(type);
       }
       return list;

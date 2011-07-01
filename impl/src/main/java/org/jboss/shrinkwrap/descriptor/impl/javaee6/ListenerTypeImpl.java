@@ -10,7 +10,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:21:34.75-04:00
  *
  * Original Documentation:
  *
@@ -23,8 +23,6 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
  */
 public class ListenerTypeImpl<T> implements Child<T>, ListenerType<T>
 {
-   public final static String nodeName = "listener";
-
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -39,14 +37,14 @@ public class ListenerTypeImpl<T> implements Child<T>, ListenerType<T>
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public ListenerTypeImpl(T t, String descriptorName, Node node)
+   public ListenerTypeImpl(T t, String nodeName, Node node)
    {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public ListenerTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   public ListenerTypeImpl(T t, String nodeName, Node node, Node childNode)
    {
       this.t = t;
       this.node = node;
@@ -136,22 +134,22 @@ public class ListenerTypeImpl<T> implements Child<T>, ListenerType<T>
    // -------------------------------------------------------------------------------------||
    public ListenerType<T> removeAllIcon()
    {
-      childNode.remove(IconTypeImpl.nodeName);
+      childNode.remove("icon");
       return this;
    }
 
    public IconType<ListenerType<T>> icon()
    {
-      return new IconTypeImpl<ListenerType<T>>(this, "", childNode);
+      return new IconTypeImpl<ListenerType<T>>(this, "icon", childNode);
    }
 
    public List<IconType<ListenerType<T>>> getIconList()
    {
       List<IconType<ListenerType<T>>> list = new ArrayList<IconType<ListenerType<T>>>();
-      List<Node> nodeList = childNode.get(IconTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("icon");
       for (Node node : nodeList)
       {
-         IconType<ListenerType<T>> type = new IconTypeImpl<ListenerType<T>>(this, "", childNode, node);
+         IconType<ListenerType<T>> type = new IconTypeImpl<ListenerType<T>>(this, "icon", childNode, node);
          list.add(type);
       }
       return list;

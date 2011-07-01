@@ -55,20 +55,20 @@ public class WebApp30DescriptorComplexTypeTestCase
       
       log.fine(descr);
          
-      assertEquals(webApp.securityConstraint().getWebResourceCollectionList().get(0).getWebResourceName(), "resource1");
-      assertEquals(webApp.securityConstraint().getWebResourceCollectionList().get(1).getWebResourceName(), "resource2");
+      assertEquals(webApp.getSecurityConstraintList().get(0).getWebResourceCollectionList().get(0).getWebResourceName(), "resource1");
+      assertEquals(webApp.getSecurityConstraintList().get(0).getWebResourceCollectionList().get(1).getWebResourceName(), "resource2");
       
-      assertEquals(webApp.securityConstraint().getWebResourceCollectionList().get(0).getHttpMethodList().get(0), "method1");
-      assertEquals(webApp.securityConstraint().getWebResourceCollectionList().get(0).getHttpMethodList().get(1), "method2");
-      assertEquals(webApp.securityConstraint().getWebResourceCollectionList().get(1).getHttpMethodList().get(0), "method3");
-      assertEquals(webApp.securityConstraint().getWebResourceCollectionList().get(1).getHttpMethodList().get(1), "method4");
+      assertEquals(webApp.getSecurityConstraintList().get(0).getWebResourceCollectionList().get(0).getHttpMethodList().get(0), "method1");
+      assertEquals(webApp.getSecurityConstraintList().get(0).getWebResourceCollectionList().get(0).getHttpMethodList().get(1), "method2");
+      assertEquals(webApp.getSecurityConstraintList().get(0).getWebResourceCollectionList().get(1).getHttpMethodList().get(0), "method3");
+      assertEquals(webApp.getSecurityConstraintList().get(0).getWebResourceCollectionList().get(1).getHttpMethodList().get(1), "method4");
       
-      assertEquals(webApp.securityConstraint().getWebResourceCollectionList().get(0).getDescriptionList().get(0), "descr1");
-      assertEquals(webApp.securityConstraint().getWebResourceCollectionList().get(0).getDescriptionList().get(1), "descr2");
-      assertEquals(webApp.securityConstraint().getWebResourceCollectionList().get(0).getDescriptionList().get(2), "descr3");
-      assertEquals(webApp.securityConstraint().getWebResourceCollectionList().get(1).getDescriptionList().get(0), "descr4");
-      assertEquals(webApp.securityConstraint().getWebResourceCollectionList().get(1).getDescriptionList().get(1), "descr5");
-      assertEquals(webApp.securityConstraint().getWebResourceCollectionList().get(1).getDescriptionList().get(2), "descr6");
+      assertEquals(webApp.getSecurityConstraintList().get(0).getWebResourceCollectionList().get(0).getDescriptionList().get(0), "descr1");
+      assertEquals(webApp.getSecurityConstraintList().get(0).getWebResourceCollectionList().get(0).getDescriptionList().get(1), "descr2");
+      assertEquals(webApp.getSecurityConstraintList().get(0).getWebResourceCollectionList().get(0).getDescriptionList().get(2), "descr3");
+      assertEquals(webApp.getSecurityConstraintList().get(0).getWebResourceCollectionList().get(1).getDescriptionList().get(0), "descr4");
+      assertEquals(webApp.getSecurityConstraintList().get(0).getWebResourceCollectionList().get(1).getDescriptionList().get(1), "descr5");
+      assertEquals(webApp.getSecurityConstraintList().get(0).getWebResourceCollectionList().get(1).getDescriptionList().get(2), "descr6");
       
       assertXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[1]/web-resource-name", "resource1");
       assertXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[2]/web-resource-name", "resource2");
@@ -93,24 +93,24 @@ public class WebApp30DescriptorComplexTypeTestCase
             .localeEncodingMapping().setLocale("locale1").setEncoding("encoding1").up()
             .localeEncodingMapping().setLocale("locale2").setEncoding("encoding2").up().up();
       
-      assertEquals(webApp.localeEncodingMappingList().getLocaleEncodingMappingList().get(0).getLocale(), "locale1");
-      assertEquals(webApp.localeEncodingMappingList().getLocaleEncodingMappingList().get(1).getLocale(), "locale2");
-      assertEquals(webApp.localeEncodingMappingList().getLocaleEncodingMappingList().get(0).getEncoding(), "encoding1");
-      assertEquals(webApp.localeEncodingMappingList().getLocaleEncodingMappingList().get(1).getEncoding(), "encoding2");
+      assertEquals(webApp.getLocaleEncodingMappingListList().get(0).getLocaleEncodingMappingList().get(0).getLocale(), "locale1");
+      assertEquals(webApp.getLocaleEncodingMappingListList().get(0).getLocaleEncodingMappingList().get(1).getLocale(), "locale2");
+      assertEquals(webApp.getLocaleEncodingMappingListList().get(0).getLocaleEncodingMappingList().get(0).getEncoding(), "encoding1");
+      assertEquals(webApp.getLocaleEncodingMappingListList().get(0).getLocaleEncodingMappingList().get(1).getEncoding(), "encoding2");
       assertXPath(webApp.exportAsString(), "/web-app/locale-encoding-mapping-list/locale-encoding-mapping[1]/locale", "locale1");
       assertXPath(webApp.exportAsString(), "/web-app/locale-encoding-mapping-list/locale-encoding-mapping[2]/locale", "locale2");
       assertXPath(webApp.exportAsString(), "/web-app/locale-encoding-mapping-list/locale-encoding-mapping[1]/encoding", "encoding1");
       assertXPath(webApp.exportAsString(), "/web-app/locale-encoding-mapping-list/locale-encoding-mapping[2]/encoding", "encoding2");
       
-      webApp.localeEncodingMappingList().getLocaleEncodingMappingList().get(0).removeLocale();
-      webApp.localeEncodingMappingList().getLocaleEncodingMappingList().get(1).removeLocale();
+      webApp.getLocaleEncodingMappingListList().get(0).getLocaleEncodingMappingList().get(0).removeLocale();
+      webApp.getLocaleEncodingMappingListList().get(0).getLocaleEncodingMappingList().get(1).removeLocale();
       assertTrue(webApp.exportAsString().indexOf("<locale>") == -1);
       
-      webApp.localeEncodingMappingList().getLocaleEncodingMappingList().get(0).removeEncoding();
-      webApp.localeEncodingMappingList().getLocaleEncodingMappingList().get(1).removeEncoding();
+      webApp.getLocaleEncodingMappingListList().get(0).getLocaleEncodingMappingList().get(0).removeEncoding();
+      webApp.getLocaleEncodingMappingListList().get(0).getLocaleEncodingMappingList().get(1).removeEncoding();
       assertTrue(webApp.exportAsString().indexOf("<encoding>") == -1);
       
-      webApp.localeEncodingMappingList().removeAllLocaleEncodingMapping();
+      webApp.getLocaleEncodingMappingListList().get(0).removeAllLocaleEncodingMapping();
       assertTrue(webApp.exportAsString().indexOf("<locale-encoding-mapping>") == -1);
       
       webApp.removeAllLocaleEncodingMappingList();

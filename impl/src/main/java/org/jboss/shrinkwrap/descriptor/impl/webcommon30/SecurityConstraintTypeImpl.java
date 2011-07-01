@@ -12,7 +12,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:21:34.75-04:00
  *
  * Original Documentation:
  *
@@ -28,8 +28,6 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
  */
 public class SecurityConstraintTypeImpl<T> implements Child<T>, SecurityConstraintType<T>
 {
-   public final static String nodeName = "security-constraint";
-
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -44,14 +42,14 @@ public class SecurityConstraintTypeImpl<T> implements Child<T>, SecurityConstrai
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public SecurityConstraintTypeImpl(T t, String descriptorName, Node node)
+   public SecurityConstraintTypeImpl(T t, String nodeName, Node node)
    {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public SecurityConstraintTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   public SecurityConstraintTypeImpl(T t, String nodeName, Node node, Node childNode)
    {
       this.t = t;
       this.node = node;
@@ -105,23 +103,23 @@ public class SecurityConstraintTypeImpl<T> implements Child<T>, SecurityConstrai
    // -------------------------------------------------------------------------------------||
    public SecurityConstraintType<T> removeAllWebResourceCollection()
    {
-      childNode.remove(WebResourceCollectionTypeImpl.nodeName);
+      childNode.remove("web-resource-collection");
       return this;
    }
 
    public WebResourceCollectionType<SecurityConstraintType<T>> webResourceCollection()
    {
-      return new WebResourceCollectionTypeImpl<SecurityConstraintType<T>>(this, "", childNode);
+      return new WebResourceCollectionTypeImpl<SecurityConstraintType<T>>(this, "web-resource-collection", childNode);
    }
 
    public List<WebResourceCollectionType<SecurityConstraintType<T>>> getWebResourceCollectionList()
    {
       List<WebResourceCollectionType<SecurityConstraintType<T>>> list = new ArrayList<WebResourceCollectionType<SecurityConstraintType<T>>>();
-      List<Node> nodeList = childNode.get(WebResourceCollectionTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("web-resource-collection");
       for (Node node : nodeList)
       {
          WebResourceCollectionType<SecurityConstraintType<T>> type = new WebResourceCollectionTypeImpl<SecurityConstraintType<T>>(
-               this, "", childNode, node);
+               this, "web-resource-collection", childNode, node);
          list.add(type);
       }
       return list;
@@ -139,9 +137,9 @@ public class SecurityConstraintTypeImpl<T> implements Child<T>, SecurityConstrai
 
    public AuthConstraintType<SecurityConstraintType<T>> authConstraint()
    {
-      Node node = childNode.getOrCreate(AuthConstraintTypeImpl.nodeName);
+      Node node = childNode.getOrCreate("auth-constraint");
       AuthConstraintType<SecurityConstraintType<T>> authConstraint = new AuthConstraintTypeImpl<SecurityConstraintType<T>>(
-            this, "", childNode, node);
+            this, "auth-constraint", childNode, node);
       return authConstraint;
    }
 
@@ -157,9 +155,9 @@ public class SecurityConstraintTypeImpl<T> implements Child<T>, SecurityConstrai
 
    public UserDataConstraintType<SecurityConstraintType<T>> userDataConstraint()
    {
-      Node node = childNode.getOrCreate(UserDataConstraintTypeImpl.nodeName);
+      Node node = childNode.getOrCreate("user-data-constraint");
       UserDataConstraintType<SecurityConstraintType<T>> userDataConstraint = new UserDataConstraintTypeImpl<SecurityConstraintType<T>>(
-            this, "", childNode, node);
+            this, "user-data-constraint", childNode, node);
       return userDataConstraint;
    }
 

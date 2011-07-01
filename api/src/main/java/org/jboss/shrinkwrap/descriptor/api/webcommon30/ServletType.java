@@ -10,7 +10,7 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleRefType;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:21:34.75-04:00
  *
  * Original Documentation:
  *
@@ -63,11 +63,11 @@ public interface ServletType<T> extends Child<T>
 
    public List<ParamValueType<ServletType<T>>> getInitParamList();
 
-   public ServletType<T> setLoadOnStartup(Boolean loadOnStartup);
+   public ServletType<T> setLoadOnStartup(Integer loadOnStartup);
 
    public ServletType<T> removeLoadOnStartup();
 
-   public Boolean isLoadOnStartup();
+   public Integer getLoadOnStartup();
 
    public ServletType<T> setEnabled(Boolean enabled);
 

@@ -10,7 +10,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:21:34.75-04:00
  *
  * Original Documentation:
  *
@@ -46,8 +46,6 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
  */
 public class PersistenceUnitRefTypeImpl<T> implements Child<T>, PersistenceUnitRefType<T>
 {
-   public final static String nodeName = "persistence-unit-ref";
-
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -62,14 +60,14 @@ public class PersistenceUnitRefTypeImpl<T> implements Child<T>, PersistenceUnitR
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public PersistenceUnitRefTypeImpl(T t, String descriptorName, Node node)
+   public PersistenceUnitRefTypeImpl(T t, String nodeName, Node node)
    {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public PersistenceUnitRefTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   public PersistenceUnitRefTypeImpl(T t, String nodeName, Node node, Node childNode)
    {
       this.t = t;
       this.node = node;
@@ -108,23 +106,23 @@ public class PersistenceUnitRefTypeImpl<T> implements Child<T>, PersistenceUnitR
    // -------------------------------------------------------------------------------------||
    public PersistenceUnitRefType<T> removeAllInjectionTarget()
    {
-      childNode.remove(InjectionTargetTypeImpl.nodeName);
+      childNode.remove("injection-target");
       return this;
    }
 
    public InjectionTargetType<PersistenceUnitRefType<T>> injectionTarget()
    {
-      return new InjectionTargetTypeImpl<PersistenceUnitRefType<T>>(this, "", childNode);
+      return new InjectionTargetTypeImpl<PersistenceUnitRefType<T>>(this, "injection-target", childNode);
    }
 
    public List<InjectionTargetType<PersistenceUnitRefType<T>>> getInjectionTargetList()
    {
       List<InjectionTargetType<PersistenceUnitRefType<T>>> list = new ArrayList<InjectionTargetType<PersistenceUnitRefType<T>>>();
-      List<Node> nodeList = childNode.get(InjectionTargetTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("injection-target");
       for (Node node : nodeList)
       {
          InjectionTargetType<PersistenceUnitRefType<T>> type = new InjectionTargetTypeImpl<PersistenceUnitRefType<T>>(
-               this, "", childNode, node);
+               this, "injection-target", childNode, node);
          list.add(type);
       }
       return list;

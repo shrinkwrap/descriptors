@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:21:34.75-04:00
  *
  * Original Documentation:
  *
@@ -33,8 +33,6 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
  */
 public class FilterMappingTypeImpl<T> implements Child<T>, FilterMappingType<T>
 {
-   public final static String nodeName = "filter-mapping";
-
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -49,14 +47,14 @@ public class FilterMappingTypeImpl<T> implements Child<T>, FilterMappingType<T>
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public FilterMappingTypeImpl(T t, String descriptorName, Node node)
+   public FilterMappingTypeImpl(T t, String nodeName, Node node)
    {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public FilterMappingTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   public FilterMappingTypeImpl(T t, String nodeName, Node node, Node childNode)
    {
       this.t = t;
       this.node = node;

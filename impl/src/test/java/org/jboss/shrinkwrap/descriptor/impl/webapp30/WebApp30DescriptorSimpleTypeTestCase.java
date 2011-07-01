@@ -29,14 +29,15 @@ public class WebApp30DescriptorSimpleTypeTestCase
    @Test
    public void testLoadOnStartupType() throws Exception
    {
-      final WebApp30Descriptor webApp = create().servlet().setLoadOnStartup(true).up();      
-      assertTrue(webApp.servlet().isLoadOnStartup());
-      assertXPath(webApp.exportAsString(), "/web-app/servlet/load-on-startup", "true");
+      final WebApp30Descriptor webApp = create().servlet().setLoadOnStartup(1).up();      
+      assertTrue(webApp.getServletList().get(0).getLoadOnStartup()==1);
+      webApp.exportAsString();
+      assertXPath(webApp.exportAsString(), "/web-app/servlet/load-on-startup", "1");
       
-      webApp.servlet().setLoadOnStartup(false);
-      assertXPath(webApp.exportAsString(), "/web-app/servlet/load-on-startup", "false");
+      webApp.getServletList().get(0).setLoadOnStartup(0);
+      assertXPath(webApp.exportAsString(), "/web-app/servlet/load-on-startup", "0");
       
-      webApp.servlet().removeLoadOnStartup();
+      webApp.getServletList().get(0).removeLoadOnStartup();
       assertTrue(webApp.exportAsString().indexOf("load-on-startup") == -1);
    }
    

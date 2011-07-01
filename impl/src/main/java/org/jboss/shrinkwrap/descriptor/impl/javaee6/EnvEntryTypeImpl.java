@@ -10,7 +10,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-06-29T17:02:36.405-04:00
+ * Generation date :2011-07-01T17:21:34.75-04:00
  *
  * Original Documentation:
  *
@@ -40,8 +40,6 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
  */
 public class EnvEntryTypeImpl<T> implements Child<T>, EnvEntryType<T>
 {
-   public final static String nodeName = "env-entry";
-
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -56,14 +54,14 @@ public class EnvEntryTypeImpl<T> implements Child<T>, EnvEntryType<T>
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public EnvEntryTypeImpl(T t, String descriptorName, Node node)
+   public EnvEntryTypeImpl(T t, String nodeName, Node node)
    {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public EnvEntryTypeImpl(T t, String descriptorName, Node node, Node childNode)
+   public EnvEntryTypeImpl(T t, String nodeName, Node node, Node childNode)
    {
       this.t = t;
       this.node = node;
@@ -123,23 +121,23 @@ public class EnvEntryTypeImpl<T> implements Child<T>, EnvEntryType<T>
    // -------------------------------------------------------------------------------------||
    public EnvEntryType<T> removeAllInjectionTarget()
    {
-      childNode.remove(InjectionTargetTypeImpl.nodeName);
+      childNode.remove("injection-target");
       return this;
    }
 
    public InjectionTargetType<EnvEntryType<T>> injectionTarget()
    {
-      return new InjectionTargetTypeImpl<EnvEntryType<T>>(this, "", childNode);
+      return new InjectionTargetTypeImpl<EnvEntryType<T>>(this, "injection-target", childNode);
    }
 
    public List<InjectionTargetType<EnvEntryType<T>>> getInjectionTargetList()
    {
       List<InjectionTargetType<EnvEntryType<T>>> list = new ArrayList<InjectionTargetType<EnvEntryType<T>>>();
-      List<Node> nodeList = childNode.get(InjectionTargetTypeImpl.nodeName);
+      List<Node> nodeList = childNode.get("injection-target");
       for (Node node : nodeList)
       {
-         InjectionTargetType<EnvEntryType<T>> type = new InjectionTargetTypeImpl<EnvEntryType<T>>(this, "", childNode,
-               node);
+         InjectionTargetType<EnvEntryType<T>> type = new InjectionTargetTypeImpl<EnvEntryType<T>>(this,
+               "injection-target", childNode, node);
          list.add(type);
       }
       return list;
