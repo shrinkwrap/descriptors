@@ -1,8 +1,8 @@
-package org.jboss.shrinkwrap.descriptor.api.ejbjar31;
+package org.jboss.shrinkwrap.descriptor.api.ejbjar31; 
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T19:50:22.163-04:00
+ * Generation date :2011-07-05T19:45:07.621+02:00
  *
  * Original Documentation:
  *
@@ -19,31 +19,26 @@ package org.jboss.shrinkwrap.descriptor.api.ejbjar31;
  *
  *
  */
-public enum CmpVersionType {
-   _1_X("1.x"), _2_X("2.x");
+public enum CmpVersionType
+{
+   _1_X("1.x"),
+   _2_X("2.x");
 
    private String value;
 
-   CmpVersionType(String value)
-   {
-      this.value = value;
-   }
+   CmpVersionType (String value) { this.value = value; }
 
-   public String toString()
-   {
-      return value;
-   }
+   public String toString() {return value;}
 
    public static CmpVersionType getFromStringValue(String value)
    {
-      for (CmpVersionType type : CmpVersionType.values())
+      for(CmpVersionType type: CmpVersionType.values())
       {
-         if (value != null && type.toString().equals(value))
-         {
-            return type;
-         }
+         if(value != null && type.toString().equals(value))
+        { return type;}
       }
       return null;
    }
 
 }
+

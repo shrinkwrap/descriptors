@@ -361,7 +361,7 @@
                     <xsl:for-each select="//classes/class[@name=$vType]">
                         <xsl:for-each select="element">
                             <xsl:variable name="vMaxOccurs" select="concat('-',  @maxOccurs)"/>
-                            <xsl:value-of select="xdd:writeMethodOrAttribute($vInterfaceName, @name, @type, $vMaxOccurs, false(), false(), false(), $vNodeName, false())"/>
+                            <xsl:value-of select="xdd:writeMethodOrAttribute($vInterfaceName, @name, @type, $vMaxOccurs, false(), false(), false(), $vNodeName, exists(@attribute))"/>
                         </xsl:for-each>
                         <xsl:for-each select="include">
                             <xsl:value-of select="xdd:includeGroupRefs($vInterfaceName, @name, false(), false(), false(), $vNodeName, @maxOccurs='unbounded')"/>
@@ -429,9 +429,7 @@
                                 <xsl:for-each select="include">
                                     <xsl:variable name="vIsMaxOccursUnbounded" select="@maxOccurs='unbounded'" as="xs:boolean"/>
                                     <xsl:variable name="vGroupName" select=" substring-after(@name, ':')"/>
-                                    <xsl:message select="concat('test cass include groupname: ', $vGroupName)"/>
                                     <xsl:for-each select="$gGroups/class[@name=$vGroupName]/element">
-                                        <xsl:message select="concat('test cass include groupname: ', $vGroupName), '  found: ', ../element/@name"/>
                                         <xsl:variable name="vMaxOccurs" select="concat('-', @maxOccurs)"/>
                                         <xsl:call-template name="WriteTestMethods">
                                             <xsl:with-param name="pElement" select="."/>

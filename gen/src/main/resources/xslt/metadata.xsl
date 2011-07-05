@@ -661,7 +661,7 @@
             <xsl:variable name="vDocumentation" select="xsd:annotation/xsd:documentation/text()"/>
 
             <xsl:if test="$complexTypeName">
-                <xsl:if test="count(xsd:sequence/xsd:element) > 0 or count(xsd:choice/xsd:element) > 0 or count(xsd:sequence/xsd:choice/xsd:element) > 0 or count(xsd:choice/xsd:group) > 0">
+                <xsl:if test="count(xsd:sequence/xsd:element) > 0 or count(xsd:choice/xsd:element) > 0 or count(xsd:sequence/xsd:choice/xsd:element) > 0 or count(xsd:choice/xsd:group) > 0 or count(xsd:attribute) > 1">
                     <xsl:message select="concat('Metadata describing class: ', $complexTypeName)"/>
 
                     <class>
@@ -779,6 +779,21 @@
                             </include>
                         </xsl:for-each>
 
+                        <xsl:for-each select="xsd:attribute">
+                            <xsl:if test="@name!='id'">
+                                <element>
+                                    <xsl:attribute name="name">
+                                        <xsl:value-of select="@name"/>
+                                    </xsl:attribute>
+                                    <xsl:attribute name="type">
+                                        <xsl:value-of select="@type"/>
+                                    </xsl:attribute>
+                                    <xsl:attribute name="attribute">
+                                        <xsl:value-of select="'true'"/>
+                                    </xsl:attribute>
+                                </element>
+                            </xsl:if>
+                        </xsl:for-each>
                     </class>
                 </xsl:if>
             </xsl:if>

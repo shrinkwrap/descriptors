@@ -1,8 +1,8 @@
-package org.jboss.shrinkwrap.descriptor.api.javaee6;
+package org.jboss.shrinkwrap.descriptor.api.javaee6; 
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T19:50:22.163-04:00
+ * Generation date :2011-07-05T19:45:07.621+02:00
  *
  * Original Documentation:
  *
@@ -14,31 +14,28 @@ package org.jboss.shrinkwrap.descriptor.api.javaee6;
  *
  *
  */
-public enum GenericBooleanType {
-   _TRUE("true"), _FALSE("false"), _YES("yes"), _NO("no");
+public enum GenericBooleanType
+{
+   _TRUE("true"),
+   _FALSE("false"),
+   _YES("yes"),
+   _NO("no");
 
    private String value;
 
-   GenericBooleanType(String value)
-   {
-      this.value = value;
-   }
+   GenericBooleanType (String value) { this.value = value; }
 
-   public String toString()
-   {
-      return value;
-   }
+   public String toString() {return value;}
 
    public static GenericBooleanType getFromStringValue(String value)
    {
-      for (GenericBooleanType type : GenericBooleanType.values())
+      for(GenericBooleanType type: GenericBooleanType.values())
       {
-         if (value != null && type.toString().equals(value))
-         {
-            return type;
-         }
+         if(value != null && type.toString().equals(value))
+        { return type;}
       }
       return null;
    }
 
 }
+

@@ -1,16 +1,34 @@
-package org.jboss.shrinkwrap.descriptor.impl.javaee6;
+package org.jboss.shrinkwrap.descriptor.impl.javaee6; 
 
+import org.jboss.shrinkwrap.descriptor.spi.Node;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Map;
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationType;
-import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.api.application6.*;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
+import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
+import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.impl.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.impl.application6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.impl.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.impl.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.impl.ejbjar31.*;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T19:50:22.163-04:00
+ * Generation date :2011-07-05T19:45:07.621+02:00
  *
  * Original Documentation:
  *
@@ -48,33 +66,31 @@ public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinati
    // -------------------------------------------------------------------------------------||
 
    private T t;
-
    private Node node;
-
    private Node childNode;
-
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public MessageDestinationTypeImpl(T t, String nodeName, Node node)
-   {
+   public MessageDestinationTypeImpl(T t, String nodeName, Node node)   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public MessageDestinationTypeImpl(T t, String nodeName, Node node, Node childNode)
-   {
+   public MessageDestinationTypeImpl(T t, String nodeName, Node node, Node childNode)   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
+
    public T up()
    {
       return t;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : description
@@ -85,23 +101,21 @@ public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinati
       childNode.create("description").text(description);
       return this;
    }
-
-   public MessageDestinationType<T> setDescriptionList(String... values)
+   public MessageDestinationType<T> setDescriptionList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setDescription(name);
       }
       return this;
    }
-
    public MessageDestinationType<T> removeAllDescription()
    {
       childNode.remove("description");
       return this;
    }
 
-   public List<String> getDescriptionList()
+public List<String> getDescriptionList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("description");
@@ -112,6 +126,7 @@ public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinati
       return result;
    }
 
+
    // -------------------------------------------------------------------------------------||
    // Element type : display-name
    // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
@@ -121,23 +136,21 @@ public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinati
       childNode.create("display-name").text(displayName);
       return this;
    }
-
-   public MessageDestinationType<T> setDisplayNameList(String... values)
+   public MessageDestinationType<T> setDisplayNameList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setDisplayName(name);
       }
       return this;
    }
-
    public MessageDestinationType<T> removeAllDisplayName()
    {
       childNode.remove("display-name");
       return this;
    }
 
-   public List<String> getDisplayNameList()
+public List<String> getDisplayNameList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("display-name");
@@ -147,6 +160,7 @@ public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinati
       }
       return result;
    }
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : icon
@@ -167,14 +181,15 @@ public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinati
    {
       List<IconType<MessageDestinationType<T>>> list = new ArrayList<IconType<MessageDestinationType<T>>>();
       List<Node> nodeList = childNode.get("icon");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         IconType<MessageDestinationType<T>> type = new IconTypeImpl<MessageDestinationType<T>>(this, "icon",
-               childNode, node);
+         IconType<MessageDestinationType<T>>  type = new IconTypeImpl<MessageDestinationType<T>>(this, "icon", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : message-destination-name
@@ -185,7 +200,6 @@ public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinati
       childNode.getOrCreate("message-destination-name").text(messageDestinationName);
       return this;
    }
-
    public MessageDestinationType<T> removeMessageDestinationName()
    {
       childNode.remove("message-destination-name");
@@ -197,6 +211,8 @@ public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinati
       return childNode.textValue("message-destination-name");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : mapped-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -206,7 +222,6 @@ public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinati
       childNode.getOrCreate("mapped-name").text(mappedName);
       return this;
    }
-
    public MessageDestinationType<T> removeMappedName()
    {
       childNode.remove("mapped-name");
@@ -218,6 +233,8 @@ public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinati
       return childNode.textValue("mapped-name");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : lookup-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -227,7 +244,6 @@ public class MessageDestinationTypeImpl<T> implements Child<T>, MessageDestinati
       childNode.getOrCreate("lookup-name").text(lookupName);
       return this;
    }
-
    public MessageDestinationType<T> removeLookupName()
    {
       childNode.remove("lookup-name");

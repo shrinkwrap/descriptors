@@ -1,8 +1,8 @@
-package org.jboss.shrinkwrap.descriptor.api.webcommon30;
+package org.jboss.shrinkwrap.descriptor.api.webcommon30; 
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T19:50:22.163-04:00
+ * Generation date :2011-07-05T19:45:07.621+02:00
  *
  * Original Documentation:
  *
@@ -15,31 +15,27 @@ package org.jboss.shrinkwrap.descriptor.api.webcommon30;
  *
  *
  */
-public enum TrackingModeType {
-   _COOKIE("COOKIE"), _URL("URL"), _SSL("SSL");
+public enum TrackingModeType
+{
+   _COOKIE("COOKIE"),
+   _URL("URL"),
+   _SSL("SSL");
 
    private String value;
 
-   TrackingModeType(String value)
-   {
-      this.value = value;
-   }
+   TrackingModeType (String value) { this.value = value; }
 
-   public String toString()
-   {
-      return value;
-   }
+   public String toString() {return value;}
 
    public static TrackingModeType getFromStringValue(String value)
    {
-      for (TrackingModeType type : TrackingModeType.values())
+      for(TrackingModeType type: TrackingModeType.values())
       {
-         if (value != null && type.toString().equals(value))
-         {
-            return type;
-         }
+         if(value != null && type.toString().equals(value))
+        { return type;}
       }
       return null;
    }
 
 }
+

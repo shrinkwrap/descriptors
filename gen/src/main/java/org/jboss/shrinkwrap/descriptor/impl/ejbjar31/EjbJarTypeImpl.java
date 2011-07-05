@@ -1,21 +1,34 @@
-package org.jboss.shrinkwrap.descriptor.impl.ejbjar31;
+package org.jboss.shrinkwrap.descriptor.impl.ejbjar31; 
 
+import org.jboss.shrinkwrap.descriptor.spi.Node;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Map;
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.AssemblyDescriptorType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.EjbJarType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.EnterpriseBeansType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.InterceptorsType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.RelationshipsType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.IconTypeImpl;
-import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.api.application6.*;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
+import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
+import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.impl.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.impl.application6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.impl.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.impl.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.impl.ejbjar31.*;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T19:50:22.163-04:00
+ * Generation date :2011-07-05T19:45:07.621+02:00
  *
  * Original Documentation:
  *
@@ -51,33 +64,31 @@ public class EjbJarTypeImpl<T> implements Child<T>, EjbJarType<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
-
    private Node node;
-
    private Node childNode;
-
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public EjbJarTypeImpl(T t, String nodeName, Node node)
-   {
+   public EjbJarTypeImpl(T t, String nodeName, Node node)   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public EjbJarTypeImpl(T t, String nodeName, Node node, Node childNode)
-   {
+   public EjbJarTypeImpl(T t, String nodeName, Node node, Node childNode)   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
+
    public T up()
    {
       return t;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : description
@@ -88,23 +99,21 @@ public class EjbJarTypeImpl<T> implements Child<T>, EjbJarType<T>
       childNode.create("description").text(description);
       return this;
    }
-
-   public EjbJarType<T> setDescriptionList(String... values)
+   public EjbJarType<T> setDescriptionList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setDescription(name);
       }
       return this;
    }
-
    public EjbJarType<T> removeAllDescription()
    {
       childNode.remove("description");
       return this;
    }
 
-   public List<String> getDescriptionList()
+public List<String> getDescriptionList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("description");
@@ -115,6 +124,7 @@ public class EjbJarTypeImpl<T> implements Child<T>, EjbJarType<T>
       return result;
    }
 
+
    // -------------------------------------------------------------------------------------||
    // Element type : display-name
    // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
@@ -124,23 +134,21 @@ public class EjbJarTypeImpl<T> implements Child<T>, EjbJarType<T>
       childNode.create("display-name").text(displayName);
       return this;
    }
-
-   public EjbJarType<T> setDisplayNameList(String... values)
+   public EjbJarType<T> setDisplayNameList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setDisplayName(name);
       }
       return this;
    }
-
    public EjbJarType<T> removeAllDisplayName()
    {
       childNode.remove("display-name");
       return this;
    }
 
-   public List<String> getDisplayNameList()
+public List<String> getDisplayNameList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("display-name");
@@ -150,6 +158,7 @@ public class EjbJarTypeImpl<T> implements Child<T>, EjbJarType<T>
       }
       return result;
    }
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : icon
@@ -170,13 +179,15 @@ public class EjbJarTypeImpl<T> implements Child<T>, EjbJarType<T>
    {
       List<IconType<EjbJarType<T>>> list = new ArrayList<IconType<EjbJarType<T>>>();
       List<Node> nodeList = childNode.get("icon");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         IconType<EjbJarType<T>> type = new IconTypeImpl<EjbJarType<T>>(this, "icon", childNode, node);
+         IconType<EjbJarType<T>>  type = new IconTypeImpl<EjbJarType<T>>(this, "icon", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : module-name
@@ -187,7 +198,6 @@ public class EjbJarTypeImpl<T> implements Child<T>, EjbJarType<T>
       childNode.getOrCreate("module-name").text(moduleName);
       return this;
    }
-
    public EjbJarType<T> removeModuleName()
    {
       childNode.remove("module-name");
@@ -198,6 +208,8 @@ public class EjbJarTypeImpl<T> implements Child<T>, EjbJarType<T>
    {
       return childNode.textValue("module-name");
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : enterprise-beans
@@ -212,10 +224,12 @@ public class EjbJarTypeImpl<T> implements Child<T>, EjbJarType<T>
    public EnterpriseBeansType<EjbJarType<T>> enterpriseBeans()
    {
       Node node = childNode.getOrCreate("enterprise-beans");
-      EnterpriseBeansType<EjbJarType<T>> enterpriseBeans = new EnterpriseBeansTypeImpl<EjbJarType<T>>(this,
-            "enterprise-beans", childNode, node);
+      EnterpriseBeansType<EjbJarType<T>> enterpriseBeans = new EnterpriseBeansTypeImpl<EjbJarType<T>>(this, "enterprise-beans", childNode, node);
       return enterpriseBeans;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : interceptors
@@ -230,10 +244,12 @@ public class EjbJarTypeImpl<T> implements Child<T>, EjbJarType<T>
    public InterceptorsType<EjbJarType<T>> interceptors()
    {
       Node node = childNode.getOrCreate("interceptors");
-      InterceptorsType<EjbJarType<T>> interceptors = new InterceptorsTypeImpl<EjbJarType<T>>(this, "interceptors",
-            childNode, node);
+      InterceptorsType<EjbJarType<T>> interceptors = new InterceptorsTypeImpl<EjbJarType<T>>(this, "interceptors", childNode, node);
       return interceptors;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : relationships
@@ -248,10 +264,12 @@ public class EjbJarTypeImpl<T> implements Child<T>, EjbJarType<T>
    public RelationshipsType<EjbJarType<T>> relationships()
    {
       Node node = childNode.getOrCreate("relationships");
-      RelationshipsType<EjbJarType<T>> relationships = new RelationshipsTypeImpl<EjbJarType<T>>(this, "relationships",
-            childNode, node);
+      RelationshipsType<EjbJarType<T>> relationships = new RelationshipsTypeImpl<EjbJarType<T>>(this, "relationships", childNode, node);
       return relationships;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : assembly-descriptor
@@ -266,10 +284,12 @@ public class EjbJarTypeImpl<T> implements Child<T>, EjbJarType<T>
    public AssemblyDescriptorType<EjbJarType<T>> assemblyDescriptor()
    {
       Node node = childNode.getOrCreate("assembly-descriptor");
-      AssemblyDescriptorType<EjbJarType<T>> assemblyDescriptor = new AssemblyDescriptorTypeImpl<EjbJarType<T>>(this,
-            "assembly-descriptor", childNode, node);
+      AssemblyDescriptorType<EjbJarType<T>> assemblyDescriptor = new AssemblyDescriptorTypeImpl<EjbJarType<T>>(this, "assembly-descriptor", childNode, node);
       return assemblyDescriptor;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : ejb-client-jar
@@ -280,7 +300,6 @@ public class EjbJarTypeImpl<T> implements Child<T>, EjbJarType<T>
       childNode.getOrCreate("ejb-client-jar").text(ejbClientJar);
       return this;
    }
-
    public EjbJarType<T> removeEjbClientJar()
    {
       childNode.remove("ejb-client-jar");
@@ -290,6 +309,50 @@ public class EjbJarTypeImpl<T> implements Child<T>, EjbJarType<T>
    public String getEjbClientJar()
    {
       return childNode.textValue("ejb-client-jar");
+   }
+
+
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : version
+   // isComplexType: false   maxOccurs: -   isAttribute: true
+   // -------------------------------------------------------------------------------------||
+   public EjbJarType<T> setVersion(String version)
+   {
+      childNode.attribute("version", version);
+      return this;
+   }
+   public EjbJarType<T> removeVersion()
+   {
+      childNode.attributes().remove("version");
+      return this;
+   }
+
+   public String getVersion()
+   {
+      return childNode.attributes().get("version");
+   }
+
+
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : metadata-complete
+   // isComplexType: false   maxOccurs: -   isAttribute: true
+   // -------------------------------------------------------------------------------------||
+   public EjbJarType<T> setMetadataComplete(Boolean metadataComplete)
+   {
+      childNode.attribute("metadata-complete", metadataComplete);
+      return this;
+   }
+   public EjbJarType<T> removeMetadataComplete()
+   {
+      childNode.attributes().remove("metadata-complete");
+      return this;
+   }
+
+   public Boolean isMetadataComplete()
+   {
+      return Strings.isTrue(childNode.attribute("metadata-complete"));
    }
 
 }

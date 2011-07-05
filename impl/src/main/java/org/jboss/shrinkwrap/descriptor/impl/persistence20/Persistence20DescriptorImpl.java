@@ -14,7 +14,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T17:21:34.75-04:00
+ * Generation date :2011-07-05T19:40:43.525+02:00
  */
 public class Persistence20DescriptorImpl extends NodeProviderImplBase
       implements
@@ -139,23 +139,23 @@ public class Persistence20DescriptorImpl extends NodeProviderImplBase
 
    // -------------------------------------------------------------------------------------||
    // Element type : version
-   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // isComplexType: false   maxOccurs: -   isAttribute: true
    // -------------------------------------------------------------------------------------||
    public Persistence20Descriptor setVersion(String version)
    {
-      model.getOrCreate("version").text(version);
+      model.attribute("version", version);
       return this;
    }
 
    public Persistence20Descriptor removeVersion()
    {
-      model.remove("version");
+      model.attributes().remove("version");
       return this;
    }
 
    public String getVersion()
    {
-      return model.textValue("version");
+      return model.attributes().get("version");
    }
 
 }

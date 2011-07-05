@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T17:21:34.75-04:00
+ * Generation date :2011-07-05T19:40:43.525+02:00
  *
  * Original Documentation:
  *
@@ -88,5 +88,17 @@ public interface EjbJarType<T> extends Child<T>
    public EjbJarType<T> removeEjbClientJar();
 
    public String getEjbClientJar();
+
+   public EjbJarType<T> setVersion(String version);
+
+   public EjbJarType<T> removeVersion();
+
+   public String getVersion();
+
+   public EjbJarType<T> setMetadataComplete(Boolean metadataComplete);
+
+   public EjbJarType<T> removeMetadataComplete();
+
+   public Boolean isMetadataComplete();
 
 }

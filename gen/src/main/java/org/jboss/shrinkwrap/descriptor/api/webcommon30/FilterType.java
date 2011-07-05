@@ -1,14 +1,20 @@
-package org.jboss.shrinkwrap.descriptor.api.webcommon30;
+package org.jboss.shrinkwrap.descriptor.api.webcommon30; 
 
+import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Map;
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.ParamValueType;
-
+import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.api.application6.*;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T19:50:22.163-04:00
+ * Generation date :2011-07-05T19:45:07.621+02:00
  *
  * Original Documentation:
  *
@@ -29,49 +35,51 @@ public interface FilterType<T> extends Child<T>
 {
 
    public FilterType<T> setDescription(String description);
-
-   public FilterType<T> setDescriptionList(String... values);
-
+   public FilterType<T> setDescriptionList(String ... values);
    public FilterType<T> removeAllDescription();
 
    public List<String> getDescriptionList();
 
+
    public FilterType<T> setDisplayName(String displayName);
-
-   public FilterType<T> setDisplayNameList(String... values);
-
+   public FilterType<T> setDisplayNameList(String ... values);
    public FilterType<T> removeAllDisplayName();
 
    public List<String> getDisplayNameList();
 
+
    public FilterType<T> removeAllIcon();
 
    public IconType<FilterType<T>> icon();
-
    public List<IconType<FilterType<T>>> getIconList();
 
-   public FilterType<T> setFilterName(String filterName);
 
+
+   public FilterType<T> setFilterName(String filterName);
    public FilterType<T> removeFilterName();
 
    public String getFilterName();
 
-   public FilterType<T> setFilterClass(String filterClass);
 
+
+   public FilterType<T> setFilterClass(String filterClass);
    public FilterType<T> removeFilterClass();
 
    public String getFilterClass();
 
-   public FilterType<T> setAsyncSupported(Boolean asyncSupported);
 
+
+   public FilterType<T> setAsyncSupported(Boolean asyncSupported);
    public FilterType<T> removeAsyncSupported();
 
    public Boolean isAsyncSupported();
 
+
+
    public FilterType<T> removeAllInitParam();
 
    public ParamValueType<FilterType<T>> initParam();
-
    public List<ParamValueType<FilterType<T>>> getInitParamList();
+
 
 }

@@ -35,7 +35,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T17:21:34.75-04:00
+ * Generation date :2011-07-05T19:40:43.525+02:00
  *
  * Original Documentation:
  *
@@ -580,6 +580,27 @@ public class ApplicationTypeImpl<T> implements Child<T>, ApplicationType<T>
          list.add(type);
       }
       return list;
+   }
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : version
+   // isComplexType: false   maxOccurs: -   isAttribute: true
+   // -------------------------------------------------------------------------------------||
+   public ApplicationType<T> setVersion(String version)
+   {
+      childNode.attribute("version", version);
+      return this;
+   }
+
+   public ApplicationType<T> removeVersion()
+   {
+      childNode.attributes().remove("version");
+      return this;
+   }
+
+   public String getVersion()
+   {
+      return childNode.attributes().get("version");
    }
 
 }

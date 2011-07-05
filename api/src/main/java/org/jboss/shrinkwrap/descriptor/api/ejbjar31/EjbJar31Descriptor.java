@@ -8,7 +8,7 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T17:21:34.75-04:00
+ * Generation date :2011-07-05T19:40:43.525+02:00
  */
 public interface EjbJar31Descriptor extends Descriptor, DescriptorNamespace<EjbJar31Descriptor>
 {
@@ -62,5 +62,17 @@ public interface EjbJar31Descriptor extends Descriptor, DescriptorNamespace<EjbJ
    public EjbJar31Descriptor removeEjbClientJar();
 
    public String getEjbClientJar();
+
+   public EjbJar31Descriptor setVersion(String version);
+
+   public EjbJar31Descriptor removeVersion();
+
+   public String getVersion();
+
+   public EjbJar31Descriptor setMetadataComplete(Boolean metadataComplete);
+
+   public EjbJar31Descriptor removeMetadataComplete();
+
+   public Boolean isMetadataComplete();
 
 }

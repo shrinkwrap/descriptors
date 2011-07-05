@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.descriptor.api.DescriptorNamespace;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T17:21:34.75-04:00
+ * Generation date :2011-07-05T19:40:43.525+02:00
  */
 public interface Persistence20Descriptor extends Descriptor, DescriptorNamespace<Persistence20Descriptor>
 {

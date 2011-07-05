@@ -12,6 +12,7 @@ import org.jboss.shrinkwrap.descriptor.api.ejbjar31.InterceptorsType;
 import org.jboss.shrinkwrap.descriptor.api.ejbjar31.RelationshipsType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
 import org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase;
+import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
 import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.IconTypeImpl;
 import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
@@ -19,7 +20,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T17:21:34.75-04:00
+ * Generation date :2011-07-05T19:40:43.525+02:00
  */
 public class EjbJar31DescriptorImpl extends NodeProviderImplBase
       implements
@@ -226,6 +227,48 @@ public class EjbJar31DescriptorImpl extends NodeProviderImplBase
    public String getEjbClientJar()
    {
       return model.textValue("ejb-client-jar");
+   }
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : version
+   // isComplexType: false   maxOccurs: -   isAttribute: true
+   // -------------------------------------------------------------------------------------||
+   public EjbJar31Descriptor setVersion(String version)
+   {
+      model.attribute("version", version);
+      return this;
+   }
+
+   public EjbJar31Descriptor removeVersion()
+   {
+      model.attributes().remove("version");
+      return this;
+   }
+
+   public String getVersion()
+   {
+      return model.attributes().get("version");
+   }
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : metadata-complete
+   // isComplexType: false   maxOccurs: -   isAttribute: true
+   // -------------------------------------------------------------------------------------||
+   public EjbJar31Descriptor setMetadataComplete(Boolean metadataComplete)
+   {
+      model.attribute("metadata-complete", metadataComplete);
+      return this;
+   }
+
+   public EjbJar31Descriptor removeMetadataComplete()
+   {
+      model.attributes().remove("metadata-complete");
+      return this;
+   }
+
+   public Boolean isMetadataComplete()
+   {
+      return Strings.isTrue(model.attribute("metadata-complete"));
    }
 
    // -------------------------------------------------------------------------------------||

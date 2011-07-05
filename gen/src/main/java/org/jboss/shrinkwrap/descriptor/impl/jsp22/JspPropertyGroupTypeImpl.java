@@ -1,18 +1,34 @@
-package org.jboss.shrinkwrap.descriptor.impl.jsp22;
+package org.jboss.shrinkwrap.descriptor.impl.jsp22; 
 
+import org.jboss.shrinkwrap.descriptor.spi.Node;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Map;
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
-import org.jboss.shrinkwrap.descriptor.api.jsp22.JspPropertyGroupType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.api.application6.*;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
 import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.IconTypeImpl;
-import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.impl.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.impl.application6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.impl.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.impl.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.impl.ejbjar31.*;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T19:50:22.163-04:00
+ * Generation date :2011-07-05T19:45:07.621+02:00
  *
  * Original Documentation:
  *
@@ -46,33 +62,31 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
    // -------------------------------------------------------------------------------------||
 
    private T t;
-
    private Node node;
-
    private Node childNode;
-
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public JspPropertyGroupTypeImpl(T t, String nodeName, Node node)
-   {
+   public JspPropertyGroupTypeImpl(T t, String nodeName, Node node)   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public JspPropertyGroupTypeImpl(T t, String nodeName, Node node, Node childNode)
-   {
+   public JspPropertyGroupTypeImpl(T t, String nodeName, Node node, Node childNode)   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
+
    public T up()
    {
       return t;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : description
@@ -83,23 +97,21 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       childNode.create("description").text(description);
       return this;
    }
-
-   public JspPropertyGroupType<T> setDescriptionList(String... values)
+   public JspPropertyGroupType<T> setDescriptionList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setDescription(name);
       }
       return this;
    }
-
    public JspPropertyGroupType<T> removeAllDescription()
    {
       childNode.remove("description");
       return this;
    }
 
-   public List<String> getDescriptionList()
+public List<String> getDescriptionList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("description");
@@ -110,6 +122,7 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       return result;
    }
 
+
    // -------------------------------------------------------------------------------------||
    // Element type : display-name
    // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
@@ -119,23 +132,21 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       childNode.create("display-name").text(displayName);
       return this;
    }
-
-   public JspPropertyGroupType<T> setDisplayNameList(String... values)
+   public JspPropertyGroupType<T> setDisplayNameList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setDisplayName(name);
       }
       return this;
    }
-
    public JspPropertyGroupType<T> removeAllDisplayName()
    {
       childNode.remove("display-name");
       return this;
    }
 
-   public List<String> getDisplayNameList()
+public List<String> getDisplayNameList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("display-name");
@@ -145,6 +156,7 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       }
       return result;
    }
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : icon
@@ -165,14 +177,15 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
    {
       List<IconType<JspPropertyGroupType<T>>> list = new ArrayList<IconType<JspPropertyGroupType<T>>>();
       List<Node> nodeList = childNode.get("icon");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         IconType<JspPropertyGroupType<T>> type = new IconTypeImpl<JspPropertyGroupType<T>>(this, "icon", childNode,
-               node);
+         IconType<JspPropertyGroupType<T>>  type = new IconTypeImpl<JspPropertyGroupType<T>>(this, "icon", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : url-pattern
@@ -183,23 +196,21 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       childNode.create("url-pattern").text(urlPattern);
       return this;
    }
-
-   public JspPropertyGroupType<T> setUrlPatternList(String... values)
+   public JspPropertyGroupType<T> setUrlPatternList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setUrlPattern(name);
       }
       return this;
    }
-
    public JspPropertyGroupType<T> removeAllUrlPattern()
    {
       childNode.remove("url-pattern");
       return this;
    }
 
-   public List<String> getUrlPatternList()
+public List<String> getUrlPatternList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("url-pattern");
@@ -210,6 +221,8 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       return result;
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : el-ignored
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -219,7 +232,6 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       childNode.getOrCreate("el-ignored").text(elIgnored);
       return this;
    }
-
    public JspPropertyGroupType<T> removeElIgnored()
    {
       childNode.remove("el-ignored");
@@ -231,6 +243,8 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       return Strings.isTrue(childNode.textValue("el-ignored"));
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : page-encoding
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -240,7 +254,6 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       childNode.getOrCreate("page-encoding").text(pageEncoding);
       return this;
    }
-
    public JspPropertyGroupType<T> removePageEncoding()
    {
       childNode.remove("page-encoding");
@@ -252,6 +265,8 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       return childNode.textValue("page-encoding");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : scripting-invalid
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -261,7 +276,6 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       childNode.getOrCreate("scripting-invalid").text(scriptingInvalid);
       return this;
    }
-
    public JspPropertyGroupType<T> removeScriptingInvalid()
    {
       childNode.remove("scripting-invalid");
@@ -273,6 +287,8 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       return Strings.isTrue(childNode.textValue("scripting-invalid"));
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : is-xml
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -282,7 +298,6 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       childNode.getOrCreate("is-xml").text(isXml);
       return this;
    }
-
    public JspPropertyGroupType<T> removeIsXml()
    {
       childNode.remove("is-xml");
@@ -294,6 +309,8 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       return Strings.isTrue(childNode.textValue("is-xml"));
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : include-prelude
    // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
@@ -303,23 +320,21 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       childNode.create("include-prelude").text(includePrelude);
       return this;
    }
-
-   public JspPropertyGroupType<T> setIncludePreludeList(String... values)
+   public JspPropertyGroupType<T> setIncludePreludeList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setIncludePrelude(name);
       }
       return this;
    }
-
    public JspPropertyGroupType<T> removeAllIncludePrelude()
    {
       childNode.remove("include-prelude");
       return this;
    }
 
-   public List<String> getIncludePreludeList()
+public List<String> getIncludePreludeList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("include-prelude");
@@ -330,6 +345,8 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       return result;
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : include-coda
    // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
@@ -339,23 +356,21 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       childNode.create("include-coda").text(includeCoda);
       return this;
    }
-
-   public JspPropertyGroupType<T> setIncludeCodaList(String... values)
+   public JspPropertyGroupType<T> setIncludeCodaList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setIncludeCoda(name);
       }
       return this;
    }
-
    public JspPropertyGroupType<T> removeAllIncludeCoda()
    {
       childNode.remove("include-coda");
       return this;
    }
 
-   public List<String> getIncludeCodaList()
+public List<String> getIncludeCodaList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("include-coda");
@@ -366,6 +381,8 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       return result;
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : deferred-syntax-allowed-as-literal
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -375,7 +392,6 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       childNode.getOrCreate("deferred-syntax-allowed-as-literal").text(deferredSyntaxAllowedAsLiteral);
       return this;
    }
-
    public JspPropertyGroupType<T> removeDeferredSyntaxAllowedAsLiteral()
    {
       childNode.remove("deferred-syntax-allowed-as-literal");
@@ -387,6 +403,8 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       return Strings.isTrue(childNode.textValue("deferred-syntax-allowed-as-literal"));
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : trim-directive-whitespaces
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -396,7 +414,6 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       childNode.getOrCreate("trim-directive-whitespaces").text(trimDirectiveWhitespaces);
       return this;
    }
-
    public JspPropertyGroupType<T> removeTrimDirectiveWhitespaces()
    {
       childNode.remove("trim-directive-whitespaces");
@@ -408,6 +425,8 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       return Strings.isTrue(childNode.textValue("trim-directive-whitespaces"));
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : default-content-type
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -417,7 +436,6 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       childNode.getOrCreate("default-content-type").text(defaultContentType);
       return this;
    }
-
    public JspPropertyGroupType<T> removeDefaultContentType()
    {
       childNode.remove("default-content-type");
@@ -429,6 +447,8 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       return childNode.textValue("default-content-type");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : buffer
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -438,7 +458,6 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       childNode.getOrCreate("buffer").text(buffer);
       return this;
    }
-
    public JspPropertyGroupType<T> removeBuffer()
    {
       childNode.remove("buffer");
@@ -450,6 +469,8 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       return childNode.textValue("buffer");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : error-on-undeclared-namespace
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -459,7 +480,6 @@ public class JspPropertyGroupTypeImpl<T> implements Child<T>, JspPropertyGroupTy
       childNode.getOrCreate("error-on-undeclared-namespace").text(errorOnUndeclaredNamespace);
       return this;
    }
-
    public JspPropertyGroupType<T> removeErrorOnUndeclaredNamespace()
    {
       childNode.remove("error-on-undeclared-namespace");

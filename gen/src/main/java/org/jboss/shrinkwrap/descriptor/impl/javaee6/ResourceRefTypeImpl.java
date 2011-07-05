@@ -1,18 +1,34 @@
-package org.jboss.shrinkwrap.descriptor.impl.javaee6;
+package org.jboss.shrinkwrap.descriptor.impl.javaee6; 
 
+import org.jboss.shrinkwrap.descriptor.spi.Node;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Map;
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.InjectionTargetType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.ResAuthType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.ResSharingScopeType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceRefType;
-import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.api.application6.*;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
+import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
+import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.impl.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.impl.application6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.impl.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.impl.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.impl.ejbjar31.*;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T19:50:22.163-04:00
+ * Generation date :2011-07-05T19:45:07.621+02:00
  *
  * Original Documentation:
  *
@@ -56,33 +72,31 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
-
    private Node node;
-
    private Node childNode;
-
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public ResourceRefTypeImpl(T t, String nodeName, Node node)
-   {
+   public ResourceRefTypeImpl(T t, String nodeName, Node node)   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public ResourceRefTypeImpl(T t, String nodeName, Node node, Node childNode)
-   {
+   public ResourceRefTypeImpl(T t, String nodeName, Node node, Node childNode)   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
+
    public T up()
    {
       return t;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : lookup-name
@@ -93,7 +107,6 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
       childNode.getOrCreate("lookup-name").text(lookupName);
       return this;
    }
-
    public ResourceRefType<T> removeLookupName()
    {
       childNode.remove("lookup-name");
@@ -105,6 +118,7 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
       return childNode.textValue("lookup-name");
    }
 
+
    // -------------------------------------------------------------------------------------||
    // Element type : mapped-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -114,7 +128,6 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
       childNode.getOrCreate("mapped-name").text(mappedName);
       return this;
    }
-
    public ResourceRefType<T> removeMappedName()
    {
       childNode.remove("mapped-name");
@@ -125,6 +138,7 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
    {
       return childNode.textValue("mapped-name");
    }
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : injection-target
@@ -145,14 +159,15 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
    {
       List<InjectionTargetType<ResourceRefType<T>>> list = new ArrayList<InjectionTargetType<ResourceRefType<T>>>();
       List<Node> nodeList = childNode.get("injection-target");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         InjectionTargetType<ResourceRefType<T>> type = new InjectionTargetTypeImpl<ResourceRefType<T>>(this,
-               "injection-target", childNode, node);
+         InjectionTargetType<ResourceRefType<T>>  type = new InjectionTargetTypeImpl<ResourceRefType<T>>(this, "injection-target", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : description
@@ -163,23 +178,21 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
       childNode.create("description").text(description);
       return this;
    }
-
-   public ResourceRefType<T> setDescriptionList(String... values)
+   public ResourceRefType<T> setDescriptionList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setDescription(name);
       }
       return this;
    }
-
    public ResourceRefType<T> removeAllDescription()
    {
       childNode.remove("description");
       return this;
    }
 
-   public List<String> getDescriptionList()
+public List<String> getDescriptionList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("description");
@@ -190,6 +203,8 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
       return result;
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : res-ref-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -199,7 +214,6 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
       childNode.getOrCreate("res-ref-name").text(resRefName);
       return this;
    }
-
    public ResourceRefType<T> removeResRefName()
    {
       childNode.remove("res-ref-name");
@@ -211,6 +225,8 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
       return childNode.textValue("res-ref-name");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : res-type
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -220,7 +236,6 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
       childNode.getOrCreate("res-type").text(resType);
       return this;
    }
-
    public ResourceRefType<T> removeResType()
    {
       childNode.remove("res-type");
@@ -232,6 +247,8 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
       return childNode.textValue("res-type");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : res-auth
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -241,7 +258,6 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
       childNode.getOrCreate("res-auth").text(resAuth);
       return this;
    }
-
    public ResourceRefType<T> setResAuth(String resAuth)
    {
       childNode.getOrCreate("res-auth").text(resAuth);
@@ -253,10 +269,12 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
       return ResAuthType.getFromStringValue(childNode.textValue("res-auth"));
    }
 
-   public String getResAuthAsString()
+   public String  getResAuthAsString()
    {
       return childNode.textValue("res-auth");
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : res-sharing-scope
@@ -267,7 +285,6 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
       childNode.getOrCreate("res-sharing-scope").text(resSharingScope);
       return this;
    }
-
    public ResourceRefType<T> setResSharingScope(String resSharingScope)
    {
       childNode.getOrCreate("res-sharing-scope").text(resSharingScope);
@@ -279,7 +296,7 @@ public class ResourceRefTypeImpl<T> implements Child<T>, ResourceRefType<T>
       return ResSharingScopeType.getFromStringValue(childNode.textValue("res-sharing-scope"));
    }
 
-   public String getResSharingScopeAsString()
+   public String  getResSharingScopeAsString()
    {
       return childNode.textValue("res-sharing-scope");
    }

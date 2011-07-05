@@ -1,8 +1,8 @@
-package org.jboss.shrinkwrap.descriptor.api.ejbjar31;
+package org.jboss.shrinkwrap.descriptor.api.ejbjar31; 
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T19:50:22.163-04:00
+ * Generation date :2011-07-05T19:45:07.621+02:00
  *
  * Original Documentation:
  *
@@ -18,31 +18,26 @@ package org.jboss.shrinkwrap.descriptor.api.ejbjar31;
  *
  *
  */
-public enum MultiplicityType {
-   _ONE("One"), _MANY("Many");
+public enum MultiplicityType
+{
+   _ONE("One"),
+   _MANY("Many");
 
    private String value;
 
-   MultiplicityType(String value)
-   {
-      this.value = value;
-   }
+   MultiplicityType (String value) { this.value = value; }
 
-   public String toString()
-   {
-      return value;
-   }
+   public String toString() {return value;}
 
    public static MultiplicityType getFromStringValue(String value)
    {
-      for (MultiplicityType type : MultiplicityType.values())
+      for(MultiplicityType type: MultiplicityType.values())
       {
-         if (value != null && type.toString().equals(value))
-         {
-            return type;
-         }
+         if(value != null && type.toString().equals(value))
+        { return type;}
       }
       return null;
    }
 
 }
+

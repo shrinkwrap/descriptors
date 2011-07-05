@@ -1,45 +1,34 @@
-package org.jboss.shrinkwrap.descriptor.impl.ejbjar31;
+package org.jboss.shrinkwrap.descriptor.impl.ejbjar31; 
 
+import org.jboss.shrinkwrap.descriptor.spi.Node;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Map;
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.CmpFieldType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.CmpVersionType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.EntityBeanType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.PersistenceTypeType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.QueryType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.SecurityIdentityType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbLocalRefType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbRefType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.EnvEntryType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.LifecycleCallbackType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationRefType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceContextRefType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceUnitRefType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceEnvRefType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceRefType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.api.application6.*;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
 import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.DataSourceTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.EjbLocalRefTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.EjbRefTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.EnvEntryTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.IconTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.LifecycleCallbackTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.MessageDestinationRefTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.PersistenceContextRefTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.PersistenceUnitRefTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.ResourceEnvRefTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.ResourceRefTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.SecurityRoleRefTypeImpl;
-import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.impl.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.impl.application6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.impl.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.impl.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.impl.ejbjar31.*;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T19:50:22.163-04:00
+ * Generation date :2011-07-05T19:45:07.621+02:00
  *
  * Original Documentation:
  *
@@ -144,33 +133,31 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
-
    private Node node;
-
    private Node childNode;
-
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public EntityBeanTypeImpl(T t, String nodeName, Node node)
-   {
+   public EntityBeanTypeImpl(T t, String nodeName, Node node)   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public EntityBeanTypeImpl(T t, String nodeName, Node node, Node childNode)
-   {
+   public EntityBeanTypeImpl(T t, String nodeName, Node node, Node childNode)   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
+
    public T up()
    {
       return t;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : description
@@ -181,23 +168,21 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       childNode.create("description").text(description);
       return this;
    }
-
-   public EntityBeanType<T> setDescriptionList(String... values)
+   public EntityBeanType<T> setDescriptionList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setDescription(name);
       }
       return this;
    }
-
    public EntityBeanType<T> removeAllDescription()
    {
       childNode.remove("description");
       return this;
    }
 
-   public List<String> getDescriptionList()
+public List<String> getDescriptionList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("description");
@@ -208,6 +193,7 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       return result;
    }
 
+
    // -------------------------------------------------------------------------------------||
    // Element type : display-name
    // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
@@ -217,23 +203,21 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       childNode.create("display-name").text(displayName);
       return this;
    }
-
-   public EntityBeanType<T> setDisplayNameList(String... values)
+   public EntityBeanType<T> setDisplayNameList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setDisplayName(name);
       }
       return this;
    }
-
    public EntityBeanType<T> removeAllDisplayName()
    {
       childNode.remove("display-name");
       return this;
    }
 
-   public List<String> getDisplayNameList()
+public List<String> getDisplayNameList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("display-name");
@@ -243,6 +227,7 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       }
       return result;
    }
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : icon
@@ -263,13 +248,15 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
    {
       List<IconType<EntityBeanType<T>>> list = new ArrayList<IconType<EntityBeanType<T>>>();
       List<Node> nodeList = childNode.get("icon");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         IconType<EntityBeanType<T>> type = new IconTypeImpl<EntityBeanType<T>>(this, "icon", childNode, node);
+         IconType<EntityBeanType<T>>  type = new IconTypeImpl<EntityBeanType<T>>(this, "icon", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : env-entry
@@ -290,14 +277,15 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
    {
       List<EnvEntryType<EntityBeanType<T>>> list = new ArrayList<EnvEntryType<EntityBeanType<T>>>();
       List<Node> nodeList = childNode.get("env-entry");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         EnvEntryType<EntityBeanType<T>> type = new EnvEntryTypeImpl<EntityBeanType<T>>(this, "env-entry", childNode,
-               node);
+         EnvEntryType<EntityBeanType<T>>  type = new EnvEntryTypeImpl<EntityBeanType<T>>(this, "env-entry", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : ejb-ref
@@ -318,13 +306,15 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
    {
       List<EjbRefType<EntityBeanType<T>>> list = new ArrayList<EjbRefType<EntityBeanType<T>>>();
       List<Node> nodeList = childNode.get("ejb-ref");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         EjbRefType<EntityBeanType<T>> type = new EjbRefTypeImpl<EntityBeanType<T>>(this, "ejb-ref", childNode, node);
+         EjbRefType<EntityBeanType<T>>  type = new EjbRefTypeImpl<EntityBeanType<T>>(this, "ejb-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : ejb-local-ref
@@ -345,14 +335,15 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
    {
       List<EjbLocalRefType<EntityBeanType<T>>> list = new ArrayList<EjbLocalRefType<EntityBeanType<T>>>();
       List<Node> nodeList = childNode.get("ejb-local-ref");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         EjbLocalRefType<EntityBeanType<T>> type = new EjbLocalRefTypeImpl<EntityBeanType<T>>(this, "ejb-local-ref",
-               childNode, node);
+         EjbLocalRefType<EntityBeanType<T>>  type = new EjbLocalRefTypeImpl<EntityBeanType<T>>(this, "ejb-local-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : resource-ref
@@ -373,14 +364,15 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
    {
       List<ResourceRefType<EntityBeanType<T>>> list = new ArrayList<ResourceRefType<EntityBeanType<T>>>();
       List<Node> nodeList = childNode.get("resource-ref");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         ResourceRefType<EntityBeanType<T>> type = new ResourceRefTypeImpl<EntityBeanType<T>>(this, "resource-ref",
-               childNode, node);
+         ResourceRefType<EntityBeanType<T>>  type = new ResourceRefTypeImpl<EntityBeanType<T>>(this, "resource-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : resource-env-ref
@@ -401,14 +393,15 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
    {
       List<ResourceEnvRefType<EntityBeanType<T>>> list = new ArrayList<ResourceEnvRefType<EntityBeanType<T>>>();
       List<Node> nodeList = childNode.get("resource-env-ref");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         ResourceEnvRefType<EntityBeanType<T>> type = new ResourceEnvRefTypeImpl<EntityBeanType<T>>(this,
-               "resource-env-ref", childNode, node);
+         ResourceEnvRefType<EntityBeanType<T>>  type = new ResourceEnvRefTypeImpl<EntityBeanType<T>>(this, "resource-env-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : message-destination-ref
@@ -429,14 +422,15 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
    {
       List<MessageDestinationRefType<EntityBeanType<T>>> list = new ArrayList<MessageDestinationRefType<EntityBeanType<T>>>();
       List<Node> nodeList = childNode.get("message-destination-ref");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         MessageDestinationRefType<EntityBeanType<T>> type = new MessageDestinationRefTypeImpl<EntityBeanType<T>>(this,
-               "message-destination-ref", childNode, node);
+         MessageDestinationRefType<EntityBeanType<T>>  type = new MessageDestinationRefTypeImpl<EntityBeanType<T>>(this, "message-destination-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : persistence-context-ref
@@ -457,14 +451,15 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
    {
       List<PersistenceContextRefType<EntityBeanType<T>>> list = new ArrayList<PersistenceContextRefType<EntityBeanType<T>>>();
       List<Node> nodeList = childNode.get("persistence-context-ref");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         PersistenceContextRefType<EntityBeanType<T>> type = new PersistenceContextRefTypeImpl<EntityBeanType<T>>(this,
-               "persistence-context-ref", childNode, node);
+         PersistenceContextRefType<EntityBeanType<T>>  type = new PersistenceContextRefTypeImpl<EntityBeanType<T>>(this, "persistence-context-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : persistence-unit-ref
@@ -485,14 +480,15 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
    {
       List<PersistenceUnitRefType<EntityBeanType<T>>> list = new ArrayList<PersistenceUnitRefType<EntityBeanType<T>>>();
       List<Node> nodeList = childNode.get("persistence-unit-ref");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         PersistenceUnitRefType<EntityBeanType<T>> type = new PersistenceUnitRefTypeImpl<EntityBeanType<T>>(this,
-               "persistence-unit-ref", childNode, node);
+         PersistenceUnitRefType<EntityBeanType<T>>  type = new PersistenceUnitRefTypeImpl<EntityBeanType<T>>(this, "persistence-unit-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : post-construct
@@ -513,14 +509,15 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
    {
       List<LifecycleCallbackType<EntityBeanType<T>>> list = new ArrayList<LifecycleCallbackType<EntityBeanType<T>>>();
       List<Node> nodeList = childNode.get("post-construct");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         LifecycleCallbackType<EntityBeanType<T>> type = new LifecycleCallbackTypeImpl<EntityBeanType<T>>(this,
-               "post-construct", childNode, node);
+         LifecycleCallbackType<EntityBeanType<T>>  type = new LifecycleCallbackTypeImpl<EntityBeanType<T>>(this, "post-construct", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : pre-destroy
@@ -541,14 +538,15 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
    {
       List<LifecycleCallbackType<EntityBeanType<T>>> list = new ArrayList<LifecycleCallbackType<EntityBeanType<T>>>();
       List<Node> nodeList = childNode.get("pre-destroy");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         LifecycleCallbackType<EntityBeanType<T>> type = new LifecycleCallbackTypeImpl<EntityBeanType<T>>(this,
-               "pre-destroy", childNode, node);
+         LifecycleCallbackType<EntityBeanType<T>>  type = new LifecycleCallbackTypeImpl<EntityBeanType<T>>(this, "pre-destroy", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : data-source
@@ -569,14 +567,15 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
    {
       List<DataSourceType<EntityBeanType<T>>> list = new ArrayList<DataSourceType<EntityBeanType<T>>>();
       List<Node> nodeList = childNode.get("data-source");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         DataSourceType<EntityBeanType<T>> type = new DataSourceTypeImpl<EntityBeanType<T>>(this, "data-source",
-               childNode, node);
+         DataSourceType<EntityBeanType<T>>  type = new DataSourceTypeImpl<EntityBeanType<T>>(this, "data-source", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : ejb-name
@@ -587,7 +586,6 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       childNode.getOrCreate("ejb-name").text(ejbName);
       return this;
    }
-
    public EntityBeanType<T> removeEjbName()
    {
       childNode.remove("ejb-name");
@@ -599,6 +597,8 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       return childNode.textValue("ejb-name");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : mapped-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -608,7 +608,6 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       childNode.getOrCreate("mapped-name").text(mappedName);
       return this;
    }
-
    public EntityBeanType<T> removeMappedName()
    {
       childNode.remove("mapped-name");
@@ -620,6 +619,8 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       return childNode.textValue("mapped-name");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : home
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -629,7 +630,6 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       childNode.getOrCreate("home").text(home);
       return this;
    }
-
    public EntityBeanType<T> removeHome()
    {
       childNode.remove("home");
@@ -641,6 +641,8 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       return childNode.textValue("home");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : remote
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -650,7 +652,6 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       childNode.getOrCreate("remote").text(remote);
       return this;
    }
-
    public EntityBeanType<T> removeRemote()
    {
       childNode.remove("remote");
@@ -662,6 +663,8 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       return childNode.textValue("remote");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : local-home
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -671,7 +674,6 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       childNode.getOrCreate("local-home").text(localHome);
       return this;
    }
-
    public EntityBeanType<T> removeLocalHome()
    {
       childNode.remove("local-home");
@@ -683,6 +685,8 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       return childNode.textValue("local-home");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : local
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -692,7 +696,6 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       childNode.getOrCreate("local").text(local);
       return this;
    }
-
    public EntityBeanType<T> removeLocal()
    {
       childNode.remove("local");
@@ -704,6 +707,8 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       return childNode.textValue("local");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : ejb-class
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -713,7 +718,6 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       childNode.getOrCreate("ejb-class").text(ejbClass);
       return this;
    }
-
    public EntityBeanType<T> removeEjbClass()
    {
       childNode.remove("ejb-class");
@@ -725,6 +729,8 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       return childNode.textValue("ejb-class");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : persistence-type
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -734,7 +740,6 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       childNode.getOrCreate("persistence-type").text(persistenceType);
       return this;
    }
-
    public EntityBeanType<T> setPersistenceType(String persistenceType)
    {
       childNode.getOrCreate("persistence-type").text(persistenceType);
@@ -746,10 +751,12 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       return PersistenceTypeType.getFromStringValue(childNode.textValue("persistence-type"));
    }
 
-   public String getPersistenceTypeAsString()
+   public String  getPersistenceTypeAsString()
    {
       return childNode.textValue("persistence-type");
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : prim-key-class
@@ -760,7 +767,6 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       childNode.getOrCreate("prim-key-class").text(primKeyClass);
       return this;
    }
-
    public EntityBeanType<T> removePrimKeyClass()
    {
       childNode.remove("prim-key-class");
@@ -772,6 +778,8 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       return childNode.textValue("prim-key-class");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : reentrant
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -781,7 +789,6 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       childNode.getOrCreate("reentrant").text(reentrant);
       return this;
    }
-
    public EntityBeanType<T> removeReentrant()
    {
       childNode.remove("reentrant");
@@ -793,6 +800,8 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       return Strings.isTrue(childNode.textValue("reentrant"));
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : cmp-version
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -802,7 +811,6 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       childNode.getOrCreate("cmp-version").text(cmpVersion);
       return this;
    }
-
    public EntityBeanType<T> setCmpVersion(String cmpVersion)
    {
       childNode.getOrCreate("cmp-version").text(cmpVersion);
@@ -814,10 +822,12 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       return CmpVersionType.getFromStringValue(childNode.textValue("cmp-version"));
    }
 
-   public String getCmpVersionAsString()
+   public String  getCmpVersionAsString()
    {
       return childNode.textValue("cmp-version");
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : abstract-schema-name
@@ -828,7 +838,6 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       childNode.getOrCreate("abstract-schema-name").text(abstractSchemaName);
       return this;
    }
-
    public EntityBeanType<T> removeAbstractSchemaName()
    {
       childNode.remove("abstract-schema-name");
@@ -839,6 +848,8 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
    {
       return childNode.textValue("abstract-schema-name");
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : cmp-field
@@ -859,14 +870,16 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
    {
       List<CmpFieldType<EntityBeanType<T>>> list = new ArrayList<CmpFieldType<EntityBeanType<T>>>();
       List<Node> nodeList = childNode.get("cmp-field");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         CmpFieldType<EntityBeanType<T>> type = new CmpFieldTypeImpl<EntityBeanType<T>>(this, "cmp-field", childNode,
-               node);
+         CmpFieldType<EntityBeanType<T>>  type = new CmpFieldTypeImpl<EntityBeanType<T>>(this, "cmp-field", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : primkey-field
@@ -877,7 +890,6 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
       childNode.getOrCreate("primkey-field").text(primkeyField);
       return this;
    }
-
    public EntityBeanType<T> removePrimkeyField()
    {
       childNode.remove("primkey-field");
@@ -888,6 +900,8 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
    {
       return childNode.textValue("primkey-field");
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : security-role-ref
@@ -908,14 +922,16 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
    {
       List<SecurityRoleRefType<EntityBeanType<T>>> list = new ArrayList<SecurityRoleRefType<EntityBeanType<T>>>();
       List<Node> nodeList = childNode.get("security-role-ref");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         SecurityRoleRefType<EntityBeanType<T>> type = new SecurityRoleRefTypeImpl<EntityBeanType<T>>(this,
-               "security-role-ref", childNode, node);
+         SecurityRoleRefType<EntityBeanType<T>>  type = new SecurityRoleRefTypeImpl<EntityBeanType<T>>(this, "security-role-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : security-identity
@@ -930,10 +946,12 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
    public SecurityIdentityType<EntityBeanType<T>> securityIdentity()
    {
       Node node = childNode.getOrCreate("security-identity");
-      SecurityIdentityType<EntityBeanType<T>> securityIdentity = new SecurityIdentityTypeImpl<EntityBeanType<T>>(this,
-            "security-identity", childNode, node);
+      SecurityIdentityType<EntityBeanType<T>> securityIdentity = new SecurityIdentityTypeImpl<EntityBeanType<T>>(this, "security-identity", childNode, node);
       return securityIdentity;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : query
@@ -954,12 +972,13 @@ public class EntityBeanTypeImpl<T> implements Child<T>, EntityBeanType<T>
    {
       List<QueryType<EntityBeanType<T>>> list = new ArrayList<QueryType<EntityBeanType<T>>>();
       List<Node> nodeList = childNode.get("query");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         QueryType<EntityBeanType<T>> type = new QueryTypeImpl<EntityBeanType<T>>(this, "query", childNode, node);
+         QueryType<EntityBeanType<T>>  type = new QueryTypeImpl<EntityBeanType<T>>(this, "query", childNode, node);
          list.add(type);
       }
       return list;
    }
+
 
 }

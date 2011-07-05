@@ -10,12 +10,13 @@ import org.jboss.shrinkwrap.descriptor.api.ejbjar31.EnterpriseBeansType;
 import org.jboss.shrinkwrap.descriptor.api.ejbjar31.InterceptorsType;
 import org.jboss.shrinkwrap.descriptor.api.ejbjar31.RelationshipsType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
+import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.IconTypeImpl;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T17:21:34.75-04:00
+ * Generation date :2011-07-05T19:40:43.525+02:00
  *
  * Original Documentation:
  *
@@ -290,6 +291,48 @@ public class EjbJarTypeImpl<T> implements Child<T>, EjbJarType<T>
    public String getEjbClientJar()
    {
       return childNode.textValue("ejb-client-jar");
+   }
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : version
+   // isComplexType: false   maxOccurs: -   isAttribute: true
+   // -------------------------------------------------------------------------------------||
+   public EjbJarType<T> setVersion(String version)
+   {
+      childNode.attribute("version", version);
+      return this;
+   }
+
+   public EjbJarType<T> removeVersion()
+   {
+      childNode.attributes().remove("version");
+      return this;
+   }
+
+   public String getVersion()
+   {
+      return childNode.attributes().get("version");
+   }
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : metadata-complete
+   // isComplexType: false   maxOccurs: -   isAttribute: true
+   // -------------------------------------------------------------------------------------||
+   public EjbJarType<T> setMetadataComplete(Boolean metadataComplete)
+   {
+      childNode.attribute("metadata-complete", metadataComplete);
+      return this;
+   }
+
+   public EjbJarType<T> removeMetadataComplete()
+   {
+      childNode.attributes().remove("metadata-complete");
+      return this;
+   }
+
+   public Boolean isMetadataComplete()
+   {
+      return Strings.isTrue(childNode.attribute("metadata-complete"));
    }
 
 }

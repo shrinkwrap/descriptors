@@ -19,7 +19,7 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleType;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T17:21:34.75-04:00
+ * Generation date :2011-07-05T19:40:43.525+02:00
  *
  * Original Documentation:
  *
@@ -146,5 +146,11 @@ public interface ApplicationType<T> extends Child<T>
    public DataSourceType<ApplicationType<T>> dataSource();
 
    public List<DataSourceType<ApplicationType<T>>> getDataSourceList();
+
+   public ApplicationType<T> setVersion(String version);
+
+   public ApplicationType<T> removeVersion();
+
+   public String getVersion();
 
 }

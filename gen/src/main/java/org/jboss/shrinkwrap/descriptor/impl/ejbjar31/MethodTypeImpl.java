@@ -1,17 +1,34 @@
-package org.jboss.shrinkwrap.descriptor.impl.ejbjar31;
+package org.jboss.shrinkwrap.descriptor.impl.ejbjar31; 
 
+import org.jboss.shrinkwrap.descriptor.spi.Node;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Map;
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.MethodIntfType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.MethodParamsType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.MethodType;
-import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.api.application6.*;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
+import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
+import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.impl.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.impl.application6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.impl.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.impl.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.impl.ejbjar31.*;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T19:50:22.163-04:00
+ * Generation date :2011-07-05T19:45:07.621+02:00
  *
  * Original Documentation:
  *
@@ -202,33 +219,31 @@ public class MethodTypeImpl<T> implements Child<T>, MethodType<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
-
    private Node node;
-
    private Node childNode;
-
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public MethodTypeImpl(T t, String nodeName, Node node)
-   {
+   public MethodTypeImpl(T t, String nodeName, Node node)   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public MethodTypeImpl(T t, String nodeName, Node node, Node childNode)
-   {
+   public MethodTypeImpl(T t, String nodeName, Node node, Node childNode)   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
+
    public T up()
    {
       return t;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : description
@@ -239,23 +254,21 @@ public class MethodTypeImpl<T> implements Child<T>, MethodType<T>
       childNode.create("description").text(description);
       return this;
    }
-
-   public MethodType<T> setDescriptionList(String... values)
+   public MethodType<T> setDescriptionList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setDescription(name);
       }
       return this;
    }
-
    public MethodType<T> removeAllDescription()
    {
       childNode.remove("description");
       return this;
    }
 
-   public List<String> getDescriptionList()
+public List<String> getDescriptionList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("description");
@@ -266,6 +279,8 @@ public class MethodTypeImpl<T> implements Child<T>, MethodType<T>
       return result;
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : ejb-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -275,7 +290,6 @@ public class MethodTypeImpl<T> implements Child<T>, MethodType<T>
       childNode.getOrCreate("ejb-name").text(ejbName);
       return this;
    }
-
    public MethodType<T> removeEjbName()
    {
       childNode.remove("ejb-name");
@@ -287,6 +301,8 @@ public class MethodTypeImpl<T> implements Child<T>, MethodType<T>
       return childNode.textValue("ejb-name");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : method-intf
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -296,7 +312,6 @@ public class MethodTypeImpl<T> implements Child<T>, MethodType<T>
       childNode.getOrCreate("method-intf").text(methodIntf);
       return this;
    }
-
    public MethodType<T> setMethodIntf(String methodIntf)
    {
       childNode.getOrCreate("method-intf").text(methodIntf);
@@ -308,10 +323,12 @@ public class MethodTypeImpl<T> implements Child<T>, MethodType<T>
       return MethodIntfType.getFromStringValue(childNode.textValue("method-intf"));
    }
 
-   public String getMethodIntfAsString()
+   public String  getMethodIntfAsString()
    {
       return childNode.textValue("method-intf");
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : method-name
@@ -322,7 +339,6 @@ public class MethodTypeImpl<T> implements Child<T>, MethodType<T>
       childNode.getOrCreate("method-name").text(methodName);
       return this;
    }
-
    public MethodType<T> removeMethodName()
    {
       childNode.remove("method-name");
@@ -333,6 +349,8 @@ public class MethodTypeImpl<T> implements Child<T>, MethodType<T>
    {
       return childNode.textValue("method-name");
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : method-params
@@ -347,9 +365,9 @@ public class MethodTypeImpl<T> implements Child<T>, MethodType<T>
    public MethodParamsType<MethodType<T>> methodParams()
    {
       Node node = childNode.getOrCreate("method-params");
-      MethodParamsType<MethodType<T>> methodParams = new MethodParamsTypeImpl<MethodType<T>>(this, "method-params",
-            childNode, node);
+      MethodParamsType<MethodType<T>> methodParams = new MethodParamsTypeImpl<MethodType<T>>(this, "method-params", childNode, node);
       return methodParams;
    }
+
 
 }

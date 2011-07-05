@@ -1,54 +1,34 @@
-package org.jboss.shrinkwrap.descriptor.impl.ejbjar31;
+package org.jboss.shrinkwrap.descriptor.impl.ejbjar31; 
 
+import org.jboss.shrinkwrap.descriptor.spi.Node;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Map;
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.AroundInvokeType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.AroundTimeoutType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.AsyncMethodType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.ConcurrencyManagementTypeType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.ConcurrentMethodType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.DependsOnType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.InitMethodType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.NamedMethodType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.RemoveMethodType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.SecurityIdentityType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.SessionBeanType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.SessionTypeType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.StatefulTimeoutType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.TimerType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.TransactionTypeType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.DataSourceType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbLocalRefType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.EjbRefType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.EnvEntryType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.LifecycleCallbackType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationRefType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceContextRefType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceUnitRefType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceEnvRefType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceRefType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleRefType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.api.application6.*;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
 import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.DataSourceTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.EjbLocalRefTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.EjbRefTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.EnvEntryTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.IconTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.LifecycleCallbackTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.MessageDestinationRefTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.PersistenceContextRefTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.PersistenceUnitRefTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.ResourceEnvRefTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.ResourceRefTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.SecurityRoleRefTypeImpl;
-import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.impl.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.impl.application6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.impl.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.impl.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.impl.ejbjar31.*;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T19:50:22.163-04:00
+ * Generation date :2011-07-05T19:45:07.621+02:00
  *
  * Original Documentation:
  *
@@ -137,33 +117,31 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
-
    private Node node;
-
    private Node childNode;
-
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public SessionBeanTypeImpl(T t, String nodeName, Node node)
-   {
+   public SessionBeanTypeImpl(T t, String nodeName, Node node)   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public SessionBeanTypeImpl(T t, String nodeName, Node node, Node childNode)
-   {
+   public SessionBeanTypeImpl(T t, String nodeName, Node node, Node childNode)   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
+
    public T up()
    {
       return t;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : description
@@ -174,23 +152,21 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       childNode.create("description").text(description);
       return this;
    }
-
-   public SessionBeanType<T> setDescriptionList(String... values)
+   public SessionBeanType<T> setDescriptionList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setDescription(name);
       }
       return this;
    }
-
    public SessionBeanType<T> removeAllDescription()
    {
       childNode.remove("description");
       return this;
    }
 
-   public List<String> getDescriptionList()
+public List<String> getDescriptionList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("description");
@@ -201,6 +177,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       return result;
    }
 
+
    // -------------------------------------------------------------------------------------||
    // Element type : display-name
    // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
@@ -210,23 +187,21 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       childNode.create("display-name").text(displayName);
       return this;
    }
-
-   public SessionBeanType<T> setDisplayNameList(String... values)
+   public SessionBeanType<T> setDisplayNameList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setDisplayName(name);
       }
       return this;
    }
-
    public SessionBeanType<T> removeAllDisplayName()
    {
       childNode.remove("display-name");
       return this;
    }
 
-   public List<String> getDisplayNameList()
+public List<String> getDisplayNameList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("display-name");
@@ -236,6 +211,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       }
       return result;
    }
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : icon
@@ -256,13 +232,15 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    {
       List<IconType<SessionBeanType<T>>> list = new ArrayList<IconType<SessionBeanType<T>>>();
       List<Node> nodeList = childNode.get("icon");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         IconType<SessionBeanType<T>> type = new IconTypeImpl<SessionBeanType<T>>(this, "icon", childNode, node);
+         IconType<SessionBeanType<T>>  type = new IconTypeImpl<SessionBeanType<T>>(this, "icon", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : env-entry
@@ -283,14 +261,15 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    {
       List<EnvEntryType<SessionBeanType<T>>> list = new ArrayList<EnvEntryType<SessionBeanType<T>>>();
       List<Node> nodeList = childNode.get("env-entry");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         EnvEntryType<SessionBeanType<T>> type = new EnvEntryTypeImpl<SessionBeanType<T>>(this, "env-entry", childNode,
-               node);
+         EnvEntryType<SessionBeanType<T>>  type = new EnvEntryTypeImpl<SessionBeanType<T>>(this, "env-entry", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : ejb-ref
@@ -311,13 +290,15 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    {
       List<EjbRefType<SessionBeanType<T>>> list = new ArrayList<EjbRefType<SessionBeanType<T>>>();
       List<Node> nodeList = childNode.get("ejb-ref");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         EjbRefType<SessionBeanType<T>> type = new EjbRefTypeImpl<SessionBeanType<T>>(this, "ejb-ref", childNode, node);
+         EjbRefType<SessionBeanType<T>>  type = new EjbRefTypeImpl<SessionBeanType<T>>(this, "ejb-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : ejb-local-ref
@@ -338,14 +319,15 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    {
       List<EjbLocalRefType<SessionBeanType<T>>> list = new ArrayList<EjbLocalRefType<SessionBeanType<T>>>();
       List<Node> nodeList = childNode.get("ejb-local-ref");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         EjbLocalRefType<SessionBeanType<T>> type = new EjbLocalRefTypeImpl<SessionBeanType<T>>(this, "ejb-local-ref",
-               childNode, node);
+         EjbLocalRefType<SessionBeanType<T>>  type = new EjbLocalRefTypeImpl<SessionBeanType<T>>(this, "ejb-local-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : resource-ref
@@ -366,14 +348,15 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    {
       List<ResourceRefType<SessionBeanType<T>>> list = new ArrayList<ResourceRefType<SessionBeanType<T>>>();
       List<Node> nodeList = childNode.get("resource-ref");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         ResourceRefType<SessionBeanType<T>> type = new ResourceRefTypeImpl<SessionBeanType<T>>(this, "resource-ref",
-               childNode, node);
+         ResourceRefType<SessionBeanType<T>>  type = new ResourceRefTypeImpl<SessionBeanType<T>>(this, "resource-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : resource-env-ref
@@ -394,14 +377,15 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    {
       List<ResourceEnvRefType<SessionBeanType<T>>> list = new ArrayList<ResourceEnvRefType<SessionBeanType<T>>>();
       List<Node> nodeList = childNode.get("resource-env-ref");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         ResourceEnvRefType<SessionBeanType<T>> type = new ResourceEnvRefTypeImpl<SessionBeanType<T>>(this,
-               "resource-env-ref", childNode, node);
+         ResourceEnvRefType<SessionBeanType<T>>  type = new ResourceEnvRefTypeImpl<SessionBeanType<T>>(this, "resource-env-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : message-destination-ref
@@ -422,14 +406,15 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    {
       List<MessageDestinationRefType<SessionBeanType<T>>> list = new ArrayList<MessageDestinationRefType<SessionBeanType<T>>>();
       List<Node> nodeList = childNode.get("message-destination-ref");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         MessageDestinationRefType<SessionBeanType<T>> type = new MessageDestinationRefTypeImpl<SessionBeanType<T>>(
-               this, "message-destination-ref", childNode, node);
+         MessageDestinationRefType<SessionBeanType<T>>  type = new MessageDestinationRefTypeImpl<SessionBeanType<T>>(this, "message-destination-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : persistence-context-ref
@@ -450,14 +435,15 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    {
       List<PersistenceContextRefType<SessionBeanType<T>>> list = new ArrayList<PersistenceContextRefType<SessionBeanType<T>>>();
       List<Node> nodeList = childNode.get("persistence-context-ref");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         PersistenceContextRefType<SessionBeanType<T>> type = new PersistenceContextRefTypeImpl<SessionBeanType<T>>(
-               this, "persistence-context-ref", childNode, node);
+         PersistenceContextRefType<SessionBeanType<T>>  type = new PersistenceContextRefTypeImpl<SessionBeanType<T>>(this, "persistence-context-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : persistence-unit-ref
@@ -478,14 +464,15 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    {
       List<PersistenceUnitRefType<SessionBeanType<T>>> list = new ArrayList<PersistenceUnitRefType<SessionBeanType<T>>>();
       List<Node> nodeList = childNode.get("persistence-unit-ref");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         PersistenceUnitRefType<SessionBeanType<T>> type = new PersistenceUnitRefTypeImpl<SessionBeanType<T>>(this,
-               "persistence-unit-ref", childNode, node);
+         PersistenceUnitRefType<SessionBeanType<T>>  type = new PersistenceUnitRefTypeImpl<SessionBeanType<T>>(this, "persistence-unit-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : post-construct
@@ -506,14 +493,15 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    {
       List<LifecycleCallbackType<SessionBeanType<T>>> list = new ArrayList<LifecycleCallbackType<SessionBeanType<T>>>();
       List<Node> nodeList = childNode.get("post-construct");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         LifecycleCallbackType<SessionBeanType<T>> type = new LifecycleCallbackTypeImpl<SessionBeanType<T>>(this,
-               "post-construct", childNode, node);
+         LifecycleCallbackType<SessionBeanType<T>>  type = new LifecycleCallbackTypeImpl<SessionBeanType<T>>(this, "post-construct", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : pre-destroy
@@ -534,14 +522,15 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    {
       List<LifecycleCallbackType<SessionBeanType<T>>> list = new ArrayList<LifecycleCallbackType<SessionBeanType<T>>>();
       List<Node> nodeList = childNode.get("pre-destroy");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         LifecycleCallbackType<SessionBeanType<T>> type = new LifecycleCallbackTypeImpl<SessionBeanType<T>>(this,
-               "pre-destroy", childNode, node);
+         LifecycleCallbackType<SessionBeanType<T>>  type = new LifecycleCallbackTypeImpl<SessionBeanType<T>>(this, "pre-destroy", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : data-source
@@ -562,14 +551,15 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    {
       List<DataSourceType<SessionBeanType<T>>> list = new ArrayList<DataSourceType<SessionBeanType<T>>>();
       List<Node> nodeList = childNode.get("data-source");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         DataSourceType<SessionBeanType<T>> type = new DataSourceTypeImpl<SessionBeanType<T>>(this, "data-source",
-               childNode, node);
+         DataSourceType<SessionBeanType<T>>  type = new DataSourceTypeImpl<SessionBeanType<T>>(this, "data-source", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : ejb-name
@@ -580,7 +570,6 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       childNode.getOrCreate("ejb-name").text(ejbName);
       return this;
    }
-
    public SessionBeanType<T> removeEjbName()
    {
       childNode.remove("ejb-name");
@@ -592,6 +581,8 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       return childNode.textValue("ejb-name");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : mapped-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -601,7 +592,6 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       childNode.getOrCreate("mapped-name").text(mappedName);
       return this;
    }
-
    public SessionBeanType<T> removeMappedName()
    {
       childNode.remove("mapped-name");
@@ -613,6 +603,8 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       return childNode.textValue("mapped-name");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : home
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -622,7 +614,6 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       childNode.getOrCreate("home").text(home);
       return this;
    }
-
    public SessionBeanType<T> removeHome()
    {
       childNode.remove("home");
@@ -634,6 +625,8 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       return childNode.textValue("home");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : remote
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -643,7 +636,6 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       childNode.getOrCreate("remote").text(remote);
       return this;
    }
-
    public SessionBeanType<T> removeRemote()
    {
       childNode.remove("remote");
@@ -655,6 +647,8 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       return childNode.textValue("remote");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : local-home
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -664,7 +658,6 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       childNode.getOrCreate("local-home").text(localHome);
       return this;
    }
-
    public SessionBeanType<T> removeLocalHome()
    {
       childNode.remove("local-home");
@@ -676,6 +669,8 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       return childNode.textValue("local-home");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : local
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -685,7 +680,6 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       childNode.getOrCreate("local").text(local);
       return this;
    }
-
    public SessionBeanType<T> removeLocal()
    {
       childNode.remove("local");
@@ -697,6 +691,8 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       return childNode.textValue("local");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : business-local
    // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
@@ -706,23 +702,21 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       childNode.create("business-local").text(businessLocal);
       return this;
    }
-
-   public SessionBeanType<T> setBusinessLocalList(String... values)
+   public SessionBeanType<T> setBusinessLocalList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setBusinessLocal(name);
       }
       return this;
    }
-
    public SessionBeanType<T> removeAllBusinessLocal()
    {
       childNode.remove("business-local");
       return this;
    }
 
-   public List<String> getBusinessLocalList()
+public List<String> getBusinessLocalList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("business-local");
@@ -733,6 +727,8 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       return result;
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : business-remote
    // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
@@ -742,23 +738,21 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       childNode.create("business-remote").text(businessRemote);
       return this;
    }
-
-   public SessionBeanType<T> setBusinessRemoteList(String... values)
+   public SessionBeanType<T> setBusinessRemoteList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setBusinessRemote(name);
       }
       return this;
    }
-
    public SessionBeanType<T> removeAllBusinessRemote()
    {
       childNode.remove("business-remote");
       return this;
    }
 
-   public List<String> getBusinessRemoteList()
+public List<String> getBusinessRemoteList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("business-remote");
@@ -768,6 +762,7 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       }
       return result;
    }
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : local-bean
@@ -784,6 +779,8 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       return childNode.getSingle("local-bean") != null;
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : service-endpoint
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -793,7 +790,6 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       childNode.getOrCreate("service-endpoint").text(serviceEndpoint);
       return this;
    }
-
    public SessionBeanType<T> removeServiceEndpoint()
    {
       childNode.remove("service-endpoint");
@@ -805,6 +801,8 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       return childNode.textValue("service-endpoint");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : ejb-class
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -814,7 +812,6 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       childNode.getOrCreate("ejb-class").text(ejbClass);
       return this;
    }
-
    public SessionBeanType<T> removeEjbClass()
    {
       childNode.remove("ejb-class");
@@ -826,6 +823,8 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       return childNode.textValue("ejb-class");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : session-type
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -835,7 +834,6 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       childNode.getOrCreate("session-type").text(sessionType);
       return this;
    }
-
    public SessionBeanType<T> setSessionType(String sessionType)
    {
       childNode.getOrCreate("session-type").text(sessionType);
@@ -847,10 +845,12 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       return SessionTypeType.getFromStringValue(childNode.textValue("session-type"));
    }
 
-   public String getSessionTypeAsString()
+   public String  getSessionTypeAsString()
    {
       return childNode.textValue("session-type");
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : stateful-timeout
@@ -865,10 +865,12 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    public StatefulTimeoutType<SessionBeanType<T>> statefulTimeout()
    {
       Node node = childNode.getOrCreate("stateful-timeout");
-      StatefulTimeoutType<SessionBeanType<T>> statefulTimeout = new StatefulTimeoutTypeImpl<SessionBeanType<T>>(this,
-            "stateful-timeout", childNode, node);
+      StatefulTimeoutType<SessionBeanType<T>> statefulTimeout = new StatefulTimeoutTypeImpl<SessionBeanType<T>>(this, "stateful-timeout", childNode, node);
       return statefulTimeout;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : timeout-method
@@ -883,10 +885,12 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    public NamedMethodType<SessionBeanType<T>> timeoutMethod()
    {
       Node node = childNode.getOrCreate("timeout-method");
-      NamedMethodType<SessionBeanType<T>> timeoutMethod = new NamedMethodTypeImpl<SessionBeanType<T>>(this,
-            "timeout-method", childNode, node);
+      NamedMethodType<SessionBeanType<T>> timeoutMethod = new NamedMethodTypeImpl<SessionBeanType<T>>(this, "timeout-method", childNode, node);
       return timeoutMethod;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : timer
@@ -907,13 +911,16 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    {
       List<TimerType<SessionBeanType<T>>> list = new ArrayList<TimerType<SessionBeanType<T>>>();
       List<Node> nodeList = childNode.get("timer");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         TimerType<SessionBeanType<T>> type = new TimerTypeImpl<SessionBeanType<T>>(this, "timer", childNode, node);
+         TimerType<SessionBeanType<T>>  type = new TimerTypeImpl<SessionBeanType<T>>(this, "timer", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : init-on-startup
@@ -924,7 +931,6 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       childNode.getOrCreate("init-on-startup").text(initOnStartup);
       return this;
    }
-
    public SessionBeanType<T> removeInitOnStartup()
    {
       childNode.remove("init-on-startup");
@@ -936,6 +942,8 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       return Strings.isTrue(childNode.textValue("init-on-startup"));
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : concurrency-management-type
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -945,7 +953,6 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       childNode.getOrCreate("concurrency-management-type").text(concurrencyManagementType);
       return this;
    }
-
    public SessionBeanType<T> setConcurrencyManagementType(String concurrencyManagementType)
    {
       childNode.getOrCreate("concurrency-management-type").text(concurrencyManagementType);
@@ -957,10 +964,12 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       return ConcurrencyManagementTypeType.getFromStringValue(childNode.textValue("concurrency-management-type"));
    }
 
-   public String getConcurrencyManagementTypeAsString()
+   public String  getConcurrencyManagementTypeAsString()
    {
       return childNode.textValue("concurrency-management-type");
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : concurrent-method
@@ -981,14 +990,16 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    {
       List<ConcurrentMethodType<SessionBeanType<T>>> list = new ArrayList<ConcurrentMethodType<SessionBeanType<T>>>();
       List<Node> nodeList = childNode.get("concurrent-method");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         ConcurrentMethodType<SessionBeanType<T>> type = new ConcurrentMethodTypeImpl<SessionBeanType<T>>(this,
-               "concurrent-method", childNode, node);
+         ConcurrentMethodType<SessionBeanType<T>>  type = new ConcurrentMethodTypeImpl<SessionBeanType<T>>(this, "concurrent-method", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : depends-on
@@ -1003,10 +1014,12 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    public DependsOnType<SessionBeanType<T>> dependsOn()
    {
       Node node = childNode.getOrCreate("depends-on");
-      DependsOnType<SessionBeanType<T>> dependsOn = new DependsOnTypeImpl<SessionBeanType<T>>(this, "depends-on",
-            childNode, node);
+      DependsOnType<SessionBeanType<T>> dependsOn = new DependsOnTypeImpl<SessionBeanType<T>>(this, "depends-on", childNode, node);
       return dependsOn;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : init-method
@@ -1027,14 +1040,16 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    {
       List<InitMethodType<SessionBeanType<T>>> list = new ArrayList<InitMethodType<SessionBeanType<T>>>();
       List<Node> nodeList = childNode.get("init-method");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         InitMethodType<SessionBeanType<T>> type = new InitMethodTypeImpl<SessionBeanType<T>>(this, "init-method",
-               childNode, node);
+         InitMethodType<SessionBeanType<T>>  type = new InitMethodTypeImpl<SessionBeanType<T>>(this, "init-method", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : remove-method
@@ -1055,14 +1070,16 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    {
       List<RemoveMethodType<SessionBeanType<T>>> list = new ArrayList<RemoveMethodType<SessionBeanType<T>>>();
       List<Node> nodeList = childNode.get("remove-method");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         RemoveMethodType<SessionBeanType<T>> type = new RemoveMethodTypeImpl<SessionBeanType<T>>(this,
-               "remove-method", childNode, node);
+         RemoveMethodType<SessionBeanType<T>>  type = new RemoveMethodTypeImpl<SessionBeanType<T>>(this, "remove-method", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : async-method
@@ -1083,14 +1100,16 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    {
       List<AsyncMethodType<SessionBeanType<T>>> list = new ArrayList<AsyncMethodType<SessionBeanType<T>>>();
       List<Node> nodeList = childNode.get("async-method");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         AsyncMethodType<SessionBeanType<T>> type = new AsyncMethodTypeImpl<SessionBeanType<T>>(this, "async-method",
-               childNode, node);
+         AsyncMethodType<SessionBeanType<T>>  type = new AsyncMethodTypeImpl<SessionBeanType<T>>(this, "async-method", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : transaction-type
@@ -1101,7 +1120,6 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       childNode.getOrCreate("transaction-type").text(transactionType);
       return this;
    }
-
    public SessionBeanType<T> setTransactionType(String transactionType)
    {
       childNode.getOrCreate("transaction-type").text(transactionType);
@@ -1113,10 +1131,12 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
       return TransactionTypeType.getFromStringValue(childNode.textValue("transaction-type"));
    }
 
-   public String getTransactionTypeAsString()
+   public String  getTransactionTypeAsString()
    {
       return childNode.textValue("transaction-type");
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : after-begin-method
@@ -1131,10 +1151,12 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    public NamedMethodType<SessionBeanType<T>> afterBeginMethod()
    {
       Node node = childNode.getOrCreate("after-begin-method");
-      NamedMethodType<SessionBeanType<T>> afterBeginMethod = new NamedMethodTypeImpl<SessionBeanType<T>>(this,
-            "after-begin-method", childNode, node);
+      NamedMethodType<SessionBeanType<T>> afterBeginMethod = new NamedMethodTypeImpl<SessionBeanType<T>>(this, "after-begin-method", childNode, node);
       return afterBeginMethod;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : before-completion-method
@@ -1149,10 +1171,12 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    public NamedMethodType<SessionBeanType<T>> beforeCompletionMethod()
    {
       Node node = childNode.getOrCreate("before-completion-method");
-      NamedMethodType<SessionBeanType<T>> beforeCompletionMethod = new NamedMethodTypeImpl<SessionBeanType<T>>(this,
-            "before-completion-method", childNode, node);
+      NamedMethodType<SessionBeanType<T>> beforeCompletionMethod = new NamedMethodTypeImpl<SessionBeanType<T>>(this, "before-completion-method", childNode, node);
       return beforeCompletionMethod;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : after-completion-method
@@ -1167,10 +1191,12 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    public NamedMethodType<SessionBeanType<T>> afterCompletionMethod()
    {
       Node node = childNode.getOrCreate("after-completion-method");
-      NamedMethodType<SessionBeanType<T>> afterCompletionMethod = new NamedMethodTypeImpl<SessionBeanType<T>>(this,
-            "after-completion-method", childNode, node);
+      NamedMethodType<SessionBeanType<T>> afterCompletionMethod = new NamedMethodTypeImpl<SessionBeanType<T>>(this, "after-completion-method", childNode, node);
       return afterCompletionMethod;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : around-invoke
@@ -1191,14 +1217,16 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    {
       List<AroundInvokeType<SessionBeanType<T>>> list = new ArrayList<AroundInvokeType<SessionBeanType<T>>>();
       List<Node> nodeList = childNode.get("around-invoke");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         AroundInvokeType<SessionBeanType<T>> type = new AroundInvokeTypeImpl<SessionBeanType<T>>(this,
-               "around-invoke", childNode, node);
+         AroundInvokeType<SessionBeanType<T>>  type = new AroundInvokeTypeImpl<SessionBeanType<T>>(this, "around-invoke", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : around-timeout
@@ -1219,14 +1247,16 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    {
       List<AroundTimeoutType<SessionBeanType<T>>> list = new ArrayList<AroundTimeoutType<SessionBeanType<T>>>();
       List<Node> nodeList = childNode.get("around-timeout");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         AroundTimeoutType<SessionBeanType<T>> type = new AroundTimeoutTypeImpl<SessionBeanType<T>>(this,
-               "around-timeout", childNode, node);
+         AroundTimeoutType<SessionBeanType<T>>  type = new AroundTimeoutTypeImpl<SessionBeanType<T>>(this, "around-timeout", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : post-activate
@@ -1247,14 +1277,16 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    {
       List<LifecycleCallbackType<SessionBeanType<T>>> list = new ArrayList<LifecycleCallbackType<SessionBeanType<T>>>();
       List<Node> nodeList = childNode.get("post-activate");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         LifecycleCallbackType<SessionBeanType<T>> type = new LifecycleCallbackTypeImpl<SessionBeanType<T>>(this,
-               "post-activate", childNode, node);
+         LifecycleCallbackType<SessionBeanType<T>>  type = new LifecycleCallbackTypeImpl<SessionBeanType<T>>(this, "post-activate", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : pre-passivate
@@ -1275,14 +1307,16 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    {
       List<LifecycleCallbackType<SessionBeanType<T>>> list = new ArrayList<LifecycleCallbackType<SessionBeanType<T>>>();
       List<Node> nodeList = childNode.get("pre-passivate");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         LifecycleCallbackType<SessionBeanType<T>> type = new LifecycleCallbackTypeImpl<SessionBeanType<T>>(this,
-               "pre-passivate", childNode, node);
+         LifecycleCallbackType<SessionBeanType<T>>  type = new LifecycleCallbackTypeImpl<SessionBeanType<T>>(this, "pre-passivate", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : security-role-ref
@@ -1303,14 +1337,16 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    {
       List<SecurityRoleRefType<SessionBeanType<T>>> list = new ArrayList<SecurityRoleRefType<SessionBeanType<T>>>();
       List<Node> nodeList = childNode.get("security-role-ref");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         SecurityRoleRefType<SessionBeanType<T>> type = new SecurityRoleRefTypeImpl<SessionBeanType<T>>(this,
-               "security-role-ref", childNode, node);
+         SecurityRoleRefType<SessionBeanType<T>>  type = new SecurityRoleRefTypeImpl<SessionBeanType<T>>(this, "security-role-ref", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : security-identity
@@ -1325,9 +1361,9 @@ public class SessionBeanTypeImpl<T> implements Child<T>, SessionBeanType<T>
    public SecurityIdentityType<SessionBeanType<T>> securityIdentity()
    {
       Node node = childNode.getOrCreate("security-identity");
-      SecurityIdentityType<SessionBeanType<T>> securityIdentity = new SecurityIdentityTypeImpl<SessionBeanType<T>>(
-            this, "security-identity", childNode, node);
+      SecurityIdentityType<SessionBeanType<T>> securityIdentity = new SecurityIdentityTypeImpl<SessionBeanType<T>>(this, "security-identity", childNode, node);
       return securityIdentity;
    }
+
 
 }

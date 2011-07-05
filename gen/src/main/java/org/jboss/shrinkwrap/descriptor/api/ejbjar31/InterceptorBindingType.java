@@ -1,12 +1,20 @@
-package org.jboss.shrinkwrap.descriptor.api.ejbjar31;
+package org.jboss.shrinkwrap.descriptor.api.ejbjar31; 
 
+import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Map;
 import org.jboss.shrinkwrap.descriptor.api.Child;
-
+import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.api.application6.*;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T19:50:22.163-04:00
+ * Generation date :2011-07-05T19:45:07.621+02:00
  *
  * Original Documentation:
  *
@@ -113,45 +121,52 @@ public interface InterceptorBindingType<T> extends Child<T>
 {
 
    public InterceptorBindingType<T> setDescription(String description);
-
-   public InterceptorBindingType<T> setDescriptionList(String... values);
-
+   public InterceptorBindingType<T> setDescriptionList(String ... values);
    public InterceptorBindingType<T> removeAllDescription();
 
    public List<String> getDescriptionList();
 
-   public InterceptorBindingType<T> setEjbName(String ejbName);
 
+
+   public InterceptorBindingType<T> setEjbName(String ejbName);
    public InterceptorBindingType<T> removeEjbName();
 
    public String getEjbName();
 
-   public InterceptorBindingType<T> setExcludeDefaultInterceptors(Boolean excludeDefaultInterceptors);
 
+
+   public InterceptorBindingType<T> setExcludeDefaultInterceptors(Boolean excludeDefaultInterceptors);
    public InterceptorBindingType<T> removeExcludeDefaultInterceptors();
 
    public Boolean isExcludeDefaultInterceptors();
 
-   public InterceptorBindingType<T> setExcludeClassInterceptors(Boolean excludeClassInterceptors);
 
+
+   public InterceptorBindingType<T> setExcludeClassInterceptors(Boolean excludeClassInterceptors);
    public InterceptorBindingType<T> removeExcludeClassInterceptors();
 
    public Boolean isExcludeClassInterceptors();
+
+
 
    public InterceptorBindingType<T> removeMethod();
 
    public NamedMethodType<InterceptorBindingType<T>> method();
 
+
+
+
    public InterceptorBindingType<T> setInterceptorClass(String interceptorClass);
-
-   public InterceptorBindingType<T> setInterceptorClassList(String... values);
-
+   public InterceptorBindingType<T> setInterceptorClassList(String ... values);
    public InterceptorBindingType<T> removeAllInterceptorClass();
 
    public List<String> getInterceptorClassList();
 
+
+
    public InterceptorBindingType<T> removeInterceptorOrder();
 
    public InterceptorOrderType<InterceptorBindingType<T>> interceptorOrder();
+
 
 }

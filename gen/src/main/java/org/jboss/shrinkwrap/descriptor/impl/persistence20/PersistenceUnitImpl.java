@@ -1,20 +1,34 @@
-package org.jboss.shrinkwrap.descriptor.impl.persistence20;
+package org.jboss.shrinkwrap.descriptor.impl.persistence20; 
 
+import org.jboss.shrinkwrap.descriptor.spi.Node;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Map;
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.persistence20.PersistenceUnit;
-import org.jboss.shrinkwrap.descriptor.api.persistence20.PersistenceUnitCachingType;
-import org.jboss.shrinkwrap.descriptor.api.persistence20.PersistenceUnitTransactionType;
-import org.jboss.shrinkwrap.descriptor.api.persistence20.PersistenceUnitValidationModeType;
-import org.jboss.shrinkwrap.descriptor.api.persistence20.Properties;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.api.application6.*;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
 import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
-import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.impl.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.impl.application6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.impl.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.impl.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.impl.ejbjar31.*;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T19:50:22.163-04:00
+ * Generation date :2011-07-05T19:45:07.621+02:00
  */
 public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
 {
@@ -23,33 +37,31 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
    // -------------------------------------------------------------------------------------||
 
    private T t;
-
    private Node node;
-
    private Node childNode;
-
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public PersistenceUnitImpl(T t, String nodeName, Node node)
-   {
+   public PersistenceUnitImpl(T t, String nodeName, Node node)   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public PersistenceUnitImpl(T t, String nodeName, Node node, Node childNode)
-   {
+   public PersistenceUnitImpl(T t, String nodeName, Node node, Node childNode)   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
+
    public T up()
    {
       return t;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : description
@@ -60,7 +72,6 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
       childNode.getOrCreate("description").text(description);
       return this;
    }
-
    public PersistenceUnit<T> removeDescription()
    {
       childNode.remove("description");
@@ -72,6 +83,8 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
       return childNode.textValue("description");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : provider
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -81,7 +94,6 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
       childNode.getOrCreate("provider").text(provider);
       return this;
    }
-
    public PersistenceUnit<T> removeProvider()
    {
       childNode.remove("provider");
@@ -93,6 +105,8 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
       return childNode.textValue("provider");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : jta-data-source
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -102,7 +116,6 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
       childNode.getOrCreate("jta-data-source").text(jtaDataSource);
       return this;
    }
-
    public PersistenceUnit<T> removeJtaDataSource()
    {
       childNode.remove("jta-data-source");
@@ -114,6 +127,8 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
       return childNode.textValue("jta-data-source");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : non-jta-data-source
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -123,7 +138,6 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
       childNode.getOrCreate("non-jta-data-source").text(nonJtaDataSource);
       return this;
    }
-
    public PersistenceUnit<T> removeNonJtaDataSource()
    {
       childNode.remove("non-jta-data-source");
@@ -135,6 +149,8 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
       return childNode.textValue("non-jta-data-source");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : mapping-file
    // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
@@ -144,23 +160,21 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
       childNode.create("mapping-file").text(mappingFile);
       return this;
    }
-
-   public PersistenceUnit<T> setMappingFileList(String... values)
+   public PersistenceUnit<T> setMappingFileList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setMappingFile(name);
       }
       return this;
    }
-
    public PersistenceUnit<T> removeAllMappingFile()
    {
       childNode.remove("mapping-file");
       return this;
    }
 
-   public List<String> getMappingFileList()
+public List<String> getMappingFileList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("mapping-file");
@@ -171,6 +185,8 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
       return result;
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : jar-file
    // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
@@ -180,23 +196,21 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
       childNode.create("jar-file").text(jarFile);
       return this;
    }
-
-   public PersistenceUnit<T> setJarFileList(String... values)
+   public PersistenceUnit<T> setJarFileList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setJarFile(name);
       }
       return this;
    }
-
    public PersistenceUnit<T> removeAllJarFile()
    {
       childNode.remove("jar-file");
       return this;
    }
 
-   public List<String> getJarFileList()
+public List<String> getJarFileList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("jar-file");
@@ -207,6 +221,8 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
       return result;
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : class
    // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
@@ -216,23 +232,21 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
       childNode.create("class").text(clazz);
       return this;
    }
-
-   public PersistenceUnit<T> setClazzList(String... values)
+   public PersistenceUnit<T> setClazzList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setClazz(name);
       }
       return this;
    }
-
    public PersistenceUnit<T> removeAllClazz()
    {
       childNode.remove("class");
       return this;
    }
 
-   public List<String> getClazzList()
+public List<String> getClazzList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("class");
@@ -243,6 +257,8 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
       return result;
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : exclude-unlisted-classes
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -252,7 +268,6 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
       childNode.getOrCreate("exclude-unlisted-classes").text(excludeUnlistedClasses);
       return this;
    }
-
    public PersistenceUnit<T> removeExcludeUnlistedClasses()
    {
       childNode.remove("exclude-unlisted-classes");
@@ -264,6 +279,8 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
       return Strings.isTrue(childNode.textValue("exclude-unlisted-classes"));
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : shared-cache-mode
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -273,7 +290,6 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
       childNode.getOrCreate("shared-cache-mode").text(sharedCacheMode);
       return this;
    }
-
    public PersistenceUnit<T> setSharedCacheMode(String sharedCacheMode)
    {
       childNode.getOrCreate("shared-cache-mode").text(sharedCacheMode);
@@ -285,10 +301,12 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
       return PersistenceUnitCachingType.getFromStringValue(childNode.textValue("shared-cache-mode"));
    }
 
-   public String getSharedCacheModeAsString()
+   public String  getSharedCacheModeAsString()
    {
       return childNode.textValue("shared-cache-mode");
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : validation-mode
@@ -299,7 +317,6 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
       childNode.getOrCreate("validation-mode").text(validationMode);
       return this;
    }
-
    public PersistenceUnit<T> setValidationMode(String validationMode)
    {
       childNode.getOrCreate("validation-mode").text(validationMode);
@@ -311,10 +328,12 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
       return PersistenceUnitValidationModeType.getFromStringValue(childNode.textValue("validation-mode"));
    }
 
-   public String getValidationModeAsString()
+   public String  getValidationModeAsString()
    {
       return childNode.textValue("validation-mode");
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : properties
@@ -329,10 +348,12 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
    public Properties<PersistenceUnit<T>> properties()
    {
       Node node = childNode.getOrCreate("properties");
-      Properties<PersistenceUnit<T>> properties = new PropertiesImpl<PersistenceUnit<T>>(this, "properties", childNode,
-            node);
+      Properties<PersistenceUnit<T>> properties = new PropertiesImpl<PersistenceUnit<T>>(this, "properties", childNode, node);
       return properties;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : name
@@ -343,7 +364,6 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
       childNode.attribute("name", name);
       return this;
    }
-
    public PersistenceUnit<T> removeName()
    {
       childNode.attributes().remove("name");
@@ -355,6 +375,8 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
       return childNode.attributes().get("name");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : transaction-type
    // isComplexType: false   maxOccurs: -   isAttribute: true
@@ -364,13 +386,11 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
       childNode.attribute("transaction-type", transactionType);
       return this;
    }
-
    public PersistenceUnit<T> setTransactionType(String transactionType)
    {
       childNode.attribute("transaction-type", transactionType);
       return this;
    }
-
    public PersistenceUnit<T> removeTransactionType()
    {
       childNode.attributes().remove("transaction-type");
@@ -382,7 +402,7 @@ public class PersistenceUnitImpl<T> implements Child<T>, PersistenceUnit<T>
       return PersistenceUnitTransactionType.getFromStringValue(childNode.attribute("transaction-type"));
    }
 
-   public String getTransactionTypeAsString()
+   public String  getTransactionTypeAsString()
    {
       return childNode.attribute("transaction-type");
    }

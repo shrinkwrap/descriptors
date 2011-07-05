@@ -39,7 +39,7 @@ import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T17:21:34.75-04:00
+ * Generation date :2011-07-05T19:40:43.525+02:00
  */
 public class Application6DescriptorImpl extends NodeProviderImplBase
       implements
@@ -536,6 +536,27 @@ public class Application6DescriptorImpl extends NodeProviderImplBase
          list.add(type);
       }
       return list;
+   }
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : version
+   // isComplexType: false   maxOccurs: -   isAttribute: true
+   // -------------------------------------------------------------------------------------||
+   public Application6Descriptor setVersion(String version)
+   {
+      model.attribute("version", version);
+      return this;
+   }
+
+   public Application6Descriptor removeVersion()
+   {
+      model.attributes().remove("version");
+      return this;
+   }
+
+   public String getVersion()
+   {
+      return model.attributes().get("version");
    }
 
    // -------------------------------------------------------------------------------------||

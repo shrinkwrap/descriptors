@@ -1,10 +1,20 @@
-package org.jboss.shrinkwrap.descriptor.api.ejbjar31;
+package org.jboss.shrinkwrap.descriptor.api.ejbjar31; 
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import org.jboss.shrinkwrap.descriptor.api.Child;
-
+import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.api.application6.*;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T19:50:22.163-04:00
+ * Generation date :2011-07-05T19:45:07.621+02:00
  *
  * Original Documentation:
  *
@@ -37,25 +47,28 @@ public interface QueryType<T> extends Child<T>
 {
 
    public QueryType<T> setDescription(String description);
-
    public QueryType<T> removeDescription();
 
    public String getDescription();
+
+
 
    public QueryType<T> removeQueryMethod();
 
    public QueryMethodType<QueryType<T>> queryMethod();
 
-   public QueryType<T> setResultTypeMapping(ResultTypeMappingType resultTypeMapping);
 
+
+
+   public QueryType<T> setResultTypeMapping(ResultTypeMappingType resultTypeMapping);
    public QueryType<T> setResultTypeMapping(String resultTypeMapping);
 
    public ResultTypeMappingType getResultTypeMapping();
+   public String  getResultTypeMappingAsString();
 
-   public String getResultTypeMappingAsString();
+
 
    public QueryType<T> setEjbQl(String ejbQl);
-
    public QueryType<T> removeEjbQl();
 
    public String getEjbQl();

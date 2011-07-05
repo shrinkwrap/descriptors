@@ -20,7 +20,7 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleType;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T17:21:34.75-04:00
+ * Generation date :2011-07-05T19:40:43.525+02:00
  */
 public interface Application6Descriptor extends Descriptor, DescriptorNamespace<Application6Descriptor>
 {
@@ -138,5 +138,11 @@ public interface Application6Descriptor extends Descriptor, DescriptorNamespace<
    public DataSourceType<Application6Descriptor> dataSource();
 
    public List<DataSourceType<Application6Descriptor>> getDataSourceList();
+
+   public Application6Descriptor setVersion(String version);
+
+   public Application6Descriptor removeVersion();
+
+   public String getVersion();
 
 }

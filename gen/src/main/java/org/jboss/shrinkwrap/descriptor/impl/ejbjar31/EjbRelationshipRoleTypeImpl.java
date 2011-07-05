@@ -1,18 +1,34 @@
-package org.jboss.shrinkwrap.descriptor.impl.ejbjar31;
+package org.jboss.shrinkwrap.descriptor.impl.ejbjar31; 
 
+import org.jboss.shrinkwrap.descriptor.spi.Node;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Map;
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.CmrFieldType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.EjbRelationshipRoleType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.MultiplicityType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.RelationshipRoleSourceType;
-import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.api.application6.*;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
+import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
+import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.impl.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.impl.application6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.impl.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.impl.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.impl.ejbjar31.*;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T19:50:22.163-04:00
+ * Generation date :2011-07-05T19:45:07.621+02:00
  *
  * Original Documentation:
  *
@@ -65,33 +81,31 @@ public class EjbRelationshipRoleTypeImpl<T> implements Child<T>, EjbRelationship
    // -------------------------------------------------------------------------------------||
 
    private T t;
-
    private Node node;
-
    private Node childNode;
-
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public EjbRelationshipRoleTypeImpl(T t, String nodeName, Node node)
-   {
+   public EjbRelationshipRoleTypeImpl(T t, String nodeName, Node node)   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public EjbRelationshipRoleTypeImpl(T t, String nodeName, Node node, Node childNode)
-   {
+   public EjbRelationshipRoleTypeImpl(T t, String nodeName, Node node, Node childNode)   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
+
    public T up()
    {
       return t;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : description
@@ -102,23 +116,21 @@ public class EjbRelationshipRoleTypeImpl<T> implements Child<T>, EjbRelationship
       childNode.create("description").text(description);
       return this;
    }
-
-   public EjbRelationshipRoleType<T> setDescriptionList(String... values)
+   public EjbRelationshipRoleType<T> setDescriptionList(String ... values)
    {
-      for (String name : values)
+      for(String name: values)
       {
          setDescription(name);
       }
       return this;
    }
-
    public EjbRelationshipRoleType<T> removeAllDescription()
    {
       childNode.remove("description");
       return this;
    }
 
-   public List<String> getDescriptionList()
+public List<String> getDescriptionList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = childNode.get("description");
@@ -129,6 +141,8 @@ public class EjbRelationshipRoleTypeImpl<T> implements Child<T>, EjbRelationship
       return result;
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : ejb-relationship-role-name
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -138,7 +152,6 @@ public class EjbRelationshipRoleTypeImpl<T> implements Child<T>, EjbRelationship
       childNode.getOrCreate("ejb-relationship-role-name").text(ejbRelationshipRoleName);
       return this;
    }
-
    public EjbRelationshipRoleType<T> removeEjbRelationshipRoleName()
    {
       childNode.remove("ejb-relationship-role-name");
@@ -150,6 +163,8 @@ public class EjbRelationshipRoleTypeImpl<T> implements Child<T>, EjbRelationship
       return childNode.textValue("ejb-relationship-role-name");
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : multiplicity
    // isComplexType: false   maxOccurs: -   isAttribute: false
@@ -159,7 +174,6 @@ public class EjbRelationshipRoleTypeImpl<T> implements Child<T>, EjbRelationship
       childNode.getOrCreate("multiplicity").text(multiplicity);
       return this;
    }
-
    public EjbRelationshipRoleType<T> setMultiplicity(String multiplicity)
    {
       childNode.getOrCreate("multiplicity").text(multiplicity);
@@ -171,10 +185,11 @@ public class EjbRelationshipRoleTypeImpl<T> implements Child<T>, EjbRelationship
       return MultiplicityType.getFromStringValue(childNode.textValue("multiplicity"));
    }
 
-   public String getMultiplicityAsString()
+   public String  getMultiplicityAsString()
    {
       return childNode.textValue("multiplicity");
    }
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : cascade-delete
@@ -191,6 +206,8 @@ public class EjbRelationshipRoleTypeImpl<T> implements Child<T>, EjbRelationship
       return childNode.getSingle("cascade-delete") != null;
    }
 
+
+
    // -------------------------------------------------------------------------------------||
    // Element type : relationship-role-source
    // isComplexType: true   maxOccurs: -   isAttribute: false
@@ -204,10 +221,12 @@ public class EjbRelationshipRoleTypeImpl<T> implements Child<T>, EjbRelationship
    public RelationshipRoleSourceType<EjbRelationshipRoleType<T>> relationshipRoleSource()
    {
       Node node = childNode.getOrCreate("relationship-role-source");
-      RelationshipRoleSourceType<EjbRelationshipRoleType<T>> relationshipRoleSource = new RelationshipRoleSourceTypeImpl<EjbRelationshipRoleType<T>>(
-            this, "relationship-role-source", childNode, node);
+      RelationshipRoleSourceType<EjbRelationshipRoleType<T>> relationshipRoleSource = new RelationshipRoleSourceTypeImpl<EjbRelationshipRoleType<T>>(this, "relationship-role-source", childNode, node);
       return relationshipRoleSource;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : cmr-field
@@ -222,9 +241,9 @@ public class EjbRelationshipRoleTypeImpl<T> implements Child<T>, EjbRelationship
    public CmrFieldType<EjbRelationshipRoleType<T>> cmrField()
    {
       Node node = childNode.getOrCreate("cmr-field");
-      CmrFieldType<EjbRelationshipRoleType<T>> cmrField = new CmrFieldTypeImpl<EjbRelationshipRoleType<T>>(this,
-            "cmr-field", childNode, node);
+      CmrFieldType<EjbRelationshipRoleType<T>> cmrField = new CmrFieldTypeImpl<EjbRelationshipRoleType<T>>(this, "cmr-field", childNode, node);
       return cmrField;
    }
+
 
 }

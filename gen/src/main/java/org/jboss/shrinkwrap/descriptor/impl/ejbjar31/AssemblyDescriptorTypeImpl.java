@@ -1,24 +1,34 @@
-package org.jboss.shrinkwrap.descriptor.impl.ejbjar31;
+package org.jboss.shrinkwrap.descriptor.impl.ejbjar31; 
 
+import org.jboss.shrinkwrap.descriptor.spi.Node;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Map;
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.ApplicationExceptionType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.AssemblyDescriptorType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.ContainerTransactionType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.ExcludeListType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.InterceptorBindingType;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.MethodPermissionType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationType;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleType;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.MessageDestinationTypeImpl;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.SecurityRoleTypeImpl;
-import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.api.application6.*;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
+import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
+import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webcommon30.*;
+import org.jboss.shrinkwrap.descriptor.impl.jsp22.*;
+import org.jboss.shrinkwrap.descriptor.impl.application6.*;
+import org.jboss.shrinkwrap.descriptor.impl.webapp30.*;
+import org.jboss.shrinkwrap.descriptor.impl.persistence20.*;
+import org.jboss.shrinkwrap.descriptor.impl.webfragment30.*;
+import org.jboss.shrinkwrap.descriptor.impl.ejbjar31.*;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-01T19:50:22.163-04:00
+ * Generation date :2011-07-05T19:45:07.621+02:00
  *
  * Original Documentation:
  *
@@ -51,33 +61,31 @@ public class AssemblyDescriptorTypeImpl<T> implements Child<T>, AssemblyDescript
    // -------------------------------------------------------------------------------------||
 
    private T t;
-
    private Node node;
-
    private Node childNode;
-
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   public AssemblyDescriptorTypeImpl(T t, String nodeName, Node node)
-   {
+   public AssemblyDescriptorTypeImpl(T t, String nodeName, Node node)   {
       this.t = t;
       this.node = node;
       this.childNode = node.create(nodeName);
    }
 
-   public AssemblyDescriptorTypeImpl(T t, String nodeName, Node node, Node childNode)
-   {
+   public AssemblyDescriptorTypeImpl(T t, String nodeName, Node node, Node childNode)   {
       this.t = t;
       this.node = node;
       this.childNode = childNode;
    }
 
+
    public T up()
    {
       return t;
    }
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : security-role
@@ -98,14 +106,16 @@ public class AssemblyDescriptorTypeImpl<T> implements Child<T>, AssemblyDescript
    {
       List<SecurityRoleType<AssemblyDescriptorType<T>>> list = new ArrayList<SecurityRoleType<AssemblyDescriptorType<T>>>();
       List<Node> nodeList = childNode.get("security-role");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         SecurityRoleType<AssemblyDescriptorType<T>> type = new SecurityRoleTypeImpl<AssemblyDescriptorType<T>>(this,
-               "security-role", childNode, node);
+         SecurityRoleType<AssemblyDescriptorType<T>>  type = new SecurityRoleTypeImpl<AssemblyDescriptorType<T>>(this, "security-role", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : method-permission
@@ -126,14 +136,16 @@ public class AssemblyDescriptorTypeImpl<T> implements Child<T>, AssemblyDescript
    {
       List<MethodPermissionType<AssemblyDescriptorType<T>>> list = new ArrayList<MethodPermissionType<AssemblyDescriptorType<T>>>();
       List<Node> nodeList = childNode.get("method-permission");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         MethodPermissionType<AssemblyDescriptorType<T>> type = new MethodPermissionTypeImpl<AssemblyDescriptorType<T>>(
-               this, "method-permission", childNode, node);
+         MethodPermissionType<AssemblyDescriptorType<T>>  type = new MethodPermissionTypeImpl<AssemblyDescriptorType<T>>(this, "method-permission", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : container-transaction
@@ -154,14 +166,16 @@ public class AssemblyDescriptorTypeImpl<T> implements Child<T>, AssemblyDescript
    {
       List<ContainerTransactionType<AssemblyDescriptorType<T>>> list = new ArrayList<ContainerTransactionType<AssemblyDescriptorType<T>>>();
       List<Node> nodeList = childNode.get("container-transaction");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         ContainerTransactionType<AssemblyDescriptorType<T>> type = new ContainerTransactionTypeImpl<AssemblyDescriptorType<T>>(
-               this, "container-transaction", childNode, node);
+         ContainerTransactionType<AssemblyDescriptorType<T>>  type = new ContainerTransactionTypeImpl<AssemblyDescriptorType<T>>(this, "container-transaction", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : interceptor-binding
@@ -182,14 +196,16 @@ public class AssemblyDescriptorTypeImpl<T> implements Child<T>, AssemblyDescript
    {
       List<InterceptorBindingType<AssemblyDescriptorType<T>>> list = new ArrayList<InterceptorBindingType<AssemblyDescriptorType<T>>>();
       List<Node> nodeList = childNode.get("interceptor-binding");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         InterceptorBindingType<AssemblyDescriptorType<T>> type = new InterceptorBindingTypeImpl<AssemblyDescriptorType<T>>(
-               this, "interceptor-binding", childNode, node);
+         InterceptorBindingType<AssemblyDescriptorType<T>>  type = new InterceptorBindingTypeImpl<AssemblyDescriptorType<T>>(this, "interceptor-binding", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : message-destination
@@ -210,14 +226,16 @@ public class AssemblyDescriptorTypeImpl<T> implements Child<T>, AssemblyDescript
    {
       List<MessageDestinationType<AssemblyDescriptorType<T>>> list = new ArrayList<MessageDestinationType<AssemblyDescriptorType<T>>>();
       List<Node> nodeList = childNode.get("message-destination");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         MessageDestinationType<AssemblyDescriptorType<T>> type = new MessageDestinationTypeImpl<AssemblyDescriptorType<T>>(
-               this, "message-destination", childNode, node);
+         MessageDestinationType<AssemblyDescriptorType<T>>  type = new MessageDestinationTypeImpl<AssemblyDescriptorType<T>>(this, "message-destination", childNode, node);
          list.add(type);
       }
       return list;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : exclude-list
@@ -232,10 +250,12 @@ public class AssemblyDescriptorTypeImpl<T> implements Child<T>, AssemblyDescript
    public ExcludeListType<AssemblyDescriptorType<T>> excludeList()
    {
       Node node = childNode.getOrCreate("exclude-list");
-      ExcludeListType<AssemblyDescriptorType<T>> excludeList = new ExcludeListTypeImpl<AssemblyDescriptorType<T>>(this,
-            "exclude-list", childNode, node);
+      ExcludeListType<AssemblyDescriptorType<T>> excludeList = new ExcludeListTypeImpl<AssemblyDescriptorType<T>>(this, "exclude-list", childNode, node);
       return excludeList;
    }
+
+
+
 
    // -------------------------------------------------------------------------------------||
    // Element type : application-exception
@@ -256,13 +276,13 @@ public class AssemblyDescriptorTypeImpl<T> implements Child<T>, AssemblyDescript
    {
       List<ApplicationExceptionType<AssemblyDescriptorType<T>>> list = new ArrayList<ApplicationExceptionType<AssemblyDescriptorType<T>>>();
       List<Node> nodeList = childNode.get("application-exception");
-      for (Node node : nodeList)
+      for(Node node: nodeList)
       {
-         ApplicationExceptionType<AssemblyDescriptorType<T>> type = new ApplicationExceptionTypeImpl<AssemblyDescriptorType<T>>(
-               this, "application-exception", childNode, node);
+         ApplicationExceptionType<AssemblyDescriptorType<T>>  type = new ApplicationExceptionTypeImpl<AssemblyDescriptorType<T>>(this, "application-exception", childNode, node);
          list.add(type);
       }
       return list;
    }
+
 
 }
