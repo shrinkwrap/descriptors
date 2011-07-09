@@ -122,6 +122,7 @@
             <xsl:result-document href="{$vFilename}">
                 <xsl:value-of select="xdd:writePackageLine(@packageApi)"/>
                 <xsl:value-of select="xdd:writeImports(true())"/>
+                <xsl:value-of select="xdd:writeDynamicImports($pClassNode/@name, $pClassNode/@namespace, true())"/>
                 <xsl:value-of select="xdd:writeComment(@documentation, true())"/>
                 <xsl:value-of select="xdd:classHeaderDeclaration('interface', $vClassname)"/>
                 <xsl:text>&lt;T&gt;</xsl:text>
@@ -238,16 +239,24 @@
             <xsl:result-document href="{$vFilename}">
                 <xsl:value-of select="xdd:writePackageLine($vPackage)"/>
                 <xsl:value-of select="xdd:writeImports(true())"/>
-                <!--                <xsl:value-of select="xdd:writeImports(false())"/>-->
+
+                <xsl:for-each select="element">
+                    <xsl:variable name="vType" select=" substring-after(./@type, ':')"/>
+                    <xsl:variable name="vNamespace" select=" substring-before(./@type, ':')"/>
+                    <xsl:value-of select="xdd:writeDynamicImports($vType, $vNamespace, false())"/>
+                </xsl:for-each>
+
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.api.Descriptor;&#10;</xsl:text>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.api.DescriptorNamespace;&#10;&#10;</xsl:text>
                 <xsl:value-of select="xdd:writeComment(@documentation, true())"/>
                 <xsl:value-of select="xdd:classHeaderDeclaration('interface', $vClassname)"/>
                 <xsl:value-of select="concat(' extends Descriptor, DescriptorNamespace', '&lt;', $vClassname, '&gt;')"/>
+
                 <!--                <xsl:text> extends Descriptor, DescriptorNamespace</xsl:text>-->
                 <xsl:text>&#10;{&#10;</xsl:text>
                 <xsl:variable name="vType" select=" substring-after($pDescriptor/element/@type, ':')"/>
-                <xsl:for-each select="//classes/class[@name=$vType]">
+                <xsl:variable name="vNamespace" select=" substring-before($pDescriptor/element/@type, ':')"/>
+                <xsl:for-each select="//classes/class[@name=$vType and @namespace=$vNamespace]">
                     <xsl:for-each select="include">
                         <xsl:value-of select="xdd:includeGroupRefs($vClassname, @name, false(), true(), false(), '', @maxOccurs='unbounded')"/>
                     </xsl:for-each>
@@ -276,8 +285,10 @@
             <xsl:result-document href="{$vFilename}">
                 <xsl:value-of select="xdd:writePackageLine($vPackage)"/>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.Node;&#10;</xsl:text>
+                <xsl:value-of select="concat('import ', $pClass/@packageApi, '.', xdd:createPascalizedName($vInterfaceName,''), ';&#10;')"/>
                 <xsl:value-of select="xdd:writeImports(true())"/>
                 <xsl:value-of select="xdd:writeImports(false())"/>
+                <xsl:value-of select="xdd:writeDynamicImports($pClass/@name, $pClass/@namespace, false())"/>
                 <xsl:text>&#10;</xsl:text>
                 <xsl:value-of select="xdd:writeComment(@documentation, true())"/>
                 <xsl:variable name="vName" select="@name"/>
@@ -333,8 +344,16 @@
             <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolder, $vPackage, $vClassnameImpl, 'java')"/>
             <xsl:result-document href="{$vFilename}">
                 <xsl:value-of select="xdd:writePackageLine($vPackage)"/>
+                <xsl:value-of select="concat('import ', @packageApi, '.', xdd:createPascalizedName($vInterfaceName,''), ';&#10;')"/>
                 <xsl:value-of select="xdd:writeImports(true())"/>
                 <xsl:value-of select="xdd:writeImports(false())"/>
+
+                <xsl:for-each select="element">
+                    <xsl:variable name="vType" select=" substring-after(./@type, ':')"/>
+                    <xsl:variable name="vNamespace" select=" substring-before(./@type, ':')"/>
+                    <xsl:value-of select="xdd:writeDynamicImports($vType, $vNamespace, false())"/>
+                </xsl:for-each>
+
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.api.DescriptorNamespace;&#10;&#10;</xsl:text>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase;&#10;</xsl:text>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;&#10;</xsl:text>
@@ -400,12 +419,26 @@
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.api.Descriptors;</xsl:text>
                 <xsl:text>import org.junit.Test;&#10;</xsl:text>
                 <xsl:text>import static org.junit.Assert.*;&#10;</xsl:text>
-                <!-- <xsl:value-of select="x"/>-->
+                <xsl:value-of select="concat('import ', $pClass/@packageApi, '.', $vInterfaceName, ';&#10;')"/>
                 <xsl:value-of select="xdd:writeImports(true())"/>
                 <xsl:value-of select="xdd:writeImports(false())"/>
+
+                <xsl:choose>
+                    <xsl:when test="$pIsDescriptor='true'">
+                        <xsl:for-each select="element">
+                            <xsl:variable name="vType" select=" substring-after(./@type, ':')"/>
+                            <xsl:variable name="vNamespace" select=" substring-before(./@type, ':')"/>
+                            <xsl:value-of select="xdd:writeDynamicImports($vType, $vNamespace, false())"/>
+                        </xsl:for-each>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="xdd:writeDynamicImports($pClass/@name, $pClass/@namespace, false())"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+
                 <xsl:text>&#10;</xsl:text>
-<!--                <xsl:variable name="vName" select="@name"/>-->
-<!--                <xsl:variable name="vNodeName" select="//class/element[contains(@type, $vName)][1]/@name"/>-->
+                <!--                <xsl:variable name="vName" select="@name"/>-->
+                <!--                <xsl:variable name="vNodeName" select="//class/element[contains(@type, $vName)][1]/@name"/>-->
 
                 <xsl:value-of select="xdd:classHeaderDeclaration('class', $vTestClassname)"/>
                 <xsl:text>&#10;</xsl:text>
@@ -415,7 +448,8 @@
                     <xsl:when test="$pIsDescriptor='true'">
                         <xsl:for-each select="element">
                             <xsl:variable name="vType" select=" substring-after(@type, ':')"/>
-                            <xsl:for-each select="//classes/class[@name=$vType]">
+                            <xsl:variable name="vNamespace" select=" substring-before(@type, ':')"/>
+                            <xsl:for-each select="//classes/class[@name=$vType and @namespace=$vNamespace]">
                                 <xsl:for-each select="element">
                                     <xsl:call-template name="WriteTestMethods">
                                         <xsl:with-param name="pElement" select="."/>
@@ -429,7 +463,7 @@
                                 <xsl:for-each select="include">
                                     <xsl:variable name="vIsMaxOccursUnbounded" select="@maxOccurs='unbounded'" as="xs:boolean"/>
                                     <xsl:variable name="vGroupName" select=" substring-after(@name, ':')"/>
-                                    <xsl:for-each select="$gGroups/class[@name=$vGroupName]/element">
+                                    <xsl:for-each select="$gGroups/class[@name=$vGroupName and @namespace=$vNamespace]/element">
                                         <xsl:variable name="vMaxOccurs" select="concat('-', @maxOccurs)"/>
                                         <xsl:call-template name="WriteTestMethods">
                                             <xsl:with-param name="pElement" select="."/>
@@ -449,7 +483,8 @@
                         <xsl:for-each select="include">
                             <xsl:variable name="vIsMaxOccursUnbounded" select="@maxOccurs='unbounded'" as="xs:boolean"/>
                             <xsl:variable name="vGroupName" select=" substring-after(@name, ':')"/>
-                            <xsl:for-each select="$gGroups/class[@name=$vGroupName]/element">
+                            <xsl:variable name="vNamespace" select=" substring-before(@type, ':')"/>
+                            <xsl:for-each select="$gGroups/class[@name=$vGroupName and @namespace=$vNamespace]/element">
                                 <xsl:variable name="vMaxOccurs" select="concat('-', @maxOccurs)"/>
                                 <xsl:call-template name="WriteTestMethods">
                                     <xsl:with-param name="pElement" select="."/>
@@ -1006,7 +1041,8 @@
         <xsl:param name="pNodeNameLocal" as="xs:string"/>
         <xsl:param name="pIsMaxOccursFromParent" as="xs:boolean"/>
         <xsl:variable name="vGroupName" select=" substring-after($pGroupName, ':')"/>
-        <xsl:for-each select="$gGroups/class[@name=$vGroupName]/element">
+        <xsl:variable name="vNamespace" select=" substring-before($pGroupName, ':')"/>
+        <xsl:for-each select="$gGroups/class[@name=$vGroupName and @namespace=$vNamespace]/element">
             <xsl:variable name="vMaxOccurs" select="concat('-', @maxOccurs)"/>
             <xsl:choose>
                 <xsl:when test="$pIsMaxOccursFromParent=true()">
@@ -1017,7 +1053,7 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
-        <xsl:for-each select="$gGroups/class[@name=$vGroupName]/include">
+        <xsl:for-each select="$gGroups/class[@name=$vGroupName and @namespace=$vNamespace]/include">
             <xsl:variable name="vMaxOccurs" select="concat('-', @maxOccurs)"/>
             <xsl:value-of select="xdd:includeGroupRefs($pClassname, @name, $pWriteAttribute, $pWriteInterface, $pIsGeneric, $pNodeNameLocal, @maxOccurs='unbounded')"/>
         </xsl:for-each>
@@ -1964,6 +2000,63 @@
     </xsl:function>
 
 
+    <!-- ****************************************************** -->
+    <!-- ****** Function which writes the imports           *** -->
+    <!-- ****************************************************** -->
+    <xsl:function name="xdd:writeDynamicImports">
+        <xsl:param name="pClassName" as="xs:string"/>
+        <xsl:param name="pNamespace" as="xs:string"/>
+        <xsl:param name="pIsApi" as="xs:boolean"/>
+
+        <xsl:for-each select="$gClasses/class[@name=$pClassName and @namespace=$pNamespace]">
+            <xsl:for-each select="element">
+                <xsl:value-of select="xdd:writeDynamicImport(@type, $pIsApi)"/>
+            </xsl:for-each>
+            <xsl:for-each select="include">
+                <xsl:variable name="vName" select=" substring-after(@name, ':')"/>
+                <xsl:variable name="vNamespace" select=" substring-before(@name, ':')"/>
+                <xsl:value-of select="xdd:writeDynamicImports($vName, $vNamespace, $pIsApi)"/>
+            </xsl:for-each>
+        </xsl:for-each>
+
+        <xsl:for-each select="$gGroups/class[@name=$pClassName and @namespace=$pNamespace]">
+            <xsl:for-each select="element">
+                <xsl:value-of select="xdd:writeDynamicImport(@type, $pIsApi)"/>
+            </xsl:for-each>
+            <xsl:for-each select="include">
+                <xsl:variable name="vName" select=" substring-after(@name, ':')"/>
+                <xsl:variable name="vNamespace" select=" substring-before(@name, ':')"/>
+                <xsl:value-of select="xdd:writeDynamicImports($vName, $vNamespace, $pIsApi)"/>
+            </xsl:for-each>
+        </xsl:for-each>
+
+    </xsl:function>
+
+    <!-- ****************************************************** -->
+    <!-- ****** Function which writes the imports           *** -->
+    <!-- ****************************************************** -->
+    <xsl:function name="xdd:writeDynamicImport">
+        <xsl:param name="pType" as="xs:string"/>
+        <xsl:param name="pIsApi" as="xs:boolean"/>
+
+        <xsl:variable name="vType" select=" substring-after($pType, ':')"/>
+        <xsl:variable name="vNamespace" select=" substring-before($pType, ':')"/>
+
+        <xsl:for-each select="$gClasses/class[@name=$vType and @namespace=$vNamespace]">
+            <xsl:variable name="vPackageApi" select="@packageApi"/>
+            <xsl:variable name="vPackageImpl" select="@packageImpl"/>
+            <xsl:value-of select="concat('import ', $vPackageApi, '.', xdd:createPascalizedName(@name, ''), ';&#10;')"/>
+            <xsl:if test="$pIsApi=false()">
+                <xsl:value-of select="concat('import ', $vPackageImpl, '.', xdd:createPascalizedName(@name, 'Impl'), ';&#10;')"/>
+            </xsl:if>
+        </xsl:for-each>
+
+        <xsl:for-each select="$gEnums/enum[@name=$vType and @namespace=$vNamespace]">
+            <xsl:variable name="vPackageApi" select="@package"/>
+            <xsl:value-of select="concat('import ', $vPackageApi, '.', xdd:createPascalizedName($vType, ''), ';&#10;')"/>
+        </xsl:for-each>
+
+    </xsl:function>
 
 
     <!-- ****************************************************** -->
@@ -1978,18 +2071,18 @@
                 <xsl:value-of select="'import java.util.List;&#10;'"/>
                 <xsl:value-of select="'import java.util.Map;&#10;'"/>
                 <xsl:value-of select="'import org.jboss.shrinkwrap.descriptor.api.Child;&#10;'"/>
-                <xsl:for-each select="$gPackageApis">
+                <!-- <xsl:for-each select="$gPackageApis">
                     <xsl:value-of select="concat('import ', @name, '.*;&#10;')"/>
-                </xsl:for-each>
+                </xsl:for-each>-->
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="'import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;&#10;'"/>
                 <xsl:value-of select="'import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;&#10;'"/>
                 <xsl:value-of select="'import org.jboss.shrinkwrap.descriptor.impl.base.Strings;&#10;'"/>
                 <xsl:value-of select="'import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;&#10;'"/>
-                <xsl:for-each select="$gPackageImpls">
+                <!-- <xsl:for-each select="$gPackageImpls">
                     <xsl:value-of select="concat('import ', @name, '.*;&#10;')"/>
-                </xsl:for-each>
+                </xsl:for-each>-->
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
@@ -2054,12 +2147,16 @@
     <!-- ****************************************************** -->
     <xsl:function name="xdd:CheckDataType" as="xs:string">
         <xsl:param name="pTypeName"/>
+        <!--        <xsl:message select="concat('checkdatatype: ', $pTypeName)"/>-->
         <xsl:choose>
             <xsl:when test=" starts-with($pTypeName, 'xsd:')">
                 <xsl:sequence select="xdd:getJavaDataType($pTypeName)"/>
             </xsl:when>
             <xsl:when test="starts-with($pTypeName, 'javaee:')">
                 <xsl:sequence select="xdd:CheckDataType( substring-after($pTypeName, 'javaee:'))"/>
+            </xsl:when>
+            <xsl:when test="starts-with($pTypeName, 'jboss:')">
+                <xsl:sequence select="xdd:CheckDataType( substring-after($pTypeName, 'jboss:'))"/>
             </xsl:when>
             <xsl:when test="starts-with($pTypeName, 'persistence:')">
                 <xsl:sequence select="xdd:CheckDataType( substring-after($pTypeName, 'persistence:'))"/>

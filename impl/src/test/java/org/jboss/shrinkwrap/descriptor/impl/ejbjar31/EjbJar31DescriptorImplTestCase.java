@@ -39,7 +39,7 @@ public class EjbJar31DescriptorImplTestCase
       
       String descr = ejbJarGenerated.exportAsString();
       
-      System.out.println(descr);
+//      System.out.println(descr);
       assertTrue(descr != null);
             
       String ejbJar_source_imported = getResourceContents("src/test/resources/test-ejb-jar.xml");

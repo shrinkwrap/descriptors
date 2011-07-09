@@ -75,7 +75,7 @@ public class WebApp30DescriptorImportAsTestCase
       
       assertEquals(webapp.getWelcomeFileListList().get(0).getWelcomeFileList().get(0).trim(), "index.html");
       
-      System.out.println(webapp.exportAsString());
+//      System.out.println(webapp.exportAsString());
    }
    
    @Test

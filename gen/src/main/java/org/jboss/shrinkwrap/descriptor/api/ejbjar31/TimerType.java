@@ -1,20 +1,12 @@
-package org.jboss.shrinkwrap.descriptor.api.ejbjar31; 
+package org.jboss.shrinkwrap.descriptor.api.ejbjar31;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.api.application6.*;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
-import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
-import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
+
 /**
  * This class is a generated class.
- * Generation date :2011-07-05T19:45:07.621+02:00
+ * Generation date :2011-07-09T17:18:31.163+02:00
  *
  * Original Documentation:
  *
@@ -60,56 +52,47 @@ public interface TimerType<T> extends Child<T>
 {
 
    public TimerType<T> setDescription(String description);
-   public TimerType<T> setDescriptionList(String ... values);
+
+   public TimerType<T> setDescriptionList(String... values);
+
    public TimerType<T> removeAllDescription();
 
    public List<String> getDescriptionList();
-
-
 
    public TimerType<T> removeSchedule();
 
    public TimerScheduleType<TimerType<T>> schedule();
 
-
-
-
    public TimerType<T> setStart(java.util.Date start);
+
    public TimerType<T> removeStart();
 
    public java.util.Date getStart();
 
-
-
    public TimerType<T> setEnd(java.util.Date end);
+
    public TimerType<T> removeEnd();
 
    public java.util.Date getEnd();
-
-
 
    public TimerType<T> removeTimeoutMethod();
 
    public NamedMethodType<TimerType<T>> timeoutMethod();
 
-
-
-
    public TimerType<T> setPersistent(Boolean persistent);
+
    public TimerType<T> removePersistent();
 
    public Boolean isPersistent();
 
-
-
    public TimerType<T> setTimezone(String timezone);
+
    public TimerType<T> removeTimezone();
 
    public String getTimezone();
 
-
-
    public TimerType<T> setInfo(String info);
+
    public TimerType<T> removeInfo();
 
    public String getInfo();

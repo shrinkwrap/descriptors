@@ -1,20 +1,12 @@
-package org.jboss.shrinkwrap.descriptor.api.ejbjar31; 
+package org.jboss.shrinkwrap.descriptor.api.ejbjar31;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.api.application6.*;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
-import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
-import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
+
 /**
  * This class is a generated class.
- * Generation date :2011-07-05T19:45:07.621+02:00
+ * Generation date :2011-07-09T17:18:31.163+02:00
  *
  * Original Documentation:
  *
@@ -35,24 +27,21 @@ public interface EjbRelationType<T> extends Child<T>
 {
 
    public EjbRelationType<T> setDescription(String description);
-   public EjbRelationType<T> setDescriptionList(String ... values);
+
+   public EjbRelationType<T> setDescriptionList(String... values);
+
    public EjbRelationType<T> removeAllDescription();
 
    public List<String> getDescriptionList();
 
-
-
    public EjbRelationType<T> setEjbRelationName(String ejbRelationName);
+
    public EjbRelationType<T> removeEjbRelationName();
 
    public String getEjbRelationName();
 
-
-
    public EjbRelationType<T> removeEjbRelationshipRole();
 
    public EjbRelationshipRoleType<EjbRelationType<T>> ejbRelationshipRole();
-
-
 
 }

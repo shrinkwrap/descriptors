@@ -6,7 +6,7 @@ import org.jboss.shrinkwrap.descriptor.api.Child;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-05T19:40:43.525+02:00
+ * Generation date :2011-07-09T17:18:31.163+02:00
  */
 public interface PersistenceUnit<T> extends Child<T>
 {

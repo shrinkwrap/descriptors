@@ -44,6 +44,7 @@
             <xsl:for-each select="//schema">
                 <xsl:call-template name="WriteDataTypes">
                     <xsl:with-param name="pDocument" select="@name"/>
+                    <xsl:with-param name="pNamespace" select="@namespace"/>
                 </xsl:call-template>
             </xsl:for-each>
         </datatypes>
@@ -84,6 +85,7 @@
                 <xsl:call-template name="WriteEnums">
                     <xsl:with-param name="pDocument" select="@name"/>
                     <xsl:with-param name="pPackage" select="@packageApi"/>
+                    <xsl:with-param name="pNamespace" select="@namespace"/>
                 </xsl:call-template>
             </xsl:for-each>
 
@@ -101,6 +103,7 @@
                 <xsl:call-template name="WriteGroups">
                     <xsl:with-param name="pDocument" select="@name"/>
                     <xsl:with-param name="pPackage" select="@packageApi"/>
+                    <xsl:with-param name="pNamespace" select="@namespace"/>
                 </xsl:call-template>
             </xsl:for-each>
         </groups>
@@ -119,6 +122,7 @@
                             <xsl:with-param name="pDocument" select="@name"/>
                             <xsl:with-param name="pPackageApi" select="@packageApi"/>
                             <xsl:with-param name="pPackageImpl" select="@packageImpl"/>
+                            <xsl:with-param name="pNamespace" select="@namespace"/>
                         </xsl:call-template>
                     </xsl:when>
                     <xsl:otherwise>
@@ -126,6 +130,7 @@
                             <xsl:with-param name="pDocument" select="@name"/>
                             <xsl:with-param name="pPackageApi" select="@packageApi"/>
                             <xsl:with-param name="pPackageImpl" select="@packageImpl"/>
+                            <xsl:with-param name="pNamespace" select="@namespace"/>
                         </xsl:call-template>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -147,6 +152,9 @@
                             <xsl:when test="contains(@name, 'persistence_2_0.xsd')">
                                 <xsl:attribute name="schemaName">
                                     <xsl:value-of select="@name"/>
+                                </xsl:attribute>
+                                <xsl:attribute name="namespace">
+                                    <xsl:value-of select="@namespace"/>
                                 </xsl:attribute>
                                 <xsl:attribute name="packageApi">
                                     <xsl:value-of select="@packageApi"/>
@@ -171,7 +179,7 @@
                                         <xsl:value-of select="'persistence'"/>
                                     </xsl:attribute>
                                     <xsl:attribute name="type">
-                                        <xsl:value-of select="'dummy:persistence'"/>
+                                        <xsl:value-of select="'persistence:persistence'"/>
                                     </xsl:attribute>
                                     <xsl:attribute name="defaultNamespaces">
                                         <xsl:value-of select="$vNameSpaces"/>
@@ -183,6 +191,9 @@
                             <xsl:otherwise>
                                 <xsl:attribute name="schemaName">
                                     <xsl:value-of select="@name"/>
+                                </xsl:attribute>
+                                <xsl:attribute name="namespace">
+                                    <xsl:value-of select="@namespace"/>
                                 </xsl:attribute>
                                 <xsl:attribute name="packageApi">
                                     <xsl:value-of select="@packageApi"/>
@@ -265,6 +276,7 @@
     <!-- ****************************************************** -->
     <xsl:template name="WriteDataTypes">
         <xsl:param name="pDocument"/>
+        <xsl:param name="pNamespace"/>
         <xsl:for-each select="document($pDocument)//xsd:complexType">
             <xsl:variable name="complexTypeName" select="@name"/>
 
@@ -275,6 +287,9 @@
                     </xsl:attribute>
                     <xsl:attribute name="mappedTo">
                         <xsl:value-of select="'javaee:string'"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="namespace">
+                        <xsl:value-of select="$pNamespace"/>
                     </xsl:attribute>
                     <xsl:attribute name="schemaName">
                         <xsl:value-of select="$pDocument"/>
@@ -292,6 +307,9 @@
                             </xsl:attribute>
                             <xsl:attribute name="mappedTo">
                                 <xsl:value-of select="../@base"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="namespace">
+                                <xsl:value-of select="$pNamespace"/>
                             </xsl:attribute>
                             <xsl:attribute name="schemaName">
                                 <xsl:value-of select="$pDocument"/>
@@ -313,6 +331,9 @@
                     <xsl:attribute name="mappedTo">
                         <xsl:value-of select="'xsd:integer'"/>
                     </xsl:attribute>
+                    <xsl:attribute name="namespace">
+                        <xsl:value-of select="$pNamespace"/>
+                    </xsl:attribute>
                     <xsl:attribute name="schemaName">
                         <xsl:value-of select="$pDocument"/>
                     </xsl:attribute>
@@ -327,6 +348,9 @@
                     </xsl:attribute>
                     <xsl:attribute name="mappedTo">
                         <xsl:value-of select="'javaee:string'"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="namespace">
+                        <xsl:value-of select="$pNamespace"/>
                     </xsl:attribute>
                     <xsl:attribute name="schemaName">
                         <xsl:value-of select="$pDocument"/>
@@ -345,6 +369,9 @@
                         <xsl:attribute name="mappedTo">
                             <xsl:value-of select="@base"/>
                         </xsl:attribute>
+                        <xsl:attribute name="namespace">
+                            <xsl:value-of select="$pNamespace"/>
+                        </xsl:attribute>
                         <xsl:attribute name="schemaName">
                             <xsl:value-of select="$pDocument"/>
                         </xsl:attribute>
@@ -361,6 +388,7 @@
     <xsl:template name="WriteEnums">
         <xsl:param name="pDocument"/>
         <xsl:param name="pPackage"/>
+        <xsl:param name="pNamespace"/>
         <xsl:for-each select="document($pDocument)//xsd:complexType">
             <xsl:variable name="complexTypeName" select="@name"/>
             <xsl:variable name="vDocumentation" select="xsd:annotation/xsd:documentation/text()"/>
@@ -372,6 +400,9 @@
                         <enum>
                             <xsl:attribute name="name">
                                 <xsl:value-of select="$complexTypeName"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="namespace">
+                                <xsl:value-of select="$pNamespace"/>
                             </xsl:attribute>
                             <xsl:attribute name="schemaName">
                                 <xsl:value-of select="$pDocument"/>
@@ -404,6 +435,9 @@
                             <xsl:attribute name="name">
                                 <xsl:value-of select="$complexTypeName"/>
                             </xsl:attribute>
+                            <xsl:attribute name="namespace">
+                                <xsl:value-of select="$pNamespace"/>
+                            </xsl:attribute>
                             <xsl:attribute name="schemaName">
                                 <xsl:value-of select="$pDocument"/>
                             </xsl:attribute>
@@ -432,6 +466,7 @@
     <xsl:template name="WriteGroups">
         <xsl:param name="pDocument"/>
         <xsl:param name="pPackage"/>
+        <xsl:param name="pNamespace"/>
 
         <xsl:for-each select="document($pDocument)//xsd:attributeGroup">
             <xsl:if test="@name!=''">
@@ -440,6 +475,9 @@
                 <class>
                     <xsl:attribute name="name">
                         <xsl:value-of select="$groupName"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="namespace">
+                        <xsl:value-of select="$pNamespace"/>
                     </xsl:attribute>
                     <xsl:attribute name="schemaName">
                         <xsl:value-of select="$pDocument"/>
@@ -480,6 +518,9 @@
                 <class>
                     <xsl:attribute name="name">
                         <xsl:value-of select="$groupName"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="namespace">
+                        <xsl:value-of select="$pNamespace"/>
                     </xsl:attribute>
                     <xsl:attribute name="schemaName">
                         <xsl:value-of select="$pDocument"/>
@@ -533,6 +574,8 @@
         <xsl:param name="pDocument"/>
         <xsl:param name="pPackageApi"/>
         <xsl:param name="pPackageImpl"/>
+        <xsl:param name="pNamespace"/>
+        
         <!--
         <xsl:for-each select="document($pDocument)//xsd:simpleType">
             <xsl:variable name="complexTypeName" select="@name"/>
@@ -548,6 +591,9 @@
                 <class>
                     <xsl:attribute name="name">
                         <xsl:value-of select="$complexTypeName"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="namespace">
+                        <xsl:value-of select="$pNamespace"/>
                     </xsl:attribute>
                     <xsl:attribute name="schemaName">
                         <xsl:value-of select="$pDocument"/>
@@ -583,7 +629,7 @@
                             <xsl:value-of select="@type"/>
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:value-of select="concat('dummy:', @name)"/>
+                            <xsl:value-of select="concat('persistence:', @name)"/>
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:attribute>
@@ -617,12 +663,13 @@
         <xsl:param name="pDocument"/>
         <xsl:param name="pPackageApi"/>
         <xsl:param name="pPackageImpl"/>
+        <xsl:param name="pNamespace"/>
 
         <xsl:for-each select="document($pDocument)//xsd:simpleType">
             <xsl:variable name="complexTypeName" select="@name"/>
             <xsl:variable name="vDocumentation" select="xsd:annotation/xsd:documentation/text()"/>
 
-            <xsl:if test="$complexTypeName='protocol-bindingListType'">
+            <xsl:if test="$complexTypeName='protocol-bindingListType' or $complexTypeName='service-ref_protocol-bindingListType'">
                 <xsl:message select="concat('Metadata describing class: ', $complexTypeName)"/>
                 <class>
                     <xsl:attribute name="name">
@@ -630,6 +677,9 @@
                     </xsl:attribute>
                     <xsl:attribute name="schemaName">
                         <xsl:value-of select="$pDocument"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="namespace">
+                        <xsl:value-of select="$pNamespace"/>
                     </xsl:attribute>
                     <xsl:attribute name="packageApi">
                         <xsl:value-of select="$pPackageApi"/>
@@ -646,7 +696,7 @@
                             <xsl:value-of select="'protocol-bindingType'"/>
                         </xsl:attribute>
                         <xsl:attribute name="type">
-                            <xsl:value-of select="xsd:list/@itemType"/>
+                            <xsl:value-of select="'xsd:string'"/>
                         </xsl:attribute>
                         <xsl:attribute name="maxOccurs">
                             <xsl:value-of select="'unbounded'"/>
@@ -667,6 +717,9 @@
                     <class>
                         <xsl:attribute name="name">
                             <xsl:value-of select="$complexTypeName"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="namespace">
+                            <xsl:value-of select="$pNamespace"/>
                         </xsl:attribute>
                         <xsl:attribute name="schemaName">
                             <xsl:value-of select="$pDocument"/>

@@ -1,20 +1,12 @@
-package org.jboss.shrinkwrap.descriptor.api.ejbjar31; 
+package org.jboss.shrinkwrap.descriptor.api.ejbjar31;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.api.application6.*;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
-import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
-import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
+
 /**
  * This class is a generated class.
- * Generation date :2011-07-05T19:45:07.621+02:00
+ * Generation date :2011-07-09T17:18:31.163+02:00
  *
  * Original Documentation:
  *
@@ -39,28 +31,28 @@ public interface MethodPermissionType<T> extends Child<T>
 {
 
    public MethodPermissionType<T> setDescription(String description);
-   public MethodPermissionType<T> setDescriptionList(String ... values);
+
+   public MethodPermissionType<T> setDescriptionList(String... values);
+
    public MethodPermissionType<T> removeAllDescription();
 
    public List<String> getDescriptionList();
 
-
-
    public MethodPermissionType<T> removeAllMethod();
 
    public MethodType<MethodPermissionType<T>> method();
+
    public List<MethodType<MethodPermissionType<T>>> getMethodList();
 
-
-
-
    public MethodPermissionType<T> setRoleName(String roleName);
-   public MethodPermissionType<T> setRoleNameList(String ... values);
+
+   public MethodPermissionType<T> setRoleNameList(String... values);
+
    public MethodPermissionType<T> removeAllRoleName();
 
    public List<String> getRoleNameList();
 
-
    public MethodPermissionType<T> unchecked();
+
    public Boolean isUnchecked();
 }

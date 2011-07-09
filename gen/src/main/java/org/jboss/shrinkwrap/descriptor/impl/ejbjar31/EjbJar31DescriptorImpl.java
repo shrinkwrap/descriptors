@@ -1,40 +1,31 @@
-package org.jboss.shrinkwrap.descriptor.impl.ejbjar31; 
+package org.jboss.shrinkwrap.descriptor.impl.ejbjar31;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.api.application6.*;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
-import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
-import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
-import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
-import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
-import org.jboss.shrinkwrap.descriptor.impl.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.impl.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.impl.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.impl.application6.*;
-import org.jboss.shrinkwrap.descriptor.impl.webapp30.*;
-import org.jboss.shrinkwrap.descriptor.impl.persistence20.*;
-import org.jboss.shrinkwrap.descriptor.impl.webfragment30.*;
-import org.jboss.shrinkwrap.descriptor.impl.ejbjar31.*;
-import org.jboss.shrinkwrap.descriptor.api.DescriptorNamespace;
 
+import org.jboss.shrinkwrap.descriptor.api.DescriptorNamespace;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.AssemblyDescriptorType;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.EjbJar31Descriptor;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.EnterpriseBeansType;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.InterceptorsType;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.RelationshipsType;
+import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
 import org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
+import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
+import org.jboss.shrinkwrap.descriptor.impl.javaee6.IconTypeImpl;
+import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
  * This class is a generated class.
- * Generation date :2011-07-05T19:45:07.621+02:00
+ * Generation date :2011-07-09T17:18:31.163+02:00
  */
-public class EjbJar31DescriptorImpl extends NodeProviderImplBase implements DescriptorNamespace<EjbJar31Descriptor>, EjbJar31Descriptor
+public class EjbJar31DescriptorImpl extends NodeProviderImplBase
+      implements
+         DescriptorNamespace<EjbJar31Descriptor>,
+         EjbJar31Descriptor
 {
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
@@ -48,7 +39,7 @@ public class EjbJar31DescriptorImpl extends NodeProviderImplBase implements Desc
 
    public EjbJar31DescriptorImpl(String descriptorName)
    {
-       this(descriptorName, new Node("ejb-jar"));
+      this(descriptorName, new Node("ejb-jar"));
    }
 
    public EjbJar31DescriptorImpl(String descriptorName, Node node)
@@ -71,7 +62,6 @@ public class EjbJar31DescriptorImpl extends NodeProviderImplBase implements Desc
       return new XMLExporter();
    }
 
-
    // -------------------------------------------------------------------------------------||
    // Namespace ---------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
@@ -80,7 +70,8 @@ public class EjbJar31DescriptorImpl extends NodeProviderImplBase implements Desc
    {
       addNamespace("xmlns", "http://java.sun.com/xml/ns/javaee");
       addNamespace("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
-      addNamespace("xsi:schemaLocation", "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd");
+      addNamespace("xsi:schemaLocation",
+            "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd");
       return this;
    }
 
@@ -94,10 +85,10 @@ public class EjbJar31DescriptorImpl extends NodeProviderImplBase implements Desc
    {
       List<String> namespaceList = new ArrayList<String>();
       Map<String, String> attributes = model.attributes();
-      for (String name: attributes.keySet())
+      for (String name : attributes.keySet())
       {
          String value = attributes.get(name);
-         if (value != null && value.startsWith("http://")) 
+         if (value != null && value.startsWith("http://"))
          {
             namespaceList.add(name + "=" + value);
          }
@@ -109,15 +100,15 @@ public class EjbJar31DescriptorImpl extends NodeProviderImplBase implements Desc
    {
       List<String> nameSpaceKeys = new ArrayList<String>();
       Map<String, String> attributes = model.attributes();
-      for (String name: attributes.keySet())
+      for (String name : attributes.keySet())
       {
          String value = attributes.get(name);
-         if (value != null && value.startsWith("http://")) 
+         if (value != null && value.startsWith("http://"))
          {
             nameSpaceKeys.add(name);
          }
       }
-      for (String name: nameSpaceKeys)
+      for (String name : nameSpaceKeys)
       {
          model.attributes().remove(name);
       }
@@ -133,6 +124,7 @@ public class EjbJar31DescriptorImpl extends NodeProviderImplBase implements Desc
       model.getOrCreate("module-name").text(moduleName);
       return this;
    }
+
    public EjbJar31Descriptor removeModuleName()
    {
       model.remove("module-name");
@@ -143,7 +135,6 @@ public class EjbJar31DescriptorImpl extends NodeProviderImplBase implements Desc
    {
       return model.textValue("module-name");
    }
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : enterprise-beans
@@ -158,11 +149,10 @@ public class EjbJar31DescriptorImpl extends NodeProviderImplBase implements Desc
    public EnterpriseBeansType<EjbJar31Descriptor> enterpriseBeans()
    {
       Node node = model.getOrCreate("enterprise-beans");
-      EnterpriseBeansType<EjbJar31Descriptor> enterpriseBeans = new EnterpriseBeansTypeImpl<EjbJar31Descriptor>(this, "enterprise-beans", model, node);
+      EnterpriseBeansType<EjbJar31Descriptor> enterpriseBeans = new EnterpriseBeansTypeImpl<EjbJar31Descriptor>(this,
+            "enterprise-beans", model, node);
       return enterpriseBeans;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : interceptors
@@ -177,11 +167,10 @@ public class EjbJar31DescriptorImpl extends NodeProviderImplBase implements Desc
    public InterceptorsType<EjbJar31Descriptor> interceptors()
    {
       Node node = model.getOrCreate("interceptors");
-      InterceptorsType<EjbJar31Descriptor> interceptors = new InterceptorsTypeImpl<EjbJar31Descriptor>(this, "interceptors", model, node);
+      InterceptorsType<EjbJar31Descriptor> interceptors = new InterceptorsTypeImpl<EjbJar31Descriptor>(this,
+            "interceptors", model, node);
       return interceptors;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : relationships
@@ -196,11 +185,10 @@ public class EjbJar31DescriptorImpl extends NodeProviderImplBase implements Desc
    public RelationshipsType<EjbJar31Descriptor> relationships()
    {
       Node node = model.getOrCreate("relationships");
-      RelationshipsType<EjbJar31Descriptor> relationships = new RelationshipsTypeImpl<EjbJar31Descriptor>(this, "relationships", model, node);
+      RelationshipsType<EjbJar31Descriptor> relationships = new RelationshipsTypeImpl<EjbJar31Descriptor>(this,
+            "relationships", model, node);
       return relationships;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : assembly-descriptor
@@ -215,11 +203,10 @@ public class EjbJar31DescriptorImpl extends NodeProviderImplBase implements Desc
    public AssemblyDescriptorType<EjbJar31Descriptor> assemblyDescriptor()
    {
       Node node = model.getOrCreate("assembly-descriptor");
-      AssemblyDescriptorType<EjbJar31Descriptor> assemblyDescriptor = new AssemblyDescriptorTypeImpl<EjbJar31Descriptor>(this, "assembly-descriptor", model, node);
+      AssemblyDescriptorType<EjbJar31Descriptor> assemblyDescriptor = new AssemblyDescriptorTypeImpl<EjbJar31Descriptor>(
+            this, "assembly-descriptor", model, node);
       return assemblyDescriptor;
    }
-
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : ejb-client-jar
@@ -230,6 +217,7 @@ public class EjbJar31DescriptorImpl extends NodeProviderImplBase implements Desc
       model.getOrCreate("ejb-client-jar").text(ejbClientJar);
       return this;
    }
+
    public EjbJar31Descriptor removeEjbClientJar()
    {
       model.remove("ejb-client-jar");
@@ -241,7 +229,6 @@ public class EjbJar31DescriptorImpl extends NodeProviderImplBase implements Desc
       return model.textValue("ejb-client-jar");
    }
 
-
    // -------------------------------------------------------------------------------------||
    // Element type : version
    // isComplexType: false   maxOccurs: -   isAttribute: true
@@ -251,6 +238,7 @@ public class EjbJar31DescriptorImpl extends NodeProviderImplBase implements Desc
       model.attribute("version", version);
       return this;
    }
+
    public EjbJar31Descriptor removeVersion()
    {
       model.attributes().remove("version");
@@ -262,7 +250,6 @@ public class EjbJar31DescriptorImpl extends NodeProviderImplBase implements Desc
       return model.attributes().get("version");
    }
 
-
    // -------------------------------------------------------------------------------------||
    // Element type : metadata-complete
    // isComplexType: false   maxOccurs: -   isAttribute: true
@@ -272,6 +259,7 @@ public class EjbJar31DescriptorImpl extends NodeProviderImplBase implements Desc
       model.attribute("metadata-complete", metadataComplete);
       return this;
    }
+
    public EjbJar31Descriptor removeMetadataComplete()
    {
       model.attributes().remove("metadata-complete");
@@ -283,7 +271,6 @@ public class EjbJar31DescriptorImpl extends NodeProviderImplBase implements Desc
       return Strings.isTrue(model.attribute("metadata-complete"));
    }
 
-
    // -------------------------------------------------------------------------------------||
    // Element type : description
    // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
@@ -293,21 +280,23 @@ public class EjbJar31DescriptorImpl extends NodeProviderImplBase implements Desc
       model.create("description").text(description);
       return this;
    }
-   public EjbJar31Descriptor setDescriptionList(String ... values)
+
+   public EjbJar31Descriptor setDescriptionList(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
          setDescription(name);
       }
       return this;
    }
+
    public EjbJar31Descriptor removeAllDescription()
    {
       model.remove("description");
       return this;
    }
 
-public List<String> getDescriptionList()
+   public List<String> getDescriptionList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = model.get("description");
@@ -318,7 +307,6 @@ public List<String> getDescriptionList()
       return result;
    }
 
-
    // -------------------------------------------------------------------------------------||
    // Element type : display-name
    // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
@@ -328,21 +316,23 @@ public List<String> getDescriptionList()
       model.create("display-name").text(displayName);
       return this;
    }
-   public EjbJar31Descriptor setDisplayNameList(String ... values)
+
+   public EjbJar31Descriptor setDisplayNameList(String... values)
    {
-      for(String name: values)
+      for (String name : values)
       {
          setDisplayName(name);
       }
       return this;
    }
+
    public EjbJar31Descriptor removeAllDisplayName()
    {
       model.remove("display-name");
       return this;
    }
 
-public List<String> getDisplayNameList()
+   public List<String> getDisplayNameList()
    {
       List<String> result = new ArrayList<String>();
       List<Node> nodes = model.get("display-name");
@@ -352,7 +342,6 @@ public List<String> getDisplayNameList()
       }
       return result;
    }
-
 
    // -------------------------------------------------------------------------------------||
    // Element type : icon
@@ -373,14 +362,12 @@ public List<String> getDisplayNameList()
    {
       List<IconType<EjbJar31Descriptor>> list = new ArrayList<IconType<EjbJar31Descriptor>>();
       List<Node> nodeList = model.get("icon");
-      for(Node node: nodeList)
+      for (Node node : nodeList)
       {
-         IconType<EjbJar31Descriptor>  type = new IconTypeImpl<EjbJar31Descriptor>(this, "icon", model, node);
+         IconType<EjbJar31Descriptor> type = new IconTypeImpl<EjbJar31Descriptor>(this, "icon", model, node);
          list.add(type);
       }
       return list;
    }
-
-
 
 }

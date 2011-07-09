@@ -1,20 +1,10 @@
-package org.jboss.shrinkwrap.descriptor.api.webcommon30; 
+package org.jboss.shrinkwrap.descriptor.api.webcommon30;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.javaee6.*;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.*;
-import org.jboss.shrinkwrap.descriptor.api.jsp22.*;
-import org.jboss.shrinkwrap.descriptor.api.application6.*;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.*;
-import org.jboss.shrinkwrap.descriptor.api.persistence20.*;
-import org.jboss.shrinkwrap.descriptor.api.webfragment30.*;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.*;
+
 /**
  * This class is a generated class.
- * Generation date :2011-07-05T19:45:07.621+02:00
+ * Generation date :2011-07-09T17:18:31.163+02:00
  *
  * Original Documentation:
  *
@@ -42,28 +32,27 @@ public interface FilterMappingType<T> extends Child<T>
 {
 
    public FilterMappingType<T> setFilterName(String filterName);
+
    public FilterMappingType<T> removeFilterName();
 
    public String getFilterName();
 
-
-
    public FilterMappingType<T> setDispatcher(DispatcherType dispatcher);
+
    public FilterMappingType<T> setDispatcher(String dispatcher);
 
    public DispatcherType getDispatcher();
-   public String  getDispatcherAsString();
 
-
+   public String getDispatcherAsString();
 
    public FilterMappingType<T> setUrlPattern(String urlPattern);
+
    public FilterMappingType<T> removeUrlPattern();
 
    public String getUrlPattern();
 
-
-
    public FilterMappingType<T> setServletName(String servletName);
+
    public FilterMappingType<T> removeServletName();
 
    public String getServletName();
