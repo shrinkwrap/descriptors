@@ -225,7 +225,7 @@ public class Node
     */
    public List<Node> remove(String name)
    {
-      if (name == null || name.trim().isEmpty())
+      if (name == null || name.trim().length() == 0)
       {
          throw new IllegalArgumentException("Path must not be null or empty");
       }

@@ -19,7 +19,13 @@
 
   <build>
     <plugins>
-
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <!-- Run in Java5; be build with a JDK6 compiler so ensure we don't use any JDK6 libs-->
+          <jvm>${env.JAVA5_HOME}/bin/java</jvm>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>net.sf.xsltmp</groupId>
         <artifactId>xslt-generator-maven-plugin</artifactId>
