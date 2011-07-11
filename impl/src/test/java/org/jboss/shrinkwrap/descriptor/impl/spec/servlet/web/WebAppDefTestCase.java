@@ -377,18 +377,13 @@ public class WebAppDefTestCase
    @Test
    public void shouldHaveSecurityConstraintDisplayName() throws Exception
    {
-      String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
-            "<web-app xmlns=\"http://java.sun.com/xml/ns/javaee\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" version=\"3.0\" xsi:schemaLocation=\"http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd\">\n" +
-            "  <security-constraint>\n" +
-            "    <display-name>Default security constraint</display-name>\n" +
-            "  </security-constraint>\n" +
-            "</web-app>";
-
+      final String securityConstraintDisplayName = "Default security constraint";
+      
       final String webAppDescriptor = Descriptors.create(WebAppDescriptor.class)
-            .securityConstraint("Default security constraint")
-            .exportAsString().trim().replaceAll("\r\n", "\n").replaceAll("\r", "\n");
+            .securityConstraint(securityConstraintDisplayName)
+            .exportAsString().trim();
 
-      Assert.assertEquals(expected, webAppDescriptor);
+      assertXPath(webAppDescriptor, "/web-app/security-constraint/display-name", securityConstraintDisplayName);
    }
 
    private String getResourceContents(String resource) throws Exception
