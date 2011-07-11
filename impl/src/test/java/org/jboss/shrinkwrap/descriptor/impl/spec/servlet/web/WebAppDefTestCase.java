@@ -382,7 +382,7 @@ public class WebAppDefTestCase
             "  <security-constraint>\n" +
             "    <display-name>Default security constraint</display-name>\n" +
             "  </security-constraint>\n" +
-            "</web-app>".replaceAll("\r\n", "\n").replaceAll("\r", "\n");
+            "</web-app>";
 
       final String webAppDescriptor = Descriptors.create(WebAppDescriptor.class)
             .securityConstraint("Default security constraint")
