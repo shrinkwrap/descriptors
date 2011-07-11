@@ -428,7 +428,7 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
       Node security = model.create("security-constraint");
       if (displayName != null)
       {
-         security.create("name").text(displayName);
+         security.create("display-name").text(displayName);
       }
       return new SecurityConstraintDefImpl(getDescriptorName(), model, security);
    }
