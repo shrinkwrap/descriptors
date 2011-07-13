@@ -19,6 +19,7 @@ package org.jboss.shrinkwrap.descriptor.api;
 import java.io.ByteArrayOutputStream;
 
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.WebAppDescriptor;
+import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -36,17 +37,13 @@ public class DescriptorExporterTestCase
    {
       final String name = DescriptorExporterTestCase.class.getName();
       final WebAppDescriptor descriptor = Descriptors.create(WebAppDescriptor.class).displayName(name);
-      
+
       final ByteArrayOutputStream output = new ByteArrayOutputStream();
       descriptor.exportTo(output);
-      
-      Assert.assertTrue(
-            "Verify content has been exported", 
-            output.size() > 0);
-      
-      Assert.assertTrue(
-            "Verify name is a part of content",
-            output.toString().contains(name));
+
+      Assert.assertTrue("Verify content has been exported", output.size() > 0);
+
+      Assert.assertTrue("Verify name is a part of content", output.toString().contains(name));
    }
 
    @Test(expected = IllegalArgumentException.class)

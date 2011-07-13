@@ -365,7 +365,7 @@ public class Node
     */
    public List<Node> removeChildren(final String name) throws IllegalArgumentException
    {
-      if (name == null || name.trim().isEmpty())
+      if (name == null || name.trim().length() == 0)
       {
          throw new IllegalArgumentException("Path must not be null or empty");
       }

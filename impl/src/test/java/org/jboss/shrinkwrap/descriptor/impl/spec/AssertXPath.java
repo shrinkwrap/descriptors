@@ -44,8 +44,10 @@ public final class AssertXPath
    /**
     * Util class, should not be constructed. 
     */
-   private AssertXPath() {}
-   
+   private AssertXPath()
+   {
+   }
+
    /**
     * Assert that the specified XPath Expression resolves to the specified values.
     * <br/><br/>
@@ -78,7 +80,7 @@ public final class AssertXPath
       {
          throw new RuntimeException(pce);
       }
-      
+
       final XPathExpression xPathExpression;
       try
       {
@@ -88,7 +90,7 @@ public final class AssertXPath
       {
          throw new RuntimeException(xee);
       }
-   
+
       final NodeList nodes;
       try
       {
@@ -98,29 +100,25 @@ public final class AssertXPath
       {
          throw new RuntimeException(xee);
       }
-      
+
       // If not looking for an attribute, count found Node matches
       if (!expression.contains("@"))
       {
-         Assert.assertEquals("ExpectedValue count should match found Node count", expectedValue.length,
-               nodes.getLength());
+         Assert.assertEquals("ExpectedValue count should match found Node count", expectedValue.length, nodes
+               .getLength());
       }
-   
-      for(int i = 0; i < nodes.getLength(); i++)
+
+      for (int i = 0; i < nodes.getLength(); i++)
       {
          Node node = nodes.item(i);
-         Assert.assertEquals(
-               "XPath content should match expected value",
-               expectedValue[i], 
-               node.getTextContent());
+         Assert.assertEquals("XPath content should match expected value", expectedValue[i], node.getTextContent());
       }
    }
 
-   public static void assertXPath(String xml, String expression, Object... expectedValue)
-      throws Exception
+   public static void assertXPath(String xml, String expression, Object... expectedValue) throws Exception
    {
       String[] strExpectedValue = new String[expectedValue.length];
-      for(int i = 0; i < expectedValue.length; i++)
+      for (int i = 0; i < expectedValue.length; i++)
       {
          strExpectedValue[i] = String.valueOf(expectedValue[i]);
       }

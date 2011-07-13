@@ -20,7 +20,6 @@ import static org.jboss.shrinkwrap.descriptor.impl.spec.AssertXPath.assertXPath;
 import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.spec.cdi.beans.BeansDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor;
 import org.junit.Test;
 
@@ -33,7 +32,9 @@ import org.junit.Test;
 public class ApplicationDescriptorTestCase
 {
    private String description = "description";
+
    private String moduleName = "test.jar";
+
    private String contextRoot = "/";
 
    @Test
@@ -51,69 +52,55 @@ public class ApplicationDescriptorTestCase
    @Test
    public void shouldBeAbleToAddDescription() throws Exception
    {
-      String desc = create()
-                     .description(moduleName)
-                     .exportAsString();
-      
+      String desc = create().description(moduleName).exportAsString();
+
       assertXPath(desc, "/application/description", moduleName);
    }
 
    @Test
    public void shouldBeAbleToAddDisplayName() throws Exception
    {
-      String desc = create()
-                     .displayName(moduleName)
-                     .exportAsString();
-      
+      String desc = create().displayName(moduleName).exportAsString();
+
       assertXPath(desc, "/application/display-name", moduleName);
    }
 
    @Test
    public void shouldBeAbleToAddLibraryDirectory() throws Exception
    {
-      String desc = create()
-                     .libraryDirectory(moduleName)
-                     .exportAsString();
-      
+      String desc = create().libraryDirectory(moduleName).exportAsString();
+
       assertXPath(desc, "/application/library-directory", moduleName);
    }
 
    @Test
    public void shouldBeAbleToAddAEJBModule() throws Exception
    {
-      String desc = create()
-                     .ejbModule(moduleName)
-                     .exportAsString();
-      
+      String desc = create().ejbModule(moduleName).exportAsString();
+
       assertXPath(desc, "/application/module/ejb", moduleName);
    }
-   
+
    @Test
    public void shouldBeAbleToAddAConnectorModule() throws Exception
    {
-      String desc = create()
-                     .connectorModule(moduleName)
-                     .exportAsString();
-      
+      String desc = create().connectorModule(moduleName).exportAsString();
+
       assertXPath(desc, "/application/module/connector", moduleName);
    }
-   
+
    @Test
    public void shouldBeAbleToAddAJavaModule() throws Exception
    {
-      String desc = create()
-                     .javaModule(moduleName)
-                     .exportAsString();
-      
+      String desc = create().javaModule(moduleName).exportAsString();
+
       assertXPath(desc, "/application/module/java", moduleName);
    }
-   
+
    @Test
    public void shouldBeAbleToAddAWebModule() throws Exception
    {
-      String desc = create()
-                     .webModule(moduleName, contextRoot)
-                     .exportAsString();
+      String desc = create().webModule(moduleName, contextRoot).exportAsString();
 
       assertXPath(desc, "/application/module/web/web-uri", moduleName);
       assertXPath(desc, "/application/module/web/context-root", contextRoot);
@@ -122,9 +109,7 @@ public class ApplicationDescriptorTestCase
    @Test
    public void shouldBeAbleToAddASecurityRole() throws Exception
    {
-      String desc = create()
-                     .securityRole(moduleName)
-                     .exportAsString();
+      String desc = create().securityRole(moduleName).exportAsString();
 
       assertXPath(desc, "/application/security-role/role-name", moduleName);
    }
@@ -132,15 +117,13 @@ public class ApplicationDescriptorTestCase
    @Test
    public void shouldBeAbleToAddASecurityRoleWithDescription() throws Exception
    {
-      String desc = create()
-                     .securityRole(moduleName, description)
-                     .exportAsString();
+      String desc = create().securityRole(moduleName, description).exportAsString();
 
       assertXPath(desc, "/application/security-role/role-name", moduleName);
       assertXPath(desc, "/application/security-role/description", description);
    }
 
-   private ApplicationDescriptor create() 
+   private ApplicationDescriptor create()
    {
       return Descriptors.create(ApplicationDescriptor.class);
    }
