@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- Parent -->
+  <parent>
+    <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+    <artifactId>shrinkwrap-descriptors-parent</artifactId>
+    <version>1.1.0-alpha-3-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <!-- Model Version -->
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- Artifact Configuration -->
+  <artifactId>shrinkwrap-descriptors-gen</artifactId>
+  <name>ShrinkWrap Descriptors XSLT Transformation</name>
+  <description>Generates various deployment descriptors via XSLT transformation</description>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <!-- Run in Java5; be build with a JDK6 compiler so ensure we don't use any JDK6 libs-->
+          <jvm>${env.JAVA5_HOME}/bin/java</jvm>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>net.sf.xsltmp</groupId>
+        <artifactId>xslt-generator-maven-plugin</artifactId>
+        <version>1.6</version>
+        <executions>
+          
+          <!-- 
+               This is the first step. 
+               All schema files configured in the schemas.xml
+               are parsed in this fist transformation. The result of this is a xml file 
+               called metadata.xml containing all required information to produce
+               the deployment descriptor API and IMPL classes
+          -->
+          <execution>
+            <id>transform-to-metadata-javaee6</id>
+            <goals>
+              <goal>many-to-one</goal>
+            </goals>
+            <configuration>
+              <xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate>
+              <srcDir>src/main/resources/xsd</srcDir>
+              <srcIncludes>**/*.xsd</srcIncludes>
+              <srcFile>src/main/resources/xslt/schemasJavaEE6.xml</srcFile>
+              <destFile>src/main/resources/xslt/metadataJavaEE6.xml</destFile>
+            </configuration>
+          </execution>
+          
+          <!-- 
+            This is the second step. 
+            The metada.xml produced in step 1 is transformed into 
+            the API and IMPL classes.
+          -->
+          <execution>
+            <id>transform-to-java-javaee6</id>
+            <goals>
+              <goal>many-to-one</goal>
+            </goals>
+            <configuration>
+              <xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
+              <srcDir>src/main/resources/xslt</srcDir>
+              <srcIncludes>**/*.xml</srcIncludes>
+              <srcFile>src/main/resources/xslt/metadataJavaEE6.xml</srcFile>
+              <destFile>src/main/resources/xslt/ddJavaJavaEE6.xml</destFile>
+            </configuration>
+          </execution>
+          
+          <!-- 
+               This is the first step. 
+               All schema files configured in the schemas.xml
+               are parsed in this fist transformation. The result of this is a xml file 
+               called metadata.xml containing all required information to produce
+               the deployment descriptor API and IMPL classes
+          -->
+          <execution>
+            <id>transform-to-metadata-javaee5</id>
+            <goals>
+              <goal>many-to-one</goal>
+            </goals>
+            <configuration>
+              <xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate>
+              <srcDir>src/main/resources/xsd</srcDir>
+              <srcIncludes>**/*.xsd</srcIncludes>
+              <srcFile>src/main/resources/xslt/schemasJavaEE5.xml</srcFile>
+              <destFile>src/main/resources/xslt/metadataJavaEE5.xml</destFile>
+            </configuration>
+          </execution>
+          
+          <!-- 
+            This is the second step. 
+            The metada.xml produced in step 1 is transformed into 
+            the API and IMPL classes.
+          -->
+          <execution>
+            <id>transform-to-java-javaee5</id>
+            <goals>
+              <goal>many-to-one</goal>
+            </goals>
+            <configuration>
+              <xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
+              <srcDir>src/main/resources/xslt</srcDir>
+              <srcIncludes>**/*.xml</srcIncludes>
+              <srcFile>src/main/resources/xslt/metadataJavaEE5.xml</srcFile>
+              <destFile>src/main/resources/xslt/ddJavaJavaEE5.xml</destFile>
+            </configuration>
+          </execution>
+          
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>net.sf.saxon</groupId>
+            <artifactId>saxon</artifactId>
+            <version>8.7</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+      <artifactId>shrinkwrap-descriptors-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+      <artifactId>shrinkwrap-descriptors-spi</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+      
+    <dependency>
+      <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+      <artifactId>shrinkwrap-descriptors-impl</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>net.sf.saxon</groupId>
+      <artifactId>saxon</artifactId>
+      <version>8.7</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+</project>

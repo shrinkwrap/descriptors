@@ -54,64 +54,42 @@ public class WebAppDefTestCase
 {
    private final Logger log = Logger.getLogger(WebAppDefTestCase.class.getName());
 
-   private final String source = "" +
-        "<web-app " +
-        "      xmlns=\"http://java.sun.com/xml/ns/javaee\" " +
-        "      xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" " +
-        "      version=\"3.0\" " +
-        "      xsi:schemaLocation=\"http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd\">\n" + 
-        "    <filter>\n" + 
-        "        <filter-name>UrlRewriteFilter</filter-name>\n" + 
-        "        <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>\n" + 
-        "    </filter>\n" + 
-        "    <filter-mapping>\n" + 
-        "        <url-pattern>/*</url-pattern>\n" + 
-        "        <filter-name>UrlRewriteFilter</filter-name>\n" + 
-        "    </filter-mapping>\n" + 
-        "</web-app>"; 
-   
-   
+   private final String source = ""
+         + "<web-app "
+         + "      xmlns=\"http://java.sun.com/xml/ns/javaee\" "
+         + "      xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "
+         + "      version=\"3.0\" "
+         + "      xsi:schemaLocation=\"http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd\">\n"
+         + "    <filter>\n" + "        <filter-name>UrlRewriteFilter</filter-name>\n"
+         + "        <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>\n"
+         + "    </filter>\n" + "    <filter-mapping>\n" + "        <url-pattern>/*</url-pattern>\n"
+         + "        <filter-name>UrlRewriteFilter</filter-name>\n" + "    </filter-mapping>\n" + "</web-app>";
+
    @Test
    @Ignore
    // broken, import / export order, not 100% match on stored xml.
    public void testValidDef() throws Exception
    {
-      final String webApp = Descriptors.create(WebAppDescriptor.class)
-               .moduleName("test")
-               .description("A description of my webapp")
-               .displayName("Sample")
-               .distributable()
-               .contextParam("com.sun.faces.validateXml", true)
-               .facesProjectStage(FacesProjectStage.DEVELOPMENT)
-               .facesStateSavingMethod(FacesStateSavingMethod.CLIENT)
-               .listener("org.jboss.seam.servlet.SeamListener")
-               .filter("PrettyFilter", "com.ocpsoft.pretty.PrettyFilter", new String[]
-               { "/*" })
-               .initParam("confReloadCheckInterval", 60)
-               .facesServlet()
-               .servlet("Download Servlet", "com.acme.webapp.DownloadServlet", new String[]
-               { "/file/*" })
-               .welcomeFile("/index.jsf")
-               .sessionTimeout(60)
-               .sessionTrackingModes(TrackingModeType.URL)
-               .errorPage(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "/500.jsp")
-               .errorPage(IOException.class, "/outputError.jsp")
-               .loginConfig(AuthMethodType.BASIC, "Cool App")
-               .formLoginConfig("/login.jsp", "/invalidLogin.jsp")
-               .securityConstraint()
-               .webResourceCollection("All Access")
-               .urlPatterns("/public/*")
-               .httpMethods(HttpMethodType.DELETE, HttpMethodType.PUT, HttpMethodType.HEAD, HttpMethodType.OPTIONS,
-                        HttpMethodType.TRACE, HttpMethodType.GET, HttpMethodType.POST)
-               .userDataConstraint(TransportGuaranteeType.NONE).securityConstraint("Restricted GET To Employees")
-               .webResourceCollection("Restricted Access - Get Only", "/restricted/employee/*", HttpMethodType.GET)
-               .authConstraint("Employee").userDataConstraint(TransportGuaranteeType.NONE)
-               .securityConstraint("Restrict access to Facelets templates (XHTML files)")
-               .webResourceCollection("Facelets templates").urlPatterns("*.xhtml")
-               .httpMethods(true, HttpMethodType.HEAD)
-               .authConstraint().userDataConstraint(TransportGuaranteeType.NONE)
-               .securityRole("Employee", "Employees of the company").absoluteOrdering("one", "two", "three")
-               .exportAsString();
+      final String webApp = Descriptors.create(WebAppDescriptor.class).moduleName("test").description(
+            "A description of my webapp").displayName("Sample").distributable().contextParam(
+            "com.sun.faces.validateXml", true).facesProjectStage(FacesProjectStage.DEVELOPMENT).facesStateSavingMethod(
+            FacesStateSavingMethod.CLIENT).listener("org.jboss.seam.servlet.SeamListener").filter("PrettyFilter",
+            "com.ocpsoft.pretty.PrettyFilter", new String[]
+            {"/*"}).initParam("confReloadCheckInterval", 60).facesServlet().servlet("Download Servlet",
+            "com.acme.webapp.DownloadServlet", new String[]
+            {"/file/*"}).welcomeFile("/index.jsf").sessionTimeout(60).sessionTrackingModes(TrackingModeType.URL)
+            .errorPage(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "/500.jsp").errorPage(IOException.class,
+                  "/outputError.jsp").loginConfig(AuthMethodType.BASIC, "Cool App").formLoginConfig("/login.jsp",
+                  "/invalidLogin.jsp").securityConstraint().webResourceCollection("All Access")
+            .urlPatterns("/public/*").httpMethods(HttpMethodType.DELETE, HttpMethodType.PUT, HttpMethodType.HEAD,
+                  HttpMethodType.OPTIONS, HttpMethodType.TRACE, HttpMethodType.GET, HttpMethodType.POST)
+            .userDataConstraint(TransportGuaranteeType.NONE).securityConstraint("Restricted GET To Employees")
+            .webResourceCollection("Restricted Access - Get Only", "/restricted/employee/*", HttpMethodType.GET)
+            .authConstraint("Employee").userDataConstraint(TransportGuaranteeType.NONE).securityConstraint(
+                  "Restrict access to Facelets templates (XHTML files)").webResourceCollection("Facelets templates")
+            .urlPatterns("*.xhtml").httpMethods(true, HttpMethodType.HEAD).authConstraint().userDataConstraint(
+                  TransportGuaranteeType.NONE).securityRole("Employee", "Employees of the company").absoluteOrdering(
+                  "one", "two", "three").exportAsString();
 
       log.info(webApp);
 
@@ -119,7 +97,7 @@ public class WebAppDefTestCase
 
       Assert.assertEquals(expected, webApp);
    }
-   
+
    @Test
    public void shouldCreateDefaultName() throws Exception
    {
@@ -140,7 +118,7 @@ public class WebAppDefTestCase
    public void verifySchemaLocation()
    {
       final String expectedSchemaLocation = "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd";
-      assertXPath(create().exportAsString(),"/web-app/@xsi:schemaLocation",expectedSchemaLocation+"dsd");
+      assertXPath(create().exportAsString(), "/web-app/@xsi:schemaLocation", expectedSchemaLocation + "dsd");
    }
 
    @Test
@@ -150,9 +128,7 @@ public class WebAppDefTestCase
       String clazz = "com.ocpsoft.pretty." + name;
       String mapping = "/*";
 
-      String desc = create()
-                     .filter(clazz, mapping)
-                     .exportAsString();
+      String desc = create().filter(clazz, mapping).exportAsString();
 
       log.fine(desc);
 
@@ -169,9 +145,7 @@ public class WebAppDefTestCase
       String clazz = "javax.faces.webapp." + name;
       String mapping = "/*";
 
-      String desc = create()
-                     .servlet(clazz, mapping)
-                     .exportAsString();
+      String desc = create().servlet(clazz, mapping).exportAsString();
 
       log.fine(desc);
 
@@ -204,11 +178,11 @@ public class WebAppDefTestCase
       String mapping = "/*";
 
       WebAppDescriptor webXml = create();
-      
+
       assertFalse(webXml.hasFacesServlet());
-      
+
       webXml.servlet(clazz, mapping);
-      
+
       assertTrue(webXml.hasFacesServlet());
    }
 
@@ -220,11 +194,11 @@ public class WebAppDefTestCase
       String mapping = "/*";
 
       WebAppDescriptor webXml = create();
-      
+
       assertFalse(webXml.hasFacesServlet());
-      
+
       webXml.servlet(clazz, mapping);
-      
+
       List<ServletDef> servlets = webXml.getServlets();
       assertEquals(1, servlets.size());
       assertEquals(name, servlets.get(0).getName());
@@ -235,43 +209,43 @@ public class WebAppDefTestCase
    public void defaultFacesSuffixesAndViewMappingsValues() throws Exception
    {
       WebAppDescriptor web = create();
-      
+
       List<String> faceletsDefaultSuffixes = web.getFaceletsDefaultSuffixes();
       assertEquals(1, faceletsDefaultSuffixes.size());
       assertTrue(faceletsDefaultSuffixes.contains(".xhtml"));
-      
+
       List<String> facesDefaultSuffixes = web.getFacesDefaultSuffixes();
       assertEquals(2, facesDefaultSuffixes.size());
       assertTrue(facesDefaultSuffixes.contains(".xhtml"));
       assertTrue(facesDefaultSuffixes.contains(".jsp"));
-      
+
       List<String> faceletsViewMappings = web.getFaceletsViewMappings();
       assertTrue(faceletsViewMappings.isEmpty());
-      
+
    }
 
    @Test
    public void shouldBeAbleToMutateFacesSuffixesAndMappings() throws Exception
    {
       WebAppDescriptor web = create();
-      
+
       web.faceletsDefaultSuffixes(".foo", ".bar", ".xhtml");
       web.faceletsDefaultSuffixes(".foo", ".bar", ".xhtml");
       web.facesDefaultSuffixes(".baz", ".cat", ".view.xml");
       web.faceletsViewMappings("*.jspx", "/custom/facelet.face", "/facelets/*");
-      
+
       List<String> faceletsDefaultSuffixes = web.getFaceletsDefaultSuffixes();
       assertEquals(3, faceletsDefaultSuffixes.size());
       assertTrue(faceletsDefaultSuffixes.contains(".foo"));
       assertTrue(faceletsDefaultSuffixes.contains(".bar"));
       assertTrue(faceletsDefaultSuffixes.contains(".xhtml"));
-      
+
       List<String> facesDefaultSuffixes = web.getFacesDefaultSuffixes();
       assertEquals(3, facesDefaultSuffixes.size());
       assertTrue(facesDefaultSuffixes.contains(".baz"));
       assertTrue(facesDefaultSuffixes.contains(".cat"));
       assertTrue(facesDefaultSuffixes.contains(".view.xml"));
-      
+
       List<String> faceletsViewMappings = web.getFaceletsViewMappings();
       assertEquals(3, faceletsViewMappings.size());
       assertTrue(faceletsViewMappings.contains("*.jspx"));
@@ -287,11 +261,11 @@ public class WebAppDefTestCase
       String mapping = "/*";
 
       WebAppDescriptor webXml = create();
-      
+
       assertFalse(webXml.hasFacesServlet());
-      
+
       webXml.servlet(clazz, mapping);
-      
+
       List<ServletMappingDef> mappings = webXml.getServletMappings();
       assertEquals(1, mappings.size());
       assertEquals(name, mappings.get(0).getName());
@@ -303,9 +277,7 @@ public class WebAppDefTestCase
    {
       String version = "2.5";
 
-      String desc = create()
-                        .version(version).metadataComplete(true)
-                        .exportAsString();
+      String desc = create().version(version).metadataComplete(true).exportAsString();
 
       log.fine(desc);
 
@@ -322,13 +294,8 @@ public class WebAppDefTestCase
       int timeout = 3600;
       int maxAge = 3600;
 
-      String desc = create()
-                     .sessionTimeout(timeout)
-                     .sessionCookieConfig()
-                     .name(name)
-                     .domain(domain).path(path).maxAge(maxAge)
-                     .sessionTrackingModes(TrackingModeType.COOKIE)
-                     .exportAsString();
+      String desc = create().sessionTimeout(timeout).sessionCookieConfig().name(name).domain(domain).path(path).maxAge(
+            maxAge).sessionTrackingModes(TrackingModeType.COOKIE).exportAsString();
 
       log.fine(desc);
 
@@ -339,7 +306,7 @@ public class WebAppDefTestCase
       assertXPath(desc, "/web-app/session-config/cookie-config/max-age", maxAge);
       assertXPath(desc, "/web-app/session-config/tracking-mode", TrackingModeType.COOKIE);
    }
-   
+
    /**
     * SHRINKDESC-37
     */
@@ -347,25 +314,25 @@ public class WebAppDefTestCase
    public void shouldBeAbleToOverrideVersionInWebAppDescriptor() throws Exception
    {
       // Make a descriptor
-      final WebAppDescriptor web = Descriptors.importAs(WebAppDescriptor.class).from(
-            source);
+      final WebAppDescriptor web = Descriptors.importAs(WebAppDescriptor.class).from(source);
 
       // Get as Node structure
       final InputStream stream = new ByteArrayInputStream(web.exportAsString().getBytes());
-      final XmlDomImporter<WebAppDescriptor> importer = new XmlDomImporter<WebAppDescriptor>(WebAppDescriptor.class, "web.xml");
+      final XmlDomImporter<WebAppDescriptor> importer = new XmlDomImporter<WebAppDescriptor>(WebAppDescriptor.class,
+            "web.xml");
       final Node root = importer.importRootNode(stream);
-      
+
       // Preconditions
       Assert.assertEquals("3.0", web.getVersion());
       Assert.assertTrue(root.getAttribute("xsi:schemaLocation").contains("web-app_3_0.xsd"));
       
       // Change the version
       web.version("2.5");
-      
+
       // Get as Node structure
       final InputStream afterUpdateStream = new ByteArrayInputStream(web.exportAsString().getBytes());
       final Node rootAfterUpdate = importer.importRootNode(afterUpdateStream);
-      
+
       // Check that everything was updated
       Assert.assertEquals("2.5", web.getVersion());
       Assert.assertTrue(rootAfterUpdate.getAttribute("xsi:schemaLocation").contains("web-app_2_5.xsd"));
@@ -378,10 +345,9 @@ public class WebAppDefTestCase
    public void shouldHaveSecurityConstraintDisplayName() throws Exception
    {
       final String securityConstraintDisplayName = "Default security constraint";
-      
-      final String webAppDescriptor = Descriptors.create(WebAppDescriptor.class)
-            .securityConstraint(securityConstraintDisplayName)
-            .exportAsString().trim();
+
+      final String webAppDescriptor = Descriptors.create(WebAppDescriptor.class).securityConstraint(
+            securityConstraintDisplayName).exportAsString().trim();
 
       assertXPath(webAppDescriptor, "/web-app/security-constraint/display-name", securityConstraintDisplayName);
    }
