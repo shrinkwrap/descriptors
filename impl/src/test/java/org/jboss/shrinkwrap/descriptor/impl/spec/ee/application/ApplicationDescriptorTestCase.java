@@ -33,7 +33,9 @@ import org.junit.Test;
 public class ApplicationDescriptorTestCase
 {
    private String description = "description";
+
    private String moduleName = "test.jar";
+
    private String contextRoot = "/";
 
    @Test
@@ -100,7 +102,7 @@ public class ApplicationDescriptorTestCase
       
       assertPresenceUsingXPath(desc, "/application/module/ejb", moduleName);
    }
-   
+
    @Test
    public void shouldBeAbleToAddAConnectorModule() throws Exception
    {
@@ -110,7 +112,7 @@ public class ApplicationDescriptorTestCase
       
       assertPresenceUsingXPath(desc, "/application/module/connector", moduleName);
    }
-   
+
    @Test
    public void shouldBeAbleToAddAJavaModule() throws Exception
    {
@@ -120,13 +122,11 @@ public class ApplicationDescriptorTestCase
       
       assertPresenceUsingXPath(desc, "/application/module/java", moduleName);
    }
-   
+
    @Test
    public void shouldBeAbleToAddAWebModule() throws Exception
    {
-      String desc = create()
-                     .webModule(moduleName, contextRoot)
-                     .exportAsString();
+      String desc = create().webModule(moduleName, contextRoot).exportAsString();
 
       assertPresenceUsingXPath(desc, "/application/module/web/web-uri", moduleName);
       assertPresenceUsingXPath(desc, "/application/module/web/context-root", contextRoot);
@@ -135,9 +135,7 @@ public class ApplicationDescriptorTestCase
    @Test
    public void shouldBeAbleToAddASecurityRole() throws Exception
    {
-      String desc = create()
-                     .securityRole(moduleName)
-                     .exportAsString();
+      String desc = create().securityRole(moduleName).exportAsString();
 
       assertPresenceUsingXPath(desc, "/application/security-role/role-name", moduleName);
    }
@@ -145,15 +143,13 @@ public class ApplicationDescriptorTestCase
    @Test
    public void shouldBeAbleToAddASecurityRoleWithDescription() throws Exception
    {
-      String desc = create()
-                     .securityRole(moduleName, description)
-                     .exportAsString();
+      String desc = create().securityRole(moduleName, description).exportAsString();
 
       assertPresenceUsingXPath(desc, "/application/security-role/role-name", moduleName);
       assertPresenceUsingXPath(desc, "/application/security-role/description", description);
    }
 
-   private ApplicationDescriptor create() 
+   private ApplicationDescriptor create()
    {
       return Descriptors.create(ApplicationDescriptor.class);
    }
