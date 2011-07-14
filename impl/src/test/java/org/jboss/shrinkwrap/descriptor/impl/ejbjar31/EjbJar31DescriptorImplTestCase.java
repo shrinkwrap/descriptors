@@ -8,7 +8,6 @@ import java.io.FileReader;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.ejbjar31.EjbJar31Descriptor;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.WebApp30Descriptor;
 import org.junit.Test;
 
 

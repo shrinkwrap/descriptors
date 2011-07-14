@@ -15,13 +15,6 @@ import org.jboss.shrinkwrap.descriptor.api.persistence20.PersistenceUnitTransact
 import org.jboss.shrinkwrap.descriptor.api.persistence20.PersistenceUnitValidationModeType;
 import org.jboss.shrinkwrap.descriptor.api.persistence20.Properties;
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.PersistenceDescriptor;
-import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.PersistenceUnitDef;
-import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.Property;
-import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.ProviderType;
-import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.SchemaGenerationModeType;
-import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.SharedCacheModeType;
-import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.TransactionType;
-import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.ValidationModeType;
 import org.jboss.shrinkwrap.descriptor.impl.spec.jpa.persistence.PersistenceDescriptorTestCase;
 import org.junit.Test;
 

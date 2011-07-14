@@ -19,6 +19,7 @@ package org.jboss.shrinkwrap.descriptor.api;
 import java.io.ByteArrayOutputStream;
 
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.WebAppDescriptor;
+import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
 import org.junit.Assert;
 import org.junit.Test;
 

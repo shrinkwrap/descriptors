@@ -9,7 +9,6 @@ import java.io.FileReader;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.persistence20.Persistence20Descriptor;
 import org.jboss.shrinkwrap.descriptor.api.persistence20.PersistenceUnitTransactionType;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.WebApp30Descriptor;
 import org.junit.Test;
 
 public class Persistence20DescriptorImportTestCase

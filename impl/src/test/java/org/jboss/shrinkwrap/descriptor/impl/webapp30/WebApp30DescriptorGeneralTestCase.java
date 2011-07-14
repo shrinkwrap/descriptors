@@ -1,7 +1,6 @@
 package org.jboss.shrinkwrap.descriptor.impl.webapp30;
 
 import static org.jboss.shrinkwrap.descriptor.impl.spec.AssertXPath.assertXPath;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
@@ -15,8 +14,6 @@ import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
-import org.jboss.shrinkwrap.descriptor.api.jsp22.JspPropertyGroupType;
-import org.jboss.shrinkwrap.descriptor.api.jsp22.TaglibType;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebApp30Descriptor;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.FilterType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.TrackingModeType;
