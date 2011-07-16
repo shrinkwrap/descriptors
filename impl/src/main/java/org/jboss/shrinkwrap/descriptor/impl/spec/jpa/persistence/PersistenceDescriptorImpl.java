@@ -22,10 +22,10 @@ import java.util.List;
 
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.PersistenceDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.PersistenceUnitDef;
-import org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
 import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.spi.NodeProviderImplBase;
+import org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomExporter;
 
 /**
  * @author Dan Allen
@@ -122,6 +122,6 @@ public class PersistenceDescriptorImpl extends NodeProviderImplBase
    @Override
    protected DescriptorExporter getExporter()
    {
-      return new XMLExporter();
+      return new XmlDomExporter();
    }
 }

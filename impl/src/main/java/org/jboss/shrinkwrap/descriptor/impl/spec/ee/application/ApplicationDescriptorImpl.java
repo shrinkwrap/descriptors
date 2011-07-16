@@ -22,10 +22,10 @@ import java.util.List;
 import org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.spec.ee.application.SecurityRole;
 import org.jboss.shrinkwrap.descriptor.api.spec.ee.application.WebModule;
-import org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
 import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.spi.NodeProviderImplBase;
+import org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomExporter;
 
 /**
  * ApplicationDescriptorImpl
@@ -210,7 +210,7 @@ public class ApplicationDescriptorImpl extends NodeProviderImplBase implements A
    @Override
    protected DescriptorExporter getExporter()
    {
-      return new XMLExporter();
+      return new XmlDomExporter();
    }
 
    @Override

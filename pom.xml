@@ -57,6 +57,7 @@
   <modules>
     <module>api</module>
     <module>impl</module>
+    <module>spi</module>
   </modules>
 
   <!-- Plugin Configuration -->

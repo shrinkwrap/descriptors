@@ -25,10 +25,10 @@ import javax.enterprise.inject.Stereotype;
 import javax.interceptor.Interceptor;
 
 import org.jboss.shrinkwrap.descriptor.api.spec.cdi.beans.BeansDescriptor;
-import org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
 import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.spi.NodeProviderImplBase;
+import org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomExporter;
 
 /**
  * @author Dan Allen
@@ -316,7 +316,7 @@ public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDe
    @Override
    protected DescriptorExporter getExporter()
    {
-      return new XMLExporter();
+      return new XmlDomExporter();
    }
 
    @Override

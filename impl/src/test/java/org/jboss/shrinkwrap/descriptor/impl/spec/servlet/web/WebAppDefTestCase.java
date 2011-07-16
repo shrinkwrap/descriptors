@@ -41,8 +41,8 @@ import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.ServletMappingDef;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.TrackingModeType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.TransportGuaranteeType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.WebAppDescriptor;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLImporter;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomImporter;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -352,7 +352,7 @@ public class WebAppDefTestCase
 
       // Get as Node structure
       final InputStream stream = new ByteArrayInputStream(web.exportAsString().getBytes());
-      final XMLImporter<WebAppDescriptor> importer = new XMLImporter<WebAppDescriptor>(WebAppDescriptor.class, "web.xml");
+      final XmlDomImporter<WebAppDescriptor> importer = new XmlDomImporter<WebAppDescriptor>(WebAppDescriptor.class, "web.xml");
       final Node root = importer.importRootNode(stream);
       
       // Preconditions

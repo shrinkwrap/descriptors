@@ -13,15 +13,15 @@
   <modelVersion>4.0.0</modelVersion>
 
   <!-- Artifact Configuration -->
-  <artifactId>shrinkwrap-descriptors-impl</artifactId>
-  <name>ShrinkWrap Descriptors Implementation</name>
-  <description>Implementation of the ShrinkWrap Descriptors Project</description>
+  <artifactId>shrinkwrap-descriptors-spi</artifactId>
+  <name>ShrinkWrap Descriptors SPI</name>
+  <description>Service Provider Interface of the ShrinkWrap Descriptors Project</description>
 
   <dependencies>
 
     <dependency>
       <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-      <artifactId>shrinkwrap-descriptors-spi</artifactId>
+      <artifactId>shrinkwrap-descriptors-api</artifactId>
       <version>${project.version}</version>
     </dependency>
 
@@ -31,25 +31,6 @@
       <scope>test</scope>
     </dependency>
 
-    <dependency>
-      <groupId>org.jboss.spec</groupId>
-      <artifactId>jboss-javaee-6.0</artifactId>
-      <type>pom</type>
-    </dependency>
-
   </dependencies>
 
-	<build>
-		<plugins>
-			<!-- Surefire -->
-			<plugin>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<!-- Run in Java5; be build with a JDK6 compiler so ensure we don't 
-						use any JDK6 libs -->
-					<jvm>${env.JAVA5_HOME}/bin/java</jvm>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>
