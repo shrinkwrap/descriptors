@@ -7,10 +7,10 @@ import java.util.Map;
 import org.jboss.shrinkwrap.descriptor.api.DescriptorNamespace;
 import org.jboss.shrinkwrap.descriptor.api.persistence20.Persistence20Descriptor;
 import org.jboss.shrinkwrap.descriptor.api.persistence20.PersistenceUnit;
-import org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
 import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.spi.NodeProviderImplBase;
+import org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomExporter;
 
 /**
  * This class is a generated class. Generation date
@@ -48,9 +48,14 @@ public class Persistence20DescriptorImpl extends NodeProviderImplBase implements
 		return model;
 	}
 
-	protected DescriptorExporter getExporter() {
-		return new XMLExporter();
-	}
+	/**
+     * {@inheritDoc}
+     * @see org.jboss.shrinkwrap.descriptor.spi.NodeProviderImplBase#getExporter()
+     */
+    @Override
+    protected DescriptorExporter getExporter() {
+        return new XmlDomExporter();
+    }
 
 	// -------------------------------------------------------------------------------------||
 	// Namespace

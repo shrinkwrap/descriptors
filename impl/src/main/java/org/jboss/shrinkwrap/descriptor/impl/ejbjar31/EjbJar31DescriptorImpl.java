@@ -11,12 +11,12 @@ import org.jboss.shrinkwrap.descriptor.api.ejbjar31.EnterpriseBeansType;
 import org.jboss.shrinkwrap.descriptor.api.ejbjar31.InterceptorsType;
 import org.jboss.shrinkwrap.descriptor.api.ejbjar31.RelationshipsType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
-import org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase;
 import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.IconTypeImpl;
 import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.spi.NodeProviderImplBase;
+import org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomExporter;
 
 /**
  * This class is a generated class. Generation date
@@ -54,9 +54,14 @@ public class EjbJar31DescriptorImpl extends NodeProviderImplBase implements
 		return model;
 	}
 
-	protected DescriptorExporter getExporter() {
-		return new XMLExporter();
-	}
+	/**
+     * {@inheritDoc}
+     * @see org.jboss.shrinkwrap.descriptor.spi.NodeProviderImplBase#getExporter()
+     */
+    @Override
+    protected DescriptorExporter getExporter() {
+        return new XmlDomExporter();
+    }
 
 	// -------------------------------------------------------------------------------------||
 	// Namespace

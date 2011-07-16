@@ -17,8 +17,8 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebApp30Descriptor;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.FilterType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.TrackingModeType;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLImporter;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomImporter;
 import org.junit.Test;
 
 
@@ -201,7 +201,7 @@ public class WebApp30DescriptorGeneralTestCase
       
       // Get as Node structure
       final InputStream stream = new ByteArrayInputStream(web.exportAsString().getBytes());
-      final XMLImporter<WebApp30Descriptor> importer = new XMLImporter<WebApp30Descriptor>(WebApp30Descriptor.class, "web.xml");
+      final XmlDomImporter<WebApp30Descriptor> importer = new XmlDomImporter<WebApp30Descriptor>(WebApp30Descriptor.class, "web.xml");
       final Node root = importer.importRootNode(stream);
       
       // Preconditions

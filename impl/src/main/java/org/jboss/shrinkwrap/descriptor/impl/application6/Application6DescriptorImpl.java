@@ -20,8 +20,6 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.PersistenceUnitRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceEnvRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleType;
-import org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.DataSourceTypeImpl;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.EjbLocalRefTypeImpl;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.EjbRefTypeImpl;
@@ -36,6 +34,8 @@ import org.jboss.shrinkwrap.descriptor.impl.javaee6.ResourceRefTypeImpl;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.SecurityRoleTypeImpl;
 import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.spi.NodeProviderImplBase;
+import org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomExporter;
 
 /**
  * This class is a generated class. Generation date
@@ -74,7 +74,7 @@ public class Application6DescriptorImpl extends NodeProviderImplBase implements
 	}
 
 	protected DescriptorExporter getExporter() {
-		return new XMLExporter();
+		return new XmlDomExporter();
 	}
 
 	// -------------------------------------------------------------------------------------||

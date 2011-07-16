@@ -1,3 +1,3 @@
 implClass=org.jboss.shrinkwrap.descriptor.impl.ejbjar30.EjbJar30DescriptorImpl
-importerClass=org.jboss.shrinkwrap.descriptor.impl.base.XMLImporter
+importerClass=org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomImporter
 defaultName=ejb-jar.xml

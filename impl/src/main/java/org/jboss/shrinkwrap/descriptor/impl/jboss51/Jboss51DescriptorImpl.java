@@ -12,13 +12,13 @@ import org.jboss.shrinkwrap.descriptor.api.jboss51.Jboss51Descriptor;
 import org.jboss.shrinkwrap.descriptor.api.jboss51.ResourceManagersType;
 import org.jboss.shrinkwrap.descriptor.api.jboss51.WebservicesType;
 import org.jboss.shrinkwrap.descriptor.api.jbosscommon51.LoaderRepositoryType;
-import org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase;
 import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
 import org.jboss.shrinkwrap.descriptor.impl.javaee5.IconTypeImpl;
 import org.jboss.shrinkwrap.descriptor.impl.jbosscommon51.LoaderRepositoryTypeImpl;
 import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.spi.NodeProviderImplBase;
+import org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomExporter;
 
 /**
  * This class is a generated class. Generation date
@@ -56,9 +56,14 @@ public class Jboss51DescriptorImpl extends NodeProviderImplBase implements
 		return model;
 	}
 
-	protected DescriptorExporter getExporter() {
-		return new XMLExporter();
-	}
+	/**
+     * {@inheritDoc}
+     * @see org.jboss.shrinkwrap.descriptor.spi.NodeProviderImplBase#getExporter()
+     */
+    @Override
+    protected DescriptorExporter getExporter() {
+        return new XmlDomExporter();
+    }
 
 	// -------------------------------------------------------------------------------------||
 	// Namespace

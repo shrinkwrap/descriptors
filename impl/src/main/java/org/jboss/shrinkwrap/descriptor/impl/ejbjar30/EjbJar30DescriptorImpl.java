@@ -11,12 +11,12 @@ import org.jboss.shrinkwrap.descriptor.api.ejbjar30.EnterpriseBeansType;
 import org.jboss.shrinkwrap.descriptor.api.ejbjar30.InterceptorsType;
 import org.jboss.shrinkwrap.descriptor.api.ejbjar30.RelationshipsType;
 import org.jboss.shrinkwrap.descriptor.api.javaee5.IconType;
-import org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase;
 import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
 import org.jboss.shrinkwrap.descriptor.impl.javaee5.IconTypeImpl;
 import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.spi.NodeProviderImplBase;
+import org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomExporter;
 
 /**
  * This class is a generated class. Generation date
@@ -53,17 +53,22 @@ public class EjbJar30DescriptorImpl extends NodeProviderImplBase implements
 	public Node getRootNode() {
 		return model;
 	}
-
-	protected DescriptorExporter getExporter() {
-		return new XMLExporter();
-	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @see org.jboss.shrinkwrap.descriptor.spi.NodeProviderImplBase#getExporter()
+	 */
+    @Override
+    protected DescriptorExporter getExporter() {
+        return new XmlDomExporter();
+    }
 
 	// -------------------------------------------------------------------------------------||
 	// Namespace
 	// ---------------------------------------------------------------------------||
 	// -------------------------------------------------------------------------------------||
 
-	public EjbJar30Descriptor addDefaultNamespaces() {
+    public EjbJar30Descriptor addDefaultNamespaces() {
 		addNamespace("xmlns", "http://java.sun.com/xml/ns/javaee");
 		addNamespace("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
 		addNamespace(

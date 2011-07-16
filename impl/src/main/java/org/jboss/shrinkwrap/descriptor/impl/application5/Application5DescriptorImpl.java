@@ -9,12 +9,12 @@ import org.jboss.shrinkwrap.descriptor.api.application5.Application5Descriptor;
 import org.jboss.shrinkwrap.descriptor.api.application5.ModuleType;
 import org.jboss.shrinkwrap.descriptor.api.javaee5.IconType;
 import org.jboss.shrinkwrap.descriptor.api.javaee5.SecurityRoleType;
-import org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
 import org.jboss.shrinkwrap.descriptor.impl.javaee5.IconTypeImpl;
 import org.jboss.shrinkwrap.descriptor.impl.javaee5.SecurityRoleTypeImpl;
 import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.spi.NodeProviderImplBase;
+import org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomExporter;
 
 /**
  * This class is a generated class. Generation date
@@ -53,7 +53,7 @@ public class Application5DescriptorImpl extends NodeProviderImplBase implements
 	}
 
 	protected DescriptorExporter getExporter() {
-		return new XMLExporter();
+		return new XmlDomExporter();
 	}
 
 	// -------------------------------------------------------------------------------------||

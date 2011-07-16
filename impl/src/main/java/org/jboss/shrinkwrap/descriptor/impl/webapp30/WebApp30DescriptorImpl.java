@@ -35,9 +35,7 @@ import org.jboss.shrinkwrap.descriptor.api.webcommon30.ServletType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.SessionConfigType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.WebAppVersionType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.WelcomeFileListType;
-import org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase;
 import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.DataSourceTypeImpl;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.EjbLocalRefTypeImpl;
 import org.jboss.shrinkwrap.descriptor.impl.javaee6.EjbRefTypeImpl;
@@ -68,6 +66,8 @@ import org.jboss.shrinkwrap.descriptor.impl.webcommon30.SessionConfigTypeImpl;
 import org.jboss.shrinkwrap.descriptor.impl.webcommon30.WelcomeFileListTypeImpl;
 import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.spi.NodeProviderImplBase;
+import org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomExporter;
 
 /**
  * This class is a generated class. Generation date
@@ -105,9 +105,14 @@ public class WebApp30DescriptorImpl extends NodeProviderImplBase implements
 		return model;
 	}
 
-	protected DescriptorExporter getExporter() {
-		return new XMLExporter();
-	}
+	/**
+     * {@inheritDoc}
+     * @see org.jboss.shrinkwrap.descriptor.spi.NodeProviderImplBase#getExporter()
+     */
+    @Override
+    protected DescriptorExporter getExporter() {
+        return new XmlDomExporter();
+    }
 
 	// -------------------------------------------------------------------------------------||
 	// Namespace
