@@ -1,3 +1,19 @@
+/*
+ * JBoss, Home of Professional Open Source
+ * Copyright 2011, Red Hat Middleware LLC, and individual contributors
+ * by the @authors tag. See the copyright.txt in the distribution for a
+ * full listing of individual contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.jboss.shrinkwrap.descriptor.api.ejbjar31;
 
 import java.util.List;
@@ -7,70 +23,192 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.MessageDestinationType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleType;
 
 /**
- * This class is a generated class. Generation date
- * :2011-07-13T23:06:02.86+02:00
- * 
+ * This interface defines the contract for the <code> assembly-descriptorType </code> xsd type 
+ * <p> 
  * Original Documentation:
- * 
- * 
- * The assembly-descriptorType defines application-assembly information.
- * 
- * The application-assembly information consists of the following parts: the
- * definition of security roles, the definition of method permissions, the
- * definition of transaction attributes for enterprise beans with
- * container-managed transaction demarcation, the definition of interceptor
- * bindings, a list of methods to be excluded from being invoked, and a list of
- * exception types that should be treated as application exceptions.
- * 
- * All the parts are optional in the sense that they are omitted if the lists
- * represented by them are empty.
- * 
- * Providing an assembly-descriptor in the deployment descriptor is optional for
- * the ejb-jar or .war file producer.
- * 
- * 
- * 
+ * <p> 
+ *<br>
+ *<br>
+ * The assembly-descriptorType defines <br> 
+ * application-assembly information. <br> 
+ *<br>
+ * The application-assembly information consists of the <br> 
+ * following parts: the definition of security roles, the <br> 
+ * definition of method permissions, the definition of <br> 
+ * transaction attributes for enterprise beans with <br> 
+ * container-managed transaction demarcation, the definition <br> 
+ * of interceptor bindings, a list of <br> 
+ * methods to be excluded from being invoked, and a list of <br> 
+ * exception types that should be treated as application exceptions. <br> 
+ *<br>
+ * All the parts are optional in the sense that they are <br> 
+ * omitted if the lists represented by them are empty. <br> 
+ *<br>
+ * Providing an assembly-descriptor in the deployment <br> 
+ * descriptor is optional for the ejb-jar or .war file producer. <br> 
+ *<br>
+ *<br>
+ *
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ * @since Generation date :2011-07-19T22:55:02.759+02:00
  */
-public interface AssemblyDescriptorType<T> extends Child<T> {
+public interface AssemblyDescriptorType<T> extends Child<T>
+{
 
-	public AssemblyDescriptorType<T> removeAllSecurityRole();
+   // -------------------------------------------------------------------------------------||
+   // Element type : security-role
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public SecurityRoleType<AssemblyDescriptorType<T>> securityRole();
+   /**
+    * Removes all <code>security-role</code> elements 
+    * @return the current instance of {@link AssemblyDescriptorType<T>} 
+    */
+   public AssemblyDescriptorType<T> removeAllSecurityRole();
 
-	public List<SecurityRoleType<AssemblyDescriptorType<T>>> getSecurityRoleList();
+   /**
+    * Returns the <code>security-role</code> element
+    * @return the node defined for the element <code>security-role</code> 
+    */
+   public SecurityRoleType<AssemblyDescriptorType<T>> securityRole();
 
-	public AssemblyDescriptorType<T> removeAllMethodPermission();
+   /**
+    * Returns all <code>security-role</code> elements
+    * @return list of <code>security-role</code> 
+    */
+   public List<SecurityRoleType<AssemblyDescriptorType<T>>> getSecurityRoleList();
 
-	public MethodPermissionType<AssemblyDescriptorType<T>> methodPermission();
+   // -------------------------------------------------------------------------------------||
+   // Element type : method-permission
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public List<MethodPermissionType<AssemblyDescriptorType<T>>> getMethodPermissionList();
+   /**
+    * Removes all <code>method-permission</code> elements 
+    * @return the current instance of {@link AssemblyDescriptorType<T>} 
+    */
+   public AssemblyDescriptorType<T> removeAllMethodPermission();
 
-	public AssemblyDescriptorType<T> removeAllContainerTransaction();
+   /**
+    * Returns the <code>method-permission</code> element
+    * @return the node defined for the element <code>method-permission</code> 
+    */
+   public MethodPermissionType<AssemblyDescriptorType<T>> methodPermission();
 
-	public ContainerTransactionType<AssemblyDescriptorType<T>> containerTransaction();
+   /**
+    * Returns all <code>method-permission</code> elements
+    * @return list of <code>method-permission</code> 
+    */
+   public List<MethodPermissionType<AssemblyDescriptorType<T>>> getMethodPermissionList();
 
-	public List<ContainerTransactionType<AssemblyDescriptorType<T>>> getContainerTransactionList();
+   // -------------------------------------------------------------------------------------||
+   // Element type : container-transaction
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public AssemblyDescriptorType<T> removeAllInterceptorBinding();
+   /**
+    * Removes all <code>container-transaction</code> elements 
+    * @return the current instance of {@link AssemblyDescriptorType<T>} 
+    */
+   public AssemblyDescriptorType<T> removeAllContainerTransaction();
 
-	public InterceptorBindingType<AssemblyDescriptorType<T>> interceptorBinding();
+   /**
+    * Returns the <code>container-transaction</code> element
+    * @return the node defined for the element <code>container-transaction</code> 
+    */
+   public ContainerTransactionType<AssemblyDescriptorType<T>> containerTransaction();
 
-	public List<InterceptorBindingType<AssemblyDescriptorType<T>>> getInterceptorBindingList();
+   /**
+    * Returns all <code>container-transaction</code> elements
+    * @return list of <code>container-transaction</code> 
+    */
+   public List<ContainerTransactionType<AssemblyDescriptorType<T>>> getContainerTransactionList();
 
-	public AssemblyDescriptorType<T> removeAllMessageDestination();
+   // -------------------------------------------------------------------------------------||
+   // Element type : interceptor-binding
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public MessageDestinationType<AssemblyDescriptorType<T>> messageDestination();
+   /**
+    * Removes all <code>interceptor-binding</code> elements 
+    * @return the current instance of {@link AssemblyDescriptorType<T>} 
+    */
+   public AssemblyDescriptorType<T> removeAllInterceptorBinding();
 
-	public List<MessageDestinationType<AssemblyDescriptorType<T>>> getMessageDestinationList();
+   /**
+    * Returns the <code>interceptor-binding</code> element
+    * @return the node defined for the element <code>interceptor-binding</code> 
+    */
+   public InterceptorBindingType<AssemblyDescriptorType<T>> interceptorBinding();
 
-	public AssemblyDescriptorType<T> removeExcludeList();
+   /**
+    * Returns all <code>interceptor-binding</code> elements
+    * @return list of <code>interceptor-binding</code> 
+    */
+   public List<InterceptorBindingType<AssemblyDescriptorType<T>>> getInterceptorBindingList();
 
-	public ExcludeListType<AssemblyDescriptorType<T>> excludeList();
+   // -------------------------------------------------------------------------------------||
+   // Element type : message-destination
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public AssemblyDescriptorType<T> removeAllApplicationException();
+   /**
+    * Removes all <code>message-destination</code> elements 
+    * @return the current instance of {@link AssemblyDescriptorType<T>} 
+    */
+   public AssemblyDescriptorType<T> removeAllMessageDestination();
 
-	public ApplicationExceptionType<AssemblyDescriptorType<T>> applicationException();
+   /**
+    * Returns the <code>message-destination</code> element
+    * @return the node defined for the element <code>message-destination</code> 
+    */
+   public MessageDestinationType<AssemblyDescriptorType<T>> messageDestination();
 
-	public List<ApplicationExceptionType<AssemblyDescriptorType<T>>> getApplicationExceptionList();
+   /**
+    * Returns all <code>message-destination</code> elements
+    * @return list of <code>message-destination</code> 
+    */
+   public List<MessageDestinationType<AssemblyDescriptorType<T>>> getMessageDestinationList();
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : exclude-list
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+
+   /**
+    * Removes the <code>exclude-list</code> element 
+    * @return the current instance of {@link AssemblyDescriptorType<T>} 
+    */
+   public AssemblyDescriptorType<T> removeExcludeList();
+
+   /**
+    * If not already created, a new <code>exclude-list</code> element will be created and returned.
+    * Otherwise, the existing <code>exclude-list</code> element will be returned.
+    * @return the node defined for the element <code>exclude-list</code> 
+    */
+   public ExcludeListType<AssemblyDescriptorType<T>> excludeList();
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : application-exception
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+
+   /**
+    * Removes all <code>application-exception</code> elements 
+    * @return the current instance of {@link AssemblyDescriptorType<T>} 
+    */
+   public AssemblyDescriptorType<T> removeAllApplicationException();
+
+   /**
+    * Returns the <code>application-exception</code> element
+    * @return the node defined for the element <code>application-exception</code> 
+    */
+   public ApplicationExceptionType<AssemblyDescriptorType<T>> applicationException();
+
+   /**
+    * Returns all <code>application-exception</code> elements
+    * @return list of <code>application-exception</code> 
+    */
+   public List<ApplicationExceptionType<AssemblyDescriptorType<T>>> getApplicationExceptionList();
 
 }

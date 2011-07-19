@@ -1,31 +1,87 @@
+/*
+ * JBoss, Home of Professional Open Source
+ * Copyright 2011, Red Hat Middleware LLC, and individual contributors
+ * by the @authors tag. See the copyright.txt in the distribution for a
+ * full listing of individual contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.jboss.shrinkwrap.descriptor.api.application5;
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
 
 /**
- * This class is a generated class. Generation date
- * :2011-07-13T23:06:05.059+02:00
- * 
+ * This interface defines the contract for the <code> webType </code> xsd type 
+ * <p> 
  * Original Documentation:
- * 
- * 
- * The webType defines the web-uri and context-root of a web application module.
- * 
- * 
- * 
+ * <p> 
+ *<br>
+ *<br>
+ * The webType defines the web-uri and context-root of <br> 
+ * a web application module. <br> 
+ *<br>
+ *<br>
+ *
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ * @since Generation date :2011-07-19T22:54:35.59+02:00
  */
-public interface WebType<T> extends Child<T> {
+public interface WebType<T> extends Child<T>
+{
 
-	public WebType<T> setWebUri(String webUri);
+   // -------------------------------------------------------------------------------------||
+   // Element type : web-uri
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public WebType<T> removeWebUri();
+   /**
+    * If not already created, a new <code>web-uri</code> element with the given value will be created.
+    * Otherwise, the existing <code>web-uri</code> element will be updated with the given value.
+    * @return the current instance of {@link WebType<T>} 
+    */
+   public WebType<T> setWebUri(String webUri);
 
-	public String getWebUri();
+   /**
+    * Removes the <code>web-uri</code> element 
+    * @return the current instance of {@link WebType<T>} 
+    */
+   public WebType<T> removeWebUri();
 
-	public WebType<T> setContextRoot(String contextRoot);
+   /**
+    * Returns the <code>web-uri</code> element
+    * @return the node defined for the element <code>web-uri</code> 
+    */
+   public String getWebUri();
 
-	public WebType<T> removeContextRoot();
+   // -------------------------------------------------------------------------------------||
+   // Element type : context-root
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public String getContextRoot();
+   /**
+    * If not already created, a new <code>context-root</code> element with the given value will be created.
+    * Otherwise, the existing <code>context-root</code> element will be updated with the given value.
+    * @return the current instance of {@link WebType<T>} 
+    */
+   public WebType<T> setContextRoot(String contextRoot);
+
+   /**
+    * Removes the <code>context-root</code> element 
+    * @return the current instance of {@link WebType<T>} 
+    */
+   public WebType<T> removeContextRoot();
+
+   /**
+    * Returns the <code>context-root</code> element
+    * @return the node defined for the element <code>context-root</code> 
+    */
+   public String getContextRoot();
 
 }

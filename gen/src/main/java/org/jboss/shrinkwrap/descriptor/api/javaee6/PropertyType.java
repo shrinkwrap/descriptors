@@ -1,31 +1,86 @@
+/*
+ * JBoss, Home of Professional Open Source
+ * Copyright 2011, Red Hat Middleware LLC, and individual contributors
+ * by the @authors tag. See the copyright.txt in the distribution for a
+ * full listing of individual contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.jboss.shrinkwrap.descriptor.api.javaee6;
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
 
 /**
- * This class is a generated class. Generation date
- * :2011-07-13T23:06:02.86+02:00
- * 
+ * This interface defines the contract for the <code> propertyType </code> xsd type 
+ * <p> 
  * Original Documentation:
- * 
- * 
- * Specifies a name/value pair.
- * 
- * 
- * 
+ * <p> 
+ *<br>
+ *<br>
+ * Specifies a name/value pair. <br> 
+ *<br>
+ *<br>
+ *
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ * @since Generation date :2011-07-19T22:55:02.759+02:00
  */
-public interface PropertyType<T> extends Child<T> {
+public interface PropertyType<T> extends Child<T>
+{
 
-	public PropertyType<T> setName(String name);
+   // -------------------------------------------------------------------------------------||
+   // Element type : name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public PropertyType<T> removeName();
+   /**
+    * If not already created, a new <code>name</code> element with the given value will be created.
+    * Otherwise, the existing <code>name</code> element will be updated with the given value.
+    * @return the current instance of {@link PropertyType<T>} 
+    */
+   public PropertyType<T> setName(String name);
 
-	public String getName();
+   /**
+    * Removes the <code>name</code> element 
+    * @return the current instance of {@link PropertyType<T>} 
+    */
+   public PropertyType<T> removeName();
 
-	public PropertyType<T> setValue(String value);
+   /**
+    * Returns the <code>name</code> element
+    * @return the node defined for the element <code>name</code> 
+    */
+   public String getName();
 
-	public PropertyType<T> removeValue();
+   // -------------------------------------------------------------------------------------||
+   // Element type : value
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public String getValue();
+   /**
+    * If not already created, a new <code>value</code> element with the given value will be created.
+    * Otherwise, the existing <code>value</code> element will be updated with the given value.
+    * @return the current instance of {@link PropertyType<T>} 
+    */
+   public PropertyType<T> setValue(String value);
+
+   /**
+    * Removes the <code>value</code> element 
+    * @return the current instance of {@link PropertyType<T>} 
+    */
+   public PropertyType<T> removeValue();
+
+   /**
+    * Returns the <code>value</code> element
+    * @return the node defined for the element <code>value</code> 
+    */
+   public String getValue();
 
 }

@@ -1,3 +1,19 @@
+/*
+ * JBoss, Home of Professional Open Source
+ * Copyright 2011, Red Hat Middleware LLC, and individual contributors
+ * by the @authors tag. See the copyright.txt in the distribution for a
+ * full listing of individual contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.jboss.shrinkwrap.descriptor.impl.javaee6; 
 
 import org.jboss.shrinkwrap.descriptor.spi.Node;
@@ -10,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 import org.jboss.shrinkwrap.descriptor.api.Child;
 import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLExporter;
+import org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomExporter;
 import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
 import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.PropertyType;
@@ -19,6 +35,14 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.IsolationLevelType;
 
 public class DataSourceTypeImplTestCase
 {   
+   @Test
+   public void testNullArg() throws Exception
+   {
+      TestDescriptorImpl provider = new TestDescriptorImpl("test");
+      DataSourceType<TestDescriptorImpl> type = new DataSourceTypeImpl<TestDescriptorImpl>(provider, "data-sourceType", provider.getRootNode());
+      TestDescriptorImpl.testNullArgs(type);
+   }
+   
    @Test
    public void testDescription() throws Exception
    {
@@ -74,6 +98,8 @@ public class DataSourceTypeImplTestCase
       DataSourceType<TestDescriptorImpl> type = new DataSourceTypeImpl<TestDescriptorImpl>(provider, "data-sourceType", provider.getRootNode());
       type.setPortNumber(8);
       assertTrue(type.getPortNumber() == 8);
+      type.removePortNumber();
+      assertNull(type.getPortNumber());
    }
 
    
@@ -145,6 +171,8 @@ public class DataSourceTypeImplTestCase
       DataSourceType<TestDescriptorImpl> type = new DataSourceTypeImpl<TestDescriptorImpl>(provider, "data-sourceType", provider.getRootNode());
       type.setLoginTimeout(8);
       assertTrue(type.getLoginTimeout() == 8);
+      type.removeLoginTimeout();
+      assertNull(type.getLoginTimeout());
    }
 
    
@@ -155,6 +183,8 @@ public class DataSourceTypeImplTestCase
       DataSourceType<TestDescriptorImpl> type = new DataSourceTypeImpl<TestDescriptorImpl>(provider, "data-sourceType", provider.getRootNode());
       type.setTransactional(true);
       assertTrue(type.isTransactional());
+      type.removeTransactional();
+      assertFalse(type.isTransactional());
    }
 
    
@@ -180,6 +210,8 @@ public class DataSourceTypeImplTestCase
       DataSourceType<TestDescriptorImpl> type = new DataSourceTypeImpl<TestDescriptorImpl>(provider, "data-sourceType", provider.getRootNode());
       type.setInitialPoolSize(8);
       assertTrue(type.getInitialPoolSize() == 8);
+      type.removeInitialPoolSize();
+      assertNull(type.getInitialPoolSize());
    }
 
    
@@ -190,6 +222,8 @@ public class DataSourceTypeImplTestCase
       DataSourceType<TestDescriptorImpl> type = new DataSourceTypeImpl<TestDescriptorImpl>(provider, "data-sourceType", provider.getRootNode());
       type.setMaxPoolSize(8);
       assertTrue(type.getMaxPoolSize() == 8);
+      type.removeMaxPoolSize();
+      assertNull(type.getMaxPoolSize());
    }
 
    
@@ -200,6 +234,8 @@ public class DataSourceTypeImplTestCase
       DataSourceType<TestDescriptorImpl> type = new DataSourceTypeImpl<TestDescriptorImpl>(provider, "data-sourceType", provider.getRootNode());
       type.setMinPoolSize(8);
       assertTrue(type.getMinPoolSize() == 8);
+      type.removeMinPoolSize();
+      assertNull(type.getMinPoolSize());
    }
 
    
@@ -210,6 +246,8 @@ public class DataSourceTypeImplTestCase
       DataSourceType<TestDescriptorImpl> type = new DataSourceTypeImpl<TestDescriptorImpl>(provider, "data-sourceType", provider.getRootNode());
       type.setMaxIdleTime(8);
       assertTrue(type.getMaxIdleTime() == 8);
+      type.removeMaxIdleTime();
+      assertNull(type.getMaxIdleTime());
    }
 
    
@@ -220,5 +258,7 @@ public class DataSourceTypeImplTestCase
       DataSourceType<TestDescriptorImpl> type = new DataSourceTypeImpl<TestDescriptorImpl>(provider, "data-sourceType", provider.getRootNode());
       type.setMaxStatements(8);
       assertTrue(type.getMaxStatements() == 8);
+      type.removeMaxStatements();
+      assertNull(type.getMaxStatements());
    }
 }

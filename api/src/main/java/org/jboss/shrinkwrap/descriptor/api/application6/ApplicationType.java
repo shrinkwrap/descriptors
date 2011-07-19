@@ -1,3 +1,19 @@
+/*
+ * JBoss, Home of Professional Open Source
+ * Copyright 2011, Red Hat Middleware LLC, and individual contributors
+ * by the @authors tag. See the copyright.txt in the distribution for a
+ * full listing of individual contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.jboss.shrinkwrap.descriptor.api.application6;
 
 import java.util.List;
@@ -18,138 +34,485 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.SecurityRoleType;
 
 /**
- * This class is a generated class. Generation date
- * :2011-07-13T23:06:02.86+02:00
- * 
+ * This interface defines the contract for the <code> applicationType </code> xsd type 
+ * <p> 
  * Original Documentation:
- * 
- * 
- * The applicationType defines the structure of the application.
- * 
- * 
- * 
+ * <p> 
+ *<br>
+ *<br>
+ * The applicationType defines the structure of the <br> 
+ * application. <br> 
+ *<br>
+ *<br>
+ *
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ * @since Generation date :2011-07-19T22:55:02.759+02:00
  */
-public interface ApplicationType<T> extends Child<T> {
+public interface ApplicationType<T> extends Child<T>
+{
 
-	public ApplicationType<T> setDescription(String description);
+   // -------------------------------------------------------------------------------------||
+   // Element type : description
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public ApplicationType<T> setDescriptionList(String... values);
+   /**
+    * Creates a new <code>description</code> element 
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> setDescription(String description);
 
-	public ApplicationType<T> removeAllDescription();
+   /**
+    * Creates for all String objects representing <code>description</code> elements, 
+    * a new <code>description</code> element 
+    * @param list of <code>description</code> objects 
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> setDescriptionList(String... values);
 
-	public List<String> getDescriptionList();
+   /**
+    * Removes the <code>description</code> element 
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> removeAllDescription();
 
-	public ApplicationType<T> setDisplayName(String displayName);
+   /**
+    * Returns all <code>description</code> elements
+    * @return list of <code>description</code> 
+    */
+   public List<String> getDescriptionList();
 
-	public ApplicationType<T> setDisplayNameList(String... values);
+   // -------------------------------------------------------------------------------------||
+   // Element type : display-name
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public ApplicationType<T> removeAllDisplayName();
+   /**
+    * Creates a new <code>display-name</code> element 
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> setDisplayName(String displayName);
 
-	public List<String> getDisplayNameList();
+   /**
+    * Creates for all String objects representing <code>display-name</code> elements, 
+    * a new <code>display-name</code> element 
+    * @param list of <code>display-name</code> objects 
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> setDisplayNameList(String... values);
 
-	public ApplicationType<T> removeAllIcon();
+   /**
+    * Removes the <code>display-name</code> element 
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> removeAllDisplayName();
 
-	public IconType<ApplicationType<T>> icon();
+   /**
+    * Returns all <code>display-name</code> elements
+    * @return list of <code>display-name</code> 
+    */
+   public List<String> getDisplayNameList();
 
-	public List<IconType<ApplicationType<T>>> getIconList();
+   // -------------------------------------------------------------------------------------||
+   // Element type : icon
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public ApplicationType<T> setApplicationName(String applicationName);
+   /**
+    * Removes all <code>icon</code> elements 
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> removeAllIcon();
 
-	public ApplicationType<T> removeApplicationName();
+   /**
+    * Returns the <code>icon</code> element
+    * @return the node defined for the element <code>icon</code> 
+    */
+   public IconType<ApplicationType<T>> icon();
 
-	public String getApplicationName();
+   /**
+    * Returns all <code>icon</code> elements
+    * @return list of <code>icon</code> 
+    */
+   public List<IconType<ApplicationType<T>>> getIconList();
 
-	public ApplicationType<T> setInitializeInOrder(
-			GenericBooleanType initializeInOrder);
+   // -------------------------------------------------------------------------------------||
+   // Element type : application-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public ApplicationType<T> setInitializeInOrder(String initializeInOrder);
+   /**
+    * If not already created, a new <code>application-name</code> element with the given value will be created.
+    * Otherwise, the existing <code>application-name</code> element will be updated with the given value.
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> setApplicationName(String applicationName);
 
-	public GenericBooleanType getInitializeInOrder();
+   /**
+    * Removes the <code>application-name</code> element 
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> removeApplicationName();
 
-	public String getInitializeInOrderAsString();
+   /**
+    * Returns the <code>application-name</code> element
+    * @return the node defined for the element <code>application-name</code> 
+    */
+   public String getApplicationName();
 
-	public ApplicationType<T> removeAllModule();
+   // -------------------------------------------------------------------------------------||
+   // Element type : initialize-in-order
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public ModuleType<ApplicationType<T>> module();
+   /**
+    * If not already created, a new <code>initialize-in-order</code> element with the given value will be created.
+    * Otherwise, the existing <code>initialize-in-order</code> element will be updated with the given value.
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> setInitializeInOrder(GenericBooleanType initializeInOrder);
 
-	public List<ModuleType<ApplicationType<T>>> getModuleList();
+   /**
+    * If not already created, a new <code>initialize-in-order</code> element with the given value will be created.
+    * Otherwise, the existing <code>initialize-in-order</code> element will be updated with the given value.
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> setInitializeInOrder(String initializeInOrder);
 
-	public ApplicationType<T> removeAllSecurityRole();
+   /**
+    * Returns the <code>initialize-in-order</code> element
+    * @return the node defined for the element <code>initialize-in-order</code> 
+    */
+   public GenericBooleanType getInitializeInOrder();
 
-	public SecurityRoleType<ApplicationType<T>> securityRole();
+   /**
+    * Returns the <code>initialize-in-order</code> element
+    * @return the node defined for the element <code>initialize-in-order</code> 
+    */
+   public String getInitializeInOrderAsString();
 
-	public List<SecurityRoleType<ApplicationType<T>>> getSecurityRoleList();
+   // -------------------------------------------------------------------------------------||
+   // Element type : module
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public ApplicationType<T> setLibraryDirectory(String libraryDirectory);
+   /**
+    * Removes all <code>module</code> elements 
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> removeAllModule();
 
-	public ApplicationType<T> removeLibraryDirectory();
+   /**
+    * Returns the <code>module</code> element
+    * @return the node defined for the element <code>module</code> 
+    */
+   public ModuleType<ApplicationType<T>> module();
 
-	public String getLibraryDirectory();
+   /**
+    * Returns all <code>module</code> elements
+    * @return list of <code>module</code> 
+    */
+   public List<ModuleType<ApplicationType<T>>> getModuleList();
 
-	public ApplicationType<T> removeAllEnvEntry();
+   // -------------------------------------------------------------------------------------||
+   // Element type : security-role
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public EnvEntryType<ApplicationType<T>> envEntry();
+   /**
+    * Removes all <code>security-role</code> elements 
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> removeAllSecurityRole();
 
-	public List<EnvEntryType<ApplicationType<T>>> getEnvEntryList();
+   /**
+    * Returns the <code>security-role</code> element
+    * @return the node defined for the element <code>security-role</code> 
+    */
+   public SecurityRoleType<ApplicationType<T>> securityRole();
 
-	public ApplicationType<T> removeAllEjbRef();
+   /**
+    * Returns all <code>security-role</code> elements
+    * @return list of <code>security-role</code> 
+    */
+   public List<SecurityRoleType<ApplicationType<T>>> getSecurityRoleList();
 
-	public EjbRefType<ApplicationType<T>> ejbRef();
+   // -------------------------------------------------------------------------------------||
+   // Element type : library-directory
+   // isComplexType: false   maxOccurs: -1   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public List<EjbRefType<ApplicationType<T>>> getEjbRefList();
+   /**
+    * If not already created, a new <code>library-directory</code> element with the given value will be created.
+    * Otherwise, the existing <code>library-directory</code> element will be updated with the given value.
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> setLibraryDirectory(String libraryDirectory);
 
-	public ApplicationType<T> removeAllEjbLocalRef();
+   /**
+    * Removes the <code>library-directory</code> element 
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> removeLibraryDirectory();
 
-	public EjbLocalRefType<ApplicationType<T>> ejbLocalRef();
+   /**
+    * Returns the <code>library-directory</code> element
+    * @return the node defined for the element <code>library-directory</code> 
+    */
+   public String getLibraryDirectory();
 
-	public List<EjbLocalRefType<ApplicationType<T>>> getEjbLocalRefList();
+   // -------------------------------------------------------------------------------------||
+   // Element type : env-entry
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public ApplicationType<T> removeAllResourceRef();
+   /**
+    * Removes all <code>env-entry</code> elements 
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> removeAllEnvEntry();
 
-	public ResourceRefType<ApplicationType<T>> resourceRef();
+   /**
+    * Returns the <code>env-entry</code> element
+    * @return the node defined for the element <code>env-entry</code> 
+    */
+   public EnvEntryType<ApplicationType<T>> envEntry();
 
-	public List<ResourceRefType<ApplicationType<T>>> getResourceRefList();
+   /**
+    * Returns all <code>env-entry</code> elements
+    * @return list of <code>env-entry</code> 
+    */
+   public List<EnvEntryType<ApplicationType<T>>> getEnvEntryList();
 
-	public ApplicationType<T> removeAllResourceEnvRef();
+   // -------------------------------------------------------------------------------------||
+   // Element type : ejb-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public ResourceEnvRefType<ApplicationType<T>> resourceEnvRef();
+   /**
+    * Removes all <code>ejb-ref</code> elements 
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> removeAllEjbRef();
 
-	public List<ResourceEnvRefType<ApplicationType<T>>> getResourceEnvRefList();
+   /**
+    * Returns the <code>ejb-ref</code> element
+    * @return the node defined for the element <code>ejb-ref</code> 
+    */
+   public EjbRefType<ApplicationType<T>> ejbRef();
 
-	public ApplicationType<T> removeAllMessageDestinationRef();
+   /**
+    * Returns all <code>ejb-ref</code> elements
+    * @return list of <code>ejb-ref</code> 
+    */
+   public List<EjbRefType<ApplicationType<T>>> getEjbRefList();
 
-	public MessageDestinationRefType<ApplicationType<T>> messageDestinationRef();
+   // -------------------------------------------------------------------------------------||
+   // Element type : ejb-local-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public List<MessageDestinationRefType<ApplicationType<T>>> getMessageDestinationRefList();
+   /**
+    * Removes all <code>ejb-local-ref</code> elements 
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> removeAllEjbLocalRef();
 
-	public ApplicationType<T> removeAllPersistenceContextRef();
+   /**
+    * Returns the <code>ejb-local-ref</code> element
+    * @return the node defined for the element <code>ejb-local-ref</code> 
+    */
+   public EjbLocalRefType<ApplicationType<T>> ejbLocalRef();
 
-	public PersistenceContextRefType<ApplicationType<T>> persistenceContextRef();
+   /**
+    * Returns all <code>ejb-local-ref</code> elements
+    * @return list of <code>ejb-local-ref</code> 
+    */
+   public List<EjbLocalRefType<ApplicationType<T>>> getEjbLocalRefList();
 
-	public List<PersistenceContextRefType<ApplicationType<T>>> getPersistenceContextRefList();
+   // -------------------------------------------------------------------------------------||
+   // Element type : resource-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public ApplicationType<T> removeAllPersistenceUnitRef();
+   /**
+    * Removes all <code>resource-ref</code> elements 
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> removeAllResourceRef();
 
-	public PersistenceUnitRefType<ApplicationType<T>> persistenceUnitRef();
+   /**
+    * Returns the <code>resource-ref</code> element
+    * @return the node defined for the element <code>resource-ref</code> 
+    */
+   public ResourceRefType<ApplicationType<T>> resourceRef();
 
-	public List<PersistenceUnitRefType<ApplicationType<T>>> getPersistenceUnitRefList();
+   /**
+    * Returns all <code>resource-ref</code> elements
+    * @return list of <code>resource-ref</code> 
+    */
+   public List<ResourceRefType<ApplicationType<T>>> getResourceRefList();
 
-	public ApplicationType<T> removeAllMessageDestination();
+   // -------------------------------------------------------------------------------------||
+   // Element type : resource-env-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public MessageDestinationType<ApplicationType<T>> messageDestination();
+   /**
+    * Removes all <code>resource-env-ref</code> elements 
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> removeAllResourceEnvRef();
 
-	public List<MessageDestinationType<ApplicationType<T>>> getMessageDestinationList();
+   /**
+    * Returns the <code>resource-env-ref</code> element
+    * @return the node defined for the element <code>resource-env-ref</code> 
+    */
+   public ResourceEnvRefType<ApplicationType<T>> resourceEnvRef();
 
-	public ApplicationType<T> removeAllDataSource();
+   /**
+    * Returns all <code>resource-env-ref</code> elements
+    * @return list of <code>resource-env-ref</code> 
+    */
+   public List<ResourceEnvRefType<ApplicationType<T>>> getResourceEnvRefList();
 
-	public DataSourceType<ApplicationType<T>> dataSource();
+   // -------------------------------------------------------------------------------------||
+   // Element type : message-destination-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public List<DataSourceType<ApplicationType<T>>> getDataSourceList();
+   /**
+    * Removes all <code>message-destination-ref</code> elements 
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> removeAllMessageDestinationRef();
 
-	public ApplicationType<T> setVersion(String version);
+   /**
+    * Returns the <code>message-destination-ref</code> element
+    * @return the node defined for the element <code>message-destination-ref</code> 
+    */
+   public MessageDestinationRefType<ApplicationType<T>> messageDestinationRef();
 
-	public ApplicationType<T> removeVersion();
+   /**
+    * Returns all <code>message-destination-ref</code> elements
+    * @return list of <code>message-destination-ref</code> 
+    */
+   public List<MessageDestinationRefType<ApplicationType<T>>> getMessageDestinationRefList();
 
-	public String getVersion();
+   // -------------------------------------------------------------------------------------||
+   // Element type : persistence-context-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+
+   /**
+    * Removes all <code>persistence-context-ref</code> elements 
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> removeAllPersistenceContextRef();
+
+   /**
+    * Returns the <code>persistence-context-ref</code> element
+    * @return the node defined for the element <code>persistence-context-ref</code> 
+    */
+   public PersistenceContextRefType<ApplicationType<T>> persistenceContextRef();
+
+   /**
+    * Returns all <code>persistence-context-ref</code> elements
+    * @return list of <code>persistence-context-ref</code> 
+    */
+   public List<PersistenceContextRefType<ApplicationType<T>>> getPersistenceContextRefList();
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : persistence-unit-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+
+   /**
+    * Removes all <code>persistence-unit-ref</code> elements 
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> removeAllPersistenceUnitRef();
+
+   /**
+    * Returns the <code>persistence-unit-ref</code> element
+    * @return the node defined for the element <code>persistence-unit-ref</code> 
+    */
+   public PersistenceUnitRefType<ApplicationType<T>> persistenceUnitRef();
+
+   /**
+    * Returns all <code>persistence-unit-ref</code> elements
+    * @return list of <code>persistence-unit-ref</code> 
+    */
+   public List<PersistenceUnitRefType<ApplicationType<T>>> getPersistenceUnitRefList();
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : message-destination
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+
+   /**
+    * Removes all <code>message-destination</code> elements 
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> removeAllMessageDestination();
+
+   /**
+    * Returns the <code>message-destination</code> element
+    * @return the node defined for the element <code>message-destination</code> 
+    */
+   public MessageDestinationType<ApplicationType<T>> messageDestination();
+
+   /**
+    * Returns all <code>message-destination</code> elements
+    * @return list of <code>message-destination</code> 
+    */
+   public List<MessageDestinationType<ApplicationType<T>>> getMessageDestinationList();
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : data-source
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+
+   /**
+    * Removes all <code>data-source</code> elements 
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> removeAllDataSource();
+
+   /**
+    * Returns the <code>data-source</code> element
+    * @return the node defined for the element <code>data-source</code> 
+    */
+   public DataSourceType<ApplicationType<T>> dataSource();
+
+   /**
+    * Returns all <code>data-source</code> elements
+    * @return list of <code>data-source</code> 
+    */
+   public List<DataSourceType<ApplicationType<T>>> getDataSourceList();
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : version
+   // isComplexType: false   maxOccurs: -   isAttribute: true
+   // -------------------------------------------------------------------------------------||
+
+   /**
+    * Sets the <code>version</code> attribute
+    * @param version the value for the attribute <code>version</code> 
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> setVersion(String version);
+
+   /**
+    * Removes the <code>version</code> attribute 
+    * @return the current instance of {@link ApplicationType<T>} 
+    */
+   public ApplicationType<T> removeVersion();
+
+   /**
+    * Returns the <code>version</code> element
+    * @return the node defined for the element <code>version</code> 
+    */
+   public String getVersion();
 
 }

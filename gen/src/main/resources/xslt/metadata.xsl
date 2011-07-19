@@ -4,6 +4,8 @@
     <xsl:template match="/">
         <metadata>
             <xsl:call-template name="GenerateStatistic"/>
+            <xsl:call-template name="GenerateCopyright"/>
+            <xsl:call-template name="GenerateContributors"/>
             <xsl:call-template name="GeneratePackages"/>
             <xsl:call-template name="GenerateDataTypes"/>
             <xsl:call-template name="GenerateEnums"/>
@@ -11,6 +13,42 @@
             <xsl:call-template name="GenerateClasses"/>
             <xsl:call-template name="GenerateDescriptors"/>
         </metadata>
+    </xsl:template>
+
+    <!-- ****************************************************** -->
+    <!-- ****** Template which generates the copyright   ****** -->
+    <!-- ****************************************************** -->
+    <xsl:template name="GenerateCopyright">
+        <copyright>
+            <xsl:for-each select="//copyright">
+                <xsl:for-each select="document(@name)/copyright/line">
+                    <line>
+                        <xsl:value-of select="text()"/>
+                    </line>
+                </xsl:for-each>
+            </xsl:for-each>
+        </copyright>
+    </xsl:template>
+
+
+    <!-- ****************************************************** -->
+    <!-- ****** Template which generates the contributors ***** -->
+    <!-- ****************************************************** -->
+    <xsl:template name="GenerateContributors">
+        <contributors>
+            <xsl:for-each select="//contributors">
+                <xsl:for-each select="document(@name)//contributor">
+                    <contributor>
+                        <xsl:attribute name="name">
+                            <xsl:value-of select="@name"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="mailto">
+                            <xsl:value-of select="@mailto"/>
+                        </xsl:attribute>
+                    </contributor>
+                </xsl:for-each>
+            </xsl:for-each>
+        </contributors>
     </xsl:template>
 
     <!-- ****************************************************** -->
@@ -62,12 +100,18 @@
                     <xsl:attribute name="name">
                         <xsl:value-of select="."/>
                     </xsl:attribute>
+                    <xsl:attribute name="schema">
+                        <xsl:value-of select="../@name"/>
+                    </xsl:attribute>
                 </api>
             </xsl:for-each>
             <xsl:for-each select="//@packageImpl">
                 <impl>
                     <xsl:attribute name="name">
                         <xsl:value-of select="."/>
+                    </xsl:attribute>
+                    <xsl:attribute name="schema">
+                        <xsl:value-of select="../@name"/>
                     </xsl:attribute>
                 </impl>
             </xsl:for-each>
@@ -575,7 +619,7 @@
         <xsl:param name="pPackageApi"/>
         <xsl:param name="pPackageImpl"/>
         <xsl:param name="pNamespace"/>
-        
+
         <!--
         <xsl:for-each select="document($pDocument)//xsd:simpleType">
             <xsl:variable name="complexTypeName" select="@name"/>

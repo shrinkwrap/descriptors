@@ -1,3 +1,19 @@
+/*
+ * JBoss, Home of Professional Open Source
+ * Copyright 2011, Red Hat Middleware LLC, and individual contributors
+ * by the @authors tag. See the copyright.txt in the distribution for a
+ * full listing of individual contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.jboss.shrinkwrap.descriptor.api.javaee5;
 
 import java.util.List;
@@ -5,73 +21,195 @@ import java.util.List;
 import org.jboss.shrinkwrap.descriptor.api.Child;
 
 /**
- * This class is a generated class. Generation date
- * :2011-07-13T23:06:05.059+02:00
- * 
+ * This interface defines the contract for the <code> env-entryType </code> xsd type 
+ * <p> 
  * Original Documentation:
- * 
- * 
- * The env-entryType is used to declare an application's environment entry. The
- * declaration consists of an optional description, the name of the environment
- * entry, a type (optional if the value is injected, otherwise required), and an
- * optional value.
- * 
- * It also includes optional elements to define injection of the named resource
- * into fields or JavaBeans properties.
- * 
- * If a value is not specified and injection is requested, no injection will
- * occur and no entry of the specified name will be created. This allows an
- * initial value to be specified in the source code without being incorrectly
- * changed when no override has been specified.
- * 
- * If a value is not specified and no injection is requested, a value must be
- * supplied during deployment.
- * 
- * This type is used by env-entry elements.
- * 
- * 
- * 
+ * <p> 
+ *<br>
+ *<br>
+ * The env-entryType is used to declare an application's <br> 
+ * environment entry. The declaration consists of an optional <br> 
+ * description, the name of the environment entry, a type <br> 
+ * (optional if the value is injected, otherwise required), and <br> 
+ * an optional value. <br> 
+ *<br>
+ * It also includes optional elements to define injection of <br> 
+ * the named resource into fields or JavaBeans properties. <br> 
+ *<br>
+ * If a value is not specified and injection is requested, <br> 
+ * no injection will occur and no entry of the specified name <br> 
+ * will be created. This allows an initial value to be <br> 
+ * specified in the source code without being incorrectly <br> 
+ * changed when no override has been specified. <br> 
+ *<br>
+ * If a value is not specified and no injection is requested, <br> 
+ * a value must be supplied during deployment. <br> 
+ *<br>
+ * This type is used by env-entry elements. <br> 
+ *<br>
+ *<br>
+ *
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ * @since Generation date :2011-07-19T22:54:35.59+02:00
  */
-public interface EnvEntryType<T> extends Child<T> {
+public interface EnvEntryType<T> extends Child<T>
+{
 
-	public EnvEntryType<T> setMappedName(String mappedName);
+   // -------------------------------------------------------------------------------------||
+   // Element type : mapped-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public EnvEntryType<T> removeMappedName();
+   /**
+    * If not already created, a new <code>mapped-name</code> element with the given value will be created.
+    * Otherwise, the existing <code>mapped-name</code> element will be updated with the given value.
+    * @return the current instance of {@link EnvEntryType<T>} 
+    */
+   public EnvEntryType<T> setMappedName(String mappedName);
 
-	public String getMappedName();
+   /**
+    * Removes the <code>mapped-name</code> element 
+    * @return the current instance of {@link EnvEntryType<T>} 
+    */
+   public EnvEntryType<T> removeMappedName();
 
-	public EnvEntryType<T> removeAllInjectionTarget();
+   /**
+    * Returns the <code>mapped-name</code> element
+    * @return the node defined for the element <code>mapped-name</code> 
+    */
+   public String getMappedName();
 
-	public InjectionTargetType<EnvEntryType<T>> injectionTarget();
+   // -------------------------------------------------------------------------------------||
+   // Element type : injection-target
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public List<InjectionTargetType<EnvEntryType<T>>> getInjectionTargetList();
+   /**
+    * Removes all <code>injection-target</code> elements 
+    * @return the current instance of {@link EnvEntryType<T>} 
+    */
+   public EnvEntryType<T> removeAllInjectionTarget();
 
-	public EnvEntryType<T> setDescription(String description);
+   /**
+    * Returns the <code>injection-target</code> element
+    * @return the node defined for the element <code>injection-target</code> 
+    */
+   public InjectionTargetType<EnvEntryType<T>> injectionTarget();
 
-	public EnvEntryType<T> setDescriptionList(String... values);
+   /**
+    * Returns all <code>injection-target</code> elements
+    * @return list of <code>injection-target</code> 
+    */
+   public List<InjectionTargetType<EnvEntryType<T>>> getInjectionTargetList();
 
-	public EnvEntryType<T> removeAllDescription();
+   // -------------------------------------------------------------------------------------||
+   // Element type : description
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public List<String> getDescriptionList();
+   /**
+    * Creates a new <code>description</code> element 
+    * @return the current instance of {@link EnvEntryType<T>} 
+    */
+   public EnvEntryType<T> setDescription(String description);
 
-	public EnvEntryType<T> setEnvEntryName(String envEntryName);
+   /**
+    * Creates for all String objects representing <code>description</code> elements, 
+    * a new <code>description</code> element 
+    * @param list of <code>description</code> objects 
+    * @return the current instance of {@link EnvEntryType<T>} 
+    */
+   public EnvEntryType<T> setDescriptionList(String... values);
 
-	public EnvEntryType<T> removeEnvEntryName();
+   /**
+    * Removes the <code>description</code> element 
+    * @return the current instance of {@link EnvEntryType<T>} 
+    */
+   public EnvEntryType<T> removeAllDescription();
 
-	public String getEnvEntryName();
+   /**
+    * Returns all <code>description</code> elements
+    * @return list of <code>description</code> 
+    */
+   public List<String> getDescriptionList();
 
-	public EnvEntryType<T> setEnvEntryType(EnvEntryTypeValuesType envEntryType);
+   // -------------------------------------------------------------------------------------||
+   // Element type : env-entry-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public EnvEntryType<T> setEnvEntryType(String envEntryType);
+   /**
+    * If not already created, a new <code>env-entry-name</code> element with the given value will be created.
+    * Otherwise, the existing <code>env-entry-name</code> element will be updated with the given value.
+    * @return the current instance of {@link EnvEntryType<T>} 
+    */
+   public EnvEntryType<T> setEnvEntryName(String envEntryName);
 
-	public EnvEntryTypeValuesType getEnvEntryType();
+   /**
+    * Removes the <code>env-entry-name</code> element 
+    * @return the current instance of {@link EnvEntryType<T>} 
+    */
+   public EnvEntryType<T> removeEnvEntryName();
 
-	public String getEnvEntryTypeAsString();
+   /**
+    * Returns the <code>env-entry-name</code> element
+    * @return the node defined for the element <code>env-entry-name</code> 
+    */
+   public String getEnvEntryName();
 
-	public EnvEntryType<T> setEnvEntryValue(String envEntryValue);
+   // -------------------------------------------------------------------------------------||
+   // Element type : env-entry-type
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public EnvEntryType<T> removeEnvEntryValue();
+   /**
+    * If not already created, a new <code>env-entry-type</code> element with the given value will be created.
+    * Otherwise, the existing <code>env-entry-type</code> element will be updated with the given value.
+    * @return the current instance of {@link EnvEntryType<T>} 
+    */
+   public EnvEntryType<T> setEnvEntryType(EnvEntryTypeValuesType envEntryType);
 
-	public String getEnvEntryValue();
+   /**
+    * If not already created, a new <code>env-entry-type</code> element with the given value will be created.
+    * Otherwise, the existing <code>env-entry-type</code> element will be updated with the given value.
+    * @return the current instance of {@link EnvEntryType<T>} 
+    */
+   public EnvEntryType<T> setEnvEntryType(String envEntryType);
+
+   /**
+    * Returns the <code>env-entry-type</code> element
+    * @return the node defined for the element <code>env-entry-type</code> 
+    */
+   public EnvEntryTypeValuesType getEnvEntryType();
+
+   /**
+    * Returns the <code>env-entry-type</code> element
+    * @return the node defined for the element <code>env-entry-type</code> 
+    */
+   public String getEnvEntryTypeAsString();
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : env-entry-value
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+
+   /**
+    * If not already created, a new <code>env-entry-value</code> element with the given value will be created.
+    * Otherwise, the existing <code>env-entry-value</code> element will be updated with the given value.
+    * @return the current instance of {@link EnvEntryType<T>} 
+    */
+   public EnvEntryType<T> setEnvEntryValue(String envEntryValue);
+
+   /**
+    * Removes the <code>env-entry-value</code> element 
+    * @return the current instance of {@link EnvEntryType<T>} 
+    */
+   public EnvEntryType<T> removeEnvEntryValue();
+
+   /**
+    * Returns the <code>env-entry-value</code> element
+    * @return the node defined for the element <code>env-entry-value</code> 
+    */
+   public String getEnvEntryValue();
 
 }

@@ -1,3 +1,19 @@
+/*
+ * JBoss, Home of Professional Open Source
+ * Copyright 2011, Red Hat Middleware LLC, and individual contributors
+ * by the @authors tag. See the copyright.txt in the distribution for a
+ * full listing of individual contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.jboss.shrinkwrap.descriptor.api.ejbjar30;
 
 import java.util.List;
@@ -6,82 +22,264 @@ import org.jboss.shrinkwrap.descriptor.api.Child;
 import org.jboss.shrinkwrap.descriptor.api.javaee5.IconType;
 
 /**
- * This class is a generated class. Generation date
- * :2011-07-13T23:06:05.059+02:00
- * 
+ * This interface defines the contract for the <code> ejb-jarType </code> xsd type 
+ * <p> 
  * Original Documentation:
- * 
- * 
- * The ejb-jarType defines the root element of the EJB deployment descriptor. It
- * contains
- * 
- * - an optional description of the ejb-jar file - an optional display name - an
- * optional icon that contains a small and a large icon file name - structural
- * information about all included enterprise beans that is not specified through
- * annotations - structural information about interceptor classes - a descriptor
- * for container managed relationships, if any. - an optional
- * application-assembly descriptor - an optional name of an ejb-client-jar file
- * for the ejb-jar.
- * 
- * 
- * 
+ * <p> 
+ *<br>
+ *<br>
+ * The ejb-jarType defines the root element of the EJB <br> 
+ * deployment descriptor. It contains <br> 
+ *<br>
+ * - an optional description of the ejb-jar file <br> 
+ * - an optional display name <br> 
+ * - an optional icon that contains a small and a large <br> 
+ * icon file name <br> 
+ * - structural information about all included <br> 
+ * enterprise beans that is not specified through <br> 
+ * annotations <br> 
+ * - structural information about interceptor classes <br> 
+ * - a descriptor for container managed relationships, <br> 
+ * if any. <br> 
+ * - an optional application-assembly descriptor <br> 
+ * - an optional name of an ejb-client-jar file for the <br> 
+ * ejb-jar. <br> 
+ *<br>
+ *<br>
+ *
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ * @since Generation date :2011-07-19T22:54:35.59+02:00
  */
-public interface EjbJarType<T> extends Child<T> {
+public interface EjbJarType<T> extends Child<T>
+{
 
-	public EjbJarType<T> setDescription(String description);
+   // -------------------------------------------------------------------------------------||
+   // Element type : description
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public EjbJarType<T> setDescriptionList(String... values);
+   /**
+    * Creates a new <code>description</code> element 
+    * @return the current instance of {@link EjbJarType<T>} 
+    */
+   public EjbJarType<T> setDescription(String description);
 
-	public EjbJarType<T> removeAllDescription();
+   /**
+    * Creates for all String objects representing <code>description</code> elements, 
+    * a new <code>description</code> element 
+    * @param list of <code>description</code> objects 
+    * @return the current instance of {@link EjbJarType<T>} 
+    */
+   public EjbJarType<T> setDescriptionList(String... values);
 
-	public List<String> getDescriptionList();
+   /**
+    * Removes the <code>description</code> element 
+    * @return the current instance of {@link EjbJarType<T>} 
+    */
+   public EjbJarType<T> removeAllDescription();
 
-	public EjbJarType<T> setDisplayName(String displayName);
+   /**
+    * Returns all <code>description</code> elements
+    * @return list of <code>description</code> 
+    */
+   public List<String> getDescriptionList();
 
-	public EjbJarType<T> setDisplayNameList(String... values);
+   // -------------------------------------------------------------------------------------||
+   // Element type : display-name
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public EjbJarType<T> removeAllDisplayName();
+   /**
+    * Creates a new <code>display-name</code> element 
+    * @return the current instance of {@link EjbJarType<T>} 
+    */
+   public EjbJarType<T> setDisplayName(String displayName);
 
-	public List<String> getDisplayNameList();
+   /**
+    * Creates for all String objects representing <code>display-name</code> elements, 
+    * a new <code>display-name</code> element 
+    * @param list of <code>display-name</code> objects 
+    * @return the current instance of {@link EjbJarType<T>} 
+    */
+   public EjbJarType<T> setDisplayNameList(String... values);
 
-	public EjbJarType<T> removeAllIcon();
+   /**
+    * Removes the <code>display-name</code> element 
+    * @return the current instance of {@link EjbJarType<T>} 
+    */
+   public EjbJarType<T> removeAllDisplayName();
 
-	public IconType<EjbJarType<T>> icon();
+   /**
+    * Returns all <code>display-name</code> elements
+    * @return list of <code>display-name</code> 
+    */
+   public List<String> getDisplayNameList();
 
-	public List<IconType<EjbJarType<T>>> getIconList();
+   // -------------------------------------------------------------------------------------||
+   // Element type : icon
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public EjbJarType<T> removeEnterpriseBeans();
+   /**
+    * Removes all <code>icon</code> elements 
+    * @return the current instance of {@link EjbJarType<T>} 
+    */
+   public EjbJarType<T> removeAllIcon();
 
-	public EnterpriseBeansType<EjbJarType<T>> enterpriseBeans();
+   /**
+    * Returns the <code>icon</code> element
+    * @return the node defined for the element <code>icon</code> 
+    */
+   public IconType<EjbJarType<T>> icon();
 
-	public EjbJarType<T> removeInterceptors();
+   /**
+    * Returns all <code>icon</code> elements
+    * @return list of <code>icon</code> 
+    */
+   public List<IconType<EjbJarType<T>>> getIconList();
 
-	public InterceptorsType<EjbJarType<T>> interceptors();
+   // -------------------------------------------------------------------------------------||
+   // Element type : enterprise-beans
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public EjbJarType<T> removeRelationships();
+   /**
+    * Removes the <code>enterprise-beans</code> element 
+    * @return the current instance of {@link EjbJarType<T>} 
+    */
+   public EjbJarType<T> removeEnterpriseBeans();
 
-	public RelationshipsType<EjbJarType<T>> relationships();
+   /**
+    * If not already created, a new <code>enterprise-beans</code> element will be created and returned.
+    * Otherwise, the existing <code>enterprise-beans</code> element will be returned.
+    * @return the node defined for the element <code>enterprise-beans</code> 
+    */
+   public EnterpriseBeansType<EjbJarType<T>> enterpriseBeans();
 
-	public EjbJarType<T> removeAssemblyDescriptor();
+   // -------------------------------------------------------------------------------------||
+   // Element type : interceptors
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public AssemblyDescriptorType<EjbJarType<T>> assemblyDescriptor();
+   /**
+    * Removes the <code>interceptors</code> element 
+    * @return the current instance of {@link EjbJarType<T>} 
+    */
+   public EjbJarType<T> removeInterceptors();
 
-	public EjbJarType<T> setEjbClientJar(String ejbClientJar);
+   /**
+    * If not already created, a new <code>interceptors</code> element will be created and returned.
+    * Otherwise, the existing <code>interceptors</code> element will be returned.
+    * @return the node defined for the element <code>interceptors</code> 
+    */
+   public InterceptorsType<EjbJarType<T>> interceptors();
 
-	public EjbJarType<T> removeEjbClientJar();
+   // -------------------------------------------------------------------------------------||
+   // Element type : relationships
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public String getEjbClientJar();
+   /**
+    * Removes the <code>relationships</code> element 
+    * @return the current instance of {@link EjbJarType<T>} 
+    */
+   public EjbJarType<T> removeRelationships();
 
-	public EjbJarType<T> setVersion(String version);
+   /**
+    * If not already created, a new <code>relationships</code> element will be created and returned.
+    * Otherwise, the existing <code>relationships</code> element will be returned.
+    * @return the node defined for the element <code>relationships</code> 
+    */
+   public RelationshipsType<EjbJarType<T>> relationships();
 
-	public EjbJarType<T> removeVersion();
+   // -------------------------------------------------------------------------------------||
+   // Element type : assembly-descriptor
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public String getVersion();
+   /**
+    * Removes the <code>assembly-descriptor</code> element 
+    * @return the current instance of {@link EjbJarType<T>} 
+    */
+   public EjbJarType<T> removeAssemblyDescriptor();
 
-	public EjbJarType<T> setMetadataComplete(Boolean metadataComplete);
+   /**
+    * If not already created, a new <code>assembly-descriptor</code> element will be created and returned.
+    * Otherwise, the existing <code>assembly-descriptor</code> element will be returned.
+    * @return the node defined for the element <code>assembly-descriptor</code> 
+    */
+   public AssemblyDescriptorType<EjbJarType<T>> assemblyDescriptor();
 
-	public EjbJarType<T> removeMetadataComplete();
+   // -------------------------------------------------------------------------------------||
+   // Element type : ejb-client-jar
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public Boolean isMetadataComplete();
+   /**
+    * If not already created, a new <code>ejb-client-jar</code> element with the given value will be created.
+    * Otherwise, the existing <code>ejb-client-jar</code> element will be updated with the given value.
+    * @return the current instance of {@link EjbJarType<T>} 
+    */
+   public EjbJarType<T> setEjbClientJar(String ejbClientJar);
+
+   /**
+    * Removes the <code>ejb-client-jar</code> element 
+    * @return the current instance of {@link EjbJarType<T>} 
+    */
+   public EjbJarType<T> removeEjbClientJar();
+
+   /**
+    * Returns the <code>ejb-client-jar</code> element
+    * @return the node defined for the element <code>ejb-client-jar</code> 
+    */
+   public String getEjbClientJar();
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : version
+   // isComplexType: false   maxOccurs: -   isAttribute: true
+   // -------------------------------------------------------------------------------------||
+
+   /**
+    * Sets the <code>version</code> attribute
+    * @param version the value for the attribute <code>version</code> 
+    * @return the current instance of {@link EjbJarType<T>} 
+    */
+   public EjbJarType<T> setVersion(String version);
+
+   /**
+    * Removes the <code>version</code> attribute 
+    * @return the current instance of {@link EjbJarType<T>} 
+    */
+   public EjbJarType<T> removeVersion();
+
+   /**
+    * Returns the <code>version</code> element
+    * @return the node defined for the element <code>version</code> 
+    */
+   public String getVersion();
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : metadata-complete
+   // isComplexType: false   maxOccurs: -   isAttribute: true
+   // -------------------------------------------------------------------------------------||
+
+   /**
+    * Sets the <code>metadata-complete</code> attribute
+    * @param metadataComplete the value for the attribute <code>metadata-complete</code> 
+    * @return the current instance of {@link EjbJarType<T>} 
+    */
+   public EjbJarType<T> setMetadataComplete(Boolean metadataComplete);
+
+   /**
+    * Removes the <code>metadata-complete</code> attribute 
+    * @return the current instance of {@link EjbJarType<T>} 
+    */
+   public EjbJarType<T> removeMetadataComplete();
+
+   /**
+    * Returns the <code>metadata-complete</code> element
+    * @return the node defined for the element <code>metadata-complete</code> 
+    */
+   public Boolean isMetadataComplete();
 
 }

@@ -1,3 +1,19 @@
+/*
+ * JBoss, Home of Professional Open Source
+ * Copyright 2011, Red Hat Middleware LLC, and individual contributors
+ * by the @authors tag. See the copyright.txt in the distribution for a
+ * full listing of individual contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.jboss.shrinkwrap.descriptor.api.persistence20;
 
 import java.util.List;
@@ -5,21 +21,58 @@ import java.util.List;
 import org.jboss.shrinkwrap.descriptor.api.Child;
 
 /**
- * This class is a generated class. Generation date
- * :2011-07-13T23:06:02.86+02:00
+ * This interface defines the contract for the <code> persistence </code> xsd type 
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ * @since Generation date :2011-07-19T22:55:02.759+02:00
  */
-public interface Persistence<T> extends Child<T> {
+public interface Persistence<T> extends Child<T>
+{
 
-	public Persistence<T> removeAllPersistenceUnit();
+   // -------------------------------------------------------------------------------------||
+   // Element type : persistence-unit
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public PersistenceUnit<Persistence<T>> persistenceUnit();
+   /**
+    * Removes all <code>persistence-unit</code> elements 
+    * @return the current instance of {@link Persistence<T>} 
+    */
+   public Persistence<T> removeAllPersistenceUnit();
 
-	public List<PersistenceUnit<Persistence<T>>> getPersistenceUnitList();
+   /**
+    * Returns the <code>persistence-unit</code> element
+    * @return the node defined for the element <code>persistence-unit</code> 
+    */
+   public PersistenceUnit<Persistence<T>> persistenceUnit();
 
-	public Persistence<T> setVersion(String version);
+   /**
+    * Returns all <code>persistence-unit</code> elements
+    * @return list of <code>persistence-unit</code> 
+    */
+   public List<PersistenceUnit<Persistence<T>>> getPersistenceUnitList();
 
-	public Persistence<T> removeVersion();
+   // -------------------------------------------------------------------------------------||
+   // Element type : version
+   // isComplexType: false   maxOccurs: -   isAttribute: true
+   // -------------------------------------------------------------------------------------||
 
-	public String getVersion();
+   /**
+    * Sets the <code>version</code> attribute
+    * @param version the value for the attribute <code>version</code> 
+    * @return the current instance of {@link Persistence<T>} 
+    */
+   public Persistence<T> setVersion(String version);
+
+   /**
+    * Removes the <code>version</code> attribute 
+    * @return the current instance of {@link Persistence<T>} 
+    */
+   public Persistence<T> removeVersion();
+
+   /**
+    * Returns the <code>version</code> element
+    * @return the node defined for the element <code>version</code> 
+    */
+   public String getVersion();
 
 }

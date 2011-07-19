@@ -1,3 +1,19 @@
+/*
+ * JBoss, Home of Professional Open Source
+ * Copyright 2011, Red Hat Middleware LLC, and individual contributors
+ * by the @authors tag. See the copyright.txt in the distribution for a
+ * full listing of individual contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.jboss.shrinkwrap.descriptor.api.jbosscommon51;
 
 import java.util.List;
@@ -6,77 +22,252 @@ import org.jboss.shrinkwrap.descriptor.api.Child;
 import org.jboss.shrinkwrap.descriptor.api.javaee5.EjbRefTypeType;
 
 /**
- * This class is a generated class. Generation date
- * :2011-07-13T23:06:05.059+02:00
- * 
- * Original Documentation: The ejb-ref element is used to give the jndi-name of
- * an external ejb reference. In the case of an external ejb reference, you
- * don't provide a ejb-link element in ejb-jar.xml, but you provide a jndi-name
- * in jboss.xml Used in: entity, session, message-driven, consumer, and service
- * 
+ * This interface defines the contract for the <code> ejb-refType </code> xsd type 
+ * <p> 
+ * Original Documentation:
+ * <p> 
+ * The ejb-ref element is used to give the jndi-name of an external ejb <br> 
+ * reference. In the case of an external ejb reference, you don't provide a ejb-link element in <br> 
+ * ejb-jar.xml, but you provide a jndi-name in jboss.xml Used in: entity, session, <br> 
+ * message-driven, consumer, and service <br> 
+ *
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ * @since Generation date :2011-07-19T22:54:35.59+02:00
  */
-public interface EjbRefType<T> extends Child<T> {
+public interface EjbRefType<T> extends Child<T>
+{
 
-	public EjbRefType<T> setJndiName(String jndiName);
+   // -------------------------------------------------------------------------------------||
+   // Element type : jndi-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public EjbRefType<T> removeJndiName();
+   /**
+    * If not already created, a new <code>jndi-name</code> element with the given value will be created.
+    * Otherwise, the existing <code>jndi-name</code> element will be updated with the given value.
+    * @return the current instance of {@link EjbRefType<T>} 
+    */
+   public EjbRefType<T> setJndiName(String jndiName);
 
-	public String getJndiName();
+   /**
+    * Removes the <code>jndi-name</code> element 
+    * @return the current instance of {@link EjbRefType<T>} 
+    */
+   public EjbRefType<T> removeJndiName();
 
-	public EjbRefType<T> setMappedName(String mappedName);
+   /**
+    * Returns the <code>jndi-name</code> element
+    * @return the node defined for the element <code>jndi-name</code> 
+    */
+   public String getJndiName();
 
-	public EjbRefType<T> removeMappedName();
+   // -------------------------------------------------------------------------------------||
+   // Element type : mapped-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public String getMappedName();
+   /**
+    * If not already created, a new <code>mapped-name</code> element with the given value will be created.
+    * Otherwise, the existing <code>mapped-name</code> element will be updated with the given value.
+    * @return the current instance of {@link EjbRefType<T>} 
+    */
+   public EjbRefType<T> setMappedName(String mappedName);
 
-	public EjbRefType<T> removeAllInjectionTarget();
+   /**
+    * Removes the <code>mapped-name</code> element 
+    * @return the current instance of {@link EjbRefType<T>} 
+    */
+   public EjbRefType<T> removeMappedName();
 
-	public InjectionTargetType<EjbRefType<T>> injectionTarget();
+   /**
+    * Returns the <code>mapped-name</code> element
+    * @return the node defined for the element <code>mapped-name</code> 
+    */
+   public String getMappedName();
 
-	public List<InjectionTargetType<EjbRefType<T>>> getInjectionTargetList();
+   // -------------------------------------------------------------------------------------||
+   // Element type : injection-target
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public EjbRefType<T> ignoreDependency();
+   /**
+    * Removes all <code>injection-target</code> elements 
+    * @return the current instance of {@link EjbRefType<T>} 
+    */
+   public EjbRefType<T> removeAllInjectionTarget();
 
-	public Boolean isIgnoreDependency();
+   /**
+    * Returns the <code>injection-target</code> element
+    * @return the node defined for the element <code>injection-target</code> 
+    */
+   public InjectionTargetType<EjbRefType<T>> injectionTarget();
 
-	public EjbRefType<T> setDescription(String description);
+   /**
+    * Returns all <code>injection-target</code> elements
+    * @return list of <code>injection-target</code> 
+    */
+   public List<InjectionTargetType<EjbRefType<T>>> getInjectionTargetList();
 
-	public EjbRefType<T> setDescriptionList(String... values);
+   public EjbRefType<T> ignoreDependency();
 
-	public EjbRefType<T> removeAllDescription();
+   public Boolean isIgnoreDependency();
 
-	public List<String> getDescriptionList();
+   // -------------------------------------------------------------------------------------||
+   // Element type : description
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public EjbRefType<T> setEjbRefName(String ejbRefName);
+   /**
+    * Creates a new <code>description</code> element 
+    * @return the current instance of {@link EjbRefType<T>} 
+    */
+   public EjbRefType<T> setDescription(String description);
 
-	public EjbRefType<T> removeEjbRefName();
+   /**
+    * Creates for all String objects representing <code>description</code> elements, 
+    * a new <code>description</code> element 
+    * @param list of <code>description</code> objects 
+    * @return the current instance of {@link EjbRefType<T>} 
+    */
+   public EjbRefType<T> setDescriptionList(String... values);
 
-	public String getEjbRefName();
+   /**
+    * Removes the <code>description</code> element 
+    * @return the current instance of {@link EjbRefType<T>} 
+    */
+   public EjbRefType<T> removeAllDescription();
 
-	public EjbRefType<T> setEjbRefType(EjbRefTypeType ejbRefType);
+   /**
+    * Returns all <code>description</code> elements
+    * @return list of <code>description</code> 
+    */
+   public List<String> getDescriptionList();
 
-	public EjbRefType<T> setEjbRefType(String ejbRefType);
+   // -------------------------------------------------------------------------------------||
+   // Element type : ejb-ref-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public EjbRefTypeType getEjbRefType();
+   /**
+    * If not already created, a new <code>ejb-ref-name</code> element with the given value will be created.
+    * Otherwise, the existing <code>ejb-ref-name</code> element will be updated with the given value.
+    * @return the current instance of {@link EjbRefType<T>} 
+    */
+   public EjbRefType<T> setEjbRefName(String ejbRefName);
 
-	public String getEjbRefTypeAsString();
+   /**
+    * Removes the <code>ejb-ref-name</code> element 
+    * @return the current instance of {@link EjbRefType<T>} 
+    */
+   public EjbRefType<T> removeEjbRefName();
 
-	public EjbRefType<T> setHome(String home);
+   /**
+    * Returns the <code>ejb-ref-name</code> element
+    * @return the node defined for the element <code>ejb-ref-name</code> 
+    */
+   public String getEjbRefName();
 
-	public EjbRefType<T> removeHome();
+   // -------------------------------------------------------------------------------------||
+   // Element type : ejb-ref-type
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public String getHome();
+   /**
+    * If not already created, a new <code>ejb-ref-type</code> element with the given value will be created.
+    * Otherwise, the existing <code>ejb-ref-type</code> element will be updated with the given value.
+    * @return the current instance of {@link EjbRefType<T>} 
+    */
+   public EjbRefType<T> setEjbRefType(EjbRefTypeType ejbRefType);
 
-	public EjbRefType<T> setRemote(String remote);
+   /**
+    * If not already created, a new <code>ejb-ref-type</code> element with the given value will be created.
+    * Otherwise, the existing <code>ejb-ref-type</code> element will be updated with the given value.
+    * @return the current instance of {@link EjbRefType<T>} 
+    */
+   public EjbRefType<T> setEjbRefType(String ejbRefType);
 
-	public EjbRefType<T> removeRemote();
+   /**
+    * Returns the <code>ejb-ref-type</code> element
+    * @return the node defined for the element <code>ejb-ref-type</code> 
+    */
+   public EjbRefTypeType getEjbRefType();
 
-	public String getRemote();
+   /**
+    * Returns the <code>ejb-ref-type</code> element
+    * @return the node defined for the element <code>ejb-ref-type</code> 
+    */
+   public String getEjbRefTypeAsString();
 
-	public EjbRefType<T> setEjbLink(String ejbLink);
+   // -------------------------------------------------------------------------------------||
+   // Element type : home
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public EjbRefType<T> removeEjbLink();
+   /**
+    * If not already created, a new <code>home</code> element with the given value will be created.
+    * Otherwise, the existing <code>home</code> element will be updated with the given value.
+    * @return the current instance of {@link EjbRefType<T>} 
+    */
+   public EjbRefType<T> setHome(String home);
 
-	public String getEjbLink();
+   /**
+    * Removes the <code>home</code> element 
+    * @return the current instance of {@link EjbRefType<T>} 
+    */
+   public EjbRefType<T> removeHome();
+
+   /**
+    * Returns the <code>home</code> element
+    * @return the node defined for the element <code>home</code> 
+    */
+   public String getHome();
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : remote
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+
+   /**
+    * If not already created, a new <code>remote</code> element with the given value will be created.
+    * Otherwise, the existing <code>remote</code> element will be updated with the given value.
+    * @return the current instance of {@link EjbRefType<T>} 
+    */
+   public EjbRefType<T> setRemote(String remote);
+
+   /**
+    * Removes the <code>remote</code> element 
+    * @return the current instance of {@link EjbRefType<T>} 
+    */
+   public EjbRefType<T> removeRemote();
+
+   /**
+    * Returns the <code>remote</code> element
+    * @return the node defined for the element <code>remote</code> 
+    */
+   public String getRemote();
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : ejb-link
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+
+   /**
+    * If not already created, a new <code>ejb-link</code> element with the given value will be created.
+    * Otherwise, the existing <code>ejb-link</code> element will be updated with the given value.
+    * @return the current instance of {@link EjbRefType<T>} 
+    */
+   public EjbRefType<T> setEjbLink(String ejbLink);
+
+   /**
+    * Removes the <code>ejb-link</code> element 
+    * @return the current instance of {@link EjbRefType<T>} 
+    */
+   public EjbRefType<T> removeEjbLink();
+
+   /**
+    * Returns the <code>ejb-link</code> element
+    * @return the node defined for the element <code>ejb-link</code> 
+    */
+   public String getEjbLink();
 
 }

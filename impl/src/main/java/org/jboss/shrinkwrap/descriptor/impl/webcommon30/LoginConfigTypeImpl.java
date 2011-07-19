@@ -1,3 +1,19 @@
+/*
+ * JBoss, Home of Professional Open Source
+ * Copyright 2011, Red Hat Middleware LLC, and individual contributors
+ * by the @authors tag. See the copyright.txt in the distribution for a
+ * full listing of individual contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.jboss.shrinkwrap.descriptor.impl.webcommon30;
 
 import org.jboss.shrinkwrap.descriptor.api.Child;
@@ -6,102 +22,151 @@ import org.jboss.shrinkwrap.descriptor.api.webcommon30.LoginConfigType;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
- * This class is a generated class. Generation date
- * :2011-07-13T23:06:02.86+02:00
- * 
+ * This class implements the <code> login-configType </code> xsd type 
+ * <p> 
  * Original Documentation:
- * 
- * 
- * The login-configType is used to configure the authentication method that
- * should be used, the realm name that should be used for this application, and
- * the attributes that are needed by the form login mechanism.
- * 
- * Used in: web-app
- * 
- * 
- * 
+ * <p> 
+ *<br>
+ *<br>
+ * The login-configType is used to configure the authentication <br> 
+ * method that should be used, the realm name that should be <br> 
+ * used for this application, and the attributes that are <br> 
+ * needed by the form login mechanism. <br> 
+ *<br>
+ * Used in: web-app <br> 
+ *<br>
+ *<br>
+ *
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ * @since Generation date :2011-07-19T22:55:02.759+02:00
  */
-public class LoginConfigTypeImpl<T> implements Child<T>, LoginConfigType<T> {
-	// -------------------------------------------------------------------------------------||
-	// Instance Members
-	// --------------------------------------------------------------------||
-	// -------------------------------------------------------------------------------------||
+public class LoginConfigTypeImpl<T> implements Child<T>, LoginConfigType<T>
+{
+   // -------------------------------------------------------------------------------------||
+   // Instance Members 
+   // -------------------------------------------------------------------------------------||
 
-	private T t;
-	private Node node;
-	private Node childNode;
+   private T t;
 
-	// -------------------------------------------------------------------------------------||
-	// Constructor
-	// -------------------------------------------------------------------------||
-	// -------------------------------------------------------------------------------------||
+   private Node childNode;
 
-	public LoginConfigTypeImpl(T t, String nodeName, Node node) {
-		this.t = t;
-		this.node = node;
-		this.childNode = node.create(nodeName);
-	}
+   // -------------------------------------------------------------------------------------||
+   // Constructor 
+   // -------------------------------------------------------------------------------------||
 
-	public LoginConfigTypeImpl(T t, String nodeName, Node node, Node childNode) {
-		this.t = t;
-		this.node = node;
-		this.childNode = childNode;
-	}
+   public LoginConfigTypeImpl(T t, String nodeName, Node node)
+   {
+      this.t = t;
+      this.childNode = node.create(nodeName);
+   }
 
-	public T up() {
-		return t;
-	}
+   public LoginConfigTypeImpl(T t, String nodeName, Node node, Node childNode)
+   {
+      this.t = t;
+      this.childNode = childNode;
+   }
 
-	// -------------------------------------------------------------------------------------||
-	// Element type : auth-method
-	// isComplexType: false maxOccurs: - isAttribute: false
-	// -------------------------------------------------------------------------------------||
-	public LoginConfigType<T> setAuthMethod(String authMethod) {
-		childNode.getOrCreate("auth-method").text(authMethod);
-		return this;
-	}
+   public T up()
+   {
+      return t;
+   }
 
-	public LoginConfigType<T> removeAuthMethod() {
-		childNode.remove("auth-method");
-		return this;
-	}
+   // -------------------------------------------------------------------------------------||
+   // Element type : auth-method
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public String getAuthMethod() {
-		return childNode.textValue("auth-method");
-	}
+   /**
+    * If not already created, a new <code>auth-method</code> element with the given value will be created.
+    * Otherwise, the existing <code>auth-method</code> element will be updated with the given value.
+    * @return the current instance of {@link LoginConfigType<T>} 
+    */
+   public LoginConfigType<T> setAuthMethod(String authMethod)
+   {
+      childNode.getOrCreate("auth-method").text(authMethod);
+      return this;
+   }
 
-	// -------------------------------------------------------------------------------------||
-	// Element type : realm-name
-	// isComplexType: false maxOccurs: - isAttribute: false
-	// -------------------------------------------------------------------------------------||
-	public LoginConfigType<T> setRealmName(String realmName) {
-		childNode.getOrCreate("realm-name").text(realmName);
-		return this;
-	}
+   /**
+    * Removes the <code>auth-method</code> element 
+    * @return the current instance of {@link LoginConfigType<T>} 
+    */
+   public LoginConfigType<T> removeAuthMethod()
+   {
+      childNode.remove("auth-method");
+      return this;
+   }
 
-	public LoginConfigType<T> removeRealmName() {
-		childNode.remove("realm-name");
-		return this;
-	}
+   /**
+    * Returns the <code>auth-method</code> element
+    * @return the node defined for the element <code>auth-method</code> 
+    */
+   public String getAuthMethod()
+   {
+      return childNode.textValue("auth-method");
+   }
 
-	public String getRealmName() {
-		return childNode.textValue("realm-name");
-	}
+   // -------------------------------------------------------------------------------------||
+   // Element type : realm-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	// -------------------------------------------------------------------------------------||
-	// Element type : form-login-config
-	// isComplexType: true maxOccurs: - isAttribute: false
-	// -------------------------------------------------------------------------------------||
-	public LoginConfigType<T> removeFormLoginConfig() {
-		childNode.remove("form-login-config");
-		return this;
-	}
+   /**
+    * If not already created, a new <code>realm-name</code> element with the given value will be created.
+    * Otherwise, the existing <code>realm-name</code> element will be updated with the given value.
+    * @return the current instance of {@link LoginConfigType<T>} 
+    */
+   public LoginConfigType<T> setRealmName(String realmName)
+   {
+      childNode.getOrCreate("realm-name").text(realmName);
+      return this;
+   }
 
-	public FormLoginConfigType<LoginConfigType<T>> formLoginConfig() {
-		Node node = childNode.getOrCreate("form-login-config");
-		FormLoginConfigType<LoginConfigType<T>> formLoginConfig = new FormLoginConfigTypeImpl<LoginConfigType<T>>(
-				this, "form-login-config", childNode, node);
-		return formLoginConfig;
-	}
+   /**
+    * Removes the <code>realm-name</code> element 
+    * @return the current instance of {@link LoginConfigType<T>} 
+    */
+   public LoginConfigType<T> removeRealmName()
+   {
+      childNode.remove("realm-name");
+      return this;
+   }
+
+   /**
+    * Returns the <code>realm-name</code> element
+    * @return the node defined for the element <code>realm-name</code> 
+    */
+   public String getRealmName()
+   {
+      return childNode.textValue("realm-name");
+   }
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : form-login-config
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+
+   /**
+    * Removes the <code>form-login-config</code> element 
+    * @return the current instance of {@link LoginConfigType<T>} 
+    */
+   public LoginConfigType<T> removeFormLoginConfig()
+   {
+      childNode.remove("form-login-config");
+      return this;
+   }
+
+   /**
+    * If not already created, a new <code>form-login-config</code> element will be created and returned.
+    * Otherwise, the existing <code>form-login-config</code> element will be returned.
+    * @return the node defined for the element <code>form-login-config</code> 
+    */
+   public FormLoginConfigType<LoginConfigType<T>> formLoginConfig()
+   {
+      Node node = childNode.getOrCreate("form-login-config");
+      FormLoginConfigType<LoginConfigType<T>> formLoginConfig = new FormLoginConfigTypeImpl<LoginConfigType<T>>(this,
+            "form-login-config", childNode, node);
+      return formLoginConfig;
+   }
 
 }

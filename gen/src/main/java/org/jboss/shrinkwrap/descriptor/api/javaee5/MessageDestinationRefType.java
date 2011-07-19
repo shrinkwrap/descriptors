@@ -1,3 +1,19 @@
+/*
+ * JBoss, Home of Professional Open Source
+ * Copyright 2011, Red Hat Middleware LLC, and individual contributors
+ * by the @authors tag. See the copyright.txt in the distribution for a
+ * full listing of individual contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.jboss.shrinkwrap.descriptor.api.javaee5;
 
 import java.util.List;
@@ -5,91 +21,235 @@ import java.util.List;
 import org.jboss.shrinkwrap.descriptor.api.Child;
 
 /**
- * This class is a generated class. Generation date
- * :2011-07-13T23:06:05.059+02:00
- * 
+ * This interface defines the contract for the <code> message-destination-refType </code> xsd type 
+ * <p> 
  * Original Documentation:
- * 
- * 
- * 
- * The message-destination-ref element contains a declaration of Deployment
- * Component's reference to a message destination associated with a resource in
- * Deployment Component's environment. It consists of:
- * 
- * - an optional description - the message destination reference name - an
- * optional message destination type - an optional specification as to whether
- * the destination is used for consuming or producing messages, or both. if not
- * specified, "both" is assumed. - an optional link to the message destination -
- * optional injection targets
- * 
- * The message destination type must be supplied unless an injection target is
- * specified, in which case the type of the target is used. If both are
- * specified, the type must be assignment compatible with the type of the
- * injection target.
- * 
- * Examples:
- * 
- * <message-destination-ref> <message-destination-ref-name>jms/StockQueue
- * </message-destination-ref-name> <message-destination-type>javax.jms.Queue
- * </message-destination-type> <message-destination-usage>Consumes
- * </message-destination-usage> <message-destination-link>CorporateStocks
- * </message-destination-link> </message-destination-ref>
- * 
- * 
- * 
- * 
+ * <p> 
+ *<br>
+ *<br>
+ *<br>
+ * The message-destination-ref element contains a declaration <br> 
+ * of Deployment Component's reference to a message destination <br> 
+ * associated with a resource in Deployment Component's <br> 
+ * environment. It consists of: <br> 
+ *<br>
+ * - an optional description <br> 
+ * - the message destination reference name <br> 
+ * - an optional message destination type <br> 
+ * - an optional specification as to whether <br> 
+ * the destination is used for <br> 
+ * consuming or producing messages, or both. <br> 
+ * if not specified, "both" is assumed. <br> 
+ * - an optional link to the message destination <br> 
+ * - optional injection targets <br> 
+ *<br>
+ * The message destination type must be supplied unless an <br> 
+ * injection target is specified, in which case the type <br> 
+ * of the target is used. If both are specified, the type <br> 
+ * must be assignment compatible with the type of the injection <br> 
+ * target. <br> 
+ *<br>
+ * Examples: <br> 
+ *<br>
+ * <message-destination-ref> <br> 
+ * <message-destination-ref-name>jms/StockQueue <br> 
+ * </message-destination-ref-name> <br> 
+ * <message-destination-type>javax.jms.Queue <br> 
+ * </message-destination-type> <br> 
+ * <message-destination-usage>Consumes <br> 
+ * </message-destination-usage> <br> 
+ * <message-destination-link>CorporateStocks <br> 
+ * </message-destination-link> <br> 
+ * </message-destination-ref> <br> 
+ *<br>
+ *<br>
+ *<br>
+ *
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ * @since Generation date :2011-07-19T22:54:35.59+02:00
  */
-public interface MessageDestinationRefType<T> extends Child<T> {
+public interface MessageDestinationRefType<T> extends Child<T>
+{
 
-	public MessageDestinationRefType<T> setMappedName(String mappedName);
+   // -------------------------------------------------------------------------------------||
+   // Element type : mapped-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public MessageDestinationRefType<T> removeMappedName();
+   /**
+    * If not already created, a new <code>mapped-name</code> element with the given value will be created.
+    * Otherwise, the existing <code>mapped-name</code> element will be updated with the given value.
+    * @return the current instance of {@link MessageDestinationRefType<T>} 
+    */
+   public MessageDestinationRefType<T> setMappedName(String mappedName);
 
-	public String getMappedName();
+   /**
+    * Removes the <code>mapped-name</code> element 
+    * @return the current instance of {@link MessageDestinationRefType<T>} 
+    */
+   public MessageDestinationRefType<T> removeMappedName();
 
-	public MessageDestinationRefType<T> removeAllInjectionTarget();
+   /**
+    * Returns the <code>mapped-name</code> element
+    * @return the node defined for the element <code>mapped-name</code> 
+    */
+   public String getMappedName();
 
-	public InjectionTargetType<MessageDestinationRefType<T>> injectionTarget();
+   // -------------------------------------------------------------------------------------||
+   // Element type : injection-target
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public List<InjectionTargetType<MessageDestinationRefType<T>>> getInjectionTargetList();
+   /**
+    * Removes all <code>injection-target</code> elements 
+    * @return the current instance of {@link MessageDestinationRefType<T>} 
+    */
+   public MessageDestinationRefType<T> removeAllInjectionTarget();
 
-	public MessageDestinationRefType<T> setDescription(String description);
+   /**
+    * Returns the <code>injection-target</code> element
+    * @return the node defined for the element <code>injection-target</code> 
+    */
+   public InjectionTargetType<MessageDestinationRefType<T>> injectionTarget();
 
-	public MessageDestinationRefType<T> setDescriptionList(String... values);
+   /**
+    * Returns all <code>injection-target</code> elements
+    * @return list of <code>injection-target</code> 
+    */
+   public List<InjectionTargetType<MessageDestinationRefType<T>>> getInjectionTargetList();
 
-	public MessageDestinationRefType<T> removeAllDescription();
+   // -------------------------------------------------------------------------------------||
+   // Element type : description
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public List<String> getDescriptionList();
+   /**
+    * Creates a new <code>description</code> element 
+    * @return the current instance of {@link MessageDestinationRefType<T>} 
+    */
+   public MessageDestinationRefType<T> setDescription(String description);
 
-	public MessageDestinationRefType<T> setMessageDestinationRefName(
-			String messageDestinationRefName);
+   /**
+    * Creates for all String objects representing <code>description</code> elements, 
+    * a new <code>description</code> element 
+    * @param list of <code>description</code> objects 
+    * @return the current instance of {@link MessageDestinationRefType<T>} 
+    */
+   public MessageDestinationRefType<T> setDescriptionList(String... values);
 
-	public MessageDestinationRefType<T> removeMessageDestinationRefName();
+   /**
+    * Removes the <code>description</code> element 
+    * @return the current instance of {@link MessageDestinationRefType<T>} 
+    */
+   public MessageDestinationRefType<T> removeAllDescription();
 
-	public String getMessageDestinationRefName();
+   /**
+    * Returns all <code>description</code> elements
+    * @return list of <code>description</code> 
+    */
+   public List<String> getDescriptionList();
 
-	public MessageDestinationRefType<T> setMessageDestinationType(
-			String messageDestinationType);
+   // -------------------------------------------------------------------------------------||
+   // Element type : message-destination-ref-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public MessageDestinationRefType<T> removeMessageDestinationType();
+   /**
+    * If not already created, a new <code>message-destination-ref-name</code> element with the given value will be created.
+    * Otherwise, the existing <code>message-destination-ref-name</code> element will be updated with the given value.
+    * @return the current instance of {@link MessageDestinationRefType<T>} 
+    */
+   public MessageDestinationRefType<T> setMessageDestinationRefName(String messageDestinationRefName);
 
-	public String getMessageDestinationType();
+   /**
+    * Removes the <code>message-destination-ref-name</code> element 
+    * @return the current instance of {@link MessageDestinationRefType<T>} 
+    */
+   public MessageDestinationRefType<T> removeMessageDestinationRefName();
 
-	public MessageDestinationRefType<T> setMessageDestinationUsage(
-			MessageDestinationUsageType messageDestinationUsage);
+   /**
+    * Returns the <code>message-destination-ref-name</code> element
+    * @return the node defined for the element <code>message-destination-ref-name</code> 
+    */
+   public String getMessageDestinationRefName();
 
-	public MessageDestinationRefType<T> setMessageDestinationUsage(
-			String messageDestinationUsage);
+   // -------------------------------------------------------------------------------------||
+   // Element type : message-destination-type
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public MessageDestinationUsageType getMessageDestinationUsage();
+   /**
+    * If not already created, a new <code>message-destination-type</code> element with the given value will be created.
+    * Otherwise, the existing <code>message-destination-type</code> element will be updated with the given value.
+    * @return the current instance of {@link MessageDestinationRefType<T>} 
+    */
+   public MessageDestinationRefType<T> setMessageDestinationType(String messageDestinationType);
 
-	public String getMessageDestinationUsageAsString();
+   /**
+    * Removes the <code>message-destination-type</code> element 
+    * @return the current instance of {@link MessageDestinationRefType<T>} 
+    */
+   public MessageDestinationRefType<T> removeMessageDestinationType();
 
-	public MessageDestinationRefType<T> setMessageDestinationLink(
-			String messageDestinationLink);
+   /**
+    * Returns the <code>message-destination-type</code> element
+    * @return the node defined for the element <code>message-destination-type</code> 
+    */
+   public String getMessageDestinationType();
 
-	public MessageDestinationRefType<T> removeMessageDestinationLink();
+   // -------------------------------------------------------------------------------------||
+   // Element type : message-destination-usage
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public String getMessageDestinationLink();
+   /**
+    * If not already created, a new <code>message-destination-usage</code> element with the given value will be created.
+    * Otherwise, the existing <code>message-destination-usage</code> element will be updated with the given value.
+    * @return the current instance of {@link MessageDestinationRefType<T>} 
+    */
+   public MessageDestinationRefType<T> setMessageDestinationUsage(MessageDestinationUsageType messageDestinationUsage);
+
+   /**
+    * If not already created, a new <code>message-destination-usage</code> element with the given value will be created.
+    * Otherwise, the existing <code>message-destination-usage</code> element will be updated with the given value.
+    * @return the current instance of {@link MessageDestinationRefType<T>} 
+    */
+   public MessageDestinationRefType<T> setMessageDestinationUsage(String messageDestinationUsage);
+
+   /**
+    * Returns the <code>message-destination-usage</code> element
+    * @return the node defined for the element <code>message-destination-usage</code> 
+    */
+   public MessageDestinationUsageType getMessageDestinationUsage();
+
+   /**
+    * Returns the <code>message-destination-usage</code> element
+    * @return the node defined for the element <code>message-destination-usage</code> 
+    */
+   public String getMessageDestinationUsageAsString();
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : message-destination-link
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+
+   /**
+    * If not already created, a new <code>message-destination-link</code> element with the given value will be created.
+    * Otherwise, the existing <code>message-destination-link</code> element will be updated with the given value.
+    * @return the current instance of {@link MessageDestinationRefType<T>} 
+    */
+   public MessageDestinationRefType<T> setMessageDestinationLink(String messageDestinationLink);
+
+   /**
+    * Removes the <code>message-destination-link</code> element 
+    * @return the current instance of {@link MessageDestinationRefType<T>} 
+    */
+   public MessageDestinationRefType<T> removeMessageDestinationLink();
+
+   /**
+    * Returns the <code>message-destination-link</code> element
+    * @return the node defined for the element <code>message-destination-link</code> 
+    */
+   public String getMessageDestinationLink();
 
 }

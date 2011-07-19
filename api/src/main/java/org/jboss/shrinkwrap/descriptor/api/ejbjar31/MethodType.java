@@ -1,3 +1,19 @@
+/*
+ * JBoss, Home of Professional Open Source
+ * Copyright 2011, Red Hat Middleware LLC, and individual contributors
+ * by the @authors tag. See the copyright.txt in the distribution for a
+ * full listing of individual contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.jboss.shrinkwrap.descriptor.api.ejbjar31;
 
 import java.util.List;
@@ -5,163 +21,322 @@ import java.util.List;
 import org.jboss.shrinkwrap.descriptor.api.Child;
 
 /**
- * This class is a generated class. Generation date
- * :2011-07-13T23:06:02.86+02:00
- * 
+ * This interface defines the contract for the <code> methodType </code> xsd type 
+ * <p> 
  * Original Documentation:
- * 
- * [ The methodType is used to denote a method of an enterprise bean's business,
- * home, component, and/or web service endpoint interface, or, in the case of a
- * message-driven bean, the bean's message listener method, or a set of such
- * methods. The ejb-name element must be the name of one of the enterprise beans
- * declared in the deployment descriptor; the optional method-intf element
- * allows to distinguish between a method with the same signature that is
- * multiply defined across the business, home, component, and/or web service
- * endpoint nterfaces; the method-name element specifies the method name; and
- * the optional method-params elements identify a single method among multiple
- * methods with an overloaded method name.
- * 
- * There are three possible styles of using methodType element within a method
- * element:
- * 
- * 1. <method> <ejb-name>EJBNAME</ejb-name> <method-name>*</method-name>
- * </method>
- * 
- * This style is used to refer to all the methods of the specified enterprise
- * bean's business, home, component, and/or web service endpoint interfaces.
- * 
- * 2. <method> <ejb-name>EJBNAME</ejb-name> <method-name>METHOD</method-name>
- * </method>
- * 
- * This style is used to refer to the specified method of the specified
- * enterprise bean. If there are multiple methods with the same overloaded name,
- * the element of this style refers to all the methods with the overloaded name.
- * 
- * 3. <method> <ejb-name>EJBNAME</ejb-name> <method-name>METHOD</method-name>
- * <method-params> <method-param>PARAM-1</method-param>
- * <method-param>PARAM-2</method-param> ... <method-param>PARAM-n</method-param>
- * </method-params> </method>
- * 
- * This style is used to refer to a single method within a set of methods with
- * an overloaded name. PARAM-1 through PARAM-n are the fully-qualified Java
- * types of the method's input parameters (if the method has no input arguments,
- * the method-params element contains no method-param elements). Arrays are
- * specified by the array element's type, followed by one or more pair of square
- * brackets (e.g. int[][]). If there are multiple methods with the same
- * overloaded name, this style refers to all of the overloaded methods.
- * 
- * Examples:
- * 
- * Style 1: The following method element refers to all the methods of the
- * EmployeeService bean's business, home, component, and/or web service endpoint
- * interfaces:
- * 
- * <method> <ejb-name>EmployeeService</ejb-name> <method-name>*</method-name>
- * </method>
- * 
- * Style 2: The following method element refers to all the create methods of the
- * EmployeeService bean's home interface(s).
- * 
- * <method> <ejb-name>EmployeeService</ejb-name>
- * <method-name>create</method-name> </method>
- * 
- * Style 3: The following method element refers to the create(String firstName,
- * String LastName) method of the EmployeeService bean's home interface(s).
- * 
- * <method> <ejb-name>EmployeeService</ejb-name>
- * <method-name>create</method-name> <method-params>
- * <method-param>java.lang.String</method-param>
- * <method-param>java.lang.String</method-param> </method-params> </method>
- * 
- * The following example illustrates a Style 3 element with more complex
- * parameter types. The method foobar(char s, int i, int[] iar,
- * mypackage.MyClass mycl, mypackage.MyClass[][] myclaar) would be specified as:
- * 
- * <method> <ejb-name>EmployeeService</ejb-name>
- * <method-name>foobar</method-name> <method-params>
- * <method-param>char</method-param> <method-param>int</method-param>
- * <method-param>int[]</method-param>
- * <method-param>mypackage.MyClass</method-param>
- * <method-param>mypackage.MyClass[][]</method-param> </method-params> </method>
- * 
- * The optional method-intf element can be used when it becomes necessary to
- * differentiate between a method that is multiply defined across the enterprise
- * bean's business, home, component, and/or web service endpoint interfaces with
- * the same name and signature. However, if the same method is a method of both
- * the local business interface, and the local component interface, the same
- * attribute applies to the method for both interfaces. Likewise, if the same
- * method is a method of both the remote business interface and the remote
- * component interface, the same attribute applies to the method for both
- * interfaces.
- * 
- * For example, the method element
- * 
- * <method> <ejb-name>EmployeeService</ejb-name>
- * <method-intf>Remote</method-intf> <method-name>create</method-name>
- * <method-params> <method-param>java.lang.String</method-param>
- * <method-param>java.lang.String</method-param> </method-params> </method>
- * 
- * can be used to differentiate the create(String, String) method defined in the
- * remote interface from the create(String, String) method defined in the remote
- * home interface, which would be defined as
- * 
- * <method> <ejb-name>EmployeeService</ejb-name> <method-intf>Home</method-intf>
- * <method-name>create</method-name> <method-params>
- * <method-param>java.lang.String</method-param>
- * <method-param>java.lang.String</method-param> </method-params> </method>
- * 
- * and the create method that is defined in the local home interface which would
- * be defined as
- * 
- * <method> <ejb-name>EmployeeService</ejb-name>
- * <method-intf>LocalHome</method-intf> <method-name>create</method-name>
- * <method-params> <method-param>java.lang.String</method-param>
- * <method-param>java.lang.String</method-param> </method-params> </method>
- * 
- * The method-intf element can be used with all three Styles of the method
- * element usage. For example, the following method element example could be
- * used to refer to all the methods of the EmployeeService bean's remote home
- * interface and the remote business interface.
- * 
- * <method> <ejb-name>EmployeeService</ejb-name> <method-intf>Home</method-intf>
- * <method-name>*</method-name> </method>
- * 
- * 
- * 
- * 
+ * <p> 
+ *<br>
+ * [ <br> 
+ * The methodType is used to denote a method of an enterprise <br> 
+ * bean's business, home, component, and/or web service endpoint <br> 
+ * interface, or, in the case of a message-driven bean, the <br> 
+ * bean's message listener method, or a set of such <br> 
+ * methods. The ejb-name element must be the name of one of the <br> 
+ * enterprise beans declared in the deployment descriptor; the <br> 
+ * optional method-intf element allows to distinguish between a <br> 
+ * method with the same signature that is multiply defined <br> 
+ * across the business, home, component, and/or web service <br> 
+ * endpoint nterfaces; the method-name element specifies the <br> 
+ * method name; and the optional method-params elements identify <br> 
+ * a single method among multiple methods with an overloaded <br> 
+ * method name. <br> 
+ *<br>
+ * There are three possible styles of using methodType element <br> 
+ * within a method element: <br> 
+ *<br>
+ * 1. <br> 
+ * <method> <br> 
+ * <ejb-name>EJBNAME</ejb-name> <br> 
+ * <method-name>*</method-name> <br> 
+ * </method> <br> 
+ *<br>
+ * This style is used to refer to all the methods of the <br> 
+ * specified enterprise bean's business, home, component, <br> 
+ * and/or web service endpoint interfaces. <br> 
+ *<br>
+ * 2. <br> 
+ * <method> <br> 
+ * <ejb-name>EJBNAME</ejb-name> <br> 
+ * <method-name>METHOD</method-name> <br> 
+ * </method> <br> 
+ *<br>
+ * This style is used to refer to the specified method of <br> 
+ * the specified enterprise bean. If there are multiple <br> 
+ * methods with the same overloaded name, the element of <br> 
+ * this style refers to all the methods with the overloaded <br> 
+ * name. <br> 
+ *<br>
+ * 3. <br> 
+ * <method> <br> 
+ * <ejb-name>EJBNAME</ejb-name> <br> 
+ * <method-name>METHOD</method-name> <br> 
+ * <method-params> <br> 
+ * <method-param>PARAM-1</method-param> <br> 
+ * <method-param>PARAM-2</method-param> <br> 
+ * ... <br> 
+ * <method-param>PARAM-n</method-param> <br> 
+ * </method-params> <br> 
+ * </method> <br> 
+ *<br>
+ * This style is used to refer to a single method within a <br> 
+ * set of methods with an overloaded name. PARAM-1 through <br> 
+ * PARAM-n are the fully-qualified Java types of the <br> 
+ * method's input parameters (if the method has no input <br> 
+ * arguments, the method-params element contains no <br> 
+ * method-param elements). Arrays are specified by the <br> 
+ * array element's type, followed by one or more pair of <br> 
+ * square brackets (e.g. int[][]). If there are multiple <br> 
+ * methods with the same overloaded name, this style refers <br> 
+ * to all of the overloaded methods. <br> 
+ *<br>
+ * Examples: <br> 
+ *<br>
+ * Style 1: The following method element refers to all the <br> 
+ * methods of the EmployeeService bean's business, home, <br> 
+ * component, and/or web service endpoint interfaces: <br> 
+ *<br>
+ * <method> <br> 
+ * <ejb-name>EmployeeService</ejb-name> <br> 
+ * <method-name>*</method-name> <br> 
+ * </method> <br> 
+ *<br>
+ * Style 2: The following method element refers to all the <br> 
+ * create methods of the EmployeeService bean's home <br> 
+ * interface(s). <br> 
+ *<br>
+ * <method> <br> 
+ * <ejb-name>EmployeeService</ejb-name> <br> 
+ * <method-name>create</method-name> <br> 
+ * </method> <br> 
+ *<br>
+ * Style 3: The following method element refers to the <br> 
+ * create(String firstName, String LastName) method of the <br> 
+ * EmployeeService bean's home interface(s). <br> 
+ *<br>
+ * <method> <br> 
+ * <ejb-name>EmployeeService</ejb-name> <br> 
+ * <method-name>create</method-name> <br> 
+ * <method-params> <br> 
+ * <method-param>java.lang.String</method-param> <br> 
+ * <method-param>java.lang.String</method-param> <br> 
+ * </method-params> <br> 
+ * </method> <br> 
+ *<br>
+ * The following example illustrates a Style 3 element with <br> 
+ * more complex parameter types. The method <br> 
+ * foobar(char s, int i, int[] iar, mypackage.MyClass mycl, <br> 
+ * mypackage.MyClass[][] myclaar) would be specified as: <br> 
+ *<br>
+ * <method> <br> 
+ * <ejb-name>EmployeeService</ejb-name> <br> 
+ * <method-name>foobar</method-name> <br> 
+ * <method-params> <br> 
+ * <method-param>char</method-param> <br> 
+ * <method-param>int</method-param> <br> 
+ * <method-param>int[]</method-param> <br> 
+ * <method-param>mypackage.MyClass</method-param> <br> 
+ * <method-param>mypackage.MyClass[][]</method-param> <br> 
+ * </method-params> <br> 
+ * </method> <br> 
+ *<br>
+ * The optional method-intf element can be used when it becomes <br> 
+ * necessary to differentiate between a method that is multiply <br> 
+ * defined across the enterprise bean's business, home, component, <br> 
+ * and/or web service endpoint interfaces with the same name and <br> 
+ * signature. However, if the same method is a method of both the <br> 
+ * local business interface, and the local component interface, <br> 
+ * the same attribute applies to the method for both interfaces. <br> 
+ * Likewise, if the same method is a method of both the remote <br> 
+ * business interface and the remote component interface, the same <br> 
+ * attribute applies to the method for both interfaces. <br> 
+ *<br>
+ * For example, the method element <br> 
+ *<br>
+ * <method> <br> 
+ * <ejb-name>EmployeeService</ejb-name> <br> 
+ * <method-intf>Remote</method-intf> <br> 
+ * <method-name>create</method-name> <br> 
+ * <method-params> <br> 
+ * <method-param>java.lang.String</method-param> <br> 
+ * <method-param>java.lang.String</method-param> <br> 
+ * </method-params> <br> 
+ * </method> <br> 
+ *<br>
+ * can be used to differentiate the create(String, String) <br> 
+ * method defined in the remote interface from the <br> 
+ * create(String, String) method defined in the remote home <br> 
+ * interface, which would be defined as <br> 
+ *<br>
+ * <method> <br> 
+ * <ejb-name>EmployeeService</ejb-name> <br> 
+ * <method-intf>Home</method-intf> <br> 
+ * <method-name>create</method-name> <br> 
+ * <method-params> <br> 
+ * <method-param>java.lang.String</method-param> <br> 
+ * <method-param>java.lang.String</method-param> <br> 
+ * </method-params> <br> 
+ * </method> <br> 
+ *<br>
+ * and the create method that is defined in the local home <br> 
+ * interface which would be defined as <br> 
+ *<br>
+ * <method> <br> 
+ * <ejb-name>EmployeeService</ejb-name> <br> 
+ * <method-intf>LocalHome</method-intf> <br> 
+ * <method-name>create</method-name> <br> 
+ * <method-params> <br> 
+ * <method-param>java.lang.String</method-param> <br> 
+ * <method-param>java.lang.String</method-param> <br> 
+ * </method-params> <br> 
+ * </method> <br> 
+ *<br>
+ * The method-intf element can be used with all three Styles <br> 
+ * of the method element usage. For example, the following <br> 
+ * method element example could be used to refer to all the <br> 
+ * methods of the EmployeeService bean's remote home interface <br> 
+ * and the remote business interface. <br> 
+ *<br>
+ * <method> <br> 
+ * <ejb-name>EmployeeService</ejb-name> <br> 
+ * <method-intf>Home</method-intf> <br> 
+ * <method-name>*</method-name> <br> 
+ * </method> <br> 
+ *<br>
+ *<br>
+ *<br>
+ *
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ * @since Generation date :2011-07-19T22:55:02.759+02:00
  */
-public interface MethodType<T> extends Child<T> {
+public interface MethodType<T> extends Child<T>
+{
 
-	public MethodType<T> setDescription(String description);
+   // -------------------------------------------------------------------------------------||
+   // Element type : description
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public MethodType<T> setDescriptionList(String... values);
+   /**
+    * Creates a new <code>description</code> element 
+    * @return the current instance of {@link MethodType<T>} 
+    */
+   public MethodType<T> setDescription(String description);
 
-	public MethodType<T> removeAllDescription();
+   /**
+    * Creates for all String objects representing <code>description</code> elements, 
+    * a new <code>description</code> element 
+    * @param list of <code>description</code> objects 
+    * @return the current instance of {@link MethodType<T>} 
+    */
+   public MethodType<T> setDescriptionList(String... values);
 
-	public List<String> getDescriptionList();
+   /**
+    * Removes the <code>description</code> element 
+    * @return the current instance of {@link MethodType<T>} 
+    */
+   public MethodType<T> removeAllDescription();
 
-	public MethodType<T> setEjbName(String ejbName);
+   /**
+    * Returns all <code>description</code> elements
+    * @return list of <code>description</code> 
+    */
+   public List<String> getDescriptionList();
 
-	public MethodType<T> removeEjbName();
+   // -------------------------------------------------------------------------------------||
+   // Element type : ejb-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public String getEjbName();
+   /**
+    * If not already created, a new <code>ejb-name</code> element with the given value will be created.
+    * Otherwise, the existing <code>ejb-name</code> element will be updated with the given value.
+    * @return the current instance of {@link MethodType<T>} 
+    */
+   public MethodType<T> setEjbName(String ejbName);
 
-	public MethodType<T> setMethodIntf(MethodIntfType methodIntf);
+   /**
+    * Removes the <code>ejb-name</code> element 
+    * @return the current instance of {@link MethodType<T>} 
+    */
+   public MethodType<T> removeEjbName();
 
-	public MethodType<T> setMethodIntf(String methodIntf);
+   /**
+    * Returns the <code>ejb-name</code> element
+    * @return the node defined for the element <code>ejb-name</code> 
+    */
+   public String getEjbName();
 
-	public MethodIntfType getMethodIntf();
+   // -------------------------------------------------------------------------------------||
+   // Element type : method-intf
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public String getMethodIntfAsString();
+   /**
+    * If not already created, a new <code>method-intf</code> element with the given value will be created.
+    * Otherwise, the existing <code>method-intf</code> element will be updated with the given value.
+    * @return the current instance of {@link MethodType<T>} 
+    */
+   public MethodType<T> setMethodIntf(MethodIntfType methodIntf);
 
-	public MethodType<T> setMethodName(String methodName);
+   /**
+    * If not already created, a new <code>method-intf</code> element with the given value will be created.
+    * Otherwise, the existing <code>method-intf</code> element will be updated with the given value.
+    * @return the current instance of {@link MethodType<T>} 
+    */
+   public MethodType<T> setMethodIntf(String methodIntf);
 
-	public MethodType<T> removeMethodName();
+   /**
+    * Returns the <code>method-intf</code> element
+    * @return the node defined for the element <code>method-intf</code> 
+    */
+   public MethodIntfType getMethodIntf();
 
-	public String getMethodName();
+   /**
+    * Returns the <code>method-intf</code> element
+    * @return the node defined for the element <code>method-intf</code> 
+    */
+   public String getMethodIntfAsString();
 
-	public MethodType<T> removeMethodParams();
+   // -------------------------------------------------------------------------------------||
+   // Element type : method-name
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public MethodParamsType<MethodType<T>> methodParams();
+   /**
+    * If not already created, a new <code>method-name</code> element with the given value will be created.
+    * Otherwise, the existing <code>method-name</code> element will be updated with the given value.
+    * @return the current instance of {@link MethodType<T>} 
+    */
+   public MethodType<T> setMethodName(String methodName);
+
+   /**
+    * Removes the <code>method-name</code> element 
+    * @return the current instance of {@link MethodType<T>} 
+    */
+   public MethodType<T> removeMethodName();
+
+   /**
+    * Returns the <code>method-name</code> element
+    * @return the node defined for the element <code>method-name</code> 
+    */
+   public String getMethodName();
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : method-params
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+
+   /**
+    * Removes the <code>method-params</code> element 
+    * @return the current instance of {@link MethodType<T>} 
+    */
+   public MethodType<T> removeMethodParams();
+
+   /**
+    * If not already created, a new <code>method-params</code> element will be created and returned.
+    * Otherwise, the existing <code>method-params</code> element will be returned.
+    * @return the node defined for the element <code>method-params</code> 
+    */
+   public MethodParamsType<MethodType<T>> methodParams();
 
 }

@@ -1,3 +1,19 @@
+/*
+ * JBoss, Home of Professional Open Source
+ * Copyright 2011, Red Hat Middleware LLC, and individual contributors
+ * by the @authors tag. See the copyright.txt in the distribution for a
+ * full listing of individual contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.jboss.shrinkwrap.descriptor.api.ejbjar31;
 
 import java.util.List;
@@ -15,132 +31,434 @@ import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceEnvRefType;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.ResourceRefType;
 
 /**
- * This class is a generated class. Generation date
- * :2011-07-13T23:06:02.86+02:00
- * 
+ * This interface defines the contract for the <code> interceptorType </code> xsd type 
+ * <p> 
  * Original Documentation:
- * 
- * 
- * The interceptorType element declares information about a single interceptor
- * class. It consists of :
- * 
- * - An optional description. - The fully-qualified name of the interceptor
- * class. - An optional list of around invoke methods declared on the
- * interceptor class and/or its super-classes. - An optional list of around
- * timeout methods declared on the interceptor class and/or its super-classes. -
- * An optional list environment dependencies for the interceptor class and/or
- * its super-classes. - An optional list of post-activate methods declared on
- * the interceptor class and/or its super-classes. - An optional list of
- * pre-passivate methods declared on the interceptor class and/or its
- * super-classes.
- * 
- * 
- * 
+ * <p> 
+ *<br>
+ *<br>
+ * The interceptorType element declares information about a single <br> 
+ * interceptor class. It consists of : <br> 
+ *<br>
+ * - An optional description. <br> 
+ * - The fully-qualified name of the interceptor class. <br> 
+ * - An optional list of around invoke methods declared on the <br> 
+ * interceptor class and/or its super-classes. <br> 
+ * - An optional list of around timeout methods declared on the <br> 
+ * interceptor class and/or its super-classes. <br> 
+ * - An optional list environment dependencies for the interceptor <br> 
+ * class and/or its super-classes. <br> 
+ * - An optional list of post-activate methods declared on the <br> 
+ * interceptor class and/or its super-classes. <br> 
+ * - An optional list of pre-passivate methods declared on the <br> 
+ * interceptor class and/or its super-classes. <br> 
+ *<br>
+ *<br>
+ *
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ * @since Generation date :2011-07-19T22:55:02.759+02:00
  */
-public interface InterceptorType<T> extends Child<T> {
+public interface InterceptorType<T> extends Child<T>
+{
 
-	public InterceptorType<T> removeAllEnvEntry();
+   // -------------------------------------------------------------------------------------||
+   // Element type : env-entry
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public EnvEntryType<InterceptorType<T>> envEntry();
+   /**
+    * Removes all <code>env-entry</code> elements 
+    * @return the current instance of {@link InterceptorType<T>} 
+    */
+   public InterceptorType<T> removeAllEnvEntry();
 
-	public List<EnvEntryType<InterceptorType<T>>> getEnvEntryList();
+   /**
+    * Returns the <code>env-entry</code> element
+    * @return the node defined for the element <code>env-entry</code> 
+    */
+   public EnvEntryType<InterceptorType<T>> envEntry();
 
-	public InterceptorType<T> removeAllEjbRef();
+   /**
+    * Returns all <code>env-entry</code> elements
+    * @return list of <code>env-entry</code> 
+    */
+   public List<EnvEntryType<InterceptorType<T>>> getEnvEntryList();
 
-	public EjbRefType<InterceptorType<T>> ejbRef();
+   // -------------------------------------------------------------------------------------||
+   // Element type : ejb-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public List<EjbRefType<InterceptorType<T>>> getEjbRefList();
+   /**
+    * Removes all <code>ejb-ref</code> elements 
+    * @return the current instance of {@link InterceptorType<T>} 
+    */
+   public InterceptorType<T> removeAllEjbRef();
 
-	public InterceptorType<T> removeAllEjbLocalRef();
+   /**
+    * Returns the <code>ejb-ref</code> element
+    * @return the node defined for the element <code>ejb-ref</code> 
+    */
+   public EjbRefType<InterceptorType<T>> ejbRef();
 
-	public EjbLocalRefType<InterceptorType<T>> ejbLocalRef();
+   /**
+    * Returns all <code>ejb-ref</code> elements
+    * @return list of <code>ejb-ref</code> 
+    */
+   public List<EjbRefType<InterceptorType<T>>> getEjbRefList();
 
-	public List<EjbLocalRefType<InterceptorType<T>>> getEjbLocalRefList();
+   // -------------------------------------------------------------------------------------||
+   // Element type : ejb-local-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public InterceptorType<T> removeAllResourceRef();
+   /**
+    * Removes all <code>ejb-local-ref</code> elements 
+    * @return the current instance of {@link InterceptorType<T>} 
+    */
+   public InterceptorType<T> removeAllEjbLocalRef();
 
-	public ResourceRefType<InterceptorType<T>> resourceRef();
+   /**
+    * Returns the <code>ejb-local-ref</code> element
+    * @return the node defined for the element <code>ejb-local-ref</code> 
+    */
+   public EjbLocalRefType<InterceptorType<T>> ejbLocalRef();
 
-	public List<ResourceRefType<InterceptorType<T>>> getResourceRefList();
+   /**
+    * Returns all <code>ejb-local-ref</code> elements
+    * @return list of <code>ejb-local-ref</code> 
+    */
+   public List<EjbLocalRefType<InterceptorType<T>>> getEjbLocalRefList();
 
-	public InterceptorType<T> removeAllResourceEnvRef();
+   // -------------------------------------------------------------------------------------||
+   // Element type : resource-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public ResourceEnvRefType<InterceptorType<T>> resourceEnvRef();
+   /**
+    * Removes all <code>resource-ref</code> elements 
+    * @return the current instance of {@link InterceptorType<T>} 
+    */
+   public InterceptorType<T> removeAllResourceRef();
 
-	public List<ResourceEnvRefType<InterceptorType<T>>> getResourceEnvRefList();
+   /**
+    * Returns the <code>resource-ref</code> element
+    * @return the node defined for the element <code>resource-ref</code> 
+    */
+   public ResourceRefType<InterceptorType<T>> resourceRef();
 
-	public InterceptorType<T> removeAllMessageDestinationRef();
+   /**
+    * Returns all <code>resource-ref</code> elements
+    * @return list of <code>resource-ref</code> 
+    */
+   public List<ResourceRefType<InterceptorType<T>>> getResourceRefList();
 
-	public MessageDestinationRefType<InterceptorType<T>> messageDestinationRef();
+   // -------------------------------------------------------------------------------------||
+   // Element type : resource-env-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public List<MessageDestinationRefType<InterceptorType<T>>> getMessageDestinationRefList();
+   /**
+    * Removes all <code>resource-env-ref</code> elements 
+    * @return the current instance of {@link InterceptorType<T>} 
+    */
+   public InterceptorType<T> removeAllResourceEnvRef();
 
-	public InterceptorType<T> removeAllPersistenceContextRef();
+   /**
+    * Returns the <code>resource-env-ref</code> element
+    * @return the node defined for the element <code>resource-env-ref</code> 
+    */
+   public ResourceEnvRefType<InterceptorType<T>> resourceEnvRef();
 
-	public PersistenceContextRefType<InterceptorType<T>> persistenceContextRef();
+   /**
+    * Returns all <code>resource-env-ref</code> elements
+    * @return list of <code>resource-env-ref</code> 
+    */
+   public List<ResourceEnvRefType<InterceptorType<T>>> getResourceEnvRefList();
 
-	public List<PersistenceContextRefType<InterceptorType<T>>> getPersistenceContextRefList();
+   // -------------------------------------------------------------------------------------||
+   // Element type : message-destination-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public InterceptorType<T> removeAllPersistenceUnitRef();
+   /**
+    * Removes all <code>message-destination-ref</code> elements 
+    * @return the current instance of {@link InterceptorType<T>} 
+    */
+   public InterceptorType<T> removeAllMessageDestinationRef();
 
-	public PersistenceUnitRefType<InterceptorType<T>> persistenceUnitRef();
+   /**
+    * Returns the <code>message-destination-ref</code> element
+    * @return the node defined for the element <code>message-destination-ref</code> 
+    */
+   public MessageDestinationRefType<InterceptorType<T>> messageDestinationRef();
 
-	public List<PersistenceUnitRefType<InterceptorType<T>>> getPersistenceUnitRefList();
+   /**
+    * Returns all <code>message-destination-ref</code> elements
+    * @return list of <code>message-destination-ref</code> 
+    */
+   public List<MessageDestinationRefType<InterceptorType<T>>> getMessageDestinationRefList();
 
-	public InterceptorType<T> removeAllPostConstruct();
+   // -------------------------------------------------------------------------------------||
+   // Element type : persistence-context-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public LifecycleCallbackType<InterceptorType<T>> postConstruct();
+   /**
+    * Removes all <code>persistence-context-ref</code> elements 
+    * @return the current instance of {@link InterceptorType<T>} 
+    */
+   public InterceptorType<T> removeAllPersistenceContextRef();
 
-	public List<LifecycleCallbackType<InterceptorType<T>>> getPostConstructList();
+   /**
+    * Returns the <code>persistence-context-ref</code> element
+    * @return the node defined for the element <code>persistence-context-ref</code> 
+    */
+   public PersistenceContextRefType<InterceptorType<T>> persistenceContextRef();
 
-	public InterceptorType<T> removeAllPreDestroy();
+   /**
+    * Returns all <code>persistence-context-ref</code> elements
+    * @return list of <code>persistence-context-ref</code> 
+    */
+   public List<PersistenceContextRefType<InterceptorType<T>>> getPersistenceContextRefList();
 
-	public LifecycleCallbackType<InterceptorType<T>> preDestroy();
+   // -------------------------------------------------------------------------------------||
+   // Element type : persistence-unit-ref
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public List<LifecycleCallbackType<InterceptorType<T>>> getPreDestroyList();
+   /**
+    * Removes all <code>persistence-unit-ref</code> elements 
+    * @return the current instance of {@link InterceptorType<T>} 
+    */
+   public InterceptorType<T> removeAllPersistenceUnitRef();
 
-	public InterceptorType<T> removeAllDataSource();
+   /**
+    * Returns the <code>persistence-unit-ref</code> element
+    * @return the node defined for the element <code>persistence-unit-ref</code> 
+    */
+   public PersistenceUnitRefType<InterceptorType<T>> persistenceUnitRef();
 
-	public DataSourceType<InterceptorType<T>> dataSource();
+   /**
+    * Returns all <code>persistence-unit-ref</code> elements
+    * @return list of <code>persistence-unit-ref</code> 
+    */
+   public List<PersistenceUnitRefType<InterceptorType<T>>> getPersistenceUnitRefList();
 
-	public List<DataSourceType<InterceptorType<T>>> getDataSourceList();
+   // -------------------------------------------------------------------------------------||
+   // Element type : post-construct
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public InterceptorType<T> setDescription(String description);
+   /**
+    * Removes all <code>post-construct</code> elements 
+    * @return the current instance of {@link InterceptorType<T>} 
+    */
+   public InterceptorType<T> removeAllPostConstruct();
 
-	public InterceptorType<T> setDescriptionList(String... values);
+   /**
+    * Returns the <code>post-construct</code> element
+    * @return the node defined for the element <code>post-construct</code> 
+    */
+   public LifecycleCallbackType<InterceptorType<T>> postConstruct();
 
-	public InterceptorType<T> removeAllDescription();
+   /**
+    * Returns all <code>post-construct</code> elements
+    * @return list of <code>post-construct</code> 
+    */
+   public List<LifecycleCallbackType<InterceptorType<T>>> getPostConstructList();
 
-	public List<String> getDescriptionList();
+   // -------------------------------------------------------------------------------------||
+   // Element type : pre-destroy
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public InterceptorType<T> setInterceptorClass(String interceptorClass);
+   /**
+    * Removes all <code>pre-destroy</code> elements 
+    * @return the current instance of {@link InterceptorType<T>} 
+    */
+   public InterceptorType<T> removeAllPreDestroy();
 
-	public InterceptorType<T> removeInterceptorClass();
+   /**
+    * Returns the <code>pre-destroy</code> element
+    * @return the node defined for the element <code>pre-destroy</code> 
+    */
+   public LifecycleCallbackType<InterceptorType<T>> preDestroy();
 
-	public String getInterceptorClass();
+   /**
+    * Returns all <code>pre-destroy</code> elements
+    * @return list of <code>pre-destroy</code> 
+    */
+   public List<LifecycleCallbackType<InterceptorType<T>>> getPreDestroyList();
 
-	public InterceptorType<T> removeAllAroundInvoke();
+   // -------------------------------------------------------------------------------------||
+   // Element type : data-source
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public AroundInvokeType<InterceptorType<T>> aroundInvoke();
+   /**
+    * Removes all <code>data-source</code> elements 
+    * @return the current instance of {@link InterceptorType<T>} 
+    */
+   public InterceptorType<T> removeAllDataSource();
 
-	public List<AroundInvokeType<InterceptorType<T>>> getAroundInvokeList();
+   /**
+    * Returns the <code>data-source</code> element
+    * @return the node defined for the element <code>data-source</code> 
+    */
+   public DataSourceType<InterceptorType<T>> dataSource();
 
-	public InterceptorType<T> removeAllAroundTimeout();
+   /**
+    * Returns all <code>data-source</code> elements
+    * @return list of <code>data-source</code> 
+    */
+   public List<DataSourceType<InterceptorType<T>>> getDataSourceList();
 
-	public AroundTimeoutType<InterceptorType<T>> aroundTimeout();
+   // -------------------------------------------------------------------------------------||
+   // Element type : description
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public List<AroundTimeoutType<InterceptorType<T>>> getAroundTimeoutList();
+   /**
+    * Creates a new <code>description</code> element 
+    * @return the current instance of {@link InterceptorType<T>} 
+    */
+   public InterceptorType<T> setDescription(String description);
 
-	public InterceptorType<T> removeAllPostActivate();
+   /**
+    * Creates for all String objects representing <code>description</code> elements, 
+    * a new <code>description</code> element 
+    * @param list of <code>description</code> objects 
+    * @return the current instance of {@link InterceptorType<T>} 
+    */
+   public InterceptorType<T> setDescriptionList(String... values);
 
-	public LifecycleCallbackType<InterceptorType<T>> postActivate();
+   /**
+    * Removes the <code>description</code> element 
+    * @return the current instance of {@link InterceptorType<T>} 
+    */
+   public InterceptorType<T> removeAllDescription();
 
-	public List<LifecycleCallbackType<InterceptorType<T>>> getPostActivateList();
+   /**
+    * Returns all <code>description</code> elements
+    * @return list of <code>description</code> 
+    */
+   public List<String> getDescriptionList();
 
-	public InterceptorType<T> removeAllPrePassivate();
+   // -------------------------------------------------------------------------------------||
+   // Element type : interceptor-class
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public LifecycleCallbackType<InterceptorType<T>> prePassivate();
+   /**
+    * If not already created, a new <code>interceptor-class</code> element with the given value will be created.
+    * Otherwise, the existing <code>interceptor-class</code> element will be updated with the given value.
+    * @return the current instance of {@link InterceptorType<T>} 
+    */
+   public InterceptorType<T> setInterceptorClass(String interceptorClass);
 
-	public List<LifecycleCallbackType<InterceptorType<T>>> getPrePassivateList();
+   /**
+    * Removes the <code>interceptor-class</code> element 
+    * @return the current instance of {@link InterceptorType<T>} 
+    */
+   public InterceptorType<T> removeInterceptorClass();
+
+   /**
+    * Returns the <code>interceptor-class</code> element
+    * @return the node defined for the element <code>interceptor-class</code> 
+    */
+   public String getInterceptorClass();
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : around-invoke
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+
+   /**
+    * Removes all <code>around-invoke</code> elements 
+    * @return the current instance of {@link InterceptorType<T>} 
+    */
+   public InterceptorType<T> removeAllAroundInvoke();
+
+   /**
+    * Returns the <code>around-invoke</code> element
+    * @return the node defined for the element <code>around-invoke</code> 
+    */
+   public AroundInvokeType<InterceptorType<T>> aroundInvoke();
+
+   /**
+    * Returns all <code>around-invoke</code> elements
+    * @return list of <code>around-invoke</code> 
+    */
+   public List<AroundInvokeType<InterceptorType<T>>> getAroundInvokeList();
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : around-timeout
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+
+   /**
+    * Removes all <code>around-timeout</code> elements 
+    * @return the current instance of {@link InterceptorType<T>} 
+    */
+   public InterceptorType<T> removeAllAroundTimeout();
+
+   /**
+    * Returns the <code>around-timeout</code> element
+    * @return the node defined for the element <code>around-timeout</code> 
+    */
+   public AroundTimeoutType<InterceptorType<T>> aroundTimeout();
+
+   /**
+    * Returns all <code>around-timeout</code> elements
+    * @return list of <code>around-timeout</code> 
+    */
+   public List<AroundTimeoutType<InterceptorType<T>>> getAroundTimeoutList();
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : post-activate
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+
+   /**
+    * Removes all <code>post-activate</code> elements 
+    * @return the current instance of {@link InterceptorType<T>} 
+    */
+   public InterceptorType<T> removeAllPostActivate();
+
+   /**
+    * Returns the <code>post-activate</code> element
+    * @return the node defined for the element <code>post-activate</code> 
+    */
+   public LifecycleCallbackType<InterceptorType<T>> postActivate();
+
+   /**
+    * Returns all <code>post-activate</code> elements
+    * @return list of <code>post-activate</code> 
+    */
+   public List<LifecycleCallbackType<InterceptorType<T>>> getPostActivateList();
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : pre-passivate
+   // isComplexType: true   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+
+   /**
+    * Removes all <code>pre-passivate</code> elements 
+    * @return the current instance of {@link InterceptorType<T>} 
+    */
+   public InterceptorType<T> removeAllPrePassivate();
+
+   /**
+    * Returns the <code>pre-passivate</code> element
+    * @return the node defined for the element <code>pre-passivate</code> 
+    */
+   public LifecycleCallbackType<InterceptorType<T>> prePassivate();
+
+   /**
+    * Returns all <code>pre-passivate</code> elements
+    * @return list of <code>pre-passivate</code> 
+    */
+   public List<LifecycleCallbackType<InterceptorType<T>>> getPrePassivateList();
 
 }

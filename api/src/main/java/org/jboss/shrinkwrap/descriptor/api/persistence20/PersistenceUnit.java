@@ -1,3 +1,19 @@
+/*
+ * JBoss, Home of Professional Open Source
+ * Copyright 2011, Red Hat Middleware LLC, and individual contributors
+ * by the @authors tag. See the copyright.txt in the distribution for a
+ * full listing of individual contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.jboss.shrinkwrap.descriptor.api.persistence20;
 
 import java.util.List;
@@ -5,103 +21,365 @@ import java.util.List;
 import org.jboss.shrinkwrap.descriptor.api.Child;
 
 /**
- * This class is a generated class. Generation date
- * :2011-07-13T23:06:02.86+02:00
+ * This interface defines the contract for the <code> persistence-unit </code> xsd type 
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ * @since Generation date :2011-07-19T22:55:02.759+02:00
  */
-public interface PersistenceUnit<T> extends Child<T> {
+public interface PersistenceUnit<T> extends Child<T>
+{
 
-	public PersistenceUnit<T> setDescription(String description);
+   // -------------------------------------------------------------------------------------||
+   // Element type : description
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public PersistenceUnit<T> removeDescription();
+   /**
+    * If not already created, a new <code>description</code> element with the given value will be created.
+    * Otherwise, the existing <code>description</code> element will be updated with the given value.
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> setDescription(String description);
 
-	public String getDescription();
+   /**
+    * Removes the <code>description</code> element 
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> removeDescription();
 
-	public PersistenceUnit<T> setProvider(String provider);
+   /**
+    * Returns the <code>description</code> element
+    * @return the node defined for the element <code>description</code> 
+    */
+   public String getDescription();
 
-	public PersistenceUnit<T> removeProvider();
+   // -------------------------------------------------------------------------------------||
+   // Element type : provider
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public String getProvider();
+   /**
+    * If not already created, a new <code>provider</code> element with the given value will be created.
+    * Otherwise, the existing <code>provider</code> element will be updated with the given value.
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> setProvider(String provider);
 
-	public PersistenceUnit<T> setJtaDataSource(String jtaDataSource);
+   /**
+    * Removes the <code>provider</code> element 
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> removeProvider();
 
-	public PersistenceUnit<T> removeJtaDataSource();
+   /**
+    * Returns the <code>provider</code> element
+    * @return the node defined for the element <code>provider</code> 
+    */
+   public String getProvider();
 
-	public String getJtaDataSource();
+   // -------------------------------------------------------------------------------------||
+   // Element type : jta-data-source
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public PersistenceUnit<T> setNonJtaDataSource(String nonJtaDataSource);
+   /**
+    * If not already created, a new <code>jta-data-source</code> element with the given value will be created.
+    * Otherwise, the existing <code>jta-data-source</code> element will be updated with the given value.
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> setJtaDataSource(String jtaDataSource);
 
-	public PersistenceUnit<T> removeNonJtaDataSource();
+   /**
+    * Removes the <code>jta-data-source</code> element 
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> removeJtaDataSource();
 
-	public String getNonJtaDataSource();
+   /**
+    * Returns the <code>jta-data-source</code> element
+    * @return the node defined for the element <code>jta-data-source</code> 
+    */
+   public String getJtaDataSource();
 
-	public PersistenceUnit<T> setMappingFile(String mappingFile);
+   // -------------------------------------------------------------------------------------||
+   // Element type : non-jta-data-source
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public PersistenceUnit<T> setMappingFileList(String... values);
+   /**
+    * If not already created, a new <code>non-jta-data-source</code> element with the given value will be created.
+    * Otherwise, the existing <code>non-jta-data-source</code> element will be updated with the given value.
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> setNonJtaDataSource(String nonJtaDataSource);
 
-	public PersistenceUnit<T> removeAllMappingFile();
+   /**
+    * Removes the <code>non-jta-data-source</code> element 
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> removeNonJtaDataSource();
 
-	public List<String> getMappingFileList();
+   /**
+    * Returns the <code>non-jta-data-source</code> element
+    * @return the node defined for the element <code>non-jta-data-source</code> 
+    */
+   public String getNonJtaDataSource();
 
-	public PersistenceUnit<T> setJarFile(String jarFile);
+   // -------------------------------------------------------------------------------------||
+   // Element type : mapping-file
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public PersistenceUnit<T> setJarFileList(String... values);
+   /**
+    * Creates a new <code>mapping-file</code> element 
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> setMappingFile(String mappingFile);
 
-	public PersistenceUnit<T> removeAllJarFile();
+   /**
+    * Creates for all String objects representing <code>mapping-file</code> elements, 
+    * a new <code>mapping-file</code> element 
+    * @param list of <code>mapping-file</code> objects 
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> setMappingFileList(String... values);
 
-	public List<String> getJarFileList();
+   /**
+    * Removes the <code>mapping-file</code> element 
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> removeAllMappingFile();
 
-	public PersistenceUnit<T> setClazz(String clazz);
+   /**
+    * Returns all <code>mapping-file</code> elements
+    * @return list of <code>mapping-file</code> 
+    */
+   public List<String> getMappingFileList();
 
-	public PersistenceUnit<T> setClazzList(String... values);
+   // -------------------------------------------------------------------------------------||
+   // Element type : jar-file
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public PersistenceUnit<T> removeAllClazz();
+   /**
+    * Creates a new <code>jar-file</code> element 
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> setJarFile(String jarFile);
 
-	public List<String> getClazzList();
+   /**
+    * Creates for all String objects representing <code>jar-file</code> elements, 
+    * a new <code>jar-file</code> element 
+    * @param list of <code>jar-file</code> objects 
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> setJarFileList(String... values);
 
-	public PersistenceUnit<T> setExcludeUnlistedClasses(
-			Boolean excludeUnlistedClasses);
+   /**
+    * Removes the <code>jar-file</code> element 
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> removeAllJarFile();
 
-	public PersistenceUnit<T> removeExcludeUnlistedClasses();
+   /**
+    * Returns all <code>jar-file</code> elements
+    * @return list of <code>jar-file</code> 
+    */
+   public List<String> getJarFileList();
 
-	public Boolean isExcludeUnlistedClasses();
+   // -------------------------------------------------------------------------------------||
+   // Element type : class
+   // isComplexType: false   maxOccurs: -unbounded   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public PersistenceUnit<T> setSharedCacheMode(
-			PersistenceUnitCachingType sharedCacheMode);
+   /**
+    * Creates a new <code>class</code> element 
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> setClazz(String clazz);
 
-	public PersistenceUnit<T> setSharedCacheMode(String sharedCacheMode);
+   /**
+    * Creates for all String objects representing <code>class</code> elements, 
+    * a new <code>class</code> element 
+    * @param list of <code>class</code> objects 
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> setClazzList(String... values);
 
-	public PersistenceUnitCachingType getSharedCacheMode();
+   /**
+    * Removes the <code>class</code> element 
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> removeAllClazz();
 
-	public String getSharedCacheModeAsString();
+   /**
+    * Returns all <code>class</code> elements
+    * @return list of <code>class</code> 
+    */
+   public List<String> getClazzList();
 
-	public PersistenceUnit<T> setValidationMode(
-			PersistenceUnitValidationModeType validationMode);
+   // -------------------------------------------------------------------------------------||
+   // Element type : exclude-unlisted-classes
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public PersistenceUnit<T> setValidationMode(String validationMode);
+   /**
+    * If not already created, a new <code>exclude-unlisted-classes</code> element with the given value will be created.
+    * Otherwise, the existing <code>exclude-unlisted-classes</code> element will be updated with the given value.
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> setExcludeUnlistedClasses(Boolean excludeUnlistedClasses);
 
-	public PersistenceUnitValidationModeType getValidationMode();
+   /**
+    * Removes the <code>exclude-unlisted-classes</code> element 
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> removeExcludeUnlistedClasses();
 
-	public String getValidationModeAsString();
+   /**
+    * Returns the <code>exclude-unlisted-classes</code> element
+    * @return the node defined for the element <code>exclude-unlisted-classes</code> 
+    */
+   public Boolean isExcludeUnlistedClasses();
 
-	public PersistenceUnit<T> removeProperties();
+   // -------------------------------------------------------------------------------------||
+   // Element type : shared-cache-mode
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public Properties<PersistenceUnit<T>> properties();
+   /**
+    * If not already created, a new <code>shared-cache-mode</code> element with the given value will be created.
+    * Otherwise, the existing <code>shared-cache-mode</code> element will be updated with the given value.
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> setSharedCacheMode(PersistenceUnitCachingType sharedCacheMode);
 
-	public PersistenceUnit<T> setName(String name);
+   /**
+    * If not already created, a new <code>shared-cache-mode</code> element with the given value will be created.
+    * Otherwise, the existing <code>shared-cache-mode</code> element will be updated with the given value.
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> setSharedCacheMode(String sharedCacheMode);
 
-	public PersistenceUnit<T> removeName();
+   /**
+    * Returns the <code>shared-cache-mode</code> element
+    * @return the node defined for the element <code>shared-cache-mode</code> 
+    */
+   public PersistenceUnitCachingType getSharedCacheMode();
 
-	public String getName();
+   /**
+    * Returns the <code>shared-cache-mode</code> element
+    * @return the node defined for the element <code>shared-cache-mode</code> 
+    */
+   public String getSharedCacheModeAsString();
 
-	public PersistenceUnit<T> setTransactionType(
-			PersistenceUnitTransactionType transactionType);
+   // -------------------------------------------------------------------------------------||
+   // Element type : validation-mode
+   // isComplexType: false   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
 
-	public PersistenceUnit<T> setTransactionType(String transactionType);
+   /**
+    * If not already created, a new <code>validation-mode</code> element with the given value will be created.
+    * Otherwise, the existing <code>validation-mode</code> element will be updated with the given value.
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> setValidationMode(PersistenceUnitValidationModeType validationMode);
 
-	public PersistenceUnit<T> removeTransactionType();
+   /**
+    * If not already created, a new <code>validation-mode</code> element with the given value will be created.
+    * Otherwise, the existing <code>validation-mode</code> element will be updated with the given value.
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> setValidationMode(String validationMode);
 
-	public PersistenceUnitTransactionType getTransactionType();
+   /**
+    * Returns the <code>validation-mode</code> element
+    * @return the node defined for the element <code>validation-mode</code> 
+    */
+   public PersistenceUnitValidationModeType getValidationMode();
 
-	public String getTransactionTypeAsString();
+   /**
+    * Returns the <code>validation-mode</code> element
+    * @return the node defined for the element <code>validation-mode</code> 
+    */
+   public String getValidationModeAsString();
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : properties
+   // isComplexType: true   maxOccurs: -   isAttribute: false
+   // -------------------------------------------------------------------------------------||
+
+   /**
+    * Removes the <code>properties</code> element 
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> removeProperties();
+
+   /**
+    * If not already created, a new <code>properties</code> element will be created and returned.
+    * Otherwise, the existing <code>properties</code> element will be returned.
+    * @return the node defined for the element <code>properties</code> 
+    */
+   public Properties<PersistenceUnit<T>> properties();
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : name
+   // isComplexType: false   maxOccurs: -   isAttribute: true
+   // -------------------------------------------------------------------------------------||
+
+   /**
+    * Sets the <code>name</code> attribute
+    * @param name the value for the attribute <code>name</code> 
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> setName(String name);
+
+   /**
+    * Removes the <code>name</code> attribute 
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> removeName();
+
+   /**
+    * Returns the <code>name</code> element
+    * @return the node defined for the element <code>name</code> 
+    */
+   public String getName();
+
+   // -------------------------------------------------------------------------------------||
+   // Element type : transaction-type
+   // isComplexType: false   maxOccurs: -   isAttribute: true
+   // -------------------------------------------------------------------------------------||
+
+   /**
+    * Sets the <code>transaction-type</code> attribute
+    * @param transactionType the value for the attribute <code>transaction-type</code> 
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> setTransactionType(PersistenceUnitTransactionType transactionType);
+
+   /**
+    * Sets the <code>transaction-type</code> attribute
+    * @param transactionType the value for the attribute <code>transaction-type</code> 
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> setTransactionType(String transactionType);
+
+   /**
+    * Removes the <code>transaction-type</code> attribute 
+    * @return the current instance of {@link PersistenceUnit<T>} 
+    */
+   public PersistenceUnit<T> removeTransactionType();
+
+   /**
+    * Returns the <code>transaction-type</code> element
+    * @return the node defined for the element <code>transaction-type</code> 
+    */
+   public PersistenceUnitTransactionType getTransactionType();
+
+   /**
+    * Returns the <code>transaction-type</code> element
+    * @return the node defined for the element <code>transaction-type</code> 
+    */
+   public String getTransactionTypeAsString();
 
 }
