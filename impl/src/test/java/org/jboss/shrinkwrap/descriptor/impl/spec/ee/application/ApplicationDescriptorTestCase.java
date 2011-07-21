@@ -20,7 +20,6 @@ import static org.jboss.shrinkwrap.descriptor.impl.spec.AssertXPath.assertXPath;
 import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.spec.cdi.beans.BeansDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor;
 import org.junit.Test;
 
