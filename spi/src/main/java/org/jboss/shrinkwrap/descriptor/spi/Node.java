@@ -247,6 +247,12 @@ public class Node
       return get(Queries.from(name));
    }
 
+   /**
+    * Get all children matching the specified query.
+    *
+    * @param query The query to use for finding relevant child nodes
+    * @return All found children, or empty list if none found.
+    */
    public List<Node> get(Query query)
    {
       return new GetQuery(query).execute(this);
@@ -287,6 +293,10 @@ public class Node
       }
 
       List<Node> found = get(query);
+      if(found == null)
+      {
+         return Collections.EMPTY_LIST;
+      }
       for (Node child : found)
       {
          children.remove(child);
@@ -433,6 +443,7 @@ public class Node
    {
       return this.getClass().getSimpleName() + "[" + name + "] " + "children["
             + (children != null ? children.size() : 0) + "] "
-            + (attributes != null ? "attributes[" + attributes + "] " : "" + text != null ? "text[" + text + "] " : "");
+            + (attributes != null ? "attributes[" + attributes + "] " : "")
+            + (text != null ? "text[" + text + "] " : "");
    }
 }
