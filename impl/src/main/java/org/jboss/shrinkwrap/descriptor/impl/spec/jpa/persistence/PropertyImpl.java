@@ -54,7 +54,7 @@ public class PropertyImpl implements Property
    @Override
    public String getName()
    {
-      return node.attribute("name");
+      return node.getAttribute("name");
    }
 
    @Override
@@ -67,7 +67,7 @@ public class PropertyImpl implements Property
    @Override
    public Object getValue()
    {
-      return node.attribute("value");
+      return node.getAttribute("value");
    }
 
 }

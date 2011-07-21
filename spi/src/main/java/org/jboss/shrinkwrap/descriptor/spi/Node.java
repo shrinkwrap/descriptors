@@ -30,53 +30,90 @@ import org.jboss.shrinkwrap.descriptor.spi.query.queries.GetQuery;
 import org.jboss.shrinkwrap.descriptor.spi.query.queries.GetSingleQuery;
 
 /**
- * A Node is a
+ * {@link Node} is a data structure representing a container in a classic
+ * tree.  May sometimes be synonymous with the term "Element" in XML.  
+ * It may contain a {@link Map} of attributes ({@link String}s),
+ * a reference to a {@link List} of child {@link Node}s, and text data.
  * 
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
+ * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  * @version $Revision: $
  */
 public class Node
 {
    // -------------------------------------------------------------------------------------||
-   // Instance Members -------------------------------------------------------------------||
+   // Class Members -----------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   private final Node parent;
-
-   private List<Node> children = new ArrayList<Node>();
-
-   private final String name;
-
-   private Map<String, String> attributes;
-
-   private String text;
+   private static final String SPACE = " ";
 
    // -------------------------------------------------------------------------------------||
-   // Constructor ------------------------------------------------------------------------||
+   // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
    /**
-    * Create a root node.
+    * Parent node; null represents that this is the root
+    */
+   private final Node parent;
+
+   private final List<Node> children = new ArrayList<Node>();
+
+   /**
+    * Name of the {@link Node}; may not have spaces
+    */
+   private final String name;
+
+   /**
+    * Attributes of the element
+    */
+   private final Map<String, String> attributes = new HashMap<String, String>();
+
+   /**
+    * CDATA
+    */
+   private String text;
+
+   // -------------------------------------------------------------------------------------||
+   // Constructor -------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
+
+   /**
+    * Creates a root {@link Node}
     * 
     * @param name The name of the node
     */
-   public Node(String name)
+   public Node(final String name) throws IllegalArgumentException
    {
       this(name, null);
    }
 
    /**
-    * Create a node in the tree.
+    * Creates a {@link Node}
     * 
     * @param name The name of the node
-    * @param parent The parent node
+    * @param parent The parent node.  Use null to 
+    *   denote a root.
+    * @throws IllegalArgumentException If the name is not specified
+    *   or contains any space characters
     */
-   public Node(String name, Node parent)
+   public Node(final String name, final Node parent) throws IllegalArgumentException
    {
+      // Precondition checks
+      if (name == null)
+      {
+         throw new IllegalArgumentException("name must be specified");
+      }
+      if (name.contains(SPACE))
+      {
+         throw new IllegalArgumentException("name may not contain any spaces");
+      }
+
+      // Set
       this.name = name;
       this.parent = parent;
 
+      // Set bi-directional relationship if we've got a parent
       if (this.parent != null)
       {
          this.parent.children.add(this);
@@ -94,10 +131,10 @@ public class Node
     * 
     * @param name The attribute name
     * @param value The given value
-    * @return This Node
+    * @return This {@link Node}
     * @see #attribute(String, String)
     */
-   public Node attribute(String name, Object value)
+   public Node attribute(final String name, final Object value)
    {
       return attribute(name, String.valueOf(value));
    }
@@ -107,11 +144,11 @@ public class Node
     * 
     * @param name The attribute name
     * @param value The given value
-    * @return This Node
+    * @return This {@link Node}
     */
-   public Node attribute(String name, String value)
+   public Node attribute(final String name, final String value)
    {
-      attributes().put(name, value);
+      this.attributes.put(name, value);
       return this;
    }
 
@@ -121,23 +158,20 @@ public class Node
     * @param name The attribute name
     * @return The attribute value or null of none defined.
     */
-   public String attribute(String name)
+   public String getAttribute(final String name)
    {
-      return attributes().get(name);
+      return this.attributes.get(name);
    }
 
    /**
-    * Get all defined attributes for this Node.
+    * Get all defined attributes for this Node in an 
+    * immutable view
     * 
     * @return All defined attributes.
     */
-   public Map<String, String> attributes()
+   public Map<String, String> getAttributes()
    {
-      if (attributes == null)
-      {
-         attributes = new HashMap<String, String>();
-      }
-      return attributes;
+      return Collections.unmodifiableMap(attributes);
    }
 
    // -------------------------------------------------------------------------------------||
@@ -222,8 +256,10 @@ public class Node
     * Remove all child nodes found at the given query.
     * 
     * @return the {@link List} of removed children.
+    * @throws IllegalArgumentException If the specified name 
+    *   is not specified
     */
-   public List<Node> remove(String name)
+   public List<Node> remove(final String name) throws IllegalArgumentException
    {
       if (name == null || name.trim().isEmpty())
       {
@@ -328,7 +364,7 @@ public class Node
     * Get the text value of the element found at the given query name. If no element is found, or no text exists, return
     * null;
     */
-   public String textValue(String name)
+   public String textValue(final String name)
    {
       Node n = this.getSingle(name);
       String text = n == null ? null : n.text();
@@ -339,7 +375,7 @@ public class Node
     * Get the text values of all elements found at the given query name. If no elements are found, or no text exists,
     * return an empty list;
     */
-   public List<String> textValues(String name)
+   public List<String> textValues(final String name)
    {
       List<String> result = new ArrayList<String>();
       List<Node> jars = this.get(name);
@@ -375,29 +411,28 @@ public class Node
    }
 
    /**
-    * Get all the defined children for this node.
+    * Get all the defined children for this node in an immutable view.
     * 
     * @return All children or empty list if none.
     */
    public List<Node> children()
    {
-      if (children == null)
-      {
-         children = new ArrayList<Node>();
-      }
       return Collections.unmodifiableList(children);
    }
 
    // -------------------------------------------------------------------------------------||
-   // Override ---------------------------------------------------------------------------||
+   // Override ----------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
+   /**
+    * {@inheritDoc}
+    * @see java.lang.Object#toString()
+    */
    @Override
    public String toString()
    {
-      return "Node[" + name + "] " +
-               "children[" + (children != null ? children.size() : 0) + "] " +
-               (attributes != null ? "attributes[" + attributes + "] " : "" +
-                        text != null ? "text[" + text + "] " : "");
+      return this.getClass().getSimpleName() + "[" + name + "] " + "children["
+            + (children != null ? children.size() : 0) + "] "
+            + (attributes != null ? "attributes[" + attributes + "] " : "" + text != null ? "text[" + text + "] " : "");
    }
 }

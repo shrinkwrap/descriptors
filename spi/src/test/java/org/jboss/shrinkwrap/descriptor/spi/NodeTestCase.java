@@ -139,7 +139,7 @@ public class NodeTestCase
 
       Assert.assertEquals(
                "Verify abillity to store attribues",
-               root.attribute(ATTR_NAME), ATTR_VALUE);
+               root.getAttribute(ATTR_NAME), ATTR_VALUE);
    }
 
    @Test
@@ -150,7 +150,7 @@ public class NodeTestCase
 
       Assert.assertEquals(
                "Verify abillity to store attribues",
-               root.attribute(ATTR_NAME), ATTR_VALUE);
+               root.getAttribute(ATTR_NAME), ATTR_VALUE);
    }
 
    @Test

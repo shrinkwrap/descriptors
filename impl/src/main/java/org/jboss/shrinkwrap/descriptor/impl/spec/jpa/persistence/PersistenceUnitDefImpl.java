@@ -347,31 +347,31 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    @Override
    public String getName()
    {
-      return persistenceUnit.attributes().get("name");
+      return persistenceUnit.getAttributes().get("name");
    }
 
    @Override
    public String getDescription()
    {
-      return persistenceUnit.attributes().get("description");
+      return persistenceUnit.getAttributes().get("description");
    }
 
    @Override
    public String getNonJtaDataSource()
    {
-      return persistenceUnit.attributes().get("non-jta-data-source");
+      return persistenceUnit.getAttributes().get("non-jta-data-source");
    }
 
    @Override
    public String getTransactionType()
    {
-      return persistenceUnit.attributes().get("transaction-type");
+      return persistenceUnit.getAttributes().get("transaction-type");
    }
 
    @Override
    public String getJtaDataSource()
    {
-      return persistenceUnit.attributes().get("jta-data-source");
+      return persistenceUnit.getAttributes().get("jta-data-source");
    }
 
    @Override

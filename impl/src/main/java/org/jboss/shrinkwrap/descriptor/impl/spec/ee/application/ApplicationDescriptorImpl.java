@@ -216,25 +216,25 @@ public class ApplicationDescriptorImpl extends NodeProviderImplBase implements A
    @Override
    public String getVersion()
    {
-      return model.attributes().get("version");
+      return model.getAttributes().get("version");
    }
 
    @Override
    public String getDisplayName()
    {
-      return model.attributes().get("display-name");
+      return model.getAttributes().get("display-name");
    }
 
    @Override
    public String getDescription()
    {
-      return model.attributes().get("description");
+      return model.getAttributes().get("description");
    }
 
    @Override
    public String getLibraryDirectory()
    {
-      return model.attributes().get("library-directory");
+      return model.getAttributes().get("library-directory");
    }
 
    @Override

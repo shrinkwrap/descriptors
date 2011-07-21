@@ -519,37 +519,37 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    @Override
    public String getVersion()
    {
-      return model.attributes().get("version");
+      return model.getAttributes().get("version");
    }
 
    @Override
    public String getModuleName()
    {
-      return model.attributes().get("module-name");
+      return model.getAttributes().get("module-name");
    }
 
    @Override
    public String getDescription()
    {
-      return model.attributes().get("description");
+      return model.getAttributes().get("description");
    }
 
    @Override
    public String getDisplayName()
    {
-      return model.attributes().get("display-name");
+      return model.getAttributes().get("display-name");
    }
 
    @Override
    public boolean isDistributable()
    {
-      return model.attributes().get("distributable") != null;
+      return model.getAttributes().get("distributable") != null;
    }
 
    @Override
    public boolean isMetadataComplete()
    {
-      String complete = model.attributes().get("metadata-complete");
+      String complete = model.getAttributes().get("metadata-complete");
       if (complete == null)
       {
          complete = "";

@@ -27,5 +27,10 @@ import java.io.OutputStream;
  */
 public interface DescriptorExporter
 {
+   /**
+    * Exports the 
+    * @param node
+    * @param output
+    */
    void to(Node node, OutputStream output);
 }

@@ -100,7 +100,7 @@ public class QueryTestCase
 
       Assert.assertEquals(
             "Verify correct node found",
-            CHILD_2_2_NODE, found.attribute(ATTR_NAME));      
+            CHILD_2_2_NODE, found.getAttribute(ATTR_NAME));      
    }
 
    @Test
@@ -119,7 +119,7 @@ public class QueryTestCase
 
       Assert.assertEquals(
             "Verify correct node created",
-            CHILD_2_2_NODE, created.attribute(ATTR_NAME));      
+            CHILD_2_2_NODE, created.getAttribute(ATTR_NAME));      
    
       Assert.assertEquals(
             "Verify root only has one child node",

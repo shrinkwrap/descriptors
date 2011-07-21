@@ -53,12 +53,12 @@ public class XMLImporterTestCase
       Assert.assertEquals(
             "Verify namespace defintion",
             "http://www.w3.org/2001/XMLSchema-instance",
-            root.attribute("xmlns:xsi"));
+            root.getAttribute("xmlns:xsi"));
 
       Assert.assertEquals(
             "Verify schemalocation",
             "http://jboss.org/schema/arquillian http://jboss.org/schema/arquillian/arquillian_1_0.xsd",
-            root.attribute("xsi:schemaLocation"));
+            root.getAttribute("xsi:schemaLocation"));
    }
    
    @Test
@@ -80,12 +80,12 @@ public class XMLImporterTestCase
       Assert.assertEquals(
             "Verify attributes on node with children",
             "standby", 
-            root.getSingle("/arquillian/container").attribute("qualifier"));
+            root.getSingle("/arquillian/container").getAttribute("qualifier"));
 
       Assert.assertEquals(
             "Verify attributes on node with only text children",
             "tomcatHome", 
-            root.getSingle("/arquillian/container/configuration/property").attribute("name"));
+            root.getSingle("/arquillian/container/configuration/property").getAttribute("name"));
    }
    
    @SuppressWarnings({"unchecked", "rawtypes"})

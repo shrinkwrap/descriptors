@@ -93,7 +93,7 @@ public class XmlDomExporter implements DescriptorExporter
       
       target.appendChild(targetChild);
       
-      for(Map.Entry<String, String> attribute: source.attributes().entrySet())
+      for(Map.Entry<String, String> attribute: source.getAttributes().entrySet())
       {
          Attr attr = owned.createAttribute(attribute.getKey());
          attr.setValue(attribute.getValue());

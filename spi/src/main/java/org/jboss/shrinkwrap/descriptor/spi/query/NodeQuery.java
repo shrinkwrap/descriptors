@@ -123,7 +123,7 @@ public final class NodeQuery
       {
          for(Map.Entry<String, String> attribute : attributes.entrySet())
          {
-            if(!attribute.getValue().equals(node.attribute(attribute.getKey())))
+            if(!attribute.getValue().equals(node.getAttribute(attribute.getKey())))
             {
                return false;
             }

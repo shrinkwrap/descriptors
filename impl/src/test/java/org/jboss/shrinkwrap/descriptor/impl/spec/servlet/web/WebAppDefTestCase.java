@@ -357,7 +357,7 @@ public class WebAppDefTestCase
       
       // Preconditions
       Assert.assertEquals("3.0", web.getVersion());
-      Assert.assertTrue(root.attribute("xsi:schemaLocation").contains("web-app_3_0.xsd"));
+      Assert.assertTrue(root.getAttribute("xsi:schemaLocation").contains("web-app_3_0.xsd"));
       
       // Change the version
       web.version("2.5");
@@ -368,7 +368,7 @@ public class WebAppDefTestCase
       
       // Check that everything was updated
       Assert.assertEquals("2.5", web.getVersion());
-      Assert.assertTrue(rootAfterUpdate.attribute("xsi:schemaLocation").contains("web-app_2_5.xsd"));
+      Assert.assertTrue(rootAfterUpdate.getAttribute("xsi:schemaLocation").contains("web-app_2_5.xsd"));
       
       // Log just for fun
       log.info("web.xml after update: " + web.exportAsString());
