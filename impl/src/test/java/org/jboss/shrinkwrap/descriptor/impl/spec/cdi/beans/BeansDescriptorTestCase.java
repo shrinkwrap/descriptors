@@ -40,33 +40,40 @@ public class BeansDescriptorTestCase
 {
    @Stereotype
    @Alternative
-   private @interface TestAlternativeStereoType { }
-   
+   private @interface TestAlternativeStereoType {
+   }
+
    @Alternative
-   private class TestAlternativeClass {}
-   
+   private class TestAlternativeClass
+   {
+   }
+
    @Interceptor
-   private class TestInterceptor {}
-   
+   private class TestInterceptor
+   {
+   }
+
    @Decorator
-   private class TestDecorator {}
+   private class TestDecorator
+   {
+   }
 
    //-------------------------------------------------------------------------------------||
    // Basic API --------------------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||
-   
+
    @Test
    public void shouldCreateDefaultName() throws Exception
    {
       Assert.assertEquals("beans.xml", create().getDescriptorName());
    }
-   
+
    @Test
    public void shouldBeAbleToSetName() throws Exception
    {
       Assert.assertEquals("test.xml", Descriptors.create(BeansDescriptor.class, "test.xml").getDescriptorName());
    }
-   
+
    //-------------------------------------------------------------------------------------||
    // Alternative StereoTypes ------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||
@@ -76,24 +83,24 @@ public class BeansDescriptorTestCase
    {
       create().alternativeStereotype(Override.class);
    }
-   
+
    @Test
    public void shouldBeAbleToAddAlternativeStereoType() throws Exception
    {
-      String desc = create().alternativeStereotype(TestAlternativeStereoType.class)
-                     .exportAsString();
-      
+      String desc = create().alternativeStereotype(TestAlternativeStereoType.class).exportAsString();
+
       assertXPath(desc, "/beans/alternatives/stereotype", TestAlternativeStereoType.class.getName());
    }
-   
+
    @Test
    public void shouldBeAbleToAddAlternativeStereoTypes() throws Exception
    {
       @SuppressWarnings("unchecked")
       String desc = create().alternativeStereotypes(TestAlternativeStereoType.class, TestAlternativeStereoType.class)
-                     .exportAsString();
-      
-      assertXPath(desc, "/beans/alternatives/stereotype", TestAlternativeStereoType.class.getName(), TestAlternativeStereoType.class.getName());
+            .exportAsString();
+
+      assertXPath(desc, "/beans/alternatives/stereotype", TestAlternativeStereoType.class.getName(),
+            TestAlternativeStereoType.class.getName());
    }
 
    //-------------------------------------------------------------------------------------||
@@ -109,19 +116,19 @@ public class BeansDescriptorTestCase
    @Test
    public void shouldBeAbleToAddAlternativeClass() throws Exception
    {
-      String desc = create().alternativeClass(TestAlternativeClass.class)
-                     .exportAsString();
-      
+      String desc = create().alternativeClass(TestAlternativeClass.class).exportAsString();
+
       assertXPath(desc, "/beans/alternatives/class", TestAlternativeClass.class.getName());
    }
-   
+
    @Test
    public void shouldBeAbleToAddAlternativeClasses() throws Exception
    {
       String desc = create().alternativeClasses(TestAlternativeClass.class, TestAlternativeClass.class)
-                     .exportAsString();
-      
-      assertXPath(desc, "/beans/alternatives/class", TestAlternativeClass.class.getName(), TestAlternativeClass.class.getName());
+            .exportAsString();
+
+      assertXPath(desc, "/beans/alternatives/class", TestAlternativeClass.class.getName(), TestAlternativeClass.class
+            .getName());
    }
 
    //-------------------------------------------------------------------------------------||
@@ -137,18 +144,16 @@ public class BeansDescriptorTestCase
    @Test
    public void shouldBeAbleToAddInterceptor() throws Exception
    {
-      String desc = create().interceptor(TestInterceptor.class)
-                     .exportAsString();
-      
+      String desc = create().interceptor(TestInterceptor.class).exportAsString();
+
       assertXPath(desc, "/beans/interceptors/class", TestInterceptor.class.getName());
    }
 
    @Test
    public void shouldBeAbleToAddInterceptors() throws Exception
    {
-      String desc = create().interceptors(TestInterceptor.class, TestInterceptor.class)
-                     .exportAsString();
-      
+      String desc = create().interceptors(TestInterceptor.class, TestInterceptor.class).exportAsString();
+
       assertXPath(desc, "/beans/interceptors/class", TestInterceptor.class.getName(), TestInterceptor.class.getName());
    }
 
@@ -165,38 +170,34 @@ public class BeansDescriptorTestCase
    @Test
    public void shouldBeAbleToAddDescorator() throws Exception
    {
-      String desc = create().decorator(TestDecorator.class)
-                     .exportAsString();
-      
+      String desc = create().decorator(TestDecorator.class).exportAsString();
+
       assertXPath(desc, "/beans/decorators/class", TestDecorator.class.getName());
    }
 
    @Test
    public void shouldBeAbleToAddDescorators() throws Exception
    {
-      String desc = create().decorators(TestDecorator.class, TestDecorator.class)
-                     .exportAsString();
-      
+      String desc = create().decorators(TestDecorator.class, TestDecorator.class).exportAsString();
+
       assertXPath(desc, "/beans/decorators/class", TestDecorator.class.getName(), TestDecorator.class.getName());
    }
-   
+
    //-------------------------------------------------------------------------------------||
    // Export / Import round trip ---------------------------------------------------------||
    //-------------------------------------------------------------------------------------||
-   
+
    @Test
    public void shouldBeAbleToReadWhatWasExported() throws Exception
    {
-      String desc = create().decorators(TestDecorator.class, TestDecorator.class)
-         .exportAsString();
+      String desc = create().decorators(TestDecorator.class, TestDecorator.class).exportAsString();
 
-      desc = Descriptors.importAs(BeansDescriptor.class).from(desc)
-                        .exportAsString();
-      
+      desc = Descriptors.importAs(BeansDescriptor.class).from(desc).exportAsString();
+
       assertXPath(desc, "/beans/decorators/class", TestDecorator.class.getName(), TestDecorator.class.getName());
-      
+
    }
-   
+
    //-------------------------------------------------------------------------------------||
    // Internal Helper --------------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||

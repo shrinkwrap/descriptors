@@ -24,7 +24,6 @@ import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.WebAppDescriptor;
 import org.junit.Assert;
 import org.junit.Test;
 
-
 /**
  * Verify behavior of {@link SchemaDescriptorImporter}
  *
@@ -33,41 +32,31 @@ import org.junit.Test;
  */
 public class DescriptorImporterTestCase
 {
-   private static final String SOURCE = "" +
-                     "<web-app " +
-                     "      xmlns=\"http://java.sun.com/xml/ns/javaee\" " +
-                     "      xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" " +
-                     "      version=\"3.0\" " +
-                     "      xsi:schemaLocation=\"http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd\">\n" + 
-                     "    <filter>\n" + 
-                     "        <filter-name>UrlRewriteFilter</filter-name>\n" + 
-                     "        <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>\n" + 
-                     "    </filter>\n" + 
-                     "    <filter-mapping>\n" + 
-                     "        <url-pattern>/*</url-pattern>\n" + 
-                     "        <filter-name>UrlRewriteFilter</filter-name>\n" + 
-                     "    </filter-mapping>\n" + 
-                     "</web-app>"; 
+   private static final String SOURCE = ""
+         + "<web-app "
+         + "      xmlns=\"http://java.sun.com/xml/ns/javaee\" "
+         + "      xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "
+         + "      version=\"3.0\" "
+         + "      xsi:schemaLocation=\"http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd\">\n"
+         + "    <filter>\n" + "        <filter-name>UrlRewriteFilter</filter-name>\n"
+         + "        <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>\n"
+         + "    </filter>\n" + "    <filter-mapping>\n" + "        <url-pattern>/*</url-pattern>\n"
+         + "        <filter-name>UrlRewriteFilter</filter-name>\n" + "    </filter-mapping>\n" + "</web-app>";
 
    @Test
    public void shouldBeAbleToImportFromStream() throws Exception
    {
-      
-      WebAppDescriptor descriptor = Descriptors.importAs(WebAppDescriptor.class).from(new ByteArrayInputStream(SOURCE.getBytes()));
-      
-      Assert.assertNotNull(
-            "Verify the descriptor was created", 
-            descriptor);
-      
-      Assert.assertEquals(
-            "Verify 1 filter was imported", 
-            1, descriptor.getFilters().size());
-      
-      Assert.assertEquals(
-            "Verify 1 FilterMapping was imported", 
-            1, descriptor.getFilterMappings().size());
+
+      WebAppDescriptor descriptor = Descriptors.importAs(WebAppDescriptor.class).from(
+            new ByteArrayInputStream(SOURCE.getBytes()));
+
+      Assert.assertNotNull("Verify the descriptor was created", descriptor);
+
+      Assert.assertEquals("Verify 1 filter was imported", 1, descriptor.getFilters().size());
+
+      Assert.assertEquals("Verify 1 FilterMapping was imported", 1, descriptor.getFilterMappings().size());
    }
-   
+
    @Test(expected = IllegalArgumentException.class)
    public void shouldThrowExceptionOnMissingDescriptor() throws Exception
    {
@@ -79,7 +68,7 @@ public class DescriptorImporterTestCase
    {
       Descriptors.importAs(WebAppDescriptor.class).from((InputStream) null);
    }
-   
+
    /**
     * SHRINKDESC-20
     */
@@ -96,7 +85,7 @@ public class DescriptorImporterTestCase
    public void shouldBeAbleToImportWhiteSpaceString()
    {
       BeansDescriptor descriptor = Descriptors.importAs(BeansDescriptor.class).from("  \n  \n  ");
-      Assert.assertNotNull("Verify the descriptor was created from an empty string",descriptor);
+      Assert.assertNotNull("Verify the descriptor was created from an empty string", descriptor);
    }
 
    /**
@@ -106,16 +95,17 @@ public class DescriptorImporterTestCase
    public void shouldBeAbleToImportEmptyString()
    {
       BeansDescriptor descriptor = Descriptors.importAs(BeansDescriptor.class).from("");
-      Assert.assertNotNull("Verify the descriptor was created from an empty string",descriptor);
+      Assert.assertNotNull("Verify the descriptor was created from an empty string", descriptor);
    }
-   
+
    /**
     * SHRINKDESC-20
     */
    @Test
    public void shouldBeAbleToImportEmptyFile()
    {
-      BeansDescriptor descriptor = Descriptors.importAs(BeansDescriptor.class).from(getClass().getResourceAsStream("/empty.xml"));
-      Assert.assertNotNull("Verify the descriptor was created from and empty file",descriptor);
+      BeansDescriptor descriptor = Descriptors.importAs(BeansDescriptor.class).from(
+            getClass().getResourceAsStream("/empty.xml"));
+      Assert.assertNotNull("Verify the descriptor was created from and empty file", descriptor);
    }
 }

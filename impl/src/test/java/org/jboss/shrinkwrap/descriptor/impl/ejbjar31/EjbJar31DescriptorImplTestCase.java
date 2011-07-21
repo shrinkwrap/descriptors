@@ -1,88 +1,156 @@
+/*
+ * JBoss, Home of Professional Open Source
+ * Copyright 2011, Red Hat Middleware LLC, and individual contributors
+ * by the @authors tag. See the copyright.txt in the distribution for a
+ * full listing of individual contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.jboss.shrinkwrap.descriptor.impl.ejbjar31;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.ejbjar31.EjbJar31Descriptor;
+import org.jboss.shrinkwrap.descriptor.gen.TestDescriptorImpl;
 import org.junit.Test;
-
 
 public class EjbJar31DescriptorImplTestCase
 {
    @Test
-   public void testInterceptors() throws Exception
-   {  
-      EjbJar31Descriptor ejbJarGenerated = create()
-            .addDefaultNamespaces()
-            .setVersion("3.1")
-            .interceptors()
-               .interceptor().setInterceptorClass(" enterprise.annot_ovd_interceptor_ejb.NullChecker ").up()
-               .up()
-            .assemblyDescriptor()
-               .interceptorBinding()
-                  .setEjbName("*")
-                  .setInterceptorClass(" enterprise.annot_ovd_interceptor_ejb.NullChecker ")
-                  .up()
-               .interceptorBinding()
-                  .setEjbName("StatelessSessionBean")
-                  .setExcludeClassInterceptors(true)
-                  .method()
-                     .setMethodName("isOddNumber")
-                  .up()
-               .up()
-            .up();
-      
-      String descr = ejbJarGenerated.exportAsString();
-      
-//      System.out.println(descr);
-      assertTrue(descr != null);
-            
-      String ejbJar_source_imported = getResourceContents("src/test/resources/test-ejb-jar.xml");
-      
-      final EjbJar31Descriptor ejbJarImported = Descriptors.importAs(EjbJar31Descriptor.class).from(ejbJar_source_imported);
-      
-      assertEquals(ejbJarImported.getVersion(),  "3.1");
-      assertEquals(ejbJarImported.getVersion(),  ejbJarGenerated.getVersion());
-      assertTrue(ejbJarImported.interceptors().getInterceptorList().size() == 1);
-      assertTrue(ejbJarImported.interceptors().getInterceptorList().size() == ejbJarGenerated.interceptors().getInterceptorList().size());
-      assertEquals(ejbJarImported.interceptors().getInterceptorList().get(0).getInterceptorClass(),  " enterprise.annot_ovd_interceptor_ejb.NullChecker ");
-      assertEquals(ejbJarImported.interceptors().getInterceptorList().get(0).getInterceptorClass(),  ejbJarGenerated.interceptors().getInterceptorList().get(0).getInterceptorClass());
-      assertTrue(ejbJarImported.assemblyDescriptor().getInterceptorBindingList().size() == 2);
-      assertTrue(ejbJarImported.assemblyDescriptor().getInterceptorBindingList().size() == ejbJarGenerated.assemblyDescriptor().getInterceptorBindingList().size());
-      assertEquals(ejbJarImported.assemblyDescriptor().getInterceptorBindingList().get(0).getEjbName(),  "*");
-      assertEquals(ejbJarImported.assemblyDescriptor().getInterceptorBindingList().get(0).getEjbName(),  ejbJarGenerated.assemblyDescriptor().getInterceptorBindingList().get(0).getEjbName());
-      assertEquals(ejbJarImported.assemblyDescriptor().getInterceptorBindingList().get(1).isExcludeClassInterceptors(),  true);
-      assertEquals(ejbJarImported.assemblyDescriptor().getInterceptorBindingList().get(1).isExcludeClassInterceptors(),  ejbJarGenerated.assemblyDescriptor().getInterceptorBindingList().get(1).isExcludeClassInterceptors());
-      assertEquals(ejbJarImported.assemblyDescriptor().getInterceptorBindingList().get(1).method().getMethodName(),  ejbJarGenerated.assemblyDescriptor().getInterceptorBindingList().get(1).method().getMethodName());
-      assertEquals(ejbJarImported.assemblyDescriptor().getInterceptorBindingList().get(1).method().getMethodName(),  "isOddNumber");
+   public void testNullArg() throws Exception
+   {
+      EjbJar31Descriptor type = Descriptors.create(EjbJar31Descriptor.class);
+      TestDescriptorImpl.testNullArgs(type);
    }
-   
 
-   private String getResourceContents(String resource) throws Exception
+   @Test
+   public void testModuleName() throws Exception
    {
-      assert resource != null && resource.length() > 0 : "Resource must be specified";
-      final BufferedReader reader = new BufferedReader(new FileReader(resource));
-      final StringBuilder builder = new StringBuilder();
-      String line;
-      while ((line = reader.readLine()) != null)
-      {
-         builder.append(line);
-         builder.append("\n");
-      }
-      return builder.toString();
+      EjbJar31Descriptor type = Descriptors.create(EjbJar31Descriptor.class);
+      type.setModuleName("test");
+      assertEquals(type.getModuleName(), "test");
+      type.removeModuleName();
+      assertNull(type.getModuleName());
    }
-   
-   // -------------------------------------------------------------------------------------||
-   // Helper Methods ----------------------------------------------------------------------||
-   // -------------------------------------------------------------------------------------||
-   
-   private EjbJar31Descriptor create()
+
+   @Test
+   public void testEnterpriseBeans() throws Exception
    {
-      return Descriptors.create(EjbJar31Descriptor.class);
+      EjbJar31Descriptor type = Descriptors.create(EjbJar31Descriptor.class);
+      type.enterpriseBeans().up();
+      type.removeEnterpriseBeans();
+      assertNull(((EjbJar31DescriptorImpl) type).getRootNode().getSingle("enterprise-beans"));
    }
-   
+
+   @Test
+   public void testInterceptors() throws Exception
+   {
+      EjbJar31Descriptor type = Descriptors.create(EjbJar31Descriptor.class);
+      type.interceptors().up();
+      type.removeInterceptors();
+      assertNull(((EjbJar31DescriptorImpl) type).getRootNode().getSingle("interceptors"));
+   }
+
+   @Test
+   public void testRelationships() throws Exception
+   {
+      EjbJar31Descriptor type = Descriptors.create(EjbJar31Descriptor.class);
+      type.relationships().up();
+      type.removeRelationships();
+      assertNull(((EjbJar31DescriptorImpl) type).getRootNode().getSingle("relationships"));
+   }
+
+   @Test
+   public void testAssemblyDescriptor() throws Exception
+   {
+      EjbJar31Descriptor type = Descriptors.create(EjbJar31Descriptor.class);
+      type.assemblyDescriptor().up();
+      type.removeAssemblyDescriptor();
+      assertNull(((EjbJar31DescriptorImpl) type).getRootNode().getSingle("assembly-descriptor"));
+   }
+
+   @Test
+   public void testEjbClientJar() throws Exception
+   {
+      EjbJar31Descriptor type = Descriptors.create(EjbJar31Descriptor.class);
+      type.setEjbClientJar("test");
+      assertEquals(type.getEjbClientJar(), "test");
+      type.removeEjbClientJar();
+      assertNull(type.getEjbClientJar());
+   }
+
+   @Test
+   public void testVersion() throws Exception
+   {
+      EjbJar31Descriptor type = Descriptors.create(EjbJar31Descriptor.class);
+      type.setVersion("test");
+      assertEquals(type.getVersion(), "test");
+      type.removeVersion();
+      assertNull(type.getVersion());
+   }
+
+   @Test
+   public void testMetadataComplete() throws Exception
+   {
+      EjbJar31Descriptor type = Descriptors.create(EjbJar31Descriptor.class);
+      type.setMetadataComplete(true);
+      assertTrue(type.isMetadataComplete());
+      type.removeMetadataComplete();
+      assertFalse(type.isMetadataComplete());
+   }
+
+   @Test
+   public void testDescription() throws Exception
+   {
+      EjbJar31Descriptor type = Descriptors.create(EjbJar31Descriptor.class);
+      type.setDescription("value1");
+      type.setDescription("value2");
+      type.setDescriptionList("value3", "value4");
+      assertTrue(type.getDescriptionList().size() == 4);
+      assertEquals(type.getDescriptionList().get(0), "value1");
+      assertEquals(type.getDescriptionList().get(1), "value2");
+      assertEquals(type.getDescriptionList().get(2), "value3");
+      assertEquals(type.getDescriptionList().get(3), "value4");
+      type.removeAllDescription();
+      assertTrue(type.getDescriptionList().size() == 0);
+   }
+
+   @Test
+   public void testDisplayName() throws Exception
+   {
+      EjbJar31Descriptor type = Descriptors.create(EjbJar31Descriptor.class);
+      type.setDisplayName("value1");
+      type.setDisplayName("value2");
+      type.setDisplayNameList("value3", "value4");
+      assertTrue(type.getDisplayNameList().size() == 4);
+      assertEquals(type.getDisplayNameList().get(0), "value1");
+      assertEquals(type.getDisplayNameList().get(1), "value2");
+      assertEquals(type.getDisplayNameList().get(2), "value3");
+      assertEquals(type.getDisplayNameList().get(3), "value4");
+      type.removeAllDisplayName();
+      assertTrue(type.getDisplayNameList().size() == 0);
+   }
+
+   @Test
+   public void testIcon() throws Exception
+   {
+      EjbJar31Descriptor type = Descriptors.create(EjbJar31Descriptor.class);
+      type.icon().up();
+      type.icon().up();
+      assertTrue(type.getIconList().size() == 2);
+      type.removeAllIcon();
+      assertTrue(type.getIconList().size() == 0);
+   }
 }
