@@ -1,0 +1,3 @@
+implClass=org.jboss.shrinkwrap.descriptor.impl.application6.Application6DescriptorImpl
+importerClass=org.jboss.shrinkwrap.descriptor.impl.base.XMLImporter
+defaultName=application.xml

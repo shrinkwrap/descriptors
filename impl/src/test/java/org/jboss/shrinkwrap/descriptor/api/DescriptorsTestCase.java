@@ -30,21 +30,16 @@ import org.junit.Test;
  */
 public class DescriptorsTestCase
 {
-   private final String source = "" +
-   		"<web-app " +
-   		"      xmlns=\"http://java.sun.com/xml/ns/javaee\" " +
-   		"      xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" " +
-   		"      version=\"3.0\" " +
-   		"      xsi:schemaLocation=\"http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd\">\n" + 
-   		"    <filter>\n" + 
-   		"        <filter-name>UrlRewriteFilter</filter-name>\n" + 
-   		"        <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>\n" + 
-   		"    </filter>\n" + 
-   		"    <filter-mapping>\n" + 
-   		"        <url-pattern>/*</url-pattern>\n" + 
-   		"        <filter-name>UrlRewriteFilter</filter-name>\n" + 
-   		"    </filter-mapping>\n" + 
-   		"</web-app>"; 
+   private final String source = ""
+         + "<web-app "
+         + "      xmlns=\"http://java.sun.com/xml/ns/javaee\" "
+         + "      xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "
+         + "      version=\"3.0\" "
+         + "      xsi:schemaLocation=\"http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd\">\n"
+         + "    <filter>\n" + "        <filter-name>UrlRewriteFilter</filter-name>\n"
+         + "        <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>\n"
+         + "    </filter>\n" + "    <filter-mapping>\n" + "        <url-pattern>/*</url-pattern>\n"
+         + "        <filter-name>UrlRewriteFilter</filter-name>\n" + "    </filter-mapping>\n" + "</web-app>";
 
    @Test
    public void shouldBeAbleToContructDescriptor() throws Exception
