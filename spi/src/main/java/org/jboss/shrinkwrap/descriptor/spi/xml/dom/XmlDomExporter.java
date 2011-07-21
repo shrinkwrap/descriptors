@@ -84,16 +84,16 @@ public class XmlDomExporter implements DescriptorExporter
       // Comment node
       if(source.isComment())
       {
-         targetChild = owned.createComment(source.text());
+         targetChild = owned.createComment(source.getText());
       }
-      else if(source.text() != null) 
+      else if(source.getText() != null) 
       {
-         targetChild = owned.createElement(source.name());
-         targetChild.appendChild(owned.createTextNode(source.text()));
+         targetChild = owned.createElement(source.getName());
+         targetChild.appendChild(owned.createTextNode(source.getText()));
       }
       else
       {
-         targetChild = owned.createElement(source.name());
+         targetChild = owned.createElement(source.getName());
       }
       
       target.appendChild(targetChild);
@@ -105,7 +105,7 @@ public class XmlDomExporter implements DescriptorExporter
 
          targetChild.getAttributes().setNamedItem(attr);
       }
-      for(Node sourceChild : source.children())
+      for(Node sourceChild : source.getChildren())
       {
          writeRecursive(targetChild, sourceChild);
       }

@@ -62,11 +62,11 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    {
       if (jndiName == null)
       {
-         persistenceUnit.remove("non-jta-data-source");
+         persistenceUnit.removeChildren("non-jta-data-source");
       }
       else
       {
-         persistenceUnit.removeSingle("jta-data-source");
+         persistenceUnit.removeChild("jta-data-source");
          persistenceUnit.getOrCreate("non-jta-data-source").text(jndiName);
       }
       return this;
@@ -77,11 +77,11 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    {
       if (jndiName == null)
       {
-         persistenceUnit.remove("jta-data-source");
+         persistenceUnit.removeChildren("jta-data-source");
       }
       else
       {
-         persistenceUnit.removeSingle("non-jta-data-source");
+         persistenceUnit.removeChild("non-jta-data-source");
          persistenceUnit.getOrCreate("jta-data-source").text(jndiName);
       }
       return this;
@@ -111,7 +111,7 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
       Node props = persistenceUnit.getSingle("properties");
       if (props != null)
       {
-         for (Node node : props.children())
+         for (Node node : props.getChildren())
          {
             result.add(new PropertyImpl(node));
          }
@@ -129,7 +129,7 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
          Property prop = new PropertyImpl(node);
          if (prop.getName().equals(name))
          {
-            props.removeSingle(node);
+            props.removeChild(node);
             return new PropertyImpl(node);
          }
       }
@@ -146,7 +146,7 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    public List<Property> clearProperties()
    {
       List<Property> result = new ArrayList<Property>();
-      Node props = persistenceUnit.removeSingle("properties");
+      Node props = persistenceUnit.removeChild("properties");
       for (Node node : props.get("property"))
       {
          result.add(new PropertyImpl(node));
@@ -159,7 +159,7 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    {
       for (Class<?> c : classes)
       {
-         persistenceUnit.create("class").text(c.getName());
+         persistenceUnit.createChild("class").text(c.getName());
       }
       return this;
    }
@@ -169,7 +169,7 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    {
       for (String c : classes)
       {
-         persistenceUnit.create("class").text(c);
+         persistenceUnit.createChild("class").text(c);
       }
       return this;
    }
@@ -179,7 +179,7 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    {
       for (String p : paths)
       {
-         persistenceUnit.create("jar-file").text(p);
+         persistenceUnit.createChild("jar-file").text(p);
       }
       return this;
    }
@@ -195,7 +195,7 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    {
       for (String p : paths)
       {
-         persistenceUnit.create("mapping-file").text(p);
+         persistenceUnit.createChild("mapping-file").text(p);
       }
       return this;
    }
@@ -254,14 +254,14 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
       if (providerType == null || providerType == ProviderType.HIBERNATE)
       {
          persistenceUnit.getOrCreate("properties")
-                     .create("property")
+                     .createChild("property")
                         .attribute("name", "hibernate.show_sql")
                         .attribute("value", "true");
       }
       if (providerType == null || providerType == ProviderType.ECLIPSE_LINK)
       {
          persistenceUnit.getOrCreate("properties")
-                     .create("property")
+                     .createChild("property")
                         .attribute("name", "eclipselink.logging.level")
                         .attribute("value", "FINE");
       }
@@ -275,7 +275,7 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
       if (providerType == null || providerType == ProviderType.HIBERNATE)
       {
          persistenceUnit.getOrCreate("properties")
-                     .create("property")
+                     .createChild("property")
                         .attribute("name", "hibernate.format_sql")
                         .attribute("value", "true");
       }
@@ -308,7 +308,7 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
          if (value != null)
          {
             persistenceUnit.getOrCreate("properties")
-                        .create("property")
+                        .createChild("property")
                            .attribute("name", "hibernate.hbm2ddl.auto")
                            .attribute("value", value);
          }
@@ -336,7 +336,7 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
          if (value != null)
          {
             persistenceUnit.getOrCreate("properties")
-                     .create("property")
+                     .createChild("property")
                         .attribute("name", "eclipselink.ddl-generation")
                         .attribute("value", value);
          }
@@ -377,46 +377,46 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    @Override
    public List<String> getJarFiles()
    {
-      return persistenceUnit.textValues("jar-file");
+      return persistenceUnit.getTextValuesForPatternName("jar-file");
    }
 
    @Override
    public List<String> getClasses()
    {
-      return persistenceUnit.textValues("class");
+      return persistenceUnit.getTextValuesForPatternName("class");
    }
 
    @Override
    public List<String> getMappingFiles()
    {
-      return persistenceUnit.textValues("mapping-file");
+      return persistenceUnit.getTextValuesForPatternName("mapping-file");
    }
 
    @Override
    public SharedCacheModeType getSharedCacheMode()
    {
       Node mode = persistenceUnit.getSingle("shared-cache-mode");
-      return mode == null ? null : SharedCacheModeType.valueOf(mode.text());
+      return mode == null ? null : SharedCacheModeType.valueOf(mode.getText());
    }
 
    @Override
    public ValidationModeType getValidationMode()
    {
       Node mode = persistenceUnit.getSingle("validation-mode");
-      return mode == null ? null : ValidationModeType.valueOf(mode.text());
+      return mode == null ? null : ValidationModeType.valueOf(mode.getText());
    }
 
    @Override
    public boolean includesUnlistedClasses()
    {
       Node mode = persistenceUnit.getSingle("exclude-unlisted-classes");
-      return mode == null ? false : Boolean.valueOf(mode.text());
+      return mode == null ? false : Boolean.valueOf(mode.getText());
    }
 
    @Override
    public String getProvider()
    {
       Node provider = persistenceUnit.getSingle("provider");
-      return provider == null ? null : provider.text();
+      return provider == null ? null : provider.getText();
    }
 }

@@ -17,71 +17,95 @@
 package org.jboss.shrinkwrap.descriptor.spi.query.queries;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Arrays;
 import java.util.List;
 
 import org.jboss.shrinkwrap.descriptor.spi.Node;
-import org.jboss.shrinkwrap.descriptor.spi.query.AbstractQueryExecuter;
-import org.jboss.shrinkwrap.descriptor.spi.query.NodeQuery;
+import org.jboss.shrinkwrap.descriptor.spi.query.Pattern;
 import org.jboss.shrinkwrap.descriptor.spi.query.Query;
 
 /**
- * GetExpression
+ * Obtains the {@link List} of {@link Node}s
+ * designated by the specified {@link Pattern}s under the
+ * specified root {@link Node}.
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
- * @version $Revision: $
+ * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public class GetQuery extends AbstractQueryExecuter<List<Node>>
-{
-   /**
-    * @param isAbsolute
-    * @param paths
-    */
-   public GetQuery(Query def)
-   {
-      super(def);
-   }
+public enum GetQuery implements Query<List<Node>> {
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.api.Expression#execute(org.jboss.shrinkwrap.descriptor.api.Node)
+   /**
+    * Instance
+    */
+   INSTANCE;
+
+   /**
+    * {@inheritDoc}
+    * @see org.jboss.shrinkwrap.descriptor.spi.query.Query#execute(org.jboss.shrinkwrap.descriptor.spi.Node, org.jboss.shrinkwrap.descriptor.spi.query.Pattern[])
     */
    @Override
-   public List<Node> execute(Node node)
+   public List<Node> execute(final Node node, final Pattern... patterns)
    {
-      Query def = getDefinition();
-      List<NodeQuery> nodeDefs = def.getDefinitions();
+      // Precondition checks
+      QueryUtil.validateNodeAndPatterns(node, patterns);
 
-      Node current = def.isAbsolute() ? findRoot(node) : node;
-      int startIndex = def.isAbsolute() ? 1 : 0;
+      // Represent as a list
+      final List<Pattern> patternList = Arrays.asList(patterns);
 
-      if (def.isAbsolute())
+      // Delegate to recursive handler, starting at the top
+      return findMatch(node, patternList);
+   }
+
+   /**
+    * Returns all {@link Node}s decendent from the specified start
+    * which match the specified {@link Pattern}s
+    * @param start
+    * @param patterns
+    * @return
+    */
+   private List<Node> findMatch(final Node start, final List<Pattern> patterns)
+   {
+      // Hold the matched Nodes
+      final List<Node> matchedNodes = new ArrayList<Node>();
+
+      // Get the next pattern in sequence
+      final Pattern pattern = patterns.get(0);
+
+      // Check that there's a pattern to match
+      if (pattern == null)
       {
-         // match the first path with the 'root' node name.
-         if (!nodeDefs.get(0).matches(current))
+         return matchedNodes;
+      }
+
+      // Init a flag
+      boolean foundMatch = false;
+
+      // See if we've got a match
+      if (pattern.matches(start))
+      {
+         // Set flag
+         foundMatch = true;
+
+         // If no more patterns to check, we're at the end of the line; just add this Node
+         if (patterns.size() == 1)
          {
-            return null;
+            matchedNodes.add(start);
+            return matchedNodes;
          }
       }
-      
-      return findMatch(current, nodeDefs.listIterator(startIndex));
-   }
-   
-   private List<Node> findMatch(Node parent, Iterator<NodeQuery> definitions)
-   {
-      List<Node> nodes = new ArrayList<Node>();
-      NodeQuery def = definitions.hasNext() ? definitions.next():null;
-      if(def == null)
+
+      // Check all children
+      for (final Node child : start.getChildren())
       {
-         nodes.add(parent);
-         return nodes;
+         // Only use patterns that haven't already matched
+         final List<Pattern> sub = patterns.subList(foundMatch ? 1 : 0, patterns.size());
+
+         // Recursion point
+         matchedNodes.addAll(findMatch(child, sub));
       }
-      for (Node child : parent.children())
-      {
-         if(def.matches(child))
-         {
-            nodes.addAll(findMatch(child, definitions));
-         }
-      }
-      return nodes;
+
+      // Return
+      return matchedNodes;
    }
+
 }

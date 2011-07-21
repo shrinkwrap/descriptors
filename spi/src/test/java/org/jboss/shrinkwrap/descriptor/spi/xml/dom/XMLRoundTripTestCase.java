@@ -51,8 +51,8 @@ public class XMLRoundTripTestCase
    {
       Node root = load(XML_WITH_COMMENT);
       
-      Assert.assertNotNull(root.getSingle("#comment"));
-      Assert.assertNotNull(root.getSingle("child"));
+      Assert.assertNotNull("Obtaining comment should not be null",root.getSingle("#comment"));
+      Assert.assertNotNull("Obtaining child should not be null",root.getSingle("child"));
       
       System.out.println(export(root));
    }

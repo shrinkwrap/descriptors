@@ -82,7 +82,7 @@ public class XmlDomImporter<T extends Descriptor> extends DescriptorImporterBase
             if(child.getNodeType() != org.w3c.dom.Node.TEXT_NODE)
             {
                // Create our representation of the Node
-               final Node newTarget = target.create(child.getNodeName());
+               final Node newTarget = target.createChild(child.getNodeName());
                
                if(onlyTextChildren(child))
                {

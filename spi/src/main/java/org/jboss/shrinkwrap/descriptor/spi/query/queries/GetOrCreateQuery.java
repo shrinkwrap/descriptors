@@ -16,84 +16,131 @@
  */
 package org.jboss.shrinkwrap.descriptor.spi.query.queries;
 
-import java.util.Iterator;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.jboss.shrinkwrap.descriptor.spi.Node;
-import org.jboss.shrinkwrap.descriptor.spi.query.AbstractQueryExecuter;
-import org.jboss.shrinkwrap.descriptor.spi.query.NodeQuery;
+import org.jboss.shrinkwrap.descriptor.spi.query.Pattern;
 import org.jboss.shrinkwrap.descriptor.spi.query.Query;
 
 /**
- * GetOrCreateExpression
+ * Starting at the specified {@link Node}, either returns an
+ * existing match for the specified {@link Pattern}s, or creates
+ * new {@link Node}(s) as appropriate and returns the root
+ * of those created. 
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
- * @version $Revision: $
+ * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public class GetOrCreateQuery extends AbstractQueryExecuter<Node>
-{
-   /**
-    * @param isAbsolute
-    * @param paths
-    */
-   public GetOrCreateQuery(Query def)
-   {
-      super(def);
-   }
+public enum GetOrCreateQuery implements Query<Node> {
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.api.Expression#execute(org.jboss.shrinkwrap.descriptor.api.Node)
+   /**
+    * Instance
+    */
+   INSTANCE;
+
+   /**
+    * Logger
+    */
+   private static final Logger log = Logger.getLogger(GetOrCreateQuery.class.getName());
+
+   /**
+    * Used in casting
+    */
+   private static final Pattern[] PATTERN_CAST = new Pattern[]
+   {};
+
+   /**
+    * {@inheritDoc}
+    * @see org.jboss.shrinkwrap.descriptor.spi.query.Query#execute(org.jboss.shrinkwrap.descriptor.spi.Node, org.jboss.shrinkwrap.descriptor.spi.query.Pattern[])
     */
    @Override
-   public Node execute(Node node)
+   public Node execute(final Node node, final Pattern... patterns)
    {
-      Query def = getDefinition();
-      List<NodeQuery> nodeDefs = def.getDefinitions();
+      // Precondition checks
+      QueryUtil.validateNodeAndPatterns(node, patterns);
 
-      GetSingleQuery single = new GetSingleQuery(getDefinition());
-      Node found = single.execute(node);
-      if(found == null)
+      // Init
+      final List<Pattern> patternList = Arrays.asList(patterns);
+      if (log.isLoggable(Level.FINEST))
       {
-         Node current = def.isAbsolute() ? findRoot(node) : node;
-         int startIndex = def.isAbsolute() ? 1 : 0;
+         log.finest("Looking to create: " + patternList + " on " + node.toString(true));
+      }
+      
+      // Find or create, starting at the top
+      final Node found = this.findOrCreate(node, patternList, patterns);
 
-         if (def.isAbsolute())
+      // Return
+      return found;
+
+   }
+
+   private Node findOrCreate(final Node root, final List<Pattern> patternsToSearch,
+         final Pattern... allPatterns)
+   {
+
+      final Node found = GetSingleQuery.INSTANCE.execute(root, patternsToSearch.toArray(PATTERN_CAST));
+
+      // Not found; we'll have to make it
+      if (found == null)
+      {
+         // First find the Node we start to match
+         if (patternsToSearch.size() > 1)
          {
-            // match the first path with the 'root' node name.
-            if (!nodeDefs.get(0).matches(current))
-            {
-               return null;
-            }
+            return this.findOrCreate(root, patternsToSearch.subList(0, patternsToSearch.size() - 1),
+                  allPatterns);
          }
-         return findOrCreateMatch(current, nodeDefs.listIterator(startIndex));
+
+      }
+
+      // If still not found, nothing at all matched the tree, so go ahead and create the whole thing 
+      if (found == null)
+      {
+         if (log.isLoggable(Level.FINEST))
+         {
+            log.finest("Still not found, root: " + root);
+         }
+         return CreateQuery.INSTANCE.execute(root, allPatterns);
       }
       else
       {
-         return found;
-      }
-   }
-
-   private Node findOrCreateMatch(Node parent, Iterator<NodeQuery> definitions)
-   {
-      NodeQuery def = definitions.hasNext() ? definitions.next():null;
-      if(def == null)
-      {
-         return parent;
-      }
-      for (Node child : parent.children())
-      {
-         if(def.matches(child))
+         // If this is null, there was no match anywhere in the pattern list
+         if (log.isLoggable(Level.FINEST))
          {
-            return findOrCreateMatch(child, definitions);
+            log.finest("Found " + found + " matching " + patternsToSearch);
+         }
+
+         // Determine which patterns are left to create
+         final int offset = patternsToSearch.size();
+         final int numPatternsToCreate = allPatterns.length - offset;
+         final Pattern[] patternsToCreate = new Pattern[numPatternsToCreate];
+
+         // Only create if there's more to do
+         if (patternsToCreate.length > 0)
+         {
+            // Copy the patterns we should be creating only
+            for (int i = 0; i < numPatternsToCreate; i++)
+            {
+               patternsToCreate[i] = allPatterns[offset + i];
+            }
+            if (log.isLoggable(Level.FINEST))
+            {
+               log.finest("Attempting to create " + Arrays.asList(patternsToCreate) + " on " + found);
+            }
+
+            // Create the new Node and return it
+            final Node newNode = CreateQuery.INSTANCE.execute(found, patternsToCreate);
+            return newNode;
+         }
+         // Otherwise just return the Node we found (like a "get" operation)
+         else
+         {
+            return found;
          }
       }
-      Node createdNode = new Node(def.name(), parent); 
-      createdNode.text(def.getText());
-      for(Map.Entry<String, String> attribute : def.getAttributes().entrySet())
-      {
-         createdNode.attribute(attribute.getKey(), attribute.getValue());
-      }
-      return findOrCreateMatch(createdNode, definitions);
+
    }
+
 }

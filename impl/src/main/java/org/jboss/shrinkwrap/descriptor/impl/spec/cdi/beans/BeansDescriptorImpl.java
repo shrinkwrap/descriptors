@@ -73,7 +73,7 @@ public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDe
    {
       for (String c : classes)
       {
-         beans.getOrCreate("interceptors").create("class").text(c);
+         beans.getOrCreate("interceptors").createChild("class").text(c);
       }
       return this;
    }
@@ -99,7 +99,7 @@ public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDe
    {
       for (String c : classes)
       {
-         beans.getOrCreate("decorators").create("class").text(c);
+         beans.getOrCreate("decorators").createChild("class").text(c);
       }
       return this;
    }
@@ -125,7 +125,7 @@ public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDe
    {
       for (String c : classes)
       {
-         beans.getOrCreate("alternatives").create("class").text(c);
+         beans.getOrCreate("alternatives").createChild("class").text(c);
       }
       return this;
    }
@@ -151,7 +151,7 @@ public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDe
    {
       for (String s : annotations)
       {
-         beans.getOrCreate("alternatives").create("stereotype").text(s);
+         beans.getOrCreate("alternatives").createChild("stereotype").text(s);
       }
       return this;
    }
@@ -182,7 +182,7 @@ public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDe
          {
             throw new IllegalArgumentException("Class is not an interceptor");
          }
-         beans.getOrCreate("interceptors").create("class").text(c.getName());
+         beans.getOrCreate("interceptors").createChild("class").text(c.getName());
       }
       return this;
    }
@@ -213,7 +213,7 @@ public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDe
          {
             throw new IllegalArgumentException("Class is not a decorator");
          }
-         beans.getOrCreate("decorators").create("class").text(c.getName());
+         beans.getOrCreate("decorators").createChild("class").text(c.getName());
       }
       return this;
    }
@@ -244,7 +244,7 @@ public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDe
          {
             throw new IllegalArgumentException("Class is not an alternative");
          }
-         beans.getOrCreate("alternatives").create("class").text(c.getName());
+         beans.getOrCreate("alternatives").createChild("class").text(c.getName());
       }
       return this;
    }
@@ -280,7 +280,7 @@ public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDe
          {
             throw new IllegalArgumentException("Stereotype is not an alternative");
          }
-         beans.getOrCreate("alternatives").create("stereotype").text(a.getName());
+         beans.getOrCreate("alternatives").createChild("stereotype").text(a.getName());
       }
       return this;
    }
@@ -322,24 +322,24 @@ public class BeansDescriptorImpl extends NodeProviderImplBase implements BeansDe
    @Override
    public List<String> getAlternativeClasses()
    {
-      return beans.textValues("alternatives/class");
+      return beans.getTextValuesForPatternName("alternatives/class");
    }
 
    @Override
    public List<String> getAlternativeStereotypes()
    {
-      return beans.textValues("alternatives/stereotype");
+      return beans.getTextValuesForPatternName("alternatives/stereotype");
    }
 
    @Override
    public List<String> getDecorators()
    {
-      return beans.textValues("decorators/class");
+      return beans.getTextValuesForPatternName("decorators/class");
    }
 
    @Override
    public List<String> getInterceptors()
    {
-      return beans.textValues("interceptors/class");
+      return beans.getTextValuesForPatternName("interceptors/class");
    }
 }

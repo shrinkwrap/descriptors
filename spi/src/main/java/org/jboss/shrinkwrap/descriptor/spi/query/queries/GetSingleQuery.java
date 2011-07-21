@@ -19,47 +19,42 @@ package org.jboss.shrinkwrap.descriptor.spi.query.queries;
 import java.util.List;
 
 import org.jboss.shrinkwrap.descriptor.spi.Node;
-import org.jboss.shrinkwrap.descriptor.spi.query.AbstractQueryExecuter;
+import org.jboss.shrinkwrap.descriptor.spi.query.Pattern;
 import org.jboss.shrinkwrap.descriptor.spi.query.Query;
 
 /**
- * GetSingleExpression
+ * Form of {@link GetQuery} used as a convenience to retrieve
+ * a single result.  If more than one match is found, 
+ * {@link IllegalArgumentException} will be thrown.  If no matches
+ * are found, <code>null</code> is returned.
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
- * @version $Revision: $
+ * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public class GetSingleQuery extends AbstractQueryExecuter<Node>
-{
+public enum GetSingleQuery implements Query<Node> {
 
    /**
-    * @param isAbsolute
-    * @param paths
+    * Instance
     */
-   public GetSingleQuery(Query def)
-   {
-      super(def);
-   }
+   INSTANCE;
 
-   @Override
-   public String toString()
-   {
-      return "GetSingleQuery [query=" + getDefinition() + "]";
-   }
-
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.api.Expression#execute(org.jboss.shrinkwrap.descriptor.api.Node)
+   /**
+    * {@inheritDoc}
+    * @see org.jboss.shrinkwrap.descriptor.spi.query.Query#execute(org.jboss.shrinkwrap.descriptor.spi.Node, org.jboss.shrinkwrap.descriptor.spi.query.Pattern[])
     */
    @Override
-   public Node execute(Node node)
+   public Node execute(final Node node, final Pattern... patterns)
    {
-      GetQuery getAll = new GetQuery(getDefinition());
-      List<Node> nodes = getAll.execute(node);
+      // Precondition checks
+      QueryUtil.validateNodeAndPatterns(node, patterns);
       
-      if(nodes == null || nodes.size() == 0)
+      final List<Node> nodes = GetQuery.INSTANCE.execute(node, patterns);
+
+      if (nodes == null || nodes.size() == 0)
       {
          return null;
       }
-      if(nodes.size() > 1)
+      if (nodes.size() > 1)
       {
          throw new IllegalArgumentException("Multiple nodes matching expression found");
       }

@@ -43,7 +43,7 @@ public class FilterMappingDefImpl extends FilterDefImpl implements FilterMapping
    @Override
    public String getFilterName()
    {
-      return mapping.textValue("filter-name");
+      return mapping.getTextValueForPatternName("filter-name");
    }
 
    @Override
@@ -56,13 +56,13 @@ public class FilterMappingDefImpl extends FilterDefImpl implements FilterMapping
    @Override
    public List<String> getUrlPatterns()
    {
-      return mapping.textValues("url-pattern");
+      return mapping.getTextValuesForPatternName("url-pattern");
    }
 
    @Override
    public FilterMappingDef urlPattern(String urlPattern)
    {
-      mapping.create("url-pattern").text(urlPattern);
+      mapping.createChild("url-pattern").text(urlPattern);
       return this;
    }
 
@@ -81,7 +81,7 @@ public class FilterMappingDefImpl extends FilterDefImpl implements FilterMapping
    {
       if (!getDispatchTypes().contains(type))
       {
-         mapping.create("dispatcher").text(type.name());
+         mapping.createChild("dispatcher").text(type.name());
       }
       return this;
    }
@@ -99,7 +99,7 @@ public class FilterMappingDefImpl extends FilterDefImpl implements FilterMapping
    @Override
    public Set<DispatcherType> getDispatchTypes()
    {
-      List<String> values = mapping.textValues("dispatcher");
+      List<String> values = mapping.getTextValuesForPatternName("dispatcher");
       Set<DispatcherType> result = new HashSet<DispatcherType>();
       for (String string : values)
       {
@@ -111,7 +111,7 @@ public class FilterMappingDefImpl extends FilterDefImpl implements FilterMapping
    @Override
    public List<String> getServletNames()
    {
-      return mapping.textValues("servlet-name");
+      return mapping.getTextValuesForPatternName("servlet-name");
    }
 
    @Override
@@ -119,7 +119,7 @@ public class FilterMappingDefImpl extends FilterDefImpl implements FilterMapping
    {
       if (!getServletMappings().contains(name))
       {
-         mapping.create("servlet-name").text(name);
+         mapping.createChild("servlet-name").text(name);
       }
       return this;
    }

@@ -16,58 +16,28 @@
  */
 package org.jboss.shrinkwrap.descriptor.spi.query;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.jboss.shrinkwrap.descriptor.spi.Node;
 
 /**
- * 
+ * Contract for something capable of executing a 
+ * query (collection of {@link Pattern}s) upon a {@link Node} to find a match
+ * or matches.  May be used for search, creation, etc.
+ *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
- * @version $Revision: $
+ * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
+ * @param <T> Expected return value from executing a query
  */
-public final class Query
+public interface Query<T>
 {
-   //-------------------------------------------------------------------------------------||
-   // Instance Members -------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
-   
-   private boolean isAbsolute = false;
-
-   private List<NodeQuery> definitions;
-   
-   //-------------------------------------------------------------------------------------||
-   // Constructor ------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
-   
-   public Query(boolean isAbsolute)
-   {
-      this.isAbsolute = isAbsolute;
-      this.definitions = new ArrayList<NodeQuery>();
-   }
-
-   @Override
-   public String toString()
-   {
-      return "Query [isAbsolute=" + isAbsolute + ", definitions=" + definitions + "]";
-   }
-
-   /**
-    * @return
+   /** 
+    * Queries the tree starting at the specified {@link Node}
+    * for the specified {@link Pattern}s.
+    *  
+    * @param node The {@link Node} to use as a reference point
+    * @param patterns The {@link Pattern}s to match
+    * @return The expressed value or null if not found.
+    * @throws IllegalArgumentException If the {@link Node} is not
+    *    specified or no {@link Pattern}s are specified
     */
-   public List<NodeQuery> getDefinitions()
-   {
-      return definitions;
-   }
-   
-   public void addDefinition(final NodeQuery def)
-   {
-      getDefinitions().add(def);
-   }
-   
-   /**
-    * @return the isAbsolute
-    */
-   public boolean isAbsolute()
-   {
-      return isAbsolute;
-   }
+   T execute(Node node, Pattern... patterns) throws IllegalArgumentException;
 }

@@ -17,6 +17,7 @@
 package org.jboss.shrinkwrap.descriptor.spi.query;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import junit.framework.Assert;
 
@@ -33,6 +34,11 @@ import org.junit.Test;
  */
 public class QueryTestCase
 {
+   /**
+    * Logger
+    */
+   private static final Logger log = Logger.getLogger(QueryTestCase.class.getName());
+   
    private static final String ATTR_NAME = "attr_name";
    private static final String ROOT_NODE = "root";
    private static final String CHILD_1_NODE = "child-1";
@@ -48,42 +54,45 @@ public class QueryTestCase
    public void shouldBeAbleToFindAChildWithTextValue() throws Exception
    {
       Node root = createTree();
+      System.out.println(root.toString(true));
       Node found = root.getSingle(CHILD_3_NODE + "=" + CHILD_3_TEXT);
 
       Assert.assertNotNull("Verify a node as found", found);
 
       Assert.assertEquals(
                "Verify correct node found",
-               CHILD_3_NODE, found.name());
+               CHILD_3_NODE, found.getName());
       Assert.assertEquals(
                "Verify correct node value",
-               CHILD_3_TEXT, found.text());
+               CHILD_3_TEXT, found.getText());
    }
    
    @Test
    public void shouldBeAbleToFindAExpressedChild() throws Exception
    {
       Node root = createTree();
+      System.out.println(root.toString(true));
       Node found = root.getSingle(CHILD_1_NODE + "/" + CHILD_1_1_NODE);
       
       Assert.assertNotNull("Verify a node as found", found);
       
       Assert.assertEquals(
             "Verify correct node found",
-            CHILD_1_1_NODE, found.name());      
+            CHILD_1_1_NODE, found.getName());      
    }
    
    @Test
    public void shouldBeAbleToFindAExpressedFromRoot() throws Exception
    {
       Node root = createTree();
+      System.out.println(root.toString(true));
       Node found = root.getSingle("/" + ROOT_NODE + "/" + CHILD_1_NODE + "/" + CHILD_1_1_NODE);
       
       Assert.assertNotNull("Verify a node was found", found);
       
       Assert.assertEquals(
             "Verify correct node found",
-            CHILD_1_1_NODE, found.name());      
+            CHILD_1_1_NODE, found.getName());      
    }
 
    @Test
@@ -96,7 +105,7 @@ public class QueryTestCase
       
       Assert.assertEquals(
             "Verify correct node found",
-            CHILD_2_1_NODE, found.name());      
+            CHILD_2_1_NODE, found.getName());      
 
       Assert.assertEquals(
             "Verify correct node found",
@@ -107,46 +116,58 @@ public class QueryTestCase
    public void shouldBeAbleToCreateOrGetNodes()
    {
       Node root = new Node(ROOT_NODE);
-      root.create(CHILD_2_NODE);
+      root.createChild(CHILD_2_NODE);
       
       Node created = root.getOrCreate(("/" + ROOT_NODE + "/" + CHILD_2_NODE + "/" + CHILD_2_1_NODE + "@" + ATTR_NAME + "=" + CHILD_2_2_NODE));
+      
+      log.info(root.toString(true));
       
       Assert.assertNotNull("Verify a node was created", created);
       
       Assert.assertEquals(
             "Verify correct node created",
-            CHILD_2_1_NODE, created.name());      
+            CHILD_2_1_NODE, created.getName());      
 
       Assert.assertEquals(
             "Verify correct node created",
             CHILD_2_2_NODE, created.getAttribute(ATTR_NAME));      
+      
+      Assert.assertEquals(
+            "Verify node created has correct parent",
+            CHILD_2_NODE, created.getParent().getName());      
    
       Assert.assertEquals(
             "Verify root only has one child node",
-            1, root.children().size());
+            1, root.getChildren().size());
    }
 
    @Test
    public void shouldBeAbleToCreateOrGetNodesWithTextValues()
    {
       Node root = new Node(ROOT_NODE);
-      root.create(CHILD_3_NODE);
+      root.createChild(CHILD_3_NODE);
 
       Node created = root.getOrCreate(("/" + ROOT_NODE + "/" + CHILD_3_NODE + "=" + CHILD_3_TEXT));
+      
+      log.info(root.toString(true));
 
       Assert.assertNotNull("Verify a node was created", created);
 
       Assert.assertEquals(
                "Verify correct node created",
-               CHILD_3_NODE, created.name());
+               CHILD_3_NODE, created.getName());
 
       Assert.assertEquals(
                "Verify correct value set",
-               CHILD_3_TEXT, created.text());
-
+               CHILD_3_TEXT, created.getText());
+      
       Assert.assertEquals(
-               "Verify root only has one child node",
-               2, root.children().size());
+            "Verify root only has two child nodes",
+            2, root.getChildren().size());
+
+      Assert.assertEquals("Created node has wrong parent",
+               root,
+               created.getParent());
    }
 
    @Test
@@ -160,6 +181,7 @@ public class QueryTestCase
 
       List<Node> nodes = root.get(("/" + ROOT_NODE + "/" + CHILD_3_NODE + "=" + CHILD_3_TEXT));
 
+      log.info(root.toString(true));
       Assert.assertNotNull("Verify nodes were found", nodes);
       
       Assert.assertEquals("Verify found a single node", 1, nodes.size());
@@ -167,15 +189,15 @@ public class QueryTestCase
       Node found = nodes.get(0);
       Assert.assertEquals(
                "Verify correct node created",
-               CHILD_3_NODE, found.name());
+               CHILD_3_NODE, found.getName());
 
       Assert.assertEquals(
                "Verify correct value set",
-               CHILD_3_TEXT, found.text());
+               CHILD_3_TEXT, found.getText());
 
       Assert.assertEquals(
                "Verify root only has four children",
-               4, root.children().size());
+               4, root.getChildren().size());
    }
    
    @Test
@@ -191,34 +213,36 @@ public class QueryTestCase
 
       Assert.assertNotNull("Verify node was found", found);
       
+      System.out.println(found.toString(true));
+      
       Assert.assertEquals(
                "Verify correct node created",
-               CHILD_3_NODE, found.name());
+               CHILD_3_NODE, found.getName());
 
       Assert.assertEquals(
                "Verify correct value set",
-               CHILD_3_TEXT, found.text());
+               CHILD_3_TEXT, found.getText());
 
       Assert.assertEquals(
                "Verify root only has four children",
-               4, root.children().size());
+               4, root.getChildren().size());
    }
    
    private Node createTree()
    {
       Node root = new Node(ROOT_NODE);
-      Node child1 = root.create(CHILD_1_NODE);
+      Node child1 = root.createChild(CHILD_1_NODE);
 
-      child1.create(CHILD_1_1_NODE).attribute(ATTR_NAME, CHILD_1_1_NODE);
-      child1.create(CHILD_1_2_NODE).attribute(ATTR_NAME, CHILD_1_2_NODE);
+      child1.createChild(CHILD_1_1_NODE).attribute(ATTR_NAME, CHILD_1_1_NODE);
+      child1.createChild(CHILD_1_2_NODE).attribute(ATTR_NAME, CHILD_1_2_NODE);
       
-      Node child2 = root.create(CHILD_2_NODE);
-      child2.create(CHILD_2_1_NODE).attribute(ATTR_NAME, CHILD_2_1_NODE);
+      Node child2 = root.createChild(CHILD_2_NODE);
+      child2.createChild(CHILD_2_1_NODE).attribute(ATTR_NAME, CHILD_2_1_NODE);
       
       // same node name, but different attribute value
-      child2.create(CHILD_2_1_NODE).attribute(ATTR_NAME, CHILD_2_2_NODE);
+      child2.createChild(CHILD_2_1_NODE).attribute(ATTR_NAME, CHILD_2_2_NODE);
       
-      root.create(CHILD_3_NODE).text(CHILD_3_TEXT);
+      root.createChild(CHILD_3_NODE).text(CHILD_3_TEXT);
       return root;
    }
 }

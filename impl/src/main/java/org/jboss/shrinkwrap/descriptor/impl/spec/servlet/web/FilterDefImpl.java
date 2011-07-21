@@ -45,7 +45,7 @@ public class FilterDefImpl extends WebAppDescriptorImpl implements FilterDef
    @Override
    public String getName()
    {
-      return filter.textValue("filter-name");
+      return filter.getTextValueForPatternName("filter-name");
    }
 
    @Override
@@ -65,13 +65,13 @@ public class FilterDefImpl extends WebAppDescriptorImpl implements FilterDef
    @Override
    public boolean isAsyncSupported()
    {
-      return Strings.isTrue(filter.textValue("async-supported"));
+      return Strings.isTrue(filter.getTextValueForPatternName("async-supported"));
    }
 
    @Override
    public String getFilterClass()
    {
-      return filter.textValue("filter-class");
+      return filter.getTextValueForPatternName("filter-class");
    }
 
    @Override
@@ -110,7 +110,7 @@ public class FilterDefImpl extends WebAppDescriptorImpl implements FilterDef
       List<Node> params = filter.get("init-param");
       for (Node node : params)
       {
-         result.put(node.textValue("param-name"), node.textValue("param-value"));
+         result.put(node.getTextValueForPatternName("param-name"), node.getTextValueForPatternName("param-value"));
       }
       return result;
    }
@@ -118,7 +118,7 @@ public class FilterDefImpl extends WebAppDescriptorImpl implements FilterDef
    @Override
    public FilterMappingDef mapping()
    {
-      Node mappingNode = getRootNode().create("filter-mapping");
+      Node mappingNode = getRootNode().createChild("filter-mapping");
       FilterMappingDefImpl mapping = new FilterMappingDefImpl(getDescriptorName(), getRootNode(), filter, mappingNode);
       mapping.filterName(getName());
       return mapping;

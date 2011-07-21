@@ -19,8 +19,7 @@ package org.jboss.shrinkwrap.descriptor.spi;
 import java.util.List;
 import java.util.Map;
 
-import org.jboss.shrinkwrap.descriptor.spi.query.NodeQuery;
-import org.jboss.shrinkwrap.descriptor.spi.query.Query;
+import org.jboss.shrinkwrap.descriptor.spi.query.Pattern;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -61,11 +60,11 @@ public class NodeTestCase
    public void shouldBeAbleToGetParentNode() throws Exception
    {
       Node root = new Node(ROOT_NAME);
-      Node child = root.create(CHILD_1_NAME);
+      Node child = root.createChild(CHILD_1_NAME);
 
       Assert.assertEquals(
                "Verify ability to get parent node",
-               root, child.parent());
+               root, child.getParent());
    }
 
    @Test
@@ -77,7 +76,7 @@ public class NodeTestCase
 
       Assert.assertEquals(
                "Verify root only has one child",
-               1, root.children().size());
+               1, root.getChildren().size());
 
       Assert.assertEquals(
             "Verify the previous created node was returned",
@@ -88,12 +87,12 @@ public class NodeTestCase
    public void shouldBeAbleToCreateMultipleEquallyNamedChildren() throws Exception
    {
       Node root = new Node(ROOT_NAME);
-      Node child1 = root.create(CHILD_1_NAME);
-      Node child2 = root.create(CHILD_1_NAME);
+      Node child1 = root.createChild(CHILD_1_NAME);
+      Node child2 = root.createChild(CHILD_1_NAME);
 
       Assert.assertEquals(
                "Verify root only has two children",
-               2, root.children().size());
+               2, root.getChildren().size());
 
       Assert.assertNotSame(
             "Verify the children are not the same object",
@@ -104,9 +103,9 @@ public class NodeTestCase
    public void shouldBeAbleToGetChildNodesByName() throws Exception
    {
       Node root = new Node(ROOT_NAME);
-      Node child1 = root.create(CHILD_1_NAME);
-      Node child2 = root.create(CHILD_1_NAME);
-      root.create(CHILD_2_NAME);
+      Node child1 = root.createChild(CHILD_1_NAME);
+      Node child2 = root.createChild(CHILD_1_NAME);
+      root.createChild(CHILD_2_NAME);
 
       List<Node> found = root.get(CHILD_1_NAME);
 
@@ -127,7 +126,7 @@ public class NodeTestCase
    public void shouldBeAbleToGetASingleNode() throws Exception
    {
       Node root = new Node(ROOT_NAME);
-      Node child = root.create(CHILD_1_NAME);
+      Node child = root.createChild(CHILD_1_NAME);
 
       Node found = root.getSingle(CHILD_1_NAME);
 
@@ -140,8 +139,8 @@ public class NodeTestCase
    public void shouldThrowExceptionIfMultipleNamedNodesFoundOnGetSingle() throws Exception
    {
       Node root = new Node(ROOT_NAME);
-      root.create(CHILD_1_NAME);
-      root.create(CHILD_1_NAME);
+      root.createChild(CHILD_1_NAME);
+      root.createChild(CHILD_1_NAME);
 
       // throws Exception, multiple nodes with same name
       root.getSingle(CHILD_1_NAME);
@@ -177,7 +176,7 @@ public class NodeTestCase
 
       Assert.assertEquals(
                "Verify abillity to store text body",
-               BODY, root.text());
+               BODY, root.getText());
    }
 
    @Test
@@ -188,7 +187,7 @@ public class NodeTestCase
 
       Assert.assertEquals(
                "Verify abillity to store text body",
-               BODY, root.text());
+               BODY, root.getText());
    }
 
    @Test
@@ -198,10 +197,10 @@ public class NodeTestCase
 
       for (int i = 0; i < 10; i++)
       {
-         root.create("subject").text(i);
+         root.createChild("subject").text(i);
       }
 
-      List<String> textValues = root.textValues("subject");
+      List<String> textValues = root.getTextValuesForPatternName("subject");
       for (int i = 0; i < 10; i++)
       {
          Assert.assertTrue(textValues.contains(String.valueOf(i)));
@@ -215,24 +214,24 @@ public class NodeTestCase
       String childText = "textval";
 
       Node root = new Node(ROOT_NAME);
-      Assert.assertNull(root.textValue(childName));
+      Assert.assertNull(root.getTextValueForPatternName(childName));
 
-      root.create(childName);
-      Assert.assertNull(root.textValue(childName));
+      root.createChild(childName);
+      Assert.assertNull(root.getTextValueForPatternName(childName));
       
-      root.children().get(0).text(childText);
-      Assert.assertNotNull(root.textValue(childName));
-      Assert.assertEquals(childText, root.textValue(childName));
+      root.getChildren().get(0).text(childText);
+      Assert.assertNotNull(root.getTextValueForPatternName(childName));
+      Assert.assertEquals(childText, root.getTextValueForPatternName(childName));
    }
 
    @Test
    public void shouldReturnEmptyListForMissingTextValues() throws Exception
    {
       Node root = new Node(ROOT_NAME);
-      root.create("child1");
-      root.create("child2");
-      root.create("child3").text(null);
-      List<String> textValues = root.textValues("textValue");
+      root.createChild("child1");
+      root.createChild("child2");
+      root.createChild("child3").text(null);
+      List<String> textValues = root.getTextValuesForPatternName("textValue");
       Assert.assertNotNull(textValues);
       Assert.assertTrue(textValues.isEmpty());
    }
@@ -242,14 +241,14 @@ public class NodeTestCase
    {
       String childName = "child";
       Node root = new Node(ROOT_NAME);
-      Assert.assertNull(root.textValue(childName));
+      Assert.assertNull(root.getTextValueForPatternName(childName));
 
-      root.create(childName);
-      root.create(childName);
-      root.children().get(0).text("text");
-      root.children().get(1).text("text");
+      root.createChild(childName);
+      root.createChild(childName);
+      root.getChildren().get(0).text("text");
+      root.getChildren().get(1).text("text");
 
-      root.textValue(childName);
+      root.getTextValueForPatternName(childName);
    }
 
    @Test
@@ -266,7 +265,7 @@ public class NodeTestCase
       Assert.assertTrue(root.toString().contains("children"));
       Assert.assertTrue(root.toString().contains("attributes"));
       Assert.assertTrue(root.toString().contains("text"));
-      Assert.assertTrue(root.toString().contains(root.text()));
+      Assert.assertTrue(root.toString().contains(root.getText()));
    }
 
    @Test
@@ -286,8 +285,8 @@ public class NodeTestCase
       Assert.assertTrue(r.indexOf("attributes") < r.indexOf("text"));
 
       Assert.assertTrue("Unexpected content? " + root.toString(), root.toString().contains("children[0]"));
-      root.create("testchild1");
-      root.create("testchild2");
+      root.createChild("testchild1");
+      root.createChild("testchild2");
       Assert.assertTrue("Unexpected content? " + root.toString(), root.toString().contains("children[2]"));
 
       Assert.assertTrue("Unexpected content? " + root.toString(), root.toString().contains("attributes[{}]"));
@@ -311,21 +310,21 @@ public class NodeTestCase
    public void shouldThrowExceptionForNullStringParameter() throws Exception
    {
       Node root = new Node(ROOT_NAME);
-      root.remove((String) null);
+      root.removeChildren((String) null);
    }
 
    @Test(expected = IllegalArgumentException.class)
    public void shouldThrowExceptionForEmptyStringParameter() throws Exception
    {
       Node root = new Node(ROOT_NAME);
-      root.remove("");
+      root.removeChildren("");
    }
 
    @Test(expected = IllegalArgumentException.class)
    public void shouldThrowExceptionForNullQueryParameter() throws Exception
    {
       Node root = new Node(ROOT_NAME);
-      root.remove((Query) null);
+      root.removeChildren((Pattern) null);
    }
 
    @Test
@@ -334,21 +333,21 @@ public class NodeTestCase
       String name = "child";
       Node root = new Node(ROOT_NAME);
 
-      Assert.assertTrue(root.children().isEmpty());
-      root.create(name);
-      Assert.assertFalse(root.children().isEmpty());
-      Assert.assertEquals(1, root.children().size());
+      Assert.assertTrue(root.getChildren().isEmpty());
+      root.createChild(name);
+      Assert.assertFalse(root.getChildren().isEmpty());
+      Assert.assertEquals(1, root.getChildren().size());
 
-      root.remove(name);
-      Assert.assertTrue(root.children().isEmpty());
+      root.removeChildren(name);
+      Assert.assertTrue(root.getChildren().isEmpty());
    }
 
    @Test
    public void shouldRemoveSingleChildNodeWithNodeParam()
    {
       Node root = new Node(ROOT_NAME);
-      Node child = root.create("child_node");
-      Assert.assertTrue(root.removeSingle(child));
+      Node child = root.createChild("child_node");
+      Assert.assertTrue(root.removeChild(child));
    }
 
    @Test
@@ -356,10 +355,10 @@ public class NodeTestCase
    {
       Node root = new Node(ROOT_NAME);
       Node child = new Node("another_node");
-      Assert.assertFalse(root.removeSingle((Node) null));
-      Assert.assertFalse(root.removeSingle(child));
-      root.create("a_proper_child_node");
-      Assert.assertFalse(root.removeSingle(child));
+      Assert.assertFalse(root.removeChild((Node) null));
+      Assert.assertFalse(root.removeChild(child));
+      root.createChild("a_proper_child_node");
+      Assert.assertFalse(root.removeChild(child));
    }
 
    @Test
@@ -367,70 +366,49 @@ public class NodeTestCase
    {
       Node root = new Node(ROOT_NAME);
       String childNodeName = "another_node";
-      Assert.assertNull(root.removeSingle(childNodeName));
-      root.create(childNodeName);
-      Node removedChild = root.removeSingle(childNodeName);
+      Assert.assertNull(root.removeChild(childNodeName));
+      root.createChild(childNodeName);
+      Node removedChild = root.removeChild(childNodeName);
       Assert.assertNotNull(removedChild);
-      Assert.assertEquals(childNodeName, removedChild.name());
+      Assert.assertEquals(childNodeName, removedChild.getName());
    }
 
    @Test
    public void shouldNotRemoveSingleChildNodeWithStringParam()
    {
       Node root = new Node(ROOT_NAME);
-      Assert.assertNull(root.removeSingle("node_that_doesn't_exist"));
-      root.create("a_node");
-      Assert.assertNull(root.removeSingle("nonexisting_node"));
+      Assert.assertNull(root.removeChild("node_that_doesn't_exist"));
+      root.createChild("a_node");
+      Assert.assertNull(root.removeChild("nonexisting_node"));
    }
 
    @Test
    public void shouldRemoveWithQueryParam() throws Exception
    {
       Node root = new Node(ROOT_NAME);
-      Node child = root.create("child_node");
+      Node child = root.createChild("child_node");
 
-      Assert.assertFalse(root.children().isEmpty());
-      Assert.assertEquals(child, root.children().get(0));
+      Assert.assertFalse(root.getChildren().isEmpty());
+      Assert.assertEquals(child, root.getChildren().get(0));
 
-      NodeQuery nodeQuery = new NodeQuery(child.name());
-      Query query = new Query(false);
-      query.addDefinition(nodeQuery);
-      List<Node> removedNodes = root.remove(query);
+      Pattern pattern = new Pattern(child.getName());
+      List<Node> removedNodes = root.removeChildren(pattern);
       Assert.assertNotNull(removedNodes);
       Assert.assertFalse(removedNodes.isEmpty());
       Assert.assertEquals(1, removedNodes.size());
    }
 
    @Test
-   public void shouldRemoveWithAbsoluteQueryParam() throws Exception
-   {
-      Node root = new Node(ROOT_NAME);
-      Node child = root.create("child_node");
-
-      Assert.assertFalse(root.children().isEmpty());
-      Assert.assertEquals(child, root.children().get(0));
-
-      NodeQuery nodeQuery = new NodeQuery(child.name());
-      Query query = new Query(true);
-      query.addDefinition(nodeQuery);
-      List<Node> removedNodes = root.remove(query);
-      Assert.assertNotNull(removedNodes);
-      Assert.assertTrue(removedNodes.isEmpty());
-   }
-
-   @Test
    public void shouldNotRemoveWithQueryParam() throws Exception
    {
       Node root = new Node(ROOT_NAME);
-      Node child = root.create("child_node");
+      Node child = root.createChild("child_node");
 
-      Assert.assertFalse(root.children().isEmpty());
-      Assert.assertEquals(child, root.children().get(0));
+      Assert.assertFalse(root.getChildren().isEmpty());
+      Assert.assertEquals(child, root.getChildren().get(0));
 
-      NodeQuery nodeQuery = new NodeQuery("some_other_name");
-      Query query = new Query(false);
-      query.addDefinition(nodeQuery);
-      List<Node> removedNodes = root.remove(query);
+      Pattern pattern = new Pattern("some_other_name");
+      List<Node> removedNodes = root.removeChildren(pattern);
       Assert.assertTrue(removedNodes.isEmpty());
    }
    
@@ -450,8 +428,34 @@ public class NodeTestCase
    @Test(expected=IllegalArgumentException.class)
    public void shouldNotBeAbleToSetNodeWitHChildrenAsComment(){
       final Node node = new Node(ROOT_NAME);
-      node.create(CHILD_1_NAME);
+      node.createChild(CHILD_1_NAME);
       node.setComment(true);
+   }
+   
+   /**
+    * Ensures that we can access the root via a child
+    */
+   @Test
+   public void shouldBeAbleToGetRoot()
+   {
+      final Node root = new Node(ROOT_NAME);
+      final Node child = root.createChild(CHILD_1_NAME);
+      final Node grandChild = child.createChild(CHILD_2_NAME);
+      final Node roundtripRoot = grandChild.getRoot();
+      System.out.println(root.toString(true));
+      Assert.assertEquals("Obtained wrong root", roundtripRoot, root);
+   }
+   
+   /**
+    * Ensures that {@link Node#isRoot()} is working as contracted
+    */
+   @Test
+   public void shouldBeAbleToReportAsRoot()
+   {
+      final Node root = new Node(ROOT_NAME);
+      final Node child = root.createChild(CHILD_1_NAME);
+      Assert.assertTrue("Root should report as root", root.isRoot());
+      Assert.assertFalse("Child should not report as root", child.isRoot());
    }
 
 }

@@ -132,7 +132,7 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    @Override
    public WebAppDescriptor description(String description)
    {
-      model.create("description").text(description);
+      model.createChild("description").text(description);
       return this;
    }
 
@@ -161,16 +161,16 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
          param = node.getSingle("param-name=" + name);
          if(param != null)
          {
-            param.parent().getOrCreate("param-value").text(value);
+            param.getParent().getOrCreate("param-value").text(value);
             break;
          }
       }
 
       if(param == null)
       {
-         param = model.create("context-param");
-         param.create("param-name").text(name);
-         param.create("param-value").text(value);
+         param = model.createChild("context-param");
+         param.createChild("param-name").text(name);
+         param.createChild("param-value").text(value);
       }
       
       return this;
@@ -207,7 +207,7 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    @Override
    public WebAppDescriptor listener(String clazz)
    {
-      model.create("listener").create("listener-class").text(clazz);
+      model.createChild("listener").createChild("listener-class").text(clazz);
       return this;
    }
 
@@ -239,7 +239,7 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
       final List<FilterMappingDef> mappings = new ArrayList<FilterMappingDef>();
       for (final Node mappingNode : model.get(NODE_NAME_FILTER_MAPPINGS))
       {
-         final String filterName = mappingNode.getSingle(NODE_NAME_FILTER_NAME).text();
+         final String filterName = mappingNode.getSingle(NODE_NAME_FILTER_NAME).getText();
 
          FilterDef filterDef = null;
          List<FilterDef> filters = getFilters();
@@ -279,9 +279,9 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    @Override
    public FilterDef filter(String name, String clazz, String[] urlPatterns)
    {
-      Node filter = model.create("filter");
-      filter.create("filter-name").text(name);
-      filter.create("filter-class").text(clazz);
+      Node filter = model.createChild("filter");
+      filter.createChild("filter-name").text(name);
+      filter.createChild("filter-class").text(clazz);
 
       FilterDef f = new FilterDefImpl(getDescriptorName(), model, filter).mapping().urlPatterns(urlPatterns);
       return f;
@@ -308,9 +308,9 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    @Override
    public ServletDef servlet(String name, String clazz, String[] urlPatterns)
    {
-      Node servletNode = model.create("servlet");
-      servletNode.create("servlet-name").text(name);
-      servletNode.create("servlet-class").text(clazz);
+      Node servletNode = model.createChild("servlet");
+      servletNode.createChild("servlet-name").text(name);
+      servletNode.createChild("servlet-class").text(clazz);
       ServletDef servlet = new ServletDefImpl(getDescriptorName(), model, servletNode);
 
       servlet.mapping().urlPatterns(urlPatterns);
@@ -328,7 +328,7 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    {
       for (String p : servletPaths)
       {
-         model.getOrCreate("welcome-file-list").create("welcome-file").text(p);
+         model.getOrCreate("welcome-file-list").createChild("welcome-file").text(p);
       }
       return this;
    }
@@ -351,7 +351,7 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    {
       for (TrackingModeType m : sessionTrackingModes)
       {
-         model.getOrCreate("session-config").create("tracking-mode").text(m.name());
+         model.getOrCreate("session-config").createChild("tracking-mode").text(m.name());
       }
       return this;
    }
@@ -365,18 +365,18 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    @Override
    public WebAppDescriptor errorPage(int errorCode, String location)
    {
-      Node error = model.create("error-page");
-      error.create("error-code").text(errorCode);
-      error.create("location").text(location);
+      Node error = model.createChild("error-page");
+      error.createChild("error-code").text(errorCode);
+      error.createChild("location").text(location);
       return this;
    }
 
    @Override
    public WebAppDescriptor errorPage(String exceptionClass, String location)
    {
-      Node error = model.create("error-page");
-      error.create("exception-type").text(exceptionClass);
-      error.create("location").text(location);
+      Node error = model.createChild("error-page");
+      error.createChild("exception-type").text(exceptionClass);
+      error.createChild("location").text(location);
 
       return this;
    }
@@ -396,9 +396,9 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    @Override
    public WebAppDescriptor loginConfig(String authMethod, String realmName)
    {
-      Node login = model.create("login-config");
-      login.create("auth-method").text(authMethod);
-      login.create("realm-name").text(realmName);
+      Node login = model.createChild("login-config");
+      login.createChild("auth-method").text(authMethod);
+      login.createChild("realm-name").text(realmName);
 
       return this;
    }
@@ -406,12 +406,12 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    @Override
    public WebAppDescriptor formLoginConfig(String loginPage, String errorPage)
    {
-      Node login = model.create("login-config");
-      login.create("auth-method").text(AuthMethodType.FORM);
+      Node login = model.createChild("login-config");
+      login.createChild("auth-method").text(AuthMethodType.FORM);
 
-      Node form = model.create("form-login-config");
-      form.create("form-login-page").text(loginPage);
-      form.create("form-error-page").text(errorPage);
+      Node form = model.createChild("form-login-config");
+      form.createChild("form-login-page").text(loginPage);
+      form.createChild("form-error-page").text(errorPage);
 
       return this;
    }
@@ -425,10 +425,10 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    @Override
    public SecurityConstraintDef securityConstraint(String displayName)
    {
-      Node security = model.create("security-constraint");
+      Node security = model.createChild("security-constraint");
       if (displayName != null)
       {
-         security.create("display-name").text(displayName);
+         security.createChild("display-name").text(displayName);
       }
       return new SecurityConstraintDefImpl(getDescriptorName(), model, security);
    }
@@ -442,14 +442,14 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    @Override
    public WebAppDescriptor securityRole(String roleName, String description)
    {
-      Node security = model.create("security-role");
+      Node security = model.createChild("security-role");
       if (roleName != null)
       {
-         security.create("role-name").text(roleName);
+         security.createChild("role-name").text(roleName);
       }
       if (description != null)
       {
-         security.create("description").text(description);
+         security.createChild("description").text(description);
       }
       return this;
    }
@@ -468,7 +468,7 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
       {
          for (String name : names)
          {
-            ordering.create("name").text(name);
+            ordering.createChild("name").text(name);
          }
       }
       if (others)
@@ -579,8 +579,8 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
       List<Node> params = model.get("context-param");
       for (Node p : params)
       {
-         String name = p.textValue("param-name");
-         String value = p.textValue("param-value");
+         String name = p.getTextValueForPatternName("param-name");
+         String value = p.getTextValueForPatternName("param-value");
          result.put(name, value);
       }
 
@@ -690,7 +690,7 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    @Override
    public List<String> getListeners()
    {
-      return model.textValues("listener/listener-class");
+      return model.getTextValuesForPatternName("listener/listener-class");
    }
 
    @Override
@@ -711,7 +711,7 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
       final List<ServletMappingDef> mappings = new ArrayList<ServletMappingDef>();
       for (final Node mappingNode : model.get(NODE_NAME_SERVLET_MAPPINGS))
       {
-         final String servletName = mappingNode.getSingle(NODE_NAME_SERVLET_NAME).text();
+         final String servletName = mappingNode.getSingle(NODE_NAME_SERVLET_NAME).getText();
 
          ServletDef servletDef = null;
          List<ServletDef> servlets = getServlets();
@@ -744,7 +744,7 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
       List<Node> list = model.get("welcome-file-list/welcome-file");
       for (Node file : list)
       {
-         results.add(file.text());
+         results.add(file.getText());
       }
       return results;
    }
@@ -757,11 +757,11 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
       {
          try
          {
-            return Integer.parseInt(single.text().trim());
+            return Integer.parseInt(single.getText().trim());
          }
          catch (NumberFormatException e)
          {
-            throw new RuntimeException("Unable to parse session-timeout from value ["+single.text().trim()+"]");
+            throw new RuntimeException("Unable to parse session-timeout from value ["+single.getText().trim()+"]");
          }
       }
       return 0;

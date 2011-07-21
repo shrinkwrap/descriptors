@@ -22,8 +22,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.jboss.shrinkwrap.descriptor.spi.query.Queries;
-import org.jboss.shrinkwrap.descriptor.spi.query.Query;
+import org.jboss.shrinkwrap.descriptor.spi.query.Pattern;
+import org.jboss.shrinkwrap.descriptor.spi.query.Patterns;
 import org.jboss.shrinkwrap.descriptor.spi.query.queries.CreateQuery;
 import org.jboss.shrinkwrap.descriptor.spi.query.queries.GetOrCreateQuery;
 import org.jboss.shrinkwrap.descriptor.spi.query.queries.GetQuery;
@@ -47,6 +47,11 @@ public class Node
    // -------------------------------------------------------------------------------------||
 
    private static final String SPACE = " ";
+   
+   /**
+    * Used in casting to Pattern arrays from Collections
+    */
+   private static final Pattern[] PATTERN_CAST = new Pattern[]{};
 
    // -------------------------------------------------------------------------------------||
    // Instance Members --------------------------------------------------------------------||
@@ -207,27 +212,67 @@ public class Node
       // Set 
       this.comment = comment;
    }
+   
+   /**
+    * Obtains the root {@link Node}
+    * for this reference
+    * @return
+    */
+   public Node getRoot()
+   {
+      return this.getRoot(this);
+   }
+
+   private Node getRoot(final Node start)
+   {
+      assert start != null : "node must be specified";
+      final Node parent = start.getParent();
+      if (parent == null)
+      {
+         return start;
+      }
+      // Recurse up
+      return this.getRoot(parent);
+   }
+
+   /**
+    * Returns whether or not this {@link Node}
+    * is a root
+    * @return
+    */
+   public boolean isRoot()
+   {
+      return this.getParent() == null;
+   }
 
    // -------------------------------------------------------------------------------------||
-   // Node creation / retrieval ----------------------------------------------------------||
+   // Node creation / retrieval -----------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
    /**
-    * Create a new Node with given name. <br/>
+    * Create a new {@link Node} with given name. <br/>
     * <br/>
-    * The new Node will have this as parent.
+    * The new {@link Node} will have this as parent.
     * 
-    * @param name The name of the node.
-    * @return A new child node
+    * @param name The name of the {@link Node}.
+    * @return A new child {@link Node}
+    * @throws IllegalArgumentException If the name is not specified
     */
-   public Node create(String name)
+   public Node createChild(final String name) throws IllegalArgumentException
    {
-      return create(Queries.from(name));
+      // Precondition checks
+      if (name == null || name.length() == 0)
+      {
+         throw new IllegalArgumentException("name must be specified");
+      }
+      
+      // Create
+      return createChild(Patterns.from(name));
    }
 
-   public Node create(Query query)
+   public Node createChild(final Pattern... patterns)
    {
-      return new CreateQuery(query).execute(this);
+      return CreateQuery.INSTANCE.execute(this, patterns);
    }
 
    /**
@@ -238,17 +283,17 @@ public class Node
     * @param name The child node name.
     * @return The existing node or a new node, never null.
     * @see #getSingle(String)
-    * @see #create(String)
+    * @see #createChild(String)
     * @throws IllegalArgumentException if multiple children with name exists.
     */
    public Node getOrCreate(String name)
    {
-      return getOrCreate(Queries.from(name));
+      return getOrCreate(Patterns.from(name));
    }
 
-   public Node getOrCreate(Query query)
+   public Node getOrCreate(final Pattern... patterns)
    {
-      return new GetOrCreateQuery(query).execute(this);
+      return GetOrCreateQuery.INSTANCE.execute(this, patterns);
    }
 
    /**
@@ -262,12 +307,12 @@ public class Node
     */
    public Node getSingle(String name)
    {
-      return getSingle(Queries.from(name));
+      return getSingle(Patterns.from(name));
    }
 
-   public Node getSingle(Query query)
+   public Node getSingle(final Pattern... patterns)
    {
-      return new GetSingleQuery(query).execute(this);
+      return GetSingleQuery.INSTANCE.execute(this, patterns);
    }
 
    /**
@@ -278,7 +323,7 @@ public class Node
     */
    public List<Node> get(String name)
    {
-      return get(Queries.from(name));
+      return get(Patterns.from(name));
    }
 
    /**
@@ -287,9 +332,9 @@ public class Node
     * @param query The query to use for finding relevant child nodes
     * @return All found children, or empty list if none found.
     */
-   public List<Node> get(Query query)
+   public List<Node> get(Pattern... patterns)
    {
-      return new GetQuery(query).execute(this);
+      return GetQuery.INSTANCE.execute(this, patterns);
    }
 
    /**
@@ -299,7 +344,7 @@ public class Node
     * @throws IllegalArgumentException If the specified name 
     *   is not specified
     */
-   public List<Node> remove(final String name) throws IllegalArgumentException
+   public List<Node> removeChildren(final String name) throws IllegalArgumentException
    {
       if (name == null || name.trim().isEmpty())
       {
@@ -313,23 +358,22 @@ public class Node
       }
       return found;
    }
-
+   
    /**
-    * Remove all child nodes found at the given {@link Query}.
+    * Remove all child nodes found at the given {@link Pattern}s.
     * 
     * @return the {@link List} of removed children.
+    * @throws IllegalArgumentException If pattern is not specified
     */
-   public List<Node> remove(Query query)
+   public List<Node> removeChildren(final Pattern pattern, final Pattern... patterns)
    {
-      if (query == null)
-      {
-         throw new IllegalArgumentException("Query must not be null");
-      }
-
-      List<Node> found = get(query);
+      // Precondition check
+      final Pattern[] merged = this.validateAndMergePatternInput(pattern, patterns);
+      
+      final List<Node> found = get(merged);
       if(found == null)
       {
-         return Collections.EMPTY_LIST;
+         return Collections.emptyList();
       }
       for (Node child : found)
       {
@@ -343,7 +387,7 @@ public class Node
     * 
     * @return true if this node contained the given child
     */
-   public boolean removeSingle(Node child)
+   public boolean removeChild(final Node child)
    {
       return children.remove(child);
    }
@@ -354,18 +398,18 @@ public class Node
     * @return true if this node contained the given child
     * @throws IllegalArgumentException if multiple children with name exist.
     */
-   public Node removeSingle(String name)
+   public Node removeChild(final String name)
    {
-      Node node = getSingle(name);
+      final Node node = getSingle(name);
       if (node != null)
       {
-         removeSingle(node);
+         removeChild(node);
       }
       return node;
    }
 
    // -------------------------------------------------------------------------------------||
-   // Local data -------------------------------------------------------------------------||
+   // Local data --------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
    /**
@@ -399,7 +443,7 @@ public class Node
     * 
     * @return Set body or null if none.
     */
-   public String text()
+   public String getText()
    {
       return text;
    }
@@ -408,10 +452,10 @@ public class Node
     * Get the text value of the element found at the given query name. If no element is found, or no text exists, return
     * null;
     */
-   public String textValue(final String name)
+   public String getTextValueForPatternName(final String name)
    {
       Node n = this.getSingle(name);
-      String text = n == null ? null : n.text();
+      String text = n == null ? null : n.getText();
       return text;
    }
 
@@ -419,13 +463,13 @@ public class Node
     * Get the text values of all elements found at the given query name. If no elements are found, or no text exists,
     * return an empty list;
     */
-   public List<String> textValues(final String name)
+   public List<String> getTextValuesForPatternName(final String name)
    {
       List<String> result = new ArrayList<String>();
       List<Node> jars = this.get(name);
       for (Node node : jars)
       {
-         String text = node.text();
+         String text = node.getText();
          if (text != null)
          {
             result.add(text);
@@ -439,7 +483,7 @@ public class Node
     * 
     * @return Given name.
     */
-   public String name()
+   public String getName()
    {
       return name;
    }
@@ -449,7 +493,7 @@ public class Node
     * 
     * @return The given parent or null if root node.
     */
-   public Node parent()
+   public Node getParent()
    {
       return parent;
    }
@@ -459,7 +503,7 @@ public class Node
     * 
     * @return All children or empty list if none.
     */
-   public List<Node> children()
+   public List<Node> getChildren()
    {
       return Collections.unmodifiableList(children);
    }
@@ -479,5 +523,81 @@ public class Node
             + (children != null ? children.size() : 0) + "] "
             + (attributes != null ? "attributes[" + attributes + "] " : "")
             + (text != null ? "text[" + text + "] " : "");
+   }
+   
+   /**
+    * Returns a multiline {@link String} format
+    * of this {@link Node} and all children
+    * @param verbose
+    * @return
+    */
+   public String toString(final boolean verbose)
+   {
+      if(!verbose){
+         return this.toString();
+      }
+      
+      final StringBuilder sb = new StringBuilder();
+      sb.append("Listing of ");
+      sb.append(Node.class.getSimpleName());
+      sb.append(" starting at: ");
+      sb.append(this.getName());
+      sb.append('\n');
+      this.appendNodeInfo(sb, 0, this);
+      
+      return sb.toString();
+   }
+   
+   private void appendNodeInfo(final StringBuilder builder, final int level, final Node node)
+   {
+      final StringBuilder indent = new StringBuilder();
+      for (int i = 0; i < level; i++)
+      {
+         indent.append('-');
+      }
+
+      builder.append(indent);
+      builder.append('+');
+      builder.append(SPACE);
+      builder.append(node.getName());
+      builder.append('(');
+      builder.append(node.attributes);
+      builder.append(')');
+      final String nodeText = node.getText();
+      if (nodeText != null)
+      {
+         builder.append(SPACE);
+         builder.append(node.getText());
+      }
+      builder.append('\n');
+
+      for (final Node child : node.children)
+      {
+         this.appendNodeInfo(builder, level + 1, child);
+      }
+
+   }
+   
+   /**
+    * Validates that at least one pattern was specified, merges all patterns
+    * together, and returns the result
+    * @param pattern
+    * @param patterns
+    * @return
+    */
+   private Pattern[] validateAndMergePatternInput(final Pattern pattern, final Pattern... patterns)
+   {
+      // Precondition check
+      if (pattern == null)
+      {
+         throw new IllegalArgumentException("At least one pattern must not be specified");
+      }
+      final List<Pattern> merged = new ArrayList<Pattern>();
+      merged.add(pattern);
+      for (final Pattern p : patterns)
+      {
+         merged.add(p);
+      }
+      return merged.toArray(PATTERN_CAST);
    }
 }

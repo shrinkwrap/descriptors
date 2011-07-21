@@ -19,45 +19,39 @@ package org.jboss.shrinkwrap.descriptor.spi.query.queries;
 import java.util.Map;
 
 import org.jboss.shrinkwrap.descriptor.spi.Node;
-import org.jboss.shrinkwrap.descriptor.spi.query.AbstractQueryExecuter;
-import org.jboss.shrinkwrap.descriptor.spi.query.NodeQuery;
+import org.jboss.shrinkwrap.descriptor.spi.query.Pattern;
 import org.jboss.shrinkwrap.descriptor.spi.query.Query;
 
 /**
- * CreateExpression
+ * Creates the specified {@link Pattern}s starting at the specified
+ * {@link Node}.
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
- * @version $Revision: $
+ * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public class CreateQuery extends AbstractQueryExecuter<Node>
-{
-   /**
-    * @param isAbsolute
-    * @param paths
-    */
-   public CreateQuery(Query def)
-   {
-      super(def);
-   }
+public enum CreateQuery implements Query<Node> {
+   INSTANCE;
 
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.api.Expression#execute(org.jboss.shrinkwrap.descriptor.api.Node)
+   /**
+    * {@inheritDoc}
+    * @see org.jboss.shrinkwrap.descriptor.spi.query.Query#execute(org.jboss.shrinkwrap.descriptor.spi.Node, org.jboss.shrinkwrap.descriptor.spi.query.Pattern[])
     */
    @Override
-   public Node execute(Node node)
+   public Node execute(final Node node, final Pattern... patterns)
    {
-      Query def = getDefinition();
-      Node start = def.isAbsolute() ? findRoot(node):node;
+      // Precondition checks
+      QueryUtil.validateNodeAndPatterns(node, patterns);
 
-      Node previous = start;
-      for(NodeQuery nodeDef : def.getDefinitions())
+      Node returnValue = node;
+
+      for (final Pattern pattern : patterns)
       {
-         previous = new Node(nodeDef.name(), previous);
-         for(Map.Entry<String, String> entry : nodeDef.getAttributes().entrySet())
+         returnValue = new Node(pattern.getName(), returnValue).text(pattern.getText());
+         for (Map.Entry<String, String> entry : pattern.getAttributes().entrySet())
          {
-            previous.attribute(entry.getKey(), entry.getValue());
+            returnValue.attribute(entry.getKey(), entry.getValue());
          }
       }
-      return previous;
+      return returnValue;
    }
 }

@@ -76,7 +76,9 @@ public class XMLImporterTestCase
    public void shouldBeAbleToImportAttributes() throws Exception
    {
       Node root = load();
-      
+      System.out.println(root.toString(true));
+      Node n = root.getSingle("/arquillian/container");
+      System.out.println(n);
       Assert.assertEquals(
             "Verify attributes on node with children",
             "standby", 
