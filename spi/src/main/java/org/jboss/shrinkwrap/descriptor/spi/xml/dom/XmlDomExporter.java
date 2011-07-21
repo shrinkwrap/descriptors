@@ -81,7 +81,12 @@ public class XmlDomExporter implements DescriptorExporter
          owned = (Document)target;
       }
       org.w3c.dom.Node targetChild = null;
-      if(source.text() != null) 
+      // Comment node
+      if(source.isComment())
+      {
+         targetChild = owned.createComment(source.text());
+      }
+      else if(source.text() != null) 
       {
          targetChild = owned.createElement(source.name());
          targetChild.appendChild(owned.createTextNode(source.text()));

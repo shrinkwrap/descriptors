@@ -36,6 +36,7 @@ import org.w3c.dom.NodeList;
  */
 public class XmlDomImporter<T extends Descriptor> extends DescriptorImporterBase<T>
 {
+   
    public XmlDomImporter(final Class<T> endUserViewImplType, String descriptorName)
    {
       super(endUserViewImplType, descriptorName);
@@ -77,12 +78,21 @@ public class XmlDomImporter<T extends Descriptor> extends DescriptorImporterBase
       {
          for(int i = 0; i < sourceChildren.getLength(); i++)
          {
-            org.w3c.dom.Node child = sourceChildren.item(i);
+            final org.w3c.dom.Node child = sourceChildren.item(i);
             if(child.getNodeType() != org.w3c.dom.Node.TEXT_NODE)
             {
-               Node newTarget = target.create(child.getNodeName());
+               // Create our representation of the Node
+               final Node newTarget = target.create(child.getNodeName());
+               
                if(onlyTextChildren(child))
                {
+                  // See if we're dealing with a comment and mark specifically
+                  if (child.getNodeType() == org.w3c.dom.Node.COMMENT_NODE)
+                  {
+                     newTarget.setComment(true);
+                  }
+                  
+                  // Set text
                   newTarget.text(child.getTextContent());
                   readAttributes(newTarget, child);
                }

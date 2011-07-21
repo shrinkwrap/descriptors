@@ -433,5 +433,25 @@ public class NodeTestCase
       List<Node> removedNodes = root.remove(query);
       Assert.assertTrue(removedNodes.isEmpty());
    }
+   
+   @Test
+   public void shouldNotBeCommentByDefault(){
+      final Node node = new Node(ROOT_NAME);
+      Assert.assertEquals("A Node should not be a comment by default",false, node.isComment());
+   }
+   
+   @Test
+   public void shouldBeAbleToMarkAsComment(){
+      final Node node = new Node(ROOT_NAME);
+      node.setComment(true);
+      Assert.assertEquals("A Node set as comment should report as comment",true, node.isComment());
+   }
+   
+   @Test(expected=IllegalArgumentException.class)
+   public void shouldNotBeAbleToSetNodeWitHChildrenAsComment(){
+      final Node node = new Node(ROOT_NAME);
+      node.create(CHILD_1_NAME);
+      node.setComment(true);
+   }
 
 }

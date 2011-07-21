@@ -73,6 +73,11 @@ public class Node
     * CDATA
     */
    private String text;
+   
+   /**
+    * Denotes whether this is a comment (ie. <!-- X -->)
+    */
+   private boolean comment;
 
    // -------------------------------------------------------------------------------------||
    // Constructor -------------------------------------------------------------------------||
@@ -172,6 +177,35 @@ public class Node
    public Map<String, String> getAttributes()
    {
       return Collections.unmodifiableMap(attributes);
+   }
+   
+   /**
+    * Returns whether or not this {@link Node}
+    * represents a comment
+    * @return
+    */
+   public boolean isComment()
+   {
+      return comment;
+   }
+
+   /**
+    * Marks this {@link Node} as a comment
+    * @param comment Whether or not this is a comment
+    * @return
+    * @throws IllegalArgumentException If this node has children
+    */
+   public void setComment(final boolean comment) throws IllegalArgumentException
+   {
+      // Cannot have children
+      if (this.children.size() > 0)
+      {
+         throw new IllegalArgumentException("Cannot mark a " + Node.class.getSimpleName()
+               + " with children as a comment");
+      }
+
+      // Set 
+      this.comment = comment;
    }
 
    // -------------------------------------------------------------------------------------||
