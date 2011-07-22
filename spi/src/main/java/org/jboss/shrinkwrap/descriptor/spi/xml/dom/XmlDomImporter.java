@@ -16,7 +16,10 @@
  */
 package org.jboss.shrinkwrap.descriptor.spi.xml.dom;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -36,14 +39,36 @@ import org.w3c.dom.NodeList;
  */
 public class XmlDomImporter<T extends Descriptor> extends DescriptorImporterBase<T>
 {
+   private final Logger log = Logger.getLogger(XmlDomImporter.class.getName());
    
    public XmlDomImporter(final Class<T> endUserViewImplType, String descriptorName)
    {
       super(endUserViewImplType, descriptorName);
    }
-   
+
+   /**
+    *
+    * @param stream The Stream of data.
+    * @return the imported node
+    * @throws DescriptorImportException if import fails from specified stream
+    * @throws IllegalArgumentException if the close parameter was specified as true for a stream which was unclosable.
+    */
    @Override
    public Node importRootNode(InputStream stream) throws DescriptorImportException
+   {
+      return importRootNode(stream, true);
+   }
+
+   /**
+    *
+    * @param stream The Stream of data.
+    * @param close Whether to close the specified stream
+    * @return the imported node
+    * @throws DescriptorImportException if import fails from specified stream
+    * @throws IllegalArgumentException if the close parameter was specified as true for a stream which was unclosable.
+    */
+   @Override
+   public Node importRootNode(InputStream stream, boolean close) throws DescriptorImportException
    {
       try
       {
@@ -56,7 +81,7 @@ public class XmlDomImporter<T extends Descriptor> extends DescriptorImporterBase
          DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
          factory.setNamespaceAware(true);
          DocumentBuilder builder = factory.newDocumentBuilder();
-         Document doc=builder.parse(stream); 
+         Document doc = builder.parse(stream);
          
          Node root = new Node(doc.getDocumentElement().getNodeName());
          readRecursive(root, doc.getDocumentElement());
@@ -66,6 +91,26 @@ public class XmlDomImporter<T extends Descriptor> extends DescriptorImporterBase
       catch (Exception e) 
       {
          throw new DescriptorImportException("Could not import XML from stream", e);
+      }
+      finally
+      {
+         if(close)
+         {
+            try
+            {
+               stream.close();
+            }
+            catch(IOException ioe)
+            {
+               try{
+                  stream.close();
+               }
+               catch(IOException i)
+               {
+                  log.log(Level.WARNING, "Unclosable stream specified to be closed: {0}", stream);
+               }
+            }
+         }
       }
    }
 
@@ -117,7 +162,6 @@ public class XmlDomImporter<T extends Descriptor> extends DescriptorImporterBase
          }
       }
    }
-
 
    /**
     * @param source
