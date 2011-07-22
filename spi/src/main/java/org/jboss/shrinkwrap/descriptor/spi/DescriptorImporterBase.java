@@ -129,13 +129,23 @@ public abstract class DescriptorImporterBase<T extends Descriptor> implements De
    @Override
    public T from(final InputStream in) throws IllegalArgumentException, DescriptorImportException
    {
+      return from(in, true);
+   }
+
+   /**
+    * {@inheritDoc}
+    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.io.InputStream)
+    */
+   @Override
+   public T from(final InputStream in, final boolean close) throws IllegalArgumentException, DescriptorImportException
+   {
       // Precondition check
       if (in == null)
       {
          throw new IllegalArgumentException("InputStream must be specified");
       }
 
-      final Node rootNode = importRootNode(in);
+      final Node rootNode = importRootNode(in, close);
 
       // Create the end-user view
       final Constructor<T> constructor;
@@ -164,11 +174,21 @@ public abstract class DescriptorImporterBase<T extends Descriptor> implements De
    }
    
    /**
-    * Importer specific behavior. Convert {@link InputStream} to Node.
+    * Importer specific behavior. Convert {@link InputStream} to Node. Will close the specified stream by default.
+    * If the stream should remain open, consider using the method importRootNode(InputStream, boolean) instead.
     *  
     * @param stream The Stream of data.
     * @return The Root node extracted.
     */
    public abstract Node importRootNode(InputStream stream) throws DescriptorImportException;
+
+   /**
+    * Importer specific behavior. Convert {@link InputStream} to Node.
+    *
+    * @param stream The Stream of data.
+    * @param close Whether to close the specified stream or not
+    * @return The Root node extracted.
+    */
+   public abstract Node importRootNode(InputStream stream, boolean close) throws DescriptorImportException;
 
 }

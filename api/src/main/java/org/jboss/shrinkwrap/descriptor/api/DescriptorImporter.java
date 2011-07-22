@@ -34,8 +34,8 @@ public interface DescriptorImporter<T extends Descriptor>
 
    /**
     * Creates a new {@link Descriptor} from the given input file 
-    * @param file
-    * @return
+    * @param file the input file
+    * @return the imported descriptor
     * @throws IllegalArgumentException If the file was not specified, does not
     *   exist, or is a directory
     * @throws DescriptorImportException If there was some error on import
@@ -43,18 +43,31 @@ public interface DescriptorImporter<T extends Descriptor>
    T from(File file) throws IllegalArgumentException, DescriptorImportException;
 
    /**
-    * Creates a new {@link Descriptor} from the given input
-    * @param in
-    * @return
+    * Creates a new {@link Descriptor} from the given input stream, closing the specified
+    * stream when done, if applicable for the given input stream implementation.
+    *
+    * @param in the <tt>InputStream</tt>
+    * @return the imported descriptor
     * @throws IllegalArgumentException If the stream was not specified
     * @throws DescriptorImportException If there was some error on import
     */
    T from(InputStream in) throws IllegalArgumentException, DescriptorImportException;
 
    /**
+    * Creates a new {@link Descriptor} from the given input
+    *
+    * @param in the <tt>InputStream</tt> to use
+    * @param close whether to close the specified stream or not
+    * @return the imported descriptor
+    * @throws IllegalArgumentException If the stream was not specified
+    * @throws DescriptorImportException If there was some error on import
+    */
+   T from(InputStream in, boolean close) throws IllegalArgumentException, DescriptorImportException;
+
+   /**
     * Creates a new {@link Descriptor} from the given input {@link String}
-    * @param string
-    * @return
+    * @param string the resource URI
+    * @return the imported descriptor
     * @throws IllegalArgumentException If the String was not specified
     * @throws DescriptorImportException
     */

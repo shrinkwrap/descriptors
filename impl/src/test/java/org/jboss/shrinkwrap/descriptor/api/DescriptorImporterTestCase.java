@@ -17,6 +17,7 @@
 package org.jboss.shrinkwrap.descriptor.api;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 import org.jboss.shrinkwrap.descriptor.api.spec.cdi.beans.BeansDescriptor;
@@ -79,6 +80,50 @@ public class DescriptorImporterTestCase
    {
       Descriptors.importAs(WebAppDescriptor.class).from((InputStream) null);
    }
+
+   /*
+    * SHRINKDESC-18
+    */
+   @Test
+   public void shouldCloseStreamAfterImport() throws Exception
+   {
+      MockInputStream mis = new MockInputStream();
+      Descriptors.importAs(WebAppDescriptor.class).from(mis); // close as default behaviour
+      Assert.assertFalse(mis.isOpen());
+
+      mis = new MockInputStream();
+      Descriptors.importAs(WebAppDescriptor.class).from(mis, true);
+      Assert.assertFalse(mis.isOpen());
+   }
+
+   /*
+    * SHRINKDESC-18
+    */
+   @Test
+   public void shouldNotCloseStreamAfterImport() throws Exception
+   {
+      MockInputStream mis = new MockInputStream();
+      Descriptors.importAs(WebAppDescriptor.class).from(mis, false);
+      Assert.assertTrue(mis.isOpen());
+   }
+
+   /*
+    * SHRINKDESC-18
+    */
+   @Test
+   public void shouldHandleUncloseableStreamsGently() throws Exception
+   {
+      FirstCloseAttemptFailingMockInputStream fmis = new FirstCloseAttemptFailingMockInputStream();
+      Assert.assertEquals("Mock object not properly initialized?", 0, fmis.getCloseAttempts());
+      Descriptors.importAs(WebAppDescriptor.class).from(fmis, true);
+      Assert.assertTrue(fmis.getCloseAttempts() > 0);
+
+      UncloseableMockInputStream umis = new UncloseableMockInputStream();
+      Assert.assertEquals("Mock object not properly initialized?", 0, umis.getCloseAttempts());
+      Descriptors.importAs(WebAppDescriptor.class).from(umis, true);
+      Assert.assertTrue(umis.isOpen());
+      Assert.assertTrue(umis.getCloseAttempts() > 0);
+   }
    
    /**
     * SHRINKDESC-20
@@ -117,5 +162,62 @@ public class DescriptorImporterTestCase
    {
       BeansDescriptor descriptor = Descriptors.importAs(BeansDescriptor.class).from(getClass().getResourceAsStream("/empty.xml"));
       Assert.assertNotNull("Verify the descriptor was created from and empty file",descriptor);
+   }
+
+   //-------------------------------------------------------------------------------------||
+   // Private mock classes ---------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
+   private class MockInputStream extends InputStream
+   {
+      boolean isOpen = true;
+
+      @Override
+      public int read() throws IOException
+      {
+         return 0;
+      }
+
+      @Override
+      public void close() throws IOException
+      {
+         super.close();
+         isOpen = false;
+      }
+
+      public boolean isOpen()
+      {
+         return isOpen;
+      }
+   }
+
+   private class UncloseableMockInputStream extends MockInputStream
+   {
+      protected int closeAttempts = 0;
+
+      @Override
+      public void close() throws IOException
+      {
+         closeAttempts = closeAttempts + 1;
+         throw new IOException("This is an uncloseable input stream");
+      }
+
+      public int getCloseAttempts()
+      {
+         return closeAttempts;
+      }
+   }
+
+   private class FirstCloseAttemptFailingMockInputStream extends UncloseableMockInputStream
+   {
+      @Override
+      public void close() throws IOException
+      {
+         closeAttempts = closeAttempts + 1;
+         if(getCloseAttempts() == 1)
+         {
+            throw new IOException("Failing first close attempt");
+         }
+      }
    }
 }
