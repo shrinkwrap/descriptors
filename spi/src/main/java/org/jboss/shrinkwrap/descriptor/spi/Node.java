@@ -174,6 +174,23 @@ public class Node
    }
 
    /**
+    * Remove a named attribute.<br/>
+    *
+    * @param name The attribute name
+    * @return The attribute value that was removed, or null if the attribute with the given name was not found.
+    * @throws IllegalArgumentException if the attribute with the given name does not exist on the node
+    */
+   public String removeAttribute(final String name) throws IllegalArgumentException
+   {
+      String remove = this.attributes.remove(name);
+      if (remove == null)
+      {
+         throw new IllegalArgumentException("attribute with name '" + name + "' does not exist");
+      }
+      return remove;
+   }
+
+   /**
     * Get all defined attributes for this Node in an 
     * immutable view
     * 

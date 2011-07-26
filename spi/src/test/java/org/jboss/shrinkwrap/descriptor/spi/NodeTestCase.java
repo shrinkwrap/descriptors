@@ -458,4 +458,31 @@ public class NodeTestCase
       Assert.assertFalse("Child should not report as root", child.isRoot());
    }
 
+   @Test
+   public void shouldRemoveAttributeByName() throws Exception
+   {
+      Node root = new Node(ROOT_NAME).attribute(ATTR_NAME, ATTR_VALUE);
+      Assert.assertEquals("attribute should exist", root.getAttribute(ATTR_NAME), ATTR_VALUE);
+
+      Assert.assertEquals("attribute value should be returned on removal", root.removeAttribute(ATTR_NAME), ATTR_VALUE);
+      Assert.assertNull("attribute should no longer exist", root.getAttribute(ATTR_NAME));
+   }
+
+   @Test
+   public void shouldThrowExceptionWhenAttemptingToRemoveAttributeThatDoesNotExist() throws Exception
+   {
+      String bogusAttribute = "SOME_NONEXISTANT_ATTR";
+
+      Node root = new Node(ROOT_NAME).attribute(ATTR_NAME, ATTR_VALUE);
+      Assert.assertEquals("attribute should exist", root.getAttribute(ATTR_NAME), ATTR_VALUE);
+
+      try
+      {
+         root.removeAttribute(bogusAttribute);
+         Assert.fail("should have thrown " + IllegalArgumentException.class.getSimpleName());
+      } catch (IllegalArgumentException e)
+      {
+         Assert.assertTrue("message should contain the attribute name", e.getMessage().contains(bogusAttribute));
+      }
+   }
 }
