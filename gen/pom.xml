@@ -14,7 +14,7 @@
 
   <!-- Artifact Configuration -->
   <artifactId>shrinkwrap-descriptors-gen</artifactId>
-  <name>ShrinkWrap Descriptors XSLT Transformation</name>
+  <name>ShrinkWrap Descriptors Source Generator</name>
   <description>Generates various deployment descriptors via XSLT transformation</description>
 
   <build>
@@ -125,30 +125,6 @@
   </build>
 
   <dependencies>
-
-    <dependency>
-      <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-      <artifactId>shrinkwrap-descriptors-api</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-      <artifactId>shrinkwrap-descriptors-spi</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-      
-    <dependency>
-      <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-      <artifactId>shrinkwrap-descriptors-impl</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>test</scope>
-    </dependency>
 
     <dependency>
       <groupId>net.sf.saxon</groupId>
