@@ -55,8 +55,11 @@
   
   <!-- Aggregate Modules -->
   <modules>
+    <module>api-base</module>
     <module>api</module>
-    <module>impl</module>
+    <module>gen</module>
+    <module>impl-base</module>
+    <module>impl-gen</module>
     <module>spi</module>
   </modules>
 
