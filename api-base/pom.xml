@@ -13,22 +13,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <!-- Artifact Configuration -->
-  <artifactId>shrinkwrap-descriptors-api</artifactId>
-  <name>ShrinkWrap Descriptors API</name>
-  <description>Client View of the ShrinkWrap Descriptors Project</description>
+  <artifactId>shrinkwrap-descriptors-api-base</artifactId>
+  <name>ShrinkWrap Descriptors API Base</name>
+  <description>Base for Client View of the ShrinkWrap Descriptors Project</description>
 
   <dependencies>
-
-    <dependency>
-      <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-      <artifactId>shrinkwrap-descriptors-api-base</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-      <artifactId>shrinkwrap-descriptors-gen</artifactId>
-      <version>${project.version}</version>
-    </dependency>
 
   </dependencies>
 
