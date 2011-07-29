@@ -1,3 +1,0 @@
-implClass=org.jboss.shrinkwrap.descriptor.impl.spec.jpa.persistence.PersistenceDescriptorImpl
-importerClass=org.jboss.shrinkwrap.descriptor.impl.base.XMLImporter
-defaultName=persistence.xml
