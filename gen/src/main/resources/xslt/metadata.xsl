@@ -324,7 +324,7 @@
         <xsl:for-each select="document($pDocument)//xsd:complexType">
             <xsl:variable name="complexTypeName" select="@name"/>
 
-            <xsl:if test="count(xsd:sequence/xsd:any) = 1 or $complexTypeName='faces-config-valueType'">
+            <xsl:if test="count(xsd:sequence/xsd:any) = 1 or $complexTypeName='faces-config-valueType' or $complexTypeName='credential-interfaceType'">
                 <datatype>
                     <xsl:attribute name="name">
                         <xsl:value-of select="$complexTypeName"/>
