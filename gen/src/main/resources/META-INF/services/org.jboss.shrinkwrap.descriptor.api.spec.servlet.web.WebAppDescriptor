@@ -1,3 +1,0 @@
-implClass=org.jboss.shrinkwrap.descriptor.impl.spec.servlet.web.WebAppDescriptorImpl
-importerClass=org.jboss.shrinkwrap.descriptor.impl.base.XMLImporter
-defaultName=web.xml
