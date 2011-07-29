@@ -60,6 +60,12 @@
             <namespace name="xmlns:xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
             <namespace name="xsi:schemaLocation" value="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd"/>
         </schema>
+        
+        <schema generateDDClass="true" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.jca16" packageImpl="org.jboss.shrinkwrap.descriptor.impl.jca16" name="../xsd/connector_1_6.xsd">
+            <namespace name="xmlns" value="http://java.sun.com/xml/ns/javaee"/>
+            <namespace name="xmlns:xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
+            <namespace name="xsi:schemaLocation" value="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/connector_1_6.xsd"/>
+        </schema>
 
         <!--<schema generateDDClass="true" packageApi="org.jboss.shrinkwrap.descriptor.api.javaeewebservices13" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaeewebservices13" name="../xsd/javaee_web_services_1_3.xsd">
             <namespace name="xmlns" value="http://java.sun.com/xml/ns/javaee"/>
