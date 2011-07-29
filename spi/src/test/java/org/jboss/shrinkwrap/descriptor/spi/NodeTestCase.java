@@ -469,20 +469,13 @@ public class NodeTestCase
    }
 
    @Test
-   public void shouldThrowExceptionWhenAttemptingToRemoveAttributeThatDoesNotExist() throws Exception
+   public void shouldReturnNullWhenAttemptingToRemoveAttributeThatDoesNotExist() throws Exception
    {
       String bogusAttribute = "SOME_NONEXISTANT_ATTR";
 
       Node root = new Node(ROOT_NAME).attribute(ATTR_NAME, ATTR_VALUE);
       Assert.assertEquals("attribute should exist", root.getAttribute(ATTR_NAME), ATTR_VALUE);
-
-      try
-      {
-         root.removeAttribute(bogusAttribute);
-         Assert.fail("should have thrown " + IllegalArgumentException.class.getSimpleName());
-      } catch (IllegalArgumentException e)
-      {
-         Assert.assertTrue("message should contain the attribute name", e.getMessage().contains(bogusAttribute));
-      }
+      final String shouldBeNull = root.removeAttribute(bogusAttribute);
+      Assert.assertNull("Attempting to remove an attribute which does not exist should return null", shouldBeNull);
    }
 }

@@ -182,11 +182,7 @@ public class Node
     */
    public String removeAttribute(final String name) throws IllegalArgumentException
    {
-      String remove = this.attributes.remove(name);
-      if (remove == null)
-      {
-         throw new IllegalArgumentException("attribute with name '" + name + "' does not exist");
-      }
+      final String remove = this.attributes.remove(name);
       return remove;
    }
 
