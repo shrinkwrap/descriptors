@@ -178,10 +178,16 @@ public class Node
     *
     * @param name The attribute name
     * @return The attribute value that was removed, or null if the attribute with the given name was not found.
-    * @throws IllegalArgumentException if the attribute with the given name does not exist on the node
+    * @throws IllegalArgumentException If the name is not specified
     */
    public String removeAttribute(final String name) throws IllegalArgumentException
    {
+      // Precondition check
+      if (name == null || name.length() == 0)
+      {
+         throw new IllegalArgumentException("name must be specified");
+      }
+      
       final String remove = this.attributes.remove(name);
       return remove;
    }

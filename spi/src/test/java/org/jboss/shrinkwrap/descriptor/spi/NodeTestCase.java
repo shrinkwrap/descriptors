@@ -478,4 +478,12 @@ public class NodeTestCase
       final String shouldBeNull = root.removeAttribute(bogusAttribute);
       Assert.assertNull("Attempting to remove an attribute which does not exist should return null", shouldBeNull);
    }
+   
+   @Test(expected = IllegalArgumentException.class)
+   public void removeNullAttributeShouldThrowException()
+   {
+      Node root = new Node(ROOT_NAME);
+      root.removeAttribute(null);
+   }
+   
 }
