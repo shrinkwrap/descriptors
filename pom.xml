@@ -61,6 +61,7 @@
     <module>impl-base</module>
     <module>impl-gen</module>
     <module>spi</module>
+    <module>test</module>
   </modules>
 
   <!-- Plugin Configuration -->
