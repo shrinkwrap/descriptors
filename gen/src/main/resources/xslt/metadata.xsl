@@ -321,7 +321,56 @@
     <xsl:template name="WriteDataTypes">
         <xsl:param name="pDocument"/>
         <xsl:param name="pNamespace"/>
-        <xsl:for-each select="document($pDocument)//xsd:complexType">
+
+
+        <xsl:for-each select="document($pDocument)//node()/@memberTypes">            
+            <xsl:variable name="vType" select="substring-after(., ' ')"/>            
+            <xsl:if test="../@memberTypes='javaee:null-charType xsd:integer'">
+                <xsl:variable name="vName" select="ancestor::*[name()='xsd:simpleType' or name()='xsd:complexType'][1]/@name"/>
+                <xsl:message select="concat('datatype: ', $vName, ' type: ', .)"/>
+                <xsl:text>&#10;</xsl:text>
+                <datatype>
+                    <xsl:attribute name="name">
+                        <xsl:value-of select="$vName"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="mappedTo">
+                        <xsl:value-of select="$vType"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="namespace">
+                        <xsl:value-of select="$pNamespace"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="schemaName">
+                        <xsl:value-of select="$pDocument"/>
+                    </xsl:attribute>
+                </datatype>
+            </xsl:if>
+        </xsl:for-each>
+
+
+        <xsl:for-each select="document($pDocument)//node()/@base">
+            <xsl:if test="count(xsd:enumeration) = 0">
+                <xsl:variable name="vName" select="ancestor::*[name()='xsd:simpleType' or name()='xsd:complexType'][1]/@name"/>
+                <xsl:message select="concat('datatype: ', $vName, ' type: ', .)"/>
+                <xsl:text>&#10;</xsl:text>
+                <datatype>
+                    <xsl:attribute name="name">
+                        <xsl:value-of select="$vName"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="mappedTo">
+                        <xsl:value-of select="../@base"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="namespace">
+                        <xsl:value-of select="$pNamespace"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="schemaName">
+                        <xsl:value-of select="$pDocument"/>
+                    </xsl:attribute>
+                </datatype>
+            </xsl:if>
+        </xsl:for-each>
+
+
+        <!--     <xsl:for-each select="document($pDocument)//xsd:complexType">
             <xsl:variable name="complexTypeName" select="@name"/>
 
             <xsl:if test="count(xsd:sequence/xsd:any) = 1 or $complexTypeName='faces-config-valueType' or $complexTypeName='credential-interfaceType'">
@@ -422,7 +471,7 @@
                     </datatype>
                 </xsl:if>
             </xsl:for-each>
-        </xsl:for-each>
+        </xsl:for-each>-->
     </xsl:template>
 
 
@@ -433,17 +482,20 @@
         <xsl:param name="pDocument"/>
         <xsl:param name="pPackage"/>
         <xsl:param name="pNamespace"/>
-        <xsl:for-each select="document($pDocument)//xsd:complexType">
-            <xsl:variable name="complexTypeName" select="@name"/>
-            <xsl:variable name="vDocumentation" select="xsd:annotation/xsd:documentation/text()"/>
-            <xsl:for-each select="xsd:simpleContent/xsd:restriction">
-                <xsl:if test="@base='javaee:string'">
-                    <xsl:if test="count(xsd:enumeration) > 0">
-                        <xsl:message select="concat('Metadata describing enum: ', $complexTypeName)"/>
-                        <xsl:text>&#10;</xsl:text>
-                        <enum>
+
+        <xsl:for-each select="document($pDocument)//xsd:restriction">
+            <xsl:variable name="vName" select="ancestor::*[name()='xsd:simpleType' or name()='xsd:complexType'][1]/@name"/>
+            <xsl:variable name="vDocumentation" select="ancestor::*[name()='xsd:annotation']/xsd:documentation/text()"/>
+            <xsl:variable name="vBase" select="@base"/>
+
+            <xsl:if test="count(xsd:enumeration) > 0 and xsd:enumeration[1]/@value!=''">
+                <xsl:text>&#10;</xsl:text>
+                <xsl:message select="concat('Metadata describing enum: ', $vName)"/>
+                <enum>
+                    <xsl:for-each select="xsd:enumeration">
+                        <xsl:if test="position()=1">
                             <xsl:attribute name="name">
-                                <xsl:value-of select="$complexTypeName"/>
+                                <xsl:value-of select="$vName"/>
                             </xsl:attribute>
                             <xsl:attribute name="namespace">
                                 <xsl:value-of select="$pNamespace"/>
@@ -457,50 +509,15 @@
                             <xsl:attribute name="documentation">
                                 <xsl:value-of select="$vDocumentation"/>
                             </xsl:attribute>
-                            <xsl:for-each select="xsd:enumeration">
-                                <value>
-                                    <xsl:value-of select="@value"/>
-                                </value>
-                            </xsl:for-each>
-                        </enum>
-                    </xsl:if>
-                </xsl:if>
-            </xsl:for-each>
+                        </xsl:if>
+                        <value>
+                            <xsl:value-of select="@value"/>
+                        </value>
+                    </xsl:for-each>
+                </enum>
+            </xsl:if>
         </xsl:for-each>
-        <xsl:for-each select="document($pDocument)//xsd:simpleType">
-            <xsl:variable name="complexTypeName" select="@name"/>
-            <xsl:variable name="vDocumentation" select="xsd:annotation/xsd:documentation/text()"/>
-            <xsl:for-each select="xsd:restriction">
-                <xsl:if test="@base='javaee:string' or 'xsd:string'">
-                    <xsl:if test="count(xsd:enumeration) > 0">
-                        <xsl:message select="concat('Metadata describing enum: ', $complexTypeName)"/>
-                        <xsl:text>&#10;</xsl:text>
-                        <enum>
-                            <xsl:attribute name="name">
-                                <xsl:value-of select="$complexTypeName"/>
-                            </xsl:attribute>
-                            <xsl:attribute name="namespace">
-                                <xsl:value-of select="$pNamespace"/>
-                            </xsl:attribute>
-                            <xsl:attribute name="schemaName">
-                                <xsl:value-of select="$pDocument"/>
-                            </xsl:attribute>
-                            <xsl:attribute name="package">
-                                <xsl:value-of select="$pPackage"/>
-                            </xsl:attribute>
-                            <xsl:attribute name="documentation">
-                                <xsl:value-of select="$vDocumentation"/>
-                            </xsl:attribute>
-                            <xsl:for-each select="xsd:enumeration">
-                                <value>
-                                    <xsl:value-of select="@value"/>
-                                </value>
-                            </xsl:for-each>
-                        </enum>
-                    </xsl:if>
-                </xsl:if>
-            </xsl:for-each>
-        </xsl:for-each>
+
     </xsl:template>
 
 
