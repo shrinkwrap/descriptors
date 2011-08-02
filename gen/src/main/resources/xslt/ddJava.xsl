@@ -2574,6 +2574,9 @@
             <xsl:when test="starts-with($pTypeName, 'persistence:')">
                 <xsl:sequence select="xdd:CheckDataType( substring-after($pTypeName, 'persistence:'))"/>
             </xsl:when>
+            <xsl:when test="starts-with($pTypeName, 'j2ee:')">
+                <xsl:sequence select="xdd:CheckDataType( substring-after($pTypeName, 'j2ee:'))"/>
+            </xsl:when>
             <xsl:otherwise>
                 <xsl:for-each select="$gDataTypes/datatype">
                     <xsl:if test="@name=$pTypeName">
@@ -2582,6 +2585,9 @@
                         </xsl:if>
                         <xsl:if test="starts-with(@mappedTo, 'javaee:')">
                             <xsl:sequence select="xdd:CheckDataType(substring-after(@mappedTo, 'javaee:'))"/>
+                        </xsl:if>
+                        <xsl:if test="starts-with(@mappedTo, 'j2ee:')">
+                            <xsl:sequence select="xdd:CheckDataType(substring-after(@mappedTo, 'j2ee:'))"/>
                         </xsl:if>
                     </xsl:if>
                 </xsl:for-each>
@@ -2598,6 +2604,9 @@
         <xsl:choose>
             <xsl:when test="$pText='xsd:long'">
                 <xsl:sequence select="'Long'"/>
+            </xsl:when>
+            <xsl:when test="$pText='xsd:decimal'">
+                <xsl:sequence select="'String'"/> <!-- workaround -->
             </xsl:when>
             <xsl:when test="$pText='xsd:integer'">
                 <xsl:sequence select="'Integer'"/>
