@@ -17,7 +17,7 @@
     <!-- Artifact Information  -->
   <groupId>org.jboss.shrinkwrap.descriptors</groupId>
   <artifactId>shrinkwrap-descriptors-parent</artifactId>
-  <version>1.1.0-alpha-3-SNAPSHOT</version>
+  <version>1.2.0-alpha-1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>ShrinkWrap Descriptors Aggregator</name>
   <url>http://www.jboss.org</url>
