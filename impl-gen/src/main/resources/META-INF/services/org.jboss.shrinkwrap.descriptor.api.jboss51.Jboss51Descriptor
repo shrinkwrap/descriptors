@@ -1,0 +1,3 @@
+implClass=org.jboss.shrinkwrap.descriptor.impl.jboss51.Jboss51DescriptorImpl
+importerClass=org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomImporter
+defaultName=jboss.xml
