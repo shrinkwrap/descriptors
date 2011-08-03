@@ -112,6 +112,45 @@
             </configuration>
           </execution>
           
+          <!-- 
+            This is the first step. 
+            All schema files configured in the schemas.xml
+            are parsed in this fist transformation. The result of this is a xml file 
+            called metadata.xml containing all required information to produce
+            the deployment descriptor API and IMPL classes
+          -->
+          <execution>
+            <id>transform-to-metadata-j2ee14</id>
+            <goals>
+              <goal>many-to-one</goal>
+            </goals>
+            <configuration>
+              <xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate>
+              <srcDir>src/main/resources/xsd</srcDir>
+              <srcIncludes>**/*.xsd</srcIncludes>
+              <srcFile>src/main/resources/xslt/schemasJ2ee14.xml</srcFile>
+              <destFile>src/main/resources/xslt/metadataJ2ee14.xml</destFile>
+            </configuration>
+          </execution>
+          
+          <!-- 
+            This is the second step. 
+            The metada.xml produced in step 1 is transformed into 
+            the API and IMPL classes.
+          -->
+          <execution>
+            <id>transform-to-java-j2ee14</id>
+            <goals>
+              <goal>many-to-one</goal>
+            </goals>
+            <configuration>
+              <xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
+              <srcDir>src/main/resources/xslt</srcDir>
+              <srcIncludes>**/*.xml</srcIncludes>
+              <srcFile>src/main/resources/xslt/metadataJ2ee14.xml</srcFile>
+              <destFile>src/main/resources/xslt/ddJavaJ2ee14.xml</destFile>
+            </configuration>
+          </execution>
         </executions>
         <dependencies>
           <dependency>
