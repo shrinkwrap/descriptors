@@ -2,3 +2,4 @@ src/main/java
 src/test/java
 src/main/resources/xslt/metadataJavaEE5.xml
 src/main/resources/xslt/metadataJavaEE6.xml
+src/main/resources/xslt/metadataJ2ee14.xml
