@@ -1,3 +1,0 @@
-implClass=org.jboss.shrinkwrap.descriptor.impl.application5.Application5DescriptorImpl
-importerClass=org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomImporter
-defaultName=application.xml
