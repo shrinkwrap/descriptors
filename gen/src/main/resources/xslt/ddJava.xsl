@@ -2577,6 +2577,9 @@
             <xsl:when test="starts-with($pTypeName, 'j2ee:')">
                 <xsl:sequence select="xdd:CheckDataType( substring-after($pTypeName, 'j2ee:'))"/>
             </xsl:when>
+            <xsl:when test="contains($pTypeName, ':')">
+                <xsl:sequence select="xdd:CheckDataType( substring-after($pTypeName, ':'))"/>
+            </xsl:when>
             <xsl:otherwise>
                 <xsl:for-each select="$gDataTypes/datatype">
                     <xsl:if test="@name=$pTypeName">

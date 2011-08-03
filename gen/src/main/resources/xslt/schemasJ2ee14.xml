@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dd> 
+    <copyright name="copyright.xml"/>
+    <contributors name="contributors.xml"/>
+    <schemas>
+
+        <!-- ***************************************************************************************** -->
+        <!-- ****** Listing of all schemas which inludes a deployment descriptor for jboss 5.1   ***** -->
+        <!-- ***************************************************************************************** -->
+        <schema generateDDClass="false" namespace="j2ee" packageApi="org.jboss.shrinkwrap.descriptor.api.j2ee14" packageImpl="org.jboss.shrinkwrap.descriptor.impl.j2ee14" name="../xsd/j2ee_1_4.xsd"/>
+        <schema generateDDClass="false" namespace="j2ee" packageApi="org.jboss.shrinkwrap.descriptor.api.j2eewebservicesclient11" packageImpl="org.jboss.shrinkwrap.descriptor.impl.j2eewebservicesclient11" name="../xsd/j2ee_web_services_client_1_1.xsd"/>
+        
+        <schema generateDDClass="true" namespace="j2ee" packageApi="org.jboss.shrinkwrap.descriptor.api.jca15" packageImpl="org.jboss.shrinkwrap.descriptor.impl.jca15" name="../xsd/connector_1_5.xsd">
+            <namespace name="xmlns" value="http://java.sun.com/xml/ns/j2ee"/>
+            <namespace name="xmlns:xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
+            <namespace name="xsi:schemaLocation" value="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/connector_1_5.xsd"/>
+        </schema>
+    </schemas>
+</dd>
