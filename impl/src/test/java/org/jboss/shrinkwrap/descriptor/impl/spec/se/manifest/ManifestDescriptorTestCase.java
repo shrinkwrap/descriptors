@@ -99,18 +99,25 @@ public class ManifestDescriptorTestCase
    @Test
    public void shouldContainClassPath() throws Exception
    {
-      String[] expectedValueArray =
-      {"jar1.jar", "jar2.jar", "/1/2/3/jar3.jar"};
+      String[] expectedValueArray = {"jar1.jar", "jar2.jar", "/1/2/3/jar3.jar"};
       String expectedValue = "jar1.jar jar2.jar /1/2/3/jar3.jar";
       Name attributeName = Name.CLASS_PATH;
-
-      ManifestDescriptor manifest = createDescriptor().classPath(expectedValueArray);
+      
+      ManifestDescriptor manifest = createDescriptor();
+      for (String value : expectedValueArray)
+      {
+         manifest.addToClassPath(value);
+      }
       assertFirstLineIsVersion(manifest);
       assertContainsAttribute(manifest, attributeName, expectedValue);
 
       String entryName = "Entry1";
-      manifest.entry(entryName).classPath(entryName + expectedValue);
-      assertContainsAttribute(manifest, attributeName, entryName + expectedValue);
+      manifest.entry(entryName).addToClassPath(entryName);
+      for (String value : expectedValueArray)
+      {
+         manifest.entry(entryName).addToClassPath(value);
+      }
+      assertContainsAttribute(manifest, attributeName, entryName +" " + expectedValue);
       assertContainsAttribute(manifest, attributeName, expectedValue);
    }
 
@@ -341,7 +348,7 @@ public class ManifestDescriptorTestCase
             .implementationVendor("Very Important Vendor (Main)")
             .implementationVendorId("VIV")
             .implementationVersion("1.0.0.GA-VIV-M")
-            .classPath("lib1.jar", "lib2.jar", "/f1/f2/f3/lib3")
+            .addToClassPath("lib1.jar").addToClassPath("lib2.jar").addToClassPath("/f1/f2/f3/lib3")
             .mainClass("test.manifest.MainClass")
             .sealed()
             .signatureVersion("2.0.0.GA-M-SIG")
@@ -361,7 +368,7 @@ public class ManifestDescriptorTestCase
                .implementationVendor("Very Important Vendor (Entry 1)")
                .implementationVendorId("VIV-E1")
                .implementationVersion("1.0.0.GA-VIV-E1")
-               .classPath("entry-lib1.jar", "entry1-lib2.jar", "/f1/f2/f3/entry1-lib3.jar")
+               .addToClassPath("entry1-lib1.jar").addToClassPath("entry1-lib2.jar").addToClassPath("/f1/f2/f3/entry1-lib3.jar")
                .mainClass("test.manifest.Entry1MainClass")
                .notSealed()
                .signatureVersion("2.0.0.GA-E1-SIG")
@@ -381,7 +388,7 @@ public class ManifestDescriptorTestCase
                .implementationVendor("Very Important Vendor (Entry 2)")
                .implementationVendorId("VIV-E2")
                .implementationVersion("1.0.0.GA-VIV-E2")
-               .classPath("entry2-lib1.jar", "entry2-lib2.jar", "/f1/f2/f3/entry2-lib3.jar")
+               .addToClassPath("entry2-lib1.jar").addToClassPath("entry2-lib2.jar").addToClassPath("/f1/f2/f3/entry2-lib3.jar")
                .mainClass("test.manifest.Entry2MainClass")
                .sealed()
                .signatureVersion("2.0.0.GA-E2-SIG")

@@ -35,7 +35,9 @@ abstract class ManifestCommonDefImpl<T> implements ManifestCommonDef<T>
 
    abstract ManifestModel getManifestModel();
 
-   abstract void includeAttribute(Name javaBean, String true1);
+   abstract void includeAttribute(Name name, String attribute);
+   
+   abstract String findAttribute(Name name);
 
    void includeAttribute(String name, String value)
    {
@@ -134,19 +136,14 @@ abstract class ManifestCommonDefImpl<T> implements ManifestCommonDef<T>
    }
 
    @Override
-   public T classPath(String... values)
+   public T addToClassPath(String value)
    {
-      StringBuilder classPath = new StringBuilder();
-      for (String value : values)
-      {
-         classPath.append(" ");
-         classPath.append(value);
-      }
+      String classpath = findAttribute(Name.CLASS_PATH);
+      String newClasspath = value;
+      if (classpath != null)
+         newClasspath = classpath + " " + newClasspath;
 
-      if (classPath.length() > 0)
-         classPath = classPath.delete(0, 1);
-
-      includeAttribute(Name.CLASS_PATH, classPath.toString());
+      includeAttribute(Name.CLASS_PATH, newClasspath);
       return getDescriptor();
    }
 

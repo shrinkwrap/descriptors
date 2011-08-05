@@ -53,7 +53,7 @@ public interface ManifestCommonDef<T> extends Descriptor
 
    T signatureVersion(String version);
 
-   T classPath(String... value);
+   T addToClassPath(String value);
 
    T mainClass(String mainClass);
 

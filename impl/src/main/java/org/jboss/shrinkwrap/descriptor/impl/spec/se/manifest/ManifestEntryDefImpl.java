@@ -114,6 +114,16 @@ public class ManifestEntryDefImpl extends ManifestCommonDefImpl<ManifestEntryDef
    }
 
    @Override
+   String findAttribute(Name name)
+   {
+      Map<String, Attributes> entries = manifest.getEntries();
+      if (entries.containsKey(entryName))
+         return manifest.getAttributes(entryName).getValue(name);
+
+      return null;
+   }
+
+   @Override
    ManifestModel getManifestModel()
    {
       return manifest;

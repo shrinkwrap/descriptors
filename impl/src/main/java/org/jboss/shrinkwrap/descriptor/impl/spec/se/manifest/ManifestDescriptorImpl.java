@@ -96,6 +96,12 @@ public class ManifestDescriptorImpl extends ManifestCommonDefImpl<ManifestDescri
    }
 
    @Override
+   String findAttribute(Name name)
+   {
+      return manifest.getMainAttributes().getValue(name);
+   }
+
+   @Override
    public String getDescriptorName()
    {
       return descriptorName;
