@@ -33,9 +33,11 @@
     <!-- ****************************************************** -->
     <xsl:template name="GenerateInterfaces">
         <xsl:for-each select="//classes/class">
-            <xsl:call-template name="WriteInterface2">
-                <xsl:with-param name="pClassNode" select="."/>
-            </xsl:call-template>
+            <xsl:if test="xdd:isGenerateClassTrue(@packageApi)">
+                <xsl:call-template name="WriteInterface2">
+                    <xsl:with-param name="pClassNode" select="."/>
+                </xsl:call-template>
+            </xsl:if>
         </xsl:for-each>
     </xsl:template>
 
@@ -46,53 +48,55 @@
     <xsl:template name="GenerateEnums">
         <xsl:param name="pTypeName" select="."/>
         <xsl:for-each select="//enums/enum">
-            <xsl:variable name="vClassname" select="xdd:createPascalizedName(@name, '')"/>
-            <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolderApi, @package, $vClassname, 'java')"/>
-            <xsl:message select="concat('Generating Enum: ', $vClassname)"/>
-            <xsl:result-document href="{$vFilename}">
-                <xsl:value-of select="xdd:writeCopyright()"/>
-                <xsl:value-of select="xdd:writePackageLine(@package)"/>
-                <xsl:value-of select="xdd:writeClassJavaDoc(@documentation, @name, false(), true())"/>
-                <xsl:value-of select="xdd:classHeaderDeclaration('enum', $vClassname)"/>
-                <xsl:text>&#10;{&#10;</xsl:text>
-                <xsl:for-each select="value">
-                    <xsl:variable name="pEnum" select=" upper-case(replace(text(), '\.', '_'))"/>
-                    <xsl:text>   _</xsl:text>
-                    <xsl:value-of select="$pEnum"/>
-                    <xsl:text>("</xsl:text>
-                    <xsl:value-of select="text()"/>
-                    <xsl:text>")</xsl:text>
-                    <xsl:if test="position() != last()">
-                        <xsl:text>,</xsl:text>
-                        <xsl:text>&#10;</xsl:text>
-                    </xsl:if>
-                </xsl:for-each>
-                <xsl:text>;</xsl:text>
-                <xsl:text>&#10;</xsl:text>
-                <xsl:text>&#10;</xsl:text>
-                <xsl:text>   private String value;</xsl:text>
-                <xsl:text>&#10;</xsl:text>
-                <xsl:text>&#10;</xsl:text>
-                <xsl:text>   </xsl:text>
-                <xsl:value-of select="$vClassname"/>
-                <xsl:text> (String value)</xsl:text>
-                <xsl:text> { this.value = value; }</xsl:text>
-                <xsl:text>&#10;</xsl:text>
-                <xsl:text>&#10;</xsl:text>
-                <xsl:text>   public String toString() {return value;}</xsl:text>
-                <xsl:text>&#10;&#10;</xsl:text>
-                <xsl:value-of select="concat('   public static ', $vClassname, ' getFromStringValue(String value)', '&#10;')"/>
-                <xsl:value-of select="concat('   {', '&#10;')"/>
-                <xsl:value-of select="concat('      for(', $vClassname, ' type: ', $vClassname, '.values())', '&#10;')"/>
-                <xsl:value-of select="concat('      {', '&#10;')"/>
-                <xsl:value-of select="concat('         if(value != null &amp;&amp; type.toString().equals(value))', '&#10;')"/>
-                <xsl:value-of select="concat('        { return type;}', '&#10;')"/>
-                <xsl:value-of select="concat('      }', '&#10;')"/>
-                <xsl:value-of select="concat('      return null;', '&#10;')"/>
-                <xsl:value-of select="concat('   }', '&#10;')"/>
-                <xsl:text>&#10;}&#10;</xsl:text>
-                <xsl:text>&#10;</xsl:text>
-            </xsl:result-document>
+             <xsl:if test="xdd:isGenerateClassTrue(@package)">
+                <xsl:variable name="vClassname" select="xdd:createPascalizedName(@name, '')"/>
+                <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolderApi, @package, $vClassname, 'java')"/>
+                <xsl:message select="concat('Generating Enum: ', $vClassname)"/>
+                <xsl:result-document href="{$vFilename}">
+                    <xsl:value-of select="xdd:writeCopyright()"/>
+                    <xsl:value-of select="xdd:writePackageLine(@package)"/>
+                    <xsl:value-of select="xdd:writeClassJavaDoc(@documentation, @name, false(), true())"/>
+                    <xsl:value-of select="xdd:classHeaderDeclaration('enum', $vClassname)"/>
+                    <xsl:text>&#10;{&#10;</xsl:text>
+                    <xsl:for-each select="value">
+                        <xsl:variable name="pEnum" select=" upper-case(replace(text(), '\.', '_'))"/>
+                        <xsl:text>   _</xsl:text>
+                        <xsl:value-of select="$pEnum"/>
+                        <xsl:text>("</xsl:text>
+                        <xsl:value-of select="text()"/>
+                        <xsl:text>")</xsl:text>
+                        <xsl:if test="position() != last()">
+                            <xsl:text>,</xsl:text>
+                            <xsl:text>&#10;</xsl:text>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:text>;</xsl:text>
+                    <xsl:text>&#10;</xsl:text>
+                    <xsl:text>&#10;</xsl:text>
+                    <xsl:text>   private String value;</xsl:text>
+                    <xsl:text>&#10;</xsl:text>
+                    <xsl:text>&#10;</xsl:text>
+                    <xsl:text>   </xsl:text>
+                    <xsl:value-of select="$vClassname"/>
+                    <xsl:text> (String value)</xsl:text>
+                    <xsl:text> { this.value = value; }</xsl:text>
+                    <xsl:text>&#10;</xsl:text>
+                    <xsl:text>&#10;</xsl:text>
+                    <xsl:text>   public String toString() {return value;}</xsl:text>
+                    <xsl:text>&#10;&#10;</xsl:text>
+                    <xsl:value-of select="concat('   public static ', $vClassname, ' getFromStringValue(String value)', '&#10;')"/>
+                    <xsl:value-of select="concat('   {', '&#10;')"/>
+                    <xsl:value-of select="concat('      for(', $vClassname, ' type: ', $vClassname, '.values())', '&#10;')"/>
+                    <xsl:value-of select="concat('      {', '&#10;')"/>
+                    <xsl:value-of select="concat('         if(value != null &amp;&amp; type.toString().equals(value))', '&#10;')"/>
+                    <xsl:value-of select="concat('        { return type;}', '&#10;')"/>
+                    <xsl:value-of select="concat('      }', '&#10;')"/>
+                    <xsl:value-of select="concat('      return null;', '&#10;')"/>
+                    <xsl:value-of select="concat('   }', '&#10;')"/>
+                    <xsl:text>&#10;}&#10;</xsl:text>
+                    <xsl:text>&#10;</xsl:text>
+                </xsl:result-document>
+            </xsl:if>
         </xsl:for-each>
     </xsl:template>
 
@@ -101,7 +105,7 @@
     <!-- ******************************************************* -->
     <xsl:template name="GeneratePackageInfos">
         <xsl:param name="pTypeName" select="."/>
-        <xsl:for-each select="$gPackageApis">
+        <xsl:for-each select="$gPackageApis[@generateClass!='false']">
             <xsl:variable name="vClassname" select="'package-info'"/>
             <xsl:variable name="vSchema" select=" substring-after(@schema, '../xsd/')"/>
             <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolderApi, @name, $vClassname,'java')"/>
@@ -114,7 +118,7 @@
                 <xsl:value-of select="concat('package ', @name, ';&#10;')"/>
             </xsl:result-document>
         </xsl:for-each>
-        <xsl:for-each select="$gPackageImpls">
+        <xsl:for-each select="$gPackageImpls[@generateClass!='false']">
             <xsl:variable name="vClassname" select="'package-info'"/>
             <xsl:variable name="vSchema" select=" substring-after(@schema, '../xsd/')"/>
             <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolder, @name, $vClassname,'java')"/>
@@ -137,9 +141,11 @@
         <xsl:param name="pTypeName"/>
         <!-- **** loop through all elements **** -->
         <xsl:for-each select="//groups/class">
-            <xsl:call-template name="WriteInterface2">
-                <xsl:with-param name="pClassNode" select="."/>
-            </xsl:call-template>
+            <xsl:if test="xdd:isGenerateClassTrue(@package)">
+                <xsl:call-template name="WriteInterface2">
+                    <xsl:with-param name="pClassNode" select="."/>
+                </xsl:call-template>
+            </xsl:if>
         </xsl:for-each>
     </xsl:template>
 
@@ -220,33 +226,41 @@
     <!-- ****************************************************** -->
     <xsl:template name="GenerateImplClasses">
         <xsl:for-each select="//classes/class">
-            <xsl:call-template name="WriteImplClasses">
-                <xsl:with-param name="pClass" select="."/>
-            </xsl:call-template>
+            <xsl:if test="xdd:isGenerateClassTrue(@packageApi)">
+                <xsl:call-template name="WriteImplClasses">
+                    <xsl:with-param name="pClass" select="."/>
+                </xsl:call-template>
+            </xsl:if>
+
         </xsl:for-each>
     </xsl:template>
 
 
     <!-- ****************************************************** -->
-    <!-- ****** Template which generates theimpl classes  * -->
+    <!-- ****** Template which generates the test classes  **** -->
     <!-- ****************************************************** -->
     <xsl:template name="GenerateTestClasses">
         <xsl:for-each select="//classes/class">
-            <xsl:call-template name="WriteTestClasses">
-                <xsl:with-param name="pClass" select="."/>
-                <xsl:with-param name="pPackage" select="@packageImpl"/>
-                <xsl:with-param name="pName" select="@name"/>
-                <xsl:with-param name="pIsDescriptor" select="'false'"/>
-            </xsl:call-template>
+            <xsl:if test="xdd:isGenerateClassTrue(@packageApi)">
+                <xsl:call-template name="WriteTestClasses">
+                    <xsl:with-param name="pClass" select="."/>
+                    <xsl:with-param name="pPackage" select="@packageImpl"/>
+                    <xsl:with-param name="pName" select="@name"/>
+                    <xsl:with-param name="pIsDescriptor" select="'false'"/>
+                </xsl:call-template>
+            </xsl:if>
         </xsl:for-each>
 
         <xsl:for-each select="//descriptors/descriptor">
-            <xsl:call-template name="WriteTestClasses">
-                <xsl:with-param name="pClass" select="."/>
-                <xsl:with-param name="pPackage" select="@packageImpl"/>
-                <xsl:with-param name="pName" select="xdd:createPascalizedName(@schemaName, 'Descriptor')"/>
-                <xsl:with-param name="pIsDescriptor" select="'true'"/>
-            </xsl:call-template>
+            <xsl:variable name="vPackageApi" select="@packageApi"/>
+            <xsl:if test="xdd:isGenerateClassTrue(@packageApi)">
+                <xsl:call-template name="WriteTestClasses">
+                    <xsl:with-param name="pClass" select="."/>
+                    <xsl:with-param name="pPackage" select="@packageImpl"/>
+                    <xsl:with-param name="pName" select="xdd:createPascalizedName(@schemaName, 'Descriptor')"/>
+                    <xsl:with-param name="pIsDescriptor" select="'true'"/>
+                </xsl:call-template>
+            </xsl:if>
         </xsl:for-each>
 
     </xsl:template>
@@ -2554,6 +2568,23 @@
     </xsl:function>
 
 
+
+    <!-- ****************************************************** -->
+    <!-- ****** Function which checks a data type           *** -->
+    <!-- ****************************************************** -->
+    <xsl:function name="xdd:isGenerateClassTrue" as="xs:boolean">
+        <xsl:param name="pPackageApi" as="xs:string"/>
+        <xsl:choose>
+            <xsl:when test="$gPackageApis[@name=$pPackageApi]/@generateClass='true'">
+                <xsl:sequence select="boolean(true())"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:sequence select="boolean(false())"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+
+
     <!-- ****************************************************** -->
     <!-- ****** Function which checks the type and return   *** -->
     <!-- ****** a java data type, if possible               *** -->
@@ -2609,7 +2640,8 @@
                 <xsl:sequence select="'Long'"/>
             </xsl:when>
             <xsl:when test="$pText='xsd:decimal'">
-                <xsl:sequence select="'String'"/> <!-- workaround -->
+                <xsl:sequence select="'String'"/>
+                <!-- workaround -->
             </xsl:when>
             <xsl:when test="$pText='xsd:integer'">
                 <xsl:sequence select="'Integer'"/>

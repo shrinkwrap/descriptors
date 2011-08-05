@@ -8,11 +8,10 @@
         <!-- ****** Listing of all schemas which have to be processed as library  ***** -->
         <!-- ************************************************************************** -->
 
-        <schema generateDDClass="false" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee6" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee6" name="../xsd/javaee_6.xsd"/>
-        <schema generateDDClass="false" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.webcommon30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.webcommon30" name="../xsd/web-common_3_0.xsd"/>
-        <schema generateDDClass="false" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.jsp22" packageImpl="org.jboss.shrinkwrap.descriptor.impl.jsp22" name="../xsd/jsp_2_2.xsd"/>
-        
-<!--        <schema generateDDClass="false" packageApi="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient13" name="../xsd/javaee_web_services_client_1_3.xsd"/>-->
+        <schema generateClass="true" generateDDClass="false" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee6" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee6" name="../xsd/javaee_6.xsd"/>
+        <schema generateClass="true" generateDDClass="false" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.webcommon30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.webcommon30" name="../xsd/web-common_3_0.xsd"/>
+        <schema generateClass="true" generateDDClass="false" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.jsp22" packageImpl="org.jboss.shrinkwrap.descriptor.impl.jsp22" name="../xsd/jsp_2_2.xsd"/>
+        <schema generateClass="true" generateDDClass="false" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient13" name="../xsd/javaee_web_services_client_1_3.xsd"/>
         
         <!-- <schema generateDDClass="false" packageApi="org.jboss.shrinkwrap.descriptor.api.javaeewebservices13" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaeewebservices13" name="../xsd/javaee_web_services_1_3.xsd"/>
             <schema generateDDClass="false" packageApi="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient13" name="../xsd/javaee_web_services_client_1_3.xsd"/>
@@ -31,43 +30,43 @@
         <!-- ****** Listing of all schemas which inludes a deployment descriptor   ***** -->
         <!-- *************************************************************************** -->
 
-        <schema generateDDClass="true" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.application6" packageImpl="org.jboss.shrinkwrap.descriptor.impl.application6" name="../xsd/application_6.xsd">
+        <schema generateClass="true" generateDDClass="true" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.application6" packageImpl="org.jboss.shrinkwrap.descriptor.impl.application6" name="../xsd/application_6.xsd">
             <namespace name="xmlns" value="http://java.sun.com/xml/ns/javaee"/>
             <namespace name="xmlns:xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
             <namespace name="xsi:schemaLocation" value="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd"/>
         </schema>
 
-        <schema generateDDClass="true" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.webapp30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.webapp30" name="../xsd/web-app_3_0.xsd">
+        <schema generateClass="true" generateDDClass="true" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.webapp30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.webapp30" name="../xsd/web-app_3_0.xsd">
             <namespace name="xmlns" value="http://java.sun.com/xml/ns/javaee"/>
             <namespace name="xmlns:xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
             <namespace name="xsi:schemaLocation" value="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"/>
         </schema>
         
-        <schema generateDDClass="true" namespace="persistence" packageApi="org.jboss.shrinkwrap.descriptor.api.persistence20" packageImpl="org.jboss.shrinkwrap.descriptor.impl.persistence20" name="../xsd/persistence_2_0.xsd">
+        <schema generateClass="true" generateDDClass="true" namespace="persistence" packageApi="org.jboss.shrinkwrap.descriptor.api.persistence20" packageImpl="org.jboss.shrinkwrap.descriptor.impl.persistence20" style='persistence' name="../xsd/persistence_2_0.xsd">
             <namespace name="xmlns" value="http://java.sun.com/xml/ns/persistence"/>
             <namespace name="xmlns:xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
             <namespace name="xsi:schemaLocation" value="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"/>
         </schema>
 
-        <schema generateDDClass="true" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.webfragment30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.webfragment30" name="../xsd/web-fragment_3_0.xsd">
+        <schema generateClass="true" generateDDClass="true" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.webfragment30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.webfragment30" name="../xsd/web-fragment_3_0.xsd">
             <namespace name="xmlns" value="http://java.sun.com/xml/ns/javaee"/>
             <namespace name="xmlns:xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
             <namespace name="xsi:schemaLocation" value="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-fragment_3_0.xsd"/>
         </schema>
         
-        <schema generateDDClass="true" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar31" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar31" name="../xsd/ejb-jar_3_1.xsd">
+        <schema generateClass="true" generateDDClass="true" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar31" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar31" name="../xsd/ejb-jar_3_1.xsd">
             <namespace name="xmlns" value="http://java.sun.com/xml/ns/javaee"/>
             <namespace name="xmlns:xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
             <namespace name="xsi:schemaLocation" value="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd"/>
         </schema>
         
-        <schema generateDDClass="true" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.jca16" packageImpl="org.jboss.shrinkwrap.descriptor.impl.jca16" name="../xsd/connector_1_6.xsd">
+        <schema generateClass="true" generateDDClass="true" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.jca16" packageImpl="org.jboss.shrinkwrap.descriptor.impl.jca16" name="../xsd/connector_1_6.xsd">
             <namespace name="xmlns" value="http://java.sun.com/xml/ns/javaee"/>
             <namespace name="xmlns:xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
             <namespace name="xsi:schemaLocation" value="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/connector_1_6.xsd"/>
         </schema>
 
-        <schema generateDDClass="true" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.cdi10" packageImpl="org.jboss.shrinkwrap.descriptor.impl.cdi10" style='beans' name="../xsd/beans_1_0.xsd">
+        <schema generateClass="true" generateDDClass="true" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.cdi10" packageImpl="org.jboss.shrinkwrap.descriptor.impl.cdi10" style='beans' name="../xsd/beans_1_0.xsd">
             <namespace name="xmlns" value="http://java.sun.com/xml/ns/javaee"/>
             <namespace name="xmlns:xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
             <namespace name="xsi:schemaLocation" value="http://java.sun.com/xml/ns/javaee http://docs.jboss.org/cdi/beans_1_0.xsd"/>

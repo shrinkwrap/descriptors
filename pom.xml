@@ -56,10 +56,12 @@
   <!-- Aggregate Modules -->
   <modules>
     <module>api-base</module>
-    <module>api</module>
+    <module>api-javaee</module>
+    <module>api-jboss</module>
     <module>gen</module>
     <module>impl-base</module>
-    <module>impl-gen</module>
+    <module>impl-javaee</module>
+    <module>impl-jboss</module>
     <module>spi</module>
     <module>test</module>
   </modules>
