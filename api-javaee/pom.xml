@@ -14,7 +14,7 @@
 
   <!-- Artifact Configuration -->
   <artifactId>shrinkwrap-descriptors-api-javaee</artifactId>
-  <name>ShrinkWrap Descriptors Java EE API</name>
+  <name>ShrinkWrap Descriptors Generated Java EE API</name>
   <description>Client View of the ShrinkWrap Descriptors Project</description>
 
   <dependencies>

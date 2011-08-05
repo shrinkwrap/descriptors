@@ -14,7 +14,7 @@
 
   <!-- Artifact Configuration -->
   <artifactId>shrinkwrap-descriptors-api-jboss</artifactId>
-  <name>ShrinkWrap Descriptors JBoss API</name>
+  <name>ShrinkWrap Descriptors Generated JBoss API</name>
   <description>Client View of the JBoss related ShrinkWrap Descriptors Project</description>
 
   <dependencies>
