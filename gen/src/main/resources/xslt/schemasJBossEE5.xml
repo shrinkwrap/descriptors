@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dd> 
+    <copyright name="copyright.xml"/>
+    <contributors name="contributors.xml"/>
+    <schemas>
+        
+        <!-- *********************************************************************************************** -->
+        <!-- ****** Listing of all schemas which are a kind of a library without deployment descriptor ***** -->
+        <!-- *********************************************************************************************** -->
+        <schema generateClass="true" generateDDClass="false" namespace="jboss" packageApi="org.jboss.shrinkwrap.descriptor.api.jbosscommon51" packageImpl="org.jboss.shrinkwrap.descriptor.impl.jbosscommon51" name="../xsd/jboss-common_5_1.xsd"/>
+        
+        
+        <!-- ************************************************************************************************************************* -->
+        <!-- ****** Listing of all schemas which are used only for generating the package imports. No classes are generated here ***** -->
+        <!-- ************************************************************************************************************************* -->
+        <schema generateClass="false" generateDDClass="false" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee5" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee5" name="../xsd/javaee_5.xsd"/>
+        <schema generateClass="false" generateDDClass="false" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30" name="../xsd/ejb-jar_3_0.xsd"/>
+        <schema generateClass="false" generateDDClass="false" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient12" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient12" name="../xsd/javaee_web_services_client_1_2.xsd"/>
+        
+        <!-- *************************************************************************************** -->
+        <!-- ****** Listing of all schemas which inludes a deployment descriptor for jboss 5.1 ***** -->
+        <!-- *************************************************************************************** -->
+        
+        <schema generateClass="true" generateDDClass="true" namespace="jboss" packageApi="org.jboss.shrinkwrap.descriptor.api.jboss51" packageImpl="org.jboss.shrinkwrap.descriptor.impl.jboss51" name="../xsd/jboss_5_1.xsd">
+            <namespace name="xmlns" value="http://www.jboss.com/xml/ns/javaee"/>
+            <namespace name="xmlns:xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
+            <namespace name="xsi:schemaLocation" value="http://www.jboss.com/xml/ns/javaee http://www.jboss.org/j2ee/schema/jboss_5_1.xsd"/>
+        </schema>
+    </schemas>
+</dd>

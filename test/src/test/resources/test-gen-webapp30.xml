@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://java.sun.com/xml/ns/javaee"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://java.sun.com/xml/ns/javaee file:/home/bfr/workspaceDD/descriptors/gen/src/main/resources/web-app_3_0.xsd" version="3.0" id="ID001" metadata-complete="false">
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee file:/home/bfr/workspaceDD/descriptors/gen/src/main/resources/web-app_3_0.xsd" version="3.0" id="ID001" metadata-complete="false">
     <module-name id="ID003">module-name0</module-name>
     <jsp-config id="ID005">
         <taglib id="ID007">
@@ -78,19 +76,9 @@
         <name id="ID119">name2</name>
         <name id="ID121">name3</name>
     </absolute-ordering>
-    <module-name id="ID123">module-name1</module-name>
     <security-role id="ID125">
         <description xml:lang="en-US" id="ID127">description4</description>
         <description xml:lang="en-US" id="ID129">description5</description>
         <role-name id="ID131">role-name0</role-name>
     </security-role>
-
-    <absolute-ordering>
-<!--        <name id="ID133">name4</name>-->
-<!--        <name id="ID135">name5</name>-->
-        <others id="ID137"/>
-<!--        <name id="ID139">name6</name>-->
-<!--        <name id="ID141">name7</name>-->
-        <others id="ID143"/>
-    </absolute-ordering>
 </web-app>
