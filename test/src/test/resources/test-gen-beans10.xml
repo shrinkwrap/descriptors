@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://docs.jboss.org/cdi/beans_1_0.xsd">
+    <interceptors>
+        <class>class0</class>
+        <class>class1</class>
+        <class>class2</class>
+        <class>class3</class>
+        <class>class4</class>
+    </interceptors>
+    <decorators>
+        <class>class5</class>
+        <class>class6</class>
+        <class>class7</class>
+        <class>class8</class>
+        <class>class9</class>
+    </decorators>
+    <alternatives>
+        <class>class10</class>
+        <class>class11</class>
+        <stereotype>stereotype0</stereotype>
+        <stereotype>stereotype1</stereotype>
+        <stereotype>stereotype2</stereotype>
+    </alternatives>
+    <interceptors>
+        <class>class12</class>
+        <class>class13</class>
+        <class>class14</class>
+        <class>class15</class>
+        <class>class16</class>
+    </interceptors>
+
+    <alternatives>
+        <class>class33</class>
+        <stereotype>stereotype7</stereotype>
+        <class>class34</class>
+        <stereotype>stereotype8</stereotype>
+        <class>class35</class>
+        <stereotype>stereotype9</stereotype>
+        <class>class36</class>
+        <stereotype>stereotype10</stereotype>
+        <class>class37</class>
+        <stereotype>stereotype11</stereotype>
+    </alternatives>
+
+    <alternatives>
+        <stereotype>stereotype15</stereotype>
+        <class>class61</class>
+        <class>class62</class>
+        <stereotype>stereotype18</stereotype>
+        <class>class64</class>
+    </alternatives>
+</beans>

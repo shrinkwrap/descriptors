@@ -17,8 +17,74 @@
   <name>ShrinkWrap Descriptors Source Generator</name>
   <description>Generates various deployment descriptors via XSLT transformation</description>
 
+  <properties>
+    
+    <!-- output folders for the java ee related xslt transformation results -->
+    <output.folder.apl.javaee>../../../../../api-javaee/src/main/java</output.folder.apl.javaee>
+    <output.folder.impl.javaee>../../../../../impl-javaee/src/main/java</output.folder.impl.javaee>
+    <output.folder.test.javaee>../../../../../impl-javaee/src/test/java</output.folder.test.javaee>
+    
+    <!-- output folders for the jboss related xslt transformation results -->
+    <output.folder.apl.jboss>../../../../../api-jboss/src/main/java</output.folder.apl.jboss>
+    <output.folder.impl.jboss>../../../../../impl-jboss/src/main/java</output.folder.impl.jboss>
+    <output.folder.test.jboss>../../../../../impl-jboss/src/test/java</output.folder.test.jboss>
+    
+  </properties>
+  
   <build>
     <plugins>
+      
+      <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>2.4.1</version>
+        <configuration>
+          <filesets>
+            <fileset>
+              <directory>../api-javaee/src/main/java</directory>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+              <followSymlinks>false</followSymlinks>
+            </fileset>
+            <fileset>
+              <directory>../impl-javaee/src/main/java</directory>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+              <followSymlinks>false</followSymlinks>
+            </fileset>
+            <fileset>
+              <directory>../impl-javaee/src/test/java</directory>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+              <followSymlinks>false</followSymlinks>
+            </fileset>
+            <fileset>
+              <directory>../api-jboss/src/main/java</directory>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+              <followSymlinks>false</followSymlinks>
+            </fileset>
+            <fileset>
+              <directory>../impl-jboss/src/main/java</directory>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+              <followSymlinks>false</followSymlinks>
+            </fileset>
+            <fileset>
+              <directory>../impl-jboss/src/test/java</directory>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+              <followSymlinks>false</followSymlinks>
+            </fileset>
+          </filesets>
+        </configuration>
+      </plugin>
+      
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
@@ -30,14 +96,10 @@
         <groupId>net.sf.xsltmp</groupId>
         <artifactId>xslt-generator-maven-plugin</artifactId>
         <version>1.6</version>
-        <executions>
+        <executions>          
           
           <!-- 
-               This is the first step. 
-               All schema files configured in the schemas.xml
-               are parsed in this fist transformation. The result of this is a xml file 
-               called metadata.xml containing all required information to produce
-               the deployment descriptor API and IMPL classes
+            Java EE 6 deplyoment descriptor xslt transformation
           -->
           <execution>
             <id>transform-to-metadata-javaee6</id>
@@ -52,18 +114,18 @@
               <destFile>src/main/resources/xslt/metadataJavaEE6.xml</destFile>
             </configuration>
           </execution>
-          
-          <!-- 
-            This is the second step. 
-            The metada.xml produced in step 1 is transformed into 
-            the API and IMPL classes.
-          -->
+        
           <execution>
             <id>transform-to-java-javaee6</id>
             <goals>
               <goal>many-to-one</goal>
             </goals>
             <configuration>
+              <parameters>
+                <gOutputFolder>${output.folder.impl.javaee}</gOutputFolder>
+                <gOutputFolderApi>${output.folder.apl.javaee}</gOutputFolderApi>
+                <gOutputFolderTest>${output.folder.test.javaee}</gOutputFolderTest>                
+              </parameters>
               <xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
               <srcDir>src/main/resources/xslt</srcDir>
               <srcIncludes>**/*.xml</srcIncludes>
@@ -73,11 +135,7 @@
           </execution>
           
           <!-- 
-               This is the first step. 
-               All schema files configured in the schemas.xml
-               are parsed in this fist transformation. The result of this is a xml file 
-               called metadata.xml containing all required information to produce
-               the deployment descriptor API and IMPL classes
+            Java EE 5 deplyoment descriptor xslt transformation
           -->
           <execution>
             <id>transform-to-metadata-javaee5</id>
@@ -92,18 +150,18 @@
               <destFile>src/main/resources/xslt/metadataJavaEE5.xml</destFile>
             </configuration>
           </execution>
-          
-          <!-- 
-            This is the second step. 
-            The metada.xml produced in step 1 is transformed into 
-            the API and IMPL classes.
-          -->
+        
           <execution>
             <id>transform-to-java-javaee5</id>
             <goals>
               <goal>many-to-one</goal>
             </goals>
             <configuration>
+              <parameters>
+                <gOutputFolder>${output.folder.impl.javaee}</gOutputFolder>
+                <gOutputFolderApi>${output.folder.apl.javaee}</gOutputFolderApi>
+                <gOutputFolderTest>${output.folder.test.javaee}</gOutputFolderTest>                
+              </parameters>
               <xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
               <srcDir>src/main/resources/xslt</srcDir>
               <srcIncludes>**/*.xml</srcIncludes>
@@ -113,11 +171,7 @@
           </execution>
           
           <!-- 
-            This is the first step. 
-            All schema files configured in the schemas.xml
-            are parsed in this fist transformation. The result of this is a xml file 
-            called metadata.xml containing all required information to produce
-            the deployment descriptor API and IMPL classes
+            J2ee 1.4 deplyoment descriptor xslt transformation
           -->
           <execution>
             <id>transform-to-metadata-j2ee14</id>
@@ -132,18 +186,18 @@
               <destFile>src/main/resources/xslt/metadataJ2ee14.xml</destFile>
             </configuration>
           </execution>
-          
-          <!-- 
-            This is the second step. 
-            The metada.xml produced in step 1 is transformed into 
-            the API and IMPL classes.
-          -->
+        
           <execution>
             <id>transform-to-java-j2ee14</id>
             <goals>
               <goal>many-to-one</goal>
             </goals>
             <configuration>
+              <parameters>
+                <gOutputFolder>${output.folder.impl.javaee}</gOutputFolder>
+                <gOutputFolderApi>${output.folder.apl.javaee}</gOutputFolderApi>
+                <gOutputFolderTest>${output.folder.test.javaee}</gOutputFolderTest>                
+              </parameters>
               <xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
               <srcDir>src/main/resources/xslt</srcDir>
               <srcIncludes>**/*.xml</srcIncludes>
@@ -151,6 +205,43 @@
               <destFile>src/main/resources/xslt/ddJavaJ2ee14.xml</destFile>
             </configuration>
           </execution>
+          
+          <!-- 
+            JBoss 5 deplyoment descriptor xslt transformation
+          -->
+          <execution>
+            <id>transform-to-metadata-jbossee5</id>
+            <goals>
+              <goal>many-to-one</goal>
+            </goals>
+            <configuration>
+              <xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate>
+              <srcDir>src/main/resources/xsd</srcDir>
+              <srcIncludes>**/*.xsd</srcIncludes>
+              <srcFile>src/main/resources/xslt/schemasJBossEE5.xml</srcFile>
+              <destFile>src/main/resources/xslt/metadataJBossEE5.xml</destFile>
+            </configuration>
+          </execution>
+          
+          <execution>
+            <id>transform-to-java-jbossee5</id>
+            <goals>
+              <goal>many-to-one</goal>
+            </goals>
+            <configuration>
+              <parameters>
+                <gOutputFolder>${output.folder.impl.jboss}</gOutputFolder>
+                <gOutputFolderApi>${output.folder.apl.jboss}</gOutputFolderApi>
+                <gOutputFolderTest>${output.folder.test.jboss}</gOutputFolderTest>                
+              </parameters>
+              <xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
+              <srcDir>src/main/resources/xslt</srcDir>
+              <srcIncludes>**/*.xml</srcIncludes>
+              <srcFile>src/main/resources/xslt/metadataJBossEE5.xml</srcFile>
+              <destFile>src/main/resources/xslt/ddJBossEE5.xml</destFile>
+            </configuration>
+          </execution>
+          
         </executions>
         <dependencies>
           <dependency>
