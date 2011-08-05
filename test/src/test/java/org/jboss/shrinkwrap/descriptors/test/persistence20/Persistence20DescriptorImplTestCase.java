@@ -40,7 +40,7 @@ public class Persistence20DescriptorImplTestCase
    @Test
    public void shouldBeAbleToSetName() throws Exception
    {
-      Assert.assertEquals("test.xml", Descriptors.create(PersistenceDescriptor.class, "test.xml").getDescriptorName());
+      Assert.assertEquals("test.xml", Descriptors.create(Persistence20Descriptor.class, "test.xml").getDescriptorName());
    }
 
    @Test
