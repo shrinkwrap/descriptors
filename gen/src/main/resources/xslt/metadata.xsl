@@ -108,6 +108,11 @@
                             <xsl:value-of select="../@style"/>
                         </xsl:attribute>
                     </xsl:if>
+                    <xsl:if test="exists(../@generateClass)">
+                        <xsl:attribute name="generateClass">
+                            <xsl:value-of select="../@generateClass"/>
+                        </xsl:attribute>
+                    </xsl:if>
                 </api>
             </xsl:for-each>
             <xsl:for-each select="//@packageImpl">
@@ -121,6 +126,11 @@
                     <xsl:if test="exists(../@style)">
                         <xsl:attribute name="style">
                             <xsl:value-of select="../@style"/>
+                        </xsl:attribute>
+                    </xsl:if>
+                      <xsl:if test="exists(../@generateClass)">
+                        <xsl:attribute name="generateClass">
+                            <xsl:value-of select="../@generateClass"/>
                         </xsl:attribute>
                     </xsl:if>
                 </impl>
@@ -417,109 +427,6 @@
             </xsl:if>
         </xsl:for-each>
 
-
-        <!--     <xsl:for-each select="document($pDocument)//xsd:complexType">
-            <xsl:variable name="complexTypeName" select="@name"/>
-
-            <xsl:if test="count(xsd:sequence/xsd:any) = 1 or $complexTypeName='faces-config-valueType' or $complexTypeName='credential-interfaceType'">
-                <datatype>
-                    <xsl:attribute name="name">
-                        <xsl:value-of select="$complexTypeName"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="mappedTo">
-                        <xsl:value-of select="'javaee:string'"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="namespace">
-                        <xsl:value-of select="$pNamespace"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="schemaName">
-                        <xsl:value-of select="$pDocument"/>
-                    </xsl:attribute>
-                </datatype>
-            </xsl:if>
-
-            <xsl:for-each select="//xsd:complexType[@name=$complexTypeName]//@base">
-                <xsl:if test="contains(../@base, 'xsd:') or contains(../@base, 'javaee:')">
-                    <xsl:if test="count(../xsd:enumeration) = 0">
-                        <xsl:text>&#10;</xsl:text>
-                        <datatype>
-                            <xsl:attribute name="name">
-                                <xsl:value-of select="$complexTypeName"/>
-                            </xsl:attribute>
-                            <xsl:attribute name="mappedTo">
-                                <xsl:value-of select="../@base"/>
-                            </xsl:attribute>
-                            <xsl:attribute name="namespace">
-                                <xsl:value-of select="$pNamespace"/>
-                            </xsl:attribute>
-                            <xsl:attribute name="schemaName">
-                                <xsl:value-of select="$pDocument"/>
-                            </xsl:attribute>
-                        </datatype>
-                    </xsl:if>
-                </xsl:if>
-            </xsl:for-each>
-        </xsl:for-each>
-
-        <xsl:for-each select="document($pDocument)//xsd:simpleType">
-            <xsl:variable name="complexTypeName" select="@name"/>
-
-            <xsl:if test="$complexTypeName='load-on-startupType'">
-                <datatype>
-                    <xsl:attribute name="name">
-                        <xsl:value-of select="$complexTypeName"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="mappedTo">
-                        <xsl:value-of select="'xsd:integer'"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="namespace">
-                        <xsl:value-of select="$pNamespace"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="schemaName">
-                        <xsl:value-of select="$pDocument"/>
-                    </xsl:attribute>
-                </datatype>
-                <xsl:text>&#10;</xsl:text>
-            </xsl:if>
-
-            <xsl:if test="$complexTypeName='protocol-bindingType'">
-                <datatype>
-                    <xsl:attribute name="name">
-                        <xsl:value-of select="$complexTypeName"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="mappedTo">
-                        <xsl:value-of select="'javaee:string'"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="namespace">
-                        <xsl:value-of select="$pNamespace"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="schemaName">
-                        <xsl:value-of select="$pDocument"/>
-                    </xsl:attribute>
-                </datatype>
-                <xsl:text>&#10;</xsl:text>
-            </xsl:if>
-
-            <xsl:for-each select="xsd:restriction">
-                <xsl:if test="count(xsd:enumeration) = 0">
-                    <xsl:text>&#10;</xsl:text>
-                    <datatype>
-                        <xsl:attribute name="name">
-                            <xsl:value-of select="$complexTypeName"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="mappedTo">
-                            <xsl:value-of select="@base"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="namespace">
-                            <xsl:value-of select="$pNamespace"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="schemaName">
-                            <xsl:value-of select="$pDocument"/>
-                        </xsl:attribute>
-                    </datatype>
-                </xsl:if>
-            </xsl:for-each>
-        </xsl:for-each>-->
     </xsl:template>
 
 

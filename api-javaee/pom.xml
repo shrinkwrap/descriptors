@@ -13,8 +13,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <!-- Artifact Configuration -->
-  <artifactId>shrinkwrap-descriptors-api</artifactId>
-  <name>ShrinkWrap Descriptors API</name>
+  <artifactId>shrinkwrap-descriptors-api-javaee</artifactId>
+  <name>ShrinkWrap Descriptors Java EE API</name>
   <description>Client View of the ShrinkWrap Descriptors Project</description>
 
   <dependencies>

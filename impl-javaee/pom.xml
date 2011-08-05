@@ -13,12 +13,22 @@
   <modelVersion>4.0.0</modelVersion>
 
   <!-- Artifact Configuration -->
-  <artifactId>shrinkwrap-descriptors-impl-gen</artifactId>
-  <name>ShrinkWrap Descriptors Generated Implementation</name>
+  <artifactId>shrinkwrap-descriptors-impl-javaee</artifactId>
+  <name>ShrinkWrap Descriptors Generated Java EE Impl</name>
   <description>Generated Implementation of the ShrinkWrap Descriptors Project</description>
 
   <dependencies>
 
+    <dependency>
+      <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+      <artifactId>shrinkwrap-descriptors-api-javaee</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+      <artifactId>shrinkwrap-descriptors-api-jboss</artifactId>
+      <version>${project.version}</version>
+    </dependency>
     <dependency>
       <groupId>org.jboss.shrinkwrap.descriptors</groupId>
       <artifactId>shrinkwrap-descriptors-impl-base</artifactId>
