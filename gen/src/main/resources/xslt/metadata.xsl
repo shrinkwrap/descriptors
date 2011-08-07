@@ -756,7 +756,7 @@
                     <xsl:variable name="complexTypeName" select="@name"/>
                     <xsl:variable name="vDocumentation" select="xsd:annotation/xsd:documentation/text()"/>
 
-                 <!--   <xsl:if test="$complexTypeName='protocol-bindingListType' or $complexTypeName='service-ref_protocol-bindingListType'">
+                    <!--   <xsl:if test="$complexTypeName='protocol-bindingListType' or $complexTypeName='service-ref_protocol-bindingListType'">
                         <xsl:message select="concat('Metadata describing class: ', $complexTypeName)"/>
                         <class>
                             <xsl:attribute name="name">
@@ -847,8 +847,8 @@
                                         <xsl:attribute name="name">
                                             <xsl:value-of select="@name"/>
                                         </xsl:attribute>
-                                        
-                                         <xsl:choose>
+
+                                        <xsl:choose>
                                             <xsl:when test="@name='protocol-bindings'">
                                                 <xsl:attribute name="type">
                                                     <xsl:value-of select="'javaee:string'"/>
@@ -860,7 +860,7 @@
                                                 </xsl:attribute>
                                             </xsl:otherwise>
                                         </xsl:choose>
-                                        
+
                                         <xsl:if test="@maxOccurs">
                                             <xsl:attribute name="maxOccurs">
                                                 <xsl:value-of select="@maxOccurs"/>
