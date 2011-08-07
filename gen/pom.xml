@@ -34,48 +34,48 @@
   <build>
     <plugins>
       
-      <!--<plugin>
+      <plugin>
         <artifactId>maven-clean-plugin</artifactId>
         <version>2.4.1</version>
         <configuration>
           <filesets>
             <fileset>
-              <directory>${output.folder.impl.javaee}</directory>
+              <directory>../api-javaee/src/main/java</directory>
               <includes>
                 <include>**/*.java</include>
               </includes>
               <followSymlinks>false</followSymlinks>
             </fileset>
             <fileset>
-              <directory>${output.folder.api.javaee}</directory>
+              <directory>../impl-javaee/src/main/java</directory>
               <includes>
                 <include>**/*.java</include>
               </includes>
               <followSymlinks>false</followSymlinks>
             </fileset>
             <fileset>
-              <directory>${output.folder.test.javaee}</directory>
+              <directory>../impl-javaee/src/test/java</directory>
               <includes>
                 <include>**/*.java</include>
               </includes>
               <followSymlinks>false</followSymlinks>
             </fileset>
             <fileset>
-              <directory>${output.folder.impl.jboss}</directory>
+              <directory>../api-jboss/src/main/java</directory>
               <includes>
                 <include>**/*.java</include>
               </includes>
               <followSymlinks>false</followSymlinks>
             </fileset>
             <fileset>
-              <directory>${output.folder.api.jboss}</directory>
+              <directory>../impl-jboss/src/main/java</directory>
               <includes>
                 <include>**/*.java</include>
               </includes>
               <followSymlinks>false</followSymlinks>
             </fileset>
             <fileset>
-              <directory>${output.folder.test.jboss}</directory>
+              <directory>../impl-jboss/src/test/java</directory>
               <includes>
                 <include>**/*.java</include>
               </includes>
@@ -83,7 +83,7 @@
             </fileset>
           </filesets>
         </configuration>
-      </plugin>-->
+      </plugin>
       
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
