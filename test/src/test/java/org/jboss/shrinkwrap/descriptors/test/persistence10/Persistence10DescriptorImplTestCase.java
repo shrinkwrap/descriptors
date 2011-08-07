@@ -1,4 +1,4 @@
-package org.jboss.shrinkwrap.descriptors.test.persistence20;
+package org.jboss.shrinkwrap.descriptors.test.persistence10;
 
 import static org.junit.Assert.assertTrue;
 
@@ -8,11 +8,11 @@ import java.io.FileReader;
 import org.custommonkey.xmlunit.Diff;
 import org.custommonkey.xmlunit.XMLUnit;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.persistence20.Persistence20Descriptor;
+import org.jboss.shrinkwrap.descriptor.api.persistence10.Persistence10Descriptor;
 import org.junit.Before;
 import org.junit.Test;
 
-public class Persistence20DescriptorImplTestCase
+public class Persistence10DescriptorImplTestCase
 {
    @Before
    public void init()
@@ -25,9 +25,9 @@ public class Persistence20DescriptorImplTestCase
    @Test
    public void testGeneratedPersistenceXml() throws Exception
    {
-      final Persistence20Descriptor persistence = create()
+      final Persistence10Descriptor persistence = create()
             .addDefaultNamespaces()
-            .setVersion("2.0")
+            .setVersion("1.0")
             .persistenceUnit()
                .setName("name1")
                .setDescription("description0")
@@ -40,9 +40,7 @@ public class Persistence20DescriptorImplTestCase
                .setJarFile("jar-file1")
                .setClazz("class0")
                .setClazz("class1")
-               .setExcludeUnlistedClasses(true)
-               .setSharedCacheMode("ALL")
-               .setValidationMode("AUTO")
+               .setExcludeUnlistedClasses(false)
                .properties()
                   .property().setName("name3").setValue("value1").up()
                   .property().setName("name5").setValue("value3").up()
@@ -59,16 +57,14 @@ public class Persistence20DescriptorImplTestCase
                .setJarFile("jar-file3")
                .setClazz("class2")
                .setClazz("class3")
-               .setExcludeUnlistedClasses(true)
-               .setSharedCacheMode("ALL")
-               .setValidationMode("AUTO")
+               .setExcludeUnlistedClasses(false)
                .properties()
                   .property().setName("name9").setValue("value5").up()
                   .property().setName("name11").setValue("value7").up()
                .up().up();            
      
       String webXmlGenerated = persistence.exportAsString();
-      String webXmlOriginal = getResourceContents("src/test/resources/test-gen-persistence20.xml");
+      String webXmlOriginal = getResourceContents("src/test/resources/test-gen-persistence10.xml");
       
       Diff myDiff = new Diff(webXmlOriginal, webXmlGenerated);
       assertTrue("pieces of XML are similar " + myDiff, myDiff.similar());
@@ -94,8 +90,8 @@ public class Persistence20DescriptorImplTestCase
       return builder.toString();
    }
 
-   private Persistence20Descriptor create()
+   private Persistence10Descriptor create()
    {
-      return Descriptors.create(Persistence20Descriptor.class);
+      return Descriptors.create(Persistence10Descriptor.class);
    }
 }

@@ -16,194 +16,111 @@
  */
 package org.jboss.shrinkwrap.descriptors.test.beans10;
 
-import static org.jboss.shrinkwrap.descriptor.impl.spec.AssertXPath.assertXPath;
+import static org.junit.Assert.assertTrue;
 
-import javax.decorator.Decorator;
-import javax.enterprise.inject.Alternative;
-import javax.enterprise.inject.Stereotype;
-import javax.interceptor.Interceptor;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
-import junit.framework.Assert;
-
+import org.custommonkey.xmlunit.Diff;
+import org.custommonkey.xmlunit.XMLUnit;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.cdi10.Beans10Descriptor;
 import org.jboss.shrinkwrap.descriptor.api.spec.cdi.beans.BeansDescriptor;
-import org.junit.Ignore;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
  * Test Case to verify that {@link BeansDescriptor} impl produce the correct 
  * XML Descriptor output.
  *
- * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  * @version $Revision: $
  */
 
 public class Beans10DescriptorTestCase
 {
-   @Stereotype
-   @Alternative
-   private @interface TestAlternativeStereoType {
-   }
-
-   @Alternative
-   private class TestAlternativeClass
+  
+   @Before
+   public void init()
    {
+      XMLUnit.setIgnoreWhitespace(true);
+      XMLUnit.setIgnoreComments(true);
+      XMLUnit.setNormalizeWhitespace(true);
    }
-
-   @Interceptor
-   private class TestInterceptor
-   {
-   }
-
-   @Decorator
-   private class TestDecorator
-   {
-   }
-
-   //-------------------------------------------------------------------------------------||
-   // Basic API --------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
-
+   
    @Test
-   public void shouldCreateDefaultName() throws Exception
+   public void testGeneratedXml() throws Exception
    {
-      Assert.assertEquals("beans.xml", create().getDescriptorName());
+      final Beans10Descriptor beansDescr = create()
+            .addDefaultNamespaces()
+            .interceptors()
+               .setClazz("class0")
+               .setClazz("class1")
+               .setClazz("class2")
+               .setClazz("class3")
+               .setClazz("class4").up()
+            .decorators()
+               .setClazz("class5")
+               .setClazz("class6")
+               .setClazz("class7")
+               .setClazz("class8")
+               .setClazz("class9").up()
+            .alternatives()
+               .setClazz("class10")
+               .setClazz("class11")
+               .setStereotype("stereotype0")
+               .setStereotype("stereotype1")
+               .setStereotype("stereotype2").up()
+            .interceptors()
+               .setClazz("class12")
+               .setClazz("class13")
+               .setClazz("class14")
+               .setClazz("class15")
+               .setClazz("class16").up()
+            .alternatives()
+               .setClazz("class33")
+               .setStereotype("stereotype7")
+               .setClazz("class34")
+               .setStereotype("stereotype8")
+               .setClazz("class35")
+               .setStereotype("stereotype9")
+               .setClazz("class36")
+               .setStereotype("stereotype10")
+               .setClazz("class37")
+               .setStereotype("stereotype11").up()
+            .alternatives()
+               .setStereotype("stereotype15")
+               .setClazz("class61")               
+               .setClazz("class62")
+               .setStereotype("stereotype18")
+               .setClazz("class64").up();
+     
+      String webXmlGenerated = beansDescr.exportAsString();
+      String webXmlOriginal = getResourceContents("src/test/resources/test-gen-beans10.xml");
+      
+      Diff myDiff = new Diff(webXmlOriginal, webXmlGenerated);
+      assertTrue("pieces of XML are similar " + myDiff, myDiff.similar());
+      assertTrue("but are they identical? " + myDiff, myDiff.identical());   
    }
-
-   @Test
-   public void shouldBeAbleToSetName() throws Exception
-   {
-      Assert.assertEquals("test.xml", Descriptors.create(Beans10Descriptor.class, "test.xml").getDescriptorName());
-   }
-
-   //-------------------------------------------------------------------------------------||
-   // Alternative StereoTypes ------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
-
-//   @Test(expected = IllegalArgumentException.class)
-//   public void shouldNotBeAbleToAddNonAlternativeStereoType()
-//   {
-//      create().alternatives().setStereotype(Override.class.getName());
-//   }
-
-   @Test
-   public void shouldBeAbleToAddAlternativeStereoType() throws Exception
-   {
-      String desc = create().alternatives().setStereotype(TestAlternativeStereoType.class.getName()).up().exportAsString();
-
-      assertXPath(desc, "/beans/alternatives/stereotype", TestAlternativeStereoType.class.getName());
-   }
-
-   @Test
-   public void shouldBeAbleToAddAlternativeStereoTypes() throws Exception
-   {
-      @SuppressWarnings("unchecked")
-      String desc = create().alternatives().setStereotypeList(TestAlternativeStereoType.class.getName(), TestAlternativeStereoType.class.getName()).up()
-            .exportAsString();
-
-      assertXPath(desc, "/beans/alternatives/stereotype", TestAlternativeStereoType.class.getName(),
-            TestAlternativeStereoType.class.getName());
-   }
-
-   //-------------------------------------------------------------------------------------||
-   // Alternative Classes ----------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
-
-//   @Test(expected = IllegalArgumentException.class)
-//   public void shouldNotBeAbleToAddNonAlternativeClass()
-//   {
-//      create().alternatives().setClazz(String.class.getName());
-//   }
-
-   @Test
-   public void shouldBeAbleToAddAlternativeClass() throws Exception
-   {
-      String desc = create().alternatives().setClazz(TestAlternativeClass.class.getName()).up().exportAsString();
-
-      assertXPath(desc, "/beans/alternatives/class", TestAlternativeClass.class.getName());
-   }
-
-   @Test
-   public void shouldBeAbleToAddAlternativeClasses() throws Exception
-   {
-      String desc = create().alternatives().setClazzList(TestAlternativeClass.class.getName(), TestAlternativeClass.class.getName()).up()
-            .exportAsString();
-
-      assertXPath(desc, "/beans/alternatives/class", TestAlternativeClass.class.getName(), TestAlternativeClass.class
-            .getName());
-   }
-
-   //-------------------------------------------------------------------------------------||
-   // Interceptors -----------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
-
-//   @Test(expected = IllegalArgumentException.class)
-//   public void shouldNotBeAbleToAddNonInterceptor() throws Exception
-//   {
-//      create().interceptors().setClazz(String.class.getName());
-//   }
-
-   @Test
-   public void shouldBeAbleToAddInterceptor() throws Exception
-   {
-      String desc = create().interceptors().setClazz(TestInterceptor.class.getName()).up().exportAsString();
-
-      assertXPath(desc, "/beans/interceptors/class", TestInterceptor.class.getName());
-   }
-
-   @Test
-   public void shouldBeAbleToAddInterceptors() throws Exception
-   {
-      String desc = create().interceptors().setClazzList(TestInterceptor.class.getName(), TestInterceptor.class.getName()).up().exportAsString();
-
-      assertXPath(desc, "/beans/interceptors/class", TestInterceptor.class.getName(), TestInterceptor.class.getName());
-   }
-
-   //-------------------------------------------------------------------------------------||
-   // Decorators -------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
-
-//   @Test(expected = IllegalArgumentException.class)
-//   public void shouldNotBeAbleToAddNonDecorator() throws Exception
-//   {
-//      create().decorators().setClazz(String.class.getName());
-//   }
-
-   @Test
-   public void shouldBeAbleToAddDescorator() throws Exception
-   {
-      String desc = create().decorators().setClazz(TestDecorator.class.getName()).up().exportAsString();
-
-      assertXPath(desc, "/beans/decorators/class", TestDecorator.class.getName());
-   }
-
-   @Test
-   public void shouldBeAbleToAddDescorators() throws Exception
-   {
-      String desc = create().decorators().setClazzList(TestDecorator.class.getName(), TestDecorator.class.getName()).up().exportAsString();
-
-      assertXPath(desc, "/beans/decorators/class", TestDecorator.class.getName(), TestDecorator.class.getName());
-   }
-
-   //-------------------------------------------------------------------------------------||
-   // Export / Import round trip ---------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
-
-   @Test
-   public void shouldBeAbleToReadWhatWasExported() throws Exception
-   {
-      String desc = create().decorators().setClazzList(TestDecorator.class.getName(), TestDecorator.class.getName()).up().exportAsString();
-
-      desc = Descriptors.importAs(Beans10Descriptor.class).from(desc).exportAsString();
-
-      assertXPath(desc, "/beans/decorators/class", TestDecorator.class.getName(), TestDecorator.class.getName());
-
-   }
+   
 
    //-------------------------------------------------------------------------------------||
    // Internal Helper --------------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||
+
+   private String getResourceContents(String resource) throws Exception
+   {
+      assert resource != null && resource.length() > 0 : "Resource must be specified";
+      final BufferedReader reader = new BufferedReader(new FileReader(resource));
+      final StringBuilder builder = new StringBuilder();
+      String line;
+      while ((line = reader.readLine()) != null)
+      {
+         builder.append(line);
+         builder.append("\n");
+      }
+      return builder.toString();
+   }
 
    private Beans10Descriptor create()
    {

@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.ejbjar30.EjbJar30Descriptor;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -28,6 +29,7 @@ import org.junit.Test;
  * 
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
  */
+@Ignore
 public class EjbJar30DescriptorTestCase
 {
 

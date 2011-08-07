@@ -49,7 +49,7 @@ public class WebApp30DescriptorImportAsTestCase
    @Test
    public void testImportGeneratedTutorialWebXml() throws Exception
    {
-      String web_source_generated = getResourceContents("src/test/resources/test-web2.xml");
+      String web_source_generated = getResourceContents("src/test/resources/test-orig-webapp30.xml");
       
       final WebApp30Descriptor webapp = Descriptors.importAs(WebApp30Descriptor.class).from(
             web_source_generated);
@@ -81,7 +81,7 @@ public class WebApp30DescriptorImportAsTestCase
    @Test
    public void testImportGeneratedWebXml() throws Exception
    {
-      String web_source_generated = getResourceContents("src/test/resources/test-web-generated-1.xml");
+      String web_source_generated = getResourceContents("src/test/resources/test-gen-webapp30.xml");
       
       final WebApp30Descriptor web = Descriptors.importAs(WebApp30Descriptor.class).from(
             web_source_generated);
