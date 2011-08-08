@@ -63,6 +63,7 @@ public class EjbJar30DescriptorTestCase
    public void test()
    {
       //TODO Placeholder for porting tests // SHRINKDESC-61
+      @SuppressWarnings("unused")
       final EjbJar30Descriptor d = Descriptors.create(EjbJar30Descriptor.class);
       log.info(fullyPopulatedDescriptor.exportAsString());
    }

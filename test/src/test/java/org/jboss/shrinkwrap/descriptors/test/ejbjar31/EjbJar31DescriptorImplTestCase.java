@@ -11,7 +11,6 @@ import org.custommonkey.xmlunit.Diff;
 import org.custommonkey.xmlunit.XMLUnit;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.ejbjar31.EjbJar31Descriptor;
-import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
 import org.junit.Before;
 import org.junit.Test;
 
