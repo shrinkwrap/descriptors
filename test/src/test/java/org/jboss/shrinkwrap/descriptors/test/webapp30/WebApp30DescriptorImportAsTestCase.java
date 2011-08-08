@@ -15,6 +15,7 @@ import org.junit.Test;
 public class WebApp30DescriptorImportAsTestCase
 {
 
+   @SuppressWarnings("unused")
    private final Logger log = Logger.getLogger(WebApp30DescriptorImportAsTestCase.class.getName());
 
    private final String source = "" +
@@ -168,14 +169,5 @@ public class WebApp30DescriptorImportAsTestCase
          builder.append("\n");
       }
       return builder.toString();
-   }
-   
-   // -------------------------------------------------------------------------------------||
-   // Helper Methods ----------------------------------------------------------------------||
-   // -------------------------------------------------------------------------------------||
-   
-   private WebApp30Descriptor create()
-   {
-      return Descriptors.create(WebApp30Descriptor.class);
    }
 }

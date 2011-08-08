@@ -3,9 +3,7 @@ package org.jboss.shrinkwrap.descriptors.test.webapp30;
 import static org.jboss.shrinkwrap.descriptor.impl.spec.AssertXPath.assertXPath;
 import static org.junit.Assert.assertTrue;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
-import java.io.FileReader;
 import java.io.InputStream;
 import java.util.List;
 import java.util.logging.Logger;
@@ -115,7 +113,7 @@ public class WebApp30DescriptorGeneralTestCase
 
      List<IconType<FilterType<WebApp30Descriptor>>> list = web.getFilterList().get(0).getIconList();
      assertTrue(list.size() == 2);
-     for (IconType icon: list) 
+     for (IconType<?> icon: list) 
      {
         assertTrue(icon.getSmallIcon().startsWith("small"));
         assertTrue(icon.getLargeIcon().startsWith("large"));
@@ -216,21 +214,6 @@ public class WebApp30DescriptorGeneralTestCase
       
       // Log just for fun
       // log.info("web.xml after update: " + web.exportAsString());
-   }
-
-   
-   private String getResourceContents(String resource) throws Exception
-   {
-      assert resource != null && resource.length() > 0 : "Resource must be specified";
-      final BufferedReader reader = new BufferedReader(new FileReader(resource));
-      final StringBuilder builder = new StringBuilder();
-      String line;
-      while ((line = reader.readLine()) != null)
-      {
-         builder.append(line);
-         builder.append("\n");
-      }
-      return builder.toString();
    }
    
    // -------------------------------------------------------------------------------------||
