@@ -17,15 +17,13 @@
   <name>ShrinkWrap Descriptors Static Tests</name>
   <description>Handcoded Tests for the Generated Implementation of the ShrinkWrap Descriptors Project</description>
 
-  <dependencies>
-
+  <dependencies>    
     <dependency>
       <groupId>org.jboss.shrinkwrap.descriptors</groupId>
       <artifactId>shrinkwrap-descriptors-impl-javaee</artifactId>
       <version>${project.version}</version>
       <scope>test</scope>
-    </dependency>
-    
+    </dependency>    
     <dependency>
       <groupId>org.jboss.shrinkwrap.descriptors</groupId>
       <artifactId>shrinkwrap-descriptors-impl-jboss</artifactId>

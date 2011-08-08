@@ -21,7 +21,7 @@
 
     <dependency>
       <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-      <artifactId>shrinkwrap-descriptors-api</artifactId>
+      <artifactId>shrinkwrap-descriptors-api-base</artifactId>
       <version>${project.version}</version>
     </dependency>
 
