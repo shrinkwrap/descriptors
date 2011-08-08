@@ -4,8 +4,6 @@ import static org.jboss.shrinkwrap.descriptor.impl.spec.AssertXPath.assertXPath;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.util.logging.Logger;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
@@ -115,20 +113,6 @@ public class WebApp30DescriptorComplexTypeTestCase
       
       webApp.removeAllLocaleEncodingMappingList();
       assertTrue(webApp.exportAsString().indexOf("<locale-encoding-mapping-list>") == -1);
-   }
-   
-   private String getResourceContents(String resource) throws Exception
-   {
-      assert resource != null && resource.length() > 0 : "Resource must be specified";
-      final BufferedReader reader = new BufferedReader(new FileReader(resource));
-      final StringBuilder builder = new StringBuilder();
-      String line;
-      while ((line = reader.readLine()) != null)
-      {
-         builder.append(line);
-         builder.append("\n");
-      }
-      return builder.toString();
    }
    
    // -------------------------------------------------------------------------------------||

@@ -3,8 +3,6 @@ package org.jboss.shrinkwrap.descriptors.test.webapp30;
 import static org.jboss.shrinkwrap.descriptor.impl.spec.AssertXPath.assertXPath;
 import static org.junit.Assert.assertTrue;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.util.logging.Logger;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
@@ -15,6 +13,7 @@ import org.junit.Test;
 public class WebApp30DescriptorAttributeGroupTestCase
 {
 
+   @SuppressWarnings("unused")
    private final Logger log = Logger.getLogger(WebApp30DescriptorAttributeGroupTestCase.class.getName());
 
    /*
@@ -76,20 +75,6 @@ public class WebApp30DescriptorAttributeGroupTestCase
       
       webApp.getFilterList().get(0).removeAllIcon();
       assertTrue(webApp.filter().getIconList().size() == 0);
-   }
-   
-   private String getResourceContents(String resource) throws Exception
-   {
-      assert resource != null && resource.length() > 0 : "Resource must be specified";
-      final BufferedReader reader = new BufferedReader(new FileReader(resource));
-      final StringBuilder builder = new StringBuilder();
-      String line;
-      while ((line = reader.readLine()) != null)
-      {
-         builder.append(line);
-         builder.append("\n");
-      }
-      return builder.toString();
    }
    
    // -------------------------------------------------------------------------------------||

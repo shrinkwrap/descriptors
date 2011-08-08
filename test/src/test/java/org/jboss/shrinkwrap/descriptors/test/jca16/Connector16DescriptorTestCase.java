@@ -26,7 +26,6 @@ import junit.framework.Assert;
 import org.custommonkey.xmlunit.Diff;
 import org.custommonkey.xmlunit.XMLUnit;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.jca15.Connector15Descriptor;
 import org.jboss.shrinkwrap.descriptor.api.jca16.Connector16Descriptor;
 import org.junit.Before;
 import org.junit.Test;
