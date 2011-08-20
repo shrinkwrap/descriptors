@@ -1,0 +1,740 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <statistics>
+        <groups schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd" count="0"/>
+        <groups schemaName="../xsd/javaee_5.xsd" count="3"/>
+        <groups schemaName="../xsd/ejb-jar_3_0.xsd" count="0"/>
+        <groups schemaName="../xsd/javaee_web_services_client_1_2.xsd" count="1"/>
+        <groups schemaName="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd" count="0"/>
+        <enums schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd" count="22"/>
+        <enums schemaName="../xsd/javaee_5.xsd" count="24"/>
+        <enums schemaName="../xsd/ejb-jar_3_0.xsd" count="25"/>
+        <enums schemaName="../xsd/javaee_web_services_client_1_2.xsd" count="0"/>
+        <enums schemaName="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd" count="6"/>
+    </statistics>
+    <copyright>
+        <line>/*</line>
+        <line> * JBoss, Home of Professional Open Source</line>
+        <line> * Copyright 2011, Red Hat Middleware LLC, and individual contributors</line>
+        <line> * by the @authors tag. See the copyright.txt in the distribution for a</line>
+        <line> * full listing of individual contributors.</line>
+        <line> *</line>
+        <line> * Licensed under the Apache License, Version 2.0 (the "License");</line>
+        <line> * you may not use this file except in compliance with the License.</line>
+        <line> * You may obtain a copy of the License at</line>
+        <line> * http://www.apache.org/licenses/LICENSE-2.0</line>
+        <line> * Unless required by applicable law or agreed to in writing, software</line>
+        <line> * distributed under the License is distributed on an "AS IS" BASIS,</line>
+        <line> * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</line>
+        <line> * See the License for the specific language governing permissions and</line>
+        <line> * limitations under the License.</line>
+        <line> */</line>
+    </copyright>
+    <contributors>
+        <contributor name="Ralf Battenfeld" mailto="ralf.battenfeld@bluewin.ch"/>
+        <contributor name="Andrew Lee Rubinger" mailto="alr@jboss.org"/>
+    </contributors>
+    <packages>
+        <api name="org.jboss.shrinkwrap.descriptor.api.ibmcommonext10" schema="../xsd/schemas/ibm-common-ext_1_0.xsd" style="ibm" generateClass="true"/>
+        <api name="org.jboss.shrinkwrap.descriptor.api.javaee5" schema="../xsd/javaee_5.xsd" style="javaee" generateClass="false"/>
+        <api name="org.jboss.shrinkwrap.descriptor.api.ejbjar30" schema="../xsd/ejb-jar_3_0.xsd" style="javaee" generateClass="false"/>
+        <api name="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient12" schema="../xsd/javaee_web_services_client_1_2.xsd" style="javaee" generateClass="false"/>
+        <api name="org.jboss.shrinkwrap.descriptor.api.ejbjar30ext" schema="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd" style="ibm" generateClass="true"/>
+        <impl name="org.jboss.shrinkwrap.descriptor.impl.ibmcommonext10" schema="../xsd/schemas/ibm-common-ext_1_0.xsd" style="ibm" generateClass="true"/>
+        <impl name="org.jboss.shrinkwrap.descriptor.impl.javaee5" schema="../xsd/javaee_5.xsd" style="javaee" generateClass="false"/>
+        <impl name="org.jboss.shrinkwrap.descriptor.impl.ejbjar30" schema="../xsd/ejb-jar_3_0.xsd" style="javaee" generateClass="false"/>
+        <impl name="org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient12" schema="../xsd/javaee_web_services_client_1_2.xsd" style="javaee" generateClass="false"/>
+        <impl name="org.jboss.shrinkwrap.descriptor.impl.ejbjar30ext" schema="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd" style="ibm" generateClass="true"/>
+    </packages>
+    <datatypes>
+        <datatype name="name" mappedTo="xsd:string" namespace="ibm" schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd"/>
+        <datatype name="id" mappedTo="xsd:ID" namespace="ibm" schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd"/>
+        <datatype name="name" mappedTo="xsd:string" namespace="ibm" schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd"/>
+        <datatype name="params" mappedTo="xsd:string" namespace="ibm" schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd"/>
+        <datatype name="id" mappedTo="xsd:ID" namespace="ibm" schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd"/>
+        <datatype name="send-wsat-context" mappedTo="xsd:boolean" namespace="ibm" schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd"/>
+        <datatype name="transaction-time-out" mappedTo="xsd:integer" namespace="ibm" schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd"/>
+        <datatype name="id" mappedTo="xsd:ID" namespace="ibm" schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd"/>
+        <datatype name="id" mappedTo="xsd:ID" namespace="ibm" schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd"/>
+        <datatype name="name" mappedTo="xsd:string" namespace="ibm" schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd"/>
+        <datatype name="commit-priority" mappedTo="xsd:integer" namespace="ibm" schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd"/>
+        <datatype name="id" mappedTo="xsd:ID" namespace="ibm" schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd"/>
+        <datatype name="descriptionType" mappedTo="javaee:xsdStringType" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="dewey-versionType" mappedTo="xsd:token" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="display-nameType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="ejb-linkType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="ejb-ref-nameType" mappedTo="javaee:jndi-nameType" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="ejb-ref-typeType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="env-entry-type-valuesType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="fully-qualified-classType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="generic-booleanType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="homeType" mappedTo="javaee:fully-qualified-classType" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="java-identifierType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="java-typeType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="jndi-nameType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="local-homeType" mappedTo="javaee:fully-qualified-classType" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="localType" mappedTo="javaee:fully-qualified-classType" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="message-destination-linkType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="message-destination-typeType" mappedTo="javaee:fully-qualified-classType" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="message-destination-usageType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="pathType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="persistence-context-typeType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="remoteType" mappedTo="javaee:fully-qualified-classType" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="res-authType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="res-sharing-scopeType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="role-nameType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="string" mappedTo="xsd:token" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="true-falseType" mappedTo="javaee:xsdBooleanType" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="url-patternType" mappedTo="xsd:string" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="xsdAnyURIType" mappedTo="xsd:anyURI" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="xsdBooleanType" mappedTo="xsd:boolean" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="xsdIntegerType" mappedTo="xsd:integer" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="xsdNMTOKENType" mappedTo="xsd:NMTOKEN" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="xsdNonNegativeIntegerType" mappedTo="xsd:nonNegativeInteger" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="xsdPositiveIntegerType" mappedTo="xsd:positiveInteger" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="xsdQNameType" mappedTo="xsd:QName" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="xsdStringType" mappedTo="xsd:string" namespace="javaee" schemaName="../xsd/javaee_5.xsd"/>
+        <datatype name="cmp-versionType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd"/>
+        <datatype name="cmr-field-typeType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd"/>
+        <datatype name="ejb-classType" mappedTo="javaee:fully-qualified-classType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd"/>
+        <datatype name="ejb-nameType" mappedTo="javaee:xsdNMTOKENType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd"/>
+        <datatype name="method-intfType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd"/>
+        <datatype name="method-nameType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd"/>
+        <datatype name="multiplicityType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd"/>
+        <datatype name="persistence-typeType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd"/>
+        <datatype name="result-type-mappingType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd"/>
+        <datatype name="session-typeType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd"/>
+        <datatype name="trans-attributeType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd"/>
+        <datatype name="transaction-typeType" mappedTo="javaee:string" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd"/>
+        <datatype name="service-ref_protocol-URIAliasType" mappedTo="xsd:token" namespace="javaee" schemaName="../xsd/javaee_web_services_client_1_2.xsd"/>
+        <datatype name="service-ref_qname-pattern" mappedTo="xsd:token" namespace="javaee" schemaName="../xsd/javaee_web_services_client_1_2.xsd"/>
+        <datatype name="version" mappedTo="xsd:string" namespace="ibm" schemaName="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd"/>
+        <datatype name="id" mappedTo="xsd:ID" namespace="ibm" schemaName="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd"/>
+        <datatype name="id" mappedTo="xsd:ID" namespace="ibm" schemaName="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd"/>
+        <datatype name="name" mappedTo="xsd:string" namespace="ibm" schemaName="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd"/>
+        <datatype name="activation-policy" mappedTo="activation-policyType" namespace="ibm" schemaName="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd"/>
+        <datatype name="id" mappedTo="xsd:ID" namespace="ibm" schemaName="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd"/>
+        <datatype name="role" mappedTo="xsd:string" namespace="ibm" schemaName="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd"/>
+        <datatype name="description" mappedTo="xsd:string" namespace="ibm" schemaName="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd"/>
+        <datatype name="description" mappedTo="xsd:string" namespace="ibm" schemaName="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd"/>
+        <datatype name="id" mappedTo="xsd:ID" namespace="ibm" schemaName="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd"/>
+        <datatype name="value" mappedTo="xsd:boolean" namespace="ibm" schemaName="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd"/>
+        <datatype name="id" mappedTo="xsd:ID" namespace="ibm" schemaName="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd"/>
+        <datatype name="value" mappedTo="xsd:integer" namespace="ibm" schemaName="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd"/>
+        <datatype name="id" mappedTo="xsd:ID" namespace="ibm" schemaName="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd"/>
+    </datatypes>
+    <enums>
+        <enum name="typeType" namespace="ibm" schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.ibmcommonext10" documentation="">
+            <value>UNSPECIFIED</value>
+            <value>REMOTE</value>
+            <value>HOME</value>
+            <value>LOCAL</value>
+            <value>LOCAL_HOME</value>
+            <value>SERVICE_ENDPOINT</value>
+        </enum>
+        <enum name="boundaryType" namespace="ibm" schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.ibmcommonext10" documentation="">
+            <value>ACTIVITY_SESSION</value>
+            <value>BEAN_METHOD</value>
+        </enum>
+        <enum name="resolverType" namespace="ibm" schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.ibmcommonext10" documentation="">
+            <value>APPLICATION</value>
+            <value>CONTAINER_AT_BOUNDARY</value>
+        </enum>
+        <enum name="unresolved-actionType" namespace="ibm" schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.ibmcommonext10" documentation="">
+            <value>ROLLBACK</value>
+            <value>COMMIT</value>
+        </enum>
+        <enum name="isolation-levelType" namespace="ibm" schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.ibmcommonext10" documentation="">
+            <value>TRANSACTION_NONE</value>
+            <value>TRANSACTION_READ_UNCOMMITTED</value>
+            <value>TRANSACTION_READ_COMMITTED</value>
+            <value>TRANSACTION_REPEATABLE_READ</value>
+            <value>TRANSACTION_SERIALIZABLE</value>
+        </enum>
+        <enum name="connection-management-policyType" namespace="ibm" schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.ibmcommonext10" documentation="">
+            <value>DEFAULT</value>
+            <value>AGGRESSIVE</value>
+            <value>NORMAL</value>
+        </enum>
+        <enum name="branch-couplingType" namespace="ibm" schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.ibmcommonext10" documentation="">
+            <value>LOOSE</value>
+            <value>TIGHT</value>
+        </enum>
+        <enum name="ejb-ref-typeType" namespace="javaee" schemaName="../xsd/javaee_5.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee5" documentation="">
+            <value>Entity</value>
+            <value>Session</value>
+        </enum>
+        <enum name="env-entry-type-valuesType" namespace="javaee" schemaName="../xsd/javaee_5.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee5" documentation="">
+            <value>java.lang.Boolean</value>
+            <value>java.lang.Byte</value>
+            <value>java.lang.Character</value>
+            <value>java.lang.String</value>
+            <value>java.lang.Short</value>
+            <value>java.lang.Integer</value>
+            <value>java.lang.Long</value>
+            <value>java.lang.Float</value>
+            <value>java.lang.Double</value>
+        </enum>
+        <enum name="generic-booleanType" namespace="javaee" schemaName="../xsd/javaee_5.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee5" documentation="">
+            <value>true</value>
+            <value>false</value>
+            <value>yes</value>
+            <value>no</value>
+        </enum>
+        <enum name="message-destination-usageType" namespace="javaee" schemaName="../xsd/javaee_5.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee5" documentation="">
+            <value>Consumes</value>
+            <value>Produces</value>
+            <value>ConsumesProduces</value>
+        </enum>
+        <enum name="persistence-context-typeType" namespace="javaee" schemaName="../xsd/javaee_5.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee5" documentation="">
+            <value>Transaction</value>
+            <value>Extended</value>
+        </enum>
+        <enum name="res-authType" namespace="javaee" schemaName="../xsd/javaee_5.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee5" documentation="">
+            <value>Application</value>
+            <value>Container</value>
+        </enum>
+        <enum name="res-sharing-scopeType" namespace="javaee" schemaName="../xsd/javaee_5.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee5" documentation="">
+            <value>Shareable</value>
+            <value>Unshareable</value>
+        </enum>
+        <enum name="cmp-versionType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar30" documentation="">
+            <value>1.x</value>
+            <value>2.x</value>
+        </enum>
+        <enum name="cmr-field-typeType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar30" documentation="">
+            <value>java.util.Collection</value>
+            <value>java.util.Set</value>
+        </enum>
+        <enum name="method-intfType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar30" documentation="">
+            <value>Home</value>
+            <value>Remote</value>
+            <value>LocalHome</value>
+            <value>Local</value>
+            <value>ServiceEndpoint</value>
+        </enum>
+        <enum name="multiplicityType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar30" documentation="">
+            <value>One</value>
+            <value>Many</value>
+        </enum>
+        <enum name="persistence-typeType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar30" documentation="">
+            <value>Bean</value>
+            <value>Container</value>
+        </enum>
+        <enum name="result-type-mappingType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar30" documentation="">
+            <value>Local</value>
+            <value>Remote</value>
+        </enum>
+        <enum name="session-typeType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar30" documentation="">
+            <value>Stateful</value>
+            <value>Stateless</value>
+        </enum>
+        <enum name="trans-attributeType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar30" documentation="">
+            <value>NotSupported</value>
+            <value>Supports</value>
+            <value>Required</value>
+            <value>RequiresNew</value>
+            <value>Mandatory</value>
+            <value>Never</value>
+        </enum>
+        <enum name="transaction-typeType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar30" documentation="">
+            <value>Bean</value>
+            <value>Container</value>
+        </enum>
+        <enum name="activation-policyType" namespace="ibm" schemaName="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar30ext" documentation="">
+            <value>ONCE</value>
+            <value>ACTIVITY_SESSION</value>
+            <value>TRANSACTION</value>
+        </enum>
+        <enum name="modeType" namespace="ibm" schemaName="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd" package="org.jboss.shrinkwrap.descriptor.api.ejbjar30ext" documentation="">
+            <value>CALLER_IDENTITY</value>
+            <value>SPECIFIED_IDENTITY</value>
+            <value>SYSTEM_IDENTITY</value>
+        </enum>
+    </enums>
+    <groups>
+        <class name="descriptionGroup" namespace="javaee" schemaName="../xsd/javaee_5.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee5">
+            <element name="description" type="javaee:descriptionType" attribute="false" maxOccurs="unbounded"/>
+            <element name="display-name" type="javaee:display-nameType" attribute="false" maxOccurs="unbounded"/>
+            <element name="icon" type="javaee:iconType" attribute="false" maxOccurs="unbounded"/>
+        </class>
+        <class name="jndiEnvironmentRefsGroup" namespace="javaee" schemaName="../xsd/javaee_5.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee5">
+            <element name="env-entry" type="javaee:env-entryType" attribute="false" maxOccurs="unbounded"/>
+            <element name="ejb-ref" type="javaee:ejb-refType" attribute="false" maxOccurs="unbounded"/>
+            <element name="ejb-local-ref" type="javaee:ejb-local-refType" attribute="false" maxOccurs="unbounded"/>
+            <include name="javaee:service-refGroup"/>
+            <element name="resource-ref" type="javaee:resource-refType" attribute="false" maxOccurs="unbounded"/>
+            <element name="resource-env-ref" type="javaee:resource-env-refType" attribute="false" maxOccurs="unbounded"/>
+            <element name="message-destination-ref" type="javaee:message-destination-refType" attribute="false" maxOccurs="unbounded"/>
+            <element name="persistence-context-ref" type="javaee:persistence-context-refType" attribute="false" maxOccurs="unbounded"/>
+            <element name="persistence-unit-ref" type="javaee:persistence-unit-refType" attribute="false" maxOccurs="unbounded"/>
+            <element name="post-construct" type="javaee:lifecycle-callbackType" attribute="false" maxOccurs="unbounded"/>
+            <element name="pre-destroy" type="javaee:lifecycle-callbackType" attribute="false" maxOccurs="unbounded"/>
+        </class>
+        <class name="resourceGroup" namespace="javaee" schemaName="../xsd/javaee_5.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaee5">
+            <element name="mapped-name" type="javaee:xsdStringType" attribute="false"/>
+            <element name="injection-target" type="javaee:injection-targetType" attribute="false" maxOccurs="unbounded"/>
+        </class>
+        <class name="service-refGroup" namespace="javaee" schemaName="../xsd/javaee_web_services_client_1_2.xsd" package="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient12">
+            <element name="service-ref" type="javaee:service-refType" attribute="false" maxOccurs="unbounded"/>
+        </class>
+    </groups>
+    <classes>
+        <class name="nameType" namespace="ibm" schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ibmcommonext10" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ibmcommonext10" documentation="">
+            <element name="name" type="xsd:string" attribute="true"/>
+        </class>
+        <class name="methodType" namespace="ibm" schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ibmcommonext10" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ibmcommonext10" documentation="">
+            <element name="name" type="xsd:string" attribute="true"/>
+            <element name="params" type="xsd:string" attribute="true"/>
+            <element name="type" type="ibm:typeType" attribute="true"/>
+        </class>
+        <class name="global-transactionType" namespace="ibm" schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ibmcommonext10" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ibmcommonext10" documentation="">
+            <element name="send-wsat-context" type="xsd:boolean" attribute="true"/>
+            <element name="transaction-time-out" type="xsd:integer" attribute="true"/>
+        </class>
+        <class name="local-transactionType" namespace="ibm" schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ibmcommonext10" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ibmcommonext10" documentation="">
+            <element name="boundary" type="ibm:boundaryType" attribute="true"/>
+            <element name="resolver" type="ibm:resolverType" attribute="true"/>
+            <element name="unresolved-action" type="ibm:unresolved-actionType" attribute="true"/>
+        </class>
+        <class name="resource-refType" namespace="ibm" schemaName="../xsd/schemas/ibm-common-ext_1_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ibmcommonext10" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ibmcommonext10" documentation="">
+            <element name="name" type="xsd:string" attribute="true"/>
+            <element name="isolation-level" type="ibm:isolation-levelType" attribute="true"/>
+            <element name="connection-management-policy" type="ibm:connection-management-policyType" attribute="true"/>
+            <element name="commit-priority" type="xsd:integer" attribute="true"/>
+            <element name="branch-coupling" type="ibm:branch-couplingType" attribute="true"/>
+        </class>
+        <class name="ejb-local-refType" namespace="javaee" schemaName="../xsd/javaee_5.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee5" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee5"
+            documentation="&#xA;&#xA;&#x9;The ejb-local-refType is used by ejb-local-ref elements for&#xA;&#x9;the declaration of a reference to an enterprise bean's local&#xA;&#x9;home or to the local business interface of a 3.0 bean.&#xA;        The declaration consists of:&#xA;&#xA;&#x9;    - an optional description&#xA;&#x9;    - the EJB reference name used in the code of the Deployment&#xA;&#x9;      Component that's referencing the enterprise bean.&#xA;&#x9;    - the optional expected type of the referenced enterprise bean&#xA;&#x9;    - the optional expected local interface of the referenced&#xA;              enterprise bean or the local business interface of the&#xA;              referenced enterprise bean.&#xA;&#x9;    - the optional expected local home interface of the referenced&#xA;              enterprise bean. Not applicable if this ejb-local-ref refers&#xA;              to the local business interface of a 3.0 bean.&#xA;&#x9;    - optional ejb-link information, used to specify the&#xA;&#x9;      referenced enterprise bean&#xA;            - optional elements to define injection of the named enterprise&#xA;              bean into a component field or property.&#xA;&#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="ejb-ref-name" type="javaee:ejb-ref-nameType"/>
+            <element name="ejb-ref-type" type="javaee:ejb-ref-typeType"/>
+            <element name="local-home" type="javaee:local-homeType"/>
+            <element name="local" type="javaee:localType"/>
+            <element name="ejb-link" type="javaee:ejb-linkType"/>
+            <include name="javaee:resourceGroup"/>
+        </class>
+        <class name="ejb-refType" namespace="javaee" schemaName="../xsd/javaee_5.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee5" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee5"
+            documentation="&#xA;&#xA;&#x9;The ejb-refType is used by ejb-ref elements for the&#xA;&#x9;declaration of a reference to an enterprise bean's home or&#xA;        to the remote business interface of a 3.0 bean.&#xA;&#x9;The declaration consists of:&#xA;&#xA;&#x9;    - an optional description&#xA;&#x9;    - the EJB reference name used in the code of&#xA;&#x9;      the Deployment Component that's referencing the enterprise&#xA;&#x9;      bean.&#xA;&#x9;    - the optional expected type of the referenced enterprise bean&#xA;            - the optional remote interface of the referenced enterprise bean&#xA;              or the remote business interface of the referenced enterprise&#xA;              bean&#xA;&#x9;    - the optional expected home interface of the referenced&#xA;              enterprise bean.  Not applicable if this ejb-ref&#xA;              refers to the remote business interface of a 3.0 bean.&#xA;&#x9;    - optional ejb-link information, used to specify the&#xA;&#x9;      referenced enterprise bean&#xA;            - optional elements to define injection of the named enterprise&#xA;              bean into a component field or property&#xA;&#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="ejb-ref-name" type="javaee:ejb-ref-nameType"/>
+            <element name="ejb-ref-type" type="javaee:ejb-ref-typeType"/>
+            <element name="home" type="javaee:homeType"/>
+            <element name="remote" type="javaee:remoteType"/>
+            <element name="ejb-link" type="javaee:ejb-linkType"/>
+            <include name="javaee:resourceGroup"/>
+        </class>
+        <class name="env-entryType" namespace="javaee" schemaName="../xsd/javaee_5.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee5" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee5"
+            documentation="&#xA;&#xA;&#x9;The env-entryType is used to declare an application's&#xA;&#x9;environment entry. The declaration consists of an optional&#xA;&#x9;description, the name of the environment entry, a type&#xA;&#x9;(optional if the value is injected, otherwise required), and&#xA;&#x9;an optional value.&#xA;&#xA;&#x9;It also includes optional elements to define injection of&#xA;&#x9;the named resource into fields or JavaBeans properties.&#xA;&#xA;&#x9;If a value is not specified and injection is requested,&#xA;&#x9;no injection will occur and no entry of the specified name&#xA;&#x9;will be created.  This allows an initial value to be&#xA;&#x9;specified in the source code without being incorrectly&#xA;&#x9;changed when no override has been specified.&#xA;&#xA;&#x9;If a value is not specified and no injection is requested,&#xA;&#x9;a value must be supplied during deployment.&#xA;&#xA;&#x9;This type is used by env-entry elements.&#xA;&#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="env-entry-name" type="javaee:jndi-nameType"/>
+            <element name="env-entry-type" type="javaee:env-entry-type-valuesType"/>
+            <element name="env-entry-value" type="javaee:xsdStringType"/>
+            <include name="javaee:resourceGroup"/>
+        </class>
+        <class name="iconType" namespace="javaee" schemaName="../xsd/javaee_5.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee5" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee5"
+            documentation="&#xA;&#xA;&#x9;The icon type contains small-icon and large-icon elements&#xA;&#x9;that specify the file names for small and large GIF, JPEG,&#xA;&#x9;or PNG icon images used to represent the parent element in a&#xA;&#x9;GUI tool.&#xA;&#xA;&#x9;The xml:lang attribute defines the language that the&#xA;&#x9;icon file names are provided in. Its value is &#34;en&#34; (English)&#xA;&#x9;by default.&#xA;&#xA;      ">
+            <element name="small-icon" type="javaee:pathType"/>
+            <element name="large-icon" type="javaee:pathType"/>
+        </class>
+        <class name="injection-targetType" namespace="javaee" schemaName="../xsd/javaee_5.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee5" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee5"
+            documentation="&#xA;&#xA;&#x9;An injection target specifies a class and a name within&#xA;&#x9;that class into which a resource should be injected.&#xA;&#xA;&#x9;The injection target class specifies the fully qualified&#xA;&#x9;class name that is the target of the injection.  The&#xA;&#x9;Java EE specifications describe which classes can be an&#xA;&#x9;injection target.&#xA;&#xA;&#x9;The injection target name specifies the target within&#xA;&#x9;the specified class.  The target is first looked for as a&#xA;&#x9;JavaBeans property name.  If not found, the target is&#xA;&#x9;looked for as a field name.&#xA;&#xA;&#x9;The specified resource will be injected into the target&#xA;&#x9;during initialization of the class by either calling the&#xA;&#x9;set method for the target property or by setting a value&#xA;&#x9;into the named field.&#xA;&#xA;      ">
+            <element name="injection-target-class" type="javaee:fully-qualified-classType"/>
+            <element name="injection-target-name" type="javaee:java-identifierType"/>
+        </class>
+        <class name="lifecycle-callbackType" namespace="javaee" schemaName="../xsd/javaee_5.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee5" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee5"
+            documentation="&#xA;&#xA;&#x9;The lifecycle-callback type specifies a method on a&#xA;&#x9;class to be called when a lifecycle event occurs.&#xA;&#x9;Note that each class may have only one lifecycle callback&#xA;        method for any given event and that the method may not&#xA;&#x9;be overloaded.&#xA;&#xA;        If the lifefycle-callback-class element is missing then&#xA;        the class defining the callback is assumed to be the&#xA;        component class in scope at the place in the descriptor&#xA;        in which the callback definition appears.&#xA;&#xA;      ">
+            <element name="lifecycle-callback-class" type="javaee:fully-qualified-classType"/>
+            <element name="lifecycle-callback-method" type="javaee:java-identifierType"/>
+        </class>
+        <class name="listenerType" namespace="javaee" schemaName="../xsd/javaee_5.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee5" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee5"
+            documentation="&#xA;&#xA;&#x9;The listenerType indicates the deployment properties for a web&#xA;&#x9;application listener bean.&#xA;&#xA;      ">
+            <element name="listener-class" type="javaee:fully-qualified-classType"/>
+            <include name="javaee:descriptionGroup"/>
+        </class>
+        <class name="message-destination-refType" namespace="javaee" schemaName="../xsd/javaee_5.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee5" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee5"
+            documentation="&#xA;&#x9;&#xA;&#xA;&#x9;  The message-destination-ref element contains a declaration&#xA;&#x9;  of Deployment Component's reference to a message destination&#xA;&#x9;  associated with a resource in Deployment Component's&#xA;&#x9;  environment. It consists of:&#xA;&#xA;&#x9;&#x9;  - an optional description&#xA;&#x9;&#x9;  - the message destination reference name&#xA;&#x9;&#x9;  - an optional message destination type&#xA;&#x9;&#x9;  - an optional specification as to whether&#xA;&#x9;&#x9;    the destination is used for&#xA;&#x9;&#x9;    consuming or producing messages, or both.&#xA;&#x9;&#x9;    if not specified, &#34;both&#34; is assumed.&#xA;&#x9;&#x9;  - an optional link to the message destination&#xA;&#x9;&#x9;  - optional injection targets&#xA;&#xA;&#x9;  The message destination type must be supplied unless an&#xA;&#x9;  injection target is specified, in which case the type&#xA;&#x9;  of the target is used.  If both are specified, the type&#xA;&#x9;  must be assignment compatible with the type of the injection&#xA;&#x9;  target.&#xA;&#xA;&#x9;  Examples:&#xA;&#xA;&#x9;  &lt;message-destination-ref&gt;&#xA;&#x9;&#x9;  &lt;message-destination-ref-name&gt;jms/StockQueue&#xA;&#x9;&#x9;  &lt;/message-destination-ref-name&gt;&#xA;&#x9;&#x9;  &lt;message-destination-type&gt;javax.jms.Queue&#xA;&#x9;&#x9;  &lt;/message-destination-type&gt;&#xA;&#x9;&#x9;  &lt;message-destination-usage&gt;Consumes&#xA;&#x9;&#x9;  &lt;/message-destination-usage&gt;&#xA;&#x9;&#x9;  &lt;message-destination-link&gt;CorporateStocks&#xA;&#x9;&#x9;  &lt;/message-destination-link&gt;&#xA;&#x9;  &lt;/message-destination-ref&gt;&#xA;&#xA;&#x9;  &#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="message-destination-ref-name" type="javaee:jndi-nameType"/>
+            <element name="message-destination-type" type="javaee:message-destination-typeType"/>
+            <element name="message-destination-usage" type="javaee:message-destination-usageType"/>
+            <element name="message-destination-link" type="javaee:message-destination-linkType"/>
+            <include name="javaee:resourceGroup"/>
+        </class>
+        <class name="message-destinationType" namespace="javaee" schemaName="../xsd/javaee_5.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee5" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee5"
+            documentation="&#xA;&#x9;&#xA;&#xA;&#x9;  The message-destinationType specifies a message&#xA;&#x9;  destination. The logical destination described by this&#xA;&#x9;  element is mapped to a physical destination by the Deployer.&#xA;&#xA;&#x9;  The message destination element contains:&#xA;&#xA;&#x9;&#x9;  - an optional description&#xA;&#x9;&#x9;  - an optional display-name&#xA;&#x9;&#x9;  - an optional icon&#xA;&#x9;&#x9;  - a message destination name which must be unique&#xA;&#x9;&#x9;    among message destination names within the same&#xA;&#x9;&#x9;    Deployment File.&#xA;&#x9;&#x9;  - an optional mapped name&#xA;&#xA;&#x9;  Example:&#xA;&#xA;&#x9;  &lt;message-destination&gt;&#xA;&#x9;&#x9;  &lt;message-destination-name&gt;CorporateStocks&#xA;&#x9;&#x9;  &lt;/message-destination-name&gt;&#xA;&#x9;  &lt;/message-destination&gt;&#xA;&#xA;&#x9;  &#xA;      ">
+            <element name="message-destination-name" type="javaee:string"/>
+            <element name="mapped-name" type="javaee:xsdStringType"/>
+            <include name="javaee:descriptionGroup"/>
+        </class>
+        <class name="param-valueType" namespace="javaee" schemaName="../xsd/javaee_5.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee5" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee5"
+            documentation="&#xA;&#xA;&#x9;This type is a general type that can be used to declare&#xA;&#x9;parameter/value lists.&#xA;&#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="param-name" type="javaee:string"/>
+            <element name="param-value" type="javaee:xsdStringType"/>
+        </class>
+        <class name="persistence-context-refType" namespace="javaee" schemaName="../xsd/javaee_5.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee5" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee5"
+            documentation="&#xA;&#x9;&#xA;&#xA;&#x9;  The persistence-context-ref element contains a declaration&#xA;&#x9;  of Deployment Component's reference to a persistence context&#xA;&#x9;  associated within a Deployment Component's&#xA;&#x9;  environment. It consists of:&#xA;&#xA;&#x9;&#x9;  - an optional description&#xA;&#x9;&#x9;  - the persistence context reference name&#xA;&#x9;&#x9;  - an optional persistence unit name.  If not specified,&#xA;                    the default persistence unit is assumed.&#xA;&#x9;&#x9;  - an optional specification as to whether&#xA;&#x9;&#x9;    the persistence context type is Transaction or&#xA;&#x9;&#x9;    Extended.  If not specified, Transaction is assumed.&#xA;                  - an optional list of persistence properties&#xA;&#x9;&#x9;  - optional injection targets&#xA;&#xA;&#x9;  Examples:&#xA;&#xA;            &lt;persistence-context-ref&gt;&#xA;              &lt;persistence-context-ref-name&gt;myPersistenceContext&#xA;              &lt;/persistence-context-ref-name&gt;&#xA;            &lt;/persistence-context-ref&gt;&#xA;&#xA;            &lt;persistence-context-ref&gt;&#xA;              &lt;persistence-context-ref-name&gt;myPersistenceContext&#xA;                &lt;/persistence-context-ref-name&gt;&#xA;              &lt;persistence-unit-name&gt;PersistenceUnit1&#xA;                &lt;/persistence-unit-name&gt;&#xA;              &lt;persistence-context-type&gt;Extended&lt;/persistence-context-type&gt;&#xA;            &lt;/persistence-context-ref&gt;&#xA;&#xA;&#x9;  &#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="persistence-context-ref-name" type="javaee:jndi-nameType"/>
+            <element name="persistence-unit-name" type="javaee:string"/>
+            <element name="persistence-context-type" type="javaee:persistence-context-typeType"/>
+            <element name="persistence-property" type="javaee:propertyType" maxOccurs="unbounded"/>
+            <include name="javaee:resourceGroup"/>
+        </class>
+        <class name="persistence-unit-refType" namespace="javaee" schemaName="../xsd/javaee_5.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee5" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee5"
+            documentation="&#xA;&#x9;&#xA;&#xA;&#x9;  The persistence-unit-ref element contains a declaration&#xA;&#x9;  of Deployment Component's reference to a persistence unit&#xA;&#x9;  associated within a Deployment Component's&#xA;&#x9;  environment. It consists of:&#xA;&#xA;&#x9;&#x9;  - an optional description&#xA;&#x9;&#x9;  - the persistence unit reference name&#xA;&#x9;&#x9;  - an optional persistence unit name.  If not specified,&#xA;                    the default persistence unit is assumed.&#xA;&#x9;&#x9;  - optional injection targets&#xA;&#xA;&#x9;  Examples:&#xA;&#xA;            &lt;persistence-unit-ref&gt;&#xA;              &lt;persistence-unit-ref-name&gt;myPersistenceUnit&#xA;              &lt;/persistence-unit-ref-name&gt;&#xA;            &lt;/persistence-unit-ref&gt;&#xA;&#xA;            &lt;persistence-unit-ref&gt;&#xA;              &lt;persistence-unit-ref-name&gt;myPersistenceUnit&#xA;                &lt;/persistence-unit-ref-name&gt;&#xA;              &lt;persistence-unit-name&gt;PersistenceUnit1&#xA;                &lt;/persistence-unit-name&gt;&#xA;            &lt;/persistence-unit-ref&gt;&#xA;&#xA;&#x9;  &#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="persistence-unit-ref-name" type="javaee:jndi-nameType"/>
+            <element name="persistence-unit-name" type="javaee:string"/>
+            <include name="javaee:resourceGroup"/>
+        </class>
+        <class name="propertyType" namespace="javaee" schemaName="../xsd/javaee_5.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee5" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee5" documentation="&#xA;&#xA;&#x9;Specifies a name/value pair.&#xA;&#xA;      ">
+            <element name="name" type="javaee:xsdStringType"/>
+            <element name="value" type="javaee:xsdStringType"/>
+        </class>
+        <class name="resource-env-refType" namespace="javaee" schemaName="../xsd/javaee_5.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee5" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee5"
+            documentation="&#xA;&#x9;&#xA;&#xA;&#x9;  The resource-env-refType is used to define&#xA;&#x9;  resource-env-type elements.  It contains a declaration of a&#xA;&#x9;  Deployment Component's reference to an administered object&#xA;&#x9;  associated with a resource in the Deployment Component's&#xA;&#x9;  environment.  It consists of an optional description, the&#xA;&#x9;  resource environment reference name, and an optional&#xA;&#x9;  indication of the resource environment reference type&#xA;&#x9;  expected by the Deployment Component code.&#xA;&#xA;&#x9;  It also includes optional elements to define injection of&#xA;&#x9;  the named resource into fields or JavaBeans properties.&#xA;&#xA;&#x9;  The resource environment type must be supplied unless an&#xA;&#x9;  injection target is specified, in which case the type&#xA;&#x9;  of the target is used.  If both are specified, the type&#xA;&#x9;  must be assignment compatible with the type of the injection&#xA;&#x9;  target.&#xA;&#xA;&#x9;  Example:&#xA;&#xA;&#x9;  &lt;resource-env-ref&gt;&#xA;&#x9;      &lt;resource-env-ref-name&gt;jms/StockQueue&#xA;&#x9;      &lt;/resource-env-ref-name&gt;&#xA;&#x9;      &lt;resource-env-ref-type&gt;javax.jms.Queue&#xA;&#x9;      &lt;/resource-env-ref-type&gt;&#xA;&#x9;  &lt;/resource-env-ref&gt;&#xA;&#xA;&#x9;  &#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="resource-env-ref-name" type="javaee:jndi-nameType"/>
+            <element name="resource-env-ref-type" type="javaee:fully-qualified-classType"/>
+            <include name="javaee:resourceGroup"/>
+        </class>
+        <class name="resource-refType" namespace="javaee" schemaName="../xsd/javaee_5.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee5" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee5"
+            documentation="&#xA;&#x9;&#xA;&#xA;&#x9;  The resource-refType contains a declaration of a&#xA;&#x9;  Deployment Component's reference to an external resource. It&#xA;&#x9;  consists of an optional description, the resource manager&#xA;&#x9;  connection factory reference name, an optional indication of&#xA;&#x9;  the resource manager connection factory type expected by the&#xA;&#x9;  Deployment Component code, an optional type of authentication&#xA;&#x9;  (Application or Container), and an optional specification of&#xA;&#x9;  the shareability of connections obtained from the resource&#xA;&#x9;  (Shareable or Unshareable).&#xA;&#xA;&#x9;  It also includes optional elements to define injection of&#xA;&#x9;  the named resource into fields or JavaBeans properties.&#xA;&#xA;&#x9;  The connection factory type must be supplied unless an&#xA;&#x9;  injection target is specified, in which case the type&#xA;&#x9;  of the target is used.  If both are specified, the type&#xA;&#x9;  must be assignment compatible with the type of the injection&#xA;&#x9;  target.&#xA;&#xA;&#x9;  Example:&#xA;&#xA;&#x9;  &lt;resource-ref&gt;&#xA;&#x9;      &lt;res-ref-name&gt;jdbc/EmployeeAppDB&lt;/res-ref-name&gt;&#xA;&#x9;      &lt;res-type&gt;javax.sql.DataSource&lt;/res-type&gt;&#xA;&#x9;      &lt;res-auth&gt;Container&lt;/res-auth&gt;&#xA;&#x9;      &lt;res-sharing-scope&gt;Shareable&lt;/res-sharing-scope&gt;&#xA;&#x9;  &lt;/resource-ref&gt;&#xA;&#xA;&#x9;  &#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="res-ref-name" type="javaee:jndi-nameType"/>
+            <element name="res-type" type="javaee:fully-qualified-classType"/>
+            <element name="res-auth" type="javaee:res-authType"/>
+            <element name="res-sharing-scope" type="javaee:res-sharing-scopeType"/>
+            <include name="javaee:resourceGroup"/>
+        </class>
+        <class name="run-asType" namespace="javaee" schemaName="../xsd/javaee_5.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee5" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee5"
+            documentation="&#xA;&#xA;&#x9;The run-asType specifies the run-as identity to be&#xA;&#x9;used for the execution of a component. It contains an&#xA;&#x9;optional description, and the name of a security role.&#xA;&#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="role-name" type="javaee:role-nameType"/>
+        </class>
+        <class name="security-role-refType" namespace="javaee" schemaName="../xsd/javaee_5.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee5" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee5"
+            documentation="&#xA;&#xA;&#x9;The security-role-refType contains the declaration of a&#xA;&#x9;security role reference in a component's or a&#xA;&#x9;Deployment Component's code. The declaration consists of an&#xA;&#x9;optional description, the security role name used in the&#xA;&#x9;code, and an optional link to a security role. If the&#xA;&#x9;security role is not specified, the Deployer must choose an&#xA;&#x9;appropriate security role.&#xA;&#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="role-name" type="javaee:role-nameType"/>
+            <element name="role-link" type="javaee:role-nameType"/>
+        </class>
+        <class name="security-roleType" namespace="javaee" schemaName="../xsd/javaee_5.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee5" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee5"
+            documentation="&#xA;&#x9;&#xA;&#xA;&#x9;  The security-roleType contains the definition of a security&#xA;&#x9;  role. The definition consists of an optional description of&#xA;&#x9;  the security role, and the security role name.&#xA;&#xA;&#x9;  Example:&#xA;&#xA;&#x9;      &lt;security-role&gt;&#xA;&#x9;      &lt;description&gt;&#xA;&#x9;&#x9;  This role includes all employees who are authorized&#xA;&#x9;&#x9;  to access the employee service application.&#xA;&#x9;      &lt;/description&gt;&#xA;&#x9;      &lt;role-name&gt;employee&lt;/role-name&gt;&#xA;&#x9;      &lt;/security-role&gt;&#xA;&#xA;&#x9;  &#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="role-name" type="javaee:role-nameType"/>
+        </class>
+        <class name="activation-config-propertyType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#xA;&#x9;The activation-config-propertyType contains a name/value&#xA;&#x9;configuration property pair for a message-driven bean.&#xA;&#xA;&#x9;The properties that are recognized for a particular&#xA;&#x9;message-driven bean are determined by the messaging type.&#xA;&#xA;      ">
+            <element name="activation-config-property-name" type="javaee:xsdStringType"/>
+            <element name="activation-config-property-value" type="javaee:xsdStringType"/>
+        </class>
+        <class name="activation-configType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#xA;&#x9;The activation-configType defines information about the&#xA;&#x9;expected configuration properties of the message-driven bean&#xA;&#x9;in its operational environment. This may include information&#xA;&#x9;about message acknowledgement, message selector, expected&#xA;&#x9;destination type, etc.&#xA;&#xA;&#x9;The configuration information is expressed in terms of&#xA;&#x9;name/value configuration properties.&#xA;&#xA;&#x9;The properties that are recognized for a particular&#xA;&#x9;message-driven bean are determined by the messaging type.&#xA;&#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="activation-config-property" type="javaee:activation-config-propertyType" maxOccurs="unbounded"/>
+        </class>
+        <class name="application-exceptionType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#xA;        The application-exceptionType declares an application&#xA;        exception. The declaration consists of:&#xA;&#xA;            - the exception class. When the container receives&#xA;              an exception of this type, it is required to&#xA;              forward this exception as an applcation exception&#xA;              to the client regardless of whether it is a checked&#xA;              or unchecked exception.&#xA;            - an optional rollback element. If this element is&#xA;              set to true, the container must rollback the current&#xA;              transaction before forwarding the exception to the&#xA;              client.  If not specified, it defaults to false.&#xA;&#xA;      ">
+            <element name="exception-class" type="javaee:fully-qualified-classType"/>
+            <element name="rollback" type="javaee:true-falseType"/>
+        </class>
+        <class name="around-invokeType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#xA;        The around-invoke type specifies a method on a&#xA;        class to be called during the around invoke portion of an&#xA;        ejb invocation.  Note that each class may have only one&#xA;        around invoke method and that the method may not be&#xA;        overloaded.&#xA;&#xA;        If the class element is missing then&#xA;        the class defining the callback is assumed to be the&#xA;        interceptor class or component class in scope at the&#xA;        location in the descriptor in which the around invoke&#xA;        definition appears.&#xA;&#xA;      ">
+            <element name="class" type="javaee:fully-qualified-classType"/>
+            <element name="method-name" type="javaee:java-identifierType"/>
+        </class>
+        <class name="assembly-descriptorType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#xA;&#x9;The assembly-descriptorType defines&#xA;&#x9;application-assembly information.&#xA;&#xA;&#x9;The application-assembly information consists of the&#xA;&#x9;following parts: the definition of security roles, the&#xA;&#x9;definition of method permissions, the definition of&#xA;&#x9;transaction attributes for enterprise beans with&#xA;&#x9;container-managed transaction demarcation, the definition&#xA;        of interceptor bindings, a list of&#xA;&#x9;methods to be excluded from being invoked, and a list of&#xA;        exception types that should be treated as application exceptions.&#xA;&#xA;&#x9;All the parts are optional in the sense that they are&#xA;&#x9;omitted if the lists represented by them are empty.&#xA;&#xA;&#x9;Providing an assembly-descriptor in the deployment&#xA;&#x9;descriptor is optional for the ejb-jar file producer.&#xA;&#xA;      ">
+            <element name="security-role" type="javaee:security-roleType" maxOccurs="unbounded"/>
+            <element name="method-permission" type="javaee:method-permissionType" maxOccurs="unbounded"/>
+            <element name="container-transaction" type="javaee:container-transactionType" maxOccurs="unbounded"/>
+            <element name="interceptor-binding" type="javaee:interceptor-bindingType" maxOccurs="unbounded"/>
+            <element name="message-destination" type="javaee:message-destinationType" maxOccurs="unbounded"/>
+            <element name="exclude-list" type="javaee:exclude-listType"/>
+            <element name="application-exception" type="javaee:application-exceptionType" maxOccurs="unbounded"/>
+        </class>
+        <class name="cmp-fieldType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#xA;&#x9;The cmp-fieldType describes a container-managed field. The&#xA;&#x9;cmp-fieldType contains an optional description of the field,&#xA;&#x9;and the name of the field.&#xA;&#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="field-name" type="javaee:java-identifierType"/>
+        </class>
+        <class name="cmr-fieldType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#xA;&#x9;The cmr-fieldType describes the bean provider's view of&#xA;&#x9;a relationship. It consists of an optional description, and&#xA;&#x9;the name and the class type of a field in the source of a&#xA;&#x9;role of a relationship. The cmr-field-name element&#xA;&#x9;corresponds to the name used for the get and set accessor&#xA;&#x9;methods for the relationship. The cmr-field-type element is&#xA;&#x9;used only for collection-valued cmr-fields. It specifies the&#xA;&#x9;type of the collection that is used.&#xA;&#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="cmr-field-name" type="javaee:string"/>
+            <element name="cmr-field-type" type="javaee:cmr-field-typeType"/>
+        </class>
+        <class name="container-transactionType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#xA;&#x9;The container-transactionType specifies how the container&#xA;&#x9;must manage transaction scopes for the enterprise bean's&#xA;&#x9;method invocations. It defines an optional description, a&#xA;&#x9;list of method elements, and a transaction attribute. The&#xA;&#x9;transaction attribute is to be applied to all the specified&#xA;&#x9;methods.&#xA;&#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="method" type="javaee:methodType" maxOccurs="unbounded"/>
+            <element name="trans-attribute" type="javaee:trans-attributeType"/>
+        </class>
+        <class name="ejb-jarType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#xA;&#x9;The ejb-jarType defines the root element of the EJB&#xA;&#x9;deployment descriptor. It contains&#xA;&#xA;&#x9;    - an optional description of the ejb-jar file&#xA;&#x9;    - an optional display name&#xA;&#x9;    - an optional icon that contains a small and a large&#xA;&#x9;      icon file name&#xA;&#x9;    - structural information about all included&#xA;&#x9;      enterprise beans that is not specified through&#xA;              annotations&#xA;            - structural information about interceptor classes&#xA;&#x9;    - a descriptor for container managed relationships,&#xA;&#x9;      if any.&#xA;&#x9;    - an optional application-assembly descriptor&#xA;&#x9;    - an optional name of an ejb-client-jar file for the&#xA;&#x9;      ejb-jar.&#xA;&#xA;      ">
+            <element name="enterprise-beans" type="javaee:enterprise-beansType"/>
+            <element name="interceptors" type="javaee:interceptorsType"/>
+            <element name="relationships" type="javaee:relationshipsType"/>
+            <element name="assembly-descriptor" type="javaee:assembly-descriptorType"/>
+            <element name="ejb-client-jar" type="javaee:pathType"/>
+            <include name="javaee:descriptionGroup"/>
+            <element name="version" type="javaee:dewey-versionType" attribute="true"/>
+            <element name="metadata-complete" type="xsd:boolean" attribute="true"/>
+        </class>
+        <class name="ejb-relationType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#xA;&#x9;The ejb-relationType describes a relationship between two&#xA;&#x9;entity beans with container-managed persistence.  It is used&#xA;&#x9;by ejb-relation elements. It contains a description; an&#xA;&#x9;optional ejb-relation-name element; and exactly two&#xA;&#x9;relationship role declarations, defined by the&#xA;&#x9;ejb-relationship-role elements. The name of the&#xA;&#x9;relationship, if specified, is unique within the ejb-jar&#xA;&#x9;file.&#xA;&#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="ejb-relation-name" type="javaee:string"/>
+            <element name="ejb-relationship-role" type="javaee:ejb-relationship-roleType" maxOccurs="unbounded"/>
+            <element name="ejb-relationship-role" type="javaee:ejb-relationship-roleType" maxOccurs="unbounded"/>
+        </class>
+        <class name="ejb-relationship-roleType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#x9;&#xA;&#xA;&#x9;  The ejb-relationship-roleType describes a role within a&#xA;&#x9;  relationship. There are two roles in each relationship.&#xA;&#xA;&#x9;  The ejb-relationship-roleType contains an optional&#xA;&#x9;  description; an optional name for the relationship role; a&#xA;&#x9;  specification of the multiplicity of the role; an optional&#xA;&#x9;  specification of cascade-delete functionality for the role;&#xA;&#x9;  the role source; and a declaration of the cmr-field, if any,&#xA;&#x9;  by means of which the other side of the relationship is&#xA;&#x9;  accessed from the perspective of the role source.&#xA;&#xA;&#x9;  The multiplicity and role-source element are mandatory.&#xA;&#xA;&#x9;  The relationship-role-source element designates an entity&#xA;&#x9;  bean by means of an ejb-name element. For bidirectional&#xA;&#x9;  relationships, both roles of a relationship must declare a&#xA;&#x9;  relationship-role-source element that specifies a cmr-field&#xA;&#x9;  in terms of which the relationship is accessed. The lack of&#xA;&#x9;  a cmr-field element in an ejb-relationship-role specifies&#xA;&#x9;  that the relationship is unidirectional in navigability and&#xA;&#x9;  the entity bean that participates in the relationship is&#xA;&#x9;  &#34;not aware&#34; of the relationship.&#xA;&#xA;&#x9;  Example:&#xA;&#xA;&#x9;  &lt;ejb-relation&gt;&#xA;&#x9;      &lt;ejb-relation-name&gt;Product-LineItem&lt;/ejb-relation-name&gt;&#xA;&#x9;      &lt;ejb-relationship-role&gt;&#xA;&#x9;&#x9;  &lt;ejb-relationship-role-name&gt;product-has-lineitems&#xA;&#x9;&#x9;  &lt;/ejb-relationship-role-name&gt;&#xA;&#x9;&#x9;  &lt;multiplicity&gt;One&lt;/multiplicity&gt;&#xA;&#x9;&#x9;  &lt;relationship-role-source&gt;&#xA;&#x9;&#x9;  &lt;ejb-name&gt;ProductEJB&lt;/ejb-name&gt;&#xA;&#x9;&#x9;  &lt;/relationship-role-source&gt;&#xA;&#x9;       &lt;/ejb-relationship-role&gt;&#xA;&#x9;  &lt;/ejb-relation&gt;&#xA;&#xA;&#x9;  &#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="ejb-relationship-role-name" type="javaee:string"/>
+            <element name="multiplicity" type="javaee:multiplicityType"/>
+            <element name="cascade-delete" type="javaee:emptyType"/>
+            <element name="relationship-role-source" type="javaee:relationship-role-sourceType"/>
+            <element name="cmr-field" type="javaee:cmr-fieldType"/>
+        </class>
+        <class name="enterprise-beansType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#xA;&#x9;The enterprise-beansType declares one or more enterprise&#xA;&#x9;beans. Each bean can be a session, entity or message-driven&#xA;&#x9;bean.&#xA;&#xA;      ">
+            <element name="session" type="javaee:session-beanType" maxOccurs="unbounded"/>
+            <element name="entity" type="javaee:entity-beanType" maxOccurs="unbounded"/>
+            <element name="message-driven" type="javaee:message-driven-beanType" maxOccurs="unbounded"/>
+        </class>
+        <class name="entity-beanType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#xA;&#x9;The entity-beanType declares an entity bean. The declaration&#xA;&#x9;consists of:&#xA;&#xA;&#x9;    - an optional description&#xA;&#x9;    - an optional display name&#xA;&#x9;    - an optional icon element that contains a small and a large&#xA;&#x9;      icon file name&#xA;&#x9;    - a unique name assigned to the enterprise bean&#xA;&#x9;      in the deployment descriptor&#xA;            - an optional mapped-name element that can be used to provide&#xA;              vendor-specific deployment information such as the physical&#xA;              jndi-name of the entity bean's remote home interface. This&#xA;              element is not required to be supported by all implementations.&#xA;              Any use of this element is non-portable.&#xA;&#x9;    - the names of the entity bean's remote home&#xA;&#x9;      and remote interfaces, if any&#xA;&#x9;    - the names of the entity bean's local home and local&#xA;&#x9;      interfaces, if any&#xA;&#x9;    - the entity bean's implementation class&#xA;&#x9;    - the optional entity bean's persistence management type. If&#xA;              this element is not specified it is defaulted to Container.&#xA;&#x9;    - the entity bean's primary key class name&#xA;&#x9;    - an indication of the entity bean's reentrancy&#xA;&#x9;    - an optional specification of the&#xA;&#x9;      entity bean's cmp-version&#xA;&#x9;    - an optional specification of the entity bean's&#xA;&#x9;      abstract schema name&#xA;&#x9;    - an optional list of container-managed fields&#xA;&#x9;    - an optional specification of the primary key&#xA;&#x9;      field&#xA;&#x9;    - an optional declaration of the bean's environment&#xA;&#x9;      entries&#xA;&#x9;    - an optional declaration of the bean's EJB&#xA;&#x9;      references&#xA;&#x9;    - an optional declaration of the bean's local&#xA;&#x9;      EJB references&#xA;&#x9;    - an optional declaration of the bean's web&#xA;&#x9;      service references&#xA;&#x9;    - an optional declaration of the security role&#xA;&#x9;      references&#xA;&#x9;    - an optional declaration of the security identity&#xA;&#x9;      to be used for the execution of the bean's methods&#xA;&#x9;    - an optional declaration of the bean's&#xA;&#x9;      resource manager connection factory references&#xA;&#x9;    - an optional declaration of the bean's&#xA;&#x9;      resource environment references&#xA;&#x9;    - an optional declaration of the bean's message&#xA;&#x9;      destination references&#xA;&#x9;    - an optional set of query declarations&#xA;&#x9;      for finder and select methods for an entity&#xA;&#x9;      bean with cmp-version 2.x.&#xA;&#xA;&#x9;The optional abstract-schema-name element must be specified&#xA;&#x9;for an entity bean with container-managed persistence and&#xA;&#x9;cmp-version 2.x.&#xA;&#xA;&#x9;The optional primkey-field may be present in the descriptor&#xA;&#x9;if the entity's persistence-type is Container.&#xA;&#xA;&#x9;The optional cmp-version element may be present in the&#xA;&#x9;descriptor if the entity's persistence-type is Container. If&#xA;&#x9;the persistence-type is Container and the cmp-version&#xA;&#x9;element is not specified, its value defaults to 2.x.&#xA;&#xA;&#x9;The optional home and remote elements must be specified if&#xA;&#x9;the entity bean cmp-version is 1.x.&#xA;&#xA;&#x9;The optional home and remote elements must be specified if&#xA;&#x9;the entity bean has a remote home and remote interface.&#xA;&#xA;&#x9;The optional local-home and local elements must be specified&#xA;&#x9;if the entity bean has a local home and local interface.&#xA;&#xA;&#x9;Either both the local-home and the local elements or both&#xA;&#x9;the home and the remote elements must be specified.&#xA;&#xA;&#x9;The optional query elements must be present if the&#xA;&#x9;persistence-type is Container and the cmp-version is 2.x and&#xA;&#x9;query methods other than findByPrimaryKey have been defined&#xA;&#x9;for the entity bean.&#xA;&#xA;&#x9;The other elements that are optional are &#34;optional&#34; in the&#xA;&#x9;sense that they are omitted if the lists represented by them&#xA;&#x9;are empty.&#xA;&#xA;&#x9;At least one cmp-field element must be present in the&#xA;&#x9;descriptor if the entity's persistence-type is Container and&#xA;&#x9;the cmp-version is 1.x, and none must not be present if the&#xA;&#x9;entity's persistence-type is Bean.&#xA;&#xA;      ">
+            <element name="ejb-name" type="javaee:ejb-nameType"/>
+            <element name="mapped-name" type="javaee:xsdStringType"/>
+            <element name="home" type="javaee:homeType"/>
+            <element name="remote" type="javaee:remoteType"/>
+            <element name="local-home" type="javaee:local-homeType"/>
+            <element name="local" type="javaee:localType"/>
+            <element name="ejb-class" type="javaee:ejb-classType"/>
+            <element name="persistence-type" type="javaee:persistence-typeType"/>
+            <element name="prim-key-class" type="javaee:fully-qualified-classType"/>
+            <element name="reentrant" type="javaee:true-falseType"/>
+            <element name="cmp-version" type="javaee:cmp-versionType"/>
+            <element name="abstract-schema-name" type="javaee:java-identifierType"/>
+            <element name="cmp-field" type="javaee:cmp-fieldType" maxOccurs="unbounded"/>
+            <element name="primkey-field" type="javaee:string"/>
+            <element name="security-role-ref" type="javaee:security-role-refType" maxOccurs="unbounded"/>
+            <element name="security-identity" type="javaee:security-identityType"/>
+            <element name="query" type="javaee:queryType" maxOccurs="unbounded"/>
+            <include name="javaee:descriptionGroup"/>
+            <include name="javaee:jndiEnvironmentRefsGroup"/>
+        </class>
+        <class name="exclude-listType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#xA;&#x9;The exclude-listType specifies one or more methods which&#xA;&#x9;the Assembler marks to be uncallable.&#xA;&#xA;&#x9;If the method permission relation contains methods that are&#xA;&#x9;in the exclude list, the Deployer should consider those&#xA;&#x9;methods to be uncallable.&#xA;&#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="method" type="javaee:methodType" maxOccurs="unbounded"/>
+        </class>
+        <class name="init-methodType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30" documentation="">
+            <element name="create-method" type="javaee:named-methodType"/>
+            <element name="bean-method" type="javaee:named-methodType"/>
+        </class>
+        <class name="interceptor-bindingType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#xA;        The interceptor-bindingType element describes the binding of&#xA;        interceptor classes to beans within the ejb-jar.&#xA;        It consists of :&#xA;&#xA;          - An optional description.&#xA;          - The name of an ejb within the ejb-jar or the wildcard value &#34;*&#34;,&#xA;            which is used to define interceptors that are bound to all&#xA;            beans in the ejb-jar.&#xA;          - A list of interceptor classes that are bound to the contents of&#xA;            the ejb-name element or a specification of the total ordering&#xA;            over the interceptors defined for the given level and above.&#xA;          - An optional exclude-default-interceptors element.  If set to true,&#xA;            specifies that default interceptors are not to be applied to&#xA;            a bean-class and/or business method.&#xA;          - An optional exclude-class-interceptors element.  If set to true,&#xA;            specifies that class interceptors are not to be applied to&#xA;            a business method.&#xA;          - An optional set of method elements for describing the name/params&#xA;            of a method-level interceptor.&#xA;&#xA;         Interceptors bound to all classes using the wildcard syntax&#xA;         &#34;*&#34; are default interceptors for the components in the ejb-jar.&#xA;         In addition, interceptors may be bound at the level of the bean&#xA;         class (class-level interceptors) or business methods (method-level&#xA;         interceptors ).&#xA;&#xA;         The binding of interceptors to classes is additive.  If interceptors&#xA;         are bound at the class-level and/or default-level as well as the&#xA;         method-level, both class-level and/or default-level as well as&#xA;         method-level will apply.&#xA;&#xA;         There are four possible styles of the interceptor element syntax :&#xA;&#xA;         1.&#xA;         &#xA;&#xA;         Specifying the ejb-name as the wildcard value &#34;*&#34; designates&#xA;         default interceptors (interceptors that apply to all session and&#xA;         message-driven beans contained in the ejb-jar).&#xA;&#xA;         2.&#xA;         &#xA;&#xA;         This style is used to refer to interceptors associated with the&#xA;         specified enterprise bean(class-level interceptors).&#xA;&#xA;         3.&#xA;         &#xA;&#xA;         This style is used to associate a method-level interceptor with&#xA;         the specified enterprise bean.  If there are multiple methods&#xA;         with the same overloaded name, the element of this style refers&#xA;         to all the methods with the overloaded name.  Method-level&#xA;         interceptors can only be associated with business methods of the&#xA;         bean class.   Note that the wildcard value &#34;*&#34; cannot be used&#xA;         to specify method-level interceptors.&#xA;&#xA;         4.&#xA;         &#xA;&#xA;         This style is used to associate a method-level interceptor with&#xA;         the specified method of the specified enterprise bean.  This&#xA;         style is used to refer to a single method within a set of methods&#xA;         with an overloaded name.  The values PARAM-1 through PARAM-N&#xA;         are the fully-qualified Java types of the method's input parameters&#xA;         (if the method has no input arguments, the method-params element&#xA;         contains no method-param elements). Arrays are specified by the&#xA;         array element's type, followed by one or more pair of square&#xA;         brackets (e.g. int[][]).&#xA;&#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="ejb-name" type="javaee:string"/>
+            <element name="exclude-default-interceptors" type="javaee:true-falseType"/>
+            <element name="exclude-class-interceptors" type="javaee:true-falseType"/>
+            <element name="method" type="javaee:named-methodType"/>
+            <element name="interceptor-class" type="javaee:fully-qualified-classType" maxOccurs="unbounded"/>
+            <element name="interceptor-order" type="javaee:interceptor-orderType"/>
+        </class>
+        <class name="interceptor-orderType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;        The interceptor-orderType element describes a total ordering&#xA;        of interceptor classes.&#xA;      ">
+            <element name="interceptor-class" type="javaee:fully-qualified-classType" maxOccurs="unbounded"/>
+        </class>
+        <class name="interceptorType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#xA;        The interceptorType element declares information about a single&#xA;        interceptor class.  It consists of :&#xA;&#xA;            - An optional description.&#xA;            - The fully-qualified name of the interceptor class.&#xA;            - An optional list of around invoke methods declared on the&#xA;              interceptor class and/or its super-classes.&#xA;            - An optional list environment dependencies for the interceptor&#xA;              class and/or its super-classes.&#xA;            - An optional list of post-activate methods declared on the&#xA;              interceptor class and/or its super-classes.&#xA;            - An optional list of pre-passivate methods declared on the&#xA;              interceptor class and/or its super-classes.&#xA;&#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="interceptor-class" type="javaee:fully-qualified-classType"/>
+            <element name="around-invoke" type="javaee:around-invokeType" maxOccurs="unbounded"/>
+            <element name="post-activate" type="javaee:lifecycle-callbackType" maxOccurs="unbounded"/>
+            <element name="pre-passivate" type="javaee:lifecycle-callbackType" maxOccurs="unbounded"/>
+            <include name="javaee:jndiEnvironmentRefsGroup"/>
+        </class>
+        <class name="interceptorsType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#xA;        The interceptorsType element declares one or more interceptor&#xA;        classes used by components within this ejb-jar.  The declaration&#xA;        consists of :&#xA;&#xA;            - An optional description.&#xA;            - One or more interceptor elements.&#xA;&#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="interceptor" type="javaee:interceptorType" maxOccurs="unbounded"/>
+        </class>
+        <class name="message-driven-beanType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#xA;&#x9;The message-driven element declares a message-driven&#xA;&#x9;bean. The declaration consists of:&#xA;&#xA;&#x9;    - an optional description&#xA;&#x9;    - an optional display name&#xA;&#x9;    - an optional icon element that contains a small and a large&#xA;&#x9;      icon file name.&#xA;&#x9;    - a name assigned to the enterprise bean in&#xA;&#x9;      the deployment descriptor&#xA;            - an optional mapped-name element that can be used to provide&#xA;              vendor-specific deployment information such as the physical&#xA;              jndi-name of destination from which this message-driven bean&#xA;              should consume.  This element is not required to be supported&#xA;              by all implementations.  Any use of this element is non-portable.&#xA;&#x9;    - the message-driven bean's implementation class&#xA;&#x9;    - an optional declaration of the bean's messaging&#xA;&#x9;      type&#xA;            - an optional declaration of the bean's timeout method.&#xA;&#x9;    - the optional message-driven bean's transaction management&#xA;              type. If it is not defined, it is defaulted to Container.&#xA;&#x9;    - an optional declaration of the bean's&#xA;&#x9;      message-destination-type&#xA;&#x9;    - an optional declaration of the bean's&#xA;&#x9;      message-destination-link&#xA;&#x9;    - an optional declaration of the message-driven bean's&#xA;&#x9;      activation configuration properties&#xA;            - an optional list of the message-driven bean class and/or&#xA;              superclass around-invoke methods.&#xA;&#x9;    - an optional declaration of the bean's environment&#xA;&#x9;      entries&#xA;&#x9;    - an optional declaration of the bean's EJB references&#xA;&#x9;    - an optional declaration of the bean's local EJB&#xA;&#x9;      references&#xA;&#x9;    - an optional declaration of the bean's web service&#xA;&#x9;      references&#xA;&#x9;    - an optional declaration of the security&#xA;&#x9;      identity to be used for the execution of the bean's&#xA;&#x9;      methods&#xA;&#x9;    - an optional declaration of the bean's&#xA;&#x9;      resource manager connection factory&#xA;&#x9;      references&#xA;&#x9;    - an optional declaration of the bean's resource&#xA;&#x9;      environment references.&#xA;&#x9;    - an optional declaration of the bean's message&#xA;&#x9;      destination references&#xA;&#xA;      ">
+            <element name="ejb-name" type="javaee:ejb-nameType"/>
+            <element name="mapped-name" type="javaee:xsdStringType"/>
+            <element name="ejb-class" type="javaee:ejb-classType"/>
+            <element name="messaging-type" type="javaee:fully-qualified-classType"/>
+            <element name="timeout-method" type="javaee:named-methodType"/>
+            <element name="transaction-type" type="javaee:transaction-typeType"/>
+            <element name="message-destination-type" type="javaee:message-destination-typeType"/>
+            <element name="message-destination-link" type="javaee:message-destination-linkType"/>
+            <element name="activation-config" type="javaee:activation-configType"/>
+            <element name="around-invoke" type="javaee:around-invokeType" maxOccurs="unbounded"/>
+            <element name="security-identity" type="javaee:security-identityType"/>
+            <include name="javaee:descriptionGroup"/>
+            <include name="javaee:jndiEnvironmentRefsGroup"/>
+        </class>
+        <class name="method-paramsType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#xA;&#x9;The method-paramsType defines a list of the&#xA;&#x9;fully-qualified Java type names of the method parameters.&#xA;&#xA;      ">
+            <element name="method-param" type="javaee:java-typeType" maxOccurs="unbounded"/>
+        </class>
+        <class name="method-permissionType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#xA;&#x9;The method-permissionType specifies that one or more&#xA;&#x9;security roles are allowed to invoke one or more enterprise&#xA;&#x9;bean methods. The method-permissionType consists of an&#xA;&#x9;optional description, a list of security role names or an&#xA;&#x9;indicator to state that the method is unchecked for&#xA;&#x9;authorization, and a list of method elements.&#xA;&#xA;&#x9;The security roles used in the method-permissionType&#xA;&#x9;must be defined in the security-role elements of the&#xA;&#x9;deployment descriptor, and the methods must be methods&#xA;&#x9;defined in the enterprise bean's business, home, component&#xA;        and/or web service endpoint interfaces.&#xA;&#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="method" type="javaee:methodType" maxOccurs="unbounded"/>
+            <element name="role-name" type="javaee:role-nameType" maxOccurs="unbounded"/>
+            <element name="unchecked" type="javaee:emptyType"/>
+        </class>
+        <class name="methodType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#x9;&#xA;&#xA;&#x9;  The methodType is used to denote a method of an enterprise&#xA;&#x9;  bean's business, home, component, and/or web service endpoint&#xA;&#x9;  interface, or, in the case of a message-driven bean, the&#xA;&#x9;  bean's message listener method, or a set of such&#xA;&#x9;  methods. The ejb-name element must be the name of one of the&#xA;&#x9;  enterprise beans declared in the deployment descriptor; the&#xA;&#x9;  optional method-intf element allows to distinguish between a&#xA;&#x9;  method with the same signature that is multiply defined&#xA;&#x9;  across the business, home, component, and/or web service&#xA;          endpoint nterfaces; the method-name element specifies the&#xA;          method name; and the optional method-params elements identify&#xA;          a single method among multiple methods with an overloaded&#xA;&#x9;  method name.&#xA;&#xA;&#x9;  There are three possible styles of using methodType element&#xA;&#x9;  within a method element:&#xA;&#xA;&#x9;  1.&#xA;&#x9;  &lt;method&gt;&#xA;&#x9;      &lt;ejb-name&gt;EJBNAME&lt;/ejb-name&gt;&#xA;&#x9;      &lt;method-name&gt;*&lt;/method-name&gt;&#xA;&#x9;  &lt;/method&gt;&#xA;&#xA;&#x9;     This style is used to refer to all the methods of the&#xA;&#x9;     specified enterprise bean's business, home, component,&#xA;             and/or web service endpoint interfaces.&#xA;&#xA;&#x9;  2.&#xA;&#x9;  &lt;method&gt;&#xA;&#x9;      &lt;ejb-name&gt;EJBNAME&lt;/ejb-name&gt;&#xA;&#x9;      &lt;method-name&gt;METHOD&lt;/method-name&gt;&#xA;&#x9;  &lt;/method&gt;&#xA;&#xA;&#x9;     This style is used to refer to the specified method of&#xA;&#x9;     the specified enterprise bean. If there are multiple&#xA;&#x9;     methods with the same overloaded name, the element of&#xA;&#x9;     this style refers to all the methods with the overloaded&#xA;&#x9;     name.&#xA;&#xA;&#x9;  3.&#xA;&#x9;  &lt;method&gt;&#xA;&#x9;      &lt;ejb-name&gt;EJBNAME&lt;/ejb-name&gt;&#xA;&#x9;      &lt;method-name&gt;METHOD&lt;/method-name&gt;&#xA;&#x9;      &lt;method-params&gt;&#xA;&#x9;&#x9;  &lt;method-param&gt;PARAM-1&lt;/method-param&gt;&#xA;&#x9;&#x9;  &lt;method-param&gt;PARAM-2&lt;/method-param&gt;&#xA;&#x9;&#x9;  ...&#xA;&#x9;&#x9;  &lt;method-param&gt;PARAM-n&lt;/method-param&gt;&#xA;&#x9;      &lt;/method-params&gt;&#xA;&#x9;  &lt;/method&gt;&#xA;&#xA;&#x9;     This style is used to refer to a single method within a&#xA;&#x9;     set of methods with an overloaded name. PARAM-1 through&#xA;&#x9;     PARAM-n are the fully-qualified Java types of the&#xA;&#x9;     method's input parameters (if the method has no input&#xA;&#x9;     arguments, the method-params element contains no&#xA;&#x9;     method-param elements). Arrays are specified by the&#xA;&#x9;     array element's type, followed by one or more pair of&#xA;&#x9;     square brackets (e.g. int[][]). If there are multiple&#xA;&#x9;     methods with the same overloaded name, this style refers&#xA;&#x9;     to all of the overloaded methods.&#xA;&#xA;&#x9;  Examples:&#xA;&#xA;&#x9;  Style 1: The following method element refers to all the&#xA;&#x9;  methods of the EmployeeService bean's business, home,&#xA;          component, and/or web service endpoint interfaces:&#xA;&#xA;&#x9;  &lt;method&gt;&#xA;&#x9;      &lt;ejb-name&gt;EmployeeService&lt;/ejb-name&gt;&#xA;&#x9;      &lt;method-name&gt;*&lt;/method-name&gt;&#xA;&#x9;  &lt;/method&gt;&#xA;&#xA;&#x9;  Style 2: The following method element refers to all the&#xA;&#x9;  create methods of the EmployeeService bean's home&#xA;&#x9;  interface(s).&#xA;&#xA;&#x9;  &lt;method&gt;&#xA;&#x9;      &lt;ejb-name&gt;EmployeeService&lt;/ejb-name&gt;&#xA;&#x9;      &lt;method-name&gt;create&lt;/method-name&gt;&#xA;&#x9;  &lt;/method&gt;&#xA;&#xA;&#x9;  Style 3: The following method element refers to the&#xA;&#x9;  create(String firstName, String LastName) method of the&#xA;&#x9;  EmployeeService bean's home interface(s).&#xA;&#xA;&#x9;  &lt;method&gt;&#xA;&#x9;      &lt;ejb-name&gt;EmployeeService&lt;/ejb-name&gt;&#xA;&#x9;      &lt;method-name&gt;create&lt;/method-name&gt;&#xA;&#x9;      &lt;method-params&gt;&#xA;&#x9;&#x9;  &lt;method-param&gt;java.lang.String&lt;/method-param&gt;&#xA;&#x9;&#x9;  &lt;method-param&gt;java.lang.String&lt;/method-param&gt;&#xA;&#x9;      &lt;/method-params&gt;&#xA;&#x9;  &lt;/method&gt;&#xA;&#xA;&#x9;  The following example illustrates a Style 3 element with&#xA;&#x9;  more complex parameter types. The method&#xA;&#x9;  foobar(char s, int i, int[] iar, mypackage.MyClass mycl,&#xA;&#x9;  mypackage.MyClass[][] myclaar) would be specified as:&#xA;&#xA;&#x9;  &lt;method&gt;&#xA;&#x9;      &lt;ejb-name&gt;EmployeeService&lt;/ejb-name&gt;&#xA;&#x9;      &lt;method-name&gt;foobar&lt;/method-name&gt;&#xA;&#x9;      &lt;method-params&gt;&#xA;&#x9;&#x9;  &lt;method-param&gt;char&lt;/method-param&gt;&#xA;&#x9;&#x9;  &lt;method-param&gt;int&lt;/method-param&gt;&#xA;&#x9;&#x9;  &lt;method-param&gt;int[]&lt;/method-param&gt;&#xA;&#x9;&#x9;  &lt;method-param&gt;mypackage.MyClass&lt;/method-param&gt;&#xA;&#x9;&#x9;  &lt;method-param&gt;mypackage.MyClass[][]&lt;/method-param&gt;&#xA;&#x9;      &lt;/method-params&gt;&#xA;&#x9;  &lt;/method&gt;&#xA;&#xA;&#x9;  The optional method-intf element can be used when it becomes&#xA;&#x9;  necessary to differentiate between a method that is multiply&#xA;&#x9;  defined across the enterprise bean's business, home, component,&#xA;          and/or web service endpoint interfaces with the same name and&#xA;&#x9;  signature. However, if the same method is a method of both the&#xA;          local business interface, and the local component interface,&#xA;          the same attribute applies to the method for both interfaces.&#xA;          Likewise, if the same method is a method of both the remote&#xA;          business interface and the remote component interface, the same&#xA;          attribute applies to the method for both interfaces.&#xA;&#xA;&#x9;  For example, the method element&#xA;&#xA;&#x9;  &lt;method&gt;&#xA;&#x9;      &lt;ejb-name&gt;EmployeeService&lt;/ejb-name&gt;&#xA;&#x9;      &lt;method-intf&gt;Remote&lt;/method-intf&gt;&#xA;&#x9;      &lt;method-name&gt;create&lt;/method-name&gt;&#xA;&#x9;      &lt;method-params&gt;&#xA;&#x9;&#x9;  &lt;method-param&gt;java.lang.String&lt;/method-param&gt;&#xA;&#x9;&#x9;  &lt;method-param&gt;java.lang.String&lt;/method-param&gt;&#xA;&#x9;      &lt;/method-params&gt;&#xA;&#x9;  &lt;/method&gt;&#xA;&#xA;&#x9;  can be used to differentiate the create(String, String)&#xA;&#x9;  method defined in the remote interface from the&#xA;&#x9;  create(String, String) method defined in the remote home&#xA;&#x9;  interface, which would be defined as&#xA;&#xA;&#x9;  &lt;method&gt;&#xA;&#x9;      &lt;ejb-name&gt;EmployeeService&lt;/ejb-name&gt;&#xA;&#x9;      &lt;method-intf&gt;Home&lt;/method-intf&gt;&#xA;&#x9;      &lt;method-name&gt;create&lt;/method-name&gt;&#xA;&#x9;      &lt;method-params&gt;&#xA;&#x9;&#x9;  &lt;method-param&gt;java.lang.String&lt;/method-param&gt;&#xA;&#x9;&#x9;  &lt;method-param&gt;java.lang.String&lt;/method-param&gt;&#xA;&#x9;      &lt;/method-params&gt;&#xA;&#x9;  &lt;/method&gt;&#xA;&#xA;&#x9;  and the create method that is defined in the local home&#xA;&#x9;  interface which would be defined as&#xA;&#xA;&#x9;  &lt;method&gt;&#xA;&#x9;      &lt;ejb-name&gt;EmployeeService&lt;/ejb-name&gt;&#xA;&#x9;      &lt;method-intf&gt;LocalHome&lt;/method-intf&gt;&#xA;&#x9;      &lt;method-name&gt;create&lt;/method-name&gt;&#xA;&#x9;      &lt;method-params&gt;&#xA;&#x9;&#x9;  &lt;method-param&gt;java.lang.String&lt;/method-param&gt;&#xA;&#x9;&#x9;  &lt;method-param&gt;java.lang.String&lt;/method-param&gt;&#xA;&#x9;      &lt;/method-params&gt;&#xA;&#x9;  &lt;/method&gt;&#xA;&#xA;&#x9;  The method-intf element can be used with all three Styles&#xA;&#x9;  of the method element usage. For example, the following&#xA;&#x9;  method element example could be used to refer to all the&#xA;&#x9;  methods of the EmployeeService bean's remote home interface&#xA;          and the remote business interface.&#xA;&#xA;&#x9;  &lt;method&gt;&#xA;&#x9;      &lt;ejb-name&gt;EmployeeService&lt;/ejb-name&gt;&#xA;&#x9;      &lt;method-intf&gt;Home&lt;/method-intf&gt;&#xA;&#x9;      &lt;method-name&gt;*&lt;/method-name&gt;&#xA;&#x9;  &lt;/method&gt;&#xA;&#xA;&#x9;  &#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="ejb-name" type="javaee:ejb-nameType"/>
+            <element name="method-intf" type="javaee:method-intfType"/>
+            <element name="method-name" type="javaee:method-nameType"/>
+            <element name="method-params" type="javaee:method-paramsType"/>
+        </class>
+        <class name="named-methodType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30" documentation="">
+            <element name="method-name" type="javaee:string"/>
+            <element name="method-params" type="javaee:method-paramsType"/>
+        </class>
+        <class name="query-methodType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#x9;&#xA;&#xA;&#x9;  The query-method specifies the method for a finder or select&#xA;&#x9;  query.&#xA;&#xA;&#x9;  The method-name element specifies the name of a finder or select&#xA;&#x9;  method in the entity bean's implementation class.&#xA;&#xA;&#x9;  Each method-param must be defined for a query-method using the&#xA;&#x9;  method-params element.&#xA;&#xA;&#x9;  It is used by the query-method element.&#xA;&#xA;&#x9;  Example:&#xA;&#xA;&#x9;  &lt;query&gt;&#xA;&#x9;      &lt;description&gt;Method finds large orders&lt;/description&gt;&#xA;&#x9;      &lt;query-method&gt;&#xA;&#x9;&#x9;  &lt;method-name&gt;findLargeOrders&lt;/method-name&gt;&#xA;&#x9;&#x9;  &lt;method-params&gt;&lt;/method-params&gt;&#xA;&#x9;      &lt;/query-method&gt;&#xA;&#x9;      &lt;ejb-ql&gt;&#xA;&#x9;&#x9;SELECT OBJECT(o) FROM Order o&#xA;&#x9;&#x9;  WHERE o.amount &amp;gt; 1000&#xA;&#x9;      &lt;/ejb-ql&gt;&#xA;&#x9;  &lt;/query&gt;&#xA;&#xA;&#x9;  &#xA;      ">
+            <element name="method-name" type="javaee:method-nameType"/>
+            <element name="method-params" type="javaee:method-paramsType"/>
+        </class>
+        <class name="queryType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#xA;&#x9;The queryType defines a finder or select&#xA;&#x9;query. It contains&#xA;&#x9;    - an optional description of the query&#xA;&#x9;    - the specification of the finder or select&#xA;&#x9;      method it is used by&#xA;&#x9;&#x9;- an optional specification of the result type&#xA;&#x9;&#x9;  mapping, if the query is for a select method&#xA;&#x9;&#x9;  and entity objects are returned.&#xA;&#x9;&#x9;- the EJB QL query string that defines the query.&#xA;&#xA;&#x9;Queries that are expressible in EJB QL must use the ejb-ql&#xA;&#x9;element to specify the query. If a query is not expressible&#xA;&#x9;in EJB QL, the description element should be used to&#xA;&#x9;describe the semantics of the query and the ejb-ql element&#xA;&#x9;should be empty.&#xA;&#xA;&#x9;The result-type-mapping is an optional element. It can only&#xA;&#x9;be present if the query-method specifies a select method&#xA;&#x9;that returns entity objects.  The default value for the&#xA;&#x9;result-type-mapping element is &#34;Local&#34;.&#xA;&#xA;      ">
+            <element name="description" type="javaee:descriptionType"/>
+            <element name="query-method" type="javaee:query-methodType"/>
+            <element name="result-type-mapping" type="javaee:result-type-mappingType"/>
+            <element name="ejb-ql" type="javaee:xsdStringType"/>
+        </class>
+        <class name="relationship-role-sourceType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#xA;&#x9;The relationship-role-sourceType designates the source of a&#xA;&#x9;role that participates in a relationship. A&#xA;&#x9;relationship-role-sourceType is used by&#xA;&#x9;relationship-role-source elements to uniquely identify an&#xA;&#x9;entity bean.&#xA;&#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="ejb-name" type="javaee:ejb-nameType"/>
+        </class>
+        <class name="relationshipsType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#xA;&#x9;The relationshipsType describes the relationships in&#xA;&#x9;which entity beans with container-managed persistence&#xA;&#x9;participate. The relationshipsType contains an optional&#xA;&#x9;description; and a list of ejb-relation elements, which&#xA;&#x9;specify the container managed relationships.&#xA;&#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="ejb-relation" type="javaee:ejb-relationType" maxOccurs="unbounded"/>
+        </class>
+        <class name="remove-methodType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30" documentation="">
+            <element name="bean-method" type="javaee:named-methodType"/>
+            <element name="retain-if-exception" type="javaee:true-falseType"/>
+        </class>
+        <class name="security-identityType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#xA;&#x9;The security-identityType specifies whether the caller's&#xA;&#x9;security identity is to be used for the execution of the&#xA;&#x9;methods of the enterprise bean or whether a specific run-as&#xA;&#x9;identity is to be used. It contains an optional description&#xA;&#x9;and a specification of the security identity to be used.&#xA;&#xA;      ">
+            <element name="description" type="javaee:descriptionType" maxOccurs="unbounded"/>
+            <element name="use-caller-identity" type="javaee:emptyType"/>
+            <element name="run-as" type="javaee:run-asType"/>
+        </class>
+        <class name="session-beanType" namespace="javaee" schemaName="../xsd/ejb-jar_3_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30"
+            documentation="&#xA;&#xA;&#x9;The session-beanType declares an session bean. The&#xA;&#x9;declaration consists of:&#xA;&#xA;&#x9;    - an optional description&#xA;&#x9;    - an optional display name&#xA;&#x9;    - an optional icon element that contains a small and a large&#xA;&#x9;      icon file name&#xA;&#x9;    - a name assigned to the enterprise bean&#xA;&#x9;      in the deployment description&#xA;            - an optional mapped-name element that can be used to provide&#xA;              vendor-specific deployment information such as the physical&#xA;              jndi-name of the session bean's remote home/business interface.&#xA;              This element is not required to be supported by all&#xA;              implementations. Any use of this element is non-portable.&#xA;            - the names of all the remote or local business interfaces,&#xA;              if any&#xA;&#x9;    - the names of the session bean's remote home and&#xA;&#x9;      remote interfaces, if any&#xA;&#x9;    - the names of the session bean's local home and&#xA;&#x9;      local interfaces, if any&#xA;&#x9;    - the name of the session bean's web service endpoint&#xA;&#x9;      interface, if any&#xA;&#x9;    - the session bean's implementation class&#xA;&#x9;    - the session bean's state management type&#xA;            - an optional declaration of the session bean's timeout method.&#xA;&#x9;    - the optional session bean's transaction management type.&#xA;              If it is not present, it is defaulted to Container.&#xA;            - an optional list of the session bean class and/or&#xA;              superclass around-invoke methods.&#xA;&#x9;    - an optional declaration of the bean's&#xA;&#x9;      environment entries&#xA;&#x9;    - an optional declaration of the bean's EJB references&#xA;&#x9;    - an optional declaration of the bean's local&#xA;&#x9;      EJB references&#xA;&#x9;    - an optional declaration of the bean's web&#xA;&#x9;      service references&#xA;&#x9;    - an optional declaration of the security role&#xA;&#x9;      references&#xA;&#x9;    - an optional declaration of the security identity&#xA;&#x9;      to be used for the execution of the bean's methods&#xA;&#x9;    - an optional declaration of the bean's resource&#xA;&#x9;      manager connection factory references&#xA;&#x9;    - an optional declaration of the bean's resource&#xA;&#x9;      environment references.&#xA;&#x9;    - an optional declaration of the bean's message&#xA;&#x9;      destination references&#xA;&#xA;&#x9;The elements that are optional are &#34;optional&#34; in the sense&#xA;&#x9;that they are omitted when if lists represented by them are&#xA;&#x9;empty.&#xA;&#xA;&#x9;Either both the local-home and the local elements or both&#xA;&#x9;the home and the remote elements must be specified for the&#xA;&#x9;session bean.&#xA;&#xA;&#x9;The service-endpoint element may only be specified if the&#xA;&#x9;bean is a stateless session bean.&#xA;&#xA;      ">
+            <element name="ejb-name" type="javaee:ejb-nameType"/>
+            <element name="mapped-name" type="javaee:xsdStringType"/>
+            <element name="home" type="javaee:homeType"/>
+            <element name="remote" type="javaee:remoteType"/>
+            <element name="local-home" type="javaee:local-homeType"/>
+            <element name="local" type="javaee:localType"/>
+            <element name="business-local" type="javaee:fully-qualified-classType" maxOccurs="unbounded"/>
+            <element name="business-remote" type="javaee:fully-qualified-classType" maxOccurs="unbounded"/>
+            <element name="service-endpoint" type="javaee:fully-qualified-classType"/>
+            <element name="ejb-class" type="javaee:ejb-classType"/>
+            <element name="session-type" type="javaee:session-typeType"/>
+            <element name="timeout-method" type="javaee:named-methodType"/>
+            <element name="init-method" type="javaee:init-methodType" maxOccurs="unbounded"/>
+            <element name="remove-method" type="javaee:remove-methodType" maxOccurs="unbounded"/>
+            <element name="transaction-type" type="javaee:transaction-typeType"/>
+            <element name="around-invoke" type="javaee:around-invokeType" maxOccurs="unbounded"/>
+            <element name="post-activate" type="javaee:lifecycle-callbackType" maxOccurs="unbounded"/>
+            <element name="pre-passivate" type="javaee:lifecycle-callbackType" maxOccurs="unbounded"/>
+            <element name="security-role-ref" type="javaee:security-role-refType" maxOccurs="unbounded"/>
+            <element name="security-identity" type="javaee:security-identityType"/>
+            <include name="javaee:descriptionGroup"/>
+            <include name="javaee:jndiEnvironmentRefsGroup"/>
+        </class>
+        <class name="port-component-refType" namespace="javaee" schemaName="../xsd/javaee_web_services_client_1_2.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient12" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient12"
+            documentation="&#xA;&#xA;&#x9;The port-component-ref element declares a client dependency&#xA;&#x9;on the container for resolving a Service Endpoint Interface&#xA;&#x9;to a WSDL port. It optionally associates the Service Endpoint&#xA;&#x9;Interface with a particular port-component. This is only used&#xA;&#x9;by the container for a Service.getPort(Class) method call.&#xA;&#xA;      ">
+            <element name="service-endpoint-interface" type="javaee:fully-qualified-classType"/>
+            <element name="enable-mtom" type="javaee:true-falseType" maxOccurs="1"/>
+            <element name="port-component-link" type="javaee:string" maxOccurs="1"/>
+        </class>
+        <class name="service-refType" namespace="javaee" schemaName="../xsd/javaee_web_services_client_1_2.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient12" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient12"
+            documentation="&#xA;&#xA;&#x9;The service-ref element declares a reference to a Web&#xA;&#x9;service. It contains optional description, display name and&#xA;&#x9;icons, a declaration of the required Service interface,&#xA;&#x9;an optional WSDL document location, an optional set&#xA;&#x9;of JAX-RPC mappings, an optional QName for the service element,&#xA;&#x9;an optional set of Service Endpoint Interfaces to be resolved&#xA;&#x9;by the container to a WSDL port, and an optional set of handlers.&#xA;&#xA;      ">
+            <element name="service-ref-name" type="javaee:jndi-nameType"/>
+            <element name="service-interface" type="javaee:fully-qualified-classType"/>
+            <element name="service-ref-type" type="javaee:fully-qualified-classType" maxOccurs="1"/>
+            <element name="wsdl-file" type="javaee:xsdAnyURIType" maxOccurs="1"/>
+            <element name="jaxrpc-mapping-file" type="javaee:pathType" maxOccurs="1"/>
+            <element name="service-qname" type="javaee:xsdQNameType" maxOccurs="1"/>
+            <element name="port-component-ref" type="javaee:port-component-refType" maxOccurs="unbounded"/>
+            <element name="handler" type="javaee:service-ref_handlerType" maxOccurs="unbounded"/>
+            <element name="handler-chains" type="javaee:service-ref_handler-chainsType" maxOccurs="1"/>
+            <include name="javaee:descriptionGroup"/>
+            <include name="javaee:resourceGroup"/>
+        </class>
+        <class name="service-ref_handler-chainType" namespace="javaee" schemaName="../xsd/javaee_web_services_client_1_2.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient12" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient12"
+            documentation="&#xA;&#xA;      The handler-chain element defines the handlerchain.&#xA;      Handlerchain can be defined such that the handlers in the&#xA;      handlerchain operate,all ports of a service, on a specific&#xA;      port or on a list of protocol-bindings. The choice of elements&#xA;      service-name-pattern, port-name-pattern and protocol-bindings&#xA;      are used to specify whether the handlers in handler-chain are&#xA;      for a service, port or protocol binding. If none of these&#xA;      choices are specified with the handler-chain element then the&#xA;      handlers specified in the handler-chain will be applied on&#xA;      everything.&#xA;&#xA;      ">
+            <element name="handler" type="javaee:service-ref_handlerType" maxOccurs="unbounded"/>
+            <element name="service-name-pattern" type="javaee:service-ref_qname-pattern"/>
+            <element name="port-name-pattern" type="javaee:service-ref_qname-pattern"/>
+            <element name="protocol-bindings" type="javaee:string"/>
+        </class>
+        <class name="service-ref_handler-chainsType" namespace="javaee" schemaName="../xsd/javaee_web_services_client_1_2.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient12" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient12"
+            documentation="&#xA;&#xA;      The handler-chains element defines the handlerchains associated with this&#xA;      service or service endpoint.&#xA;&#xA;      ">
+            <element name="handler-chain" type="javaee:service-ref_handler-chainType" maxOccurs="unbounded"/>
+        </class>
+        <class name="service-ref_handlerType" namespace="javaee" schemaName="../xsd/javaee_web_services_client_1_2.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient12" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient12"
+            documentation="&#xA;&#xA;&#x9;Declares the handler for a port-component. Handlers can access the&#xA;&#x9;init-param name/value pairs using the HandlerInfo interface. If&#xA;&#x9;port-name is not specified, the handler is assumed to be associated&#xA;&#x9;with all ports of the service.&#xA;&#xA;&#x9;Used in: service-ref&#xA;&#xA;      ">
+            <element name="handler-name" type="javaee:string"/>
+            <element name="handler-class" type="javaee:fully-qualified-classType"/>
+            <element name="init-param" type="javaee:param-valueType" maxOccurs="unbounded"/>
+            <element name="soap-header" type="javaee:xsdQNameType" maxOccurs="unbounded"/>
+            <element name="soap-role" type="javaee:string" maxOccurs="unbounded"/>
+            <element name="port-name" type="javaee:string" maxOccurs="unbounded"/>
+            <include name="javaee:descriptionGroup"/>
+        </class>
+        <class name="ejb-jar-extType" namespace="ibm" schemaName="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30ext" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30ext" documentation="">
+            <element name="session" type="sessionType"/>
+            <element name="message-driven" type="message-drivenType"/>
+            <element name="version" type="xsd:string" attribute="true"/>
+        </class>
+        <class name="enterprise-beanType" namespace="ibm" schemaName="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30ext" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30ext" documentation="">
+            <element name="bean-cache" type="bean-cacheType" maxOccurs="1"/>
+            <element name="global-transaction" type="global-transactionType" maxOccurs="1"/>
+            <element name="local-transaction" type="local-transactionType" maxOccurs="1"/>
+            <element name="resource-ref" type="resource-refType" maxOccurs="unbounded"/>
+            <element name="run-as-mode" type="" maxOccurs="unbounded"/>
+            <element name="start-at-app-start" type="start-at-app-startType" maxOccurs="1"/>
+            <element name="name" type="xsd:string" attribute="true"/>
+        </class>
+        <class name="bean-cacheType" namespace="ibm" schemaName="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30ext" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30ext" documentation="">
+            <element name="activation-policy" type="activation-policyType" attribute="true"/>
+        </class>
+        <class name="run-as-modeType" namespace="ibm" schemaName="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30ext" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30ext" documentation="">
+            <element name="specified-identity" type="" maxOccurs="1"/>
+            <element name="mode" type="ibm:modeType" attribute="true"/>
+            <element name="description" type="xsd:string" attribute="true"/>
+        </class>
+        <class name="start-at-app-startType" namespace="ibm" schemaName="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30ext" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30ext" documentation="">
+            <element name="value" type="xsd:boolean" attribute="true"/>
+        </class>
+        <class name="time-outType" namespace="ibm" schemaName="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30ext" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30ext" documentation="">
+            <element name="value" type="xsd:integer" attribute="true"/>
+        </class>
+    </classes>
+    <descriptors>
+        <descriptor schemaName="../xsd/schemas/ibm-ejb-jar-ext_1_0.xsd" namespace="ibm" packageApi="org.jboss.shrinkwrap.descriptor.api.ejbjar30ext" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ejbjar30ext">
+            <namespace name="xmlns" value="http://websphere.ibm.com/xml/ns/javaee"/>
+            <namespace name="xmlns:xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
+            <element name="ejb-jar-ext" type="ejb-jar-extType" defaultNamespaces=""/>
+        </descriptor>
+    </descriptors>
+</metadata>
