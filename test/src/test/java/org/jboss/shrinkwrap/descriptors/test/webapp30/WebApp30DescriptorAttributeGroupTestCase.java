@@ -27,54 +27,54 @@ public class WebApp30DescriptorAttributeGroupTestCase
    public void testDescription() throws Exception
    {
       final WebApp30Descriptor webApp = create()
-         .servlet()
-            .setDescription("Description1")
-            .setDescription("Description2").up();
+         .createServlet()
+            .description("Description1")
+            .description("Description2").up();
       
       assertXPath(webApp.exportAsString(), "/web-app/servlet/description[1]", "Description1");
       assertXPath(webApp.exportAsString(), "/web-app/servlet/description[2]", "Description2");
       
-      assertTrue(webApp.getServletList().get(0).getDescriptionList().size() == 2);
-      webApp.getServletList().get(0).removeAllDescription();
-      assertTrue(webApp.getServletList().get(0).getDescriptionList().size() == 0);
+      assertTrue(webApp.getAllServlet().get(0).getAllDescription().size() == 2);
+      webApp.getAllServlet().get(0).removeAllDescription();
+      assertTrue(webApp.getAllServlet().get(0).getAllDescription().size() == 0);
    }
    
    @Test
    public void testDisplayName() throws Exception
    {
       final WebApp30Descriptor webApp = create()
-         .filter()
-            .setDisplayName("displayName1")
-            .setDisplayName("displayName2").up();
+         .createFilter()
+            .displayName("displayName1")
+            .displayName("displayName2").up();
       
       assertXPath(webApp.exportAsString(), "/web-app/filter/display-name[1]", "displayName1");
       assertXPath(webApp.exportAsString(), "/web-app/filter/display-name[2]", "displayName2");
       
-      assertTrue(webApp.getFilterList().get(0).getDisplayNameList().size() == 2);
-      webApp.getFilterList().get(0).removeAllDisplayName();
-      assertTrue(webApp.getFilterList().get(0).getDisplayNameList().size() == 0);
+      assertTrue(webApp.getAllFilter().get(0).getAllDisplayName().size() == 2);
+      webApp.getAllFilter().get(0).removeAllDisplayName();
+      assertTrue(webApp.getAllFilter().get(0).getAllDisplayName().size() == 0);
    }
    
    @Test
    public void testIcon() throws Exception
    {
       final WebApp30Descriptor webApp = create()
-         .filter().icon().setLargeIcon("largeIcon1").up()
-                  .icon().setSmallIcon("smallIcon2").up().up();
+         .createFilter().getOrCreateIcon().largeIcon("largeIcon1").up()
+                  .getOrCreateIcon().smallIcon("smallIcon2").up().up();
       
       assertXPath(webApp.exportAsString(), "/web-app/filter/icon[1]/large-icon", "largeIcon1");
       assertXPath(webApp.exportAsString(), "/web-app/filter/icon[2]/small-icon", "smallIcon2");
       
-      assertTrue(webApp.getFilterList().get(0).getIconList().size() == 2);
+      assertTrue(webApp.getAllFilter().get(0).getAllIcon().size() == 2);
       
-      webApp.getFilterList().get(0).getIconList().get(0).removeLargeIcon();
+      webApp.getAllFilter().get(0).getAllIcon().get(0).removeLargeIcon();
       assertTrue(webApp.exportAsString().indexOf("<large-icon>") == -1);
       
-      webApp.getFilterList().get(0).getIconList().get(1).removeSmallIcon();
+      webApp.getAllFilter().get(0).getAllIcon().get(1).removeSmallIcon();
       assertTrue(webApp.exportAsString().indexOf("<small-icon>") == -1);
       
-      webApp.getFilterList().get(0).removeAllIcon();
-      assertTrue(webApp.filter().getIconList().size() == 0);
+      webApp.getAllFilter().get(0).removeAllIcon();
+      assertTrue(webApp.createFilter().getAllIcon().size() == 0);
    }
    
    // -------------------------------------------------------------------------------------||

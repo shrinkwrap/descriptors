@@ -73,8 +73,8 @@ public class WebApp30DescriptorGeneralTestCase
       String mapping = "/*";
 
       String desc = create()
-                     .filter().setFilterClass(clazz).setFilterName(name).up()
-                     .filterMapping().setFilterName(name).setUrlPattern(mapping).up()
+                     .createFilter().filterClass(clazz).filterName(name).up()
+                     .createFilterMapping().filterName(name).urlPattern(mapping).up()
                      .exportAsString();
 
       log.fine(desc);
@@ -90,9 +90,9 @@ public class WebApp30DescriptorGeneralTestCase
    public void shouldBeAbleToSetWelcomeFiles() throws Exception
    {
       String desc = create()
-      				.welcomeFileList()
-      					.setWelcomeFile("WelcomeFile1")
-      					.setWelcomeFile("WelcomeFile2").up()
+      				.createWelcomeFileList()
+      					.welcomeFile("WelcomeFile1")
+      					.welcomeFile("WelcomeFile2").up()
                     .exportAsString();
 
       log.fine(desc);
@@ -106,12 +106,12 @@ public class WebApp30DescriptorGeneralTestCase
    public void shouldBeAbleToGetFilterIcons() throws Exception
    {
       WebApp30Descriptor web = create()
-                    .filter()
-                       .icon().setSmallIcon("small1").setLargeIcon("large1").up()
-                       .icon().setSmallIcon("small2").setLargeIcon("large2").up()
+                    .createFilter()
+                       .getOrCreateIcon().smallIcon("small1").largeIcon("large1").up()
+                       .getOrCreateIcon().smallIcon("small2").largeIcon("large2").up()
                     .up();
 
-     List<IconType<FilterType<WebApp30Descriptor>>> list = web.getFilterList().get(0).getIconList();
+     List<IconType<FilterType<WebApp30Descriptor>>> list = web.getAllFilter().get(0).getAllIcon();
      assertTrue(list.size() == 2);
      for (IconType<?> icon: list) 
      {
@@ -130,8 +130,8 @@ public class WebApp30DescriptorGeneralTestCase
       String mapping = "/*";
 
       String desc = create()
-                     .servlet().setServletClass(clazz).setServletName(name).up()
-                     .servletMapping().setServletName(name).setUrlPattern(mapping).up()
+                     .createServlet().servletClass(clazz).servletName(name).up()
+                     .createServletMapping().servletName(name).urlPattern(mapping).up()
                      .exportAsString();
 
       log.fine(desc);
@@ -150,7 +150,7 @@ public class WebApp30DescriptorGeneralTestCase
       String version = "2.5";
 
       String desc = create()
-                        .setVersion(version).setMetadataComplete(true)
+                        .version(version).metadataComplete(true)
                         .exportAsString();
 
       log.fine(desc);
@@ -169,9 +169,9 @@ public class WebApp30DescriptorGeneralTestCase
       int maxAge = 3600;
 
       String desc = create()
-                     .sessionConfig().setSessionTimeout(timeout)
-                        .cookieConfig().setName(name).setDomain(domain).setPath(path).setMaxAge(maxAge).up()
-                        .setTrackingMode(TrackingModeType._COOKIE.name()).up()
+                     .createSessionConfig().sessionTimeout(timeout)
+                        .getOrCreateCookieConfig().name(name).domain(domain).path(path).maxAge(maxAge).up()
+                        .trackingMode(TrackingModeType._COOKIE.name()).up()
                      .exportAsString();
 
       log.fine(desc);
@@ -194,7 +194,7 @@ public class WebApp30DescriptorGeneralTestCase
       final WebApp30Descriptor web = Descriptors.importAs(WebApp30Descriptor.class).from(
             source);
      
-      web.setVersion("3.0");
+      web.version("3.0");
       Assert.assertEquals("3.0", web.getVersionAsString());
       
       // Get as Node structure
@@ -207,7 +207,7 @@ public class WebApp30DescriptorGeneralTestCase
       Assert.assertTrue(root.getAttribute("xsi:schemaLocation").contains("web-app_3_0.xsd"));
       
       // Change the version
-      web.setVersion("2.5");
+      web.version("2.5");
      
       // Check that everything was updated
       Assert.assertEquals("2.5", web.getVersionAsString());
