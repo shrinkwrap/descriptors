@@ -34,9 +34,9 @@ public class WebApp30DescriptorAttributeGroupTestCase
       assertXPath(webApp.exportAsString(), "/web-app/servlet/description[1]", "Description1");
       assertXPath(webApp.exportAsString(), "/web-app/servlet/description[2]", "Description2");
       
-      assertTrue(webApp.getAllServlet().get(0).getDescriptionList().size() == 2);
+      assertTrue(webApp.getAllServlet().get(0).getAllDescription().size() == 2);
       webApp.getAllServlet().get(0).removeAllDescription();
-      assertTrue(webApp.getAllServlet().get(0).getDescriptionList().size() == 0);
+      assertTrue(webApp.getAllServlet().get(0).getAllDescription().size() == 0);
    }
    
    @Test
@@ -50,9 +50,9 @@ public class WebApp30DescriptorAttributeGroupTestCase
       assertXPath(webApp.exportAsString(), "/web-app/filter/display-name[1]", "displayName1");
       assertXPath(webApp.exportAsString(), "/web-app/filter/display-name[2]", "displayName2");
       
-      assertTrue(webApp.getAllFilter().get(0).getDisplayNameList().size() == 2);
+      assertTrue(webApp.getAllFilter().get(0).getAllDisplayName().size() == 2);
       webApp.getAllFilter().get(0).removeAllDisplayName();
-      assertTrue(webApp.getAllFilter().get(0).getDisplayNameList().size() == 0);
+      assertTrue(webApp.getAllFilter().get(0).getAllDisplayName().size() == 0);
    }
    
    @Test

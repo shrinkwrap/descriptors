@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xdd="http://org.jboss/shrinkwrap" exclude-result-prefixes="xs" version="2.0">
 
-    <xsl:include href="xdd-print.xsl"/>
+    <xsl:include href="xdd-printBase.xsl"/>
 
     <!-- *********************************************************** -->
     <!-- *********************************************************** -->
@@ -41,8 +41,8 @@
         <xsl:value-of select="concat('', '&#10;')"/>
         <xsl:value-of select="concat('   /**', '&#10;')"/>
         <xsl:value-of select="concat('    * If not already created, a new &lt;code&gt;', $pElementName,'&lt;/code&gt; element with the given value will be created.&#10;')"/>
-        <xsl:value-of select="concat('    * Otherwise, the existing &lt;code&gt;', $pElementName,'&lt;/code&gt; element will be updated with the given value.&#10;')"/>
-        <xsl:value-of select="concat('    * @return ', 'the current instance of {@link ', $pReturnTypeName, '} &#10;')"/>
+        <xsl:value-of select="concat('    * Otherwise, the existing &lt;code&gt;', $pElementName,'&lt;/code&gt; element will be returned.&#10;')"/>
+        <xsl:value-of select="concat('    * @return ', ' a new or existing instance of &lt;code&gt;', $pReturnTypeName, '&lt;/code&gt; &#10;')"/>
         <xsl:value-of select="concat('    */', '&#10;')"/>
         <xsl:choose>
             <xsl:when test="$pIsInterface=true()">
@@ -74,7 +74,7 @@
         <xsl:value-of select="concat('', '&#10;')"/>
         <xsl:value-of select="concat('   /**', '&#10;')"/>
         <xsl:value-of select="concat('    * Removes the &lt;code&gt;', $pElementName,'&lt;/code&gt; element &#10;')"/>
-        <xsl:value-of select="concat('    * @return ', 'the current instance of {@link ', $pReturnTypeName, '} &#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the current instance of &lt;code&gt;', $pReturnTypeName, '&lt;/code&gt; &#10;')"/>
         <xsl:value-of select="concat('    */', '&#10;')"/>
         <xsl:choose>
             <xsl:when test="$pIsInterface=true()">
@@ -131,7 +131,7 @@
         <xsl:value-of select="concat('', '&#10;')"/>
         <xsl:value-of select="concat('   /**', '&#10;')"/>
         <xsl:value-of select="concat('    * Creates a new &lt;code&gt;', $pElementName,'&lt;/code&gt; element &#10;')"/>
-        <xsl:value-of select="concat('    * @return ', 'the current instance of {@link ', $pReturnTypeName, '} &#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the new created instance of &lt;code&gt;', $pReturnTypeName, '&lt;/code&gt; &#10;')"/>
         <xsl:value-of select="concat('    */', '&#10;')"/>
 
         <xsl:variable name="vStandardCreateSignature" select="concat('public ', xdd:createPascalizedName($vElementType,''), ' create', xdd:checkForClassType($vMethodName), '()')"/>
@@ -162,16 +162,13 @@
         <xsl:param name="pElementName"/>
         <xsl:param name="pReturnTypeName"/>
         <xsl:param name="pIsInterface" as="xs:boolean"/>
-
-
         <xsl:variable name="vStandardCreateSignature" select="concat('public ', xdd:createPascalizedName($pElementType,''), ' getOrCreate', xdd:checkForClassType($pMethodName), '()')"/>
         <xsl:variable name="vConstructor" select="concat(substring-before($pElementType, '&lt;'), 'Impl&lt;', $pClassType, '&gt;')"/>
-
         <xsl:value-of select="concat('', '&#10;')"/>
         <xsl:value-of select="concat('   /**', '&#10;')"/>
         <xsl:value-of select="concat('    * If not already created, a new &lt;code&gt;', $pElementName,'&lt;/code&gt; element will be created and returned.&#10;')"/>
         <xsl:value-of select="concat('    * Otherwise, the first existing &lt;code&gt;', $pElementName,'&lt;/code&gt; element will be returned.&#10;')"/>
-        <xsl:value-of select="concat('    * @return ', 'the node defined for the element &lt;code&gt;', $pElementName, '&lt;/code&gt; &#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the instance defined for the element &lt;code&gt;', $pElementName, '&lt;/code&gt; &#10;')"/>
         <xsl:value-of select="concat('    */', '&#10;')"/>
         <xsl:choose>
             <xsl:when test="$pIsInterface=true()">
@@ -247,7 +244,7 @@
         <xsl:value-of select="concat('', '&#10;')"/>
         <xsl:value-of select="concat('   /**', '&#10;')"/>
         <xsl:value-of select="concat('    * Removes all &lt;code&gt;', $pElementName,'&lt;/code&gt; elements &#10;')"/>
-        <xsl:value-of select="concat('    * @return ', 'the current instance of {@link ', $pReturnTypeName, '} &#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the current instance of &lt;code&gt;', $pReturnTypeName, '&lt;/code&gt; &#10;')"/>
         <xsl:value-of select="concat('    */', '&#10;')"/>
         <xsl:variable name="vStandardRemoveAllSignature" select="concat('public ', $pClassType, ' removeAll', xdd:checkForClassType($pMethodName), '()')"/>
         <xsl:choose>
@@ -322,7 +319,7 @@
         <xsl:value-of select="concat('   /**', '&#10;')"/>
         <xsl:value-of select="concat('    * Sets the &lt;code&gt;', $pElementName,'&lt;/code&gt; attribute&#10;')"/>
         <xsl:value-of select="concat('    * @param ', xdd:checkForClassType(xdd:createCamelizedName($pElementName)), ' the value for the attribute &lt;code&gt;', $pElementName,'&lt;/code&gt; &#10;')"/>
-        <xsl:value-of select="concat('    * @return ', 'the current instance of {@link ', $pReturnTypeName, '} &#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the current instance of &lt;code&gt;', $pReturnTypeName, '&lt;/code&gt; &#10;')"/>
         <xsl:value-of select="concat('    */', '&#10;')"/>
         <xsl:choose>
             <xsl:when test="$pIsInterface=true()">
@@ -355,7 +352,7 @@
         <xsl:value-of select="concat('   /**', '&#10;')"/>
         <xsl:value-of select="concat('    * Sets the &lt;code&gt;', $pElementName,'&lt;/code&gt; attribute&#10;')"/>
         <xsl:value-of select="concat('    * @param ', xdd:checkForClassType(xdd:createCamelizedName($pElementName)), ' the value for the attribute &lt;code&gt;', $pElementName,'&lt;/code&gt; &#10;')"/>
-        <xsl:value-of select="concat('    * @return ', 'the current instance of {@link ', $pReturnTypeName, '} &#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the current instance of &lt;code&gt;', $pReturnTypeName, '&lt;/code&gt; &#10;')"/>
         <xsl:value-of select="concat('    */', '&#10;')"/>
         <xsl:choose>
             <xsl:when test="$pIsInterface=true()">
@@ -386,8 +383,8 @@
         <xsl:variable name="vGetSignature" select="concat('public ', xdd:createPascalizedName($pElementType,''), ' get', xdd:checkForClassType($pMethodName), '()')"/>
         <xsl:value-of select="concat('', '&#10;')"/>
         <xsl:value-of select="concat('   /**', '&#10;')"/>
-        <xsl:value-of select="concat('    * Removes the &lt;code&gt;', $pElementName,'&lt;/code&gt; attribute &#10;')"/>
-        <xsl:value-of select="concat('    * @return ', 'the current instance of {@link ', $pReturnTypeName, '} &#10;')"/>
+        <xsl:value-of select="concat('    * Returns the &lt;code&gt;', $pElementName, '&lt;/code&gt; attribute&#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the value defined for the attribute &lt;code&gt;', $pElementName, '&lt;/code&gt; &#10;')"/>
         <xsl:value-of select="concat('    */', '&#10;')"/>
         <xsl:choose>
             <xsl:when test="$pIsInterface=true()">
@@ -417,8 +414,8 @@
         <xsl:variable name="vGetBooleanSignature" select="concat('public ', xdd:createPascalizedName($pElementType,''), ' is', xdd:checkForClassType($pMethodName), '()')"/>
         <xsl:value-of select="concat('', '&#10;')"/>
         <xsl:value-of select="concat('   /**', '&#10;')"/>
-        <xsl:value-of select="concat('    * Removes the &lt;code&gt;', $pElementName,'&lt;/code&gt; attribute &#10;')"/>
-        <xsl:value-of select="concat('    * @return ', 'the current instance of {@link ', $pReturnTypeName, '} &#10;')"/>
+        <xsl:value-of select="concat('    * Returns the &lt;code&gt;', $pElementName, '&lt;/code&gt; attribute&#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the value defined for the attribute &lt;code&gt;', $pElementName, '&lt;/code&gt; &#10;')"/>
         <xsl:value-of select="concat('    */', '&#10;')"/>
         <xsl:choose>
             <xsl:when test="$pIsInterface=true()">
@@ -449,7 +446,7 @@
         <xsl:value-of select="concat('', '&#10;')"/>
         <xsl:value-of select="concat('   /**', '&#10;')"/>
         <xsl:value-of select="concat('    * Removes the &lt;code&gt;', $pElementName,'&lt;/code&gt; attribute &#10;')"/>
-        <xsl:value-of select="concat('    * @return ', 'the current instance of {@link ', $pReturnTypeName, '} &#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the current instance of &lt;code&gt;', $pReturnTypeName, '&lt;/code&gt; &#10;')"/>
         <xsl:value-of select="concat('    */', '&#10;')"/>
         <xsl:choose>
             <xsl:when test="$pIsInterface=true()">
@@ -507,11 +504,10 @@
         <xsl:param name="pReturnTypeName"/>
         <xsl:param name="pIsInterface" as="xs:boolean"/>
         <xsl:variable name="vSetSignature" select="concat('   public ', $pClassType, ' ', xdd:checkForClassType(xdd:LowerCaseFirstChar($pMethodName)), '(',  xdd:createPascalizedName($pElementType,''),' ',xdd:checkForClassType(xdd:createCamelizedName($pElementName)), ')')"/>
-        <xsl:value-of select="concat('', '&#10;')"/>
         <xsl:value-of select="concat('   /**', '&#10;')"/>
-        <xsl:value-of select="concat('    * If not already created, a new &lt;code&gt;', $pElementName,'&lt;/code&gt; element with the given value will be created.&#10;')"/>
-        <xsl:value-of select="concat('    * Otherwise, the existing &lt;code&gt;', $pElementName,'&lt;/code&gt; element will be updated with the given value.&#10;')"/>
-        <xsl:value-of select="concat('    * @return ', 'the current instance of {@link ', $pReturnTypeName, '} &#10;')"/>
+        <xsl:value-of select="concat('    * Sets the &lt;code&gt;', $pElementName,'&lt;/code&gt; element&#10;')"/>
+        <xsl:value-of select="concat('    * @param ', xdd:checkForClassType(xdd:createCamelizedName($pElementName)), ' the value for the element &lt;code&gt;', $pElementName,'&lt;/code&gt; &#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the current instance of &lt;code&gt;', $pReturnTypeName, '&lt;/code&gt; &#10;')"/>
         <xsl:value-of select="concat('    */', '&#10;')"/>
         <xsl:choose>
             <xsl:when test="$pIsInterface=true()">
@@ -540,11 +536,10 @@
         <xsl:param name="pReturnTypeName"/>
         <xsl:param name="pIsInterface" as="xs:boolean"/>
         <xsl:variable name="vSetStringSignature" select="concat('   public ', $pClassType, ' ', xdd:checkForClassType(xdd:LowerCaseFirstChar($pMethodName)), '(String', ' ',xdd:checkForClassType(xdd:createCamelizedName($pElementName)), ')')"/>
-        <xsl:value-of select="concat('', '&#10;')"/>
         <xsl:value-of select="concat('   /**', '&#10;')"/>
-        <xsl:value-of select="concat('    * If not already created, a new &lt;code&gt;', $pElementName,'&lt;/code&gt; element with the given value will be created.&#10;')"/>
-        <xsl:value-of select="concat('    * Otherwise, the existing &lt;code&gt;', $pElementName,'&lt;/code&gt; element will be updated with the given value.&#10;')"/>
-        <xsl:value-of select="concat('    * @return ', 'the current instance of {@link ', $pReturnTypeName, '} &#10;')"/>
+        <xsl:value-of select="concat('    * Sets the &lt;code&gt;', $pElementName,'&lt;/code&gt; element&#10;')"/>
+        <xsl:value-of select="concat('    * @param ', xdd:checkForClassType(xdd:createCamelizedName($pElementName)), ' the value for the element &lt;code&gt;', $pElementName,'&lt;/code&gt; &#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the current instance of &lt;code&gt;', $pReturnTypeName, '&lt;/code&gt; &#10;')"/>
         <xsl:value-of select="concat('    */', '&#10;')"/>
         <xsl:choose>
             <xsl:when test="$pIsInterface=true()">
@@ -573,10 +568,9 @@
         <xsl:param name="pIsInterface" as="xs:boolean"/>
         <xsl:variable name="vGetSignature" select="concat('public ', xdd:createPascalizedName($pElementType,''), ' get', xdd:checkForClassType($pMethodName), '()')"/>
         <xsl:value-of select="concat('', '&#10;')"/>
-        <xsl:value-of select="concat('', '&#10;')"/>
         <xsl:value-of select="concat('   /**', '&#10;')"/>
         <xsl:value-of select="concat('    * Returns the &lt;code&gt;', $pElementName, '&lt;/code&gt; element&#10;')"/>
-        <xsl:value-of select="concat('    * @return ', 'the node defined for the element &lt;code&gt;', $pElementName, '&lt;/code&gt; &#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the value found for the element &lt;code&gt;', $pElementName, '&lt;/code&gt; &#10;')"/>
         <xsl:value-of select="concat('    */', '&#10;')"/>
         <xsl:choose>
             <xsl:when test="$pIsInterface=true()">
@@ -606,10 +600,9 @@
         <xsl:param name="pIsInterface" as="xs:boolean"/>
         <xsl:variable name="vGetStringSignature" select="concat('public String ', ' get', xdd:checkForClassType($pMethodName), 'AsString()')"/>
         <xsl:value-of select="concat('', '&#10;')"/>
-        <xsl:value-of select="concat('', '&#10;')"/>
         <xsl:value-of select="concat('   /**', '&#10;')"/>
         <xsl:value-of select="concat('    * Returns the &lt;code&gt;', $pElementName, '&lt;/code&gt; element&#10;')"/>
-        <xsl:value-of select="concat('    * @return ', 'the node defined for the element &lt;code&gt;', $pElementName, '&lt;/code&gt; &#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the value found for the element &lt;code&gt;', $pElementName, '&lt;/code&gt; &#10;')"/>
         <xsl:value-of select="concat('    */', '&#10;')"/>
         <xsl:choose>
             <xsl:when test="$pIsInterface=true()">
@@ -681,9 +674,9 @@
         <xsl:variable name="vSetSignature" select="concat('   public ', $pClassType, ' ', xdd:checkForClassType(xdd:LowerCaseFirstChar($pMethodName)), '(',  xdd:createPascalizedName($pElementType,''),' ',xdd:checkForClassType(xdd:createCamelizedName($pElementName)), ')')"/>
         <xsl:value-of select="concat('', '&#10;')"/>
         <xsl:value-of select="concat('   /**', '&#10;')"/>
-        <xsl:value-of select="concat('    * If not already created, a new &lt;code&gt;', $pElementName,'&lt;/code&gt; element with the given value will be created.&#10;')"/>
-        <xsl:value-of select="concat('    * Otherwise, the existing &lt;code&gt;', $pElementName,'&lt;/code&gt; element will be updated with the given value.&#10;')"/>
-        <xsl:value-of select="concat('    * @return ', 'the current instance of {@link ', $pReturnTypeName, '} &#10;')"/>
+        <xsl:value-of select="concat('    * Sets the &lt;code&gt;', $pElementName,'&lt;/code&gt; element&#10;')"/>
+        <xsl:value-of select="concat('    * @param ', xdd:checkForClassType(xdd:createCamelizedName($pElementName)), ' the value for the element &lt;code&gt;', $pElementName,'&lt;/code&gt; &#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the current instance of &lt;code&gt;', $pReturnTypeName, '&lt;/code&gt; &#10;')"/>
         <xsl:value-of select="concat('    */', '&#10;')"/>
         <xsl:choose>
             <xsl:when test="$pIsInterface=true()">
@@ -714,10 +707,9 @@
         <xsl:variable name="vSetSignature" select="concat('   public ', $pClassType, ' ', xdd:checkForClassType(xdd:LowerCaseFirstChar($pMethodName)), '(',  xdd:createPascalizedName($pElementType,''),' ',xdd:checkForClassType(xdd:createCamelizedName($pElementName)), ')')"/>
         <xsl:value-of select="concat('', '&#10;')"/>
         <xsl:value-of select="concat('   /**', '&#10;')"/>
-        <xsl:value-of select="concat('    * If not already created, a new &lt;code&gt;', $pElementName,'&lt;/code&gt; element with the given value will be created.&#10;')"/>
-        <xsl:value-of select="concat('    * Otherwise, the existing &lt;code&gt;', $pElementName,'&lt;/code&gt; element will be updated with the given value.&#10;')"/>
-        <xsl:value-of select="concat('    * @param ', xdd:createPascalizedName($pElementType,''), '&#10;')"/>
-        <xsl:value-of select="concat('    * @return ', 'the current instance of {@link ', $pReturnTypeName, '} &#10;')"/>
+        <xsl:value-of select="concat('    * Sets the &lt;code&gt;', $pElementName,'&lt;/code&gt; element&#10;')"/>
+        <xsl:value-of select="concat('    * @param ', xdd:checkForClassType(xdd:createCamelizedName($pElementName)), ' the value for the element &lt;code&gt;', $pElementName,'&lt;/code&gt; &#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the current instance of &lt;code&gt;', $pReturnTypeName, '&lt;/code&gt; &#10;')"/>
         <xsl:value-of select="concat('    */', '&#10;')"/>
         <xsl:choose>
             <xsl:when test="$pIsInterface=true()">
@@ -753,7 +745,7 @@
         <xsl:variable name="vStandardGetStringSignature" select="concat('public String ', ' get', xdd:checkForClassType($pMethodName), 'AsString()')"/>
         <xsl:variable name="vStandardGetBooleanSignature" select="concat('public ', xdd:createPascalizedName($pElementType,''), ' is', xdd:checkForClassType($pMethodName), '()')"/>
         <xsl:variable name="vStandardGetComplexSignature" select="concat('public ', xdd:createPascalizedName($pElementType,''), ' ', xdd:checkForClassType( xdd:LowerCaseFirstChar($pMethodName)), '()')"/>
-        <xsl:variable name="vStandardGetListSignature" select="concat('public List&lt;', xdd:createPascalizedName($pElementType,''), '&gt; get', xdd:checkForClassType($pMethodName), 'List()')"/>
+        <xsl:variable name="vStandardGetListSignature" select="concat('public List&lt;', xdd:createPascalizedName($pElementType,''), '&gt; getAll', xdd:checkForClassType($pMethodName), '()')"/>
 
         <xsl:choose>
             <xsl:when test="$pIsInterface=true()">
@@ -835,7 +827,7 @@
         <xsl:value-of select="concat('', '&#10;')"/>
         <xsl:value-of select="concat('   /**', '&#10;')"/>
         <xsl:value-of select="concat('    * Removes the &lt;code&gt;', $pElementName,'&lt;/code&gt; element &#10;')"/>
-        <xsl:value-of select="concat('    * @return ', 'the current instance of {@link ', $pReturnTypeName, '} &#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the current instance of &lt;code&gt;', $pReturnTypeName, '&lt;/code&gt; &#10;')"/>
         <xsl:value-of select="concat('    */', '&#10;')"/>
         <xsl:choose>
             <xsl:when test="$pIsInterface=true()">
@@ -868,7 +860,7 @@
         <xsl:value-of select="concat('', '&#10;')"/>
         <xsl:value-of select="concat('   /**', '&#10;')"/>
         <xsl:value-of select="concat('    * Creates a new &lt;code&gt;', $pElementName,'&lt;/code&gt; element &#10;')"/>
-        <xsl:value-of select="concat('    * @return ', 'the current instance of {@link ', $pReturnTypeName, '} &#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the current instance of &lt;code&gt;', $pReturnTypeName, '&lt;/code&gt; &#10;')"/>
         <xsl:value-of select="concat('    */', '&#10;')"/>
         <xsl:choose>
             <xsl:when test="$pIsInterface=true()">
@@ -901,8 +893,8 @@
         <xsl:value-of select="concat('   /**', '&#10;')"/>
         <xsl:value-of select="concat('    * Creates for all ', $pElementType, ' objects representing &lt;code&gt;', $pElementName,'&lt;/code&gt; elements, &#10;')"/>
         <xsl:value-of select="concat('    * a new &lt;code&gt;', $pElementName,'&lt;/code&gt; element &#10;')"/>
-        <xsl:value-of select="concat('    * @param list of &lt;code&gt;', $pElementName,'&lt;/code&gt; objects &#10;')"/>
-        <xsl:value-of select="concat('    * @return ', 'the current instance of {@link ', $pReturnTypeName, '} &#10;')"/>
+        <xsl:value-of select="concat('    * @param ', 'values', ' list of &lt;code&gt;', $pElementName,'&lt;/code&gt; objects &#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the current instance of &lt;code&gt;', $pReturnTypeName, '&lt;/code&gt; &#10;')"/>
         <xsl:value-of select="concat('    */', '&#10;')"/>
         <xsl:choose>
             <xsl:when test="$pIsInterface=true()">
@@ -937,7 +929,7 @@
         <xsl:param name="pElementName"/>
         <xsl:param name="pReturnTypeName"/>
         <xsl:param name="pIsInterface" as="xs:boolean"/>
-        <xsl:variable name="vGetListSignature" select="concat('public List&lt;', xdd:createPascalizedName($pElementType,''), '&gt; get', xdd:checkForClassType($pMethodName), 'List()')"/>
+        <xsl:variable name="vGetListSignature" select="concat('public List&lt;', xdd:createPascalizedName($pElementType,''), '&gt; getAll', xdd:checkForClassType($pMethodName), '()')"/>
         <xsl:variable name="vValueOf" select=" xdd:writeGetValueOf($pElementType, $pElementName)"/>
         <xsl:variable name="vValueOfDataType" select=" xdd:writeGetValueOfDataType($pElementType)"/>
         <xsl:value-of select="concat('', '&#10;')"/>
@@ -980,7 +972,7 @@
         <xsl:value-of select="concat('', '&#10;')"/>
         <xsl:value-of select="concat('   /**', '&#10;')"/>
         <xsl:value-of select="concat('    * Removes the &lt;code&gt;', $pElementName,'&lt;/code&gt; element &#10;')"/>
-        <xsl:value-of select="concat('    * @return ', 'the current instance of {@link ', $pReturnTypeName, '} &#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the current instance of &lt;code&gt;', $pReturnTypeName, '&lt;/code&gt; &#10;')"/>
         <xsl:value-of select="concat('    */', '&#10;')"/>
         <xsl:choose>
             <xsl:when test="$pIsInterface=true()">
@@ -1033,8 +1025,8 @@
         <xsl:variable name="vSetBooleanEmptySignature" select="concat('   public ', $pClassType, ' ', xdd:checkForClassType( xdd:LowerCaseFirstChar($pMethodName)), '()')"/>
         <xsl:value-of select="concat('', '&#10;')"/>
         <xsl:value-of select="concat('   /**', '&#10;')"/>
-        <xsl:value-of select="concat('    * Removes the &lt;code&gt;', $pElementName,'&lt;/code&gt; element &#10;')"/>
-        <xsl:value-of select="concat('    * @return ', 'the current instance of {@link ', $pReturnTypeName, '} &#10;')"/>
+        <xsl:value-of select="concat('    * Sets the &lt;code&gt;', $pElementName,'&lt;/code&gt; element &#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the current instance of &lt;code&gt;', $pReturnTypeName, '&lt;/code&gt; &#10;')"/>
         <xsl:value-of select="concat('    */', '&#10;')"/>
         <xsl:choose>
             <xsl:when test="$pIsInterface=true()">
@@ -1065,7 +1057,7 @@
         <xsl:value-of select="concat('', '&#10;')"/>
         <xsl:value-of select="concat('   /**', '&#10;')"/>
         <xsl:value-of select="concat('    * Removes the &lt;code&gt;', $pElementName,'&lt;/code&gt; element &#10;')"/>
-        <xsl:value-of select="concat('    * @return ', 'the current instance of {@link ', $pReturnTypeName, '} &#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the current instance of &lt;code&gt;', $pReturnTypeName, '&lt;/code&gt; &#10;')"/>
         <xsl:value-of select="concat('    */', '&#10;')"/>
         <xsl:choose>
             <xsl:when test="$pIsInterface=true()">

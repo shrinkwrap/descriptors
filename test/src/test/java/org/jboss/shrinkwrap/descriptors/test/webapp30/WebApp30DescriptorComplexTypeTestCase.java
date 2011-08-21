@@ -56,17 +56,17 @@ public class WebApp30DescriptorComplexTypeTestCase
       assertEquals(webApp.getAllSecurityConstraint().get(0).getAllWebResourceCollection().get(0).getWebResourceName(), "resource1");
       assertEquals(webApp.getAllSecurityConstraint().get(0).getAllWebResourceCollection().get(1).getWebResourceName(), "resource2");
       
-      assertEquals(webApp.getAllSecurityConstraint().get(0).getAllWebResourceCollection().get(0).getHttpMethodList().get(0), "method1");
-      assertEquals(webApp.getAllSecurityConstraint().get(0).getAllWebResourceCollection().get(0).getHttpMethodList().get(1), "method2");
-      assertEquals(webApp.getAllSecurityConstraint().get(0).getAllWebResourceCollection().get(1).getHttpMethodList().get(0), "method3");
-      assertEquals(webApp.getAllSecurityConstraint().get(0).getAllWebResourceCollection().get(1).getHttpMethodList().get(1), "method4");
+      assertEquals(webApp.getAllSecurityConstraint().get(0).getAllWebResourceCollection().get(0).getAllHttpMethod().get(0), "method1");
+      assertEquals(webApp.getAllSecurityConstraint().get(0).getAllWebResourceCollection().get(0).getAllHttpMethod().get(1), "method2");
+      assertEquals(webApp.getAllSecurityConstraint().get(0).getAllWebResourceCollection().get(1).getAllHttpMethod().get(0), "method3");
+      assertEquals(webApp.getAllSecurityConstraint().get(0).getAllWebResourceCollection().get(1).getAllHttpMethod().get(1), "method4");
       
-      assertEquals(webApp.getAllSecurityConstraint().get(0).getAllWebResourceCollection().get(0).getDescriptionList().get(0), "descr1");
-      assertEquals(webApp.getAllSecurityConstraint().get(0).getAllWebResourceCollection().get(0).getDescriptionList().get(1), "descr2");
-      assertEquals(webApp.getAllSecurityConstraint().get(0).getAllWebResourceCollection().get(0).getDescriptionList().get(2), "descr3");
-      assertEquals(webApp.getAllSecurityConstraint().get(0).getAllWebResourceCollection().get(1).getDescriptionList().get(0), "descr4");
-      assertEquals(webApp.getAllSecurityConstraint().get(0).getAllWebResourceCollection().get(1).getDescriptionList().get(1), "descr5");
-      assertEquals(webApp.getAllSecurityConstraint().get(0).getAllWebResourceCollection().get(1).getDescriptionList().get(2), "descr6");
+      assertEquals(webApp.getAllSecurityConstraint().get(0).getAllWebResourceCollection().get(0).getAllDescription().get(0), "descr1");
+      assertEquals(webApp.getAllSecurityConstraint().get(0).getAllWebResourceCollection().get(0).getAllDescription().get(1), "descr2");
+      assertEquals(webApp.getAllSecurityConstraint().get(0).getAllWebResourceCollection().get(0).getAllDescription().get(2), "descr3");
+      assertEquals(webApp.getAllSecurityConstraint().get(0).getAllWebResourceCollection().get(1).getAllDescription().get(0), "descr4");
+      assertEquals(webApp.getAllSecurityConstraint().get(0).getAllWebResourceCollection().get(1).getAllDescription().get(1), "descr5");
+      assertEquals(webApp.getAllSecurityConstraint().get(0).getAllWebResourceCollection().get(1).getAllDescription().get(2), "descr6");
       
       assertXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[1]/web-resource-name", "resource1");
       assertXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[2]/web-resource-name", "resource2");
