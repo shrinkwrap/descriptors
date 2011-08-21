@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.impl.spec.se.manifest;
+package org.jboss.shrinkwrap.descriptor.impl.base.spec.se.manifest;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
