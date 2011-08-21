@@ -1,0 +1,3 @@
+implClass=org.jboss.shrinkwrap.descriptor.impl.base.spec.se.manifest.ManifestDescriptorImpl
+importerClass=org.jboss.shrinkwrap.descriptor.impl.base.spec.se.manifest.ManifestDescriptorImporter
+defaultName=MANIFEST.MF
