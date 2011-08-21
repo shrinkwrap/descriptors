@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jboss xmlns="http://www.jboss.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.jboss.com/xml/ns/javaee 
+							http://www.jboss.org/j2ee/schema/jboss_5_1.xsd"
+	version="5.1">
+
+	<enterprise-beans>
+		
+		<session>
+			<ejb-name>FixServiceRegistryBean</ejb-name>
+			<local-jndi-name>Kernel/FixServiceRegistryBean/local</local-jndi-name>
+		</session>
+		
+		<message-driven>
+			<ejb-name>AcceptorsSink</ejb-name>
+			<resource-adapter-name>${com.swx.ptp.ear.name}#jca-qfj-adapter-sti-1_20-1.0.0.8.rar</resource-adapter-name>
+			<depends>jboss.jca:service=RARDeployment,name='${com.swx.ptp.ear.name}#jca-qfj-adapter-sti-1_20-1.0.0.8.rar'</depends>
+		</message-driven>
+		<message-driven>
+			<ejb-name>InitiatorsSink</ejb-name>
+			<resource-adapter-name>${com.swx.ptp.ear.name}#jca-qfj-adapter-sti-1_20-1.0.0.8.rar</resource-adapter-name>
+			<depends>jboss.jca:service=RARDeployment,name='${com.swx.ptp.ear.name}#jca-qfj-adapter-sti-1_20-1.0.0.8.rar'</depends>
+		</message-driven>
+		
+	</enterprise-beans>
+
+</jboss>

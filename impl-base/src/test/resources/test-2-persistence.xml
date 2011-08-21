@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+
+	<persistence-unit name="obe-transaction-pu"
+		transaction-type="JTA">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:/obe-transaction-ds</jta-data-source>
+		<mapping-file>META-INF/obe-tx-orm.xml</mapping-file>
+    
+        <class>com.swx.obe.transdb.entities.ContraFirm</class>
+	    <class>com.swx.obe.transdb.entities.ControlData</class>
+	    <class>com.swx.obe.transdb.entities.EnteringFirm</class>
+	    <class>com.swx.obe.transdb.entities.EurexFutureKey</class>
+	    <class>com.swx.obe.transdb.entities.EurexInstrumentKey</class>
+	    <class>com.swx.obe.transdb.entities.EurexOptionKey</class>
+	    <class>com.swx.obe.transdb.entities.InstrumentKey</class>
+	    <class>com.swx.obe.transdb.entities.Report</class>
+	    <class>com.swx.obe.transdb.entities.ReportingSecurityKey</class>
+	    <class>com.swx.obe.transdb.entities.ResponseData</class>
+	    <class>com.swx.obe.transdb.entities.Side</class>
+	    <class>com.swx.obe.transdb.entities.AuditTable</class>
+	    <class>com.swx.obe.transdb.entities.RuntimeParams</class>
+	    <class>com.swx.obe.transdb.entities.TxReportFile</class>
+	    
+	    <class>com.swx.obe.transdb.entities.Email</class>
+  		<class>com.swx.obe.transdb.entities.EmailTemplate</class>
+  		<class>com.swx.obe.transdb.entities.ItfRuntimeParam</class>
+  		<class>com.swx.obe.transdb.entities.MistradeLink</class>
+  		<class>com.swx.obe.transdb.entities.MistradeReport</class>
+  		<class>com.swx.obe.transdb.entities.NewsAttachment</class>
+	    <class>com.swx.obe.transdb.entities.NewsBoard</class>
+  		<class>com.swx.obe.transdb.entities.NewsSecurity</class>
+  		<class>com.swx.obe.transdb.entities.NewsTemplate</class>
+  		<class>com.swx.obe.transdb.entities.NewsType</class>
+  		<class>com.swx.obe.transdb.entities.ProductType</class>
+	        
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		<properties>
+			<!-- value="create-drop" or "update" -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect" />
+			<property name="hibernate.jdbc.batch_size" value="20"/> 
+			<property name="hibernate.show_sql" value="false"/>
+			<!-- property name="hibernate.ejb.cfgfile" value="META-INF/hibernate.cfg.xml"/ -->			
+			<!-- property name="hibernate.ejb.interceptor" value="com.swx.obe.transdb.entities.ContraFirmEntityListener"/ -->
+
+		</properties>
+	</persistence-unit>
+
+	<persistence-unit name="obe-log-pu" transaction-type="JTA">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:/obe-transaction-ds</jta-data-source>
+		<mapping-file>META-INF/obe-log-orm.xml</mapping-file>
+		<class>com.swx.obe.transdb.entities.TestMessage</class>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+		</properties>
+	</persistence-unit>
+
+	<persistence-unit name="obe-reference-pu"
+		transaction-type="JTA">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:/obe-reference-ds</jta-data-source>
+		<mapping-file>META-INF/obe-ref-orm.xml</mapping-file>
+
+        <class>com.swx.obe.refdb.entities.DesignatedExchange</class>
+	    <class>com.swx.obe.refdb.entities.EurexFuture</class>
+	    <class>com.swx.obe.refdb.entities.EurexInstrument</class>
+	    <class>com.swx.obe.refdb.entities.EurexOption</class>
+	    <class>com.swx.obe.refdb.entities.EurexUnderlying</class>
+	    <class>com.swx.obe.refdb.entities.Instrument</class>
+	    <class>com.swx.obe.refdb.entities.Issuer</class>
+	    <class>com.swx.obe.refdb.entities.Member</class>
+	    <class>com.swx.obe.refdb.entities.MemberOrganisation</class>
+	    <class>com.swx.obe.refdb.entities.ObeSystemParameters</class>
+	    <class>com.swx.obe.refdb.entities.RcRouting</class>
+	    <class>com.swx.obe.refdb.entities.ReportingSecurity</class>
+	    <class>com.swx.obe.refdb.entities.SecurityExchange</class>
+	    <class>com.swx.obe.refdb.entities.Trader</class>
+	    <class>com.swx.obe.refdb.entities.TradingData</class>
+	    <class>com.swx.obe.refdb.entities.Country</class>
+	    <class>com.swx.obe.refdb.entities.Currency</class>
+	    <class>com.swx.obe.refdb.entities.GeographicalArea</class>
+	    <class>com.swx.obe.refdb.entities.IndustrySector</class>
+	    <class>com.swx.obe.refdb.entities.ListingType</class>
+	    <class>com.swx.obe.refdb.entities.PublicTradeType</class>
+	    <class>com.swx.obe.refdb.entities.TradeType</class>
+
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		<properties>
+			<!-- <property name="hibernate.hbm2ddl.auto" value="update"/>  -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect" />
+			<!-- 
+			<property name="hibernate.cache.use_second_level_cache" value="true"/>
+			<property name="hibernate.cache.use_query_cache" value="true"/>
+			<property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.jbc2.MultiplexedJBossCacheRegionFactory"/>
+			<property name="hibernate.cache.region.jbc2.cachefactory" value="java:CacheManager"/> -->
+ 		  <!-- <property name="hibernate.cache.region.jbc2.cfg.entity" value="mvcc-entity"/> 
+			     <property name="hibernate.cache.region.jbc2.cfg.query" value="local-query"/> -->
+	      <!--
+     	    <property name="hibernate.cache.region.jbc2.query.localonly" value="true"/>
+		    <property name="hibernate.ejb.classcache.com.swx.obe.refdb.entities.Member" value="read-only"/>
+		    <property name="hibernate.ejb.classcache.com.swx.obe.refdb.entities.Country" value="read-only"/>
+		    <property name="hibernate.ejb.classcache.com.swx.obe.refdb.entities.Currency" value="read-only"/>
+		    <property name="hibernate.ejb.classcache.com.swx.obe.refdb.entities.DesignatedExchange" value="read-only"/>
+ 		    <property name="hibernate.ejb.classcache.com.swx.obe.refdb.entities.SecurityExchange" value="read-only"/> -->
+		    <!-- <property name="hibernate.ejb.classcache.com.swx.obe.refdb.entities.EurexOption" value="read-only"/>
+		         <property name="hibernate.ejb.classcache.com.swx.obe.refdb.entities.EurexFuture" value="read-only"/> -->
+		    <!-- <property name="hibernate.show_sql" value="true"/> -->
+		    
+		    
+		</properties>
+	</persistence-unit>
+
+
+</persistence>

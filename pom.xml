@@ -17,7 +17,7 @@
     <!-- Artifact Information  -->
   <groupId>org.jboss.shrinkwrap.descriptors</groupId>
   <artifactId>shrinkwrap-descriptors-parent</artifactId>
-  <version>1.1.0-alpha-3-SNAPSHOT</version>
+  <version>1.2.0-alpha-1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>ShrinkWrap Descriptors Aggregator</name>
   <url>http://www.jboss.org</url>
@@ -55,9 +55,15 @@
   
   <!-- Aggregate Modules -->
   <modules>
-    <module>api</module>
-    <module>impl</module>
+    <module>api-base</module>
+    <module>api-javaee</module>
+    <module>api-jboss</module>
+    <module>gen</module>
+    <module>impl-base</module>
+    <module>impl-javaee</module>
+    <module>impl-jboss</module>
     <module>spi</module>
+    <module>test</module>
   </modules>
 
   <!-- Plugin Configuration -->
