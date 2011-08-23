@@ -48,6 +48,9 @@ public class BeansDescriptorTestCase
    @Interceptor
    private class TestInterceptor {}
    
+   @Interceptor
+   private class TestAnotherInterceptor {}
+   
    @Decorator
    private class TestDecorator {}
 
@@ -197,6 +200,25 @@ public class BeansDescriptorTestCase
       
    }
    
+   //-------------------------------------------------------------------------------------||
+   // Complex Scenario -------------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
+   @Test
+   public void shouldBeAbleToGenerateComplexDescriptor() throws Exception
+   {
+      @SuppressWarnings("unchecked")
+      final BeansDescriptor beans = Descriptors.create(BeansDescriptor.class)
+            .interceptors(TestInterceptor.class, TestAnotherInterceptor.class)
+            .decorator(TestDecorator.class)
+            .alternativeStereotypes(TestAlternativeStereoType.class);
+      String xml = beans.exportAsString();
+
+      assertXPath(xml, "/beans/interceptors/class", TestInterceptor.class.getName(), TestAnotherInterceptor.class.getName());
+      assertXPath(xml, "/beans/decorators/class", TestDecorator.class.getName());
+      assertXPath(xml, "/beans/alternatives/stereotype", TestAlternativeStereoType.class.getName());
+   }
+
    //-------------------------------------------------------------------------------------||
    // Internal Helper --------------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||

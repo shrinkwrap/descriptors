@@ -496,6 +496,42 @@ public class PersistenceDescriptorTestCase
    }
 
    // -------------------------------------------------------------------------------------||
+   // Complex Scenario---------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
+
+   @Test
+   public void shouldBeAbleToIncludeMultiplePersistenceUnit() throws Exception
+   {
+      final PersistenceDescriptor persistence = Descriptors.create(PersistenceDescriptor.class)
+            .persistenceUnit("hibernate-unit")
+               .transactionType(TransactionType.JTA)
+               .provider(ProviderType.HIBERNATE)
+               .jtaDataSource("java:/DefaultDS")
+               .classes(PersistenceDescriptor.class)
+               .schemaGenerationMode(SchemaGenerationModeType.CREATE_DROP)
+               .showSql()
+               .formatSql()
+               .property("hibernate.transaction.flush_before_completion", true)
+            .persistenceUnit("eclipselink-unit")
+               .transactionType(TransactionType.RESOURCE_LOCAL)
+               .provider(ProviderType.ECLIPSE_LINK)
+               .nonJtaDataSource("jdbc/__default").excludeUnlistedClasses()
+               .schemaGenerationMode(SchemaGenerationModeType.CREATE);
+
+      String desc = persistence.exportAsString();
+
+      assertXPath(desc, "/persistence/persistence-unit[@name='hibernate-unit']/@transaction-type", "JTA");
+      assertXPath(desc, "/persistence/persistence-unit[@name='hibernate-unit']/provider", "org.hibernate.ejb.HibernatePersistence");
+      assertXPath(desc, "/persistence/persistence-unit[@name='hibernate-unit']/jta-data-source", "java:/DefaultDS");
+      assertXPath(desc, "/persistence/persistence-unit[@name='hibernate-unit']/class", PersistenceDescriptor.class.getName());
+
+      assertXPath(desc, "/persistence/persistence-unit[@name='eclipselink-unit']/@transaction-type", "RESOURCE_LOCAL");
+      assertXPath(desc, "/persistence/persistence-unit[@name='eclipselink-unit']/provider", "org.eclipse.persistence.jpa.PersistenceProvider");
+      assertXPath(desc, "/persistence/persistence-unit[@name='eclipselink-unit']/non-jta-data-source", "jdbc/__default");
+      assertXPath(desc, "/persistence/persistence-unit[@name='eclipselink-unit']/exclude-unlisted-classes", "true");
+   }
+
+   // -------------------------------------------------------------------------------------||
    // Internal Helper --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
