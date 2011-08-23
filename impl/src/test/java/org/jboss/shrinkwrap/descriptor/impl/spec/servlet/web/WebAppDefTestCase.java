@@ -121,6 +121,68 @@ public class WebAppDefTestCase
    }
    
    @Test
+   public void shouldBeAbleToDefineEnvNameEntry() throws Exception
+   {
+      final String webApp = Descriptors.create(WebAppDescriptor.class)
+            .envEntry("webmasterName", "Davide", String.class).exportAsString();
+
+      assertXPath(webApp, "/web-app/env-entry/env-entry-name", "webmasterName");
+      assertXPath(webApp, "/web-app/env-entry/env-entry-value", "Davide");
+      assertXPath(webApp, "/web-app/env-entry/env-entry-type", "java.lang.String");
+   }
+
+   @Test
+   public void shouldBeAbleToDefineMultipleEnvNameEntries() throws Exception
+   {
+      final String webApp = Descriptors.create(WebAppDescriptor.class)
+            .envEntry("webmasterName", "Omar", "java.lang.String")
+            .envEntry("cms/defaultUserSettings/recordsPerPage", 30, Integer.class).exportAsString();
+
+      assertXPath(webApp, "/web-app/env-entry[1]/env-entry-name", "webmasterName");
+      assertXPath(webApp, "/web-app/env-entry[1]/env-entry-value", "Omar");
+      assertXPath(webApp, "/web-app/env-entry[1]/env-entry-type", "java.lang.String");
+
+      assertXPath(webApp, "/web-app/env-entry[2]/env-entry-name", "cms/defaultUserSettings/recordsPerPage");
+      assertXPath(webApp, "/web-app/env-entry[2]/env-entry-value", 30);
+      assertXPath(webApp, "/web-app/env-entry[2]/env-entry-type", "java.lang.Integer");
+   }
+
+   @Test
+   public void shouldBeAbleToDefineResourceEnvRefEntry() throws Exception
+   {
+      final String description = "Object factory for the CDI Bean Manager";
+      final String name = "BeanManager";
+      final String type = "javax.enterprise.inject.spi.BeanManager";
+      final String webApp = Descriptors.create(WebAppDescriptor.class).resourceEnvRef(description, name, type)
+            .exportAsString();
+
+      assertXPath(webApp, "/web-app/resource-env-ref/description", description);
+      assertXPath(webApp, "/web-app/resource-env-ref/resource-env-ref-name", name);
+      assertXPath(webApp, "/web-app/resource-env-ref/resource-env-ref-type", type);
+   }
+
+   @Test
+   public void shouldBeAbleToDefineMultipleResourceEnvRefEntries() throws Exception
+   {
+      final String description1 = "Object factory for the CDI Bean Manager";
+      final String name1 = "BeanManager";
+      final String type1 = "javax.enterprise.inject.spi.BeanManager";
+
+      final String description2 = "Nothing";
+      final String name2 = "Integer";
+      final String webApp = Descriptors.create(WebAppDescriptor.class).resourceEnvRef(description1, name1, type1)
+            .resourceEnvRef(description2, name2, Integer.class).exportAsString();
+
+      assertXPath(webApp, "/web-app/resource-env-ref[1]/description", description1);
+      assertXPath(webApp, "/web-app/resource-env-ref[1]/resource-env-ref-name", name1);
+      assertXPath(webApp, "/web-app/resource-env-ref[1]/resource-env-ref-type", type1);
+
+      assertXPath(webApp, "/web-app/resource-env-ref[2]/description", description2);
+      assertXPath(webApp, "/web-app/resource-env-ref[2]/resource-env-ref-name", name2);
+      assertXPath(webApp, "/web-app/resource-env-ref[2]/resource-env-ref-type", "java.lang.Integer");
+   }
+
+   @Test
    public void shouldCreateDefaultName() throws Exception
    {
       Assert.assertEquals("web.xml", create().getDescriptorName());
