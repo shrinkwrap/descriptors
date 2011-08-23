@@ -25,7 +25,14 @@ public interface WebAppDescriptor extends Descriptor, WebAppDescriptorReader
    WebAppDescriptor distributable();
 
    WebAppDescriptor contextParam(String name, Object value);
+   
+   WebAppDescriptor envEntry(String name, Object value, Class<?> type);
 
+   WebAppDescriptor envEntry(String name, Object value, String type);
+
+   WebAppDescriptor resourceEnvRef(String description, String name, String type);
+
+   WebAppDescriptor resourceEnvRef(String description, String name, Class<?> type);
 
    /**
     * Set the suffixes for Faces jsp files (default .jsp)

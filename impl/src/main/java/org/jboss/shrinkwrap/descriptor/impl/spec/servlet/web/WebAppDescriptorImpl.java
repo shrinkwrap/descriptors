@@ -177,6 +177,75 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
    }
 
    @Override
+   public WebAppDescriptor envEntry(String name, Object value, Class<?> type)
+   {
+      return envEntry(name, value, type.getName());
+   }
+
+   @Override
+   public WebAppDescriptor envEntry(String name, Object value, String type)
+   {
+      List<Node> params = model.get("env-entry");
+
+      Node param = null;
+      for (Node node : params)
+      {
+         param = node.getSingle("env-entry-name=" + name);
+         if (param != null)
+         {
+            param.getParent().getOrCreate("env-entry-type").text(type);
+            param.getParent().getOrCreate("env-entry-value").text(value);
+            break;
+         }
+      }
+
+      if (param == null)
+      {
+         param = model.createChild("env-entry");
+         param.createChild("env-entry-name").text(name);
+         param.createChild("env-entry-type").text(type);
+         param.createChild("env-entry-value").text(value);
+      }
+
+      return this;
+   }
+
+   @Override
+   public WebAppDescriptor resourceEnvRef(String description, String name, Class<?> type)
+   {
+      return resourceEnvRef(description, name, type.getName());
+   }
+
+   @Override
+   public WebAppDescriptor resourceEnvRef(String description, String name, String type)
+   {
+      List<Node> params = model.get("resource-env-ref");
+
+      Node param = null;
+      for (Node node : params)
+      {
+         param = node.getSingle("resource-env-ref-name=" + name);
+         if (param != null)
+         {
+            param.getParent().getOrCreate("description").text(description);
+            param.getParent().getOrCreate("resource-env-ref-name").text(name);
+            param.getParent().getOrCreate("resource-env-ref-type").text(type);
+            break;
+         }
+      }
+
+      if (param == null)
+      {
+         param = model.createChild("resource-env-ref");
+         param.createChild("description").text(description);
+         param.createChild("resource-env-ref-name").text(name);
+         param.createChild("resource-env-ref-type").text(type);
+      }
+
+      return this;
+   }
+
+   @Override
    public WebAppDescriptor facesProjectStage(FacesProjectStage stage)
    {
       return contextParam(ProjectStage.PROJECT_STAGE_PARAM_NAME, stage.getStage());
