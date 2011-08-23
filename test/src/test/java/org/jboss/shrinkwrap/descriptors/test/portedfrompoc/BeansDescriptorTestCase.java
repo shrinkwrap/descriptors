@@ -57,10 +57,11 @@ public class BeansDescriptorTestCase
    }
 
    @Interceptor
-   private class TestInterceptor
-   {
-   }
-
+   private class TestInterceptor {}
+   
+   @Interceptor
+   private class TestAnotherInterceptor {}
+   
    @Decorator
    private class TestDecorator
    {
@@ -223,6 +224,24 @@ public class BeansDescriptorTestCase
 
       assertXPath(roundtrip, "/beans/decorators/class", TestDecorator.class.getName(), TestDecorator.class.getName());
 
+   }
+
+   //-------------------------------------------------------------------------------------||
+   // Complex Scenario -------------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
+   @Test
+   public void shouldBeAbleToGenerateComplexDescriptor() throws Exception
+   {
+      final BeansDescriptor beans = Descriptors.create(BeansDescriptor.class).getOrCreateInterceptors()
+            .clazz(TestInterceptor.class.getName(), TestAnotherInterceptor.class.getName()).up()
+            .getOrCreateDecorators().clazz(TestDecorator.class.getName()).up().getOrCreateAlternatives()
+            .stereotype(TestAlternativeStereoType.class.getName()).up();
+      String xml = beans.exportAsString();
+
+      assertXPath(xml, "/beans/interceptors/class", TestInterceptor.class.getName(), TestAnotherInterceptor.class.getName());
+      assertXPath(xml, "/beans/decorators/class", TestDecorator.class.getName());
+      assertXPath(xml, "/beans/alternatives/stereotype", TestAlternativeStereoType.class.getName());
    }
 
    //-------------------------------------------------------------------------------------||

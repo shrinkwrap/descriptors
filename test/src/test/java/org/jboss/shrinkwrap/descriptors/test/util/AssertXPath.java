@@ -110,7 +110,8 @@ public final class AssertXPath
       for (int i = 0; i < nodes.getLength(); i++)
       {
          Node node = nodes.item(i);
-         Assert.assertEquals("XPath content should match expected value", expectedValue[i], node.getTextContent());
+         final String nodeTextContent = node.getTextContent();
+         Assert.assertEquals("XPath content should match expected value", expectedValue[i], nodeTextContent);
       }
    }
 
