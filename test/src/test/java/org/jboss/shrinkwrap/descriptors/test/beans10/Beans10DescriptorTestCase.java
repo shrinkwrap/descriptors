@@ -24,7 +24,7 @@ import java.io.FileReader;
 import org.custommonkey.xmlunit.Diff;
 import org.custommonkey.xmlunit.XMLUnit;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.cdi10.Beans10Descriptor;
+import org.jboss.shrinkwrap.descriptor.api.beans10.Beans10Descriptor;
 import org.jboss.shrinkwrap.descriptor.api.spec.cdi.beans.BeansDescriptor;
 import org.junit.Before;
 import org.junit.Test;
