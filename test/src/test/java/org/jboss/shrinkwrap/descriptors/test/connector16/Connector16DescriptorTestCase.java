@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptors.test.jca16;
+package org.jboss.shrinkwrap.descriptors.test.connector16;
 
 import static org.junit.Assert.assertTrue;
 
@@ -26,7 +26,7 @@ import junit.framework.Assert;
 import org.custommonkey.xmlunit.Diff;
 import org.custommonkey.xmlunit.XMLUnit;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.jca16.Connector16Descriptor;
+import org.jboss.shrinkwrap.descriptor.api.connector16.Connector16Descriptor;
 import org.junit.Before;
 import org.junit.Test;
 
