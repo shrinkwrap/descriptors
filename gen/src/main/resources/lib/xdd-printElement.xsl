@@ -74,7 +74,7 @@
         <xsl:value-of select="concat('', '&#10;')"/>
         <xsl:value-of select="concat('   /**', '&#10;')"/>
         <xsl:value-of select="concat('    * Removes the &lt;code&gt;', $pElementName,'&lt;/code&gt; element &#10;')"/>
-        <xsl:value-of select="concat('    * @return ', 'the current instance of &lt;code&gt;', $pReturnTypeName, '&lt;/code&gt; &#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the current instance of &lt;code&gt;', $pClassType, '&lt;/code&gt; &#10;')"/>
         <xsl:value-of select="concat('    */', '&#10;')"/>
         <xsl:choose>
             <xsl:when test="$pIsInterface=true()">
