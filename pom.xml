@@ -28,7 +28,6 @@
 
     <!-- Versioning -->
     <version.junit_junit>4.8.1</version.junit_junit>
-    <version.org.jboss.spec>1.0.0.Beta7</version.org.jboss.spec>
 
   </properties>
   
@@ -198,14 +197,6 @@
         <scope>test</scope>
       </dependency>
 
-      <dependency>
-        <groupId>org.jboss.spec</groupId>
-        <artifactId>jboss-javaee-6.0</artifactId>
-        <version>${version.org.jboss.spec}</version>
-        <type>pom</type>
-        <scope>provided</scope>
-      </dependency>
-
     </dependencies>
   </dependencyManagement>
   
@@ -240,7 +231,5 @@
       </snapshots>
     </pluginRepository>
   </pluginRepositories> 
-  
-  
 
 </project>
