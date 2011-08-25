@@ -398,8 +398,8 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
-    
+
+
     <!-- *********************************************************** -->
     <!-- ****** Function which writes the Getbooleab Attribute   *** -->
     <!-- *********************************************************** -->
@@ -429,7 +429,7 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
+
 
     <!-- *********************************************************** -->
     <!-- ****** Function which writes the Remove Attribute  Body *** -->
@@ -1009,6 +1009,7 @@
         <!--<xsl:value-of select="xdd:writeTypeCommentLines($pElementName, true(), true(), true(), false())"/>-->
         <xsl:value-of select=" xdd:printSetEmptyBoolean($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
         <xsl:value-of select=" xdd:printGetEmptyBoolean($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+        <xsl:value-of select=" xdd:printRemoveEmptyBoolean($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
     </xsl:function>
 
     <!-- *********************************************************** -->
@@ -1071,4 +1072,36 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
+    
+    <!-- *********************************************************** -->
+    <!-- ****** Function which writes the Remove            Body *** -->
+    <!-- *********************************************************** -->
+    <xsl:function name="xdd:printRemoveEmptyBoolean">
+        <xsl:param name="pClassType"/>
+        <xsl:param name="pElementType"/>
+        <xsl:param name="pMethodName"/>
+        <xsl:param name="pNodeNameLocal"/>
+        <xsl:param name="pElementName"/>
+        <xsl:param name="pReturnTypeName"/>
+        <xsl:param name="pIsInterface" as="xs:boolean"/>
+        <xsl:variable name="vRemoveBooleanEmptySignature" select="concat('   public ', $pClassType, ' remove', xdd:checkForClassType($pMethodName), '()')"/>
+        <xsl:value-of select="concat('', '&#10;')"/>
+        <xsl:value-of select="concat('   /**', '&#10;')"/>
+        <xsl:value-of select="concat('    * Removes the &lt;code&gt;', $pElementName,'&lt;/code&gt; element &#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the current instance of &lt;code&gt;', $pReturnTypeName, '&lt;/code&gt; &#10;')"/>
+        <xsl:value-of select="concat('    */', '&#10;')"/>
+        <xsl:choose>
+            <xsl:when test="$pIsInterface=true()">
+                <xsl:value-of select="concat($vRemoveBooleanEmptySignature, ';&#10;')"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="concat($vRemoveBooleanEmptySignature, '&#10;')"/>
+                <xsl:value-of select="concat('   {', '&#10;')"/>
+                <xsl:value-of select="concat('      ', $pNodeNameLocal, '.removeChild(&quot;', $pElementName, '&quot;);', '&#10;')"/>
+                <xsl:value-of select="concat('      return this;', '&#10;')"/>
+                <xsl:value-of select="concat('   }', '&#10;')"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
 </xsl:stylesheet>
+
