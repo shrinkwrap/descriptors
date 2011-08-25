@@ -14,14 +14,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.spi.xml.dom;
+package org.jboss.shrinkwrap.descriptor.spi.node.dom;
 
 import java.io.ByteArrayInputStream;
 
 import junit.framework.Assert;
 
-import org.jboss.shrinkwrap.descriptor.spi.Node;
-import org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomImporter;
+import org.jboss.shrinkwrap.descriptor.spi.node.Node;
+import org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomDescriptorImporterImpl;
 import org.junit.Test;
 
 
@@ -93,7 +93,7 @@ public class XMLImporterTestCase
    @SuppressWarnings({"unchecked", "rawtypes"})
    private Node load()
    {
-      return new XmlDomImporter(Object.class, "test.xml")
+      return new XmlDomDescriptorImporterImpl(Object.class, "test.xml")
          .importRootNode(new ByteArrayInputStream(SOURCE.getBytes()));
    }
 }

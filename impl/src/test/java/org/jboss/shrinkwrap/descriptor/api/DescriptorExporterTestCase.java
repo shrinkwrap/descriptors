@@ -23,7 +23,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Verify behavior of {@link DescriptorExporter}
+ * Verify behavior of {@link NodeDescriptorExporterImpl}
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $

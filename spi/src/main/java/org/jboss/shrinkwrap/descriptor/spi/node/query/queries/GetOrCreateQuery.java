@@ -14,16 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.spi.query.queries;
+package org.jboss.shrinkwrap.descriptor.spi.node.query.queries;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.jboss.shrinkwrap.descriptor.spi.Node;
-import org.jboss.shrinkwrap.descriptor.spi.query.Pattern;
-import org.jboss.shrinkwrap.descriptor.spi.query.Query;
+import org.jboss.shrinkwrap.descriptor.spi.node.Node;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.Pattern;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.Query;
 
 /**
  * Starting at the specified {@link Node}, either returns an
@@ -54,7 +54,7 @@ public enum GetOrCreateQuery implements Query<Node> {
 
    /**
     * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.spi.query.Query#execute(org.jboss.shrinkwrap.descriptor.spi.Node, org.jboss.shrinkwrap.descriptor.spi.query.Pattern[])
+    * @see org.jboss.shrinkwrap.descriptor.spi.node.query.Query#execute(org.jboss.shrinkwrap.descriptor.spi.node.Node, org.jboss.shrinkwrap.descriptor.spi.node.query.Pattern[])
     */
    @Override
    public Node execute(final Node node, final Pattern... patterns)

@@ -23,7 +23,7 @@ import java.util.Set;
 import javax.servlet.DispatcherType;
 
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.FilterMappingDef;
-import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 
 /**
  * Backend object view of a Web Descriptor Filter Mapping element

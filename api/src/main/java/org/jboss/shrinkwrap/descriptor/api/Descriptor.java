@@ -19,7 +19,7 @@ package org.jboss.shrinkwrap.descriptor.api;
 import java.io.OutputStream;
 
 /**
- * End-user domain-specific language (DSL) view of an XML Descriptor.
+ * End-user domain-specific language (DSL) view of a metadata Descriptor.
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
@@ -27,21 +27,22 @@ import java.io.OutputStream;
 public interface Descriptor
 {
    /**
-    * Get the Descriptor name. The name can be specified by user or predefined.
+    * Get the {@link Descriptor} name. The name can be specified by 
+    * user at construction time, or predefined as a default by type.
     * 
     * @return the descriptor name
     */
    String getDescriptorName();
    
    /**
-    * Exports the descriptor XML as a {@link String}
+    * Exports the descriptor as a {@link String}
     * @return
     * @throws DescriptorExportException
     */
    String exportAsString() throws DescriptorExportException;
 
    /**
-    * Export the descriptor XML to a given {@link OutputStream}.
+    * Export the descriptor to a given {@link OutputStream}.
     * The {@link OutputStream} will not be flushed or closed by this operation.
     * 
     * @param output Where to export

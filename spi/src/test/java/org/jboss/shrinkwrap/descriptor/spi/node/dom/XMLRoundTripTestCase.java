@@ -15,12 +15,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.spi.xml.dom;
+package org.jboss.shrinkwrap.descriptor.spi.node.dom;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
-import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.spi.node.Node;
+import org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomDescriptorExporterImpl;
+import org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomDescriptorImporterImpl;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -60,14 +62,14 @@ public class XMLRoundTripTestCase
    @SuppressWarnings({"unchecked", "rawtypes"})
    private Node load(String xml)
    {
-      return new XmlDomImporter(Object.class, "test.xml")
+      return new XmlDomDescriptorImporterImpl(Object.class, "test.xml")
          .importRootNode(new ByteArrayInputStream(xml.getBytes()));
    }
    
    private String export(Node root)
    {
       ByteArrayOutputStream output = new ByteArrayOutputStream();
-      new XmlDomExporter().to(root, output);
+      new XmlDomDescriptorExporterImpl().to(root, output);
       return new String(output.toByteArray());
    }
 }

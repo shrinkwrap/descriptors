@@ -24,7 +24,7 @@ package org.jboss.shrinkwrap.descriptor.impl.spec.servlet.web;
 import java.util.List;
 
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.ServletMappingDef;
-import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 
 /**
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>

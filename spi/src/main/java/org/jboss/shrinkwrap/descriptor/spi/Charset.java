@@ -36,7 +36,7 @@ class Charset
       {
          UTF8 = java.nio.charset.Charset.forName(NAME_UTF_8);
       }
-      catch (UnsupportedCharsetException e)
+      catch (final UnsupportedCharsetException e)
       {
          throw new RuntimeException(e);
       }

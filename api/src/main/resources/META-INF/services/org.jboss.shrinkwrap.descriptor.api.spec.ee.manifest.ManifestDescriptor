@@ -1,2 +1,0 @@
-implClass=org.jboss.shrinkwrap.descriptor.impl.spec.ee.manifest.ManifestDescriptorImpl
-modelClass=org.jboss.shrinkwrap.descriptor.impl.spec.ee.manifest.ManifestModel

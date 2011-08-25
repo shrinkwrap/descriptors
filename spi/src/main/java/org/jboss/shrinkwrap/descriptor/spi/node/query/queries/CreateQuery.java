@@ -14,51 +14,44 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.spi.query.queries;
+package org.jboss.shrinkwrap.descriptor.spi.node.query.queries;
 
-import java.util.List;
+import java.util.Map;
 
-import org.jboss.shrinkwrap.descriptor.spi.Node;
-import org.jboss.shrinkwrap.descriptor.spi.query.Pattern;
-import org.jboss.shrinkwrap.descriptor.spi.query.Query;
+import org.jboss.shrinkwrap.descriptor.spi.node.Node;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.Pattern;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.Query;
 
 /**
- * Form of {@link GetQuery} used as a convenience to retrieve
- * a single result.  If more than one match is found, 
- * {@link IllegalArgumentException} will be thrown.  If no matches
- * are found, <code>null</code> is returned.
+ * Creates the specified {@link Pattern}s starting at the specified
+ * {@link Node}.
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public enum GetSingleQuery implements Query<Node> {
-
-   /**
-    * Instance
-    */
+public enum CreateQuery implements Query<Node> {
    INSTANCE;
 
    /**
     * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.spi.query.Query#execute(org.jboss.shrinkwrap.descriptor.spi.Node, org.jboss.shrinkwrap.descriptor.spi.query.Pattern[])
+    * @see org.jboss.shrinkwrap.descriptor.spi.node.query.Query#execute(org.jboss.shrinkwrap.descriptor.spi.node.Node, org.jboss.shrinkwrap.descriptor.spi.node.query.Pattern[])
     */
    @Override
    public Node execute(final Node node, final Pattern... patterns)
    {
       // Precondition checks
       QueryUtil.validateNodeAndPatterns(node, patterns);
-      
-      final List<Node> nodes = GetQuery.INSTANCE.execute(node, patterns);
 
-      if (nodes == null || nodes.size() == 0)
+      Node returnValue = node;
+
+      for (final Pattern pattern : patterns)
       {
-         return null;
+         returnValue = new Node(pattern.getName(), returnValue).text(pattern.getText());
+         for (Map.Entry<String, String> entry : pattern.getAttributes().entrySet())
+         {
+            returnValue.attribute(entry.getKey(), entry.getValue());
+         }
       }
-      if (nodes.size() > 1)
-      {
-         throw new IllegalArgumentException("Multiple nodes matching expression found");
-      }
-      return nodes.get(0);
+      return returnValue;
    }
-
 }

@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.spi.xml.dom;
+package org.jboss.shrinkwrap.descriptor.spi.node.dom;
 
 import java.io.OutputStream;
 import java.util.Map;
@@ -28,24 +28,30 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.jboss.shrinkwrap.descriptor.api.DescriptorExportException;
-import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
-import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.api.DescriptorExporter;
+import org.jboss.shrinkwrap.descriptor.spi.node.Node;
+import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptor;
+import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorExporterImpl;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 
 /**
+ * {@link NodeDescriptorExporterImpl} implementation backed by
+ * the {@link Document} API
  * 
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
- * @version $Revision: $
+ * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public class XmlDomExporter implements DescriptorExporter
+final class XmlDomDescriptorExporterImpl extends NodeDescriptorExporterImpl
+      implements
+         DescriptorExporter<NodeDescriptor>
 {
-    /**
-     * {@inheritDoc}
-     * @see org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter#to(org.jboss.shrinkwrap.descriptor.spi.Node, java.io.OutputStream)
-     */
+   /**
+    * {@inheritDoc}
+    * @see org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorExporterImpl#to(org.jboss.shrinkwrap.descriptor.spi.node.Node, java.io.OutputStream)
+    */
    @Override
-   public void to(Node node, OutputStream out) throws DescriptorExportException
+   public void to(final Node node, final OutputStream out) throws DescriptorExportException
    {
       try
       {
@@ -59,7 +65,7 @@ public class XmlDomExporter implements DescriptorExporter
          Transformer transformer = TransformerFactory.newInstance().newTransformer();
          transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
          transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-         
+
          StreamResult result = new StreamResult(out);
          transformer.transform(new DOMSource(root), result);
       }
@@ -73,20 +79,20 @@ public class XmlDomExporter implements DescriptorExporter
     * @param root
     * @param node
     */
-   private void writeRecursive(org.w3c.dom.Node target, Node source)
+   private void writeRecursive(final org.w3c.dom.Node target, final Node source)
    {
       Document owned = target.getOwnerDocument();
-      if(owned == null)
+      if (owned == null)
       {
-         owned = (Document)target;
+         owned = (Document) target;
       }
       org.w3c.dom.Node targetChild = null;
       // Comment node
-      if(source.isComment())
+      if (source.isComment())
       {
          targetChild = owned.createComment(source.getText());
       }
-      else if(source.getText() != null) 
+      else if (source.getText() != null)
       {
          targetChild = owned.createElement(source.getName());
          targetChild.appendChild(owned.createTextNode(source.getText()));
@@ -95,17 +101,17 @@ public class XmlDomExporter implements DescriptorExporter
       {
          targetChild = owned.createElement(source.getName());
       }
-      
+
       target.appendChild(targetChild);
-      
-      for(Map.Entry<String, String> attribute: source.getAttributes().entrySet())
+
+      for (Map.Entry<String, String> attribute : source.getAttributes().entrySet())
       {
          Attr attr = owned.createAttribute(attribute.getKey());
          attr.setValue(attribute.getValue());
 
          targetChild.getAttributes().setNamedItem(attr);
       }
-      for(Node sourceChild : source.getChildren())
+      for (Node sourceChild : source.getChildren())
       {
          writeRecursive(targetChild, sourceChild);
       }

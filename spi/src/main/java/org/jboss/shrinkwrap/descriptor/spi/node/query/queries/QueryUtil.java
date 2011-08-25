@@ -14,11 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.spi.query.queries;
+package org.jboss.shrinkwrap.descriptor.spi.node.query.queries;
 
-import org.jboss.shrinkwrap.descriptor.spi.Node;
-import org.jboss.shrinkwrap.descriptor.spi.query.Pattern;
-import org.jboss.shrinkwrap.descriptor.spi.query.Query;
+import org.jboss.shrinkwrap.descriptor.spi.node.Node;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.Pattern;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.Query;
 
 /**
  * Helper util for building {@link Query} implementations

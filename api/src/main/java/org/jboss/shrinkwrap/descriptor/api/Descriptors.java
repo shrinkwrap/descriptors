@@ -17,6 +17,8 @@
 package org.jboss.shrinkwrap.descriptor.api;
 
 /**
+ * Main entry point into the ShrinkWrap Descriptors project.
+ * 
  * @author Dan Allen
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
@@ -33,80 +35,76 @@ public final class Descriptors
    }
 
    /**
-    * Creates a new Descriptor instance, predefined default descriptor name will be used.
+    * Creates a new Descriptor instance; the predefined default descriptor 
+    * name for this type will be used.
     * 
     * @param <T>
     * @param type
     * @return
     * @see #create(Class, String)
+    * @throws IllegalArgumentException If the type is not specified
     */
-   public static <T extends Descriptor> T create(final Class<T> type)
+   public static <T extends Descriptor> T create(final Class<T> type) throws IllegalArgumentException
    {
       return create(type, null);
    }
 
    /**
-    * Creates a new named Descriptor instance.
+    * Creates a new named {@link Descriptor} instance.  If the name specified is null, 
+    * the default name for this type will be assigned.
     * 
     * @param <T>
     * @param type
     * @param descriptorName the descriptor name 
     * @return
+    * @throws IllegalArgumentException If the type is not specified
     */
-   public static <T extends Descriptor> T create(final Class<T> type, String descriptorName)
+   public static <T extends Descriptor> T create(final Class<T> type, final String descriptorName)
+         throws IllegalArgumentException
    {
+      // Precondition checks
+      if (type == null)
+      {
+         throw new IllegalArgumentException("type must be specified");
+      }
+
+      // Create
       return DescriptorInstantiator.createFromUserView(type, descriptorName);
    }
 
+   /**
+    * Returns a new {@link DescriptorImporter} instance, ready to import as a 
+    * new {@link Descriptor} instance of the given type
+    * @param type
+    * @return
+    * @throws IllegalArgumentException If the type is not specified
+    */
    public static <T extends Descriptor> DescriptorImporter<T> importAs(final Class<T> type)
+         throws IllegalArgumentException
    {
       return importAs(type, null);
    }
 
-   public static <T extends Descriptor> DescriptorImporter<T> importAs(final Class<T> type, String descriptorName)
+   /**
+    * Returns a new named {@link DescriptorImporter} instance, ready to import as a 
+    * new {@link Descriptor} instance of the given type.  If the name specified is null, 
+    * the default name for this type will be assigned. 
+    * 
+    * @param type
+    * @param descriptorName
+    * @return
+    * @throws IllegalArgumentException If the type is not specified
+    */
+   public static <T extends Descriptor> DescriptorImporter<T> importAs(final Class<T> type, final String descriptorName)
+         throws IllegalArgumentException
    {
+      // Precondition checks
+      if (type == null)
+      {
+         throw new IllegalArgumentException("type must be specified");
+      }
+
+      // Create new importer
       return DescriptorInstantiator.createImporterFromUserView(type, descriptorName);
    }
-
-   //   public static <T extends Descriptor, X extends Descriptor<T>> X create(Class<X> defType, InputStream xmlStream)
-   //   {
-   //      Class<T> descriptorClass = (Class<T>)getDescriptorType(defType);
-   //      return create(defType, descriptorClass, xmlStream);
-   //   }
-   //
-   //   static <T extends Descriptor, X extends Descriptor<T>> X create(Class<X> defType, Class<T> type, InputStream xmlStream)
-   //   {
-   //      T descriptor = DescriptorImporter.from(type, xmlStream);
-   //      return defType.cast(createInstance((Class<Descriptor<T>>)defType, descriptor));
-   //   }
-   //   
-   //   static <T extends Descriptor> Descriptor<T> createInstance(Class<Descriptor<T>> type, T descriptor)
-   //   {
-   //      try
-   //      {
-   //         return type.getConstructor(descriptor.getClass()).newInstance(descriptor);
-   //      }
-   //      catch (Exception e) 
-   //      {
-   //         throw new DescriptorException(
-   //               "Could not create DescriptorDef " + type.getName() + 
-   //               " using descriptor " + descriptor.getClass().getName());
-   //      }
-   //   }
-
-   //   private static <T extends Descriptor> Class<? extends Descriptor> getDescriptorType(Class<? extends Descriptor<T>> descriptorDefType)
-   //   {
-   //      for(Type type : descriptorDefType.getGenericInterfaces())
-   //      {
-   //         if (type instanceof ParameterizedType)
-   //         {
-   //            ParameterizedType paramType = (ParameterizedType) type;
-   //            for(Type actualType : paramType.getActualTypeArguments())
-   //            {
-   //               return (Class<T>)actualType;
-   //            }
-   //         }
-   //      }
-   //      return null;
-   //   }
 }

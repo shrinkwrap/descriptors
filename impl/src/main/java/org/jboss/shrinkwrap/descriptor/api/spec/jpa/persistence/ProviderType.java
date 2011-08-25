@@ -16,7 +16,7 @@
  */
 package org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence;
 
-import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 
 /**
  * Enum of convenient values for the persistence-unit provider element

@@ -14,23 +14,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.spi;
+package org.jboss.shrinkwrap.descriptor.spi.node;
 
-import java.io.OutputStream;
-
+import org.jboss.shrinkwrap.descriptor.api.Descriptor;
 
 /**
- * DescriptorExporter
+ * A {@link Descriptor} based on a {@link Node} model
+ * (ie. hierarchal, typically representing XML metadata).
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
- * @version $Revision: $
+ * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public interface DescriptorExporter
+public interface NodeDescriptor extends Descriptor
 {
    /**
-    * Exports the 
-    * @param node
-    * @param output
+    * Obtains the top-level root {@link Node} for this
+    * {@link NodeDescriptor} 
+    * @return
     */
-   void to(Node node, OutputStream output);
+   Node getRootNode();
 }

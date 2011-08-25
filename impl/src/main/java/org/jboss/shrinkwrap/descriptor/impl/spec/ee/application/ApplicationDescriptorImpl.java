@@ -22,10 +22,10 @@ import java.util.List;
 import org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.spec.ee.application.SecurityRole;
 import org.jboss.shrinkwrap.descriptor.api.spec.ee.application.WebModule;
-import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
-import org.jboss.shrinkwrap.descriptor.spi.Node;
-import org.jboss.shrinkwrap.descriptor.spi.NodeProviderImplBase;
-import org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomExporter;
+import org.jboss.shrinkwrap.descriptor.spi.node.Node;
+import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorExporter;
+import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase;
+import org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomDescriptorExporter;
 
 /**
  * ApplicationDescriptorImpl
@@ -33,7 +33,7 @@ import org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomExporter;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-public class ApplicationDescriptorImpl extends NodeProviderImplBase implements ApplicationDescriptor
+public class ApplicationDescriptorImpl extends NodeDescriptorImplBase implements ApplicationDescriptor
 {
    // -------------------------------------------------------------------------------------||
    // Instance Members -------------------------------------------------------------------||
@@ -208,9 +208,9 @@ public class ApplicationDescriptorImpl extends NodeProviderImplBase implements A
    }
 
    @Override
-   protected DescriptorExporter getExporter()
+   protected NodeDescriptorExporter getExporter()
    {
-      return new XmlDomExporter();
+      return XmlDomDescriptorExporter.INSTANCE;
    }
 
    @Override

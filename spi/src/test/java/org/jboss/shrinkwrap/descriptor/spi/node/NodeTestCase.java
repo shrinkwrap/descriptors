@@ -14,12 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.spi;
+package org.jboss.shrinkwrap.descriptor.spi.node;
 
 import java.util.List;
 import java.util.Map;
 
-import org.jboss.shrinkwrap.descriptor.spi.query.Pattern;
+import org.jboss.shrinkwrap.descriptor.spi.node.Node;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.Pattern;
 import org.junit.Assert;
 import org.junit.Test;
 

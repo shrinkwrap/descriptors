@@ -17,34 +17,95 @@
  */
 package org.jboss.shrinkwrap.descriptor.spi;
 
+import java.io.ByteArrayOutputStream;
+import java.io.UnsupportedEncodingException;
+
 import org.jboss.shrinkwrap.descriptor.api.Descriptor;
+import org.jboss.shrinkwrap.descriptor.api.DescriptorExportException;
+import org.jboss.shrinkwrap.descriptor.api.DescriptorExporter;
 
 /**
- * Base implementation for a Descriptor. 
+ * Base implementation for a {@link Descriptor}. 
  * 
- * Enforces descriptor name constructor argument contract from extension loading.
+ * Enforces descriptor name constructor argument contract 
+ * from extension loading.
  *
+ * @param <T> Concrete descriptor type
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
- * @version $Revision: $
+ * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public abstract class DescriptorImplBase implements Descriptor
+public abstract class DescriptorImplBase<T extends Descriptor> implements Descriptor
 {
+
+   //-------------------------------------------------------------------------------------||
+   // Instance Members -------------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
+   /**
+    * Name of the descriptor
+    */
    private final String name;
+
+   //-------------------------------------------------------------------------------------||
+   // Constructor ------------------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
 
    /**
     * Create a named Descriptor. 
     */
-   public DescriptorImplBase(String name)
+   public DescriptorImplBase(final String name)
    {
       this.name = name;
    }
-   
-   /* (non-Javadoc)
-    * @see org.jboss.shrinkwrap.descriptor.api.Descriptor#getName()
+
+   //-------------------------------------------------------------------------------------||
+   // Implemented Methods ----------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
+   /**
+    * {@inheritDoc}
+    * @see org.jboss.shrinkwrap.descriptor.api.Descriptor#getDescriptorName()
     */
    @Override
    public String getDescriptorName()
    {
       return name;
    }
+
+   /**
+    * {@inheritDoc}
+    * @see org.jboss.shrinkwrap.descriptor.api.Descriptor#exportAsString()
+    */
+   @Override
+   public String exportAsString() throws DescriptorExportException
+   {
+      // Export as bytes
+      final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+      this.exportTo(baos);
+
+      // Make a String out of the bytes
+      final String content;
+      try
+      {
+         content = baos.toString(Charset.UTF8.name());
+      }
+      catch (final UnsupportedEncodingException e)
+      {
+         throw new DescriptorExportException("Inconsistent encoding used during export", e);
+      }
+
+      // Return
+      return content;
+   }
+
+   //-------------------------------------------------------------------------------------||
+   // Contracts --------------------------------------------------------------------------||
+   //-------------------------------------------------------------------------------------||
+
+   /**
+    * Obtains the {@link DescriptorExporter} implementation to be used
+    * by default in {@link Descriptor#exportTo(java.io.OutputStream)}
+    * @return
+    */
+   protected abstract DescriptorExporter<T> getExporter();
 }

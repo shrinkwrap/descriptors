@@ -27,7 +27,7 @@ import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.SchemaGeneration
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.SharedCacheModeType;
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.TransactionType;
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.ValidationModeType;
-import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 
 /**
  * @author Dan Allen

@@ -17,7 +17,7 @@
 package org.jboss.shrinkwrap.descriptor.impl.spec.servlet.web;
 
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.CookieConfigDef;
-import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 
 /**
  * @author Dan Allen

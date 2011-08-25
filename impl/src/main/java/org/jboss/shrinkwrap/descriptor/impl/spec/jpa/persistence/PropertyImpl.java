@@ -22,7 +22,7 @@
 package org.jboss.shrinkwrap.descriptor.impl.spec.jpa.persistence;
 
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.Property;
-import org.jboss.shrinkwrap.descriptor.spi.Node;
+import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 
 /**
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>

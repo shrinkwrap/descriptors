@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.spi;
+package org.jboss.shrinkwrap.descriptor.spi.node;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,12 +22,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.jboss.shrinkwrap.descriptor.spi.query.Pattern;
-import org.jboss.shrinkwrap.descriptor.spi.query.Patterns;
-import org.jboss.shrinkwrap.descriptor.spi.query.queries.CreateQuery;
-import org.jboss.shrinkwrap.descriptor.spi.query.queries.GetOrCreateQuery;
-import org.jboss.shrinkwrap.descriptor.spi.query.queries.GetQuery;
-import org.jboss.shrinkwrap.descriptor.spi.query.queries.GetSingleQuery;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.Pattern;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.Patterns;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.CreateQuery;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.GetOrCreateQuery;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.GetQuery;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.GetSingleQuery;
 
 /**
  * {@link Node} is a data structure representing a container in a classic

@@ -44,10 +44,10 @@ import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.ServletMappingDef;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.TrackingModeType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.WebAppDescriptor;
 import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
-import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
-import org.jboss.shrinkwrap.descriptor.spi.Node;
-import org.jboss.shrinkwrap.descriptor.spi.NodeProviderImplBase;
-import org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomExporter;
+import org.jboss.shrinkwrap.descriptor.spi.node.Node;
+import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorExporter;
+import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase;
+import org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomDescriptorExporter;
 
 /**
  * @author Dan Allen
@@ -55,7 +55,7 @@ import org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomExporter;
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  */
-public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebAppDescriptor
+public class WebAppDescriptorImpl extends NodeDescriptorImplBase implements WebAppDescriptor
 {
    // -------------------------------------------------------------------------------------||
    // Class Members ----------------------------------------------------------------------||
@@ -489,15 +489,14 @@ public class WebAppDescriptorImpl extends NodeProviderImplBase implements WebApp
       return model;
    }
 
-   /*
-    * (non-Javadoc)
-    * 
-    * @see org.jboss.shrinkwrap.descriptor.impl.base.NodeProviderImplBase#getExporter()
+   /**
+    * {@inheritDoc}
+    * @see org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase#getExporter()
     */
    @Override
-   protected DescriptorExporter getExporter()
+   protected NodeDescriptorExporter getExporter()
    {
-      return new XmlDomExporter();
+      return XmlDomDescriptorExporter.INSTANCE;
    }
 
    // -------------------------------------------------------------------------------------||
