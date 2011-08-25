@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee file:/home/bfr/workspaceDD/descriptors/gen/src/main/resources/web-app_3_0.xsd" version="3.0" id="ID001" metadata-complete="false">
+    <module-name id="ID003">module-name0</module-name>
+    <jsp-config id="ID005">
+        <taglib id="ID007">
+            <taglib-uri id="ID009">taglib-uri0</taglib-uri>
+            <taglib-location id="ID011">taglib-location0</taglib-location>
+        </taglib>
+        <taglib id="ID013">
+            <taglib-uri id="ID015">taglib-uri1</taglib-uri>
+            <taglib-location id="ID017">taglib-location1</taglib-location>
+        </taglib>
+        <jsp-property-group id="ID019">
+            <description xml:lang="en-US" id="ID021">description0</description>
+            <description xml:lang="en-US" id="ID023">description1</description>
+            <display-name xml:lang="en-US" id="ID025">display-name0</display-name>
+            <display-name xml:lang="en-US" id="ID027">display-name1</display-name>
+            <icon xml:lang="en-US" id="ID029">
+                <small-icon id="ID031">small-icon0</small-icon>
+                <large-icon id="ID033">large-icon0</large-icon>
+            </icon>
+            <icon xml:lang="en-US" id="ID035">
+                <small-icon id="ID037">small-icon1</small-icon>
+                <large-icon id="ID039">large-icon1</large-icon>
+            </icon>
+            <url-pattern>url-pattern0</url-pattern>
+            <url-pattern>url-pattern1</url-pattern>
+            <el-ignored id="ID041">false</el-ignored>
+            <page-encoding id="ID043">page-encoding0</page-encoding>
+            <scripting-invalid id="ID045">false</scripting-invalid>
+            <is-xml id="ID047">false</is-xml>
+            <include-prelude id="ID049">include-prelude0</include-prelude>
+            <include-prelude id="ID051">include-prelude1</include-prelude>
+            <include-coda id="ID053">include-coda0</include-coda>
+            <include-coda id="ID055">include-coda1</include-coda>
+            <deferred-syntax-allowed-as-literal id="ID057">false</deferred-syntax-allowed-as-literal>
+            <trim-directive-whitespaces id="ID059">false</trim-directive-whitespaces>
+            <default-content-type id="ID061">default-content-type0</default-content-type>
+            <buffer id="ID063">buffer0</buffer>
+            <error-on-undeclared-namespace id="ID065">false</error-on-undeclared-namespace>
+        </jsp-property-group>
+        <jsp-property-group id="ID067">
+            <description xml:lang="en-US" id="ID069">description2</description>
+            <description xml:lang="en-US" id="ID071">description3</description>
+            <display-name xml:lang="en-US" id="ID073">display-name2</display-name>
+            <display-name xml:lang="en-US" id="ID075">display-name3</display-name>
+            <icon xml:lang="en-US" id="ID077">
+                <small-icon id="ID079">small-icon2</small-icon>
+                <large-icon id="ID081">large-icon2</large-icon>
+            </icon>
+            <icon xml:lang="en-US" id="ID083">
+                <small-icon id="ID085">small-icon3</small-icon>
+                <large-icon id="ID087">large-icon3</large-icon>
+            </icon>
+            <url-pattern>url-pattern2</url-pattern>
+            <url-pattern>url-pattern3</url-pattern>
+            <el-ignored id="ID089">false</el-ignored>
+            <page-encoding id="ID091">page-encoding1</page-encoding>
+            <scripting-invalid id="ID093">false</scripting-invalid>
+            <is-xml id="ID095">false</is-xml>
+            <include-prelude id="ID097">include-prelude2</include-prelude>
+            <include-prelude id="ID099">include-prelude3</include-prelude>
+            <include-coda id="ID101">include-coda2</include-coda>
+            <include-coda id="ID103">include-coda3</include-coda>
+            <deferred-syntax-allowed-as-literal id="ID105">false</deferred-syntax-allowed-as-literal>
+            <trim-directive-whitespaces id="ID107">false</trim-directive-whitespaces>
+            <default-content-type id="ID109">default-content-type1</default-content-type>
+            <buffer id="ID111">buffer1</buffer>
+            <error-on-undeclared-namespace id="ID113">false</error-on-undeclared-namespace>
+        </jsp-property-group>
+    </jsp-config>
+
+    <absolute-ordering>
+        <name id="ID115">name0</name>
+        <name id="ID117">name1</name>
+        <name id="ID119">name2</name>
+        <name id="ID121">name3</name>
+    </absolute-ordering>
+    <security-role id="ID125">
+        <description xml:lang="en-US" id="ID127">description4</description>
+        <description xml:lang="en-US" id="ID129">description5</description>
+        <role-name id="ID131">role-name0</role-name>
+    </security-role>
+</web-app>

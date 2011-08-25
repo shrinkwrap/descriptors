@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd" version="1.0">
+    <persistence-unit name="name1">
+        <description>description0</description>
+        <provider>provider0</provider>
+        <jta-data-source>jta-data-source0</jta-data-source>
+        <non-jta-data-source>non-jta-data-source0</non-jta-data-source>
+        <mapping-file>mapping-file0</mapping-file>
+        <mapping-file>mapping-file1</mapping-file>
+        <jar-file>jar-file0</jar-file>
+        <jar-file>jar-file1</jar-file>
+        <class>class0</class>
+        <class>class1</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="name3" value="value1"/>
+            <property name="name5" value="value3"/>
+        </properties>
+    </persistence-unit>
+    <persistence-unit name="name7">
+        <description>description1</description>
+        <provider>provider1</provider>
+        <jta-data-source>jta-data-source1</jta-data-source>
+        <non-jta-data-source>non-jta-data-source1</non-jta-data-source>
+        <mapping-file>mapping-file2</mapping-file>
+        <mapping-file>mapping-file3</mapping-file>
+        <jar-file>jar-file2</jar-file>
+        <jar-file>jar-file3</jar-file>
+        <class>class2</class>
+        <class>class3</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="name9" value="value5"/>
+            <property name="name11" value="value7"/>
+        </properties>
+    </persistence-unit>
+</persistence>

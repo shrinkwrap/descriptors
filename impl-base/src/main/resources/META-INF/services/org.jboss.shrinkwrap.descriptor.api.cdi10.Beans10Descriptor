@@ -1,0 +1,3 @@
+implClass=org.jboss.shrinkwrap.descriptor.impl.cdi10.Beans10DescriptorImpl
+importerClass=org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomImporter
+defaultName=beans.xml
