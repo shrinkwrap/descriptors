@@ -613,6 +613,8 @@
                     <xsl:when test="@type='javaee:emptyType' or @type='javaee:ordering-othersType' or @type='faces-config-ordering-othersType' or @type='extensibleType'">
                         <xsl:value-of select="concat('      type.', xdd:createCamelizedName(@name), '();', '&#10;')"/>
                         <xsl:value-of select="concat('      assertTrue(type.is', xdd:createPascalizedName(@name,''), '());', '&#10;')"/>
+                        <xsl:value-of select="concat('      type.remove', xdd:createPascalizedName(@name,''), '();', '&#10;')"/>
+                        <xsl:value-of select="concat('      assertFalse(type.is', xdd:createPascalizedName(@name,''), '());', '&#10;')"/>
                     </xsl:when>
 
                     <xsl:when test="xdd:isEnumType(@type)">
