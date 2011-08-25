@@ -7,14 +7,14 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.WebApp30Descriptor;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
 import org.junit.Test;
 
 
-public class WebApp30DescriptorNamespaceTestCase
+public class WebAppDescriptorNamespaceTestCase
 {
 
-   private final Logger log = Logger.getLogger(WebApp30DescriptorNamespaceTestCase.class.getName());
+   private final Logger log = Logger.getLogger(WebAppDescriptorNamespaceTestCase.class.getName());
    
    @Test
    public void testAddDefaultNamespaces() throws Exception
@@ -98,8 +98,8 @@ public class WebApp30DescriptorNamespaceTestCase
    // Helper Methods ----------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
    
-   private WebApp30Descriptor create()
+   private WebAppDescriptor create()
    {
-      return Descriptors.create(WebApp30Descriptor.class);
+      return Descriptors.create(WebAppDescriptor.class);
    }
 }

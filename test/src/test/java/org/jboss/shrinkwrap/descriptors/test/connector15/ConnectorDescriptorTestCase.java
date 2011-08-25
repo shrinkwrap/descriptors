@@ -26,13 +26,12 @@ import junit.framework.Assert;
 import org.custommonkey.xmlunit.Diff;
 import org.custommonkey.xmlunit.XMLUnit;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.beans10.Beans10Descriptor;
-import org.jboss.shrinkwrap.descriptor.api.connector15.Connector15Descriptor;
+import org.jboss.shrinkwrap.descriptor.api.connector15.ConnectorDescriptor;
 import org.junit.Before;
 import org.junit.Test;
 
 
-public class Connector15DescriptorTestCase
+public class ConnectorDescriptorTestCase
 {
    
    @Before
@@ -56,13 +55,13 @@ public class Connector15DescriptorTestCase
    @Test
    public void testSetName() throws Exception
    {
-      Assert.assertEquals("test.xml", Descriptors.create(Beans10Descriptor.class, "test.xml").getDescriptorName());
+      Assert.assertEquals("test.xml", Descriptors.create(ConnectorDescriptor.class, "test.xml").getDescriptorName());
    }
    
    @Test
    public void testHornetQExample() throws Exception 
    {
-      Connector15Descriptor jca15Generated = create()
+      ConnectorDescriptor jca15Generated = create()
          .addDefaultNamespaces()
          .version("1.5")
          .description("HornetQ 2.0 Resource Adapter")
@@ -163,9 +162,9 @@ public class Connector15DescriptorTestCase
       return builder.toString();
    }
    
-   private Connector15Descriptor create()
+   private ConnectorDescriptor create()
    {
-      return Descriptors.create(Connector15Descriptor.class);
+      return Descriptors.create(ConnectorDescriptor.class);
    }
    
 }

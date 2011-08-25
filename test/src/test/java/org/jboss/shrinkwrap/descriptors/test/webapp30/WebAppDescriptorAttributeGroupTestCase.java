@@ -6,15 +6,15 @@ import static org.junit.Assert.assertTrue;
 import java.util.logging.Logger;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.WebApp30Descriptor;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
 import org.junit.Test;
 
 
-public class WebApp30DescriptorAttributeGroupTestCase
+public class WebAppDescriptorAttributeGroupTestCase
 {
 
    @SuppressWarnings("unused")
-   private final Logger log = Logger.getLogger(WebApp30DescriptorAttributeGroupTestCase.class.getName());
+   private final Logger log = Logger.getLogger(WebAppDescriptorAttributeGroupTestCase.class.getName());
 
    /*
     * to test:
@@ -26,7 +26,7 @@ public class WebApp30DescriptorAttributeGroupTestCase
    @Test
    public void testDescription() throws Exception
    {
-      final WebApp30Descriptor webApp = create()
+      final WebAppDescriptor webApp = create()
          .createServlet()
             .description("Description1")
             .description("Description2").up();
@@ -42,7 +42,7 @@ public class WebApp30DescriptorAttributeGroupTestCase
    @Test
    public void testDisplayName() throws Exception
    {
-      final WebApp30Descriptor webApp = create()
+      final WebAppDescriptor webApp = create()
          .createFilter()
             .displayName("displayName1")
             .displayName("displayName2").up();
@@ -58,7 +58,7 @@ public class WebApp30DescriptorAttributeGroupTestCase
    @Test
    public void testIcon() throws Exception
    {
-      final WebApp30Descriptor webApp = create()
+      final WebAppDescriptor webApp = create()
          .createFilter().getOrCreateIcon().largeIcon("largeIcon1").up()
                   .getOrCreateIcon().smallIcon("smallIcon2").up().up();
       
@@ -81,8 +81,8 @@ public class WebApp30DescriptorAttributeGroupTestCase
    // Helper Methods ----------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
    
-   private WebApp30Descriptor create()
+   private WebAppDescriptor create()
    {
-      return Descriptors.create(WebApp30Descriptor.class);
+      return Descriptors.create(WebAppDescriptor.class);
    }
 }

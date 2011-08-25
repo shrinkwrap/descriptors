@@ -19,7 +19,7 @@ package org.jboss.shrinkwrap.descriptors.test.ejb30;
 import java.util.logging.Logger;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar30.EjbJar30Descriptor;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar30.EjbJarDescriptor;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -30,13 +30,13 @@ import org.junit.Test;
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
  */
 @Ignore
-public class EjbJar30DescriptorTestCase
+public class EjbJarDescriptorTestCase
 {
 
    /**
     * Logger
     */
-   private static final Logger log = Logger.getLogger(EjbJar30DescriptorTestCase.class.getName());
+   private static final Logger log = Logger.getLogger(EjbJarDescriptorTestCase.class.getName());
 
    /**
     * Name of the fully-populated XML
@@ -46,7 +46,7 @@ public class EjbJar30DescriptorTestCase
    /**
     * Descriptor under test
     */
-   private EjbJar30Descriptor fullyPopulatedDescriptor;
+   private EjbJarDescriptor fullyPopulatedDescriptor;
 
    /**
     * Creates the fully-populated descriptor
@@ -54,7 +54,7 @@ public class EjbJar30DescriptorTestCase
    @Before
    public void createDescriptor()
    {
-      fullyPopulatedDescriptor = Descriptors.importAs(EjbJar30Descriptor.class).from(
+      fullyPopulatedDescriptor = Descriptors.importAs(EjbJarDescriptor.class).from(
             Thread.currentThread().getContextClassLoader().getResourceAsStream(NAME_EJB_JAR));
       log.info(fullyPopulatedDescriptor.exportAsString());
    }
@@ -64,7 +64,7 @@ public class EjbJar30DescriptorTestCase
    {
       //TODO Placeholder for porting tests // SHRINKDESC-61
       @SuppressWarnings("unused")
-      final EjbJar30Descriptor d = Descriptors.create(EjbJar30Descriptor.class);
+      final EjbJarDescriptor d = Descriptors.create(EjbJarDescriptor.class);
       log.info(fullyPopulatedDescriptor.exportAsString());
    }
 

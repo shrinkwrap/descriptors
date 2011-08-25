@@ -8,11 +8,11 @@ import java.io.FileReader;
 import org.custommonkey.xmlunit.Diff;
 import org.custommonkey.xmlunit.XMLUnit;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.application6.Application6Descriptor;
+import org.jboss.shrinkwrap.descriptor.api.application6.ApplicationDescriptor;
 import org.junit.Before;
 import org.junit.Test;
 
-public class Application6DescriptorImplTestCase
+public class ApplicationDescriptorTestCase
 {
 
    @Before
@@ -26,7 +26,7 @@ public class Application6DescriptorImplTestCase
    @Test
    public void testImportGeneratedApplicationXml() throws Exception
    {
-      Application6Descriptor app6Descr = create()
+      ApplicationDescriptor app6Descr = create()
          .addDefaultNamespaces()
          .version("6")
          .applicationName("application-name0")
@@ -229,9 +229,9 @@ public class Application6DescriptorImplTestCase
       return builder.toString();
    }
    
-   private Application6Descriptor create()
+   private ApplicationDescriptor create()
    {
-      return Descriptors.create(Application6Descriptor.class);
+      return Descriptors.create(ApplicationDescriptor.class);
    }
 
 }

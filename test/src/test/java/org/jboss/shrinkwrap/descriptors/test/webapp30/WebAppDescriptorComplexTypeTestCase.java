@@ -7,14 +7,14 @@ import static org.junit.Assert.assertTrue;
 import java.util.logging.Logger;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.WebApp30Descriptor;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
 import org.junit.Test;
 
 
-public class WebApp30DescriptorComplexTypeTestCase
+public class WebAppDescriptorComplexTypeTestCase
 {
 
-   private final Logger log = Logger.getLogger(WebApp30DescriptorComplexTypeTestCase.class.getName());
+   private final Logger log = Logger.getLogger(WebAppDescriptorComplexTypeTestCase.class.getName());
 
    /*
     * to test:
@@ -33,7 +33,7 @@ public class WebApp30DescriptorComplexTypeTestCase
    @Test
    public void testWebResourceCollection() throws Exception
    {
-      final WebApp30Descriptor webApp = create()
+      final WebAppDescriptor webApp = create()
             .createSecurityConstraint()
                .createWebResourceCollection()
                   .webResourceName("resource1")
@@ -87,7 +87,7 @@ public class WebApp30DescriptorComplexTypeTestCase
    @Test
    public void testLocaleEncodingMappingList() throws Exception
    {
-      final WebApp30Descriptor webApp = create().createLocaleEncodingMappingList()
+      final WebAppDescriptor webApp = create().createLocaleEncodingMappingList()
             .createLocaleEncodingMapping().locale("locale1").encoding("encoding1").up()
             .createLocaleEncodingMapping().locale("locale2").encoding("encoding2").up().up();
       
@@ -119,8 +119,8 @@ public class WebApp30DescriptorComplexTypeTestCase
    // Helper Methods ----------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
    
-   private WebApp30Descriptor create()
+   private WebAppDescriptor create()
    {
-      return Descriptors.create(WebApp30Descriptor.class);
+      return Descriptors.create(WebAppDescriptor.class);
    }
 }

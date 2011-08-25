@@ -24,8 +24,7 @@ import java.io.FileReader;
 import org.custommonkey.xmlunit.Diff;
 import org.custommonkey.xmlunit.XMLUnit;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.beans10.Beans10Descriptor;
-import org.jboss.shrinkwrap.descriptor.api.spec.cdi.beans.BeansDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.beans10.BeansDescriptor;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -37,7 +36,7 @@ import org.junit.Test;
  * @version $Revision: $
  */
 
-public class Beans10DescriptorTestCase
+public class BeansDescriptorTestCase
 {
   
    @Before
@@ -51,7 +50,7 @@ public class Beans10DescriptorTestCase
    @Test
    public void testGeneratedXml() throws Exception
    {
-      final Beans10Descriptor beansDescr = create()
+      final BeansDescriptor beansDescr = create()
             .addDefaultNamespaces()
             .createInterceptors()
                .clazz("class0")
@@ -122,8 +121,8 @@ public class Beans10DescriptorTestCase
       return builder.toString();
    }
 
-   private Beans10Descriptor create()
+   private BeansDescriptor create()
    {
-      return Descriptors.create(Beans10Descriptor.class);
+      return Descriptors.create(BeansDescriptor.class);
    }
 }

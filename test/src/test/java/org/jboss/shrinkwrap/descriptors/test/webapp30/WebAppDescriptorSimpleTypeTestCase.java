@@ -7,15 +7,15 @@ import static org.junit.Assert.assertTrue;
 import java.util.logging.Logger;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.WebApp30Descriptor;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
 import org.junit.Test;
 
 
-public class WebApp30DescriptorSimpleTypeTestCase
+public class WebAppDescriptorSimpleTypeTestCase
 {
 
    @SuppressWarnings("unused")
-   private final Logger log = Logger.getLogger(WebApp30DescriptorSimpleTypeTestCase.class.getName());
+   private final Logger log = Logger.getLogger(WebAppDescriptorSimpleTypeTestCase.class.getName());
 
    /*
     * to test:
@@ -28,7 +28,7 @@ public class WebApp30DescriptorSimpleTypeTestCase
    @Test
    public void testLoadOnStartupType() throws Exception
    {
-      final WebApp30Descriptor webApp = create().createServlet().loadOnStartup(1).up();      
+      final WebAppDescriptor webApp = create().createServlet().loadOnStartup(1).up();      
       assertTrue(webApp.getAllServlet().get(0).getLoadOnStartup()==1);
       webApp.exportAsString();
       assertXPath(webApp.exportAsString(), "/web-app/servlet/load-on-startup", "1");
@@ -43,7 +43,7 @@ public class WebApp30DescriptorSimpleTypeTestCase
    @Test
    public void testWebAppVersionType() throws Exception
    {
-      final WebApp30Descriptor webApp = create().version("3.0");
+      final WebAppDescriptor webApp = create().version("3.0");
       assertEquals(webApp.getVersionAsString(), "3.0");
       assertXPath(webApp.exportAsString(), "/web-app/@version", "3.0");
       
@@ -56,8 +56,8 @@ public class WebApp30DescriptorSimpleTypeTestCase
    // Helper Methods ----------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
    
-   private WebApp30Descriptor create()
+   private WebAppDescriptor create()
    {
-      return Descriptors.create(WebApp30Descriptor.class);
+      return Descriptors.create(WebAppDescriptor.class);
    }
 }
