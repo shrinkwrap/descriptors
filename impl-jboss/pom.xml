@@ -39,11 +39,6 @@
       <artifactId>shrinkwrap-descriptors-impl-base</artifactId>
       <version>${project.version}</version>
     </dependency>
-   <!-- <dependency>
-      <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-      <artifactId>shrinkwrap-descriptors-impl-jboss</artifactId>
-      <version>${project.version}</version>
-    </dependency>-->
     <dependency>
       <groupId>org.jboss.shrinkwrap.descriptors</groupId>
       <artifactId>shrinkwrap-descriptors-impl-base</artifactId>
@@ -56,12 +51,6 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jboss.spec</groupId>
-      <artifactId>jboss-javaee-6.0</artifactId>
-      <type>pom</type>
     </dependency>
 
   </dependencies>
