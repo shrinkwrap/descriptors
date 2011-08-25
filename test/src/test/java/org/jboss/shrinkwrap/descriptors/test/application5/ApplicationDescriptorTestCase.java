@@ -23,20 +23,20 @@ import java.util.logging.Logger;
 import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.application5.Application5Descriptor;
+import org.jboss.shrinkwrap.descriptor.api.application5.ApplicationDescriptor;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
 /**
- * Tests to ensure that the API contract for {@link Application5Descriptor}
+ * Tests to ensure that the API contract for {@link ApplicationDescriptor}
  * is working as expected
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
  */
 //TODO This is a placeholder and POC.  Must be expanded upon greatly for coverage
-public class Application5DescriptorTestCase
+public class ApplicationDescriptorTestCase
 {
    //-------------------------------------------------------------------------------------||
    // Class Members ----------------------------------------------------------------------||
@@ -45,7 +45,7 @@ public class Application5DescriptorTestCase
    /**
     * Logger
     */
-   private static final Logger log = Logger.getLogger(Application5DescriptorTestCase.class.getName());
+   private static final Logger log = Logger.getLogger(ApplicationDescriptorTestCase.class.getName());
 
    /**
     * Name of the fully-populated XML
@@ -59,12 +59,12 @@ public class Application5DescriptorTestCase
    /**
     * Default, empty application descriptor
     */
-   private Application5Descriptor emptyDescriptor;
+   private ApplicationDescriptor emptyDescriptor;
 
    /**
     * Fully-populated application descriptor
     */
-   private Application5Descriptor fullyPopulatedDescriptor;
+   private ApplicationDescriptor fullyPopulatedDescriptor;
 
    //-------------------------------------------------------------------------------------||
    // Lifecycle --------------------------------------------------------------------------||
@@ -73,13 +73,13 @@ public class Application5DescriptorTestCase
    @Before
    public void createEmptyDescriptor()
    {
-      emptyDescriptor = Descriptors.create(Application5Descriptor.class);
+      emptyDescriptor = Descriptors.create(ApplicationDescriptor.class);
    }
 
    @Before
    public void createFullyPopulatedDescriptor()
    {
-      fullyPopulatedDescriptor = Descriptors.importAs(Application5Descriptor.class).from(
+      fullyPopulatedDescriptor = Descriptors.importAs(ApplicationDescriptor.class).from(
             Thread.currentThread().getContextClassLoader().getResourceAsStream(NAME_EAR_XML));
       log.info(fullyPopulatedDescriptor.exportAsString());
    }
@@ -98,7 +98,7 @@ public class Application5DescriptorTestCase
    public void shouldBeAbleToSetName() throws Exception
    {
       final String nonDefaultName = "test.xml";
-      Assert.assertEquals(nonDefaultName, Descriptors.create(Application5Descriptor.class, nonDefaultName)
+      Assert.assertEquals(nonDefaultName, Descriptors.create(ApplicationDescriptor.class, nonDefaultName)
             .getDescriptorName());
    }
 

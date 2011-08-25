@@ -52,6 +52,7 @@
         <xsl:variable name="retValue" select="xdd:normalizeString($name)"/>
         <xsl:variable name="retValue" select="xdd:words-to-camel-case($retValue)"/>
         <xsl:variable name="retValue" select="concat(upper-case(substring($retValue,1,1)), substring($retValue,2))"/>
+        <xsl:variable name="retValue" select="xdd:stripNumbersFromString($retValue)"/>
         <xsl:choose>
             <xsl:when test=" starts-with($name, 'java.')">
                 <xsl:sequence select="$name"/>
@@ -63,6 +64,37 @@
                 <xsl:sequence select="$retValue"/>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:function>
+    
+    <xsl:function name="xdd:stripNumbersFromString">
+      <xsl:param name="name" />
+        <xsl:sequence
+            select="
+             if (contains($name, '0')) then
+                   xdd:stripNumbersFromString(replace($name,'0',''))
+             else if (contains($name, '1')) then
+                   xdd:stripNumbersFromString(replace($name,'1',''))                   
+             else if (contains($name, '2')) then
+                   xdd:stripNumbersFromString(replace($name,'2',''))
+             else if (contains($name, '3')) then
+                   xdd:stripNumbersFromString(replace($name,'3',''))
+             else if (contains($name, '4')) then
+                   xdd:stripNumbersFromString(replace($name,'4',''))
+             else if (contains($name, '5')) then
+                   xdd:stripNumbersFromString(replace($name,'5',''))
+             else if (contains($name, '6')) then
+                   xdd:stripNumbersFromString(replace($name,'6',''))
+             else if (contains($name, '7')) then
+                   xdd:stripNumbersFromString(replace($name,'7',''))
+             else if (contains($name, '8')) then
+                   xdd:stripNumbersFromString(replace($name,'8',''))
+             else if (contains($name, '9')) then
+                   xdd:stripNumbersFromString(replace($name,'9',''))
+             else
+                 string($name)
+        "
+        />
+
     </xsl:function>
 
 

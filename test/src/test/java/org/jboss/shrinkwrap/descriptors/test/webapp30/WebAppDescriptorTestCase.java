@@ -12,7 +12,7 @@ import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.WebApp30Descriptor;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.FilterType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.TrackingModeType;
 import org.jboss.shrinkwrap.descriptor.spi.Node;
@@ -20,10 +20,10 @@ import org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomImporter;
 import org.junit.Test;
 
 
-public class WebApp30DescriptorGeneralTestCase
+public class WebAppDescriptorTestCase
 {
 
-   private final Logger log = Logger.getLogger(WebApp30DescriptorGeneralTestCase.class.getName());
+   private final Logger log = Logger.getLogger(WebAppDescriptorTestCase.class.getName());
 
    private final String source = "" +
         "<web-app " +
@@ -51,7 +51,7 @@ public class WebApp30DescriptorGeneralTestCase
    @Test
    public void shouldBeAbleToSetName() throws Exception
    {
-      Assert.assertEquals("test.xml", Descriptors.create(WebApp30Descriptor.class, "test.xml").getDescriptorName());
+      Assert.assertEquals("test.xml", Descriptors.create(WebAppDescriptor.class, "test.xml").getDescriptorName());
    }
 
    /**
@@ -105,13 +105,13 @@ public class WebApp30DescriptorGeneralTestCase
    @Test
    public void shouldBeAbleToGetFilterIcons() throws Exception
    {
-      WebApp30Descriptor web = create()
+      WebAppDescriptor web = create()
                     .createFilter()
                        .getOrCreateIcon().smallIcon("small1").largeIcon("large1").up()
                        .getOrCreateIcon().smallIcon("small2").largeIcon("large2").up()
                     .up();
 
-     List<IconType<FilterType<WebApp30Descriptor>>> list = web.getAllFilter().get(0).getAllIcon();
+     List<IconType<FilterType<WebAppDescriptor>>> list = web.getAllFilter().get(0).getAllIcon();
      assertTrue(list.size() == 2);
      for (IconType<?> icon: list) 
      {
@@ -191,7 +191,7 @@ public class WebApp30DescriptorGeneralTestCase
    public void shouldBeAbleToOverrideVersionInWebAppDescriptor() throws Exception
    {
       // Make a descriptor
-      final WebApp30Descriptor web = Descriptors.importAs(WebApp30Descriptor.class).from(
+      final WebAppDescriptor web = Descriptors.importAs(WebAppDescriptor.class).from(
             source);
      
       web.version("3.0");
@@ -199,7 +199,7 @@ public class WebApp30DescriptorGeneralTestCase
       
       // Get as Node structure
       final InputStream stream = new ByteArrayInputStream(web.exportAsString().getBytes());
-      final XmlDomImporter<WebApp30Descriptor> importer = new XmlDomImporter<WebApp30Descriptor>(WebApp30Descriptor.class, "web.xml");
+      final XmlDomImporter<WebAppDescriptor> importer = new XmlDomImporter<WebAppDescriptor>(WebAppDescriptor.class, "web.xml");
       final Node root = importer.importRootNode(stream);
       
       // Preconditions
@@ -220,8 +220,8 @@ public class WebApp30DescriptorGeneralTestCase
    // Helper Methods ----------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
    
-   private WebApp30Descriptor create()
+   private WebAppDescriptor create()
    {
-      return Descriptors.create(WebApp30Descriptor.class);
+      return Descriptors.create(WebAppDescriptor.class);
    }
 }

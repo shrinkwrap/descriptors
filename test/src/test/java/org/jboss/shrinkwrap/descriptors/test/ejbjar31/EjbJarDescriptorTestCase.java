@@ -10,12 +10,12 @@ import java.util.TimeZone;
 import org.custommonkey.xmlunit.Diff;
 import org.custommonkey.xmlunit.XMLUnit;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.EjbJar31Descriptor;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.EjbJarDescriptor;
 import org.junit.Before;
 import org.junit.Test;
 
 
-public class EjbJar31DescriptorImplTestCase
+public class EjbJarDescriptorTestCase
 {
    final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-DD hh:mm:ss");
    
@@ -31,7 +31,7 @@ public class EjbJar31DescriptorImplTestCase
    @Test
    public void testGeneratedEjbJarXml() throws Exception
    {  
-      EjbJar31Descriptor ejbJarGenerated = create()
+      EjbJarDescriptor ejbJarGenerated = create()
             .addDefaultNamespaces()
             .version("3.1")
             .moduleName("module-name0")
@@ -511,7 +511,7 @@ public class EjbJar31DescriptorImplTestCase
    @Test
    public void testInterceptors() throws Exception
    {  
-      EjbJar31Descriptor ejbJarGenerated = create()
+      EjbJarDescriptor ejbJarGenerated = create()
             .addDefaultNamespaces()
             .version("3.1")
             .getOrCreateInterceptors()
@@ -558,9 +558,9 @@ public class EjbJar31DescriptorImplTestCase
       return builder.toString();
    }
    
-   private EjbJar31Descriptor create()
+   private EjbJarDescriptor create()
    {
-      return Descriptors.create(EjbJar31Descriptor.class);
+      return Descriptors.create(EjbJarDescriptor.class);
    }
    
 }

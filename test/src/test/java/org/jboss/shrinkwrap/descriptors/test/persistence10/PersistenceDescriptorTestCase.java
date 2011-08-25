@@ -8,11 +8,11 @@ import java.io.FileReader;
 import org.custommonkey.xmlunit.Diff;
 import org.custommonkey.xmlunit.XMLUnit;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.persistence10.Persistence10Descriptor;
+import org.jboss.shrinkwrap.descriptor.api.persistence10.PersistenceDescriptor;
 import org.junit.Before;
 import org.junit.Test;
 
-public class Persistence10DescriptorImplTestCase
+public class PersistenceDescriptorTestCase
 {
    @Before
    public void init()
@@ -25,7 +25,7 @@ public class Persistence10DescriptorImplTestCase
    @Test
    public void testGeneratedPersistenceXml() throws Exception
    {
-      final Persistence10Descriptor persistence = create()
+      final PersistenceDescriptor persistence = create()
             .addDefaultNamespaces()
             .version("1.0")
             .createPersistenceUnit()
@@ -91,8 +91,8 @@ public class Persistence10DescriptorImplTestCase
       return builder.toString();
    }
 
-   private Persistence10Descriptor create()
+   private PersistenceDescriptor create()
    {
-      return Descriptors.create(Persistence10Descriptor.class);
+      return Descriptors.create(PersistenceDescriptor.class);
    }
 }

@@ -26,12 +26,12 @@ import junit.framework.Assert;
 import org.custommonkey.xmlunit.Diff;
 import org.custommonkey.xmlunit.XMLUnit;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.connector16.Connector16Descriptor;
+import org.jboss.shrinkwrap.descriptor.api.connector16.ConnectorDescriptor;
 import org.junit.Before;
 import org.junit.Test;
 
 
-public class Connector16DescriptorTestCase
+public class ConnectorDescriptorTestCase
 {
    
    @Before
@@ -55,13 +55,13 @@ public class Connector16DescriptorTestCase
    @Test
    public void testSetName() throws Exception
    {
-      Assert.assertEquals("test.xml", Descriptors.create(Connector16Descriptor.class, "test.xml").getDescriptorName());
+      Assert.assertEquals("test.xml", Descriptors.create(ConnectorDescriptor.class, "test.xml").getDescriptorName());
    }
    
    @Test
    public void testGenExample() throws Exception 
    {
-      Connector16Descriptor jca16Descr = create()
+      ConnectorDescriptor jca16Descr = create()
          .addDefaultNamespaces()
          .version("1.6")
          .moduleName("module-name0")
@@ -156,9 +156,9 @@ public class Connector16DescriptorTestCase
       return builder.toString();
    }
    
-   private Connector16Descriptor create()
+   private ConnectorDescriptor create()
    {
-      return Descriptors.create(Connector16Descriptor.class);
+      return Descriptors.create(ConnectorDescriptor.class);
    }
    
 }

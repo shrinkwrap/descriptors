@@ -8,15 +8,15 @@ import java.io.FileReader;
 import java.util.logging.Logger;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.webapp30.WebApp30Descriptor;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
 import org.junit.Test;
 
 
-public class WebApp30DescriptorImportAsTestCase
+public class WebAppDescriptorImportAsTestCase
 {
 
    @SuppressWarnings("unused")
-   private final Logger log = Logger.getLogger(WebApp30DescriptorImportAsTestCase.class.getName());
+   private final Logger log = Logger.getLogger(WebAppDescriptorImportAsTestCase.class.getName());
 
    private final String source = "" +
       "<web-app " +
@@ -38,7 +38,7 @@ public class WebApp30DescriptorImportAsTestCase
    public void shouldBeAbleToImport() throws Exception
    {
       // Make a descriptor
-      final WebApp30Descriptor web = Descriptors.importAs(WebApp30Descriptor.class).from(
+      final WebAppDescriptor web = Descriptors.importAs(WebAppDescriptor.class).from(
             source);
       
       assertEquals(web.getAllFilter().get(0).getFilterName(), "UrlRewriteFilter");
@@ -52,7 +52,7 @@ public class WebApp30DescriptorImportAsTestCase
    {
       String web_source_generated = getResourceContents("src/test/resources/test-orig-webapp30.xml");
       
-      final WebApp30Descriptor webapp = Descriptors.importAs(WebApp30Descriptor.class).from(
+      final WebAppDescriptor webapp = Descriptors.importAs(WebAppDescriptor.class).from(
             web_source_generated);
       
       assertTrue(webapp.getAllDisplayName().size() == 1);
@@ -84,7 +84,7 @@ public class WebApp30DescriptorImportAsTestCase
    {
       String web_source_generated = getResourceContents("src/test/resources/test-gen-webapp30.xml");
       
-      final WebApp30Descriptor web = Descriptors.importAs(WebApp30Descriptor.class).from(
+      final WebAppDescriptor web = Descriptors.importAs(WebAppDescriptor.class).from(
             web_source_generated);
       
       assertEquals(web.getAllModuleName().get(0), "module-name0");
