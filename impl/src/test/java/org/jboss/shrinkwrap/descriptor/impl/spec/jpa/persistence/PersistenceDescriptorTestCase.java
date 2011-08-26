@@ -122,10 +122,12 @@ public class PersistenceDescriptorTestCase
    @Test
    public void shouldBeAbleToAddDescription() throws Exception
    {
-      String desc = create().description(name)
+      PersistenceUnitDef unit = create().description(name);
+      String desc = unit
                      .exportAsString();
 
       assertXPath(desc, "/persistence/persistence-unit/description", name);
+      assertEquals(name, unit.getDescription());
    }
 
    @Test
@@ -149,10 +151,12 @@ public class PersistenceDescriptorTestCase
    @Test
    public void shouldBeAbleToSetJTADataSource() throws Exception
    {
-      String desc = create().jtaDataSource(name)
+      PersistenceUnitDef unit = create().jtaDataSource(name);
+      String desc = unit
                      .exportAsString();
 
       assertXPath(desc, "/persistence/persistence-unit/jta-data-source", name);
+      assertEquals(name, unit.getJtaDataSource());
    }
 
    @Test
@@ -178,10 +182,12 @@ public class PersistenceDescriptorTestCase
    @Test
    public void shouldBeAbleToSetNonJtaDataSource() throws Exception
    {
-      String desc = create().nonJtaDataSource(name)
+      PersistenceUnitDef unit = create().nonJtaDataSource(name);
+      String desc = unit
                      .exportAsString();
 
       assertXPath(desc, "/persistence/persistence-unit/non-jta-data-source", name);
+      assertEquals(name, unit.getNonJtaDataSource());
    }
 
    @Test
