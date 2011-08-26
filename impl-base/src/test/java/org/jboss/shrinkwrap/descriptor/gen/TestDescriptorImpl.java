@@ -2,11 +2,8 @@ package org.jboss.shrinkwrap.descriptor.gen;
 
 import java.lang.reflect.Method;
 
-import org.jboss.shrinkwrap.descriptor.api.DescriptorExporter;
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
-import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorExporter;
 import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase;
-import org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomDescriptorExporter;
 
 public class TestDescriptorImpl extends NodeDescriptorImplBase
 {
@@ -26,11 +23,6 @@ public class TestDescriptorImpl extends NodeDescriptorImplBase
    public Node getRootNode()
    {
       return model;
-   }
-
-   protected NodeDescriptorExporter getExporter()
-   {
-      return XmlDomDescriptorExporter.INSTANCE;
    }
 
    public static void testNullArgs(Object obj) throws Exception

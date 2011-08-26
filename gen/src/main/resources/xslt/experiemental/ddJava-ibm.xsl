@@ -1074,10 +1074,6 @@
         <xsl:text>   {&#10;</xsl:text>
         <xsl:value-of select="concat('      return ', $pNodeNameLocal, ';&#10;')"/>
         <xsl:text>   }&#10;&#10;</xsl:text>
-        <xsl:text>   protected DescriptorExporter getExporter()&#10;</xsl:text>
-        <xsl:text>   {&#10;</xsl:text>
-        <xsl:text>      return XmlDomDescriptorExporter.INSTANCE;&#10;</xsl:text>
-        <xsl:text>   }&#10;</xsl:text>
     </xsl:function>
 
     <!-- ************************************************************ -->
