@@ -340,7 +340,7 @@
             <xsl:result-document href="{$vFilename}">
                 <xsl:value-of select="xdd:writeCopyright()"/>
                 <xsl:value-of select="xdd:writePackageLine($vPackage)"/>
-                <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.Node;&#10;</xsl:text>
+                <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.node.Node;&#10;</xsl:text>
                 <xsl:value-of select="concat('import ', $pClass/@packageApi, '.', xdd:createPascalizedName($vInterfaceName,''), ';&#10;')"/>
                 <xsl:value-of select="xdd:writeImports(true())"/>
                 <xsl:value-of select="xdd:writeImports(false())"/>
@@ -413,14 +413,14 @@
                 </xsl:for-each>
 
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.api.DescriptorNamespace;&#10;&#10;</xsl:text>
-                <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.NodeProviderImplBase;&#10;</xsl:text>
+                <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase;&#10;</xsl:text>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;&#10;</xsl:text>
-                <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.Node;&#10;</xsl:text>
+                <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.node.Node;&#10;</xsl:text>
                 <xsl:text>&#10;</xsl:text>
                 <xsl:value-of select=" xdd:writeDescriptorJavaDoc($vInterfaceName, $vSchema)"/>
                 <xsl:value-of select="xdd:classHeaderDeclaration('class', $vClassnameImpl)"/>
-                <!--                <xsl:text> extends NodeProviderImplBase implements DescriptorNamespace, </xsl:text>-->
-                <xsl:value-of select="concat(' extends NodeProviderImplBase implements DescriptorNamespace', '&lt;', $vInterfaceName, '&gt;', ', ')"/>
+                <!--                <xsl:text> extends NodeDescriptorImplBase implements DescriptorNamespace, </xsl:text>-->
+                <xsl:value-of select="concat(' extends NodeDescriptorImplBase implements DescriptorNamespace', '&lt;', $vInterfaceName, '&gt;', ', ')"/>
                 <xsl:value-of select="xdd:createPascalizedName($vInterfaceName, '')"/>
                 <xsl:text>&#10;{</xsl:text>
                 <xsl:text>&#10;</xsl:text>
@@ -473,7 +473,7 @@
             <xsl:result-document href="{$vFilename}">
                 <xsl:value-of select="xdd:writeCopyright()"/>
                 <xsl:value-of select="xdd:writePackageLine($vPackage)"/>
-                <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.Node;&#10;</xsl:text>
+                <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.node.Node;&#10;</xsl:text>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.gen.TestDescriptorImpl;&#10;</xsl:text>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.api.Descriptors;</xsl:text>
                 <xsl:text>import org.junit.Test;&#10;</xsl:text>
@@ -1076,7 +1076,7 @@
         <xsl:text>   }&#10;&#10;</xsl:text>
         <xsl:text>   protected DescriptorExporter getExporter()&#10;</xsl:text>
         <xsl:text>   {&#10;</xsl:text>
-        <xsl:text>      return new XmlDomExporter();&#10;</xsl:text>
+        <xsl:text>      return XmlDomDescriptorExporter.INSTANCE;&#10;</xsl:text>
         <xsl:text>   }&#10;</xsl:text>
     </xsl:function>
 
@@ -2504,7 +2504,7 @@
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="'import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;&#10;'"/>
-                <xsl:value-of select="'import org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomExporter;&#10;'"/>
+                <xsl:value-of select="'import org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomDescritorExporter;&#10;'"/>
                 <xsl:value-of select="'import org.jboss.shrinkwrap.descriptor.impl.base.Strings;&#10;'"/>
                 <xsl:value-of select="'import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;&#10;'"/>
                 <!-- <xsl:for-each select="$gPackageImpls">
@@ -2718,12 +2718,12 @@
         <!--        <xsl:message select="$vFilename"/>-->
         <xsl:result-document href="{$vFilename}">
             <xsl:value-of select="concat('    package org.jboss.shrinkwrap.descriptor.gen.test;', '&#10;&#10;')"/>
-            <xsl:value-of select="concat('    import org.jboss.shrinkwrap.descriptor.spi.NodeProviderImplBase;', '&#10;')"/>
-            <xsl:value-of select="concat('    import org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomExporter;', '&#10;')"/>
+            <xsl:value-of select="concat('    import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase;', '&#10;')"/>
+            <xsl:value-of select="concat('    import org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomDescriptorExporter;', '&#10;')"/>
             <xsl:value-of select="concat('    import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;', '&#10;')"/>
-            <xsl:value-of select="concat('    import org.jboss.shrinkwrap.descriptor.spi.Node;', '&#10;')"/>
+            <xsl:value-of select="concat('    import org.jboss.shrinkwrap.descriptor.spi.node.Node;', '&#10;')"/>
 
-            <xsl:value-of select="concat('    private class TestDescriptorImpl extends NodeProviderImplBase', '&#10;')"/>
+            <xsl:value-of select="concat('    private class TestDescriptorImpl extends NodeDescriptorImplBase', '&#10;')"/>
             <xsl:value-of select="concat('    {', '&#10;')"/>
             <xsl:value-of select="concat('        private Node model;', '&#10;')"/>
 
@@ -2745,7 +2745,7 @@
 
             <xsl:value-of select="concat('        protected DescriptorExporter getExporter()', '&#10;')"/>
             <xsl:value-of select="concat('        {', '&#10;')"/>
-            <xsl:value-of select="concat('           return new XmlDomExporter();', '&#10;')"/>
+            <xsl:value-of select="concat('           return XmlDomDescriptorExporter.INSTANCE;', '&#10;')"/>
             <xsl:value-of select="concat('        }', '&#10;')"/>
             <xsl:value-of select="concat('    }', '&#10;')"/>
         </xsl:result-document>

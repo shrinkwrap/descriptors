@@ -2,12 +2,13 @@ package org.jboss.shrinkwrap.descriptor.gen;
 
 import java.lang.reflect.Method;
 
-import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
-import org.jboss.shrinkwrap.descriptor.spi.Node;
-import org.jboss.shrinkwrap.descriptor.spi.NodeProviderImplBase;
-import org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomExporter;
+import org.jboss.shrinkwrap.descriptor.api.DescriptorExporter;
+import org.jboss.shrinkwrap.descriptor.spi.node.Node;
+import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorExporter;
+import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase;
+import org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomDescriptorExporter;
 
-public class TestDescriptorImpl extends NodeProviderImplBase
+public class TestDescriptorImpl extends NodeDescriptorImplBase
 {
    private Node model;
 
@@ -27,9 +28,9 @@ public class TestDescriptorImpl extends NodeProviderImplBase
       return model;
    }
 
-   protected DescriptorExporter getExporter()
+   protected NodeDescriptorExporter getExporter()
    {
-      return new XmlDomExporter();
+      return XmlDomDescriptorExporter.INSTANCE;
    }
 
    public static void testNullArgs(Object obj) throws Exception

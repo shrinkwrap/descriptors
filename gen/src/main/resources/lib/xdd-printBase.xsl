@@ -30,9 +30,9 @@
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="'import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;&#10;'"/>
-                <xsl:value-of select="'import org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomExporter;&#10;'"/>
+                <xsl:value-of select="'import org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomDescriptorExporter;&#10;'"/>
                 <xsl:value-of select="'import org.jboss.shrinkwrap.descriptor.impl.base.Strings;&#10;'"/>
-                <xsl:value-of select="'import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;&#10;'"/>
+                <xsl:value-of select="'import org.jboss.shrinkwrap.descriptor.api.DescriptorExporter;&#10;'"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
@@ -197,7 +197,7 @@
         <xsl:text>   }&#10;&#10;</xsl:text>
         <xsl:text>   protected DescriptorExporter getExporter()&#10;</xsl:text>
         <xsl:text>   {&#10;</xsl:text>
-        <xsl:text>      return new XmlDomExporter();&#10;</xsl:text>
+        <xsl:text>      return XmlDomDescriptorExporter.INSTANCE;&#10;</xsl:text>
         <xsl:text>   }&#10;</xsl:text>
     </xsl:function>
 
