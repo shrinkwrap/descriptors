@@ -19,18 +19,17 @@ package org.jboss.shrinkwrap.descriptor.api;
 import java.io.ByteArrayOutputStream;
 
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.WebAppDescriptor;
-import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 /**
- * Verify behavior of {@link NodeDescriptorExporterImpl}
+ * Verify behavior of Descriptor Exporters
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-@Ignore // To be moved
+@Ignore // To be moved, reworked
 public class DescriptorExporterTestCase
 {
 

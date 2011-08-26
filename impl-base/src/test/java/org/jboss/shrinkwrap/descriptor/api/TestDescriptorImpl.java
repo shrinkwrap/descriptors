@@ -16,17 +16,17 @@
  */
 package org.jboss.shrinkwrap.descriptor.api;
 
-import org.jboss.shrinkwrap.descriptor.spi.DescriptorExporter;
-import org.jboss.shrinkwrap.descriptor.spi.Node;
-import org.jboss.shrinkwrap.descriptor.spi.NodeProviderImplBase;
-import org.jboss.shrinkwrap.descriptor.spi.xml.dom.XmlDomExporter;
+import org.jboss.shrinkwrap.descriptor.spi.node.Node;
+import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorExporter;
+import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase;
+import org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomDescriptorExporter;
 
 /**
  * {@link TestDescriptor} implementation for use in testing
  * 
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
  */
-public class TestDescriptorImpl extends NodeProviderImplBase implements TestDescriptor
+public class TestDescriptorImpl extends NodeDescriptorImplBase implements TestDescriptor
 {
 
    /**
@@ -70,9 +70,9 @@ public class TestDescriptorImpl extends NodeProviderImplBase implements TestDesc
     * @see org.jboss.shrinkwrap.descriptor.spi.NodeProviderImplBase#getExporter()
     */
    @Override
-   protected DescriptorExporter getExporter()
+   protected NodeDescriptorExporter getExporter()
    {
-      return new XmlDomExporter();
+      return XmlDomDescriptorExporter.INSTANCE;
    }
 
 }

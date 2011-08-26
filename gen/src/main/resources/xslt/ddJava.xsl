@@ -338,7 +338,7 @@
             <xsl:result-document href="{$vFilename}">
                 <xsl:value-of select="xdd:writeCopyright()"/>
                 <xsl:value-of select="xdd:writePackageLine($vPackage)"/>
-                <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.Node;&#10;</xsl:text>
+                <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.node.Node;&#10;</xsl:text>
                 <xsl:value-of select="concat('import ', $pClass/@packageApi, '.', xdd:createPascalizedName($vInterfaceName,''), ';&#10;')"/>
                 <xsl:value-of select="xdd:writeImports(true())"/>
                 <xsl:value-of select="xdd:writeImports(false())"/>
@@ -404,13 +404,13 @@
                     <xsl:value-of select="xdd:writeDynamicImports($vType, $vNamespace, false())"/>
                 </xsl:for-each>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.api.DescriptorNamespace;&#10;&#10;</xsl:text>
-                <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.NodeProviderImplBase;&#10;</xsl:text>
+                <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase;&#10;</xsl:text>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;&#10;</xsl:text>
-                <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.Node;&#10;</xsl:text>
+                <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.node.Node;&#10;</xsl:text>
                 <xsl:text>&#10;</xsl:text>
                 <xsl:value-of select=" xdd:writeDescriptorJavaDoc($vInterfaceName, $vSchema, $gContributors)"/>
                 <xsl:value-of select="xdd:classHeaderDeclaration('class', $vClassnameImpl)"/>
-                <xsl:value-of select="concat(' extends NodeProviderImplBase implements DescriptorNamespace', '&lt;', $vInterfaceName, '&gt;', ', ')"/>
+                <xsl:value-of select="concat(' extends NodeDescriptorImplBase implements DescriptorNamespace', '&lt;', $vInterfaceName, '&gt;', ', ')"/>
                 <xsl:value-of select="xdd:createPascalizedName($vInterfaceName, '')"/>
                 <xsl:text>&#10;{</xsl:text>
                 <xsl:text>&#10;</xsl:text>
@@ -461,7 +461,7 @@
             <xsl:result-document href="{$vFilename}">
                 <xsl:value-of select="xdd:writeCopyright()"/>
                 <xsl:value-of select="xdd:writePackageLine($vPackage)"/>
-                <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.Node;&#10;</xsl:text>
+                <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.node.Node;&#10;</xsl:text>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.gen.TestDescriptorImpl;&#10;</xsl:text>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.api.Descriptors;</xsl:text>
                 <xsl:text>import org.junit.Test;&#10;</xsl:text>
