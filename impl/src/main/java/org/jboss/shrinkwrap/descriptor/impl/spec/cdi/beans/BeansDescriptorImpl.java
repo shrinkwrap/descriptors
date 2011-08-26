@@ -26,9 +26,7 @@ import javax.interceptor.Interceptor;
 
 import org.jboss.shrinkwrap.descriptor.api.spec.cdi.beans.BeansDescriptor;
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
-import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorExporter;
 import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase;
-import org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomDescriptorExporter;
 
 /**
  * @author Dan Allen
@@ -306,16 +304,6 @@ public class BeansDescriptorImpl extends NodeDescriptorImplBase implements Beans
    public Node getRootNode()
    {
       return beans;
-   }
-
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase#getExporter()
-    */
-   @Override
-   protected NodeDescriptorExporter getExporter()
-   {
-      return XmlDomDescriptorExporter.INSTANCE;
    }
 
    @Override

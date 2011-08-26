@@ -60,7 +60,7 @@ public abstract class NodeDescriptorImplBase extends DescriptorImplBase<NodeDesc
     * @see org.jboss.shrinkwrap.descriptor.spi.DescriptorImplBase#getExporter()
     */
    @Override
-   protected DescriptorExporter<NodeDescriptor> getExporter()
+   protected final DescriptorExporter<NodeDescriptor> getExporter()
    {
       return XmlDomDescriptorExporter.INSTANCE;
    }

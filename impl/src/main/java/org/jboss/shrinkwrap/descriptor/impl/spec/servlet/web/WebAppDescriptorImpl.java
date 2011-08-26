@@ -45,9 +45,7 @@ import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.TrackingModeType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.WebAppDescriptor;
 import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
-import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorExporter;
 import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase;
-import org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomDescriptorExporter;
 
 /**
  * @author Dan Allen
@@ -487,16 +485,6 @@ public class WebAppDescriptorImpl extends NodeDescriptorImplBase implements WebA
    public Node getRootNode()
    {
       return model;
-   }
-
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase#getExporter()
-    */
-   @Override
-   protected NodeDescriptorExporter getExporter()
-   {
-      return XmlDomDescriptorExporter.INSTANCE;
    }
 
    // -------------------------------------------------------------------------------------||

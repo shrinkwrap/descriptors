@@ -23,9 +23,7 @@ import java.util.List;
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.PersistenceDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.spec.jpa.persistence.PersistenceUnitDef;
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
-import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorExporter;
 import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase;
-import org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomDescriptorExporter;
 
 /**
  * @author Dan Allen
@@ -112,15 +110,5 @@ public class PersistenceDescriptorImpl extends NodeDescriptorImplBase
    public Node getRootNode()
    {
       return model;
-   }
-
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase#getExporter()
-    */
-   @Override
-   protected NodeDescriptorExporter getExporter()
-   {
-      return XmlDomDescriptorExporter.INSTANCE;
    }
 }

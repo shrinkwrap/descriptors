@@ -23,9 +23,7 @@ import org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescri
 import org.jboss.shrinkwrap.descriptor.api.spec.ee.application.SecurityRole;
 import org.jboss.shrinkwrap.descriptor.api.spec.ee.application.WebModule;
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
-import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorExporter;
 import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase;
-import org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomDescriptorExporter;
 
 /**
  * ApplicationDescriptorImpl
@@ -205,12 +203,6 @@ public class ApplicationDescriptorImpl extends NodeDescriptorImplBase implements
    public Node getRootNode()
    {
       return model;
-   }
-
-   @Override
-   protected NodeDescriptorExporter getExporter()
-   {
-      return XmlDomDescriptorExporter.INSTANCE;
    }
 
    @Override
