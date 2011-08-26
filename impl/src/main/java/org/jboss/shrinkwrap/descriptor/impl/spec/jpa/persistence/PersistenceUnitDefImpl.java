@@ -353,13 +353,15 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    @Override
    public String getDescription()
    {
-      return persistenceUnit.getAttributes().get("description");
+      Node result = persistenceUnit.getSingle("description");
+      return result == null ? null : result.getText();
    }
 
    @Override
    public String getNonJtaDataSource()
    {
-      return persistenceUnit.getAttributes().get("non-jta-data-source");
+      Node result = persistenceUnit.getSingle("non-jta-data-source");
+      return result == null ? null : result.getText();
    }
 
    @Override
@@ -371,7 +373,8 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    @Override
    public String getJtaDataSource()
    {
-      return persistenceUnit.getAttributes().get("jta-data-source");
+      Node result = persistenceUnit.getSingle("jta-data-source");
+      return result == null ? null : result.getText();
    }
 
    @Override
