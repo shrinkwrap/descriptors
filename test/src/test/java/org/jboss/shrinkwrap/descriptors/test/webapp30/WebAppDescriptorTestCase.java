@@ -1,6 +1,6 @@
 package org.jboss.shrinkwrap.descriptors.test.webapp30;
 
-import static org.jboss.shrinkwrap.descriptor.impl.spec.AssertXPath.assertXPath;
+import static org.jboss.shrinkwrap.descriptors.test.util.AssertXPath.assertXPath;
 import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayInputStream;

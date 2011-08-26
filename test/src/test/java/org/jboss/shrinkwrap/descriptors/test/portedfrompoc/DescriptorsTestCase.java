@@ -14,13 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.api;
+package org.jboss.shrinkwrap.descriptors.test.portedfrompoc;
 
 import java.io.ByteArrayInputStream;
 
-import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.WebAppDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.Descriptors;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -29,7 +29,6 @@ import org.junit.Test;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-@Ignore // To be moved
 public class DescriptorsTestCase
 {
    private final String source = ""
@@ -58,7 +57,7 @@ public class DescriptorsTestCase
 
       Assert.assertNotNull(web);
 
-      Assert.assertEquals(1, web.getFilters().size());
-      Assert.assertEquals(1, web.getFilterMappings().size());
+      Assert.assertEquals(1, web.getAllFilter().size());
+      Assert.assertEquals(1, web.getAllFilterMapping().size());
    }
 }
