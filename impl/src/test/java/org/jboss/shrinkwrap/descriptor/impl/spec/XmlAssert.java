@@ -64,7 +64,6 @@ public final class XmlAssert
       NodeList nodes = extractMatchingNodes(doc, String.format(XPATH_SCHEMA_LOCATION, namespaceUri));
       Assert.assertFalse(String.format(SCHEMA_LOCATION_NOT_DEFINED, namespaceUri), nodes.getLength() == 0);
       Assert.assertEquals("Expected schema location is different", expectedLocation, nodes.item(0).getNodeValue());
-
    }
    
    /**
@@ -102,17 +101,15 @@ public final class XmlAssert
       {
          Assert.assertEquals("ExpectedValue count should match found Node count", expectedValues.length,
                nodes.getLength());
-      } 
-      else 
+      }
+      
+      for(int i = 0; i < nodes.getLength(); i++)
       {
-         for(int i = 0; i < nodes.getLength(); i++)
-         {
-            Node node = nodes.item(i);
-            Assert.assertEquals(
-                  "XPath content should match expected value",
-                  expectedValues[i], 
-                  node.getTextContent());
-         }
+         Node node = nodes.item(i);
+         Assert.assertEquals(
+               "XPath content should match expected value",
+               expectedValues[i], 
+               node.getTextContent());
       }
    }
 
