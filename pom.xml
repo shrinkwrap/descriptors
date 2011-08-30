@@ -17,7 +17,7 @@
     <!-- Artifact Information  -->
   <groupId>org.jboss.shrinkwrap.descriptors</groupId>
   <artifactId>shrinkwrap-descriptors-parent</artifactId>
-  <version>1.1.0-alpha-4-SNAPSHOT</version>
+  <version>1.2.0-alpha-1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>ShrinkWrap Descriptors Aggregator</name>
   <url>http://www.jboss.org</url>
@@ -28,7 +28,6 @@
 
     <!-- Versioning -->
     <version.junit_junit>4.8.1</version.junit_junit>
-    <version.org.jboss.spec>1.0.0.Beta7</version.org.jboss.spec>
 
   </properties>
   
@@ -55,9 +54,15 @@
   
   <!-- Aggregate Modules -->
   <modules>
-    <module>api</module>
-    <module>impl</module>
+    <module>api-base</module>
+    <module>api-javaee</module>
+    <module>api-jboss</module>
+    <module>gen</module>
+    <module>impl-base</module>
+    <module>impl-javaee</module>
+    <module>impl-jboss</module>
     <module>spi</module>
+    <module>test</module>
   </modules>
 
   <!-- Plugin Configuration -->
@@ -138,6 +143,45 @@
           </rules>
         </configuration>
       </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.8</version>
+        <configuration>
+          <doclet>org.jboss.apiviz.APIviz</doclet>
+          <docletArtifact>
+            <groupId>org.jboss.apiviz</groupId>
+            <artifactId>apiviz</artifactId>
+            <version>1.3.0.GA</version>
+          </docletArtifact>
+          <useStandardDocletOptions>true</useStandardDocletOptions>
+          <charset>UTF-8</charset>
+          <encoding>UTF-8</encoding>
+          <docencoding>UTF-8</docencoding>
+          <breakiterator>true</breakiterator>
+          <version>true</version>
+          <author>true</author>
+          <keywords>true</keywords>
+          <stylesheetfile>${basedir}/javadoc/javadoc.css</stylesheetfile>
+          <javadocDirectory>${basedir}/javadoc</javadocDirectory>
+          <docfilessubdirs>true</docfilessubdirs>
+          <detectLinks>true</detectLinks>
+          <excludePackageNames>org.jboss.shrinkwrap.descriptor.api.spec.*:org.jboss.shrinkwrap.descriptor.impl.*:org.jboss.shrinkwrap.descriptor.example:org.jboss.shrinkwrap.descriptor.spi</excludePackageNames>
+        </configuration>
+        <executions>
+          <execution>
+            <id>aggregate</id>
+            <goals>
+              <goal>aggregate</goal>
+            </goals>
+            <phase>site</phase>
+            <configuration>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      
     </plugins>
 
   </build>
@@ -151,14 +195,6 @@
         <artifactId>junit</artifactId>
         <version>${version.junit_junit}</version>
         <scope>test</scope>
-      </dependency>
-
-      <dependency>
-        <groupId>org.jboss.spec</groupId>
-        <artifactId>jboss-javaee-6.0</artifactId>
-        <version>${version.org.jboss.spec}</version>
-        <type>pom</type>
-        <scope>provided</scope>
       </dependency>
 
     </dependencies>
@@ -195,7 +231,5 @@
       </snapshots>
     </pluginRepository>
   </pluginRepositories> 
-  
-  
 
 </project>

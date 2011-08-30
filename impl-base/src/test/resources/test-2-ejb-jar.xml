@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:ejb="http://java.sun.com/xml/ns/javaee/ejb-jar_3_0.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd"
+	version="3.1">
+
+	<enterprise-beans>
+		<session>
+			<ejb-name>FixServiceRegistryBean</ejb-name>
+			<resource-ref>
+				<res-ref-name>ra/QFJConnectionFactory</res-ref-name>
+				<res-type>com.swx.jca.qfj.api.QuickFIXJConnectionFactory</res-type>
+				<res-auth>Container</res-auth>
+				<mapped-name>java:/ra/JcaQfjAdapter</mapped-name>
+			</resource-ref>
+		</session>
+		<message-driven>
+			<ejb-name>AcceptorsSink</ejb-name>
+			<ejb-class>com.swx.ptp.kernel.ejb.service.fix.impl.FixMessageSinkMDB</ejb-class>
+			<activation-config>
+				<activation-config-property>
+					<activation-config-property-name>sinkName</activation-config-property-name>
+					<activation-config-property-value>AcceptorsSink</activation-config-property-value>
+				</activation-config-property>
+			</activation-config>
+		</message-driven>
+		<message-driven>
+			<ejb-name>InitiatorsSink</ejb-name>
+			<ejb-class>com.swx.ptp.kernel.ejb.service.fix.impl.FixMessageSinkMDB</ejb-class>
+			<activation-config>
+				<activation-config-property>
+					<activation-config-property-name>sinkName</activation-config-property-name>
+					<activation-config-property-value>InitiatorsSink</activation-config-property-value>
+				</activation-config-property>
+			</activation-config>
+		</message-driven>
+	</enterprise-beans>
+
+
+</ejb-jar>
