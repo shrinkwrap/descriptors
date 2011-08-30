@@ -21,8 +21,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
-import org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomDescriptorExporterImpl;
-import org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomDescriptorImporterImpl;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -59,11 +57,9 @@ public class XMLRoundTripTestCase
       System.out.println(export(root));
    }
    
-   @SuppressWarnings({"unchecked", "rawtypes"})
    private Node load(String xml)
    {
-      return new XmlDomDescriptorImporterImpl(Object.class, "test.xml")
-         .importRootNode(new ByteArrayInputStream(xml.getBytes()));
+      return XmlDomNodeImporter.INSTANCE.importAsNode(new ByteArrayInputStream(xml.getBytes()), true);
    }
    
    private String export(Node root)

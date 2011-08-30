@@ -51,7 +51,7 @@ public abstract class NodeDescriptorImporterBase<T extends Descriptor> extends D
    {
       super(endUserViewImplType, descriptorName);
    }
-
+   
    //-------------------------------------------------------------------------------------||
    // Required Implementations -----------------------------------------------------------||
    //-------------------------------------------------------------------------------------||
@@ -69,7 +69,7 @@ public abstract class NodeDescriptorImporterBase<T extends Descriptor> extends D
          throw new IllegalArgumentException("InputStream must be specified");
       }
 
-      final Node rootNode = importRootNode(in, close);
+      final Node rootNode = this.getNodeImporter().importAsNode(in, close);
 
       // Create the end-user view
       final Constructor<T> constructor;
@@ -96,6 +96,7 @@ public abstract class NodeDescriptorImporterBase<T extends Descriptor> extends D
       // Return
       return descriptor;
    }
+
    
    //-------------------------------------------------------------------------------------||
    // Contracts --------------------------------------------------------------------------||
@@ -108,14 +109,5 @@ public abstract class NodeDescriptorImporterBase<T extends Descriptor> extends D
     * @param stream The Stream of data.
     * @return The Root node extracted.
     */
-   public abstract Node importRootNode(InputStream stream) throws DescriptorImportException;
-
-   /**
-    * Importer specific behavior. Convert {@link InputStream} to Node.
-    *
-    * @param stream The Stream of data.
-    * @param close Whether to close the specified stream or not
-    * @return The Root node extracted.
-    */
-   public abstract Node importRootNode(InputStream stream, boolean close) throws DescriptorImportException;
+   public abstract NodeImporter getNodeImporter();
 }

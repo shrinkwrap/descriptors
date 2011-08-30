@@ -24,56 +24,34 @@ import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.jboss.shrinkwrap.descriptor.api.Descriptor;
 import org.jboss.shrinkwrap.descriptor.api.DescriptorImportException;
-import org.jboss.shrinkwrap.descriptor.api.DescriptorImporter;
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
-import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImporterBase;
+import org.jboss.shrinkwrap.descriptor.spi.node.NodeImporter;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 
 /**
- * {@link DescriptorImporter} implementation backed by the
- * {@link Document} API
+ * {@link NodeImporter} implementation backed by the
+ * {@link Document} API.
  * 
+ * @see {@link XmlDomNodeImporter} For convenience singleton
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public final class XmlDomDescriptorImporterImpl<T extends Descriptor> extends NodeDescriptorImporterBase<T>
-      implements
-         DescriptorImporter<T>
+public final class XmlDomNodeImporterImpl implements NodeImporter
 {
-   private final Logger log = Logger.getLogger(XmlDomDescriptorImporterImpl.class.getName());
-
-   public XmlDomDescriptorImporterImpl(final Class<T> endUserViewImplType, final String descriptorName)
-   {
-      super(endUserViewImplType, descriptorName);
-   }
+   /**
+    * Logger
+    */
+   private final Logger log = Logger.getLogger(XmlDomNodeImporterImpl.class.getName());
 
    /**
-    *
-    * @param stream The Stream of data.
-    * @return the imported node
-    * @throws DescriptorImportException if import fails from specified stream
-    * @throws IllegalArgumentException if the close parameter was specified as true for a stream which was unclosable.
+    * {@inheritDoc}
+    * @see org.jboss.shrinkwrap.descriptor.spi.node.NodeImporter#importAsNode(java.io.InputStream, boolean)
     */
    @Override
-   public Node importRootNode(final InputStream stream) throws DescriptorImportException
-   {
-      return importRootNode(stream, true);
-   }
-
-   /**
-    *
-    * @param stream The Stream of data.
-    * @param close Whether to close the specified stream
-    * @return the imported node
-    * @throws DescriptorImportException if import fails from specified stream
-    * @throws IllegalArgumentException if the close parameter was specified as true for a stream which was unclosable.
-    */
-   @Override
-   public Node importRootNode(final InputStream stream, final boolean close) throws DescriptorImportException
+   public Node importAsNode(final InputStream stream, final boolean close) throws DescriptorImportException
    {
       try
       {

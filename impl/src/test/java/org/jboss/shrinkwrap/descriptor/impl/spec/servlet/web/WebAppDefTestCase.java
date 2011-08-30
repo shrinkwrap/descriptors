@@ -42,7 +42,8 @@ import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.TrackingModeType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.TransportGuaranteeType;
 import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.WebAppDescriptor;
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
-import org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomDescriptorImporterImpl;
+import org.jboss.shrinkwrap.descriptor.spi.node.NodeImporter;
+import org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomNodeImporter;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -352,8 +353,8 @@ public class WebAppDefTestCase
 
       // Get as Node structure
       final InputStream stream = new ByteArrayInputStream(web.exportAsString().getBytes());
-      final XmlDomDescriptorImporterImpl<WebAppDescriptor> importer = new XmlDomDescriptorImporterImpl<WebAppDescriptor>(WebAppDescriptor.class, "web.xml");
-      final Node root = importer.importRootNode(stream);
+      final NodeImporter importer = XmlDomNodeImporter.INSTANCE;
+      final Node root = importer.importAsNode(stream, true);
       
       // Preconditions
       Assert.assertEquals("3.0", web.getVersion());
@@ -364,7 +365,7 @@ public class WebAppDefTestCase
       
       // Get as Node structure
       final InputStream afterUpdateStream = new ByteArrayInputStream(web.exportAsString().getBytes());
-      final Node rootAfterUpdate = importer.importRootNode(afterUpdateStream);
+      final Node rootAfterUpdate = importer.importAsNode(afterUpdateStream, true);
       
       // Check that everything was updated
       Assert.assertEquals("2.5", web.getVersion());
