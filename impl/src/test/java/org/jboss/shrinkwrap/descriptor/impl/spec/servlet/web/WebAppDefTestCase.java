@@ -16,10 +16,8 @@
  */
 package org.jboss.shrinkwrap.descriptor.impl.spec.servlet.web;
 
-import static org.jboss.shrinkwrap.descriptor.impl.spec.AssertXPath.assertXPath;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.jboss.shrinkwrap.descriptor.impl.spec.XmlAssert.*;
+import static org.junit.Assert.*;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -137,10 +135,10 @@ public class WebAppDefTestCase
     * SHRINKDESC-36
     */
    @Test
-   public void verifySchemaLocation()
+   public void shouldHaveCorrectSchemaLocation()
    {
       final String expectedSchemaLocation = "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd";
-      assertXPath(create().exportAsString(),"/web-app/@xsi:schemaLocation",expectedSchemaLocation+"dsd");
+      assertSchemaLocation(create().exportAsString(), "http://www.w3.org/2001/XMLSchema-instance", expectedSchemaLocation);
    }
 
    @Test
@@ -156,10 +154,10 @@ public class WebAppDefTestCase
 
       log.fine(desc);
 
-      assertXPath(desc, "/web-app/filter/filter-name", name);
-      assertXPath(desc, "/web-app/filter/filter-class", clazz);
-      assertXPath(desc, "/web-app/filter-mapping/filter-name", name);
-      assertXPath(desc, "/web-app/filter-mapping/url-pattern", mapping);
+      assertPresenceUsingXPath(desc, "/web-app/filter/filter-name", name);
+      assertPresenceUsingXPath(desc, "/web-app/filter/filter-class", clazz);
+      assertPresenceUsingXPath(desc, "/web-app/filter-mapping/filter-name", name);
+      assertPresenceUsingXPath(desc, "/web-app/filter-mapping/url-pattern", mapping);
    }
 
    @Test
@@ -175,10 +173,10 @@ public class WebAppDefTestCase
 
       log.fine(desc);
 
-      assertXPath(desc, "/web-app/servlet/servlet-name", name);
-      assertXPath(desc, "/web-app/servlet/servlet-class", clazz);
-      assertXPath(desc, "/web-app/servlet-mapping/servlet-name", name);
-      assertXPath(desc, "/web-app/servlet-mapping/url-pattern", mapping);
+      assertPresenceUsingXPath(desc, "/web-app/servlet/servlet-name", name);
+      assertPresenceUsingXPath(desc, "/web-app/servlet/servlet-class", clazz);
+      assertPresenceUsingXPath(desc, "/web-app/servlet-mapping/servlet-name", name);
+      assertPresenceUsingXPath(desc, "/web-app/servlet-mapping/url-pattern", mapping);
    }
 
    @Test
@@ -232,7 +230,7 @@ public class WebAppDefTestCase
    }
 
    @Test
-   public void defaultFacesSuffixesAndViewMappingsValues() throws Exception
+   public void shouldMapDefaultFacesSuffixesAndViewMappingsValues() throws Exception
    {
       WebAppDescriptor web = create();
       
@@ -309,8 +307,8 @@ public class WebAppDefTestCase
 
       log.fine(desc);
 
-      assertXPath(desc, "/web-app/@version", version);
-      assertXPath(desc, "/web-app/@metadata-complete", "true");
+      assertPresenceUsingXPath(desc, "/web-app/@version", version);
+      assertPresenceUsingXPath(desc, "/web-app/@metadata-complete", "true");
    }
 
    @Test
@@ -332,12 +330,12 @@ public class WebAppDefTestCase
 
       log.fine(desc);
 
-      assertXPath(desc, "/web-app/session-config/session-timeout", timeout);
-      assertXPath(desc, "/web-app/session-config/cookie-config/name", name);
-      assertXPath(desc, "/web-app/session-config/cookie-config/domain", domain);
-      assertXPath(desc, "/web-app/session-config/cookie-config/path", path);
-      assertXPath(desc, "/web-app/session-config/cookie-config/max-age", maxAge);
-      assertXPath(desc, "/web-app/session-config/tracking-mode", TrackingModeType.COOKIE);
+      assertPresenceUsingXPath(desc, "/web-app/session-config/session-timeout", timeout);
+      assertPresenceUsingXPath(desc, "/web-app/session-config/cookie-config/name", name);
+      assertPresenceUsingXPath(desc, "/web-app/session-config/cookie-config/domain", domain);
+      assertPresenceUsingXPath(desc, "/web-app/session-config/cookie-config/path", path);
+      assertPresenceUsingXPath(desc, "/web-app/session-config/cookie-config/max-age", maxAge);
+      assertPresenceUsingXPath(desc, "/web-app/session-config/tracking-mode", TrackingModeType.COOKIE);
    }
    
    /**
@@ -383,7 +381,7 @@ public class WebAppDefTestCase
             .securityConstraint(securityConstraintDisplayName)
             .exportAsString().trim();
 
-      assertXPath(webAppDescriptor, "/web-app/security-constraint/display-name", securityConstraintDisplayName);
+      assertPresenceUsingXPath(webAppDescriptor, "/web-app/security-constraint/display-name", securityConstraintDisplayName);
    }
 
    private String getResourceContents(String resource) throws Exception
