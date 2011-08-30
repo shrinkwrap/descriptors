@@ -398,7 +398,70 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
+    
+    
+    <!-- *********************************************************** -->
+    <!-- ****** Function which writes the Getbbb Attribute  Body *** -->
+    <!-- *********************************************************** -->
+    <xsl:function name="xdd:printGetEnumAttribute">
+        <xsl:param name="pClassType"/>
+        <xsl:param name="pElementType"/>
+        <xsl:param name="pMethodName"/>
+        <xsl:param name="pNodeNameLocal"/>
+        <xsl:param name="pElementName"/>
+        <xsl:param name="pReturnTypeName"/>
+        <xsl:param name="pIsInterface" as="xs:boolean"/>
+        <xsl:variable name="vGetSignature" select="concat('public ', xdd:createPascalizedName($pElementType,''), ' get', xdd:checkForClassType($pMethodName), '()')"/>
+        <xsl:value-of select="concat('', '&#10;')"/>
+        <xsl:value-of select="concat('   /**', '&#10;')"/>
+        <xsl:value-of select="concat('    * Returns the &lt;code&gt;', $pElementName, '&lt;/code&gt; attribute&#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the value defined for the attribute &lt;code&gt;', $pElementName, '&lt;/code&gt; &#10;')"/>
+        <xsl:value-of select="concat('    */', '&#10;')"/>
+        <xsl:choose>
+            <xsl:when test="$pIsInterface=true()">
+                <xsl:value-of select="concat($vGetSignature, ';&#10;')"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="concat('   ', $vGetSignature, '&#10;')"/>
+                <xsl:value-of select="concat('   {', '&#10;')"/>
+                <xsl:value-of select="concat('      return ', xdd:createPascalizedName($pElementType,''), '.getFromStringValue(', $pNodeNameLocal, '.getAttribute(&quot;', $pElementName, '&quot;));' , '&#10;')"/>
+                <xsl:value-of select="concat('   }', '&#10;')"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
 
+
+    <!-- *********************************************************** -->
+    <!-- ****** Function which writes the GetOrCreate       Body *** -->
+    <!-- *********************************************************** -->
+    <xsl:function name="xdd:printGetEnumAttributeAsString">
+        <xsl:param name="pClassType"/>
+        <xsl:param name="pElementType"/>
+        <xsl:param name="pMethodName"/>
+        <xsl:param name="pNodeNameLocal"/>
+        <xsl:param name="pElementName"/>
+        <xsl:param name="pReturnTypeName"/>
+        <xsl:param name="pIsInterface" as="xs:boolean"/>
+        <xsl:variable name="vGetStringSignature" select="concat('public String ', ' get', xdd:checkForClassType($pMethodName), 'AsString()')"/>
+        <xsl:value-of select="concat('', '&#10;')"/>
+        <xsl:value-of select="concat('   /**', '&#10;')"/>
+        <xsl:value-of select="concat('    * Returns the &lt;code&gt;', $pElementName, '&lt;/code&gt; attribute&#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the value found for the element &lt;code&gt;', $pElementName, '&lt;/code&gt; &#10;')"/>
+        <xsl:value-of select="concat('    */', '&#10;')"/>
+        <xsl:choose>
+            <xsl:when test="$pIsInterface=true()">
+                <xsl:value-of select="concat('   ', $vGetStringSignature, ';&#10;')"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="concat('   ', $vGetStringSignature, '&#10;')"/>
+                <xsl:value-of select="concat('   {', '&#10;')"/>
+                <xsl:value-of select="concat('      return ', $pNodeNameLocal, '.getAttribute(&quot;', $pElementName, '&quot;);' , '&#10;')"/>
+                <xsl:value-of select="concat('   }', '&#10;')"/>
+
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
 
     <!-- *********************************************************** -->
     <!-- ****** Function which writes the Getbooleab Attribute   *** -->
@@ -483,11 +546,24 @@
         <xsl:param name="pReturnTypeName"/>
         <xsl:param name="pIsInterface" as="xs:boolean"/>
         <xsl:param name="pIsEnum" as="xs:boolean"/>
-        <xsl:value-of select="xdd:printSetEnum($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
-        <xsl:value-of select="xdd:printSetEnumAsString($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
-        <xsl:value-of select="xdd:printGetEnum($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
-        <xsl:value-of select="xdd:printGetEnumAsString($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
-        <xsl:value-of select="xdd:printRemoveAttribute($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+        <xsl:param name="pIsAttribute" as="xs:boolean"/>
+        <xsl:choose>
+            <xsl:when test="$pIsAttribute=true()">                
+                <xsl:message select="concat('********************************* print Enums', $pElementName)"/>
+                <xsl:value-of select="xdd:printSetAttribute($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                <xsl:value-of select="xdd:printSetEnumAttribute($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                <xsl:value-of select="xdd:printGetEnumAttribute($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                <xsl:value-of select="xdd:printGetEnumAttributeAsString($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                <xsl:value-of select="xdd:printRemoveAttribute($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="xdd:printSetEnum($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                <xsl:value-of select="xdd:printSetEnumAsString($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                <xsl:value-of select="xdd:printGetEnum($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                <xsl:value-of select="xdd:printGetEnumAsString($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                <xsl:value-of select="xdd:printRemoveAttribute($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:function>
 
 
@@ -1072,7 +1148,7 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
+
     <!-- *********************************************************** -->
     <!-- ****** Function which writes the Remove            Body *** -->
     <!-- *********************************************************** -->
@@ -1104,4 +1180,3 @@
         </xsl:choose>
     </xsl:function>
 </xsl:stylesheet>
-

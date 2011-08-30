@@ -817,7 +817,7 @@
             </xsl:when>
             
             <xsl:when test="xdd:isEnumType($pElementType)">
-                <xsl:value-of select="xdd:printEnums($vReturn, $pElementType, $vMethodName, $pNodeNameLocal, $pElementName, $vReturn, $pWriteInterface, xdd:isEnumType($pElementType))"/>
+                <xsl:value-of select="xdd:printEnums($vReturn, $pElementType, $vMethodName, $pNodeNameLocal, $pElementName, $vReturn, $pWriteInterface, xdd:isEnumType($pElementType), $pIsAttribute)"/>
             </xsl:when>
             
             <xsl:when test="$pIsAttribute">
