@@ -16,7 +16,7 @@
  */
 package org.jboss.shrinkwrap.descriptor.impl.spec.ee.application;
 
-import static org.jboss.shrinkwrap.descriptor.impl.spec.AssertXPath.assertXPath;
+import static org.jboss.shrinkwrap.descriptor.impl.spec.XmlAssert.assertPresenceUsingXPath;
 import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
@@ -54,7 +54,7 @@ public class ApplicationDescriptorTestCase
                      .description(moduleName)
                      .exportAsString();
       
-      assertXPath(desc, "/application/description", moduleName);
+      assertPresenceUsingXPath(desc, "/application/description", moduleName);
    }
 
    @Test
@@ -64,7 +64,7 @@ public class ApplicationDescriptorTestCase
                      .displayName(moduleName)
                      .exportAsString();
       
-      assertXPath(desc, "/application/display-name", moduleName);
+      assertPresenceUsingXPath(desc, "/application/display-name", moduleName);
    }
 
    @Test
@@ -74,7 +74,7 @@ public class ApplicationDescriptorTestCase
                      .libraryDirectory(moduleName)
                      .exportAsString();
       
-      assertXPath(desc, "/application/library-directory", moduleName);
+      assertPresenceUsingXPath(desc, "/application/library-directory", moduleName);
    }
 
    @Test
@@ -84,7 +84,7 @@ public class ApplicationDescriptorTestCase
                      .ejbModule(moduleName)
                      .exportAsString();
       
-      assertXPath(desc, "/application/module/ejb", moduleName);
+      assertPresenceUsingXPath(desc, "/application/module/ejb", moduleName);
    }
    
    @Test
@@ -94,7 +94,7 @@ public class ApplicationDescriptorTestCase
                      .connectorModule(moduleName)
                      .exportAsString();
       
-      assertXPath(desc, "/application/module/connector", moduleName);
+      assertPresenceUsingXPath(desc, "/application/module/connector", moduleName);
    }
    
    @Test
@@ -104,7 +104,7 @@ public class ApplicationDescriptorTestCase
                      .javaModule(moduleName)
                      .exportAsString();
       
-      assertXPath(desc, "/application/module/java", moduleName);
+      assertPresenceUsingXPath(desc, "/application/module/java", moduleName);
    }
    
    @Test
@@ -114,8 +114,8 @@ public class ApplicationDescriptorTestCase
                      .webModule(moduleName, contextRoot)
                      .exportAsString();
 
-      assertXPath(desc, "/application/module/web/web-uri", moduleName);
-      assertXPath(desc, "/application/module/web/context-root", contextRoot);
+      assertPresenceUsingXPath(desc, "/application/module/web/web-uri", moduleName);
+      assertPresenceUsingXPath(desc, "/application/module/web/context-root", contextRoot);
    }
 
    @Test
@@ -125,7 +125,7 @@ public class ApplicationDescriptorTestCase
                      .securityRole(moduleName)
                      .exportAsString();
 
-      assertXPath(desc, "/application/security-role/role-name", moduleName);
+      assertPresenceUsingXPath(desc, "/application/security-role/role-name", moduleName);
    }
 
    @Test
@@ -135,8 +135,8 @@ public class ApplicationDescriptorTestCase
                      .securityRole(moduleName, description)
                      .exportAsString();
 
-      assertXPath(desc, "/application/security-role/role-name", moduleName);
-      assertXPath(desc, "/application/security-role/description", description);
+      assertPresenceUsingXPath(desc, "/application/security-role/role-name", moduleName);
+      assertPresenceUsingXPath(desc, "/application/security-role/description", description);
    }
 
    private ApplicationDescriptor create() 

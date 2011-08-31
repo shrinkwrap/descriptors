@@ -16,7 +16,7 @@
  */
 package org.jboss.shrinkwrap.descriptor.impl.spec.jpa.persistence;
 
-import static org.jboss.shrinkwrap.descriptor.impl.spec.AssertXPath.assertXPath;
+import static org.jboss.shrinkwrap.descriptor.impl.spec.XmlAssert.*;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
@@ -61,14 +61,14 @@ public class PersistenceDescriptorTestCase
    public void shouldHaveDefaultVersion() throws Exception
    {
       String desc = create().exportAsString();
-      assertXPath(desc, "/persistence/@version", "2.0");
+      assertPresenceUsingXPath(desc, "/persistence/@version", "2.0");
    }
 
    @Test
    public void shouldBeAbleToSetVersion() throws Exception
    {
       String desc = create().version("1.0").exportAsString();
-      assertXPath(desc, "/persistence/@version", "1.0");
+      assertPresenceUsingXPath(desc, "/persistence/@version", "1.0");
    }
 
    @Test
@@ -77,7 +77,7 @@ public class PersistenceDescriptorTestCase
       String desc = create()
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/@name", name);
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/@name", name);
    }
 
    @Test
@@ -86,7 +86,7 @@ public class PersistenceDescriptorTestCase
       String desc = create().persistenceUnit(name2)
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/@name", name, name2);
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/@name", name, name2);
    }
 
    @Test
@@ -95,7 +95,7 @@ public class PersistenceDescriptorTestCase
       String desc = create().name(name2)
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/@name", name2);
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/@name", name2);
    }
 
    @Test
@@ -106,7 +106,7 @@ public class PersistenceDescriptorTestCase
       String desc = create().persistenceUnit(name)
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/@name", name);
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/@name", name);
    }
 
    @Test
@@ -115,7 +115,7 @@ public class PersistenceDescriptorTestCase
       String desc = create().classes(PersistenceDescriptor.class, PersistenceDescriptor.class)
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/class", PersistenceDescriptor.class.getName(),
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/class", PersistenceDescriptor.class.getName(),
                PersistenceDescriptor.class.getName());
    }
 
@@ -126,7 +126,7 @@ public class PersistenceDescriptorTestCase
       String desc = unit
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/description", name);
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/description", name);
       assertEquals(name, unit.getDescription());
    }
 
@@ -136,7 +136,7 @@ public class PersistenceDescriptorTestCase
       String desc = create().excludeUnlistedClasses()
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/exclude-unlisted-classes", "true");
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/exclude-unlisted-classes", "true");
    }
 
    @Test
@@ -145,7 +145,7 @@ public class PersistenceDescriptorTestCase
       String desc = create().includeUnlistedClasses()
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/exclude-unlisted-classes", "false");
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/exclude-unlisted-classes", "false");
    }
 
    @Test
@@ -155,7 +155,7 @@ public class PersistenceDescriptorTestCase
       String desc = unit
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/jta-data-source", name);
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/jta-data-source", name);
       assertEquals(name, unit.getJtaDataSource());
    }
 
@@ -165,8 +165,8 @@ public class PersistenceDescriptorTestCase
       String desc = create().jtaDataSource(name).nonJtaDataSource(name2)
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/jta-data-source", new String[] {});
-      assertXPath(desc, "/persistence/persistence-unit/non-jta-data-source", name2);
+      assertAbsenceUsingXPath(desc, "/persistence/persistence-unit/jta-data-source");
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/non-jta-data-source", name2);
    }
 
    @Test
@@ -175,8 +175,8 @@ public class PersistenceDescriptorTestCase
       String desc = create().nonJtaDataSource(name2).jtaDataSource(name)
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/jta-data-source", name);
-      assertXPath(desc, "/persistence/persistence-unit/non-jta-data-source", new String[] {});
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/jta-data-source", name);
+      assertAbsenceUsingXPath(desc, "/persistence/persistence-unit/non-jta-data-source");
    }
 
    @Test
@@ -186,7 +186,7 @@ public class PersistenceDescriptorTestCase
       String desc = unit
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/non-jta-data-source", name);
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/non-jta-data-source", name);
       assertEquals(name, unit.getNonJtaDataSource());
    }
 
@@ -196,7 +196,7 @@ public class PersistenceDescriptorTestCase
       String desc = create().jarFile(name)
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/jar-file", name);
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/jar-file", name);
    }
 
    @Test
@@ -205,7 +205,7 @@ public class PersistenceDescriptorTestCase
       String desc = create().jarFiles(name, name2)
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/jar-file", name, name2);
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/jar-file", name, name2);
    }
 
    @Test
@@ -214,7 +214,7 @@ public class PersistenceDescriptorTestCase
       String desc = create().mappingFile(name)
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/mapping-file", name);
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/mapping-file", name);
    }
 
    @Test
@@ -223,7 +223,7 @@ public class PersistenceDescriptorTestCase
       String desc = create().mappingFiles(name, name2)
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/mapping-file", name, name2);
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/mapping-file", name, name2);
    }
 
    @Test
@@ -232,7 +232,7 @@ public class PersistenceDescriptorTestCase
       String desc = create().transactionType(TransactionType.JTA)
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/@transaction-type", TransactionType.JTA.name());
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/@transaction-type", TransactionType.JTA.name());
    }
 
    @Test
@@ -243,8 +243,8 @@ public class PersistenceDescriptorTestCase
                         .property(name2, name)
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/properties/property/@name", name, name2);
-      assertXPath(desc, "/persistence/persistence-unit/properties/property/@value", name2, name);
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/properties/property/@name", name, name2);
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/properties/property/@value", name2, name);
    }
 
    @Test
@@ -255,8 +255,8 @@ public class PersistenceDescriptorTestCase
                         .property(name, name)
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/properties/property/@name", name, name);
-      assertXPath(desc, "/persistence/persistence-unit/properties/property/@value", name, name);
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/properties/property/@name", name, name);
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/properties/property/@value", name, name);
    }
 
    @Test
@@ -357,7 +357,7 @@ public class PersistenceDescriptorTestCase
       String desc = create().sharedCacheMode(SharedCacheModeType.ALL)
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/shared-cache-mode", SharedCacheModeType.ALL.name());
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/shared-cache-mode", SharedCacheModeType.ALL.name());
    }
 
    @Test
@@ -366,7 +366,7 @@ public class PersistenceDescriptorTestCase
       String desc = create().validationMode(ValidationModeType.AUTO)
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/validation-mode", ValidationModeType.AUTO.name());
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/validation-mode", ValidationModeType.AUTO.name());
    }
 
    // -------------------------------------------------------------------------------------||
@@ -379,7 +379,7 @@ public class PersistenceDescriptorTestCase
       String desc = create().provider(ProviderType.HIBERNATE)
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/provider", ProviderType.HIBERNATE.getProviderClass());
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/provider", ProviderType.HIBERNATE.getProviderClass());
    }
 
    @Test
@@ -390,8 +390,8 @@ public class PersistenceDescriptorTestCase
                         .formatSql()
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/properties/property/@name", "hibernate.format_sql");
-      assertXPath(desc, "/persistence/persistence-unit/properties/property/@value", "true");
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/properties/property/@name", "hibernate.format_sql");
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/properties/property/@value", "true");
    }
 
    @Test
@@ -402,8 +402,8 @@ public class PersistenceDescriptorTestCase
                         .showSql()
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/properties/property/@name", "hibernate.show_sql");
-      assertXPath(desc, "/persistence/persistence-unit/properties/property/@value", "true");
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/properties/property/@name", "hibernate.show_sql");
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/properties/property/@value", "true");
    }
 
    @Test
@@ -442,8 +442,8 @@ public class PersistenceDescriptorTestCase
                         .showSql()
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/properties/property/@name", "eclipselink.logging.level");
-      assertXPath(desc, "/persistence/persistence-unit/properties/property/@value", "FINE");
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/properties/property/@name", "eclipselink.logging.level");
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/properties/property/@value", "FINE");
    }
 
    @Test
@@ -497,8 +497,8 @@ public class PersistenceDescriptorTestCase
                         .schemaGenerationMode(generationMode)
                      .exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/properties/property/@name", expectedName);
-      assertXPath(desc, "/persistence/persistence-unit/properties/property/@value", expectedValue);
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/properties/property/@name", expectedName);
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/properties/property/@value", expectedValue);
    }
 
    // -------------------------------------------------------------------------------------||
