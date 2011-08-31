@@ -16,7 +16,7 @@
  */
 package org.jboss.shrinkwrap.descriptor.impl.spec.cdi.beans;
 
-import static org.jboss.shrinkwrap.descriptor.impl.spec.AssertXPath.assertXPath;
+import static org.jboss.shrinkwrap.descriptor.impl.spec.XmlAssert.assertPresenceUsingXPath;
 
 import javax.decorator.Decorator;
 import javax.enterprise.inject.Alternative;
@@ -83,7 +83,7 @@ public class BeansDescriptorTestCase
       String desc = create().alternativeStereotype(TestAlternativeStereoType.class)
                      .exportAsString();
       
-      assertXPath(desc, "/beans/alternatives/stereotype", TestAlternativeStereoType.class.getName());
+      assertPresenceUsingXPath(desc, "/beans/alternatives/stereotype", TestAlternativeStereoType.class.getName());
    }
    
    @Test
@@ -93,7 +93,7 @@ public class BeansDescriptorTestCase
       String desc = create().alternativeStereotypes(TestAlternativeStereoType.class, TestAlternativeStereoType.class)
                      .exportAsString();
       
-      assertXPath(desc, "/beans/alternatives/stereotype", TestAlternativeStereoType.class.getName(), TestAlternativeStereoType.class.getName());
+      assertPresenceUsingXPath(desc, "/beans/alternatives/stereotype", TestAlternativeStereoType.class.getName(), TestAlternativeStereoType.class.getName());
    }
 
    //-------------------------------------------------------------------------------------||
@@ -112,7 +112,7 @@ public class BeansDescriptorTestCase
       String desc = create().alternativeClass(TestAlternativeClass.class)
                      .exportAsString();
       
-      assertXPath(desc, "/beans/alternatives/class", TestAlternativeClass.class.getName());
+      assertPresenceUsingXPath(desc, "/beans/alternatives/class", TestAlternativeClass.class.getName());
    }
    
    @Test
@@ -121,7 +121,7 @@ public class BeansDescriptorTestCase
       String desc = create().alternativeClasses(TestAlternativeClass.class, TestAlternativeClass.class)
                      .exportAsString();
       
-      assertXPath(desc, "/beans/alternatives/class", TestAlternativeClass.class.getName(), TestAlternativeClass.class.getName());
+      assertPresenceUsingXPath(desc, "/beans/alternatives/class", TestAlternativeClass.class.getName(), TestAlternativeClass.class.getName());
    }
 
    //-------------------------------------------------------------------------------------||
@@ -140,7 +140,7 @@ public class BeansDescriptorTestCase
       String desc = create().interceptor(TestInterceptor.class)
                      .exportAsString();
       
-      assertXPath(desc, "/beans/interceptors/class", TestInterceptor.class.getName());
+      assertPresenceUsingXPath(desc, "/beans/interceptors/class", TestInterceptor.class.getName());
    }
 
    @Test
@@ -149,7 +149,7 @@ public class BeansDescriptorTestCase
       String desc = create().interceptors(TestInterceptor.class, TestInterceptor.class)
                      .exportAsString();
       
-      assertXPath(desc, "/beans/interceptors/class", TestInterceptor.class.getName(), TestInterceptor.class.getName());
+      assertPresenceUsingXPath(desc, "/beans/interceptors/class", TestInterceptor.class.getName(), TestInterceptor.class.getName());
    }
 
    //-------------------------------------------------------------------------------------||
@@ -168,7 +168,7 @@ public class BeansDescriptorTestCase
       String desc = create().decorator(TestDecorator.class)
                      .exportAsString();
       
-      assertXPath(desc, "/beans/decorators/class", TestDecorator.class.getName());
+      assertPresenceUsingXPath(desc, "/beans/decorators/class", TestDecorator.class.getName());
    }
 
    @Test
@@ -177,7 +177,7 @@ public class BeansDescriptorTestCase
       String desc = create().decorators(TestDecorator.class, TestDecorator.class)
                      .exportAsString();
       
-      assertXPath(desc, "/beans/decorators/class", TestDecorator.class.getName(), TestDecorator.class.getName());
+      assertPresenceUsingXPath(desc, "/beans/decorators/class", TestDecorator.class.getName(), TestDecorator.class.getName());
    }
    
    //-------------------------------------------------------------------------------------||
@@ -193,7 +193,7 @@ public class BeansDescriptorTestCase
       desc = Descriptors.importAs(BeansDescriptor.class).from(desc)
                         .exportAsString();
       
-      assertXPath(desc, "/beans/decorators/class", TestDecorator.class.getName(), TestDecorator.class.getName());
+      assertPresenceUsingXPath(desc, "/beans/decorators/class", TestDecorator.class.getName(), TestDecorator.class.getName());
       
    }
    
