@@ -47,7 +47,8 @@ public class ApplicationDescriptorImpl extends NodeDescriptorImplBase implements
    {
       this(descriptorName, new Node("application")
                .attribute("xmlns", "http://java.sun.com/xml/ns/javaee")
-               .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance"));
+               .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance")
+               .attribute("xsi:schemaLocation", "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd"));
 
       version("6");
    }

@@ -17,10 +17,10 @@
 package org.jboss.shrinkwrap.descriptor.impl.spec.ee.application;
 
 import static org.jboss.shrinkwrap.descriptor.impl.spec.XmlAssert.assertPresenceUsingXPath;
+import static org.jboss.shrinkwrap.descriptor.impl.spec.XmlAssert.assertSchemaLocation;
 import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.spec.cdi.beans.BeansDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor;
 import org.junit.Test;
 
@@ -48,6 +48,18 @@ public class ApplicationDescriptorTestCase
       Assert.assertEquals("test.xml", Descriptors.create(ApplicationDescriptor.class, "test.xml").getDescriptorName());
    }
 
+   @Test
+   public void shouldHaveCorrectSchemaLocation()
+   {
+      final String expectedSchemaLocation = "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd";
+
+      String desc = create()
+                     .description(moduleName)
+                     .exportAsString();
+      
+      assertSchemaLocation(desc, "http://www.w3.org/2001/XMLSchema-instance", expectedSchemaLocation);
+   }
+   
    @Test
    public void shouldBeAbleToAddDescription() throws Exception
    {

@@ -47,7 +47,8 @@ public class PersistenceDescriptorImpl extends NodeDescriptorImplBase
    {
       this(descriptorName, new Node("persistence")
                .attribute("xmlns", "http://java.sun.com/xml/ns/persistence")
-               .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance"));
+               .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance")
+               .attribute("xsi:schemaLocation", "http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"));
 
       version("2.0");
    }
