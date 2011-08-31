@@ -54,7 +54,8 @@ public class PersistenceDescriptorTestCase
    @Test
    public void shouldHaveCorrectSchemaLocation()
    {
-      final String expectedSchemaLocation = "http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd";
+      final String expectedSchemaLocation = "http://java.sun.com/xml/ns/persistence " +
+      		"http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd";
 
       String desc = create().exportAsString();
       

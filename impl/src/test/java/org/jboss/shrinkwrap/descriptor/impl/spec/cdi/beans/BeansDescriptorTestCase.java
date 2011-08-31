@@ -71,7 +71,8 @@ public class BeansDescriptorTestCase
    @Test
    public void shouldHaveCorrectSchemaLocation()
    {
-      final String expectedSchemaLocation = "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/beans_1_0.xsd";
+      final String expectedSchemaLocation = "http://java.sun.com/xml/ns/javaee " +
+      		"http://java.sun.com/xml/ns/javaee/beans_1_0.xsd";
       assertSchemaLocation(create().alternativeStereotype(TestAlternativeStereoType.class).exportAsString(), 
             "http://www.w3.org/2001/XMLSchema-instance", expectedSchemaLocation);
    }

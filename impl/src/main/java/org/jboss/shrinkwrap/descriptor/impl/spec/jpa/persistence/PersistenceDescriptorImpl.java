@@ -29,26 +29,31 @@ import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase;
  * @author Dan Allen
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  */
-public class PersistenceDescriptorImpl extends NodeDescriptorImplBase
-         implements
-         PersistenceDescriptor
+public class PersistenceDescriptorImpl extends NodeDescriptorImplBase implements PersistenceDescriptor
 {
+
    // -------------------------------------------------------------------------------------||
-   // Instance Members -------------------------------------------------------------------||
+   // Class Members -----------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
+   
+   private static final String SCHEMA_LOCATION = "http://java.sun.com/xml/ns/persistence " +
+   		"http://java.sun.com/xml/ns/persistence/persistence_%s.xsd";
+   
+   // -------------------------------------------------------------------------------------||
+   // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
    private final Node model;
 
    // -------------------------------------------------------------------------------------||
-   // Constructor ------------------------------------------------------------------------||
+   // Constructor -------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
    public PersistenceDescriptorImpl(String descriptorName)
    {
       this(descriptorName, new Node("persistence")
                .attribute("xmlns", "http://java.sun.com/xml/ns/persistence")
-               .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance")
-               .attribute("xsi:schemaLocation", "http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"));
+               .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance"));
 
       version("2.0");
    }
@@ -98,7 +103,14 @@ public class PersistenceDescriptorImpl extends NodeDescriptorImplBase
    @Override
    public PersistenceDescriptor version(String version)
    {
+      if (version == null || version.length() == 0)
+      {
+         throw new IllegalArgumentException("Version must be specified");
+      }
+      
+      model.attribute("xsi:schemaLocation", String.format(SCHEMA_LOCATION, version.replace(".", "_")));
       model.attribute("version", version);
+      
       return this;
    }
 

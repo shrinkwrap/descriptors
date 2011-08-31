@@ -33,8 +33,16 @@ import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase;
  */
 public class ApplicationDescriptorImpl extends NodeDescriptorImplBase implements ApplicationDescriptor
 {
+   
    // -------------------------------------------------------------------------------------||
-   // Instance Members -------------------------------------------------------------------||
+   // Class Members -----------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
+   
+   private static final String SCHEMA_LOCATION = "http://java.sun.com/xml/ns/javaee " +
+   		"http://java.sun.com/xml/ns/javaee/application_%s.xsd";
+   
+   // -------------------------------------------------------------------------------------||
+   // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
    private final Node model;
@@ -47,8 +55,7 @@ public class ApplicationDescriptorImpl extends NodeDescriptorImplBase implements
    {
       this(descriptorName, new Node("application")
                .attribute("xmlns", "http://java.sun.com/xml/ns/javaee")
-               .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance")
-               .attribute("xsi:schemaLocation", "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd"));
+               .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance"));
 
       version("6");
    }
@@ -60,7 +67,7 @@ public class ApplicationDescriptorImpl extends NodeDescriptorImplBase implements
    }
 
    // -------------------------------------------------------------------------------------||
-   // API --------------------------------------------------------------------------------||
+   // API ---------------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
    /*
@@ -157,10 +164,18 @@ public class ApplicationDescriptorImpl extends NodeDescriptorImplBase implements
     * 
     * @see org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor#version(java.lang.String)
     */
+   
    @Override
    public ApplicationDescriptor version(String version)
    {
+      if (version == null || version.length() == 0)
+      {
+         throw new IllegalArgumentException("Version must be specified");
+      }
+      
+      model.attribute("xsi:schemaLocation", String.format(SCHEMA_LOCATION, version));
       model.attribute("version", version);
+      
       return this;
    }
 

@@ -59,6 +59,9 @@ public class WebAppDescriptorImpl extends NodeDescriptorImplBase implements WebA
    // Class Members ----------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
+   private static final String SCHEMA_LOCATION = "http://java.sun.com/xml/ns/javaee " +
+   		"http://java.sun.com/xml/ns/javaee/web-app_%s.xsd";
+   
    /**
     * Node names
     */
@@ -83,9 +86,7 @@ public class WebAppDescriptorImpl extends NodeDescriptorImplBase implements WebA
    {
       this(descriptorName, new Node("web-app")
             .attribute("xmlns", "http://java.sun.com/xml/ns/javaee")
-            .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance")
-            .attribute("xsi:schemaLocation",
-                  "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"));
+            .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance"));
       version("3.0");
    }
 
@@ -106,10 +107,10 @@ public class WebAppDescriptorImpl extends NodeDescriptorImplBase implements WebA
       {
          throw new IllegalArgumentException("Version must be specified");
       }
-      model.attribute("xsi:schemaLocation",
-            "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_" + version.replace(".", "_")
-                  + ".xsd");
+      
+      model.attribute("xsi:schemaLocation", String.format(SCHEMA_LOCATION, version.replace(".", "_")));
       model.attribute("version", version);
+      
       return this;
    }
 

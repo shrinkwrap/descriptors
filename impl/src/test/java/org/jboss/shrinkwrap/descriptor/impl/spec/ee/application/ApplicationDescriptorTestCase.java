@@ -51,7 +51,8 @@ public class ApplicationDescriptorTestCase
    @Test
    public void shouldHaveCorrectSchemaLocation()
    {
-      final String expectedSchemaLocation = "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd";
+      final String expectedSchemaLocation = "http://java.sun.com/xml/ns/javaee " +
+      		"http://java.sun.com/xml/ns/javaee/application_6.xsd";
 
       String desc = create()
                      .description(moduleName)
