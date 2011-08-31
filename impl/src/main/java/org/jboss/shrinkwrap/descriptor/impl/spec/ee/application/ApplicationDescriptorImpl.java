@@ -33,8 +33,16 @@ import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase;
  */
 public class ApplicationDescriptorImpl extends NodeDescriptorImplBase implements ApplicationDescriptor
 {
+   
    // -------------------------------------------------------------------------------------||
-   // Instance Members -------------------------------------------------------------------||
+   // Class Members -----------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------||
+   
+   private static final String SCHEMA_LOCATION = "http://java.sun.com/xml/ns/javaee " +
+   		"http://java.sun.com/xml/ns/javaee/application_%s.xsd";
+   
+   // -------------------------------------------------------------------------------------||
+   // Instance Members --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
    private final Node model;
@@ -59,7 +67,7 @@ public class ApplicationDescriptorImpl extends NodeDescriptorImplBase implements
    }
 
    // -------------------------------------------------------------------------------------||
-   // API --------------------------------------------------------------------------------||
+   // API ---------------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
    /*
@@ -156,10 +164,18 @@ public class ApplicationDescriptorImpl extends NodeDescriptorImplBase implements
     * 
     * @see org.jboss.shrinkwrap.descriptor.api.spec.ee.application.ApplicationDescriptor#version(java.lang.String)
     */
+   
    @Override
    public ApplicationDescriptor version(String version)
    {
+      if (version == null || version.length() == 0)
+      {
+         throw new IllegalArgumentException("Version must be specified");
+      }
+      
+      model.attribute("xsi:schemaLocation", String.format(SCHEMA_LOCATION, version));
       model.attribute("version", version);
+      
       return this;
    }
 

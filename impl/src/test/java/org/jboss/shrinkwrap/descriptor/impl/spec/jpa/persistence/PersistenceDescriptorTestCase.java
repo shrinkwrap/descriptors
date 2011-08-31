@@ -52,6 +52,17 @@ public class PersistenceDescriptorTestCase
    }
 
    @Test
+   public void shouldHaveCorrectSchemaLocation()
+   {
+      final String expectedSchemaLocation = "http://java.sun.com/xml/ns/persistence " +
+      		"http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd";
+
+      String desc = create().exportAsString();
+      
+      assertSchemaLocation(desc, "http://www.w3.org/2001/XMLSchema-instance", expectedSchemaLocation);
+   }
+   
+   @Test
    public void shouldBeAbleToSetName() throws Exception
    {
       Assert.assertEquals("test.xml", Descriptors.create(PersistenceDescriptor.class, "test.xml").getDescriptorName());

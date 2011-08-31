@@ -17,6 +17,7 @@
 package org.jboss.shrinkwrap.descriptor.impl.spec.cdi.beans;
 
 import static org.jboss.shrinkwrap.descriptor.impl.spec.XmlAssert.assertPresenceUsingXPath;
+import static org.jboss.shrinkwrap.descriptor.impl.spec.XmlAssert.assertSchemaLocation;
 
 import javax.decorator.Decorator;
 import javax.enterprise.inject.Alternative;
@@ -65,6 +66,15 @@ public class BeansDescriptorTestCase
    public void shouldBeAbleToSetName() throws Exception
    {
       Assert.assertEquals("test.xml", Descriptors.create(BeansDescriptor.class, "test.xml").getDescriptorName());
+   }
+   
+   @Test
+   public void shouldHaveCorrectSchemaLocation()
+   {
+      final String expectedSchemaLocation = "http://java.sun.com/xml/ns/javaee " +
+      		"http://java.sun.com/xml/ns/javaee/beans_1_0.xsd";
+      assertSchemaLocation(create().alternativeStereotype(TestAlternativeStereoType.class).exportAsString(), 
+            "http://www.w3.org/2001/XMLSchema-instance", expectedSchemaLocation);
    }
    
    //-------------------------------------------------------------------------------------||

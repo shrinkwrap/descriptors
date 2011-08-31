@@ -48,7 +48,9 @@ public class BeansDescriptorImpl extends NodeDescriptorImplBase implements Beans
    {
       this(descriptorName, new Node("beans")
                .attribute("xmlns", "http://java.sun.com/xml/ns/javaee")
-               .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance"));
+               .attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance")
+               .attribute("xsi:schemaLocation",
+                     "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/beans_1_0.xsd"));
    }
 
    public BeansDescriptorImpl(String descriptorName, Node beans)
