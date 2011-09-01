@@ -16,7 +16,7 @@
  */
 package org.jboss.shrinkwrap.descriptor.test.application5;
 
-import static org.jboss.shrinkwrap.descriptor.test.util.AssertXPath.assertXPath;
+import static org.jboss.shrinkwrap.descriptor.test.util.XmlAssert.assertPresenceUsingXPath;
 
 import java.util.logging.Logger;
 
@@ -107,7 +107,7 @@ public class ApplicationDescriptorTestCase
    {
       final String descName = "Description";
       final String desc = emptyDescriptor.description(descName).exportAsString();
-      assertXPath(desc, "/application/description", descName);
+      assertPresenceUsingXPath(desc, "/application/description", descName);
    }
 
    @Test
@@ -115,7 +115,7 @@ public class ApplicationDescriptorTestCase
    {
       final String displayName = "Display Name";
       final String desc = emptyDescriptor.displayName(displayName).exportAsString();
-      assertXPath(desc, "/application/display-name", displayName);
+      assertPresenceUsingXPath(desc, "/application/display-name", displayName);
    }
 
    @Test
@@ -123,7 +123,7 @@ public class ApplicationDescriptorTestCase
    {
       final String libraryDir = "Library Dir";
       final String desc = emptyDescriptor.libraryDirectory(libraryDir).exportAsString();
-      assertXPath(desc, "/application/library-directory", libraryDir);
+      assertPresenceUsingXPath(desc, "/application/library-directory", libraryDir);
    }
 
    @Ignore
@@ -173,7 +173,7 @@ public class ApplicationDescriptorTestCase
    {
       final String roleName = "Security Role";
       String desc = emptyDescriptor.createSecurityRole().roleName(roleName).up().exportAsString();
-      assertXPath(desc, "/application/security-role/role-name", roleName);
+      assertPresenceUsingXPath(desc, "/application/security-role/role-name", roleName);
    }
 
    @Test
@@ -181,7 +181,7 @@ public class ApplicationDescriptorTestCase
    {
       final String roleDescription = "Security Description";
       String desc = emptyDescriptor.createSecurityRole().description(roleDescription).up().exportAsString();
-      assertXPath(desc, "/application/security-role/description", roleDescription);
+      assertPresenceUsingXPath(desc, "/application/security-role/description", roleDescription);
    }
 
 }

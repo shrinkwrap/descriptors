@@ -16,7 +16,7 @@
  */
 package org.jboss.shrinkwrap.descriptor.test.portedfrompoc;
 
-import static org.jboss.shrinkwrap.descriptor.test.util.AssertXPath.assertXPath;
+import static org.jboss.shrinkwrap.descriptor.test.util.XmlAssert.assertPresenceUsingXPath;
 
 import java.util.logging.Logger;
 
@@ -24,6 +24,7 @@ import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.persistence20.PersistenceDescriptor;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -57,17 +58,19 @@ public class PersistenceDescriptorTestCase
    }
 
    @Test
+   @Ignore(value="SHRINKDESC-86")
    public void shouldHaveDefaultVersion() throws Exception
    {
-      String desc = create().exportAsString();
-      assertXPath(desc, "/persistence/@version", "2.0");
+      final String desc = create().exportAsString();
+      log.info(desc);
+      assertPresenceUsingXPath(desc, "/persistence/@version", "2.0");
    }
 
    @Test
    public void shouldBeAbleToSetVersion() throws Exception
    {
       String desc = create().version("1.0").exportAsString();
-      assertXPath(desc, "/persistence/@version", "1.0");
+      assertPresenceUsingXPath(desc, "/persistence/@version", "1.0");
    }
 
    @Test
@@ -75,7 +78,7 @@ public class PersistenceDescriptorTestCase
    {
       String desc = create().exportAsString();
 
-      assertXPath(desc, "/persistence/persistence-unit/@name", name);
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/@name", name);
    }
 
    //
@@ -467,46 +470,32 @@ public class PersistenceDescriptorTestCase
       final String txTypeJta = "JTA";
       final String providerTypeHibernate = "org.hibernate.ejb.HibernatePersistence";
       final String jtaDataSource = "java:/DefaultDS";
+      final String eclipseLinkUnit = "eclipselink-unit";
+      final String txTypeResourceLocal = "RESOURCE_LOCAL";
+      final String eclipseLinkProvider = "org.eclipse.persistence.jpa.PersistenceProvider";
+      final String nonjtaDataSource = "jdbc/__default";
 
-      final PersistenceDescriptor persistence = Descriptors.create(PersistenceDescriptor.class).
-            getOrCreatePersistenceUnit().name(hibernateUnit).transactionType(txTypeJta).
-            provider(providerTypeHibernate).jtaDataSource(jtaDataSource).clazz(PersistenceDescriptor.class.getName()).up();
-      
+      final PersistenceDescriptor persistence = Descriptors.create(PersistenceDescriptor.class)
+            .getOrCreatePersistenceUnit().name(hibernateUnit).transactionType(txTypeJta)
+            .provider(providerTypeHibernate).jtaDataSource(jtaDataSource).clazz(PersistenceDescriptor.class.getName())
+            .up().getOrCreatePersistenceUnit().name(eclipseLinkUnit).transactionType(txTypeResourceLocal)
+            .provider(eclipseLinkProvider).nonJtaDataSource(nonjtaDataSource).excludeUnlistedClasses(true).up();
 
-      
-//      .schemaGenerationMode("create-drop")
-//
-//      .showSql()
-//
-//      .formatSql()
-//
-//      .property("hibernate.transaction.flush_before_completion", true)
-//
-//      .persistenceUnit("eclipselink-unit")
-//
-//      .transactionType(TransactionType.RESOURCE_LOCAL)
-//
-//      .provider(ProviderType.ECLIPSE_LINK)
-//
-//      .nonJtaDataSource("jdbc/__default").excludeUnlistedClasses()
-//
-//      .schemaGenerationMode(SchemaGenerationModeType.CREATE);
-
-      String desc = persistence.exportAsString();
+      final String desc = persistence.exportAsString();
       log.info(desc);
-
       
-      assertXPath(desc, "/persistence/persistence-unit[@name='"+hibernateUnit+"']/@transaction-type", txTypeJta);
-      assertXPath(desc, "/persistence/persistence-unit[@name='"+hibernateUnit+"']/provider",
+      // Assertions
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit[@name='"+hibernateUnit+"']/@transaction-type", txTypeJta);
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit[@name='"+hibernateUnit+"']/provider",
             providerTypeHibernate);
-      assertXPath(desc, "/persistence/persistence-unit[@name='"+hibernateUnit+"']/jta-data-source", jtaDataSource);
-      assertXPath(desc, "/persistence/persistence-unit[@name='"+hibernateUnit+"']/class",
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit[@name='"+hibernateUnit+"']/jta-data-source", jtaDataSource);
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit[@name='"+hibernateUnit+"']/class",
             PersistenceDescriptor.class.getName());
-      assertXPath(desc, "/persistence/persistence-unit[@name='eclipselink-unit']/@transaction-type", "RESOURCE_LOCAL");
-      assertXPath(desc, "/persistence/persistence-unit[@name='eclipselink-unit']/provider",
-            "org.eclipse.persistence.jpa.PersistenceProvider");
-      assertXPath(desc, "/persistence/persistence-unit[@name='eclipselink-unit']/non-jta-data-source", "jdbc/__default");
-      assertXPath(desc, "/persistence/persistence-unit[@name='eclipselink-unit']/exclude-unlisted-classes", "true");
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit[@name='"+eclipseLinkUnit+"']/@transaction-type", txTypeResourceLocal);
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit[@name='"+eclipseLinkUnit+"']/provider",
+            eclipseLinkProvider);
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit[@name='"+eclipseLinkUnit+"']/non-jta-data-source",nonjtaDataSource);
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit[@name='"+eclipseLinkUnit+"']/exclude-unlisted-classes", Boolean.TRUE.toString());
    }
 
    // -------------------------------------------------------------------------------------||

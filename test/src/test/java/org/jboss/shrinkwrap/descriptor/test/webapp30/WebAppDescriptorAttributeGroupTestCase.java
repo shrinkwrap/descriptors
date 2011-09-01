@@ -1,6 +1,6 @@
 package org.jboss.shrinkwrap.descriptor.test.webapp30;
 
-import static org.jboss.shrinkwrap.descriptor.test.util.AssertXPath.assertXPath;
+import static org.jboss.shrinkwrap.descriptor.test.util.XmlAssert.assertPresenceUsingXPath;
 import static org.junit.Assert.assertTrue;
 
 import java.util.logging.Logger;
@@ -31,8 +31,8 @@ public class WebAppDescriptorAttributeGroupTestCase
             .description("Description1")
             .description("Description2").up();
       
-      assertXPath(webApp.exportAsString(), "/web-app/servlet/description[1]", "Description1");
-      assertXPath(webApp.exportAsString(), "/web-app/servlet/description[2]", "Description2");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/servlet/description[1]", "Description1");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/servlet/description[2]", "Description2");
       
       assertTrue(webApp.getAllServlet().get(0).getAllDescription().size() == 2);
       webApp.getAllServlet().get(0).removeAllDescription();
@@ -47,8 +47,8 @@ public class WebAppDescriptorAttributeGroupTestCase
             .displayName("displayName1")
             .displayName("displayName2").up();
       
-      assertXPath(webApp.exportAsString(), "/web-app/filter/display-name[1]", "displayName1");
-      assertXPath(webApp.exportAsString(), "/web-app/filter/display-name[2]", "displayName2");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/filter/display-name[1]", "displayName1");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/filter/display-name[2]", "displayName2");
       
       assertTrue(webApp.getAllFilter().get(0).getAllDisplayName().size() == 2);
       webApp.getAllFilter().get(0).removeAllDisplayName();
@@ -62,8 +62,8 @@ public class WebAppDescriptorAttributeGroupTestCase
          .createFilter().getOrCreateIcon().largeIcon("largeIcon1").up()
                   .getOrCreateIcon().smallIcon("smallIcon2").up().up();
       
-      assertXPath(webApp.exportAsString(), "/web-app/filter/icon[1]/large-icon", "largeIcon1");
-      assertXPath(webApp.exportAsString(), "/web-app/filter/icon[2]/small-icon", "smallIcon2");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/filter/icon[1]/large-icon", "largeIcon1");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/filter/icon[2]/small-icon", "smallIcon2");
       
       assertTrue(webApp.getAllFilter().get(0).getAllIcon().size() == 2);
       

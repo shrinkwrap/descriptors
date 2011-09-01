@@ -16,9 +16,8 @@
  */
 package org.jboss.shrinkwrap.descriptor.test.portedfrompoc;
 
-import static org.jboss.shrinkwrap.descriptor.impl.spec.XmlAssert.assertPresenceUsingXPath;
-import static org.jboss.shrinkwrap.descriptor.impl.spec.XmlAssert.assertSchemaLocation;
-import static org.jboss.shrinkwrap.descriptor.test.util.AssertXPath.assertXPath;
+import static org.jboss.shrinkwrap.descriptor.test.util.XmlAssert.assertPresenceUsingXPath;
+import static org.jboss.shrinkwrap.descriptor.test.util.XmlAssert.assertSchemaLocation;
 
 import java.util.logging.Logger;
 
@@ -86,12 +85,13 @@ public class BeansDescriptorTestCase
    }
    
    @Test
+   @Ignore(value="SHRINKDESC-86")
    public void shouldHaveCorrectSchemaLocation()
    {
       final String expectedSchemaLocation = "http://java.sun.com/xml/ns/javaee " +
       		"http://java.sun.com/xml/ns/javaee/beans_1_0.xsd";
-      assertSchemaLocation(create().alternativeStereotype(TestAlternativeStereoType.class).exportAsString(), 
-            "http://www.w3.org/2001/XMLSchema-instance", expectedSchemaLocation);
+      assertSchemaLocation(create().getOrCreateAlternatives().stereotype(TestAlternativeStereoType.class.getName())
+            .up().exportAsString(), "http://www.w3.org/2001/XMLSchema-instance", expectedSchemaLocation);
    }
    
    //-------------------------------------------------------------------------------------||
@@ -245,9 +245,9 @@ public class BeansDescriptorTestCase
             .stereotype(TestAlternativeStereoType.class.getName()).up();
       String xml = beans.exportAsString();
 
-      assertXPath(xml, "/beans/interceptors/class", TestInterceptor.class.getName(), TestAnotherInterceptor.class.getName());
-      assertXPath(xml, "/beans/decorators/class", TestDecorator.class.getName());
-      assertXPath(xml, "/beans/alternatives/stereotype", TestAlternativeStereoType.class.getName());
+      assertPresenceUsingXPath(xml, "/beans/interceptors/class", TestInterceptor.class.getName(), TestAnotherInterceptor.class.getName());
+      assertPresenceUsingXPath(xml, "/beans/decorators/class", TestDecorator.class.getName());
+      assertPresenceUsingXPath(xml, "/beans/alternatives/stereotype", TestAlternativeStereoType.class.getName());
    }
 
    //-------------------------------------------------------------------------------------||

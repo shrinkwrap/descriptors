@@ -1,6 +1,6 @@
 package org.jboss.shrinkwrap.descriptor.test.webapp30;
 
-import static org.jboss.shrinkwrap.descriptor.test.util.AssertXPath.assertXPath;
+import static org.jboss.shrinkwrap.descriptor.test.util.XmlAssert.assertPresenceUsingXPath;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -31,10 +31,10 @@ public class WebAppDescriptorSimpleTypeTestCase
       final WebAppDescriptor webApp = create().createServlet().loadOnStartup(1).up();      
       assertTrue(webApp.getAllServlet().get(0).getLoadOnStartup()==1);
       webApp.exportAsString();
-      assertXPath(webApp.exportAsString(), "/web-app/servlet/load-on-startup", "1");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/servlet/load-on-startup", "1");
       
       webApp.getAllServlet().get(0).loadOnStartup(0);
-      assertXPath(webApp.exportAsString(), "/web-app/servlet/load-on-startup", "0");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/servlet/load-on-startup", "0");
       
       webApp.getAllServlet().get(0).removeLoadOnStartup();
       assertTrue(webApp.exportAsString().indexOf("load-on-startup") == -1);
@@ -45,11 +45,11 @@ public class WebAppDescriptorSimpleTypeTestCase
    {
       final WebAppDescriptor webApp = create().version("3.0");
       assertEquals(webApp.getVersionAsString(), "3.0");
-      assertXPath(webApp.exportAsString(), "/web-app/@version", "3.0");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/@version", "3.0");
       
       webApp.version("3.x");
       assertEquals(webApp.getVersionAsString(), "3.x");
-      assertXPath(webApp.exportAsString(), "/web-app/@version", "3.x");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/@version", "3.x");
    }
    
    // -------------------------------------------------------------------------------------||

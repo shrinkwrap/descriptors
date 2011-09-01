@@ -1,6 +1,6 @@
 package org.jboss.shrinkwrap.descriptor.test.webapp30;
 
-import static org.jboss.shrinkwrap.descriptor.test.util.AssertXPath.assertXPath;
+import static org.jboss.shrinkwrap.descriptor.test.util.XmlAssert.assertPresenceUsingXPath;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -68,20 +68,20 @@ public class WebAppDescriptorComplexTypeTestCase
       assertEquals(webApp.getAllSecurityConstraint().get(0).getAllWebResourceCollection().get(1).getAllDescription().get(1), "descr5");
       assertEquals(webApp.getAllSecurityConstraint().get(0).getAllWebResourceCollection().get(1).getAllDescription().get(2), "descr6");
       
-      assertXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[1]/web-resource-name", "resource1");
-      assertXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[2]/web-resource-name", "resource2");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[1]/web-resource-name", "resource1");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[2]/web-resource-name", "resource2");
       
-      assertXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[1]/http-method[1]", "method1");
-      assertXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[1]/http-method[2]", "method2");
-      assertXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[2]/http-method[1]", "method3");
-      assertXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[2]/http-method[2]", "method4");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[1]/http-method[1]", "method1");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[1]/http-method[2]", "method2");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[2]/http-method[1]", "method3");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[2]/http-method[2]", "method4");
       
-      assertXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[1]/description[1]", "descr1");
-      assertXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[1]/description[2]", "descr2");
-      assertXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[1]/description[3]", "descr3");
-      assertXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[2]/description[1]", "descr4");
-      assertXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[2]/description[2]", "descr5");
-      assertXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[2]/description[3]", "descr6");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[1]/description[1]", "descr1");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[1]/description[2]", "descr2");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[1]/description[3]", "descr3");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[2]/description[1]", "descr4");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[2]/description[2]", "descr5");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/security-constraint/web-resource-collection[2]/description[3]", "descr6");
    }
    
    @Test
@@ -95,10 +95,10 @@ public class WebAppDescriptorComplexTypeTestCase
       assertEquals(webApp.getAllLocaleEncodingMappingList().get(0).getAllLocaleEncodingMapping().get(1).getLocale(), "locale2");
       assertEquals(webApp.getAllLocaleEncodingMappingList().get(0).getAllLocaleEncodingMapping().get(0).getEncoding(), "encoding1");
       assertEquals(webApp.getAllLocaleEncodingMappingList().get(0).getAllLocaleEncodingMapping().get(1).getEncoding(), "encoding2");
-      assertXPath(webApp.exportAsString(), "/web-app/locale-encoding-mapping-list/locale-encoding-mapping[1]/locale", "locale1");
-      assertXPath(webApp.exportAsString(), "/web-app/locale-encoding-mapping-list/locale-encoding-mapping[2]/locale", "locale2");
-      assertXPath(webApp.exportAsString(), "/web-app/locale-encoding-mapping-list/locale-encoding-mapping[1]/encoding", "encoding1");
-      assertXPath(webApp.exportAsString(), "/web-app/locale-encoding-mapping-list/locale-encoding-mapping[2]/encoding", "encoding2");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/locale-encoding-mapping-list/locale-encoding-mapping[1]/locale", "locale1");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/locale-encoding-mapping-list/locale-encoding-mapping[2]/locale", "locale2");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/locale-encoding-mapping-list/locale-encoding-mapping[1]/encoding", "encoding1");
+      assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/locale-encoding-mapping-list/locale-encoding-mapping[2]/encoding", "encoding2");
       
       webApp.getAllLocaleEncodingMappingList().get(0).getAllLocaleEncodingMapping().get(0).removeLocale();
       webApp.getAllLocaleEncodingMappingList().get(0).getAllLocaleEncodingMapping().get(1).removeLocale();

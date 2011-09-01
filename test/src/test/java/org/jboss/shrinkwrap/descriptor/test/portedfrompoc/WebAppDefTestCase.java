@@ -16,14 +16,11 @@
  */
 package org.jboss.shrinkwrap.descriptor.test.portedfrompoc;
 
-import static org.jboss.shrinkwrap.descriptor.test.util.AssertXPath.assertXPath;
+import static org.jboss.shrinkwrap.descriptor.test.util.XmlAssert.assertPresenceUsingXPath;
+import static org.jboss.shrinkwrap.descriptor.test.util.XmlAssert.assertSchemaLocation;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.logging.Logger;
@@ -32,10 +29,8 @@ import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.ServletMappingType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.ServletType;
-import org.jboss.shrinkwrap.descriptor.api.webcommon30.TrackingModeType;
-import org.jboss.shrinkwrap.descriptor.spi.node.Node;
-import org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomDescriptorImporterImpl;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -108,10 +103,14 @@ public class WebAppDefTestCase
     * SHRINKDESC-36
     */
    @Test
+   @Ignore(value="SHRINKDESC-86")
    public void verifySchemaLocation()
    {
+      final WebAppDescriptor desc = create();
+      final String descString = desc.exportAsString();
+      log.info(descString);
       final String expectedSchemaLocation = "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd";
-      assertXPath(create().exportAsString(), "/web-app/@xsi:schemaLocation", expectedSchemaLocation + "dsd");
+      assertSchemaLocation(descString, "http://www.w3.org/2001/XMLSchema-instance", expectedSchemaLocation);
    }
 
    @Test
@@ -126,10 +125,10 @@ public class WebAppDefTestCase
 
       log.fine(desc);
 
-      assertXPath(desc, "/web-app/filter/filter-name", name);
-      assertXPath(desc, "/web-app/filter/filter-class", clazz);
-      assertXPath(desc, "/web-app/filter-mapping/filter-name", name);
-      assertXPath(desc, "/web-app/filter-mapping/url-pattern", mapping);
+      assertPresenceUsingXPath(desc, "/web-app/filter/filter-name", name);
+      assertPresenceUsingXPath(desc, "/web-app/filter/filter-class", clazz);
+      assertPresenceUsingXPath(desc, "/web-app/filter-mapping/filter-name", name);
+      assertPresenceUsingXPath(desc, "/web-app/filter-mapping/url-pattern", mapping);
    }
 
    @Test
@@ -144,10 +143,10 @@ public class WebAppDefTestCase
 
       log.fine(desc);
 
-      assertXPath(desc, "/web-app/servlet/servlet-name", name);
-      assertXPath(desc, "/web-app/servlet/servlet-class", clazz);
-      assertXPath(desc, "/web-app/servlet-mapping/servlet-name", name);
-      assertXPath(desc, "/web-app/servlet-mapping/url-pattern", mapping);
+      assertPresenceUsingXPath(desc, "/web-app/servlet/servlet-name", name);
+      assertPresenceUsingXPath(desc, "/web-app/servlet/servlet-class", clazz);
+      assertPresenceUsingXPath(desc, "/web-app/servlet-mapping/servlet-name", name);
+      assertPresenceUsingXPath(desc, "/web-app/servlet-mapping/url-pattern", mapping);
    }
 
    @Test
@@ -256,8 +255,8 @@ public class WebAppDefTestCase
 
       log.fine(desc);
 
-      assertXPath(desc, "/web-app/@version", version);
-      assertXPath(desc, "/web-app/@metadata-complete", "true");
+      assertPresenceUsingXPath(desc, "/web-app/@version", version);
+      assertPresenceUsingXPath(desc, "/web-app/@metadata-complete", "true");
    }
 
    //TODO Put this test back in place by putting in a "test" scope 
@@ -292,7 +291,7 @@ public class WebAppDefTestCase
       final String webAppDescriptor = Descriptors.create(WebAppDescriptor.class).getOrCreateSecurityConstraint()
             .displayName(securityConstraintDisplayName).up().exportAsString().trim();
 
-      assertXPath(webAppDescriptor, "/web-app/security-constraint/display-name", securityConstraintDisplayName);
+      assertPresenceUsingXPath(webAppDescriptor, "/web-app/security-constraint/display-name", securityConstraintDisplayName);
    }
 
    private String getResourceContents(String resource) throws Exception
