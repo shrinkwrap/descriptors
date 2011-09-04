@@ -36,14 +36,8 @@ import org.jboss.shrinkwrap.descriptor.spi.node.query.Query;
  */
 public enum GetOrCreateQuery implements Query<Node> {
 
-   /**
-    * Instance
-    */
    INSTANCE;
 
-   /**
-    * Logger
-    */
    private static final Logger log = Logger.getLogger(GetOrCreateQuery.class.getName());
 
    /**

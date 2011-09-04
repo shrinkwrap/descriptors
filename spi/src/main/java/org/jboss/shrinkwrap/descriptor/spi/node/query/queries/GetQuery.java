@@ -34,9 +34,6 @@ import org.jboss.shrinkwrap.descriptor.spi.node.query.Query;
  */
 public enum GetQuery implements Query<List<Node>> {
 
-   /**
-    * Instance
-    */
    INSTANCE;
 
    /**

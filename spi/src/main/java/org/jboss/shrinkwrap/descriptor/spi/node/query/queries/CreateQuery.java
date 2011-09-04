@@ -30,6 +30,7 @@ import org.jboss.shrinkwrap.descriptor.spi.node.query.Query;
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
 public enum CreateQuery implements Query<Node> {
+   
    INSTANCE;
 
    /**
