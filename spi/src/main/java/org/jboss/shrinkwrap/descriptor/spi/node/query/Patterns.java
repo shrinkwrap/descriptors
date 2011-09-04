@@ -50,7 +50,7 @@ public class Patterns
    {
       if (queryExpression == null)
       {
-         throw new IllegalArgumentException("query expression must be specified");
+         throw new IllegalArgumentException("Query expression must be specified");
       }
 
       boolean isAbsolute = queryExpression.startsWith(PATH_SEPARATOR);

@@ -291,7 +291,7 @@ public class Node
 
    public Node createChild(final Pattern... patterns)
    {
-      return CreateQuery.INSTANCE.execute(this, patterns);
+      return CreateQuery.create().execute(this, patterns);
    }
 
    /**
@@ -312,7 +312,7 @@ public class Node
 
    public Node getOrCreate(final Pattern... patterns)
    {
-      return GetOrCreateQuery.INSTANCE.execute(this, patterns);
+      return GetOrCreateQuery.create().execute(this, includeRootPatternFirst(patterns));
    }
 
    /**
@@ -331,7 +331,7 @@ public class Node
 
    public Node getSingle(final Pattern... patterns)
    {
-      return GetSingleQuery.INSTANCE.execute(this, patterns);
+      return GetSingleQuery.absolute().execute(this, includeRootPatternFirst(patterns));
    }
 
    /**
@@ -353,7 +353,7 @@ public class Node
     */
    public List<Node> get(Pattern... patterns)
    {
-      return GetQuery.INSTANCE.execute(this, patterns);
+      return GetQuery.absolute().execute(this, includeRootPatternFirst(patterns));
    }
 
    /**
@@ -618,5 +618,10 @@ public class Node
          merged.add(p);
       }
       return merged.toArray(PATTERN_CAST);
+   }
+   
+   private Pattern[] includeRootPatternFirst(final Pattern... patterns)
+   {
+      return validateAndMergePatternInput(new Pattern(name), patterns);
    }
 }

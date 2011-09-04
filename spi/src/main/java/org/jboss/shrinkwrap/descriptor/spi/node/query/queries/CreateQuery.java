@@ -29,9 +29,13 @@ import org.jboss.shrinkwrap.descriptor.spi.node.query.Query;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public enum CreateQuery implements Query<Node> {
+public class CreateQuery implements Query<Node> {
    
-   INSTANCE;
+   
+   public static CreateQuery create()
+   {
+      return new CreateQuery();
+   }
 
    /**
     * {@inheritDoc}
