@@ -110,7 +110,7 @@ public class Node
    public Node(final String name, final Node parent) throws IllegalArgumentException
    {
       // Precondition checks
-      if (name == null)
+      if (name == null || name.trim().isEmpty())
       {
          throw new IllegalArgumentException("name must be specified");
       }
@@ -280,7 +280,7 @@ public class Node
    public Node createChild(final String name) throws IllegalArgumentException
    {
       // Precondition checks
-      if (name == null || name.length() == 0)
+      if (name == null || name.trim().isEmpty())
       {
          throw new IllegalArgumentException("name must be specified");
       }

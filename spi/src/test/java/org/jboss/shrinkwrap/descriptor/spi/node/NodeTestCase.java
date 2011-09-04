@@ -58,7 +58,19 @@ public class NodeTestCase
    public void shouldThrowExceptionIfSpaceInConstructorNameParam() throws Exception
    {
       Node parent = new Node(ROOT_NAME);
-      new Node("a name", parent);
+      Node child = new Node("a name", parent);
+   }
+   
+   @Test(expected = IllegalArgumentException.class)
+   public void shouldNotAllowCreationOfTreeWithEmptyStringAsRootName()
+   {
+      Node root = new Node("");
+   }
+   
+   @Test(expected = IllegalArgumentException.class)
+   public void shouldNotAllowCreationOfChildWithBlankStringAsNodeName()
+   {
+      Node root = new Node(ROOT_NAME).createChild("    ");
    }
 
    @Test
