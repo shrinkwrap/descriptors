@@ -110,7 +110,7 @@ public class Node
    public Node(final String name, final Node parent) throws IllegalArgumentException
    {
       // Precondition checks
-      if (name == null || name.trim().isEmpty())
+      if (name == null || name.trim().length() == 0)
       {
          throw new IllegalArgumentException("name must be specified");
       }
@@ -280,7 +280,7 @@ public class Node
    public Node createChild(final String name) throws IllegalArgumentException
    {
       // Precondition checks
-      if (name == null || name.trim().isEmpty())
+      if (name == null || name.trim().length() == 0)
       {
          throw new IllegalArgumentException("name must be specified");
       }
@@ -365,7 +365,7 @@ public class Node
     */
    public List<Node> removeChildren(final String name) throws IllegalArgumentException
    {
-      if (name == null || name.trim().isEmpty())
+      if (name == null || name.trim().length() == 0)
       {
          throw new IllegalArgumentException("Path must not be null or empty");
       }
