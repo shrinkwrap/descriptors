@@ -112,4 +112,19 @@ public class GetOrCreateQueryTestCase extends QueryTestCaseBase
                4, root.getChildren().size());
    }
    
+   @Test
+   public void shouldCreateTwoChildrenUsingGetOrCreateQueryWhenOnlyRootDefined()
+   {
+      // given
+      Node root = new Node(ROOT_NODE);
+      
+      // when
+      GetOrCreateQuery.create().execute(root, Patterns.from("/" + CHILD_1_NODE));
+      GetOrCreateQuery.create().execute(root, Patterns.from("/" + CHILD_2_NODE));
+      
+      // then
+      Assert.assertEquals("Should have two children created", 2, root.getChildren().size());
+      
+   }
+   
 }
