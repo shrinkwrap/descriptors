@@ -42,19 +42,14 @@ public class GetSingleQuery implements Query<Node> {
 
    public static GetSingleQuery relative()
    {
-      return create(new GetRelativeQuery());
+      return new GetSingleQuery(new GetRelativeQuery());
    }
 
    public static GetSingleQuery absolute()
    {
-      return create(new GetAbsoluteQuery());
+      return new GetSingleQuery(new GetAbsoluteQuery());
    }
 
-   static GetSingleQuery create(GetQuery getQuery)
-   {
-      return new GetSingleQuery(getQuery);
-   }
-   
    /**
     * {@inheritDoc}
     * @see org.jboss.shrinkwrap.descriptor.spi.node.query.Query#execute(org.jboss.shrinkwrap.descriptor.spi.node.Node, org.jboss.shrinkwrap.descriptor.spi.node.query.Pattern[])
