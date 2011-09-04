@@ -31,12 +31,24 @@ import org.jboss.shrinkwrap.descriptor.spi.node.query.Query;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public enum GetSingleQuery implements Query<Node> {
+public class GetSingleQuery implements Query<Node> {
 
-   /**
-    * Instance
-    */
-   INSTANCE;
+   private final GetQuery getQuery;
+   
+   private GetSingleQuery(GetQuery getQuery)
+   {
+      this.getQuery = getQuery;
+   }
+
+   public static GetSingleQuery relative()
+   {
+      return new GetSingleQuery(GetQuery.relative());
+   }
+
+   public static GetSingleQuery absolute()
+   {
+      return new GetSingleQuery(GetQuery.absolute());
+   }
 
    /**
     * {@inheritDoc}
@@ -47,10 +59,10 @@ public enum GetSingleQuery implements Query<Node> {
    {
       // Precondition checks
       QueryUtil.validateNodeAndPatterns(node, patterns);
-      
-      final List<Node> nodes = GetQuery.INSTANCE.execute(node, patterns);
 
-      if (nodes == null || nodes.size() == 0)
+      final List<Node> nodes = getQuery.execute(node, patterns);
+
+      if (nodes == null || nodes.isEmpty())
       {
          return null;
       }

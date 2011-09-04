@@ -40,4 +40,5 @@ public interface Query<T>
     *    specified or no {@link Pattern}s are specified
     */
    T execute(Node node, Pattern... patterns) throws IllegalArgumentException;
+   
 }

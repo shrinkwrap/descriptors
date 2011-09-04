@@ -25,7 +25,7 @@ import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 /**
  * A pattern that may be executed as part of a {@link Query} upon
  * a {@link Node} in a search, or used to define a target {@link Node}
- * to be created.  Value object analogous to XPath patterns; it describes
+ * to be created. Value object analogous to XPath patterns; it describes
  * something in the tree structure of {@link Node}.
  * 
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
@@ -58,7 +58,7 @@ public final class Pattern
    public Pattern(final String name) throws IllegalArgumentException
    {
       // Precondition check
-      if (name == null || name.length() == 0)
+      if (name == null || name.trim().length() == 0)
       {
          throw new IllegalArgumentException("name must be specified");
       }
@@ -161,20 +161,26 @@ public final class Pattern
       {
          return false;
       }
+      
       if ((text != null && node.getText() == null) || (text != null && !text.trim().equals(node.getText().trim())))
       {
          return false;
       }
+      
       if (attributes != null)
       {
-         for (Map.Entry<String, String> attribute : attributes.entrySet())
+         for (final Map.Entry<String, String> attribute : attributes.entrySet())
          {
-            if (!attribute.getValue().equals(node.getAttribute(attribute.getKey())))
+            final String attrValue = attribute.getValue();
+            final String attrName = attribute.getKey();
+            
+            if (!attrValue.equals(node.getAttribute(attrName)))
             {
                return false;
             }
          }
       }
+      
       return true;
    }
 

@@ -34,16 +34,8 @@ import org.jboss.shrinkwrap.descriptor.spi.node.query.Query;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public enum GetOrCreateQuery implements Query<Node> {
+public class GetOrCreateQuery implements Query<Node> {
 
-   /**
-    * Instance
-    */
-   INSTANCE;
-
-   /**
-    * Logger
-    */
    private static final Logger log = Logger.getLogger(GetOrCreateQuery.class.getName());
 
    /**
@@ -51,6 +43,12 @@ public enum GetOrCreateQuery implements Query<Node> {
     */
    private static final Pattern[] PATTERN_CAST = new Pattern[]
    {};
+   
+
+   public static GetOrCreateQuery create()
+   {
+      return new GetOrCreateQuery();
+   }
 
    /**
     * {@inheritDoc}
@@ -81,7 +79,7 @@ public enum GetOrCreateQuery implements Query<Node> {
          final Pattern... allPatterns)
    {
 
-      final Node found = GetSingleQuery.INSTANCE.execute(root, patternsToSearch.toArray(PATTERN_CAST));
+      final Node found = GetSingleQuery.absolute().execute(root, patternsToSearch.toArray(PATTERN_CAST));
 
       // Not found; we'll have to make it
       if (found == null)
@@ -102,7 +100,7 @@ public enum GetOrCreateQuery implements Query<Node> {
          {
             log.finest("Still not found, root: " + root);
          }
-         return CreateQuery.INSTANCE.execute(root, allPatterns);
+         return CreateQuery.create().execute(root, allPatterns);
       }
       else
       {
@@ -131,8 +129,7 @@ public enum GetOrCreateQuery implements Query<Node> {
             }
 
             // Create the new Node and return it
-            final Node newNode = CreateQuery.INSTANCE.execute(found, patternsToCreate);
-            return newNode;
+            return CreateQuery.create().execute(found, patternsToCreate);
          }
          // Otherwise just return the Node we found (like a "get" operation)
          else
