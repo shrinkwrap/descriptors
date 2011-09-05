@@ -507,37 +507,37 @@ public class WebAppDescriptorImpl extends NodeDescriptorImplBase implements WebA
    @Override
    public String getVersion()
    {
-      return model.getAttributes().get("version");
+      return model.getAttribute("version");
    }
 
    @Override
    public String getModuleName()
    {
-      return model.getAttributes().get("module-name");
+      return model.getAttribute("module-name");
    }
 
    @Override
    public String getDescription()
    {
-      return model.getAttributes().get("description");
+      return model.getAttribute("description");
    }
 
    @Override
    public String getDisplayName()
    {
-      return model.getAttributes().get("display-name");
+      return model.getAttribute("display-name");
    }
 
    @Override
    public boolean isDistributable()
    {
-      return model.getAttributes().get("distributable") != null;
+      return model.getAttribute("distributable") != null;
    }
 
    @Override
    public boolean isMetadataComplete()
    {
-      String complete = model.getAttributes().get("metadata-complete");
+      String complete = model.getAttribute("metadata-complete");
       if (complete == null)
       {
          complete = "";

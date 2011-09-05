@@ -21,6 +21,8 @@ import java.io.ByteArrayInputStream;
 import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.Patterns;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.GetSingleQuery;
 import org.junit.Test;
 
 
@@ -65,10 +67,10 @@ public class XMLImporterTestCase
    {
       Node root = load();
       
-      Assert.assertNotNull("Verify node exists", root.getSingle("/arquillian"));
-      Assert.assertNotNull("Verify node exists", root.getSingle("/arquillian/container"));
-      Assert.assertNotNull("Verify node exists", root.getSingle("/arquillian/container/configuration"));
-      Assert.assertNotNull("Verify node exists", root.getSingle("/arquillian/container/configuration/property"));
+      Assert.assertNotNull("Verify node exists", GetSingleQuery.absolute().execute(root, Patterns.from("/arquillian")));
+      Assert.assertNotNull("Verify node exists", GetSingleQuery.absolute().execute(root, Patterns.from("/arquillian/container")));
+      Assert.assertNotNull("Verify node exists", GetSingleQuery.absolute().execute(root, Patterns.from("/arquillian/container/configuration")));
+      Assert.assertNotNull("Verify node exists", GetSingleQuery.absolute().execute(root, Patterns.from("/arquillian/container/configuration/property")));
    }
    
    @Test
@@ -76,17 +78,17 @@ public class XMLImporterTestCase
    {
       Node root = load();
       System.out.println(root.toString(true));
-      Node n = root.getSingle("/arquillian/container");
+      Node n = GetSingleQuery.absolute().execute(root, Patterns.from("/arquillian/container"));
       System.out.println(n);
       Assert.assertEquals(
             "Verify attributes on node with children",
             "standby", 
-            root.getSingle("/arquillian/container").getAttribute("qualifier"));
+            n.getAttribute("qualifier"));
 
       Assert.assertEquals(
             "Verify attributes on node with only text children",
             "tomcatHome", 
-            root.getSingle("/arquillian/container/configuration/property").getAttribute("name"));
+            GetSingleQuery.absolute().execute(root, Patterns.from("/arquillian/container/configuration/property")).getAttribute("name"));
    }
    
    private Node load()

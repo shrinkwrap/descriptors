@@ -36,7 +36,11 @@ public class NodeTestCase
 {
    private static final String ROOT_NAME = "test_root";
    private static final String CHILD_1_NAME = "test_child_1";
+   private static final String CHILD_1_1_NAME = "test_child_1_1";
+   private static final String CHILD_1_2_NAME = "test_child_1_2";
    private static final String CHILD_2_NAME = "test_child_2";
+   private static final String CHILD_2_1_NAME = "test_child_2_1";
+   private static final String CHILD_2_2_NAME = "test_child_2_2";
 
    private static final String ATTR_NAME = "test_attr_name";
    private static final String ATTR_VALUE = "test_attr_value";
@@ -54,7 +58,19 @@ public class NodeTestCase
    public void shouldThrowExceptionIfSpaceInConstructorNameParam() throws Exception
    {
       Node parent = new Node(ROOT_NAME);
-      new Node("a name", parent);
+      Node child = new Node("a name", parent);
+   }
+   
+   @Test(expected = IllegalArgumentException.class)
+   public void shouldNotAllowCreationOfTreeWithEmptyStringAsRootName()
+   {
+      Node root = new Node("");
+   }
+   
+   @Test(expected = IllegalArgumentException.class)
+   public void shouldNotAllowCreationOfChildWithBlankStringAsNodeName()
+   {
+      Node root = new Node(ROOT_NAME).createChild("    ");
    }
 
    @Test
@@ -416,14 +432,14 @@ public class NodeTestCase
    @Test
    public void shouldNotBeCommentByDefault(){
       final Node node = new Node(ROOT_NAME);
-      Assert.assertEquals("A Node should not be a comment by default",false, node.isComment());
+      Assert.assertEquals("A Node should not be a comment by default", false, node.isComment());
    }
    
    @Test
    public void shouldBeAbleToMarkAsComment(){
       final Node node = new Node(ROOT_NAME);
       node.setComment(true);
-      Assert.assertEquals("A Node set as comment should report as comment",true, node.isComment());
+      Assert.assertEquals("A Node set as comment should report as comment", true, node.isComment());
    }
    
    @Test(expected=IllegalArgumentException.class)
@@ -433,19 +449,39 @@ public class NodeTestCase
       node.setComment(true);
    }
    
-   /**
-    * Ensures that we can access the root via a child
-    */
    @Test
-   public void shouldBeAbleToGetRoot()
+   public void shouldBeAbleToAccessRootFromChildNode()
    {
+      // given
       final Node root = new Node(ROOT_NAME);
       final Node child = root.createChild(CHILD_1_NAME);
-      final Node grandChild = child.createChild(CHILD_2_NAME);
-      final Node roundtripRoot = grandChild.getRoot();
-      System.out.println(root.toString(true));
-      Assert.assertEquals("Obtained wrong root", roundtripRoot, root);
+
+      // when
+      final Node actualRoot = child.getRoot();
+      
+      // then
+      Assert.assertEquals("Obtained wrong root", root, actualRoot);
    }
+   
+   @Test
+   public void shouldBeAbleToAccessRootAnyDescendantNode()
+   {
+      // given
+      final Node root = new Node(ROOT_NAME);
+      final Node descendantNode = root.createChild(CHILD_1_NAME)
+                                         .createChild(CHILD_1_1_NAME).getParent().getParent()
+                                      .createChild(CHILD_2_NAME)
+                                         .createChild(CHILD_2_1_NAME).getParent()
+                                         .createChild(CHILD_2_2_NAME);
+
+      // when
+      final Node actualRoot = descendantNode.getRoot();
+      
+      // then
+      System.out.println(root.toString(true));
+      Assert.assertEquals("Obtained wrong root", root, actualRoot);
+   }
+
    
    /**
     * Ensures that {@link Node#isRoot()} is working as contracted
@@ -487,4 +523,81 @@ public class NodeTestCase
       root.removeAttribute(null);
    }
    
+   @Test
+   public void shouldNotMatchAChildsChildrenOnGet() 
+   {
+      // given /root/child1/child2
+      Node root = new Node(ROOT_NAME)
+                        .createChild(CHILD_1_NAME)
+                        .createChild(CHILD_2_NAME)
+                        .getRoot();
+
+      // when 
+      List<Node> child = root.get(CHILD_2_NAME);
+      
+      // then
+      Assert.assertTrue("Should not find matching child", child.isEmpty());
+   }
+   
+   @Test
+   public void shouldNotMatchAChildsChildrenOnGetSingle() 
+   {
+      // given /root/child1/child2
+      Node root = new Node(ROOT_NAME)
+                        .createChild(CHILD_1_NAME)
+                           .createChild(CHILD_2_NAME)
+                        .getRoot();
+      // when
+      Node child = root.getSingle(CHILD_2_NAME);
+      
+      // then
+      Assert.assertNull(child);
+   }
+
+   @Test
+   public void shouldNotMatchAChildsChildrenOnGetOrCreate() 
+   {
+      // given /root/child1/child2
+      Node root = new Node(ROOT_NAME);
+      Node child1 = root.createChild(CHILD_1_NAME);
+      Node child2 = child1.createChild(CHILD_2_NAME);
+
+      // when
+      Node createdChild = root.getOrCreate(CHILD_2_NAME);
+
+      // then
+      Assert.assertNotSame(createdChild, child2);
+   }
+
+   @Test
+   public void shouldNotMatchAChildsChildrenOnRemoveChild() 
+   {
+      // given /root/child1/child2
+      Node root = new Node(ROOT_NAME)
+                        .createChild(CHILD_1_NAME)
+                           .createChild(CHILD_2_NAME).getRoot();
+      // when
+      Node removedChild = root.removeChild(CHILD_2_NAME);
+      
+      // then
+      Assert.assertNull(removedChild);
+   }
+
+   @Test
+   public void shouldNotMatchAChildsChildrenOnRemoveChildren() 
+   {
+      // given /root/child1/child2
+      Node root = new Node(ROOT_NAME)
+                        .createChild(CHILD_1_NAME)
+                           .createChild(CHILD_2_NAME).getRoot();
+
+      // when
+      List<Node> removed = root.removeChildren(CHILD_2_NAME);
+      
+      // then
+      Assert.assertNotNull(removed);
+      Assert.assertEquals(0,  removed.size());
+   }
+   
 }
+   

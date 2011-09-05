@@ -347,7 +347,7 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    @Override
    public String getName()
    {
-      return persistenceUnit.getAttributes().get("name");
+      return persistenceUnit.getAttribute("name");
    }
 
    @Override
@@ -367,7 +367,7 @@ public class PersistenceUnitDefImpl extends PersistenceDescriptorImpl implements
    @Override
    public String getTransactionType()
    {
-      return persistenceUnit.getAttributes().get("transaction-type");
+      return persistenceUnit.getAttribute("transaction-type");
    }
 
    @Override
