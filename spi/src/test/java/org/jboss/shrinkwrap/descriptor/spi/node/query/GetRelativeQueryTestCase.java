@@ -61,7 +61,6 @@ public class GetRelativeQueryTestCase extends QueryTestCaseBase
       Node root = createTree();
       Pattern pattern = new Pattern(CHILD_2_1_1_NODE);
       pattern.attribute(OTHER_NAME, ATTR_VALUE_1);
-      System.out.println(root.toString(true));
                         
       // when
       List<Node> matchingNodes = GetQuery.relative().execute(root, pattern);
@@ -79,7 +78,6 @@ public class GetRelativeQueryTestCase extends QueryTestCaseBase
       Node root = createTree();
       Pattern endPatternWithAttribute = new Pattern(CHILD_2_1_1_NODE);
       endPatternWithAttribute.attribute(OTHER_NAME, ATTR_VALUE_1);
-      System.out.println(root.toString(true));
                         
       // when
       List<Node> matchingNodes = GetQuery.relative().execute(root, new Pattern(CHILD_2_1_NODE), endPatternWithAttribute);

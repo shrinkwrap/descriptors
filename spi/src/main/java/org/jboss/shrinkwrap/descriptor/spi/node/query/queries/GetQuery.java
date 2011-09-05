@@ -32,6 +32,7 @@ import org.jboss.shrinkwrap.descriptor.spi.node.query.Query;
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
+ * @author <a href="mailto:bartosz.majsak@gmail.com">Bartosz Majsak</a>
  */
 public abstract class GetQuery implements Query<List<Node>>
 {
@@ -72,7 +73,7 @@ public abstract class GetQuery implements Query<List<Node>>
     * @param patterns XPath-like set of patterns to match against the given tree
     * @return
     */
-   abstract List<Node> findMatch(final Node start, final List<Pattern> patterns);
+   protected abstract List<Node> findMatch(final Node start, final List<Pattern> patterns);
 
    /**
     * Form of {@link GetQuery} for retrieving nodes matching
@@ -88,7 +89,7 @@ public abstract class GetQuery implements Query<List<Node>>
    {
 
       @Override
-      List<Node> findMatch(Node start, List<Pattern> patterns)
+      protected List<Node> findMatch(Node start, List<Pattern> patterns)
       {
          if (patterns.isEmpty())
          {
@@ -138,7 +139,7 @@ public abstract class GetQuery implements Query<List<Node>>
    {
       
       @Override
-      List<Node> findMatch(final Node start, final List<Pattern> patterns)
+      protected List<Node> findMatch(final Node start, final List<Pattern> patterns)
       {
          if (patterns.isEmpty())
          {

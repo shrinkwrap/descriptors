@@ -56,7 +56,6 @@ public class GetSingleQueryTestCase extends QueryTestCaseBase
    {
       // given
       Node root = createTree();
-      System.out.println(root.toString(true));
       
       // when
       Node found = GetSingleQuery.relative().execute(root, Patterns.from("/" + CHILD_2_1_NODE + "/" + CHILD_2_1_1_NODE + "@" + ATTR_NAME + "=" + ATTR_VALUE_1));
