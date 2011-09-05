@@ -1,7 +1,7 @@
 package org.jboss.shrinkwrap.descriptor.spi.node;
-import junit.framework.Assert;
+import java.util.Arrays;
 
-import org.jboss.shrinkwrap.descriptor.spi.node.Node;
+import junit.framework.Assert;
 
 /**
  * {@link Node} related assertions.
@@ -27,8 +27,22 @@ public final class NodeAssert
    {
       for (Node node : nodes) 
       {
-         Assert.assertEquals(expectedName, node.getName());
+         Assert.assertEquals("Name of node " + node + " does not match!", expectedName, node.getName());
       }
+   }
+   
+   /**
+    * Verifies if node has expected name.
+    * 
+    * @param nodes
+    * @param expectedName
+    * 
+    * @throws Exception Assertion error when one of node does not match
+    */
+   public static void assertEqualsByName(Node node, String expectedName)
+   {
+      Assert.assertNotNull(node);
+      assertEqualsByName(Arrays.asList(node), expectedName);
    }
    
    /**
@@ -44,7 +58,7 @@ public final class NodeAssert
    {
       for (Node node : nodes) 
       {
-         Assert.assertEquals(expectedValue, node.getAttribute(name));
+         Assert.assertEquals("Attribute [" + name + "] value not matching for node " + node, expectedValue, node.getAttribute(name));
       }
    }
    
