@@ -42,12 +42,12 @@ public class GetSingleQuery implements Query<Node> {
 
    public static GetSingleQuery relative()
    {
-      return new GetSingleQuery(new GetRelativeQuery());
+      return new GetSingleQuery(GetQuery.relative());
    }
 
    public static GetSingleQuery absolute()
    {
-      return new GetSingleQuery(new GetAbsoluteQuery());
+      return new GetSingleQuery(GetQuery.absolute());
    }
 
    /**

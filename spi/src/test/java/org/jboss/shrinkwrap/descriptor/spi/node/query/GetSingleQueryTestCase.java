@@ -3,6 +3,7 @@ package org.jboss.shrinkwrap.descriptor.spi.node.query;
 import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
+import org.jboss.shrinkwrap.descriptor.spi.node.NodeAssert;
 import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.GetSingleQuery;
 import org.junit.Test;
 
@@ -40,17 +41,14 @@ public class GetSingleQueryTestCase extends QueryTestCaseBase
    {
       // given
       Node root = createTree();
-      System.out.println(root.toString(true));
+      Pattern pattern = new Pattern(CHILD_2_1_1_NODE);
+      pattern.attribute(ATTR_NAME, ATTR_VALUE_2);
       
       // when
-      Node found = GetSingleQuery.relative().execute(root, new Pattern(CHILD_2_1_1_NODE));
+      Node found = GetSingleQuery.relative().execute(root, pattern);
 
       // then
-      Assert.assertNotNull("Should find node", found);
-      
-      Assert.assertEquals(
-               "Verify correct node found",
-               CHILD_2_1_1_NODE, found.getName());
+      NodeAssert.assertEqualsByName(found, CHILD_2_1_1_NODE);
    }
    
    @Test
@@ -61,14 +59,10 @@ public class GetSingleQueryTestCase extends QueryTestCaseBase
       System.out.println(root.toString(true));
       
       // when
-      Node found = GetSingleQuery.relative().execute(root, Patterns.from("/" + CHILD_2_1_NODE + "/" + CHILD_2_1_1_NODE));
+      Node found = GetSingleQuery.relative().execute(root, Patterns.from("/" + CHILD_2_1_NODE + "/" + CHILD_2_1_1_NODE + "@" + ATTR_NAME + "=" + ATTR_VALUE_1));
 
       // then
-      Assert.assertNotNull("Should find node", found);
-      
-      Assert.assertEquals(
-               "Verify correct node found",
-               CHILD_2_1_1_NODE, found.getName());
+      NodeAssert.assertEqualsByName(found, CHILD_2_1_1_NODE);
    }
    
    @Test
@@ -123,8 +117,9 @@ public class GetSingleQueryTestCase extends QueryTestCaseBase
    public void shouldBeAbleToFindAExpressedFromRootWithExpression() throws Exception
    {
       Node root = createTree();
-      Node found = root.getSingle("/" + CHILD_2_NODE + "/" + CHILD_2_1_NODE + "@" + ATTR_NAME + "=" + CHILD_2_2_NODE);
+      Node found = root.getSingle("/" + CHILD_2_NODE + "/" + CHILD_2_1_NODE + "@" + ATTR_NAME + "=" + ATTR_VALUE_1);
       
+      System.out.println(root.toString(true));
       Assert.assertNotNull("Verify a node was found", found);
       
       Assert.assertEquals(
@@ -133,7 +128,7 @@ public class GetSingleQueryTestCase extends QueryTestCaseBase
 
       Assert.assertEquals(
             "Verify correct node found",
-            CHILD_2_2_NODE, found.getAttribute(ATTR_NAME));      
+            ATTR_VALUE_1, found.getAttribute(ATTR_NAME));      
    }
 
 

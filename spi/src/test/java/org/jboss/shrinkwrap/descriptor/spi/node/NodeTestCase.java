@@ -432,14 +432,14 @@ public class NodeTestCase
    @Test
    public void shouldNotBeCommentByDefault(){
       final Node node = new Node(ROOT_NAME);
-      Assert.assertEquals("A Node should not be a comment by default",false, node.isComment());
+      Assert.assertEquals("A Node should not be a comment by default", false, node.isComment());
    }
    
    @Test
    public void shouldBeAbleToMarkAsComment(){
       final Node node = new Node(ROOT_NAME);
       node.setComment(true);
-      Assert.assertEquals("A Node set as comment should report as comment",true, node.isComment());
+      Assert.assertEquals("A Node set as comment should report as comment", true, node.isComment());
    }
    
    @Test(expected=IllegalArgumentException.class)
@@ -542,50 +542,62 @@ public class NodeTestCase
    @Test
    public void shouldNotMatchAChildsChildrenOnGetSingle() 
    {
-      // /root/child1/child2
+      // given /root/child1/child2
       Node root = new Node(ROOT_NAME)
                         .createChild(CHILD_1_NAME)
-                        .createChild(CHILD_2_NAME)
+                           .createChild(CHILD_2_NAME)
                         .getRoot();
-
-      Assert.assertNull(root.getSingle(CHILD_2_NAME));
+      // when
+      Node child = root.getSingle(CHILD_2_NAME);
+      
+      // then
+      Assert.assertNull(child);
    }
 
    @Test
    public void shouldNotMatchAChildsChildrenOnGetOrCreate() 
    {
-      // /root/child1/child2
+      // given /root/child1/child2
       Node root = new Node(ROOT_NAME);
       Node child1 = root.createChild(CHILD_1_NAME);
       Node child2 = child1.createChild(CHILD_2_NAME);
 
+      // when
       Node createdChild = root.getOrCreate(CHILD_2_NAME);
 
+      // then
       Assert.assertNotSame(createdChild, child2);
    }
 
    @Test
    public void shouldNotMatchAChildsChildrenOnRemoveChild() 
    {
-      // /root/child1/child2
+      // given /root/child1/child2
       Node root = new Node(ROOT_NAME)
-            .createChild(CHILD_1_NAME)
-               .createChild(CHILD_2_NAME).getRoot();
-
-      Assert.assertNull(root.removeChild(CHILD_2_NAME));
+                        .createChild(CHILD_1_NAME)
+                           .createChild(CHILD_2_NAME).getRoot();
+      // when
+      Node removedChild = root.removeChild(CHILD_2_NAME);
+      
+      // then
+      Assert.assertNull(removedChild);
    }
 
    @Test
    public void shouldNotMatchAChildsChildrenOnRemoveChildren() 
    {
-      // /root/child1/child2
+      // given /root/child1/child2
       Node root = new Node(ROOT_NAME)
-            .createChild(CHILD_1_NAME)
-               .createChild(CHILD_2_NAME).getRoot();
+                        .createChild(CHILD_1_NAME)
+                           .createChild(CHILD_2_NAME).getRoot();
 
+      // when
       List<Node> removed = root.removeChildren(CHILD_2_NAME);
+      
+      // then
       Assert.assertNotNull(removed);
       Assert.assertEquals(0,  removed.size());
    }
    
 }
+   
