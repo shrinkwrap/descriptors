@@ -129,8 +129,7 @@ public class GetOrCreateQuery implements Query<Node> {
             }
 
             // Create the new Node and return it
-            final Node newNode = CreateQuery.create().execute(found, patternsToCreate);
-            return newNode;
+            return CreateQuery.create().execute(found, patternsToCreate);
          }
          // Otherwise just return the Node we found (like a "get" operation)
          else
