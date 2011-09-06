@@ -27,7 +27,7 @@ import org.jboss.shrinkwrap.descriptor.spi.node.query.Patterns;
 import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.AbsoluteGetQuery;
 import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.CreateQuery;
 import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.GetOrCreateQuery;
-import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.GetSingleQuery;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.AbsoluteGetSingleQuery;
 
 /**
  * {@link Node} is a data structure representing a container in a classic
@@ -291,7 +291,7 @@ public class Node
 
    public Node createChild(final Pattern... patterns)
    {
-      return CreateQuery.create().execute(this, patterns);
+      return CreateQuery.INSTANCE.execute(this, patterns);
    }
 
    /**
@@ -331,7 +331,7 @@ public class Node
 
    public Node getSingle(final Pattern... patterns)
    {
-      return GetSingleQuery.absolute().execute(this, includeRootPatternFirst(patterns));
+      return AbsoluteGetSingleQuery.INSTANCE.execute(this, includeRootPatternFirst(patterns));
    }
 
    /**

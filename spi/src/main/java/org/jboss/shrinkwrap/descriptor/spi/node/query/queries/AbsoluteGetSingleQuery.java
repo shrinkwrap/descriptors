@@ -16,20 +16,22 @@
  */
 package org.jboss.shrinkwrap.descriptor.spi.node.query.queries;
 
-import java.util.Map;
+import java.util.List;
 
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 import org.jboss.shrinkwrap.descriptor.spi.node.query.Pattern;
 import org.jboss.shrinkwrap.descriptor.spi.node.query.Query;
 
 /**
- * Creates the specified {@link Pattern}s starting at the specified
- * {@link Node}.
+ * Form of {@link GetQuery} used as a convenience to retrieve
+ * a single result.  If more than one match is found, 
+ * {@link IllegalArgumentException} will be thrown.  If no matches
+ * are found, <code>null</code> is returned.
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public enum CreateQuery implements Query<Node> {
+public enum AbsoluteGetSingleQuery implements Query<Node> {
 
    INSTANCE;
    
@@ -43,16 +45,17 @@ public enum CreateQuery implements Query<Node> {
       // Precondition checks
       QueryUtil.validateNodeAndPatterns(node, patterns);
 
-      Node returnValue = node;
+      final List<Node> nodes = AbsoluteGetQuery.INSTANCE.execute(node, patterns);
 
-      for (final Pattern pattern : patterns)
+      if (nodes == null || nodes.isEmpty())
       {
-         returnValue = new Node(pattern.getName(), returnValue).text(pattern.getText());
-         for (Map.Entry<String, String> entry : pattern.getAttributes().entrySet())
-         {
-            returnValue.attribute(entry.getKey(), entry.getValue());
-         }
+         return null;
       }
-      return returnValue;
+      if (nodes.size() > 1)
+      {
+         throw new IllegalArgumentException("Multiple nodes matching expression found");
+      }
+      return nodes.get(0);
    }
+
 }
