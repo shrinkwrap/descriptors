@@ -79,7 +79,7 @@ public class GetOrCreateQuery implements Query<Node> {
          final Pattern... allPatterns)
    {
 
-      final Node found = GetSingleQuery.absolute().execute(root, patternsToSearch.toArray(PATTERN_CAST));
+      final Node found = AbsoluteGetSingleQuery.INSTANCE.execute(root, patternsToSearch.toArray(PATTERN_CAST));
 
       // Not found; we'll have to make it
       if (found == null)
@@ -100,7 +100,7 @@ public class GetOrCreateQuery implements Query<Node> {
          {
             log.finest("Still not found, root: " + root);
          }
-         return CreateQuery.create().execute(root, allPatterns);
+         return CreateQuery.INSTANCE.execute(root, allPatterns);
       }
       else
       {
@@ -129,7 +129,7 @@ public class GetOrCreateQuery implements Query<Node> {
             }
 
             // Create the new Node and return it
-            return CreateQuery.create().execute(found, patternsToCreate);
+            return CreateQuery.INSTANCE.execute(found, patternsToCreate);
          }
          // Otherwise just return the Node we found (like a "get" operation)
          else

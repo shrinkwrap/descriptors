@@ -22,7 +22,7 @@ import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 import org.jboss.shrinkwrap.descriptor.spi.node.query.Patterns;
-import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.GetSingleQuery;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.AbsoluteGetSingleQuery;
 import org.junit.Test;
 
 
@@ -67,10 +67,10 @@ public class XMLImporterTestCase
    {
       Node root = load();
       
-      Assert.assertNotNull("Verify node exists", GetSingleQuery.absolute().execute(root, Patterns.from("/arquillian")));
-      Assert.assertNotNull("Verify node exists", GetSingleQuery.absolute().execute(root, Patterns.from("/arquillian/container")));
-      Assert.assertNotNull("Verify node exists", GetSingleQuery.absolute().execute(root, Patterns.from("/arquillian/container/configuration")));
-      Assert.assertNotNull("Verify node exists", GetSingleQuery.absolute().execute(root, Patterns.from("/arquillian/container/configuration/property")));
+      Assert.assertNotNull("Verify node exists", AbsoluteGetSingleQuery.INSTANCE.execute(root, Patterns.from("/arquillian")));
+      Assert.assertNotNull("Verify node exists", AbsoluteGetSingleQuery.INSTANCE.execute(root, Patterns.from("/arquillian/container")));
+      Assert.assertNotNull("Verify node exists", AbsoluteGetSingleQuery.INSTANCE.execute(root, Patterns.from("/arquillian/container/configuration")));
+      Assert.assertNotNull("Verify node exists", AbsoluteGetSingleQuery.INSTANCE.execute(root, Patterns.from("/arquillian/container/configuration/property")));
    }
    
    @Test
@@ -78,7 +78,7 @@ public class XMLImporterTestCase
    {
       Node root = load();
       System.out.println(root.toString(true));
-      Node n = GetSingleQuery.absolute().execute(root, Patterns.from("/arquillian/container"));
+      Node n = AbsoluteGetSingleQuery.INSTANCE.execute(root, Patterns.from("/arquillian/container"));
       System.out.println(n);
       Assert.assertEquals(
             "Verify attributes on node with children",
@@ -88,7 +88,7 @@ public class XMLImporterTestCase
       Assert.assertEquals(
             "Verify attributes on node with only text children",
             "tomcatHome", 
-            GetSingleQuery.absolute().execute(root, Patterns.from("/arquillian/container/configuration/property")).getAttribute("name"));
+            AbsoluteGetSingleQuery.INSTANCE.execute(root, Patterns.from("/arquillian/container/configuration/property")).getAttribute("name"));
    }
    
    private Node load()
