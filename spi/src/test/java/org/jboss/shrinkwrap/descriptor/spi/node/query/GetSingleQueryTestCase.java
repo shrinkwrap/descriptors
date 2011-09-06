@@ -70,7 +70,6 @@ public class GetSingleQueryTestCase
    {
       // given
       Node root = createTree();
-      System.out.println(root.toString(true));
       
       // when
       Node found = GetSingleQuery.absolute().execute(root, Patterns.from("/" + ROOT_NODE + "/" + CHILD_3_NODE + "=" + CHILD_3_TEXT));
@@ -89,7 +88,7 @@ public class GetSingleQueryTestCase
    public void shouldBeAbleToFindAExpressedChild() throws Exception
    {
       Node root = createTree();
-      Node found = root.getSingle(CHILD_1_NODE + "/" + CHILD_1_1_NODE);
+      Node found = GetSingleQuery.absolute().execute(root, Patterns.from("/" + ROOT_NODE + "/" + CHILD_1_NODE + "/" + CHILD_1_1_NODE));
       
       Assert.assertNotNull("Verify a node as found", found);
       
@@ -115,9 +114,8 @@ public class GetSingleQueryTestCase
    public void shouldBeAbleToFindAExpressedFromRootWithExpression() throws Exception
    {
       Node root = createTree();
-      Node found = root.getSingle("/" + CHILD_2_NODE + "/" + CHILD_2_1_NODE + "@" + ATTR_NAME + "=" + ATTR_VALUE_1);
+      Node found = GetSingleQuery.absolute().execute(root, Patterns.from("/" + ROOT_NODE + "/" + CHILD_2_NODE + "/" + CHILD_2_1_NODE + "@" + ATTR_NAME + "=" + ATTR_VALUE_1));
       
-      System.out.println(root.toString(true));
       Assert.assertNotNull("Verify a node was found", found);
       
       Assert.assertEquals(
@@ -138,7 +136,7 @@ public class GetSingleQueryTestCase
       root.getOrCreate(("/" + CHILD_3_NODE + "=" + CHILD_3_TEXT));
       root.getOrCreate(("/" + CHILD_3_NODE + "=" + CHILD_3_TEXT + "diff"));
 
-      Node found = root.getSingle(("/" + CHILD_3_NODE + "=" + CHILD_3_TEXT));
+      Node found = GetSingleQuery.absolute().execute(root, Patterns.from("/" + ROOT_NODE + "/" + CHILD_3_NODE + "=" + CHILD_3_TEXT));
 
       Assert.assertNotNull("Verify node was found", found);
       
