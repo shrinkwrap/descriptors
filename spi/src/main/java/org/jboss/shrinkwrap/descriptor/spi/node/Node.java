@@ -24,9 +24,9 @@ import java.util.Map;
 
 import org.jboss.shrinkwrap.descriptor.spi.node.query.Pattern;
 import org.jboss.shrinkwrap.descriptor.spi.node.query.Patterns;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.AbsoluteGetQuery;
 import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.CreateQuery;
 import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.GetOrCreateQuery;
-import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.GetQuery;
 import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.GetSingleQuery;
 
 /**
@@ -351,9 +351,9 @@ public class Node
     * @param query The query to use for finding relevant child nodes
     * @return All found children, or empty list if none found.
     */
-   public List<Node> get(Pattern... patterns)
+   public List<Node> get(final Pattern... patterns)
    {
-      return GetQuery.absolute().execute(this, includeRootPatternFirst(patterns));
+      return AbsoluteGetQuery.INSTANCE.execute(this, includeRootPatternFirst(patterns));
    }
 
    /**

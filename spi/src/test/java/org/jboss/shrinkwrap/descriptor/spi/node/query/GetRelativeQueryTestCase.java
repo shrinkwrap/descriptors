@@ -6,7 +6,7 @@ import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 import org.jboss.shrinkwrap.descriptor.spi.node.NodeAssert;
-import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.GetQuery;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.RelativeGetQuery;
 import org.junit.Test;
 
 public class GetRelativeQueryTestCase extends QueryTestCaseBase
@@ -19,7 +19,7 @@ public class GetRelativeQueryTestCase extends QueryTestCaseBase
       Node root = new Node(ROOT_NODE);
       
       // when
-      List<Node> matchingNodes = GetQuery.relative().execute(root, new Pattern(ROOT_NODE));
+      List<Node> matchingNodes = RelativeGetQuery.INSTANCE.execute(root, new Pattern(ROOT_NODE));
       
       // then
       Assert.assertEquals("Should return only one node", 1, matchingNodes.size());
@@ -33,7 +33,7 @@ public class GetRelativeQueryTestCase extends QueryTestCaseBase
       Node root = createTree();
                         
       // when
-      List<Node> matchingNodes = GetQuery.relative().execute(root, new Pattern(CHILD_2_1_NODE));
+      List<Node> matchingNodes = RelativeGetQuery.INSTANCE.execute(root, new Pattern(CHILD_2_1_NODE));
       
       // then
       Assert.assertEquals("Should return two nodes", 2, matchingNodes.size());
@@ -47,7 +47,7 @@ public class GetRelativeQueryTestCase extends QueryTestCaseBase
       Node root = createTree();
                         
       // when
-      List<Node> matchingNodes = GetQuery.relative().execute(root, new Pattern(CHILD_1_1_NODE));
+      List<Node> matchingNodes = RelativeGetQuery.INSTANCE.execute(root, new Pattern(CHILD_1_1_NODE));
       
       // then
       Assert.assertEquals("Should find exactly one node.", 1, matchingNodes.size());
@@ -63,7 +63,7 @@ public class GetRelativeQueryTestCase extends QueryTestCaseBase
       pattern.attribute(OTHER_NAME, ATTR_VALUE_1);
                         
       // when
-      List<Node> matchingNodes = GetQuery.relative().execute(root, pattern);
+      List<Node> matchingNodes = RelativeGetQuery.INSTANCE.execute(root, pattern);
       
       // then
       Assert.assertEquals("Should return two nodes", 2, matchingNodes.size());
@@ -80,7 +80,7 @@ public class GetRelativeQueryTestCase extends QueryTestCaseBase
       endPatternWithAttribute.attribute(OTHER_NAME, ATTR_VALUE_1);
                         
       // when
-      List<Node> matchingNodes = GetQuery.relative().execute(root, new Pattern(CHILD_2_1_NODE), endPatternWithAttribute);
+      List<Node> matchingNodes = RelativeGetQuery.INSTANCE.execute(root, new Pattern(CHILD_2_1_NODE), endPatternWithAttribute);
       
       // then
       Assert.assertEquals("Should return two nodes", 2, matchingNodes.size());
@@ -95,7 +95,7 @@ public class GetRelativeQueryTestCase extends QueryTestCaseBase
       Node root = createTree();
                         
       // when
-      List<Node> matchingNodes = GetQuery.relative().execute(root, new Pattern(CHILD_2_1_NODE).attribute(ATTR_NAME, ATTR_VALUE_2), 
+      List<Node> matchingNodes = RelativeGetQuery.INSTANCE.execute(root, new Pattern(CHILD_2_1_NODE).attribute(ATTR_NAME, ATTR_VALUE_2), 
                new Pattern(CHILD_2_1_1_NODE).attribute(OTHER_NAME, ATTR_VALUE_1));
       
       // then
