@@ -1,5 +1,7 @@
 package org.jboss.shrinkwrap.descriptor.spi.node.query;
 
+import static org.jboss.shrinkwrap.descriptor.spi.node.query.TestTreeBuilder.*;
+
 import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
@@ -13,7 +15,7 @@ import org.junit.Test;
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  * @version $Revision: $
  */
-public class GetSingleQueryTestCase extends QueryTestCaseBase
+public class GetSingleQueryTestCase
 {
 
    @Test
@@ -21,7 +23,6 @@ public class GetSingleQueryTestCase extends QueryTestCaseBase
    {
       // given
       Node root = createTree();
-      System.out.println(root.toString(true));
       
       // when
       Node found = GetSingleQuery.relative().execute(root, Patterns.from(CHILD_3_NODE + "=" + CHILD_3_TEXT));
@@ -88,7 +89,6 @@ public class GetSingleQueryTestCase extends QueryTestCaseBase
    public void shouldBeAbleToFindAExpressedChild() throws Exception
    {
       Node root = createTree();
-      System.out.println(root.toString(true));
       Node found = root.getSingle(CHILD_1_NODE + "/" + CHILD_1_1_NODE);
       
       Assert.assertNotNull("Verify a node as found", found);
@@ -102,7 +102,6 @@ public class GetSingleQueryTestCase extends QueryTestCaseBase
    public void shouldBeAbleToFindAExpressedFromRoot() throws Exception
    {
       Node root = createTree();
-      System.out.println(root.toString(true));
       Node found = GetSingleQuery.absolute().execute(root, Patterns.from("/" + ROOT_NODE + "/" + CHILD_1_NODE + "/" + CHILD_1_1_NODE));
       
       Assert.assertNotNull("Verify a node was found", found);
@@ -130,8 +129,6 @@ public class GetSingleQueryTestCase extends QueryTestCaseBase
             ATTR_VALUE_1, found.getAttribute(ATTR_NAME));      
    }
 
-
-   
    @Test
    public void shouldBeAbleToGetNodeWithTextValues()
    {
@@ -159,7 +156,5 @@ public class GetSingleQueryTestCase extends QueryTestCaseBase
                "Verify root only has four children",
                4, root.getChildren().size());
    }
-
-
 
 }

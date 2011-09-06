@@ -24,9 +24,9 @@ import java.util.Map;
 
 import org.jboss.shrinkwrap.descriptor.spi.node.query.Pattern;
 import org.jboss.shrinkwrap.descriptor.spi.node.query.Patterns;
-import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.AbsoluteGetQuery;
 import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.CreateQuery;
 import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.GetOrCreateQuery;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.GetQuery;
 import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.GetSingleQuery;
 
 /**
@@ -353,7 +353,7 @@ public class Node
     */
    public List<Node> get(final Pattern... patterns)
    {
-      return AbsoluteGetQuery.INSTANCE.execute(this, includeRootPatternFirst(patterns));
+      return GetQuery.absolute().execute(this, includeRootPatternFirst(patterns));
    }
 
    /**

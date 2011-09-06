@@ -1,15 +1,17 @@
 package org.jboss.shrinkwrap.descriptor.spi.node.query;
 
+import static org.jboss.shrinkwrap.descriptor.spi.node.query.TestTreeBuilder.*;
+
 import java.util.List;
 
 import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 import org.jboss.shrinkwrap.descriptor.spi.node.NodeAssert;
-import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.AbsoluteGetQuery;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.GetQuery;
 import org.junit.Test;
 
-public class GetAbsoluteQueryTestCase extends QueryTestCaseBase
+public class GetAbsoluteQueryTestCase
 {
 
    @Test
@@ -19,7 +21,7 @@ public class GetAbsoluteQueryTestCase extends QueryTestCaseBase
       Node root = new Node(ROOT_NODE);
       
       // when
-      List<Node> matchingNodes = AbsoluteGetQuery.INSTANCE.execute(root, new Pattern(ROOT_NODE));
+      List<Node> matchingNodes = GetQuery.absolute().execute(root, new Pattern(ROOT_NODE));
       
       // then
       Assert.assertEquals("Should return only one node", 1, matchingNodes.size());
@@ -33,7 +35,7 @@ public class GetAbsoluteQueryTestCase extends QueryTestCaseBase
       Node root = createTree();
                         
       // when
-      List<Node> matchingNodes = AbsoluteGetQuery.INSTANCE.execute(root, new Pattern(ROOT_NODE), 
+      List<Node> matchingNodes = GetQuery.absolute().execute(root, new Pattern(ROOT_NODE), 
             new Pattern(CHILD_2_NODE), new Pattern(CHILD_2_1_NODE));
       
       // then
@@ -48,7 +50,7 @@ public class GetAbsoluteQueryTestCase extends QueryTestCaseBase
       Node root = createTree();
                         
       // when
-      List<Node> matchingNodes = AbsoluteGetQuery.INSTANCE.execute(root, new Pattern(ROOT_NODE),
+      List<Node> matchingNodes = GetQuery.absolute().execute(root, new Pattern(ROOT_NODE),
             new Pattern(CHILD_2_NODE), new Pattern(CHILD_2_1_NODE),  
             new Pattern(CHILD_2_1_1_NODE).attribute(OTHER_NAME, ATTR_VALUE_1));
       
@@ -65,7 +67,7 @@ public class GetAbsoluteQueryTestCase extends QueryTestCaseBase
       Node root = createTree();
                         
       // when
-      List<Node> matchingNodes = AbsoluteGetQuery.INSTANCE.execute(root, new Pattern(ROOT_NODE), new Pattern(CHILD_2_NODE), 
+      List<Node> matchingNodes = GetQuery.absolute().execute(root, new Pattern(ROOT_NODE), new Pattern(CHILD_2_NODE), 
             new Pattern(CHILD_2_1_NODE), new Pattern(CHILD_2_1_1_NODE).attribute(OTHER_NAME, ATTR_VALUE_1));
       
       // then
@@ -81,7 +83,7 @@ public class GetAbsoluteQueryTestCase extends QueryTestCaseBase
       Node root = createTree();
                         
       // when
-      List<Node> matchingNodes = AbsoluteGetQuery.INSTANCE.execute(root, new Pattern(ROOT_NODE), 
+      List<Node> matchingNodes = GetQuery.absolute().execute(root, new Pattern(ROOT_NODE), 
             new Pattern(CHILD_2_NODE),
             new Pattern(CHILD_2_1_NODE).attribute(ATTR_NAME, ATTR_VALUE_2), 
             new Pattern(CHILD_2_1_1_NODE).attribute(OTHER_NAME, ATTR_VALUE_1));
