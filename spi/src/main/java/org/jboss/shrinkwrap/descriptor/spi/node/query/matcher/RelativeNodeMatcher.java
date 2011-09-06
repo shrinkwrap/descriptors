@@ -79,7 +79,7 @@ public class RelativeNodeMatcher implements NodeMatcher
       // the subtrees created by children
       for (final Node child : start.getChildren())
       {
-         matchedNodes.addAll(findMatch(child, currentPatternSequence, entirePatternSequence));
+         matchedNodes.addAll(findMatch(child, entirePatternSequence, entirePatternSequence));
       }
 
       return matchedNodes;
