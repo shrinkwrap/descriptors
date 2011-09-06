@@ -32,11 +32,11 @@ import org.jboss.shrinkwrap.descriptor.spi.node.query.Pattern;
  * @author <a href="mailto:bartosz.majsak@gmail.com">Bartosz Majsak</a>
  *
  */
-public class AbsoluteNodeMatcher implements NodeMatcher
+public class AbsolutePathMatcher implements PathMatcher
 {
 
    @Override
-   public List<Node> findMatch(final Node start, final List<Pattern> patterns)
+   public List<Node> findMatchingNodes(final Node start, final List<Pattern> patterns)
    {
       if (patterns.isEmpty())
       {
@@ -66,7 +66,7 @@ public class AbsoluteNodeMatcher implements NodeMatcher
          final List<Pattern> sub = patterns.subList(1, patterns.size());
 
          // Recursion point
-         matchedNodes.addAll(findMatch(child, sub));
+         matchedNodes.addAll(findMatchingNodes(child, sub));
       }
       
       return matchedNodes;

@@ -31,11 +31,11 @@ import org.jboss.shrinkwrap.descriptor.spi.node.query.Pattern;
  *
  * @author <a href="mailto:bartosz.majsak@gmail.com">Bartosz Majsak</a>
  */
-public class RelativeNodeMatcher implements NodeMatcher
+public class RelativePathMatcher implements PathMatcher
 {
 
    @Override
-   public List<Node> findMatch(final Node node, final List<Pattern> patterns)
+   public List<Node> findMatchingNodes(final Node node, final List<Pattern> patterns)
    {
       return findMatch(node, patterns, patterns);
    }

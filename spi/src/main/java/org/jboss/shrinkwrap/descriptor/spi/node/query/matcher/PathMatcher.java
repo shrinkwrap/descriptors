@@ -27,7 +27,7 @@ import org.jboss.shrinkwrap.descriptor.spi.node.query.Pattern;
  * @author <a href="mailto:bartosz.majsak@gmail.com">Bartosz Majsak</a>
  *
  */
-public interface NodeMatcher
+public interface PathMatcher
 {
    /**
     * Implements algorithm for finding nodes matching given pattern sequence
@@ -36,6 +36,6 @@ public interface NodeMatcher
     * @param patterns
     * @return 
     */
-   List<Node> findMatch(final Node start, final List<Pattern> patterns);
+   List<Node> findMatchingNodes(final Node start, final List<Pattern> patterns);
    
 }

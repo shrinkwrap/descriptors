@@ -22,9 +22,9 @@ import java.util.List;
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 import org.jboss.shrinkwrap.descriptor.spi.node.query.Pattern;
 import org.jboss.shrinkwrap.descriptor.spi.node.query.Query;
-import org.jboss.shrinkwrap.descriptor.spi.node.query.matcher.AbsoluteNodeMatcher;
-import org.jboss.shrinkwrap.descriptor.spi.node.query.matcher.NodeMatcher;
-import org.jboss.shrinkwrap.descriptor.spi.node.query.matcher.RelativeNodeMatcher;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.matcher.AbsolutePathMatcher;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.matcher.PathMatcher;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.matcher.RelativePathMatcher;
 
 /**
  * Obtains the {@link List} of {@link Node}s
@@ -38,11 +38,11 @@ import org.jboss.shrinkwrap.descriptor.spi.node.query.matcher.RelativeNodeMatche
 public final class GetQuery implements Query<List<Node>>
 {
 
-   private final NodeMatcher nodeMatcher;
+   private final PathMatcher pathMatcher;
    
-   private GetQuery(NodeMatcher nodeMatcher)
+   private GetQuery(PathMatcher pathMatcher)
    {
-      this.nodeMatcher = nodeMatcher;
+      this.pathMatcher = pathMatcher;
    }
    
    /**
@@ -51,12 +51,12 @@ public final class GetQuery implements Query<List<Node>>
     * of patterns must much a path from the root, where i-th
     * pattern matches i-th element on the path from the root.
     * 
-    * @see {@link RelativeNodeMatcher}
+    * @see {@link RelativePathMatcher}
     * @return 
     */
    public static GetQuery relative()
    {
-      return new GetQuery(new RelativeNodeMatcher());
+      return new GetQuery(new RelativePathMatcher());
    }
 
    /**
@@ -65,12 +65,12 @@ public final class GetQuery implements Query<List<Node>>
     * of patterns must much a path from the root, where i-th
     * pattern matches i-th element on the path from the root.
     * 
-    * @see {@link AbsoluteNodeMatcher}
+    * @see {@link AbsolutePathMatcher}
     * @return 
     */
    public static GetQuery absolute()
    {
-      return new GetQuery(new AbsoluteNodeMatcher());
+      return new GetQuery(new AbsolutePathMatcher());
    }
 
    /**
@@ -84,7 +84,7 @@ public final class GetQuery implements Query<List<Node>>
       QueryUtil.validateNodeAndPatterns(node, patterns);
 
       // Delegate to recursive handler, starting at the top
-      return nodeMatcher.findMatch(node, Arrays.asList(patterns));
+      return pathMatcher.findMatchingNodes(node, Arrays.asList(patterns));
    }
 
    
