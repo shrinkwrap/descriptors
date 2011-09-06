@@ -34,17 +34,27 @@ import org.jboss.shrinkwrap.descriptor.spi.node.query.Query;
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  * @author <a href="mailto:bartosz.majsak@gmail.com">Bartosz Majsak</a>
  */
-public abstract class GetQuery implements Query<List<Node>>
+abstract class GetQuery implements Query<List<Node>>
 {
 
    protected List<Pattern> patternSequence;
 
-   public static GetQuery relative()
+   /**
+    * Returns a new instance of {@link GetRelativeQuery}.
+    * @see {@link AbsoluteGetQuery#INSTANCE}
+    * @return
+    */
+   static GetQuery relative()
    {
       return new GetRelativeQuery();
    }
 
-   public static GetQuery absolute()
+   /**
+    * Returns a new instance of {@link GetAbsoluteQuery}.
+    * @see {@link AbsoluteGetQuery#INSTANCE}
+    * @return
+    */
+   static GetQuery absolute()
    {
       return new GetAbsoluteQuery();
    }
