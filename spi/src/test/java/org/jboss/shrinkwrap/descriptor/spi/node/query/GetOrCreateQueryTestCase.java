@@ -1,5 +1,7 @@
 package org.jboss.shrinkwrap.descriptor.spi.node.query;
 
+import static org.jboss.shrinkwrap.descriptor.spi.node.query.TestTreeBuilder.*;
+
 import java.util.List;
 
 import junit.framework.Assert;
@@ -14,7 +16,7 @@ import org.junit.Test;
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  * @version $Revision: $
  */
-public class GetOrCreateQueryTestCase extends QueryTestCaseBase
+public class GetOrCreateQueryTestCase
 {
 
    @Test
@@ -26,7 +28,6 @@ public class GetOrCreateQueryTestCase extends QueryTestCaseBase
       
       // when
       Node created = GetOrCreateQuery.create().execute(root, Patterns.from("/" + ROOT_NODE + "/" + CHILD_2_NODE + "/" + CHILD_2_1_NODE + "@" + ATTR_NAME + "=" + CHILD_2_2_NODE));
-      log.info(root.toString(true));
 
       // then
       Assert.assertNotNull("Verify a node was created", created);
@@ -57,7 +58,6 @@ public class GetOrCreateQueryTestCase extends QueryTestCaseBase
 
       // when
       Node created = GetOrCreateQuery.create().execute(root, Patterns.from("/" + ROOT_NODE + "/" + CHILD_3_NODE + "=" + CHILD_3_TEXT));
-      log.info(root.toString(true));
 
       // then
       Assert.assertNotNull("Verify a node was created", created);
@@ -91,7 +91,6 @@ public class GetOrCreateQueryTestCase extends QueryTestCaseBase
 
       // when
       List<Node> nodes = root.get("/" + CHILD_3_NODE + "=" + CHILD_3_TEXT);
-      log.info(root.toString(true));
       
       // then
       Assert.assertNotNull("Verify nodes were found", nodes);

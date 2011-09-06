@@ -16,14 +16,15 @@
  */
 package org.jboss.shrinkwrap.descriptor.spi.node.query.queries;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 import org.jboss.shrinkwrap.descriptor.spi.node.query.Pattern;
 import org.jboss.shrinkwrap.descriptor.spi.node.query.Query;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.matcher.AbsolutePathMatcher;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.matcher.PathMatcher;
+import org.jboss.shrinkwrap.descriptor.spi.node.query.matcher.RelativePathMatcher;
 
 /**
  * Obtains the {@link List} of {@link Node}s
@@ -34,29 +35,42 @@ import org.jboss.shrinkwrap.descriptor.spi.node.query.Query;
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  * @author <a href="mailto:bartosz.majsak@gmail.com">Bartosz Majsak</a>
  */
-abstract class GetQuery implements Query<List<Node>>
+public final class GetQuery implements Query<List<Node>>
 {
 
-   protected List<Pattern> patternSequence;
-
-   /**
-    * Returns a new instance of {@link GetRelativeQuery}.
-    * @see {@link AbsoluteGetQuery#INSTANCE}
-    * @return
-    */
-   static GetQuery relative()
+   private final PathMatcher pathMatcher;
+   
+   private GetQuery(PathMatcher pathMatcher)
    {
-      return new GetRelativeQuery();
+      this.pathMatcher = pathMatcher;
+   }
+   
+   /**
+    * Creates form of {@link GetQuery} for retrieving nodes matching
+    * relative patterns like '//node1/node2[@attr=value]'. Sequence
+    * of patterns must much a path from the root, where i-th
+    * pattern matches i-th element on the path from the root.
+    * 
+    * @see {@link RelativePathMatcher}
+    * @return 
+    */
+   public static GetQuery relative()
+   {
+      return new GetQuery(new RelativePathMatcher());
    }
 
    /**
-    * Returns a new instance of {@link GetAbsoluteQuery}.
-    * @see {@link AbsoluteGetQuery#INSTANCE}
-    * @return
+    * Creates form of {@link GetQuery} for retrieving nodes matching
+    * absolute patterns like '/root/node1/node2'. Sequence
+    * of patterns must much a path from the root, where i-th
+    * pattern matches i-th element on the path from the root.
+    * 
+    * @see {@link AbsolutePathMatcher}
+    * @return 
     */
-   static GetQuery absolute()
+   public static GetQuery absolute()
    {
-      return new GetAbsoluteQuery();
+      return new GetQuery(new AbsolutePathMatcher());
    }
 
    /**
@@ -69,133 +83,9 @@ abstract class GetQuery implements Query<List<Node>>
       // Precondition checks
       QueryUtil.validateNodeAndPatterns(node, patterns);
 
-      // Represent as a list
-      patternSequence = Arrays.asList(patterns);
-
       // Delegate to recursive handler, starting at the top
-      return findMatch(node, patternSequence);
+      return pathMatcher.findMatchingNodes(node, Arrays.asList(patterns));
    }
 
-   /**
-    * Returns all {@link Node}s descendants matching the specified {@link Pattern}s
-    * 
-    * @param start Root of the tree
-    * @param patterns XPath-like set of patterns to match against the given tree
-    * @return
-    */
-   protected abstract List<Node> findMatch(final Node start, final List<Pattern> patterns);
-
-   /**
-    * Form of {@link GetQuery} for retrieving nodes matching
-    * absolute patterns like '/root/node1/node2'. Sequence
-    * of patterns must much a path from the root, where i-th
-    * pattern matches i-th element on the path from the root.
-    * 
-    * If no matches are found, <code>null</code> is returned.
-    *
-    * @author <a href="mailto:bartosz.majsak@gmail.com">Bartosz Majsak</a>
-    */
-   private static class GetAbsoluteQuery extends GetQuery
-   {
-
-      @Override
-      protected List<Node> findMatch(Node start, List<Pattern> patterns)
-      {
-         if (patterns.isEmpty())
-         {
-            return Collections.emptyList();
-         }
-         
-         // Get the next pattern in sequence
-         final Pattern pattern = patterns.get(0);
-         
-         if (!pattern.matches(start))
-         {
-            return Collections.emptyList();
-         }
-
-         // Hold the matched Nodes
-         final List<Node> matchedNodes = new ArrayList<Node>();
-
-         if (patterns.size() == 1)
-         {
-            matchedNodes.add(start);
-            return matchedNodes;
-         }
-         
-         for (final Node child : start.getChildren())
-         {
-            // Only use patterns that haven't already matched
-            final List<Pattern> sub = patterns.subList(1, patterns.size());
-
-            // Recursion point
-            matchedNodes.addAll(findMatch(child, sub));
-         }
-         
-         return matchedNodes;
-      }
-      
-   }
-
-   /**
-    * Form of {@link GetQuery} for retrieving nodes matching
-    * relative patterns like '//node1/node2'.
-    * 
-    * If no matches are found, <code>null</code> is returned.
-    *
-    * @author <a href="mailto:bartosz.majsak@gmail.com">Bartosz Majsak</a>
-    */
-   private static class GetRelativeQuery extends GetQuery
-   {
-      
-      @Override
-      protected List<Node> findMatch(final Node start, final List<Pattern> patterns)
-      {
-         if (patterns.isEmpty())
-         {
-            return Collections.emptyList();
-         }
-         
-         // Hold the matched Nodes
-         final List<Node> matchedNodes = new ArrayList<Node>();
-
-         // Get the next pattern in sequence
-         final Pattern pattern = patterns.get(0);
-
-         // See if we've got a match
-         if (pattern.matches(start))
-         {
-
-            // If no more patterns to check, we're at the end of the line; just add this Node
-            if (patterns.size() == 1)
-            {
-               matchedNodes.add(start);
-               return matchedNodes;
-            }
-            
-            for (final Node child : start.getChildren())
-            {
-               // Only use patterns that haven't already matched
-               final List<Pattern> sub = patterns.subList(1, patterns.size());
-
-               // Recursion point
-               matchedNodes.addAll(findMatch(child, sub));
-            }
-            
-         }
-         
-         // Apply whole pattern sequence
-         // starting from the subtrees created by
-         // node's children
-         for (final Node child : start.getChildren())
-         {
-            matchedNodes.addAll(findMatch(child, patternSequence));
-         }
-
-
-         return matchedNodes;
-      }
-
-   }
    
 }
