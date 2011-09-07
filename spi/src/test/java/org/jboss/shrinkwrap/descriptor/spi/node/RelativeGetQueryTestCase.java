@@ -17,6 +17,7 @@
 package org.jboss.shrinkwrap.descriptor.spi.node;
 
 import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.*;
+import static org.junit.Assert.*;
 
 import java.util.List;
 
@@ -123,4 +124,29 @@ public class RelativeGetQueryTestCase
       NodeAssert.assertContainsAttribute(matchingNodes, OTHER_NAME, ATTR_VALUE_1);
    }
    
+   @Test
+   public void shouldFindOnlyOnePathWithThreeNodesForGivenQuery() 
+   {
+      // given
+      String queryExpression = "/A/B/C";
+      
+      Node root = new Node(ROOT_NODE);
+      root.getOrCreate(Patterns.from("/A/C/B/D"));
+      root.getOrCreate(Patterns.from("/A/B/C"));
+      root.getOrCreate(Patterns.from("/A/C/B/C"));
+      root.getOrCreate(Patterns.from("/B/C"));
+      root.getOrCreate(Patterns.from("/B/A"));
+      root.getOrCreate(Patterns.from("/B/D"));
+      
+      // when
+      List<Node> foundNodes = RelativeGetQuery.INSTANCE.execute(root, Patterns.from(queryExpression));
+      
+      // then
+      Assert.assertEquals("Should find only one node for query " + queryExpression, 
+            1, foundNodes.size());
+      
+      NodeAssert.assertEqualsByName(foundNodes.get(0), "C");
+      
+   }
+         
 }

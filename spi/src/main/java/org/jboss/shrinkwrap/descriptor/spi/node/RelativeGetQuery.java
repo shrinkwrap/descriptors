@@ -89,12 +89,11 @@ enum RelativeGetQuery implements Query<List<Node>> {
 
       }
 
-      // Apply whole pattern sequence
-      // starting from the subtrees created by
-      // node's children
+      // Apply whole pattern sequence starting from the subtrees 
+      // created by node's children
       for (final Node child : start.getChildren())
       {
-         matchedNodes.addAll(findMatch(child, patternSequence, entirePatternSequence));
+         matchedNodes.addAll(findMatch(child, entirePatternSequence, entirePatternSequence));
       }
 
       return matchedNodes;
