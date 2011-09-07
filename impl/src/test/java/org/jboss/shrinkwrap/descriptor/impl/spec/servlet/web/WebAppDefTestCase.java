@@ -438,7 +438,14 @@ public class WebAppDefTestCase
       
       // then
       assertPresenceUsingXPath(webAppDescriptor, "/web-app/filter");
-
+      assertPresenceUsingXPath(webAppDescriptor, "/web-app/filter/filter-name", "UrlRewriteFilter");
+      assertPresenceUsingXPath(webAppDescriptor, "/web-app/filter/filter-class", "org.tuckey.web.filters.urlrewrite.UrlRewriteFilter");
+      assertPresenceUsingXPath(webAppDescriptor, "/web-app/filter");
+      assertPresenceUsingXPath(webAppDescriptor, "/web-app/filter/init-param/param-name", "confReloadCheckInterval");
+      assertPresenceUsingXPath(webAppDescriptor, "/web-app/filter/init-param/param-value", 60);
+      assertPresenceUsingXPath(webAppDescriptor, "/web-app/filter-mapping");
+      assertPresenceUsingXPath(webAppDescriptor, "/web-app/filter-mapping/url-pattern", "/*");
+      assertPresenceUsingXPath(webAppDescriptor, "/web-app/filter-mapping/filter-name", "UrlRewriteFilter");
    }
    
    // Private methods
