@@ -16,7 +16,7 @@
  */
 package org.jboss.shrinkwrap.descriptor.spi.node;
 
-import static org.jboss.shrinkwrap.descriptor.spi.node.TestTreeBuilder.*;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.*;
 
 import junit.framework.Assert;
 
