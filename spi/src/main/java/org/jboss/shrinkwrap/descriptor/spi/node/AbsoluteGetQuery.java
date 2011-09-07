@@ -53,11 +53,6 @@ enum AbsoluteGetQuery implements Query<List<Node>> {
 
    protected List<Node> findMatch(Node start, List<Pattern> patterns)
    {
-      if (patterns.isEmpty())
-      {
-         return Collections.emptyList();
-      }
-
       // Get the next pattern in sequence
       final Pattern pattern = patterns.get(0);
 
@@ -78,10 +73,10 @@ enum AbsoluteGetQuery implements Query<List<Node>> {
       for (final Node child : start.getChildren())
       {
          // Only use patterns that haven't already matched
-         final List<Pattern> sub = patterns.subList(1, patterns.size());
+         final List<Pattern> remainingPatterns = patterns.subList(1, patterns.size());
 
          // Recursion point
-         matchedNodes.addAll(findMatch(child, sub));
+         matchedNodes.addAll(findMatch(child, remainingPatterns));
       }
 
       return matchedNodes;

@@ -84,5 +84,31 @@ public class RelativeGetSingleQueryTestCase
       NodeAssert.assertEqualsByName(found, CHILD_2_1_1_NODE);
    }
    
+   @Test
+   public void shouldNotFindNonExistingNode() throws Exception
+   {
+      // given
+      Node root = createTree();
+      
+      // when
+      Node found = RelativeGetSingleQuery.INSTANCE.execute(root, new Pattern("Non existing node"));
+
+      // then
+      Assert.assertNull(found);
+   }
+   
+   @Test(expected = IllegalArgumentException.class)
+   public void shouldThrowExceptionWhenMoreThanOneNodeFound() throws Exception
+   {
+      // given
+      Node root = new Node(ROOT_NODE).createChild(Patterns.from("/A/B/A/B")).getRoot();
+      
+      System.out.println(root.toString(true));
+      // when
+      Node found = RelativeGetSingleQuery.INSTANCE.execute(root, new Pattern("A"));
+
+      // then
+      Assert.assertNull(found);
+   }
 
 }

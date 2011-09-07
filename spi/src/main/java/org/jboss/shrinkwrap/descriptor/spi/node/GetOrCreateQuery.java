@@ -31,7 +31,6 @@ import java.util.List;
  */
 enum GetOrCreateQuery implements Query<Node> {
 
-
    INSTANCE;
    
    /**

@@ -30,6 +30,45 @@ import org.junit.Test;
 
 public class RelativeGetQueryTestCase
 {
+   
+   @Test(expected = IllegalArgumentException.class)
+   public void shouldNotAllowNullNode()
+   {
+      // given
+      Node root = new Node(ROOT_NODE);
+      
+      // when
+      List<Node> matchingNodes = RelativeGetQuery.INSTANCE.execute(null, new Pattern(ROOT_NODE));
+      
+      // then
+      // exception should be thrown
+   }
+   
+   @Test(expected = IllegalArgumentException.class)
+   public void shouldNotAllowNullPatternSequencToBeUsedForMatching()
+   {
+      // given
+      Node root = new Node(ROOT_NODE);
+      
+      // when
+      List<Node> matchingNodes = RelativeGetQuery.INSTANCE.execute(root, null);
+      
+      // then
+      // exception should be thrown
+   }
+   
+   @Test(expected = IllegalArgumentException.class)
+   public void shouldNotAllowEmptyPatternSequencToBeUsedForMatching()
+   {
+      // given
+      Node root = new Node(ROOT_NODE);
+      
+      // when
+      List<Node> matchingNodes = RelativeGetQuery.INSTANCE.execute(root, new Pattern[]{});
+      
+      // then
+      // exception should be thrown
+   }
 
    @Test
    public void shouldReturnRootFromSingleNodeTreeWhenMatchingNodeName()

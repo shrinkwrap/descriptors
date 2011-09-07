@@ -16,13 +16,18 @@
  */
 package org.jboss.shrinkwrap.descriptor.spi.node;
 
-import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.*;
-
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.ATTR_NAME;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.ATTR_VALUE_1;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.CHILD_1_1_NODE;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.CHILD_1_NODE;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.CHILD_2_1_NODE;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.CHILD_2_NODE;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.CHILD_3_NODE;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.CHILD_3_TEXT;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.ROOT_NODE;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.createTree;
 import junit.framework.Assert;
 
-import org.jboss.shrinkwrap.descriptor.spi.node.AbsoluteGetSingleQuery;
-import org.jboss.shrinkwrap.descriptor.spi.node.Node;
-import org.jboss.shrinkwrap.descriptor.spi.node.Patterns;
 import org.junit.Test;
 
 /**
@@ -34,6 +39,45 @@ import org.junit.Test;
 public class AbsoluteGetSingleQueryTestCase
 {
 
+   @Test(expected = IllegalArgumentException.class)
+   public void shouldNotAllowNullNode()
+   {
+      // given
+      Node root = new Node(ROOT_NODE);
+      
+      // when
+      Node matchingNode = AbsoluteGetSingleQuery.INSTANCE.execute(null, new Pattern(ROOT_NODE));
+      
+      // then
+      // exception should be thrown
+   }
+   
+   @Test(expected = IllegalArgumentException.class)
+   public void shouldNotAllowNullPatternSequencToBeUsedForMatching()
+   {
+      // given
+      Node root = new Node(ROOT_NODE);
+      
+      // when
+      Node matchingNode = AbsoluteGetSingleQuery.INSTANCE.execute(root, null);
+      
+      // then
+      // exception should be thrown
+   }
+   
+   @Test(expected = IllegalArgumentException.class)
+   public void shouldNotAllowEmptyPatternSequencToBeUsedForMatching()
+   {
+      // given
+      Node root = new Node(ROOT_NODE);
+      
+      // when
+      Node matchingNode = AbsoluteGetSingleQuery.INSTANCE.execute(root, new Pattern[]{});
+      
+      // then
+      // exception should be thrown
+   }
+   
    @Test
    public void shouldBeAbleToFindAChildWithTextValueUsingAbsoluteQuery() throws Exception
    {
