@@ -14,13 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.spi.node.query.queries;
+package org.jboss.shrinkwrap.descriptor.spi.node;
 
 import java.util.List;
 
-import org.jboss.shrinkwrap.descriptor.spi.node.Node;
-import org.jboss.shrinkwrap.descriptor.spi.node.query.Pattern;
-import org.jboss.shrinkwrap.descriptor.spi.node.query.Query;
 
 /**
  * Form of {@link GetQuery} used as a convenience to retrieve
@@ -31,13 +28,13 @@ import org.jboss.shrinkwrap.descriptor.spi.node.query.Query;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public enum RelativeGetSingleQuery implements Query<Node> {
+enum AbsoluteGetSingleQuery implements Query<Node> {
 
    INSTANCE;
    
    /**
     * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.spi.node.query.Query#execute(org.jboss.shrinkwrap.descriptor.spi.node.Node, org.jboss.shrinkwrap.descriptor.spi.node.query.Pattern[])
+    * @see org.jboss.shrinkwrap.descriptor.spi.node.Query#execute(org.jboss.shrinkwrap.descriptor.spi.node.Node, org.jboss.shrinkwrap.descriptor.spi.node.Pattern[])
     */
    @Override
    public Node execute(final Node node, final Pattern... patterns)
@@ -45,7 +42,7 @@ public enum RelativeGetSingleQuery implements Query<Node> {
       // Precondition checks
       QueryUtil.validateNodeAndPatterns(node, patterns);
 
-      final List<Node> nodes = RelativeGetQuery.INSTANCE.execute(node, patterns);
+      final List<Node> nodes = AbsoluteGetQuery.INSTANCE.execute(node, patterns);
 
       if (nodes == null || nodes.isEmpty())
       {

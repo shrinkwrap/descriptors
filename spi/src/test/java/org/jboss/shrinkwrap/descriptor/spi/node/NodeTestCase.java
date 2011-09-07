@@ -16,12 +16,11 @@
  */
 package org.jboss.shrinkwrap.descriptor.spi.node;
 
-import static org.jboss.shrinkwrap.descriptor.spi.node.query.TestTreeBuilder.*;
+import static org.jboss.shrinkwrap.descriptor.spi.node.TestTreeBuilder.*;
 
 import java.util.List;
 import java.util.Map;
 
-import org.jboss.shrinkwrap.descriptor.spi.node.query.Pattern;
 import org.junit.Assert;
 import org.junit.Test;
 

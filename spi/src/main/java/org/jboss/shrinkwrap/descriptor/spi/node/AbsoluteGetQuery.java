@@ -14,16 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.spi.node.query.queries;
+package org.jboss.shrinkwrap.descriptor.spi.node;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.jboss.shrinkwrap.descriptor.spi.node.Node;
-import org.jboss.shrinkwrap.descriptor.spi.node.query.Pattern;
-import org.jboss.shrinkwrap.descriptor.spi.node.query.Query;
 
 /**
  * Form of {@link GetQuery} for retrieving nodes matching
@@ -36,13 +33,13 @@ import org.jboss.shrinkwrap.descriptor.spi.node.query.Query;
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
  * @author <a href="mailto:bartosz.majsak@gmail.com">Bartosz Majsak</a>
  */
-public enum AbsoluteGetQuery implements Query<List<Node>> {
+enum AbsoluteGetQuery implements Query<List<Node>> {
 
    INSTANCE;
 
    /**
     * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.spi.node.query.Query#execute(org.jboss.shrinkwrap.descriptor.spi.node.Node, org.jboss.shrinkwrap.descriptor.spi.node.query.Pattern[])
+    * @see org.jboss.shrinkwrap.descriptor.spi.node.Query#execute(org.jboss.shrinkwrap.descriptor.spi.node.Node, org.jboss.shrinkwrap.descriptor.spi.node.Pattern[])
     */
    @Override
    public List<Node> execute(final Node node, final Pattern... patterns) throws IllegalArgumentException

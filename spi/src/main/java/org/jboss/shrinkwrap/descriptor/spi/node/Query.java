@@ -14,9 +14,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.spi.node.query;
+package org.jboss.shrinkwrap.descriptor.spi.node;
 
-import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 
 /**
  * Contract for something capable of executing a 
@@ -27,7 +26,7 @@ import org.jboss.shrinkwrap.descriptor.spi.node.Node;
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  * @param <T> Expected return value from executing a query
  */
-public interface Query<T>
+interface Query<T>
 {
    /** 
     * Queries the tree starting at the specified {@link Node}

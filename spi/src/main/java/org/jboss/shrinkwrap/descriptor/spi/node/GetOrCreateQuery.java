@@ -14,16 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.spi.node.query.queries;
+package org.jboss.shrinkwrap.descriptor.spi.node;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.jboss.shrinkwrap.descriptor.spi.node.Node;
-import org.jboss.shrinkwrap.descriptor.spi.node.query.Pattern;
-import org.jboss.shrinkwrap.descriptor.spi.node.query.Query;
 
 /**
  * Starting at the specified {@link Node}, either returns an
@@ -34,7 +31,7 @@ import org.jboss.shrinkwrap.descriptor.spi.node.query.Query;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public class GetOrCreateQuery implements Query<Node> {
+class GetOrCreateQuery implements Query<Node> {
 
    private static final Logger log = Logger.getLogger(GetOrCreateQuery.class.getName());
 
@@ -52,7 +49,7 @@ public class GetOrCreateQuery implements Query<Node> {
 
    /**
     * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.spi.node.query.Query#execute(org.jboss.shrinkwrap.descriptor.spi.node.Node, org.jboss.shrinkwrap.descriptor.spi.node.query.Pattern[])
+    * @see org.jboss.shrinkwrap.descriptor.spi.node.Query#execute(org.jboss.shrinkwrap.descriptor.spi.node.Node, org.jboss.shrinkwrap.descriptor.spi.node.Pattern[])
     */
    @Override
    public Node execute(final Node node, final Pattern... patterns)

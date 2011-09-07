@@ -14,13 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.spi.node.query;
+package org.jboss.shrinkwrap.descriptor.spi.node;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 
 /**
  * A pattern that may be executed as part of a {@link Query} upon
@@ -32,7 +31,7 @@ import org.jboss.shrinkwrap.descriptor.spi.node.Node;
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public final class Pattern
+final class Pattern
 {
    //-------------------------------------------------------------------------------------||
    // Instance Members -------------------------------------------------------------------||

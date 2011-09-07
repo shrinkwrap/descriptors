@@ -22,12 +22,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.jboss.shrinkwrap.descriptor.spi.node.query.Pattern;
-import org.jboss.shrinkwrap.descriptor.spi.node.query.Patterns;
-import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.AbsoluteGetQuery;
-import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.CreateQuery;
-import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.GetOrCreateQuery;
-import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.AbsoluteGetSingleQuery;
 
 /**
  * {@link Node} is a data structure representing a container in a classic

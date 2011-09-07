@@ -14,15 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.spi.node.dom;
+package org.jboss.shrinkwrap.descriptor.spi.node;
 
 import java.io.ByteArrayInputStream;
 
 import junit.framework.Assert;
 
+import org.jboss.shrinkwrap.descriptor.spi.node.AbsoluteGetSingleQuery;
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
-import org.jboss.shrinkwrap.descriptor.spi.node.query.Patterns;
-import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.AbsoluteGetSingleQuery;
+import org.jboss.shrinkwrap.descriptor.spi.node.Patterns;
+import org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomNodeImporter;
 import org.junit.Test;
 
 

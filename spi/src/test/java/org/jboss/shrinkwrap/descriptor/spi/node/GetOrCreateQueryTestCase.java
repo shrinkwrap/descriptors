@@ -14,15 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.spi.node.query;
+package org.jboss.shrinkwrap.descriptor.spi.node;
 
-import static org.jboss.shrinkwrap.descriptor.spi.node.query.TestTreeBuilder.*;
+import static org.jboss.shrinkwrap.descriptor.spi.node.TestTreeBuilder.*;
+
 import java.util.List;
 
 import junit.framework.Assert;
 
+import org.jboss.shrinkwrap.descriptor.spi.node.GetOrCreateQuery;
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
-import org.jboss.shrinkwrap.descriptor.spi.node.query.queries.GetOrCreateQuery;
+import org.jboss.shrinkwrap.descriptor.spi.node.Patterns;
 import org.junit.Test;
 
 /**
