@@ -65,6 +65,29 @@ public final class XmlAssert
       Assert.assertFalse(String.format(SCHEMA_LOCATION_NOT_DEFINED, namespaceUri), nodes.getLength() == 0);
       Assert.assertEquals("Expected schema location is different", expectedLocation, nodes.item(0).getNodeValue());
    }
+
+   /**
+    * Assert that the specified path exists in the given
+    * XML file by using XPath Expression.
+    * <br/><br/>
+    * Assertions:<br/>
+    * "XPath expressions doesn't match with given XML" <br/>
+    * 
+    * @param xml The XML to assert against
+    * @param expression XPath expression to extract
+    * @throws Exception Assertion error or XML/XPath related parse exceptions
+    */
+   public static void assertPresenceUsingXPath(String xml, String expression)
+   {
+      final Document doc = create(xml, false);
+      
+      final NodeList nodes = extractMatchingNodes(doc, expression);
+
+      if (nodes.getLength() == 0)
+      {
+          Assert.fail("XPath expressions " + expression + " doesn't match with given XML");
+      }
+   }
    
    /**
     * Assert that the specified XPath Expression resolves to the specified values.
