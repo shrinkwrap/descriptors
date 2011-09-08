@@ -14,9 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.spi.node;
+package org.jboss.shrinkwrap.descriptor.spi.testutils;
 
 import java.util.Arrays;
+
+import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 
 import junit.framework.Assert;
 

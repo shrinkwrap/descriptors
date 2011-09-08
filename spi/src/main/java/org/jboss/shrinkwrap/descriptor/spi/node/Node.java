@@ -306,7 +306,7 @@ public class Node
 
    public Node getOrCreate(final Pattern... patterns)
    {
-      return GetOrCreateQuery.create().execute(this, includeRootPatternFirst(patterns));
+      return GetOrCreateQuery.INSTANCE.execute(this, includeRootPatternFirst(patterns));
    }
 
    /**

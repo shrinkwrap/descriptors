@@ -16,7 +16,17 @@
  */
 package org.jboss.shrinkwrap.descriptor.spi.node;
 
-import static org.jboss.shrinkwrap.descriptor.spi.node.TestTreeBuilder.*;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.ATTR_NAME;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.ATTR_VALUE_1;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.CHILD_1_1_NODE;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.CHILD_1_NODE;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.CHILD_2_1_NODE;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.CHILD_2_2_NODE;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.CHILD_2_NODE;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.CHILD_3_NODE;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.CHILD_3_TEXT;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.ROOT_NODE;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.createTree;
 
 import java.util.List;
 import java.util.Map;
@@ -610,5 +620,5 @@ public class NodeTestCase
       Assert.assertEquals("Verify correct value set", CHILD_3_TEXT, found.getText());
       Assert.assertEquals("Verify root only has four children", 4, root.getChildren().size());
    }
-
+   
 }

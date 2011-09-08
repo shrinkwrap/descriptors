@@ -56,11 +56,6 @@ enum RelativeGetQuery implements Query<List<Node>> {
 
    private List<Node> findMatch(final Node start, final List<Pattern> patternSequence, final List<Pattern> entirePatternSequence)
    {
-      if (patternSequence.isEmpty())
-      {
-         return Collections.emptyList();
-      }
-
       // Hold the matched Nodes
       final List<Node> matchedNodes = new ArrayList<Node>();
 
@@ -75,26 +70,26 @@ enum RelativeGetQuery implements Query<List<Node>> {
          if (patternSequence.size() == 1)
          {
             matchedNodes.add(start);
-            return matchedNodes;
-         }
-
-         for (final Node child : start.getChildren())
+         } 
+         else 
          {
-            // Only use patterns that haven't already matched
-            final List<Pattern> sub = patternSequence.subList(1, patternSequence.size());
-
-            // Recursion point
-            matchedNodes.addAll(findMatch(child, sub, entirePatternSequence));
+            for (final Node child : start.getChildren())
+            {
+               // Only use patterns that haven't already matched
+               final List<Pattern> remainingPatterns = patternSequence.subList(1, patternSequence.size());
+   
+               // Recursion point
+               matchedNodes.addAll(findMatch(child, remainingPatterns, entirePatternSequence));
+            }
          }
 
       }
 
-      // Apply whole pattern sequence
-      // starting from the subtrees created by
-      // node's children
+      // Apply whole pattern sequence starting from the subtrees 
+      // created by node's children
       for (final Node child : start.getChildren())
       {
-         matchedNodes.addAll(findMatch(child, patternSequence, entirePatternSequence));
+         matchedNodes.addAll(findMatch(child, entirePatternSequence, entirePatternSequence));
       }
 
       return matchedNodes;

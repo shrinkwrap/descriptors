@@ -18,8 +18,6 @@ package org.jboss.shrinkwrap.descriptor.spi.node;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 /**
@@ -31,10 +29,10 @@ import java.util.logging.Logger;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-class GetOrCreateQuery implements Query<Node> {
+enum GetOrCreateQuery implements Query<Node> {
 
-   private static final Logger log = Logger.getLogger(GetOrCreateQuery.class.getName());
-
+   INSTANCE;
+   
    /**
     * Used in casting
     */
@@ -42,10 +40,6 @@ class GetOrCreateQuery implements Query<Node> {
    {};
    
 
-   public static GetOrCreateQuery create()
-   {
-      return new GetOrCreateQuery();
-   }
 
    /**
     * {@inheritDoc}
@@ -59,10 +53,6 @@ class GetOrCreateQuery implements Query<Node> {
 
       // Init
       final List<Pattern> patternList = Arrays.asList(patterns);
-      if (log.isLoggable(Level.FINEST))
-      {
-         log.finest("Looking to create: " + patternList + " on " + node.toString(true));
-      }
       
       // Find or create, starting at the top
       final Node found = this.findOrCreate(node, patternList, patterns);
@@ -93,20 +83,11 @@ class GetOrCreateQuery implements Query<Node> {
       // If still not found, nothing at all matched the tree, so go ahead and create the whole thing 
       if (found == null)
       {
-         if (log.isLoggable(Level.FINEST))
-         {
-            log.finest("Still not found, root: " + root);
-         }
          return CreateQuery.INSTANCE.execute(root, allPatterns);
       }
       else
       {
          // If this is null, there was no match anywhere in the pattern list
-         if (log.isLoggable(Level.FINEST))
-         {
-            log.finest("Found " + found + " matching " + patternsToSearch);
-         }
-
          // Determine which patterns are left to create
          final int offset = patternsToSearch.size();
          final int numPatternsToCreate = allPatterns.length - offset;
@@ -119,10 +100,6 @@ class GetOrCreateQuery implements Query<Node> {
             for (int i = 0; i < numPatternsToCreate; i++)
             {
                patternsToCreate[i] = allPatterns[offset + i];
-            }
-            if (log.isLoggable(Level.FINEST))
-            {
-               log.finest("Attempting to create " + Arrays.asList(patternsToCreate) + " on " + found);
             }
 
             // Create the new Node and return it

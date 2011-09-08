@@ -16,15 +16,19 @@
  */
 package org.jboss.shrinkwrap.descriptor.spi.node;
 
-import static org.jboss.shrinkwrap.descriptor.spi.node.TestTreeBuilder.*;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.ATTR_NAME;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.CHILD_1_NODE;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.CHILD_2_1_NODE;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.CHILD_2_2_NODE;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.CHILD_2_NODE;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.CHILD_3_NODE;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.CHILD_3_TEXT;
+import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.ROOT_NODE;
 
 import java.util.List;
 
 import junit.framework.Assert;
 
-import org.jboss.shrinkwrap.descriptor.spi.node.GetOrCreateQuery;
-import org.jboss.shrinkwrap.descriptor.spi.node.Node;
-import org.jboss.shrinkwrap.descriptor.spi.node.Patterns;
 import org.junit.Test;
 
 /**
@@ -36,6 +40,45 @@ import org.junit.Test;
 public class GetOrCreateQueryTestCase
 {
 
+   @Test(expected = IllegalArgumentException.class)
+   public void shouldNotAllowNullNode()
+   {
+      // given
+      Node root = new Node(ROOT_NODE);
+      
+      // when
+      Node node = GetOrCreateQuery.INSTANCE.execute(null, new Pattern(ROOT_NODE));
+      
+      // then
+      // exception should be thrown
+   }
+   
+   @Test(expected = IllegalArgumentException.class)
+   public void shouldNotAllowNullPatternSequencToBeUsedForMatching()
+   {
+      // given
+      Node root = new Node(ROOT_NODE);
+      
+      // when
+      Node matchingNode = GetOrCreateQuery.INSTANCE.execute(root, null);
+      
+      // then
+      // exception should be thrown
+   }
+   
+   @Test(expected = IllegalArgumentException.class)
+   public void shouldNotAllowEmptyPatternSequencToBeUsedForMatching()
+   {
+      // given
+      Node root = new Node(ROOT_NODE);
+      
+      // when
+      Node matchingNode = GetOrCreateQuery.INSTANCE.execute(root, new Pattern[]{});
+      
+      // then
+      // exception should be thrown
+   }
+   
    @Test
    public void shouldBeAbleToCreateOrGetNodes()
    {
@@ -44,7 +87,7 @@ public class GetOrCreateQueryTestCase
       root.createChild(CHILD_2_NODE);
       
       // when
-      Node created = GetOrCreateQuery.create().execute(root, Patterns.from("/" + ROOT_NODE + "/" + CHILD_2_NODE + "/" + CHILD_2_1_NODE + "@" + ATTR_NAME + "=" + CHILD_2_2_NODE));
+      Node created = GetOrCreateQuery.INSTANCE.execute(root, Patterns.from("/" + ROOT_NODE + "/" + CHILD_2_NODE + "/" + CHILD_2_1_NODE + "@" + ATTR_NAME + "=" + CHILD_2_2_NODE));
 
       // then
       Assert.assertNotNull("Verify a node was created", created);
@@ -74,7 +117,7 @@ public class GetOrCreateQueryTestCase
       root.createChild(CHILD_3_NODE);
 
       // when
-      Node created = GetOrCreateQuery.create().execute(root, Patterns.from("/" + ROOT_NODE + "/" + CHILD_3_NODE + "=" + CHILD_3_TEXT));
+      Node created = GetOrCreateQuery.INSTANCE.execute(root, Patterns.from("/" + ROOT_NODE + "/" + CHILD_3_NODE + "=" + CHILD_3_TEXT));
 
       // then
       Assert.assertNotNull("Verify a node was created", created);
@@ -101,10 +144,10 @@ public class GetOrCreateQueryTestCase
    {
       // given
       Node root = new Node(ROOT_NODE);
-      GetOrCreateQuery.create().execute(root, Patterns.from("/" + ROOT_NODE + "/" + CHILD_2_NODE));
-      GetOrCreateQuery.create().execute(root, Patterns.from("/" + ROOT_NODE + "/" + CHILD_3_NODE));
-      GetOrCreateQuery.create().execute(root, Patterns.from("/" + ROOT_NODE + "/" + CHILD_3_NODE + "=" + CHILD_3_TEXT));
-      GetOrCreateQuery.create().execute(root, Patterns.from("/" + ROOT_NODE + "/" + CHILD_3_NODE + "=" + CHILD_3_TEXT + "diff"));
+      GetOrCreateQuery.INSTANCE.execute(root, Patterns.from("/" + ROOT_NODE + "/" + CHILD_2_NODE));
+      GetOrCreateQuery.INSTANCE.execute(root, Patterns.from("/" + ROOT_NODE + "/" + CHILD_3_NODE));
+      GetOrCreateQuery.INSTANCE.execute(root, Patterns.from("/" + ROOT_NODE + "/" + CHILD_3_NODE + "=" + CHILD_3_TEXT));
+      GetOrCreateQuery.INSTANCE.execute(root, Patterns.from("/" + ROOT_NODE + "/" + CHILD_3_NODE + "=" + CHILD_3_TEXT + "diff"));
 
       // when
       List<Node> nodes = root.get("/" + CHILD_3_NODE + "=" + CHILD_3_TEXT);
@@ -135,8 +178,8 @@ public class GetOrCreateQueryTestCase
       Node root = new Node(ROOT_NODE);
       
       // when
-      GetOrCreateQuery.create().execute(root, Patterns.from("/" + CHILD_1_NODE));
-      GetOrCreateQuery.create().execute(root, Patterns.from("/" + CHILD_2_NODE));
+      GetOrCreateQuery.INSTANCE.execute(root, Patterns.from("/" + CHILD_1_NODE));
+      GetOrCreateQuery.INSTANCE.execute(root, Patterns.from("/" + CHILD_2_NODE));
       
       // then
       Assert.assertEquals("Should have two children created", 2, root.getChildren().size());

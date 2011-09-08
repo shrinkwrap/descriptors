@@ -385,6 +385,71 @@ public class WebAppDefTestCase
       assertPresenceUsingXPath(webAppDescriptor, "/web-app/security-constraint/display-name", securityConstraintDisplayName);
    }
 
+   @Test
+   public void shouldBeAbleToDefineSecurityConstraintsWithHttpMethods() throws Exception
+   {
+      // given
+      String webAppDescriptor = create().securityConstraint("default constraint")
+                                             .webResourceCollection()
+                                                .httpMethods(HttpMethodType.values())
+                                        .exportAsString();
+      // then
+      assertPresenceUsingXPath(webAppDescriptor, "/web-app/security-constraint/display-name", "default constraint");
+      assertPresenceUsingXPath(webAppDescriptor, "/web-app/security-constraint/web-resource-collection/http-method", "GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE");
+
+   }
+   
+   @Test
+   public void shouldBeAbleToDefineSecurityConstraintsWithHttpMethodsOmissions() throws Exception
+   {
+      // given
+      String webAppDescriptor = create().securityConstraint("default constraint")
+                                             .webResourceCollection()
+                                                .httpMethods(true, HttpMethodType.values())
+                                        .exportAsString();
+      // then
+      assertPresenceUsingXPath(webAppDescriptor, "/web-app/security-constraint/display-name", "default constraint");
+      assertPresenceUsingXPath(webAppDescriptor, "/web-app/security-constraint/web-resource-collection/http-method-omission", "GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE");
+   }
+   
+   @Test
+   public void shouldBeAbleToDefineSecurityConstraintsWithUrlPatterns() throws Exception
+   {
+      // given
+      String webAppDescriptor = create().securityConstraint("default constraint")
+                                             .webResourceCollection()
+                                                .urlPatterns("*.html", "*.jpg", "/restricted/employee/*")
+                                        .exportAsString();
+      // then
+      assertPresenceUsingXPath(webAppDescriptor, "/web-app/security-constraint/display-name", "default constraint");
+      assertPresenceUsingXPath(webAppDescriptor, "/web-app/security-constraint/web-resource-collection/url-pattern", "*.html", "*.jpg", "/restricted/employee/*");
+   }
+   
+   @Test
+   public void shouldBeAbleToFilterWithFilterMapping() throws Exception
+   {
+      // given
+      String webAppDescriptor = create().filter("org.tuckey.web.filters.urlrewrite.UrlRewriteFilter", "/*")
+                                             .initParam("confReloadCheckInterval", 60)
+                                             .displayName("UrlRewriteFilter")
+                                        .exportAsString();
+
+      System.out.println(webAppDescriptor);
+      
+      // then
+      assertPresenceUsingXPath(webAppDescriptor, "/web-app/filter");
+      assertPresenceUsingXPath(webAppDescriptor, "/web-app/filter/filter-name", "UrlRewriteFilter");
+      assertPresenceUsingXPath(webAppDescriptor, "/web-app/filter/filter-class", "org.tuckey.web.filters.urlrewrite.UrlRewriteFilter");
+      assertPresenceUsingXPath(webAppDescriptor, "/web-app/filter");
+      assertPresenceUsingXPath(webAppDescriptor, "/web-app/filter/init-param/param-name", "confReloadCheckInterval");
+      assertPresenceUsingXPath(webAppDescriptor, "/web-app/filter/init-param/param-value", 60);
+      assertPresenceUsingXPath(webAppDescriptor, "/web-app/filter-mapping");
+      assertPresenceUsingXPath(webAppDescriptor, "/web-app/filter-mapping/url-pattern", "/*");
+      assertPresenceUsingXPath(webAppDescriptor, "/web-app/filter-mapping/filter-name", "UrlRewriteFilter");
+   }
+   
+   // Private methods
+   
    private String getResourceContents(String resource) throws Exception
    {
       assert resource != null && resource.length() > 0 : "Resource must be specified";
