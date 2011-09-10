@@ -16,16 +16,12 @@
  */
 package org.jboss.shrinkwrap.descriptor.test.beans10;
 
-import static org.junit.Assert.assertTrue;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-import org.custommonkey.xmlunit.Diff;
-import org.custommonkey.xmlunit.XMLUnit;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.beans10.BeansDescriptor;
-import org.junit.Before;
+import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Test;
 
 /**
@@ -39,14 +35,6 @@ import org.junit.Test;
 public class BeansDescriptorTestCase
 {
   
-   @Before
-   public void init()
-   {
-      XMLUnit.setIgnoreWhitespace(true);
-      XMLUnit.setIgnoreComments(true);
-      XMLUnit.setNormalizeWhitespace(true);
-   }
-   
    @Test
    public void testGeneratedXml() throws Exception
    {
@@ -97,9 +85,7 @@ public class BeansDescriptorTestCase
       String webXmlGenerated = beansDescr.exportAsString();
       String webXmlOriginal = getResourceContents("src/test/resources/test-gen-beans10.xml");
       
-      Diff myDiff = new Diff(webXmlOriginal, webXmlGenerated);
-      assertTrue("pieces of XML are similar " + myDiff, myDiff.similar());
-      assertTrue("but are they identical? " + myDiff, myDiff.identical());   
+      XmlAssert.assertIdentical(webXmlOriginal, webXmlGenerated);   
    }
    
 

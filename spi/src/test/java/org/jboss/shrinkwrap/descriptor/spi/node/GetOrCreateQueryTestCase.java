@@ -16,14 +16,14 @@
  */
 package org.jboss.shrinkwrap.descriptor.spi.node;
 
-import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.ATTR_NAME;
-import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.CHILD_1_NODE;
-import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.CHILD_2_1_NODE;
-import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.CHILD_2_2_NODE;
-import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.CHILD_2_NODE;
-import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.CHILD_3_NODE;
-import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.CHILD_3_TEXT;
-import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.ROOT_NODE;
+import static org.jboss.shrinkwrap.descriptor.test.util.TestTreeBuilder.ATTR_NAME;
+import static org.jboss.shrinkwrap.descriptor.test.util.TestTreeBuilder.CHILD_1_NODE;
+import static org.jboss.shrinkwrap.descriptor.test.util.TestTreeBuilder.CHILD_2_1_NODE;
+import static org.jboss.shrinkwrap.descriptor.test.util.TestTreeBuilder.CHILD_2_2_NODE;
+import static org.jboss.shrinkwrap.descriptor.test.util.TestTreeBuilder.CHILD_2_NODE;
+import static org.jboss.shrinkwrap.descriptor.test.util.TestTreeBuilder.CHILD_3_NODE;
+import static org.jboss.shrinkwrap.descriptor.test.util.TestTreeBuilder.CHILD_3_TEXT;
+import static org.jboss.shrinkwrap.descriptor.test.util.TestTreeBuilder.ROOT_NODE;
 
 import java.util.List;
 

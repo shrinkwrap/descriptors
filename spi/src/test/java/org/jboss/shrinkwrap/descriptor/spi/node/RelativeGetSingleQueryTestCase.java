@@ -16,7 +16,7 @@
  */
 package org.jboss.shrinkwrap.descriptor.spi.node;
 
-import static org.jboss.shrinkwrap.descriptor.spi.testutils.TestTreeBuilder.*;
+import static org.jboss.shrinkwrap.descriptor.test.util.TestTreeBuilder.*;
 
 import junit.framework.Assert;
 
@@ -24,7 +24,7 @@ import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 import org.jboss.shrinkwrap.descriptor.spi.node.Pattern;
 import org.jboss.shrinkwrap.descriptor.spi.node.Patterns;
 import org.jboss.shrinkwrap.descriptor.spi.node.RelativeGetSingleQuery;
-import org.jboss.shrinkwrap.descriptor.spi.testutils.NodeAssert;
+import org.jboss.shrinkwrap.descriptor.test.util.NodeAssert;
 import org.junit.Test;
 
 /**
