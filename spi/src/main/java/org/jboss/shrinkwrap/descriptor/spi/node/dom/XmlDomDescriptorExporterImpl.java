@@ -59,12 +59,14 @@ final class XmlDomDescriptorExporterImpl extends NodeDescriptorExporterImpl
          factory.setNamespaceAware(true);
          DocumentBuilder builder = factory.newDocumentBuilder();
          Document root = builder.newDocument();
+         root.setXmlStandalone(true);
 
          writeRecursive(root, node);
 
          Transformer transformer = TransformerFactory.newInstance().newTransformer();
          transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
          transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+         transformer.setOutputProperty(OutputKeys.STANDALONE, "yes");
 
          StreamResult result = new StreamResult(out);
          transformer.transform(new DOMSource(root), result);

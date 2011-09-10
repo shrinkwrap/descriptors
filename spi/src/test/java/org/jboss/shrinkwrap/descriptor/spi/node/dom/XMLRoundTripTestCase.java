@@ -22,6 +22,7 @@ import java.io.ByteArrayOutputStream;
 
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 import org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomNodeImporter;
+import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -48,15 +49,34 @@ public class XMLRoundTripTestCase
     *  
     */
    @Test
-   public void shouldBeAbleToImportAndExportXMLWithComments() throws Exception
+   public void shouldBeAbleToImportXMLWithComments() throws Exception
    {
       Node root = load(XML_WITH_COMMENT);
       
       Assert.assertNotNull("Obtaining comment should not be null",root.getSingle("#comment"));
       Assert.assertNotNull("Obtaining child should not be null",root.getSingle("child"));
-      
-      System.out.println(export(root));
    }
+   
+   /*
+    * SHRINKDESC-31 - Comments in XML input Cause Export error
+    * 
+    * Node[#comment] children[0] text[ comment ] 
+    * Caused by: org.w3c.dom.DOMException: INVALID_CHARACTER_ERR: An invalid or illegal XML character is specified. 
+    *  
+    */
+   @Test
+   public void shouldBeAbleExportXMLWithComments() throws Exception
+   {
+      // given
+      Node root = load(XML_WITH_COMMENT);
+      
+      // when
+      String exportedXml = export(root);
+      
+      // then
+      XmlAssert.assertIdentical(XML_WITH_COMMENT, exportedXml);
+   }
+
    
    private Node load(String xml)
    {
@@ -65,8 +85,9 @@ public class XMLRoundTripTestCase
    
    private String export(Node root)
    {
-      ByteArrayOutputStream output = new ByteArrayOutputStream();
-      new XmlDomDescriptorExporterImpl().to(root, output);
+      final ByteArrayOutputStream output = new ByteArrayOutputStream();
+      final XmlDomDescriptorExporterImpl xmlDomExporter = new XmlDomDescriptorExporterImpl();
+      xmlDomExporter.to(root, output);
       return new String(output.toByteArray());
    }
 }
