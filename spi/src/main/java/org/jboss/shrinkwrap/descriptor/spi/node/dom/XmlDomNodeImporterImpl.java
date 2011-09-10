@@ -70,7 +70,6 @@ public final class XmlDomNodeImporterImpl implements NodeImporter
          final Element element = doc.getDocumentElement();
          
          final Node root = new Node(element.getNodeName());
-         root.text(element.getTextContent());
          
          readRecursive(root, element);
          return root;
@@ -133,7 +132,12 @@ public final class XmlDomNodeImporterImpl implements NodeImporter
                {
                   readRecursive(newTarget, child);
                }
+            } 
+            else
+            {
+               target.text(child.getTextContent());
             }
+               
          }
       }
    }

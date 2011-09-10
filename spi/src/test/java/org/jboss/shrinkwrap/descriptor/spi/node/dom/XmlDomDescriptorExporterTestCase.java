@@ -17,6 +17,8 @@
  */
 package org.jboss.shrinkwrap.descriptor.spi.node.dom;
 
+import static org.junit.Assert.*;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
@@ -35,8 +37,9 @@ import org.junit.Test;
  */
 public class XmlDomDescriptorExporterTestCase
 {
+   private static final String XML_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>";
    public static final String XML_WITH_COMMENT = "" +
-   		"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" +
+   		XML_HEADER +
    		"<root>" +
    		"  <!-- comment -->" +
    		"  <child>test</child>" +
@@ -77,6 +80,51 @@ public class XmlDomDescriptorExporterTestCase
       
       // then
       XmlAssert.assertIdentical(XML_WITH_COMMENT, exportedXml);
+   }
+   
+   @Test
+   public void shouldBeAbleToExportSingleNodeTree() throws Exception
+   {
+      // given
+      Node root = new Node("root");
+
+      // when
+      String exportedXml = exportAsString(root, new XmlDomDescriptorExporterImpl());
+
+      // then
+      XmlAssert.assertIdentical(XML_HEADER + "<root></root>", exportedXml);
+   }
+   
+   @Test
+   public void shouldBeAbleToExportSingleNodeTreeWithAttributes() throws Exception
+   {
+      // given
+      Node root = new Node("root");
+      root.attribute("id", "1").attribute("name", "root");
+
+      // when
+      String exportedXml = exportAsString(root, new XmlDomDescriptorExporterImpl());
+
+      // then
+      XmlAssert.assertIdentical(XML_HEADER + "<root id=\"1\" name=\"root\"></root>", exportedXml);
+
+   }
+   
+   @Test
+   public void shouldBeAbleToExportSingleNodeTreeWithAttributesAndText() throws Exception
+   {
+      // given
+      Node root = new Node("root");
+      root.attribute("id", "1")
+          .attribute("name", "root")
+          .text("doovde");
+
+      // when
+      String exportedXml = exportAsString(root, new XmlDomDescriptorExporterImpl());
+      
+      // then
+      XmlAssert.assertIdentical(XML_HEADER + "<root id=\"1\" name=\"root\">doovde</root>", exportedXml);
+
    }
    
    @Test(expected = DescriptorExportException.class)
