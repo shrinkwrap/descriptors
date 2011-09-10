@@ -17,6 +17,7 @@
 package org.jboss.shrinkwrap.descriptor.api;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -64,11 +65,11 @@ public class DescriptorImporterTestCase
    @Test
    public void shouldCloseStreamAfterImport() throws Exception
    {
-      MockInputStream mis = new MockInputStream();
+      StubInputStream mis = new StubInputStream();
       Descriptors.importAs(TestDescriptor.class).from(mis); // close as default behaviour
       Assert.assertFalse(mis.isOpen());
 
-      mis = new MockInputStream();
+      mis = new StubInputStream();
       Descriptors.importAs(TestDescriptor.class).from(mis, true);
       Assert.assertFalse(mis.isOpen());
    }
@@ -79,7 +80,7 @@ public class DescriptorImporterTestCase
    @Test
    public void shouldNotCloseStreamAfterImport() throws Exception
    {
-      MockInputStream mis = new MockInputStream();
+      StubInputStream mis = new StubInputStream();
       Descriptors.importAs(TestDescriptor.class).from(mis, false);
       Assert.assertTrue(mis.isOpen());
    }
@@ -90,12 +91,12 @@ public class DescriptorImporterTestCase
    @Test
    public void shouldHandleUncloseableStreamsGently() throws Exception
    {
-      FirstCloseAttemptFailingMockInputStream fmis = new FirstCloseAttemptFailingMockInputStream();
+      FirstCloseAttemptFailingStubInputStream fmis = new FirstCloseAttemptFailingStubInputStream();
       Assert.assertEquals("Mock object not properly initialized?", 0, fmis.getCloseAttempts());
       Descriptors.importAs(TestDescriptor.class).from(fmis, true);
       Assert.assertTrue(fmis.getCloseAttempts() > 0);
 
-      UncloseableMockInputStream umis = new UncloseableMockInputStream();
+      UncloseableStubInputStream umis = new UncloseableStubInputStream();
       Assert.assertEquals("Mock object not properly initialized?", 0, umis.getCloseAttempts());
       Descriptors.importAs(TestDescriptor.class).from(umis, true);
       Assert.assertTrue(umis.isOpen());
@@ -118,7 +119,7 @@ public class DescriptorImporterTestCase
    public void shouldBeAbleToImportWhiteSpaceString()
    {
       TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).from("  \n  \n  ");
-      Assert.assertNotNull("Verify the descriptor was created from an empty string",descriptor);
+      Assert.assertNotNull("Verify the descriptor was created from an empty string", descriptor);
    }
 
    /**
@@ -128,24 +129,45 @@ public class DescriptorImporterTestCase
    public void shouldBeAbleToImportEmptyString()
    {
       TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).from("");
-      Assert.assertNotNull("Verify the descriptor was created from an empty string",descriptor);
+      Assert.assertNotNull("Verify the descriptor was created from an empty string", descriptor);
    }
    
    /**
     * SHRINKDESC-20
     */
    @Test
-   public void shouldBeAbleToImportEmptyFile()
+   public void shouldBeAbleToImportEmptyInputStream()
    {
       TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).from(getClass().getResourceAsStream("/empty.xml"));
-      Assert.assertNotNull("Verify the descriptor was created from and empty file",descriptor);
+      Assert.assertNotNull("Verify the descriptor was created from and empty file", descriptor);
+   }
+   
+   @Test
+   public void shouldBeAbleToImportEmptyFile()
+   {
+      TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).from(new File("src/test/resources/empty.xml"));
+      Assert.assertNotNull("Verify the descriptor was created from and empty file", descriptor);
+   }
+   
+   @Test(expected = IllegalArgumentException.class)
+   public void shouldThrowExceptionForNonExistingFile()
+   {
+      TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).from(new File("non-existing.xml"));
+      Assert.assertNotNull("Verify the descriptor was created from and empty file", descriptor);
+   }
+   
+   @Test(expected = IllegalArgumentException.class)
+   public void shouldThrowExceptionForNonExistingResource()
+   {
+      TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).from(getClass().getResourceAsStream("non-existing.xml"));
+      Assert.assertNotNull("Verify the descriptor was created from and empty file", descriptor);
    }
 
    //-------------------------------------------------------------------------------------||
-   // Private mock classes ---------------------------------------------------------------||
+   // Private stubs ----------------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||
 
-   private class MockInputStream extends InputStream
+   private class StubInputStream extends InputStream
    {
       boolean isOpen = true;
 
@@ -168,7 +190,7 @@ public class DescriptorImporterTestCase
       }
    }
 
-   private class UncloseableMockInputStream extends MockInputStream
+   private class UncloseableStubInputStream extends StubInputStream
    {
       protected int closeAttempts = 0;
 
@@ -185,7 +207,7 @@ public class DescriptorImporterTestCase
       }
    }
 
-   private class FirstCloseAttemptFailingMockInputStream extends UncloseableMockInputStream
+   private class FirstCloseAttemptFailingStubInputStream extends UncloseableStubInputStream
    {
       @Override
       public void close() throws IOException
