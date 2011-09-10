@@ -14,7 +14,7 @@
 
   <!-- Artifact Configuration -->
   <artifactId>shrinkwrap-descriptors-test-util</artifactId>
-  <name>Common utlitity classes used in ShrinkWrap Descriptor tests </name>
+  <name>ShrinkWrap Descriptors Test Utilities </name>
   <description>Commonly used custom assertions</description>
 
   <dependencies>
