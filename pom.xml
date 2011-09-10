@@ -63,6 +63,7 @@
     <module>impl-jboss</module>
     <module>spi</module>
     <module>test</module>
+    <module>test-util</module>
   </modules>
 
   <!-- Plugin Configuration -->
