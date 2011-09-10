@@ -18,17 +18,17 @@
 package org.jboss.shrinkwrap.descriptor.spi.node.dom;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
 
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
-import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
+import org.jboss.shrinkwrap.descriptor.test.util.NodeAssert;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * TestCases to see Exporter can handle the Node Structure provided by the Importer.
  * 
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
+ * @author <a href="mailto:bartosz.majsak@gmail.com">Bartosz Majsak</a>
  * @version $Revision: $
  */
 public class XmlDomNodeImporterTestCase
@@ -54,6 +54,22 @@ public class XmlDomNodeImporterTestCase
       
       Assert.assertNotNull("Obtaining comment should not be null",root.getSingle("#comment"));
       Assert.assertNotNull("Obtaining child should not be null",root.getSingle("child"));
+   }
+   
+   @Test
+   public void shouldBeAbleToImportSingleNodeXmlWithAttributesAndText() throws Exception
+   {
+      // given
+      Node expectedRoot = new Node("root");
+      expectedRoot.attribute("id", "1")
+                  .attribute("name", "root")
+                  .text("doovde");
+      
+      // when
+      Node root = XmlDomNodeImporter.INSTANCE.importAsNode(new FileInputStream("src/test/resources/single.xml"), true);;
+      
+      // then
+      Assert.assertEquals(expectedRoot.toString(true), root.toString(true));
    }
    
    
