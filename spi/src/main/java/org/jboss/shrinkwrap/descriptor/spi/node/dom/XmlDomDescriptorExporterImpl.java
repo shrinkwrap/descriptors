@@ -73,7 +73,7 @@ final class XmlDomDescriptorExporterImpl extends NodeDescriptorExporterImpl
       }
       catch (Exception e)
       {
-         throw new DescriptorExportException("Could not export Node strcuture to XML", e);
+         throw new DescriptorExportException("Could not export Node structure to XML", e);
       }
    }
 

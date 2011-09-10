@@ -20,8 +20,9 @@ package org.jboss.shrinkwrap.descriptor.spi.node.dom;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
+import org.jboss.shrinkwrap.descriptor.api.DescriptorExportException;
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
-import org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomNodeImporter;
+import org.jboss.shrinkwrap.descriptor.test.util.TestTreeBuilder;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Assert;
 import org.junit.Test;
@@ -32,7 +33,7 @@ import org.junit.Test;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-public class XMLRoundTripTestCase
+public class XmlDomDescriptorExporterTestCase
 {
    public static final String XML_WITH_COMMENT = "" +
    		"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" +
@@ -69,24 +70,38 @@ public class XMLRoundTripTestCase
    {
       // given
       Node root = load(XML_WITH_COMMENT);
+      XmlDomDescriptorExporterImpl xmlDomDescriptorExporter = new XmlDomDescriptorExporterImpl();
       
       // when
-      String exportedXml = export(root);
+      String exportedXml = exportAsString(root, xmlDomDescriptorExporter);
       
       // then
       XmlAssert.assertIdentical(XML_WITH_COMMENT, exportedXml);
    }
+   
+   @Test(expected = DescriptorExportException.class)
+   public void shouldThrowExceptionWhenTreeIsNull() throws Exception
+   {
+      // given
+      Node root = null;
 
+      // when
+      String exportedXml = exportAsString(root, new XmlDomDescriptorExporterImpl());
+
+      // then
+      // exception should be thrown
+   }
+   
+   // Private utility methods
    
    private Node load(String xml)
    {
       return XmlDomNodeImporter.INSTANCE.importAsNode(new ByteArrayInputStream(xml.getBytes()), true);
    }
    
-   private String export(Node root)
+   private String exportAsString(Node root, XmlDomDescriptorExporterImpl xmlDomExporter)
    {
       final ByteArrayOutputStream output = new ByteArrayOutputStream();
-      final XmlDomDescriptorExporterImpl xmlDomExporter = new XmlDomDescriptorExporterImpl();
       xmlDomExporter.to(root, output);
       return new String(output.toByteArray());
    }
