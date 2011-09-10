@@ -16,8 +16,12 @@
  */
 package org.jboss.shrinkwrap.descriptor.test.util;
 
+import static org.junit.Assert.assertTrue;
+
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -28,6 +32,8 @@ import javax.xml.xpath.XPathFactory;
 
 import junit.framework.Assert;
 
+import org.custommonkey.xmlunit.Diff;
+import org.custommonkey.xmlunit.XMLUnit;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -145,7 +151,72 @@ public final class XmlAssert
       }
    }
    
-   // 
+   /**
+    * Asserts equality of two XML files comparing flatten versions - 
+    * stripped from leading and trailing whitespaces and those between xml nodes.
+    *  
+    * @param expected
+    * @param actual
+    * 
+    * @throws Exception Assertion error when given string don't match
+    */
+   public static void assertIdentical(String expected, String actual)
+   {
+      XMLUnit.setIgnoreWhitespace(true);
+      XMLUnit.setIgnoreComments(true);
+      XMLUnit.setNormalizeWhitespace(true);
+
+      try
+      {
+         Diff diff = new Diff(expected, actual);
+         assertTrue("pieces of XML are similar " + diff, diff.similar());
+         assertTrue("but are they identical? " + diff, diff.identical());
+      }
+      catch (SAXException e)
+      {
+         throw new RuntimeException(e);
+      }
+      catch (IOException e)
+      {
+         throw new RuntimeException(e);
+      }
+      
+   }
+   
+   /**
+    * Asserts similarity of two XML files comparing flatten versions - 
+    * stripped from leading and trailing whitespaces and those between xml nodes.
+    * Two XMLs are considered similar when they contain the same element but
+    * they might be present in different order. 
+    *  
+    * @param firstXml
+    * @param secondXml
+    * 
+    * @throws Exception Assertion error when given string don't match
+    */
+   public static void assertSimilar(String firstXml, String secondXml)
+   {
+      XMLUnit.setIgnoreWhitespace(true);
+      XMLUnit.setIgnoreComments(true);
+      XMLUnit.setNormalizeWhitespace(true);
+
+      try
+      {
+         Diff diff = new Diff(firstXml, secondXml);
+         assertTrue("but are they identical? " + diff, diff.identical());
+      }
+      catch (SAXException e)
+      {
+         throw new RuntimeException(e);
+      }
+      catch (IOException e)
+      {
+         throw new RuntimeException(e);
+      }
+      
+   }
+   
+   // private
    
    private static Document create(String xml, boolean namespaceAware) 
    {

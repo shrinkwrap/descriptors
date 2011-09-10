@@ -1,27 +1,16 @@
 package org.jboss.shrinkwrap.descriptor.test.persistence10;
 
-import static org.junit.Assert.assertTrue;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-import org.custommonkey.xmlunit.Diff;
-import org.custommonkey.xmlunit.XMLUnit;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.persistence10.PersistenceDescriptor;
-import org.junit.Before;
+import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Test;
 
 public class PersistenceDescriptorTestCase
 {
-   @Before
-   public void init()
-   {
-      XMLUnit.setIgnoreWhitespace(true);
-      XMLUnit.setIgnoreComments(true);
-      XMLUnit.setNormalizeWhitespace(true);
-   }
-   
+
    @Test
    public void testGeneratedPersistenceXml() throws Exception
    {
@@ -66,10 +55,7 @@ public class PersistenceDescriptorTestCase
       String webXmlGenerated = persistence.exportAsString();
       String webXmlOriginal = getResourceContents("src/test/resources/test-gen-persistence10.xml");
       
-      System.out.println(webXmlGenerated);
-      Diff myDiff = new Diff(webXmlOriginal, webXmlGenerated);
-      assertTrue("pieces of XML are similar " + myDiff, myDiff.similar());
-      assertTrue("but are they identical? " + myDiff, myDiff.identical());   
+      XmlAssert.assertIdentical(webXmlOriginal, webXmlGenerated);   
    }
    
    

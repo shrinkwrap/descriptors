@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.impl.spec;
+package org.jboss.shrinkwrap.descriptor.test.util;
 
 import junit.framework.AssertionFailedError;
 
@@ -26,8 +26,8 @@ public class XmlAssertTest
    public void shouldFailIfGivenXpathExpressionDoesNotMatch()
    {
       XmlAssert.assertPresenceUsingXPath("<persistence><persistence-unit name=\"hibernate-unit\">" +
-      		                             "<transaction-type>JTA</transaction-type>" +
-      		                             "</persistence-unit></persistence>",
+                                         "<transaction-type>JTA</transaction-type>" +
+                                         "</persistence-unit></persistence>",
                   "/persistence/persistence-unit[@name='eclipselink-unit']/transaction-type",
                   "JTA");
    }

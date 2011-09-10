@@ -18,20 +18,20 @@
 package org.jboss.shrinkwrap.descriptor.spi.node.dom;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
 
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
-import org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomNodeImporter;
+import org.jboss.shrinkwrap.descriptor.test.util.NodeAssert;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * TestCases to see Exporter can handle the Node Structure provided by the Importer.
  * 
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
+ * @author <a href="mailto:bartosz.majsak@gmail.com">Bartosz Majsak</a>
  * @version $Revision: $
  */
-public class XMLRoundTripTestCase
+public class XmlDomNodeImporterTestCase
 {
    public static final String XML_WITH_COMMENT = "" +
    		"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" +
@@ -48,25 +48,34 @@ public class XMLRoundTripTestCase
     *  
     */
    @Test
-   public void shouldBeAbleToImportAndExportXMLWithComments() throws Exception
+   public void shouldBeAbleToImportXMLWithComments() throws Exception
    {
       Node root = load(XML_WITH_COMMENT);
       
       Assert.assertNotNull("Obtaining comment should not be null",root.getSingle("#comment"));
       Assert.assertNotNull("Obtaining child should not be null",root.getSingle("child"));
-      
-      System.out.println(export(root));
    }
+   
+   @Test
+   public void shouldBeAbleToImportSingleNodeXmlWithAttributesAndText() throws Exception
+   {
+      // given
+      Node expectedRoot = new Node("root");
+      expectedRoot.attribute("id", "1")
+                  .attribute("name", "root")
+                  .text("doovde");
+      
+      // when
+      Node root = XmlDomNodeImporter.INSTANCE.importAsNode(new FileInputStream("src/test/resources/single.xml"), true);;
+      
+      // then
+      Assert.assertEquals(expectedRoot.toString(true), root.toString(true));
+   }
+   
    
    private Node load(String xml)
    {
       return XmlDomNodeImporter.INSTANCE.importAsNode(new ByteArrayInputStream(xml.getBytes()), true);
    }
    
-   private String export(Node root)
-   {
-      ByteArrayOutputStream output = new ByteArrayOutputStream();
-      new XmlDomDescriptorExporterImpl().to(root, output);
-      return new String(output.toByteArray());
-   }
 }

@@ -13,31 +13,38 @@
   <modelVersion>4.0.0</modelVersion>
 
   <!-- Artifact Configuration -->
-  <artifactId>shrinkwrap-descriptors-spi</artifactId>
-  <name>ShrinkWrap Descriptors SPI</name>
-  <description>Service Provider Interface of the ShrinkWrap Descriptors Project</description>
+  <artifactId>shrinkwrap-descriptors-test-util</artifactId>
+  <name>ShrinkWrap Descriptors Test Utilities </name>
+  <description>Commonly used custom assertions</description>
 
   <dependencies>
 
     <dependency>
-      <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-      <artifactId>shrinkwrap-descriptors-api-base</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-
-    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <scope>test</scope>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>xmlunit</groupId>
+      <artifactId>xmlunit</artifactId>
+      <version>1.3</version>
+      <scope>compile</scope>
     </dependency>
     
-    <dependency>
-      <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-      <artifactId>shrinkwrap-descriptors-test-util</artifactId>
-      <version>${project.version}</version>
-      <scope>test</scope>
-    </dependency>
-
   </dependencies>
 
+	<build>
+		<plugins>
+			<!-- Surefire -->
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<!-- Run in Java5; be build with a JDK6 compiler so ensure we don't 
+						use any JDK6 libs -->
+					<jvm>${env.JAVA5_HOME}/bin/java</jvm>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

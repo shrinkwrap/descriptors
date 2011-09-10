@@ -1,16 +1,13 @@
 package org.jboss.shrinkwrap.descriptor.test.ejbjar31;
 
-import static org.junit.Assert.assertTrue;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
-import org.custommonkey.xmlunit.Diff;
-import org.custommonkey.xmlunit.XMLUnit;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.ejbjar31.EjbJarDescriptor;
+import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,9 +20,6 @@ public class EjbJarDescriptorTestCase
    public void init()
    {
       sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
-      XMLUnit.setIgnoreWhitespace(true);
-      XMLUnit.setIgnoreComments(true);
-      XMLUnit.setNormalizeWhitespace(true);
    }
    
    @Test
@@ -503,9 +497,7 @@ public class EjbJarDescriptorTestCase
       String webXmlGenerated = ejbJarGenerated.exportAsString();
       String webXmlOriginal = getResourceContents("src/test/resources/test-gen-ejbjar31.xml");
            
-      Diff myDiff = new Diff(webXmlOriginal, webXmlGenerated);
-      assertTrue("pieces of XML are similar " + myDiff, myDiff.similar());
-      assertTrue("but are they identical? " + myDiff, myDiff.identical());   
+      XmlAssert.assertIdentical(webXmlOriginal, webXmlGenerated);   
    }
    
    @Test
@@ -534,9 +526,7 @@ public class EjbJarDescriptorTestCase
       String webXmlGenerated = ejbJarGenerated.exportAsString();
       String webXmlOriginal = getResourceContents("src/test/resources/test-orig-ejbjar31.xml");
       
-      Diff myDiff = new Diff(webXmlOriginal, webXmlGenerated);
-      assertTrue("pieces of XML are similar " + myDiff, myDiff.similar());
-      assertTrue("but are they identical? " + myDiff, myDiff.identical());   
+      XmlAssert.assertIdentical(webXmlOriginal, webXmlGenerated);
    }
    
    

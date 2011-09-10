@@ -28,6 +28,7 @@ import org.jboss.shrinkwrap.descriptor.api.DescriptorImportException;
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 import org.jboss.shrinkwrap.descriptor.spi.node.NodeImporter;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 
@@ -66,8 +67,11 @@ public final class XmlDomNodeImporterImpl implements NodeImporter
          final DocumentBuilder builder = factory.newDocumentBuilder();
          final Document doc = builder.parse(stream);
 
-         final Node root = new Node(doc.getDocumentElement().getNodeName());
-         readRecursive(root, doc.getDocumentElement());
+         final Element element = doc.getDocumentElement();
+         
+         final Node root = new Node(element.getNodeName());
+         
+         readRecursive(root, element);
          return root;
 
       }
@@ -128,7 +132,12 @@ public final class XmlDomNodeImporterImpl implements NodeImporter
                {
                   readRecursive(newTarget, child);
                }
+            } 
+            else
+            {
+               target.text(child.getTextContent());
             }
+               
          }
       }
    }
