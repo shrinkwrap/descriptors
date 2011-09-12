@@ -58,7 +58,9 @@ public abstract class DescriptorImporterBase<T extends Descriptor> implements De
     * Creates a new instance representing the specified backing model
     * type
     * 
-    * @param The type of the backing object model for the descriptor
+    * @param endUserViewImplType The type of the backing object model for the descriptor
+    * @param descriptorName Thename of the descriptor
+    * 
     * @throws IllegalArgumentException If the model type is not specified
     * @throws IllegalArgumentException If the descriptorName not specified
     */
@@ -70,7 +72,7 @@ public abstract class DescriptorImporterBase<T extends Descriptor> implements De
       {
          throw new IllegalArgumentException("End user view impl type must be specified");
       }
-      if (descriptorName == null)
+      if (descriptorName == null || descriptorName.trim().length() == 0)
       {
          throw new IllegalArgumentException("Descriptor name must be specified");
       }
