@@ -82,7 +82,7 @@ public class XmlDomNodeImporterTestCase
    }
    
    @Test
-   public void shouldBeAbleToImportXmlFileWithSingleNodeDescriptorWithAttributesAndText() throws Exception
+   public void shouldBeAbleToImportFromXmlString() throws Exception
    {
       // given
       XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor> xmlDomNodeDescriptorImporter = new XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor>(DummyNodeDescriptor.class, "test-descriptor");
@@ -110,7 +110,7 @@ public class XmlDomNodeImporterTestCase
    }
    
    @Test
-   public void shouldBeAbleToImportFromXmlString() throws Exception
+   public void shouldBeAbleToImportXmlFileWithSingleNodeDescriptorWithAttributesAndText() throws Exception
    {
       // given
       XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor> xmlDomNodeDescriptorImporter = new XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor>(DummyNodeDescriptor.class, "test-descriptor");
