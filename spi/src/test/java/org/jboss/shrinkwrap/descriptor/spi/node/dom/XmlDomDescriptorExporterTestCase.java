@@ -17,14 +17,12 @@
  */
 package org.jboss.shrinkwrap.descriptor.spi.node.dom;
 
-import static org.junit.Assert.*;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
 import org.jboss.shrinkwrap.descriptor.api.DescriptorExportException;
+import org.jboss.shrinkwrap.descriptor.spi.node.DummyNodeDescriptor;
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
-import org.jboss.shrinkwrap.descriptor.test.util.TestTreeBuilder;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Assert;
 import org.junit.Test;
@@ -38,7 +36,8 @@ import org.junit.Test;
 public class XmlDomDescriptorExporterTestCase
 {
    private static final String XML_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>";
-   public static final String XML_WITH_COMMENT = "" +
+   
+   private static final String XML_WITH_COMMENT = "" +
    		XML_HEADER +
    		"<root>" +
    		"  <!-- comment -->" +
@@ -73,10 +72,9 @@ public class XmlDomDescriptorExporterTestCase
    {
       // given
       Node root = load(XML_WITH_COMMENT);
-      XmlDomDescriptorExporterImpl xmlDomDescriptorExporter = new XmlDomDescriptorExporterImpl();
       
       // when
-      String exportedXml = exportAsString(root, xmlDomDescriptorExporter);
+      String exportedXml = exportAsString(root);
       
       // then
       XmlAssert.assertIdentical(XML_WITH_COMMENT, exportedXml);
@@ -89,7 +87,7 @@ public class XmlDomDescriptorExporterTestCase
       Node root = new Node("root");
 
       // when
-      String exportedXml = exportAsString(root, new XmlDomDescriptorExporterImpl());
+      String exportedXml = exportAsString(root);
 
       // then
       XmlAssert.assertIdentical(XML_HEADER + "<root></root>", exportedXml);
@@ -103,7 +101,7 @@ public class XmlDomDescriptorExporterTestCase
       root.attribute("id", "1").attribute("name", "root");
 
       // when
-      String exportedXml = exportAsString(root, new XmlDomDescriptorExporterImpl());
+      String exportedXml = exportAsString(root);
 
       // then
       XmlAssert.assertIdentical(XML_HEADER + "<root id=\"1\" name=\"root\"></root>", exportedXml);
@@ -120,12 +118,28 @@ public class XmlDomDescriptorExporterTestCase
           .text("doovde");
 
       // when
-      String exportedXml = exportAsString(root, new XmlDomDescriptorExporterImpl());
+      String exportedXml = exportAsString(root);
       
       // then
       XmlAssert.assertIdentical(XML_HEADER + "<root id=\"1\" name=\"root\">doovde</root>", exportedXml);
 
    }
+   
+   @Test
+   public void shouldCreateSingleNodeWithGivenNameWhenEmptyStringPassedToImport() throws Exception
+   {
+      // given
+      XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor> xmlDomNodeDescriptorImporter = new XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor>(DummyNodeDescriptor.class, "test-descriptor");
+      Node expectedRoot = new Node("dummy");
+      
+      // when
+      Node importedRoot = xmlDomNodeDescriptorImporter.from("").getRootNode();
+
+      // then
+      Assert.assertEquals(expectedRoot.getName(), importedRoot.getName());
+      Assert.assertTrue(importedRoot.getChildren().isEmpty());
+   }
+
    
    @Test(expected = DescriptorExportException.class)
    public void shouldThrowExceptionWhenTreeIsNull() throws Exception
@@ -134,7 +148,7 @@ public class XmlDomDescriptorExporterTestCase
       Node root = null;
 
       // when
-      String exportedXml = exportAsString(root, new XmlDomDescriptorExporterImpl());
+      String exportedXml = exportAsString(root);
 
       // then
       // exception should be thrown
@@ -147,10 +161,10 @@ public class XmlDomDescriptorExporterTestCase
       return XmlDomNodeImporter.INSTANCE.importAsNode(new ByteArrayInputStream(xml.getBytes()), true);
    }
    
-   private String exportAsString(Node root, XmlDomDescriptorExporterImpl xmlDomExporter)
+   private String exportAsString(Node root)
    {
       final ByteArrayOutputStream output = new ByteArrayOutputStream();
-      xmlDomExporter.to(root, output);
+      new XmlDomDescriptorExporterImpl().to(root, output);
       return new String(output.toByteArray());
    }
 }
