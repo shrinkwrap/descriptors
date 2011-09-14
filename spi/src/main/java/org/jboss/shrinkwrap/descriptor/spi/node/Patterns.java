@@ -28,7 +28,7 @@ import java.util.Collection;
  */
 class Patterns
 {
-   private static final String PATH_SEPARATOR = "/";
+   private static final String PATH_SEPARATOR = "(?<!\\\\)[/]";
 
    private static final String ATTR_PATH_SEPERATOR = "@";
 
@@ -53,7 +53,7 @@ class Patterns
          throw new IllegalArgumentException("Query expression must be specified");
       }
 
-      boolean isAbsolute = queryExpression.startsWith(PATH_SEPARATOR);
+      boolean isAbsolute = queryExpression.startsWith("/");
       final Collection<Pattern> patterns = new ArrayList<Pattern>();
 
       final String[] paths = (isAbsolute ? queryExpression.substring(1) : queryExpression).split(PATH_SEPARATOR);
@@ -65,7 +65,7 @@ class Patterns
          String name = nameSegment.indexOf(ATTR_VALUE_SEPERATOR) != -1 ? nameSegment.substring(0,
                nameSegment.indexOf(ATTR_VALUE_SEPERATOR)) : nameSegment;
          String text = nameSegment.indexOf(ATTR_VALUE_SEPERATOR) != -1 ? nameSegment.substring(nameSegment
-               .indexOf(ATTR_VALUE_SEPERATOR) + 1) : null;
+               .indexOf(ATTR_VALUE_SEPERATOR) + 1).replaceAll("\\\\", "") : null;
          String attribute = path.indexOf(ATTR_PATH_SEPERATOR) != -1 ? path.substring(path.indexOf(ATTR_PATH_SEPERATOR)
                + ATTR_PATH_SEPERATOR.length(), path.length()) : null;
          String[] attributes = attribute == null ? new String[0] : attribute.split(ATTR_SEPERATOR);
