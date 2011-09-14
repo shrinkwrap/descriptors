@@ -1,6 +1,7 @@
 package org.jboss.shrinkwrap.descriptor.test.webapp30;
 
-import static org.jboss.shrinkwrap.descriptor.test.util.XmlAssert.assertPresenceUsingXPath;
+import static org.jboss.shrinkwrap.descriptor.test.util.XmlAssert.*;
+
 import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayInputStream;
@@ -17,7 +18,6 @@ import org.jboss.shrinkwrap.descriptor.api.webcommon30.FilterType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.TrackingModeType;
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptor;
-import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -60,11 +60,11 @@ public class WebAppDescriptorTestCase
     * SHRINKDESC-36
     */
    @Test
-   @Ignore(value="SHRINKDESC-86")
    public void verifySchemaLocation()
    {
       final String expectedSchemaLocation = "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd";
-      assertPresenceUsingXPath(create().exportAsString(),"/web-app/@xsi:schemaLocation",expectedSchemaLocation+"dsd");
+      
+      assertSchemaLocation(create().exportAsString(), "http://www.w3.org/2001/XMLSchema-instance", expectedSchemaLocation);
    }
 
    @Test

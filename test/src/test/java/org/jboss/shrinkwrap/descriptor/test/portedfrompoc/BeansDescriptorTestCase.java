@@ -85,13 +85,20 @@ public class BeansDescriptorTestCase
    }
    
    @Test
-   @Ignore(value="SHRINKDESC-86")
    public void shouldHaveCorrectSchemaLocation()
    {
+      // given
       final String expectedSchemaLocation = "http://java.sun.com/xml/ns/javaee " +
       		"http://java.sun.com/xml/ns/javaee/beans_1_0.xsd";
-      assertSchemaLocation(create().getOrCreateAlternatives().stereotype(TestAlternativeStereoType.class.getName())
-            .up().exportAsString(), "http://www.w3.org/2001/XMLSchema-instance", expectedSchemaLocation);
+      
+      // when
+      final String descriptorXml = create().getOrCreateAlternatives()
+                                           .stereotype(TestAlternativeStereoType.class.getName())
+                                           .up()
+                                           .exportAsString();
+      
+      // then
+      assertSchemaLocation(descriptorXml, "http://www.w3.org/2001/XMLSchema-instance", expectedSchemaLocation);
    }
    
    //-------------------------------------------------------------------------------------||

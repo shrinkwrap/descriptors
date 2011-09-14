@@ -1,39 +1,34 @@
 package org.jboss.shrinkwrap.descriptor.test.webapp30;
 
+import static org.jboss.shrinkwrap.descriptor.test.util.XmlAssert.assertDefaultNamespace;
+import static org.jboss.shrinkwrap.descriptor.test.util.XmlAssert.assertNamespaceURIDefined;
 import static org.jboss.shrinkwrap.descriptor.test.util.XmlAssert.assertPresenceUsingXPath;
+import static org.jboss.shrinkwrap.descriptor.test.util.XmlAssert.assertSchemaLocation;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
-import org.junit.Ignore;
 import org.junit.Test;
 
 
 public class WebAppDescriptorNamespaceTestCase
 {
 
-   private final Logger log = Logger.getLogger(WebAppDescriptorNamespaceTestCase.class.getName());
-   
    @Test
-   @Ignore(value="SHRINKDESC-86")
-   public void testAddDefaultNamespaces() throws Exception
+   public void shouldAddDefaultNamespaces() throws Exception
    {
       final String app = create()
             .addDefaultNamespaces()
             .exportAsString();
       
       final String expectedJavaEENamespace= "http://java.sun.com/xml/ns/javaee";
-      final String expectedXmlNamespace = "http://www.w3.org/2001/XMLSchema-instance";
       final String expectedSchemaLocation = "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd";
+
+      assertDefaultNamespace(app, expectedJavaEENamespace);
+      assertSchemaLocation(app, "http://www.w3.org/2001/XMLSchema-instance", expectedSchemaLocation);
       
-      assertPresenceUsingXPath(app,"/web-app/@xmlns", expectedJavaEENamespace);
-      assertPresenceUsingXPath(app,"/web-app/@xmlns:xsi", expectedXmlNamespace);
-      assertPresenceUsingXPath(app,"/web-app/@xsi:schemaLocation", expectedSchemaLocation);
-      
-      log.fine(app);      
    }
    
    @Test
@@ -70,8 +65,7 @@ public class WebAppDescriptorNamespaceTestCase
    }
    
    @Test
-   @Ignore(value="SHRINKDESC-86")
-   public void testAddNamespace() throws Exception
+   public void shouldAddNamespace() throws Exception
    {
       final String expectedJavaEENamespace= "http://java.sun.com/xml/ns/javaee";
       final String expectedXmlNamespace = "http://www.w3.org/2001/XMLSchema-instance";
@@ -81,20 +75,20 @@ public class WebAppDescriptorNamespaceTestCase
       final String app1 = create()
             .addNamespace("xmlns", "http://java.sun.com/xml/ns/javaee")
             .exportAsString();      
-      assertPresenceUsingXPath(app1,"/web-app/@xmlns", expectedJavaEENamespace);
+      assertDefaultNamespace(app1, expectedJavaEENamespace);
       
       // check xml namespace only
       final String app2 = create()
             .addNamespace("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance")
             .exportAsString();
-      assertPresenceUsingXPath(app2,"/web-app/@xmlns:xsi", expectedXmlNamespace);
+      assertNamespaceURIDefined(app2, "xsi", expectedXmlNamespace);
       
       // check schema location only
       final String app3 = create()
             .addNamespace("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance")
             .addNamespace("xsi:schemaLocation", "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd")
             .exportAsString();
-      assertPresenceUsingXPath(app3,"/web-app/@xsi:schemaLocation", expectedSchemaLocation);
+      assertSchemaLocation(app3, "http://www.w3.org/2001/XMLSchema-instance", expectedSchemaLocation);
    }
    
    // -------------------------------------------------------------------------------------||
