@@ -621,4 +621,20 @@ public class NodeTestCase
       Assert.assertEquals("Verify root only has four children", 4, root.getChildren().size());
    }
    
+   @Test
+   public void shouldBeAbleToCreateNodeWithValueWithEqualsInIt()
+   {
+	   String child3Value = "omg/with/slashes";
+	      // given
+	      Node root = new Node(ROOT_NODE);
+	      root.getOrCreate(("/" + CHILD_2_NODE + "/" + CHILD_3_NODE + "=" + child3Value));
+
+	      // when
+	      Node found = root.getSingle(("/" + CHILD_2_NODE + "/" + CHILD_3_NODE));
+	      
+	      // then
+	      Assert.assertNotNull("Verify node was found", found);
+	      Assert.assertEquals("Verify correct value set", child3Value, found.getText());
+   }
+   
 }
