@@ -75,8 +75,8 @@ public final class XmlAssert
     * Verifies if default namespace (xmlns attribute of the root element)
     * is the same as expected.
     * 
-    * @param xml
-    * @param expectedNamespace
+    * @param xml to be verified
+    * @param expectedNamespace expected value of xmlns attribute
     */
    public static void assertDefaultNamespace(String xml, String expectedNamespace) 
    {
