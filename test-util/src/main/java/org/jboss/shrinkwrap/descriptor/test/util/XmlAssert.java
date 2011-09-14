@@ -77,6 +77,8 @@ public final class XmlAssert
     * 
     * @param xml to be verified
     * @param expectedNamespace expected value of xmlns attribute
+    * 
+    * @throws Exception Assertion error or XML related parse exceptions
     */
    public static void assertDefaultNamespace(String xml, String expectedNamespace) 
    {
