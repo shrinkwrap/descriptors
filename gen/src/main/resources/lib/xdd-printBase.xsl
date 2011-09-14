@@ -103,6 +103,7 @@
         <xsl:text>   {&#10;</xsl:text>
         <xsl:text>      super(descriptorName);&#10;</xsl:text>
         <xsl:value-of select="concat('      this.', $pNodeNameLocal, ' = node;&#10;')"/>
+        <xsl:text>      addDefaultNamespaces();&#10;</xsl:text>
         <xsl:text>   }&#10;&#10;</xsl:text>
     </xsl:function>
 
@@ -217,7 +218,7 @@
         <xsl:for-each select="$pDefaultNamespaces/namespace">
             <xsl:value-of select="concat('      addNamespace(&quot;', @name, '&quot;, &quot;', @value, '&quot;)', ';&#10;')"/>
         </xsl:for-each>
-        <xsl:value-of select="concat('      return this;', '&#10;')"/>
+        <xsl:value-of select="concat('     return this;', '&#10;')"/>
         <xsl:text>   }&#10;</xsl:text>
         <xsl:text>&#10;</xsl:text>
         <xsl:value-of select="concat('   /**', '&#10;')"/>

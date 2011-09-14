@@ -103,7 +103,6 @@ public class WebAppDefTestCase
     * SHRINKDESC-36
     */
    @Test
-   @Ignore(value="SHRINKDESC-86")
    public void verifySchemaLocation()
    {
       final WebAppDescriptor desc = create();

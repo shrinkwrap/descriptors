@@ -18,10 +18,8 @@ package org.jboss.shrinkwrap.descriptor.test.util;
 
 import static org.junit.Assert.assertTrue;
 
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -34,6 +32,7 @@ import junit.framework.Assert;
 
 import org.custommonkey.xmlunit.Diff;
 import org.custommonkey.xmlunit.XMLUnit;
+import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -70,6 +69,38 @@ public final class XmlAssert
       NodeList nodes = extractMatchingNodes(doc, String.format(XPATH_SCHEMA_LOCATION, namespaceUri));
       Assert.assertFalse(String.format(SCHEMA_LOCATION_NOT_DEFINED, namespaceUri), nodes.getLength() == 0);
       Assert.assertEquals("Expected schema location is different", expectedLocation, nodes.item(0).getNodeValue());
+   }
+   
+   /**
+    * Verifies if default namespace (xmlns attribute of the root element)
+    * has expected URI.
+    * 
+    * @param xml to be verified
+    * @param expectedNamespace expected value of xmlns attribute
+    * 
+    * @throws Exception Assertion error or XML related parse exceptions.
+    */
+   public static void assertDefaultNamespace(String xml, String expectedURI) 
+   {
+      final Document doc = create(xml, true);
+      Attr xmlnsAttribute = doc.getDocumentElement().getAttributeNode("xmlns");
+      Assert.assertEquals("Expected URI for default namespace is different.", expectedURI, xmlnsAttribute.getValue());
+   }
+   
+   /**
+    * Verifies if given namespace has URI defined.
+    * 
+    * @param xml to be verified
+    * @param namespace
+    * @param expectedURI expected value of xmlns attribute
+    * 
+    * @throws Exception Assertion error or XML related parse exceptions.
+    */
+   public static void assertNamespaceURIDefined(String xml, String namespace, String expectedURI) 
+   {
+      final Document doc = create(xml, true);
+      String actualURI = doc.getDocumentElement().getAttributeNode("xmlns:" + namespace).getValue();
+      Assert.assertEquals("Expected URI is different", expectedURI, actualURI);
    }
    
    /**

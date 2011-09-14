@@ -69,7 +69,7 @@
         <schema generateClass="true" generateDDClass="true" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.beans10" packageImpl="org.jboss.shrinkwrap.descriptor.impl.beans10" style='beans' name="../xsd/beans_1_0.xsd">
             <namespace name="xmlns" value="http://java.sun.com/xml/ns/javaee"/>
             <namespace name="xmlns:xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
-            <namespace name="xsi:schemaLocation" value="http://java.sun.com/xml/ns/javaee http://docs.jboss.org/cdi/beans_1_0.xsd"/>
+            <namespace name="xsi:schemaLocation" value="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/beans_1_0.xsd"/>
             <rootelement name="beans" type="javaee:beans"/>
         </schema>
                 

@@ -16,14 +16,20 @@
  */
 package org.jboss.shrinkwrap.descriptor.test.portedfrompoc;
 
-import static org.jboss.shrinkwrap.descriptor.test.util.XmlAssert.assertPresenceUsingXPath;
+import static org.jboss.shrinkwrap.descriptor.test.util.XmlAssert.*;
+import static org.junit.Assert.*;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.persistence20.PersistenceDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.persistence20.PersistenceUnit;
+import org.jboss.shrinkwrap.descriptor.api.persistence20.PersistenceUnitTransactionType;
+import org.jboss.shrinkwrap.descriptor.api.persistence20.Properties;
+import org.jboss.shrinkwrap.descriptor.api.persistence20.Property;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -33,7 +39,6 @@ import org.junit.Test;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-//TODO Refactor commented code to fit into new APIs, make tests pass
 public class PersistenceDescriptorTestCase
 {
    /**
@@ -58,7 +63,7 @@ public class PersistenceDescriptorTestCase
    }
 
    @Test
-   @Ignore(value="SHRINKDESC-86")
+   @Ignore("Missing in the new API") // There is no default generated through XSLT
    public void shouldHaveDefaultVersion() throws Exception
    {
       final String desc = create().exportAsString();
@@ -81,384 +86,289 @@ public class PersistenceDescriptorTestCase
       assertPresenceUsingXPath(desc, "/persistence/persistence-unit/@name", name);
    }
 
-   //
-   //   @Test
-   //   public void shouldBeAbleToAddMultiplePersistenceUnits() throws Exception
-   //   {
-   //      String desc = create().persistenceUnit(name2).exportAsString();
-   //
-   //      assertXPath(desc, "/persistence/persistence-unit/@name", name, name2);
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToAddPersistenceUnitName() throws Exception
-   //   {
-   //      String desc = create().name(name2).exportAsString();
-   //
-   //      assertXPath(desc, "/persistence/persistence-unit/@name", name2);
-   //   }
-   //
-   //   @Test
-   //   public void shouldOnlyCreateOnPersistenceUnitWithSameName() throws Exception
-   //   {
-   //      // create() creates a persistenceUnit with "name".
-   //      // Add a new persistence unit with "name", should return the same node. name is defined unique
-   //      String desc = create().persistenceUnit(name).exportAsString();
-   //
-   //      assertXPath(desc, "/persistence/persistence-unit/@name", name);
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToAddClasses() throws Exception
-   //   {
-   //      String desc = create().classes(PersistenceDescriptor.class, PersistenceDescriptor.class).exportAsString();
-   //
-   //      assertXPath(desc, "/persistence/persistence-unit/class", PersistenceDescriptor.class.getName(),
-   //            PersistenceDescriptor.class.getName());
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToAddDescription() throws Exception
-   //   {
-   //      PersistenceUnitDef unit = create().description(name);
-   //      String desc = unit
-   //                     .exportAsString();
-   //      assertXPath(desc, "/persistence/persistence-unit/description", name);
-   //      assertEquals(name, unit.getDescription());
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToSetExcludeUnlistedClasses() throws Exception
-   //   {
-   //      String desc = create().excludeUnlistedClasses().exportAsString();
-   //
-   //      assertXPath(desc, "/persistence/persistence-unit/exclude-unlisted-classes", "true");
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToSetIncludeUnlistedClasses() throws Exception
-   //   {
-   //      String desc = create().includeUnlistedClasses().exportAsString();
-   //
-   //      assertXPath(desc, "/persistence/persistence-unit/exclude-unlisted-classes", "false");
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToSetJTADataSource() throws Exception
-   //   {
-   //      PersistenceUnitDef unit = create().jtaDataSource(name);
-   //      String desc = unit
-   //                     .exportAsString();
-   //
-   //      assertXPath(desc, "/persistence/persistence-unit/jta-data-source", name);
-   //      assertEquals(name, unit.getJtaDataSource());
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToReplaceJTADataSourceWithNonJTADataSource() throws Exception
-   //   {
-   //      String desc = create().jtaDataSource(name).nonJtaDataSource(name2).exportAsString();
-   //
-   //      assertXPath(desc, "/persistence/persistence-unit/jta-data-source", new String[]
-   //      {});
-   //      assertXPath(desc, "/persistence/persistence-unit/non-jta-data-source", name2);
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToReplaceNonJTADataSourceWithJTADataSource() throws Exception
-   //   {
-   //      String desc = create().nonJtaDataSource(name2).jtaDataSource(name).exportAsString();
-   //
-   //      assertXPath(desc, "/persistence/persistence-unit/jta-data-source", name);
-   //      assertXPath(desc, "/persistence/persistence-unit/non-jta-data-source", new String[]
-   //      {});
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToSetNonJtaDataSource() throws Exception
-   //   {
-   //      PersistenceUnitDef unit = create().nonJtaDataSource(name);
-   //      String desc = unit
-   //                     .exportAsString();
-   //
-   //      assertXPath(desc, "/persistence/persistence-unit/non-jta-data-source", name);
-   //      assertEquals(name, unit.getNonJtaDataSource());
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToSetJarFile() throws Exception
-   //   {
-   //      String desc = create().jarFile(name).exportAsString();
-   //
-   //      assertXPath(desc, "/persistence/persistence-unit/jar-file", name);
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToSetJarFiles() throws Exception
-   //   {
-   //      String desc = create().jarFiles(name, name2).exportAsString();
-   //
-   //      assertXPath(desc, "/persistence/persistence-unit/jar-file", name, name2);
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToSetMappingFile() throws Exception
-   //   {
-   //      String desc = create().mappingFile(name).exportAsString();
-   //
-   //      assertXPath(desc, "/persistence/persistence-unit/mapping-file", name);
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToSetMappingFiles() throws Exception
-   //   {
-   //      String desc = create().mappingFiles(name, name2).exportAsString();
-   //
-   //      assertXPath(desc, "/persistence/persistence-unit/mapping-file", name, name2);
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToSetTransactionType() throws Exception
-   //   {
-   //      String desc = create().transactionType(TransactionType.JTA).exportAsString();
-   //
-   //      assertXPath(desc, "/persistence/persistence-unit/@transaction-type", TransactionType.JTA.name());
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToAddProperties() throws Exception
-   //   {
-   //      String desc = create().property(name, name2).property(name2, name).exportAsString();
-   //
-   //      assertXPath(desc, "/persistence/persistence-unit/properties/property/@name", name, name2);
-   //      assertXPath(desc, "/persistence/persistence-unit/properties/property/@value", name2, name);
-   //   }
-   //
-   //   @Test
-   //   public void addingDuplicateNamePropertyUpdatesExisting() throws Exception
-   //   {
-   //      String desc = create().property(name, name2).property(name, name).exportAsString();
-   //
-   //      assertXPath(desc, "/persistence/persistence-unit/properties/property/@name", name, name);
-   //      assertXPath(desc, "/persistence/persistence-unit/properties/property/@value", name, name);
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToGetProperties() throws Exception
-   //   {
-   //      PersistenceUnitDef def = create().property(name, name2).property(name2, name);
-   //
-   //      List<Property> props = def.getProperties();
-   //      assertEquals(2, props.size());
-   //      assertEquals(name, props.get(0).getName());
-   //      assertEquals(name2, props.get(0).getValue());
-   //      assertEquals(name2, props.get(1).getName());
-   //      assertEquals(name, props.get(1).getValue());
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToRemovePropertyByName() throws Exception
-   //   {
-   //      PersistenceUnitDef def = create().property(name, name2).property(name2, name);
-   //
-   //      List<Property> props = def.getProperties();
-   //      assertEquals(2, props.size());
-   //
-   //      def.removeProperty(name);
-   //      props = def.getProperties();
-   //      assertEquals(1, props.size());
-   //      assertEquals(name2, props.get(0).getName());
-   //      assertEquals(name, props.get(0).getValue());
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToRemovePropertyByReference() throws Exception
-   //   {
-   //      PersistenceUnitDef def = create().property(name, name2).property(name2, name);
-   //
-   //      List<Property> props = def.getProperties();
-   //      assertEquals(2, props.size());
-   //
-   //      def.removeProperty(props.get(1));
-   //
-   //      props = def.getProperties();
-   //      assertEquals(1, props.size());
-   //      assertEquals(name, props.get(0).getName());
-   //      assertEquals(name2, props.get(0).getValue());
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToClearProperties() throws Exception
-   //   {
-   //      PersistenceUnitDef def = create().property(name, name2).property(name2, name);
-   //
-   //      List<Property> props = def.getProperties();
-   //      assertEquals(2, props.size());
-   //
-   //      def.clearProperties();
-   //
-   //      props = def.getProperties();
-   //      assertEquals(0, props.size());
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToClearPropertiesAndAddNew() throws Exception
-   //   {
-   //      PersistenceUnitDef def = create().property(name, name2).property(name2, name);
-   //
-   //      List<Property> props = def.getProperties();
-   //      assertEquals(2, props.size());
-   //
-   //      def.clearProperties();
-   //
-   //      props = def.getProperties();
-   //      assertEquals(0, props.size());
-   //
-   //      def.property(name2, name).property(name, name2);
-   //
-   //      props = def.getProperties();
-   //      assertEquals(2, props.size());
-   //      assertEquals(name2, props.get(0).getName());
-   //      assertEquals(name, props.get(0).getValue());
-   //      assertEquals(name, props.get(1).getName());
-   //      assertEquals(name2, props.get(1).getValue());
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleSetSharedCacheMode() throws Exception
-   //   {
-   //      String desc = create().sharedCacheMode(SharedCacheModeType.ALL).exportAsString();
-   //
-   //      assertXPath(desc, "/persistence/persistence-unit/shared-cache-mode", SharedCacheModeType.ALL.name());
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleSetValidationMode() throws Exception
-   //   {
-   //      String desc = create().validationMode(ValidationModeType.AUTO).exportAsString();
-   //
-   //      assertXPath(desc, "/persistence/persistence-unit/validation-mode", ValidationModeType.AUTO.name());
-   //   }
+   
+   @Test
+   public void shouldBeAbleToAddMultiplePersistenceUnits() throws Exception
+   {
+      String desc = create().createPersistenceUnit().name(name2).up().exportAsString();
+   
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/@name", name, name2);
+   }
+   
+   @Test
+   public void shouldBeAbleToAddPersistenceUnitName() throws Exception
+   {
+      String desc = create().getAllPersistenceUnit().get(0).name(name2).up().exportAsString();
+   
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/@name", name2);
+   }
+   
+   @Test
+   @Ignore("Missing in the new API") 
+   public void shouldOnlyCreateOnePersistenceUnitWithSameName() throws Exception
+   {
+      // create() creates a persistenceUnit with "name".
+      // Add a new persistence unit with "name", should return the same node. name is defined unique
+      String desc = create().getOrCreatePersistenceUnit().name(name).up().exportAsString();
+   
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/@name", name);
+   }
+   
+   @Test
+   public void shouldBeAbleToAddClasses() throws Exception
+   {
+      String desc = create().getOrCreatePersistenceUnit().clazz(PersistenceDescriptor.class.getName(), PersistenceDescriptor.class.getName()).up().exportAsString();
+   
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/class", PersistenceDescriptor.class.getName(),
+            PersistenceDescriptor.class.getName());
+   }
+   
+   @Test
+   public void shouldBeAbleToAddDescription() throws Exception
+   {
+      PersistenceUnit<PersistenceDescriptor> unit = create().getOrCreatePersistenceUnit().description(name);
+      String desc = unit.up()
+                     .exportAsString();
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/description", name);
+      Assert.assertEquals(name, unit.getDescription());
+   }
+   
+   @Test
+   public void shouldBeAbleToSetExcludeUnlistedClasses() throws Exception
+   {
+      String desc = create().getOrCreatePersistenceUnit().excludeUnlistedClasses(true).up().exportAsString();
+   
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/exclude-unlisted-classes", "true");
+   }
+   
+   @Test
+   public void shouldBeAbleToSetIncludeUnlistedClasses() throws Exception
+   {
+      String desc = create().getOrCreatePersistenceUnit().excludeUnlistedClasses(false).up().exportAsString();
+   
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/exclude-unlisted-classes", "false");
+   }
+   
+   @Test
+   public void shouldBeAbleToSetJTADataSource() throws Exception
+   {
+      PersistenceUnit<PersistenceDescriptor> unit = create().getOrCreatePersistenceUnit().jtaDataSource(name);
+      String desc = unit.up().exportAsString();
+   
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/jta-data-source", name);
+      assertEquals(name, unit.getJtaDataSource());
+   }
+   
+   @Test
+   @Ignore("Missing in the new API")
+   public void shouldBeAbleToReplaceJTADataSourceWithNonJTADataSource() throws Exception
+   {
+      String desc = create().getAllPersistenceUnit().get(0).jtaDataSource(name).nonJtaDataSource(name2).up().exportAsString();
+   
+      assertAbsenceUsingXPath(desc, "/persistence/persistence-unit/jta-data-source");
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/non-jta-data-source", name2);
+   }
+   
+   @Test
+   @Ignore("Missing in the new API")
+   public void shouldBeAbleToReplaceNonJTADataSourceWithJTADataSource() throws Exception
+   {
+      String desc = create().getOrCreatePersistenceUnit().nonJtaDataSource(name2).jtaDataSource(name).up().exportAsString();
+   
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/jta-data-source", name);
+      assertAbsenceUsingXPath(desc, "/persistence/persistence-unit/non-jta-data-source");
+   }
+   
+   @Test
+   public void shouldBeAbleToSetNonJtaDataSource() throws Exception
+   {
+      PersistenceUnit<PersistenceDescriptor> unit = create().getOrCreatePersistenceUnit().nonJtaDataSource(name);
+      String desc = unit.up().exportAsString();
+   
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/non-jta-data-source", name);
+      assertEquals(name, unit.getNonJtaDataSource());
+   }
+   
+   @Test
+   public void shouldBeAbleToSetJarFile() throws Exception
+   {
+      String desc = create().getOrCreatePersistenceUnit().jarFile(name).up().exportAsString();
+   
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/jar-file", name);
+   }
+   
+   @Test
+   public void shouldBeAbleToSetJarFiles() throws Exception
+   {
+      String desc = create().getOrCreatePersistenceUnit().jarFile(name, name2).up().exportAsString();
+   
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/jar-file", name, name2);
+   }
+   
+   @Test
+   public void shouldBeAbleToSetMappingFile() throws Exception
+   {
+      String desc = create().getOrCreatePersistenceUnit().mappingFile(name).up().exportAsString();
+   
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/mapping-file", name);
+   }
+   
+   @Test
+   public void shouldBeAbleToSetMappingFiles() throws Exception
+   {
+      String desc = create().getOrCreatePersistenceUnit().mappingFile(name, name2).up().exportAsString();
+   
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/mapping-file", name, name2);
+   }
+   
+   @Test
+   public void shouldBeAbleToSetTransactionType() throws Exception
+   {
+      String desc = create().getOrCreatePersistenceUnit().transactionType(PersistenceUnitTransactionType._JTA).up().exportAsString();
+   
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/@transaction-type", PersistenceUnitTransactionType._JTA);
+   }
+   
+   @Test
+   public void shouldBeAbleToAddProperties() throws Exception
+   {
+      String desc = create().getOrCreatePersistenceUnit()
+                            .getOrCreateProperties()
+                            .getOrCreateProperty().name(name).value(name2).up()
+                            .createProperty().name(name2).value(name).up().up().up().exportAsString();
+   
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/properties/property/@name", name, name2);
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/properties/property/@value", name2, name);
+   }
+   
+   @Test
+   @Ignore("Missing in the new API")
+   // FIXME There is no convenient way of getting property by name currently
+   // It's accessible through the list.get(i), but I guess that's
+   // not the desired approach.
+   public void addingDuplicateNamePropertyUpdatesExisting() throws Exception
+   {
+      String desc = create().getOrCreatePersistenceUnit()
+                            .getOrCreateProperties()
+                            .createProperty().name(name).value(name2).up()
+                            .createProperty().name(name).value(name).up().up().up().exportAsString();
+      
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/properties/property/@name", name, name);
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/properties/property/@value", name, name);
+   }
+   
+   @Test
+   public void shouldBeAbleToGetProperties() throws Exception
+   {
+      PersistenceUnit<PersistenceDescriptor> def = create().getOrCreatePersistenceUnit()
+                                                           .getOrCreateProperties()
+                                                           .createProperty().name(name).value(name2).up()
+                                                           .createProperty().name(name2).value(name).up().up();
+   
+      List<Property<Properties<PersistenceUnit<PersistenceDescriptor>>>> properties = def.getOrCreateProperties().getAllProperty();
+      assertEquals(2, properties.size());
+      assertEquals(name, properties.get(0).getName());
+      assertEquals(name2, properties.get(0).getValue());
+      assertEquals(name2, properties.get(1).getName());
+      assertEquals(name, properties.get(1).getValue());
+   }
+   
+// FIXME Not possible with the current API
+   
+//   @Test
+//   public void shouldBeAbleToRemovePropertyByName() throws Exception
+//   {
+//      PersistenceUnitDef def = create().property(name, name2).property(name2, name);
+//   
+//      List<Property> props = def.getProperties();
+//      assertEquals(2, props.size());
+//   
+//      def.removeProperty(name);
+//      props = def.getProperties();
+//      assertEquals(1, props.size());
+//      assertEquals(name2, props.get(0).getName());
+//      assertEquals(name, props.get(0).getValue());
+//   }
+//   
+//   @Test
+//   public void shouldBeAbleToRemovePropertyByReference() throws Exception
+//   {
+//      PersistenceUnitDef def = create().property(name, name2).property(name2, name);
+//   
+//      List<Property> props = def.getProperties();
+//      assertEquals(2, props.size());
+//   
+//      def.removeProperty(props.get(1));
+//   
+//      props = def.getProperties();
+//      assertEquals(1, props.size());
+//      assertEquals(name, props.get(0).getName());
+//      assertEquals(name2, props.get(0).getValue());
+//   }
+   
+   
+   @Test
+   public void shouldBeAbleToClearProperties() throws Exception
+   {
+      Properties<PersistenceUnit<PersistenceDescriptor>> def = create().getOrCreatePersistenceUnit()
+                                       .getOrCreateProperties()
+                                       .createProperty().name(name).value(name2).up()
+                                       .createProperty().name(name2).value(name).up();
+   
+      List<Property<Properties<PersistenceUnit<PersistenceDescriptor>>>> props = def.getAllProperty();
+      assertEquals(2, props.size());
+   
+      def.removeAllProperty();
+   
+      props = def.getAllProperty();
+      assertEquals(0, props.size());
+   }
+   
+   @Test
+   public void shouldBeAbleToClearPropertiesAndAddNew() throws Exception
+   {
+      Properties<PersistenceUnit<PersistenceDescriptor>> def = create().getOrCreatePersistenceUnit()
+            .getOrCreateProperties()
+            .createProperty().name(name).value(name2).up()
+            .createProperty().name(name2).value(name).up();
 
-   // -------------------------------------------------------------------------------------||
-   // Provider Specific - Hibernate ------------------------------------------------------||
-   // -------------------------------------------------------------------------------------||
+      List<Property<Properties<PersistenceUnit<PersistenceDescriptor>>>> props = def.getAllProperty();
+      assertEquals(2, props.size());
+      
+      def.removeAllProperty();
+      
+      props = def.getAllProperty();
+      assertEquals(0, props.size());
+   
+      def.createProperty().name(name2).value(name).up()
+         .createProperty().name(name).value(name2);
+   
+      props = def.getAllProperty();
+      assertEquals(2, props.size());
+      assertEquals(name2, props.get(0).getName());
+      assertEquals(name, props.get(0).getValue());
+      assertEquals(name, props.get(1).getName());
+      assertEquals(name2, props.get(1).getValue());
+   }
+   
+   @Test
+   public void shouldBeAbleSetSharedCacheMode() throws Exception
+   {
+      String desc = create().getOrCreatePersistenceUnit().sharedCacheMode("ALL").up().exportAsString();
+   
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/shared-cache-mode", "ALL");
+   }
+   
+   @Test
+   public void shouldBeAbleSetValidationMode() throws Exception
+   {
+      String desc = create().getOrCreatePersistenceUnit().validationMode("AUTO").up().exportAsString();
+   
+      assertPresenceUsingXPath(desc, "/persistence/persistence-unit/validation-mode", "AUTO");
+   }
+   
 
-   //   @Test
-   //   public void shouldBeAbleSetProviderHibernate() throws Exception
-   //   {
-   //      String desc = create().provider(ProviderType.HIBERNATE).exportAsString();
-   //
-   //      assertXPath(desc, "/persistence/persistence-unit/provider", ProviderType.HIBERNATE.getProviderClass());
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleSetFormatSQLHibernate() throws Exception
-   //   {
-   //      String desc = create().provider(ProviderType.HIBERNATE).formatSql().exportAsString();
-   //
-   //      assertXPath(desc, "/persistence/persistence-unit/properties/property/@name", "hibernate.format_sql");
-   //      assertXPath(desc, "/persistence/persistence-unit/properties/property/@value", "true");
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleSetShowSQLHibernate() throws Exception
-   //   {
-   //      String desc = create().provider(ProviderType.HIBERNATE).showSql().exportAsString();
-   //
-   //      assertXPath(desc, "/persistence/persistence-unit/properties/property/@name", "hibernate.show_sql");
-   //      assertXPath(desc, "/persistence/persistence-unit/properties/property/@value", "true");
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToSetSchemaGenerationModeHibernateCreate() throws Exception
-   //   {
-   //      shouldBeAbleSetSchemaGenerationModeHibernate(SchemaGenerationModeType.CREATE, "create");
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToSetSchemaGenerationModeHibernateCreateDrop() throws Exception
-   //   {
-   //      shouldBeAbleSetSchemaGenerationModeHibernate(SchemaGenerationModeType.CREATE_DROP, "create-drop");
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToSetSchemaGenerationModeHibernateNone() throws Exception
-   //   {
-   //      shouldBeAbleSetSchemaGenerationModeHibernate(SchemaGenerationModeType.NONE, "none");
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToSetSchemaGenerationModeHibernateUpdate() throws Exception
-   //   {
-   //      shouldBeAbleSetSchemaGenerationModeHibernate(SchemaGenerationModeType.UPDATE, "update");
-   //   }
-
-   // -------------------------------------------------------------------------------------||
-   // Provider Specific - EclipseLink ----------------------------------------------------||
-   // -------------------------------------------------------------------------------------||
-
-   //   @Test
-   //   public void shouldBeAbleSetShowSQLEclipseLink() throws Exception
-   //   {
-   //      String desc = create().provider(ProviderType.ECLIPSE_LINK).showSql().exportAsString();
-   //
-   //      assertXPath(desc, "/persistence/persistence-unit/properties/property/@name", "eclipselink.logging.level");
-   //      assertXPath(desc, "/persistence/persistence-unit/properties/property/@value", "FINE");
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToSetSchemaGenerationModeEclipseLinkCreate() throws Exception
-   //   {
-   //      shouldBeAbleSetSchemaGenerationModeEclipseLink(SchemaGenerationModeType.CREATE, "create-tables");
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToSetSchemaGenerationModeEclipseLinkCreateDrop() throws Exception
-   //   {
-   //      shouldBeAbleSetSchemaGenerationModeEclipseLink(SchemaGenerationModeType.CREATE_DROP, "drop-and-create-tables");
-   //   }
-   //
-   //   @Test
-   //   public void shouldBeAbleToSetSchemaGenerationModeEclipseLinkNone() throws Exception
-   //   {
-   //      shouldBeAbleSetSchemaGenerationModeEclipseLink(SchemaGenerationModeType.NONE, "none");
-   //   }
-   //
-   //   @Test(expected = UnsupportedOperationException.class)
-   //   public void shouldNotBeAbleToSetSchemaGenerationModeEclipseLinkUpdate() throws Exception
-   //   {
-   //      shouldBeAbleSetSchemaGenerationModeEclipseLink(SchemaGenerationModeType.UPDATE,
-   //            "no-value-should-be-added-mode-unsupported");
-   //   }
-   //
-   //   // -------------------------------------------------------------------------------------||
-   //   // Provider Specific - Generic Helper -------------------------------------------------||
-   //   // -------------------------------------------------------------------------------------||
-   //
-   //   private void shouldBeAbleSetSchemaGenerationModeHibernate(SchemaGenerationModeType generationMode,
-   //         String expectedValue) throws Exception
-   //   {
-   //      shouldBeAbleSetSchemaGenerationMode(ProviderType.HIBERNATE, generationMode, "hibernate.hbm2ddl.auto",
-   //            expectedValue);
-   //   }
-   //
-   //   private void shouldBeAbleSetSchemaGenerationModeEclipseLink(SchemaGenerationModeType generationMode,
-   //         String expectedValue) throws Exception
-   //   {
-   //      shouldBeAbleSetSchemaGenerationMode(ProviderType.ECLIPSE_LINK, generationMode, "eclipselink.ddl-generation",
-   //            expectedValue);
-   //   }
-   //
-   //   private void shouldBeAbleSetSchemaGenerationMode(ProviderType providerType, SchemaGenerationModeType generationMode,
-   //         String expectedName, String expectedValue) throws Exception
-   //   {
-   //      String desc = create().provider(providerType).schemaGenerationMode(generationMode).exportAsString();
-   //
-   //      assertXPath(desc, "/persistence/persistence-unit/properties/property/@name", expectedName);
-   //      assertXPath(desc, "/persistence/persistence-unit/properties/property/@value", expectedValue);
-   //   }
-
+   
    // -------------------------------------------------------------------------------------||
    // Complex Scenario---------------------------------------------------------------------|| 
    // -------------------------------------------------------------------------------------||
