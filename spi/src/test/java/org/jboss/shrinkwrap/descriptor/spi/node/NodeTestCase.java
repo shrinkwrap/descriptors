@@ -624,7 +624,8 @@ public class NodeTestCase
    @Test
    public void shouldBeAbleToCreateNodeWithValueWithEqualsInIt()
    {
-	   String child3Value = "omg/with/slashes";
+	   String child3Value = "omg\\/with\\/slashes";
+	   String child3ValueNotEscaped = "omg/with/slashes";
 	      // given
 	      Node root = new Node(ROOT_NODE);
 	      root.getOrCreate(("/" + CHILD_2_NODE + "/" + CHILD_3_NODE + "=" + child3Value));
@@ -634,7 +635,7 @@ public class NodeTestCase
 	      
 	      // then
 	      Assert.assertNotNull("Verify node was found", found);
-	      Assert.assertEquals("Verify correct value set", child3Value, found.getText());
+	      Assert.assertEquals("Verify correct value set", child3ValueNotEscaped, found.getText());
    }
    
 }
