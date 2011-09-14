@@ -48,7 +48,9 @@ import org.xml.sax.SAXException;
 public final class XmlAssert
 {
    private static final String XPATH_SCHEMA_LOCATION = "//@*[local-name()='schemaLocation' and namespace-uri()='%s']";
+   private static final String XPATH_NAMESPACE_DEFINITION = "//@*[local-name()='%s' and namespace-uri()='%s']";
    private static final String SCHEMA_LOCATION_NOT_DEFINED = "Schema location not defined for %s";
+   private static final String NAMESPACE_URI_NOT_DEFINED = "Namespace URI not defined for %s";
 
    /**
     * Util class, should not be constructed. 
@@ -85,6 +87,22 @@ public final class XmlAssert
       final Document doc = create(xml, true);
       Attr xmlnsAttribute = doc.getDocumentElement().getAttributeNode("xmlns");
       Assert.assertEquals("Expected schema location is different", expectedNamespace, xmlnsAttribute.getValue());
+   }
+   
+   /**
+    * Verifies if given namespace has URI defined.
+    * 
+    * @param xml to be verified
+    * @param namespace
+    * @param expectedURI expected value of xmlns attribute
+    * 
+    * @throws Exception Assertion error or XML related parse exceptions.
+    */
+   public static void assertNamespaceURIDefined(String xml, String namespace, String expectedURI) 
+   {
+      final Document doc = create(xml, true);
+      String actualURI = doc.getDocumentElement().getAttributeNode("xmlns:" + namespace).getValue();
+      Assert.assertEquals("Expected URI is different", expectedURI, actualURI);
    }
    
    /**
