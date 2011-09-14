@@ -307,42 +307,49 @@ public class PersistenceDescriptorTestCase
 //   }
    
    
-   /*@Test
+   @Test
    public void shouldBeAbleToClearProperties() throws Exception
    {
-      PersistenceUnitDef def = create().property(name, name2).property(name2, name);
+      Properties<PersistenceUnit<PersistenceDescriptor>> def = create().getOrCreatePersistenceUnit()
+                                       .getOrCreateProperties()
+                                       .createProperty().name(name).value(name2).up()
+                                       .createProperty().name(name2).value(name).up();
    
-      List<Property> props = def.getProperties();
+      List<Property<Properties<PersistenceUnit<PersistenceDescriptor>>>> props = def.getAllProperty();
       assertEquals(2, props.size());
    
-      def.clearProperties();
+      def.removeAllProperty();
    
-      props = def.getProperties();
+      props = def.getAllProperty();
       assertEquals(0, props.size());
    }
    
    @Test
    public void shouldBeAbleToClearPropertiesAndAddNew() throws Exception
    {
-      PersistenceUnitDef def = create().property(name, name2).property(name2, name);
-   
-      List<Property> props = def.getProperties();
+      Properties<PersistenceUnit<PersistenceDescriptor>> def = create().getOrCreatePersistenceUnit()
+            .getOrCreateProperties()
+            .createProperty().name(name).value(name2).up()
+            .createProperty().name(name2).value(name).up();
+
+      List<Property<Properties<PersistenceUnit<PersistenceDescriptor>>>> props = def.getAllProperty();
       assertEquals(2, props.size());
-   
-      def.clearProperties();
-   
-      props = def.getProperties();
+      
+      def.removeAllProperty();
+      
+      props = def.getAllProperty();
       assertEquals(0, props.size());
    
-      def.property(name2, name).property(name, name2);
+      def.createProperty().name(name2).value(name).up()
+         .createProperty().name(name).value(name2);
    
-      props = def.getProperties();
+      props = def.getAllProperty();
       assertEquals(2, props.size());
       assertEquals(name2, props.get(0).getName());
       assertEquals(name, props.get(0).getValue());
       assertEquals(name, props.get(1).getName());
       assertEquals(name2, props.get(1).getValue());
-   }*/
+   }
    
    @Test
    public void shouldBeAbleSetSharedCacheMode() throws Exception
