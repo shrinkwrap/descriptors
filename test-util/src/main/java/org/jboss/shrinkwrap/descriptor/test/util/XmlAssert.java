@@ -18,10 +18,8 @@ package org.jboss.shrinkwrap.descriptor.test.util;
 
 import static org.junit.Assert.assertTrue;
 
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -34,6 +32,7 @@ import junit.framework.Assert;
 
 import org.custommonkey.xmlunit.Diff;
 import org.custommonkey.xmlunit.XMLUnit;
+import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -70,6 +69,20 @@ public final class XmlAssert
       NodeList nodes = extractMatchingNodes(doc, String.format(XPATH_SCHEMA_LOCATION, namespaceUri));
       Assert.assertFalse(String.format(SCHEMA_LOCATION_NOT_DEFINED, namespaceUri), nodes.getLength() == 0);
       Assert.assertEquals("Expected schema location is different", expectedLocation, nodes.item(0).getNodeValue());
+   }
+   
+   /**
+    * Verifies if default namespace (xmlns attribute of the root element)
+    * is the same as expected.
+    * 
+    * @param xml
+    * @param expectedNamespace
+    */
+   public static void assertDefaultNamespace(String xml, String expectedNamespace) 
+   {
+      final Document doc = create(xml, true);
+      Attr xmlnsAttribute = doc.getDocumentElement().getAttributeNode("xmlns");
+      Assert.assertEquals("Expected schema location is different", expectedNamespace, xmlnsAttribute.getValue());
    }
    
    /**
