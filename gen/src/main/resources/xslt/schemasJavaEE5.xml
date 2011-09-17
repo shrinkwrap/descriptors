@@ -31,5 +31,12 @@
             <namespace name="xmlns:xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
             <namespace name="xsi:schemaLocation" value="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"/>
         </schema>
+        
+        <schema generateClass="true" generateDDClass="true" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.jsptaglibrary21" packageImpl="org.jboss.shrinkwrap.descriptor.impl.jsptaglibrary21" name="../xsd/web-jsptaglibrary_2_1.xsd">
+            <namespace name="xmlns" value="http://java.sun.com/xml/ns/javaee"/>
+            <namespace name="xmlns:xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
+            <namespace name="xsi:schemaLocation" value="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"/>
+        </schema>
+        
     </schemas>
 </dd>
