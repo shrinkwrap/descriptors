@@ -15,5 +15,12 @@
             <namespace name="xmlns:xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
             <namespace name="xsi:schemaLocation" value="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/connector_1_5.xsd"/>
         </schema>
+        
+        <schema generateClass="true" generateDDClass="true" namespace="j2ee" packageApi="org.jboss.shrinkwrap.descriptor.api.jsptaglibrary20" packageImpl="org.jboss.shrinkwrap.descriptor.impl.jsptaglibrary20" name="../xsd/web-jsptaglibrary_2_0.xsd">
+            <namespace name="xmlns" value="http://java.sun.com/xml/ns/j2ee"/>
+            <namespace name="xmlns:xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
+            <namespace name="xsi:schemaLocation" value="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_0.xsd"/>
+        </schema>
+        
     </schemas>
 </dd>

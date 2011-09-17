@@ -392,7 +392,6 @@
             </xsl:if>
         </xsl:for-each>
 
-
         <xsl:for-each select="document($pDocument)//node()/@base">
             <xsl:if test="count(xsd:enumeration) = 0">
                 <xsl:variable name="vName" select="ancestor::*[name()='xsd:simpleType' or name()='xsd:complexType'][1]/@name"/>
@@ -413,6 +412,27 @@
                     </xsl:attribute>
                 </datatype>
             </xsl:if>
+        </xsl:for-each>
+
+        <xsl:for-each select="document($pDocument)//xsd:complexType[@abstract='true']">
+            <xsl:variable name="complexTypeName" select="@name"/>
+            <xsl:variable name="vDocumentation" select="xsd:annotation/xsd:documentation/text()"/>
+            <xsl:message select="concat('datatype: ', $complexTypeName, ' type: ', .)"/>
+            <xsl:text>&#10;</xsl:text>
+            <datatype>
+                <xsl:attribute name="name">
+                    <xsl:value-of select="$complexTypeName"/>
+                </xsl:attribute>
+                <xsl:attribute name="mappedTo">
+                    <xsl:value-of select="'xsd:string'"/>
+                </xsl:attribute>
+                <xsl:attribute name="namespace">
+                    <xsl:value-of select="$pNamespace"/>
+                </xsl:attribute>
+                <xsl:attribute name="schemaName">
+                    <xsl:value-of select="$pDocument"/>
+                </xsl:attribute>
+            </datatype>
         </xsl:for-each>
 
     </xsl:template>
@@ -841,7 +861,7 @@
                                         </xsl:if>
                                     </element>
                                 </xsl:for-each>
-
+                                
                                 <xsl:for-each select="xsd:sequence/xsd:choice/xsd:element">
                                     <element>
                                         <xsl:attribute name="name">
@@ -869,6 +889,60 @@
                                     </element>
                                 </xsl:for-each>
 
+                                <xsl:for-each select="xsd:sequence/xsd:choice/xsd:sequence/xsd:choice/xsd:element">
+                                    <element>
+                                        <xsl:attribute name="name">
+                                            <xsl:value-of select="@name"/>
+                                        </xsl:attribute>
+
+                                        <xsl:choose>
+                                            <xsl:when test="@name='protocol-bindings'">
+                                                <xsl:attribute name="type">
+                                                    <xsl:value-of select="'javaee:string'"/>
+                                                </xsl:attribute>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:attribute name="type">
+                                                    <xsl:value-of select="@type"/>
+                                                </xsl:attribute>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+
+                                        <xsl:if test="@maxOccurs">
+                                            <xsl:attribute name="maxOccurs">
+                                                <xsl:value-of select="@maxOccurs"/>
+                                            </xsl:attribute>
+                                        </xsl:if>
+                                    </element>
+                                </xsl:for-each>
+                                
+                                 <xsl:for-each select="xsd:sequence/xsd:choice/xsd:sequence/xsd:sequence/xsd:element">
+                                    <element>
+                                        <xsl:attribute name="name">
+                                            <xsl:value-of select="@name"/>
+                                        </xsl:attribute>
+
+                                        <xsl:choose>
+                                            <xsl:when test="@name='protocol-bindings'">
+                                                <xsl:attribute name="type">
+                                                    <xsl:value-of select="'javaee:string'"/>
+                                                </xsl:attribute>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:attribute name="type">
+                                                    <xsl:value-of select="@type"/>
+                                                </xsl:attribute>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+
+                                        <xsl:if test="@maxOccurs">
+                                            <xsl:attribute name="maxOccurs">
+                                                <xsl:value-of select="@maxOccurs"/>
+                                            </xsl:attribute>
+                                        </xsl:if>
+                                    </element>
+                                </xsl:for-each>
+                                
                                 <xsl:for-each select="xsd:choice/xsd:element">
                                     <element>
                                         <xsl:attribute name="name">
