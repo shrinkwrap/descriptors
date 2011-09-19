@@ -1,20 +1,42 @@
-package org.jboss.shrinkwrap.descriptor.test.jsptaglibrary21;
+/*
+ * JBoss, Home of Professional Open Source
+ * Copyright 2011, Red Hat Middleware LLC, and individual contributors
+ * by the @authors tag. See the copyright.txt in the distribution for a
+ * full listing of individual contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.jboss.shrinkwrap.descriptor.test.jsptaglibrary20;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
+import java.util.logging.Logger;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.ejbjar31.EjbJarDescriptor;
-import org.jboss.shrinkwrap.descriptor.api.jsptaglibrary21.WebJsptaglibraryDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.jsptaglibrary20.WebJsptaglibraryDescriptor;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Before;
 import org.junit.Test;
 
-
-public class WebJsptaglibraryDescriptorTestCase
+/**
+ * 
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
+ */
+public class WebJspTagLibraryDescriptorTestCase
 {
+   private static final Logger log = Logger.getLogger(WebJspTagLibraryDescriptorTestCase.class.getName());
+   
    final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-DD hh:mm:ss");
    
    @Before
@@ -24,11 +46,11 @@ public class WebJsptaglibraryDescriptorTestCase
    }
    
    @Test
-   public void testGeneratedWebJspTagLibrary21Xml() throws Exception
+   public void testGeneratedWebJspTagLibrary20Xml() throws Exception
    {  
 	   WebJsptaglibraryDescriptor ejbJarGenerated = create()
             .addDefaultNamespaces()
-            .version("2.1")
+            .version("2.0")
             .description("description0")
             .description("description1")
             .displayName("display-name0")
@@ -96,9 +118,7 @@ public class WebJsptaglibraryDescriptorTestCase
 	            	.description("description19")
 	            	.name("name1")
 	            	.required("true")
-	            	.rtexprvalue("true")
-	            	.type("type0")
-	            	.getOrCreateDeferredValue().type("type1").up().up()
+	            	.up()
 	            .createAttribute()
 	            	.description("description20")
 	            	.description("description21")
@@ -191,40 +211,13 @@ public class WebJsptaglibraryDescriptorTestCase
            ;                     
       
       String webXmlGenerated = ejbJarGenerated.exportAsString();
-      String webXmlOriginal = getResourceContents("src/test/resources/test-gen-webjsptaglibrary21.xml");
+      String webXmlOriginal = getResourceContents("src/test/resources/test-gen-webjsptaglibrary20.xml");
            
+      log.info("Generated: " + webXmlGenerated);
+      log.info("Original: " + webXmlOriginal);
+      
       XmlAssert.assertIdentical(webXmlOriginal, webXmlGenerated);   
    }
-   
-//   @Test
-//   public void testInterceptors() throws Exception
-//   {  
-//      EjbJarDescriptor ejbJarGenerated = create()
-//            .addDefaultNamespaces()
-//            .version("3.1")
-//            .getOrCreateInterceptors()
-//               .createInterceptor().interceptorClass(" enterprise.annot_ovd_interceptor_ejb.NullChecker ").up()
-//               .up()
-//            .getOrCreateAssemblyDescriptor()
-//               .createInterceptorBinding()
-//                  .ejbName("*")
-//                  .interceptorClass(" enterprise.annot_ovd_interceptor_ejb.NullChecker ")
-//                  .up()
-//               .createInterceptorBinding()
-//                  .ejbName("StatelessSessionBean")
-//                  .excludeClassInterceptors(true)
-//                  .getOrCreateMethod()
-//                     .methodName("isOddNumber")
-//                  .up()
-//               .up()
-//            .up();
-//      
-//      String webXmlGenerated = ejbJarGenerated.exportAsString();
-//      String webXmlOriginal = getResourceContents("src/test/resources/test-orig-ejbjar31.xml");
-//      
-//      XmlAssert.assertIdentical(webXmlOriginal, webXmlGenerated);
-//   }
-   
    
    // -------------------------------------------------------------------------------------||
    // Helper Methods ----------------------------------------------------------------------||
