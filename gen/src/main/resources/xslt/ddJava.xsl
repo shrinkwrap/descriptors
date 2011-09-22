@@ -632,7 +632,7 @@
                         <xsl:variable name="vDataType" select="xdd:CheckDataType(@type)"/>
                         <xsl:choose>
                             <xsl:when test="$vDataType='Boolean'">
-                                <xsl:value-of select="concat('      type.', xdd:createCamelizedName(@name), '(true);', '&#10;')"/>
+                                <xsl:value-of select="concat('      type.', xdd:stripNumbersFromString(xdd:createCamelizedName(@name)), '(true);', '&#10;')"/>
                                 <xsl:value-of select="concat('      assertTrue(type.is', xdd:createPascalizedName(@name,''), '());', '&#10;')"/>
                                 <xsl:value-of select="concat('      type.remove', xdd:createPascalizedName(@name,''), '();', '&#10;')"/>
                                 <xsl:value-of select="concat('      assertFalse(type.is', xdd:createPascalizedName(@name,''), '());', '&#10;')"/>

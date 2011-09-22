@@ -240,8 +240,43 @@
               <srcFile>src/main/resources/xslt/metadataJBossEE5.xml</srcFile>
               <destFile>src/main/resources/xslt/ddJBossEE5.xml</destFile>
             </configuration>
+          </execution>          
+          
+          <!-- 
+            JBoss 6 deplyoment descriptor xslt transformation
+          -->
+          <execution>
+            <id>transform-to-metadata-jbossee6</id>
+            <goals>
+              <goal>many-to-one</goal>
+            </goals>
+            <configuration>
+              <xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate>
+              <srcDir>src/main/resources/xsd</srcDir>
+              <srcIncludes>**/*.xsd</srcIncludes>
+              <srcFile>src/main/resources/xslt/schemasJBossEE6.xml</srcFile>
+              <destFile>src/main/resources/xslt/metadataJBossEE6.xml</destFile>
+            </configuration>
           </execution>
           
+          <execution>
+            <id>transform-to-java-jbossee6</id>
+            <goals>
+              <goal>many-to-one</goal>
+            </goals>
+            <configuration>
+              <parameters>
+                <gOutputFolder>${output.folder.impl.jboss}</gOutputFolder>
+                <gOutputFolderApi>${output.folder.apl.jboss}</gOutputFolderApi>
+                <gOutputFolderTest>${output.folder.test.jboss}</gOutputFolderTest>                
+              </parameters>
+              <xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
+              <srcDir>src/main/resources/xslt</srcDir>
+              <srcIncludes>**/*.xml</srcIncludes>
+              <srcFile>src/main/resources/xslt/metadataJBossEE6.xml</srcFile>
+              <destFile>src/main/resources/xslt/ddJBossEE6.xml</destFile>
+            </configuration>
+          </execution>
         </executions>
         <dependencies>
           <dependency>
