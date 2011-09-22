@@ -548,8 +548,7 @@
         <xsl:param name="pIsEnum" as="xs:boolean"/>
         <xsl:param name="pIsAttribute" as="xs:boolean"/>
         <xsl:choose>
-            <xsl:when test="$pIsAttribute=true()">                
-                <xsl:message select="concat('********************************* print Enums', $pElementName)"/>
+            <xsl:when test="$pIsAttribute=true()">  
                 <xsl:value-of select="xdd:printSetAttribute($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
                 <xsl:value-of select="xdd:printSetEnumAttribute($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
                 <xsl:value-of select="xdd:printGetEnumAttribute($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
