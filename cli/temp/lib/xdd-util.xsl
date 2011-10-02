@@ -157,9 +157,6 @@
             <xsl:when test="$pText='xsd:integer'">
                 <xsl:sequence select="'Integer'"/>
             </xsl:when>
-            <xsl:when test="$pText='xsd:int'">
-                <xsl:sequence select="'Integer'"/>
-            </xsl:when>
             <xsl:when test="$pText='xsd:string'">
                 <xsl:sequence select="'String'"/>
             </xsl:when>
@@ -179,9 +176,6 @@
                 <xsl:sequence select="'Integer'"/>
             </xsl:when>
             <xsl:when test="$pText='integer'">
-                <xsl:sequence select="'Integer'"/>
-            </xsl:when>
-             <xsl:when test="$pText='int'">
                 <xsl:sequence select="'Integer'"/>
             </xsl:when>
             <xsl:when test="$pText='xsdStringType'">
