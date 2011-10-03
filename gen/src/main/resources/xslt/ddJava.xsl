@@ -371,7 +371,7 @@
                     <xsl:if test="position()!= last()">
                         <xsl:text>&#10;</xsl:text>
                     </xsl:if>
-                </xsl:for-each>
+                </xsl:for-each>                
                 <xsl:text>}</xsl:text>
                 <xsl:text>&#10;</xsl:text>
             </xsl:result-document>
@@ -590,6 +590,9 @@
         <xsl:variable name="vMaxOccurs" select="concat('-',  @maxOccurs)"/>
         <xsl:variable name="vElementName" select="concat('-',  @name)"/>
         <xsl:choose>
+            <xsl:when test="@type='text'">
+                
+            </xsl:when>
             <xsl:when test="@type='javaee:ejb-relationship-roleType' and position()=4"/>
             <xsl:otherwise>
                 <xsl:variable name="vMethodName" select="xdd:createPascalizedName(@name,'')"/>
@@ -811,6 +814,10 @@
         <xsl:value-of select="xdd:writeTypeCommentLines($pClassName, $pElementType, $pElementName, $pMaxOccurs, $pWriteAttribute, $pWriteInterface, $pIsGeneric, $pNodeNameLocal,$pIsAttribute, xdd:isEnumType($pElementType), xdd:isDataType($pElementType))"/>
         
         <xsl:choose>
+            <xsl:when test="$pElementType='text'">
+                <xsl:value-of select="xdd:printBodyText($vReturn, 'String', $vMethodName, $pNodeNameLocal, $pElementName, $vReturn, $pWriteInterface, false())"/>
+            </xsl:when>
+            
             <xsl:when test="$pElementType='javaee:emptyType' or $pElementType='javaee:ordering-othersType' or 
                             $pElementType='faces-config-ordering-othersType' or $pElementType='extensibleType'">
                 <xsl:value-of select="xdd:printEmptyBoolean($vReturn, 'Boolean', $vMethodName, $pNodeNameLocal, $pElementName, $vReturn, $pWriteInterface)"/>

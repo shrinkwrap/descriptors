@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ironjacamar xmlns="http://www.jboss.org/ironjacamar/schema"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://www.jboss.org/ironjacamar/schema http://www.jboss.org/ironjacamar/schema/ironjacamar_1_0.xsd">
+ xsi:schemaLocation="http://www.jboss.org/ironjacamar/schema file:/home/bfr/shrinkdesc/SHRINKDESC-93/descriptors/gen/src/main/resources/xsd/ironjacamar/ironjacamar_1_0.xsd">
     <bean-validation-groups>
         <bean-validation-group>bean-validation-group0</bean-validation-group>
         <bean-validation-group>bean-validation-group1</bean-validation-group>

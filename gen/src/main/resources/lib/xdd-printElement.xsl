@@ -265,11 +265,99 @@
 
     <!-- *********************************************************** -->
     <!-- *********************************************************** -->
+    <!-- ****** Body Text          ********************************* -->
+    <!-- *********************************************************** -->
+    <!-- *********************************************************** -->
+
+
+    <!-- *********************************************************** -->
+    <!-- ****** ENTRY FUNCTION - prints body text                *** -->
+    <!-- *********************************************************** -->
+    <xsl:function name="xdd:printBodyText">
+        <xsl:param name="pClassType"/>
+        <xsl:param name="pElementType"/>
+        <xsl:param name="pMethodName"/>
+        <xsl:param name="pNodeNameLocal"/>
+        <xsl:param name="pElementName"/>
+        <xsl:param name="pReturnTypeName"/>
+        <xsl:param name="pIsInterface" as="xs:boolean"/>
+        <xsl:param name="pIsEnum" as="xs:boolean"/>
+        <xsl:value-of select="xdd:printSetBodyText($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+        <xsl:value-of select="xdd:printGetBodyText($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+    </xsl:function>
+
+
+    <!-- ************************************************************* -->
+    <!-- ****** Function which writes the set Body Text            *** -->
+    <!-- ************************************************************* -->
+    <xsl:function name="xdd:printSetBodyText">
+        <xsl:param name="pClassType"/>
+        <xsl:param name="pElementType"/>
+        <xsl:param name="pMethodName"/>
+        <xsl:param name="pNodeNameLocal"/>
+        <xsl:param name="pElementName"/>
+        <xsl:param name="pReturnTypeName"/>
+        <xsl:param name="pIsInterface" as="xs:boolean"/>
+        <xsl:variable name="vSetBodyTextSignature" select="concat('   public ', $pClassType, ' text(String value)')"/>
+        <xsl:value-of select="concat('', '&#10;')"/>
+        <xsl:value-of select="concat('   /**', '&#10;')"/>
+        <xsl:value-of select="concat('    * Sets the body text for the element &lt;code&gt;', $pElementName,'&lt;/code&gt; &#10;')"/>
+        <xsl:value-of select="concat('    * @param ', xdd:checkForClassType(xdd:createCamelizedName($pElementName)), ' the value for the body text &lt;code&gt;', $pElementName,'&lt;/code&gt; &#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the current instance of &lt;code&gt;', $pReturnTypeName, '&lt;/code&gt; &#10;')"/>
+        <xsl:value-of select="concat('    */', '&#10;')"/>
+        <xsl:choose>
+            <xsl:when test="$pIsInterface=true()">
+                <xsl:value-of select="concat($vSetBodyTextSignature, ';&#10;')"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="concat($vSetBodyTextSignature, '&#10;')"/>
+                <xsl:value-of select="concat('   {', '&#10;')"/>
+                <xsl:value-of select="concat('      ', $pNodeNameLocal, '.text(value);', '&#10;')"/>
+                <xsl:value-of select="concat('      return this;', '&#10;')"/>
+                <xsl:value-of select="concat('   }', '&#10;')"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+
+
+
+    <!-- *********************************************************** -->
+    <!-- ****** Function which writes the Get Body Text          *** -->
+    <!-- *********************************************************** -->
+    <xsl:function name="xdd:printGetBodyText">
+        <xsl:param name="pClassType"/>
+        <xsl:param name="pElementType"/>
+        <xsl:param name="pMethodName"/>
+        <xsl:param name="pNodeNameLocal"/>
+        <xsl:param name="pElementName"/>
+        <xsl:param name="pReturnTypeName"/>
+        <xsl:param name="pIsInterface" as="xs:boolean"/>
+        <xsl:variable name="vGetSignature" select="concat('public ', xdd:createPascalizedName($pElementType,''), ' getText()')"/>
+        <xsl:value-of select="concat('', '&#10;')"/>
+        <xsl:value-of select="concat('   /**', '&#10;')"/>
+        <xsl:value-of select="concat('    * Returns the body text of the element &lt;code&gt;', $pElementName, '&lt;/code&gt; &#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the value defined for the text &lt;code&gt;', $pElementName, '&lt;/code&gt; &#10;')"/>
+        <xsl:value-of select="concat('    */', '&#10;')"/>
+        <xsl:choose>
+            <xsl:when test="$pIsInterface=true()">
+                <xsl:value-of select="concat('   ',$vGetSignature, ';&#10;')"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="concat('   ', $vGetSignature, '&#10;')"/>
+                <xsl:value-of select="concat('   {', '&#10;')"/>
+                <xsl:value-of select="concat('      return ', $pNodeNameLocal, '.getText();' , '&#10;')"/>
+                <xsl:value-of select="concat('   }', '&#10;')"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
+    
+    <!-- *********************************************************** -->
+    <!-- *********************************************************** -->
     <!-- ****** Attributes         ********************************* -->
     <!-- *********************************************************** -->
     <!-- *********************************************************** -->
-
-
+    
     <!-- *********************************************************** -->
     <!-- ****** ENTRY FUNCTION - prints attributes               *** -->
     <!-- *********************************************************** -->
@@ -403,8 +491,8 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
-    
+
+
     <!-- *********************************************************** -->
     <!-- ****** Function which writes the Getbbb Attribute  Body *** -->
     <!-- *********************************************************** -->
@@ -466,7 +554,7 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
+
 
     <!-- *********************************************************** -->
     <!-- ****** Function which writes the Getbooleab Attribute   *** -->
@@ -497,8 +585,8 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
-    
+
+
 
     <!-- *********************************************************** -->
     <!-- ****** Function which writes the Getbooleab Attribute   *** -->
@@ -589,7 +677,7 @@
         <xsl:param name="pIsEnum" as="xs:boolean"/>
         <xsl:param name="pIsAttribute" as="xs:boolean"/>
         <xsl:choose>
-            <xsl:when test="$pIsAttribute=true()">  
+            <xsl:when test="$pIsAttribute=true()">
                 <xsl:value-of select="xdd:printSetAttribute($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
                 <xsl:value-of select="xdd:printSetEnumAttribute($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
                 <xsl:value-of select="xdd:printGetEnumAttribute($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
