@@ -791,7 +791,7 @@
                             <xsl:value-of select="$vName"/>
                         </xsl:attribute>
                         <xsl:attribute name="type">
-                            <xsl:value-of select="'xsd:token'"/>
+                            <xsl:value-of select="'text'"/>
                         </xsl:attribute>
                     </element>
                 </xsl:for-each>
@@ -809,11 +809,37 @@
                     </include>
                 </xsl:for-each>
 
+                <xsl:for-each select="xs:complexContent/xs:extension[@base!='']">
+                    <xsl:variable name="vBase" select="@base"/>
+                    <xsl:for-each select="//xs:complexType[@name=$vBase]/xs:sequence/xs:element">
+                        <element>
+                            <xsl:attribute name="name">
+                                <xsl:value-of select="@name"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="type">
+                                <xsl:choose>
+                                    <xsl:when test="@type='boolean-presenceType'">
+                                        <xsl:value-of select="'javaee:emptyType'"/>
+                                    </xsl:when>
+                                    <xsl:when test="contains(@type, 'xs:')=true()">
+                                        <xsl:value-of select=" replace(@type, 'xs:', 'xsd:')"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:value-of select="concat($pNamespace, ':', @type)"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:attribute>
+                            <xsl:if test="@maxOccurs">
+                                <xsl:attribute name="maxOccurs">
+                                    <xsl:value-of select="@maxOccurs"/>
+                                </xsl:attribute>
+                            </xsl:if>
+                        </element>
+                    </xsl:for-each>
+                </xsl:for-each>
+
             </class>
         </xsl:for-each>
-
-        <xsl:for-each select="xs:complexContent/xs:extension[@base!='']"> </xsl:for-each>
-
     </xsl:template>
 
 
