@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources xmlns="http://www.jboss.org/ironjacamar/schema"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.jboss.org/ironjacamar/schema http://www.jboss.org/ironjacamar/schema/datasources_1_0.xsd">
+    <datasource jta="true" jndi-name="jndi-name1" pool-name="pool-name1" enabled="true" use-java-context="true" spy="false" use-ccm="true">
+        <connection-url>connection-url0</connection-url>
+        <driver-class>driver-class0</driver-class>
+        <datasource-class>datasource-class0</datasource-class>
+        <driver>driver0</driver>
+        <connection-property name="name1">
+        </connection-property>
+        <connection-property name="name3">
+        </connection-property>
+        <new-connection-sql>new-connection-sql0</new-connection-sql>
+        <transaction-isolation>TRANSACTION_READ_UNCOMMITTED</transaction-isolation>
+        <url-delimiter>url-delimiter0</url-delimiter>
+        <url-selector-strategy-class-name>url-selector-strategy-class-name0</url-selector-strategy-class-name>
+        <pool>
+            <min-pool-size>50</min-pool-size>
+            <max-pool-size>50</max-pool-size>
+            <prefill>false</prefill>
+            <use-strict-min>false</use-strict-min>
+            <flush-strategy>flush-strategy0</flush-strategy>
+        </pool>
+        <security>
+            <user-name>user-name0</user-name>
+            <password>password0</password>
+            <security-domain>security-domain0</security-domain>
+            <reauth-plugin class-name="class-name1">
+                <config-property name="name5">config-property0</config-property>
+                <config-property name="name7">config-property1</config-property>
+            </reauth-plugin>
+        </security>
+        <validation>
+            <valid-connection-checker class-name="class-name3">
+                <config-property name="name9">config-property2</config-property>
+                <config-property name="name11">config-property3</config-property>
+            </valid-connection-checker>
+            <check-valid-connection-sql>check-valid-connection-sql0</check-valid-connection-sql>
+            <validate-on-match>false</validate-on-match>
+            <background-validation>false</background-validation>
+            <background-validation-millis>50</background-validation-millis>
+            <use-fast-fail>false</use-fast-fail>
+            <stale-connection-checker class-name="class-name5">
+                <config-property name="name13">config-property4</config-property>
+                <config-property name="name15">config-property5</config-property>
+            </stale-connection-checker>
+            <exception-sorter class-name="class-name7">
+                <config-property name="name17">config-property6</config-property>
+                <config-property name="name19">config-property7</config-property>
+            </exception-sorter>
+        </validation>
+        <timeout>
+            <blocking-timeout-millis>50</blocking-timeout-millis>
+            <idle-timeout-minutes>50</idle-timeout-minutes>
+            <set-tx-query-timeout/>
+            <query-timeout>50</query-timeout>
+            <use-try-lock>50</use-try-lock>
+            <allocation-retry>50</allocation-retry>
+            <allocation-retry-wait-millis>50</allocation-retry-wait-millis>
+            <xa-resource-timeout>xa-resource-timeout0</xa-resource-timeout>
+        </timeout>
+        <statement>
+            <track-statements>true</track-statements>
+            <prepared-statement-cache-size>50</prepared-statement-cache-size>
+            <share-prepared-statements/>
+        </statement>
+    </datasource>
+    <datasource jta="true" jndi-name="jndi-name3" pool-name="pool-name3" enabled="true" use-java-context="true" spy="false" use-ccm="true">
+        <connection-url>connection-url1</connection-url>
+        <driver-class>driver-class1</driver-class>
+        <datasource-class>datasource-class1</datasource-class>
+        <driver>driver1</driver>
+        <connection-property name="name21">
+        </connection-property>
+        <connection-property name="name23">
+        </connection-property>
+        <new-connection-sql>new-connection-sql1</new-connection-sql>
+        <transaction-isolation>TRANSACTION_READ_UNCOMMITTED</transaction-isolation>
+        <url-delimiter>url-delimiter1</url-delimiter>
+        <url-selector-strategy-class-name>url-selector-strategy-class-name1</url-selector-strategy-class-name>
+        <pool>
+            <min-pool-size>50</min-pool-size>
+            <max-pool-size>50</max-pool-size>
+            <prefill>false</prefill>
+            <use-strict-min>false</use-strict-min>
+            <flush-strategy>flush-strategy1</flush-strategy>
+        </pool>
+        <security>
+            <user-name>user-name1</user-name>
+            <password>password1</password>
+            <security-domain>security-domain1</security-domain>
+            <reauth-plugin class-name="class-name9">
+                <config-property name="name25">config-property8</config-property>
+                <config-property name="name27">config-property9</config-property>
+            </reauth-plugin>
+        </security>
+        <validation>
+            <valid-connection-checker class-name="class-name11">
+                <config-property name="name29">config-property10</config-property>
+                <config-property name="name31">config-property11</config-property>
+            </valid-connection-checker>
+            <check-valid-connection-sql>check-valid-connection-sql1</check-valid-connection-sql>
+            <validate-on-match>false</validate-on-match>
+            <background-validation>false</background-validation>
+            <background-validation-millis>50</background-validation-millis>
+            <use-fast-fail>false</use-fast-fail>
+            <stale-connection-checker class-name="class-name13">
+                <config-property name="name33">config-property12</config-property>
+                <config-property name="name35">config-property13</config-property>
+            </stale-connection-checker>
+            <exception-sorter class-name="class-name15">
+                <config-property name="name37">config-property14</config-property>
+                <config-property name="name39">config-property15</config-property>
+            </exception-sorter>
+        </validation>
+        <timeout>
+            <blocking-timeout-millis>50</blocking-timeout-millis>
+            <idle-timeout-minutes>50</idle-timeout-minutes>
+            <set-tx-query-timeout/>
+            <query-timeout>50</query-timeout>
+            <use-try-lock>50</use-try-lock>
+            <allocation-retry>50</allocation-retry>
+            <allocation-retry-wait-millis>50</allocation-retry-wait-millis>
+            <xa-resource-timeout>xa-resource-timeout1</xa-resource-timeout>
+        </timeout>
+        <statement>
+            <track-statements>true</track-statements>
+            <prepared-statement-cache-size>50</prepared-statement-cache-size>
+            <share-prepared-statements/>
+        </statement>
+    </datasource>
+    <drivers>
+        <driver name="name41" module="module1" major-version="0" minor-verion="0">
+            <driver-class>driver-class2</driver-class>
+            <datasource-class>datasource-class2</datasource-class>
+            <xa-datasource-class>xa-datasource-class0</xa-datasource-class>
+        </driver>
+        <driver name="name43" module="module3" major-version="0" minor-verion="0">
+            <driver-class>driver-class3</driver-class>
+            <datasource-class>datasource-class3</datasource-class>
+            <xa-datasource-class>xa-datasource-class1</xa-datasource-class>
+        </driver>
+    </drivers>
+</datasources>

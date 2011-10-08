@@ -724,9 +724,9 @@
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:attribute>
-                        <xsl:if test="@maxOccurs">
+                        <xsl:if test="@maxOccurs='unbounded' or ../@maxOccurs='unbounded'">
                             <xsl:attribute name="maxOccurs">
-                                <xsl:value-of select="@maxOccurs"/>
+                                <xsl:value-of select="'unbounded'"/>
                             </xsl:attribute>
                         </xsl:if>
                     </element>
