@@ -206,6 +206,43 @@
             </configuration>
           </execution>
           
+          
+          <!-- 
+            J2ee 1.3 deplyoment descriptor xslt transformation
+          -->
+          <execution>
+            <id>transform-to-metadata-j2ee13</id>
+            <goals>
+              <goal>many-to-one</goal>
+            </goals>
+            <configuration>
+              <xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate>
+              <srcDir>src/main/resources/xsd</srcDir>
+              <srcIncludes>**/*.xsd</srcIncludes>
+              <srcFile>src/main/resources/xslt/schemasJ2ee13.xml</srcFile>
+              <destFile>src/main/resources/xslt/metadataJ2ee13.xml</destFile>
+            </configuration>
+          </execution>
+          
+          <execution>
+            <id>transform-to-java-j2ee13</id>
+            <goals>
+              <goal>many-to-one</goal>
+            </goals>
+            <configuration>
+              <parameters>
+                <gOutputFolder>${output.folder.impl.javaee}</gOutputFolder>
+                <gOutputFolderApi>${output.folder.apl.javaee}</gOutputFolderApi>
+                <gOutputFolderTest>${output.folder.test.javaee}</gOutputFolderTest>                
+              </parameters>
+              <xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
+              <srcDir>src/main/resources/xslt</srcDir>
+              <srcIncludes>**/*.xml</srcIncludes>
+              <srcFile>src/main/resources/xslt/metadataJ2ee13.xml</srcFile>
+              <destFile>src/main/resources/xslt/ddJavaJ2ee13.xml</destFile>
+            </configuration>
+          </execution>
+          
           <!-- 
             JBoss 5 deplyoment descriptor xslt transformation
           -->
