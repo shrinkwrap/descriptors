@@ -168,7 +168,7 @@ public class DataSourcesTestCase
     		
       
       String dataSourcesGeneratedXmlGenerated = dataSourcesGenerated.exportAsString();
-      String dataSourcesGeneratedXmlOriginal = getResourceContents("src/test/resources/test_gen_datasources_1_0.xml");
+      String dataSourcesGeneratedXmlOriginal = getResourceContents("src/test/resources/test-gen-datasources10.xml");
            
 //      System.out.println(dataSourcesGeneratedXmlGenerated);
       XmlAssert.assertIdentical(dataSourcesGeneratedXmlOriginal, dataSourcesGeneratedXmlGenerated);   

@@ -198,7 +198,7 @@ public class ResourceAdaptersTestCase
     		
       
       String resourceAdaptersXmlGenerated = resourceAdaptersGenerated.exportAsString();
-      String resourceAdaptersXmlOriginal = getResourceContents("src/test/resources/test_gen_resource_adapter_1_0.xml");
+      String resourceAdaptersXmlOriginal = getResourceContents("src/test/resources/test-gen-resourceadapter10.xml");
            
 //      System.out.println(resourceAdaptersXmlGenerated);
       XmlAssert.assertIdentical(resourceAdaptersXmlOriginal, resourceAdaptersXmlGenerated);   
