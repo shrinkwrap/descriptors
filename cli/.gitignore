@@ -5,3 +5,4 @@ target
 bin
 src/test/java/org/jboss/shrinkwrap/descriptor/api
 src/test/java/org/jboss/shrinkwrap/descriptor/impl
+log.txt
