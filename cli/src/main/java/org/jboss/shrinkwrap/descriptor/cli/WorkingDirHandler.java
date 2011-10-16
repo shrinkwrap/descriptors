@@ -1,6 +1,24 @@
+/*
+ * JBoss, Home of Professional Open Source
+ * Copyright 2011, Red Hat Middleware LLC, and individual contributors
+ * by the @authors tag. See the copyright.txt in the distribution for a
+ * full listing of individual contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.jboss.shrinkwrap.descriptor.cli;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,51 +26,91 @@ import java.io.OutputStream;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.jboss.shrinkwrap.descriptor.cli.attributes.BaseAttributes;
 
+/**
+ * Manages the working directory.
+ * <p>
+ * The class initializes working folder and extracts various files from the containing jar.
+ * <b>
+ * These files are required for the transformation process.
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ */
 public class WorkingDirHandler
 {
    private final static Log log = LogFactory.getLog(WorkingDirHandler.class);
-   private final static String TEMP_DIR = "temp";
    private final static String TEMP_XSLT_DIR = "xslt";
    private final static String TEMP_LIB_DIR = "lib";
    private final static String METADATA_XML = "metadata.xsl";
    private final static String DD_JAVA_XML = "ddJava.xsl";
+   private final static String CONTRIBUTORS_XML = "contributors.xml";
+   private final static String COPYRIGHT_XML = "copyright.xml";
 
    private String tmpDir;
    private String pathToMetaDataXml;
    private String pathToDDJavaXml;
+   private String pathToContributorsXml;
+   private String pathToCopyrightsXml;
+   private String pathToOriginalContextXml;
+   private String pathToTemporaryContextXml;
    private boolean isExternalMetadataXml = false;
    private boolean isExternalDDJavaXml = false;
 
-   WorkingDirHandler(final PropertyHandler properties) throws IOException
+   /**
+    * Creates a new instance.
+    * @param attributes the required transformation attributes.
+    * @throws IOException
+    */
+   public WorkingDirHandler(final BaseAttributes attributes) throws IOException
    {
-      tmpDir = properties.getWorkingDir(TEMP_DIR);
+      tmpDir = attributes.getTempDir();
+      pathToOriginalContextXml = attributes.getContextFile();
       pathToMetaDataXml = tmpDir + "/" + TEMP_XSLT_DIR + "/" + METADATA_XML;
       pathToDDJavaXml = tmpDir + "/" + TEMP_XSLT_DIR + "/" + DD_JAVA_XML;
-      isExternalMetadataXml = !properties.getPathToExternalMetadataXml("").isEmpty();
-      isExternalDDJavaXml = !properties.getPathToExternalDDJavaXml("").isEmpty();
-      
-      if(isExternalMetadataXml)
-      {
-         pathToMetaDataXml = properties.getPathToExternalMetadataXml("");
-      }
-      
-      if(isExternalDDJavaXml)
-      {
-         pathToDDJavaXml = properties.getPathToExternalDDJavaXml("");
-      }
-      
+      pathToContributorsXml = tmpDir + "/" + TEMP_XSLT_DIR + "/" + CONTRIBUTORS_XML;
+      pathToCopyrightsXml = tmpDir + "/" + TEMP_XSLT_DIR + "/" + COPYRIGHT_XML;
+      isExternalMetadataXml = false;
+      isExternalDDJavaXml = false;
       setupWorkingDir();
    }
+   
+   // TODO: Allow to define an own metadata.xsl and ddJava.xsl file
+//   WorkingDirHandler(final PropertyHandler properties) throws IOException
+//   {
+//      tmpDir = properties.getWorkingDir(TEMP_DIR);
+//      pathToMetaDataXml = tmpDir + "/" + TEMP_XSLT_DIR + "/" + METADATA_XML;
+//      pathToDDJavaXml = tmpDir + "/" + TEMP_XSLT_DIR + "/" + DD_JAVA_XML;
+//      isExternalMetadataXml = !properties.getPathToExternalMetadataXml("").isEmpty();
+//      isExternalDDJavaXml = !properties.getPathToExternalDDJavaXml("").isEmpty();
+//      
+//      if(isExternalMetadataXml)
+//      {
+//         pathToMetaDataXml = properties.getPathToExternalMetadataXml("");
+//      }
+//      
+//      if(isExternalDDJavaXml)
+//      {
+//         pathToDDJavaXml = properties.getPathToExternalDDJavaXml("");
+//      }
+//      
+//      setupWorkingDir();
+//   }
 
    /**
     * Setups up the working directory including writing of the XSLT files into this directory.
-    * @throws IOException thrown, if en error by writing of the XSLT files occurs.
+    * @throws IOException thrown, if an error by writing of the XSLT files occurs.
     */
    private void setupWorkingDir() throws IOException
    {
       createWorkingDir();
       extractStreamResources();
+      
+      log.info("Copying: " + pathToOriginalContextXml);
+      final File contextFile = new File(pathToOriginalContextXml);
+      final File tempContextFile = new File(tmpDir + "/" + TEMP_XSLT_DIR + "/" + contextFile.getName());
+      pathToTemporaryContextXml = tempContextFile.getAbsolutePath();
+      copy(contextFile, tempContextFile);
+      log.info("Copied to: " + pathToTemporaryContextXml);
    }
 
    /**
@@ -99,7 +157,22 @@ public class WorkingDirHandler
    {
       return pathToDDJavaXml;
    }
+   
+   /**
+    * Returns the path of to the copied context file.
+    * @return
+    */
+   public String getPathToTemporaryContextXml()
+   {
+      return pathToTemporaryContextXml;
+   }
 
+   public String getContextFileName()
+   {
+      final File contextFile = new File(pathToOriginalContextXml);
+      log.info("getContextFileName: " + contextFile.getName());
+      return contextFile.getName();
+   }
    /**
     * Creates the temporary directory, if not already created.
     * If null, then a default temporary directory with the specified value of the attribute <code>TEMP_DIR</code> will be
@@ -143,6 +216,8 @@ public class WorkingDirHandler
       if (!isExternalMetadataXml)
       {
          writeFile("/xslt/metadata.xsl", pathToMetaDataXml);
+         writeFile("/xslt/contributors.xml", pathToContributorsXml);
+         writeFile("/xslt/copyright.xml", pathToCopyrightsXml);
       }
       
       if (!isExternalDDJavaXml)
@@ -160,15 +235,15 @@ public class WorkingDirHandler
     * @param fileName the name of the written file.
     * @throws IOException thrown, if an error by writing the file occurs.
     */
-   private void writeFile(String resource, String fileName) throws IOException
+   private void writeFile(final String resource, final String fileName) throws IOException
    {
       final InputStream is = Main.class.getResourceAsStream(resource);
       try
       {
-         OutputStream os = new FileOutputStream(fileName);
+         final OutputStream os = new FileOutputStream(fileName);
          try
          {
-            byte[] buffer = new byte[4096];
+            final byte[] buffer = new byte[4096];
             for (int n; (n = is.read(buffer)) != -1;)
                os.write(buffer, 0, n);
          }
@@ -182,5 +257,28 @@ public class WorkingDirHandler
          is.close();
       }
    }
+
+   /**
+    * Copies src file to dst file. If the dst file does not exist, it is created.
+    * @param src the source file.
+    * @param dst the target file.
+    * @throws IOException
+    */
+   private void copy(final File src, final File dst) throws IOException
+   {
+      final InputStream in = new FileInputStream(src);
+      final OutputStream out = new FileOutputStream(dst);
+
+      // Transfer bytes from in to out
+      byte[] buf = new byte[1024];
+      int len;
+      while ((len = in.read(buf)) > 0)
+      {
+         out.write(buf, 0, len);
+      }
+      in.close();
+      out.close();
+   }
+
 
 }

@@ -6,7 +6,6 @@
     <xsl:param name="gOutputFolder" select="'../../../../../impl-gen/src/main/java'"/>
     <xsl:param name="gOutputFolderApi" select="'../../../../../api/src/main/java'"/>
     <xsl:param name="gOutputFolderTest" select="'../../../../../impl-gen/src/test/java'"/>
-    <xsl:param name="gOutputFolderService" select="''"/>
     <xsl:variable name="vLower" select="'abcdefghijklmnopqrstuvwxyz'"/>
     <xsl:variable name="vUpper" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
     <xsl:variable name="gDataTypes" select="//datatypes"/>
@@ -28,7 +27,6 @@
         <xsl:call-template name="GenerateImplClasses"/>
         <xsl:call-template name="GenerateTestClasses"/>
         <xsl:call-template name="GeneratePackageInfos"/>
-        <xsl:call-template name="GenerateServiceFiles"/>
     </xsl:template>
 
 
@@ -137,45 +135,9 @@
         </xsl:for-each>
     </xsl:template>
 
-    <!-- ****************************************************** -->
-    <!-- ****** Template which generates the descriptors  ***** -->
-    <!-- ****************************************************** -->
-    <xsl:template name="GenerateServiceFiles">
-        <xsl:for-each select="//descriptors/descriptor">
-            <xsl:call-template name="WriteServiceFiles">
-                <xsl:with-param name="pDescriptor" select="."/>
-            </xsl:call-template>
-        </xsl:for-each>
-    </xsl:template>
 
     <!-- ******************************************************* -->
-    <!-- ****** Template which generates the service files ***** -->
-    <!-- ******************************************************* -->
-    <xsl:template name="WriteServiceFiles">
-        <xsl:param name="pDescriptor" select="."/>
-
-        <xsl:if test="$gOutputFolderService != ''">
-            <xsl:variable name="vPackage" select="./@packageApi"/>
-            <xsl:variable name="vSchema" select=" substring-after(@schemaName, '../xsd/')"/>
-            <xsl:variable name="vInterfaceName" select="xdd:createPascalizedName($pDescriptor/@schemaName, 'Descriptor')"/>
-            <xsl:variable name="vFileName" select="concat($gOutputFolderService, '/' , $vPackage, '.' , $vInterfaceName)"/>
-            <xsl:message select="concat('Generating service file: ', $vFileName)"/>
-
-            <xsl:result-document href="{$vFileName}">
-                <xsl:variable name="vPackageImpl" select="@packageImpl"/>
-                <xsl:variable name="vClassnameImpl" select="xdd:createPascalizedName($pDescriptor/@schemaName, 'DescriptorImpl')"/>
-                <xsl:variable name="vImplClass" select="concat($vPackageImpl, '.' , $vClassnameImpl)"/>
-                <xsl:value-of select="concat('implClass=', $vImplClass, '&#10;')"/>
-                <xsl:value-of select="concat('importerClass=', 'org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomNodeDescriptorImporterImpl', '&#10;')"/>
-                <xsl:value-of select="concat('defaultName=', 'default.xml', '&#10;')"/>
-            </xsl:result-document>
-
-        </xsl:if>
-    </xsl:template>
-
-
-    <!-- ******************************************************* -->
-    <!-- ****** Template which generates the interfaces   ****** -->
+    <!-- ****** Template which generates the interfaces ****** -->
     <!-- ******************************************************* -->
     <xsl:template name="GenerateGroups">
         <xsl:param name="pTypeName"/>
@@ -280,30 +242,43 @@
     <!-- ****** Template which generates the test classes  **** -->
     <!-- ****************************************************** -->
     <xsl:template name="GenerateTestClasses">
-        <xsl:if test="$gOutputFolderTest != ''">
-            <xsl:for-each select="//classes/class">
-                <xsl:if test="xdd:isGenerateClassTrue(@packageApi)">
-                    <xsl:call-template name="WriteTestClasses">
-                        <xsl:with-param name="pClass" select="."/>
-                        <xsl:with-param name="pPackage" select="@packageImpl"/>
-                        <xsl:with-param name="pName" select="@name"/>
-                        <xsl:with-param name="pIsDescriptor" select="'false'"/>
-                    </xsl:call-template>
-                </xsl:if>
-            </xsl:for-each>
+        <xsl:for-each select="//classes/class">
+            <xsl:if test="xdd:isGenerateClassTrue(@packageApi)">
+                <xsl:call-template name="WriteTestClasses">
+                    <xsl:with-param name="pClass" select="."/>
+                    <xsl:with-param name="pPackage" select="@packageImpl"/>
+                    <xsl:with-param name="pName" select="@name"/>
+                    <xsl:with-param name="pIsDescriptor" select="'false'"/>
+                </xsl:call-template>
+            </xsl:if>
+        </xsl:for-each>
 
-            <xsl:for-each select="//descriptors/descriptor">
-                <xsl:variable name="vPackageApi" select="@packageApi"/>
-                <xsl:if test="xdd:isGenerateClassTrue(@packageApi)">
-                    <xsl:call-template name="WriteTestClasses">
-                        <xsl:with-param name="pClass" select="."/>
-                        <xsl:with-param name="pPackage" select="@packageImpl"/>
-                        <xsl:with-param name="pName" select="xdd:createPascalizedName(@schemaName, 'Descriptor')"/>
-                        <xsl:with-param name="pIsDescriptor" select="'true'"/>
-                    </xsl:call-template>
-                </xsl:if>
-            </xsl:for-each>
-        </xsl:if>
+        <xsl:for-each select="//descriptors/descriptor">
+            <xsl:variable name="vPackageApi" select="@packageApi"/>
+            <xsl:if test="xdd:isGenerateClassTrue(@packageApi)">
+                <xsl:call-template name="WriteTestClasses">
+                    <xsl:with-param name="pClass" select="."/>
+                    <xsl:with-param name="pPackage" select="@packageImpl"/>
+                    <xsl:with-param name="pName" select="xdd:createPascalizedName(@schemaName, 'Descriptor')"/>
+                    <xsl:with-param name="pIsDescriptor" select="'true'"/>
+                </xsl:call-template>
+            </xsl:if>
+        </xsl:for-each>
+
+    </xsl:template>
+
+    <!-- ****************************************************** -->
+    <!-- ****** Template which generates theimpl classes  * -->
+    <!-- ****************************************************** -->
+    <xsl:template name="GenerateTestDescriptorClasses">
+        <xsl:for-each select="//descriptors/descriptor">
+            <xsl:call-template name="WriteTestClasses">
+                <xsl:with-param name="pClass" select="."/>
+                <xsl:with-param name="pPackage" select="@packageImpl"/>
+                <xsl:with-param name="pName" select="xdd:createPascalizedName(@schemaName, 'Descriptor')"/>
+            </xsl:call-template>
+        </xsl:for-each>
+
     </xsl:template>
 
     <!-- ******************************************************* -->
@@ -376,7 +351,7 @@
                 <xsl:text> implements Child&lt;T&gt;, </xsl:text>
                 <xsl:value-of select="xdd:createPascalizedName($vInterfaceName, '&lt;T&gt;')"/>
                 <xsl:text>&#10;</xsl:text>
-                <xsl:text>{</xsl:text>
+                <xsl:text>{</xsl:text> 
                 <xsl:text>&#10;</xsl:text>
                 <xsl:value-of select=" xdd:writeAttribute('T', 't', true())"/>
                 <xsl:value-of select=" xdd:writeAttribute('Node', 'childNode', false())"/>
@@ -615,7 +590,6 @@
         <xsl:variable name="vMaxOccurs" select="concat('-',  @maxOccurs)"/>
         <xsl:variable name="vElementName" select="concat('-',  @name)"/>
         <xsl:choose>
-            <xsl:when test="@type='text'"> </xsl:when>
             <xsl:when test="@type='javaee:ejb-relationship-roleType' and position()=4"/>
             <xsl:otherwise>
                 <xsl:variable name="vMethodName" select="xdd:createPascalizedName(@name,'')"/>
@@ -694,9 +668,12 @@
                     <xsl:when test="xdd:isDataType(@type) and (@maxOccurs = 'unbounded' or $pIsMaxOccursUnbounded=true())">
                         <xsl:variable name="vDataType" select="xdd:CheckDataType(@type)"/>
                         <xsl:choose>
-                            <xsl:when test="$vDataType='Integer'"> </xsl:when>
-                            <xsl:when test="$vDataType='Long'"> </xsl:when>
-                            <xsl:when test="$vDataType='java.util.Date'"> </xsl:when>
+                            <xsl:when test="$vDataType='Integer'">
+                            </xsl:when>
+                            <xsl:when test="$vDataType='Long'">
+                            </xsl:when>
+                            <xsl:when test="$vDataType='java.util.Date'">
+                            </xsl:when>
                             <xsl:otherwise>
                                 <xsl:value-of select="concat('      type.', xdd:createCamelizedName(xdd:checkForClassType(@name)), '(&quot;value1&quot;);', '&#10;')"/>
                                 <xsl:value-of select="concat('      type.', xdd:createCamelizedName(xdd:checkForClassType(@name)), '(&quot;value2&quot;);', '&#10;')"/>
@@ -832,32 +809,28 @@
         <xsl:variable name="vReturn" select=" xdd:getReturnType($pClassName, $pIsGeneric)"/>
 
         <xsl:value-of select="xdd:writeTypeCommentLines($pClassName, $pElementType, $pElementName, $pMaxOccurs, $pWriteAttribute, $pWriteInterface, $pIsGeneric, $pNodeNameLocal,$pIsAttribute, xdd:isEnumType($pElementType), xdd:isDataType($pElementType))"/>
-
+        
         <xsl:choose>
-            <xsl:when test="$pElementType='text'">
-                <xsl:value-of select="xdd:printBodyText($vReturn, 'String', $vMethodName, $pNodeNameLocal, $pElementName, $vReturn, $pWriteInterface, false())"/>
-            </xsl:when>
-
             <xsl:when test="$pElementType='javaee:emptyType' or $pElementType='javaee:ordering-othersType' or 
                             $pElementType='faces-config-ordering-othersType' or $pElementType='extensibleType'">
                 <xsl:value-of select="xdd:printEmptyBoolean($vReturn, 'Boolean', $vMethodName, $pNodeNameLocal, $pElementName, $vReturn, $pWriteInterface)"/>
             </xsl:when>
-
+            
             <xsl:when test="xdd:isEnumType($pElementType)">
                 <xsl:value-of select="xdd:printEnums($vReturn, $pElementType, $vMethodName, $pNodeNameLocal, $pElementName, $vReturn, $pWriteInterface, xdd:isEnumType($pElementType), $pIsAttribute)"/>
             </xsl:when>
-
+            
             <xsl:when test="$pIsAttribute">
                 <xsl:variable name="vDataType" select="xdd:CheckDataType($pElementType)"/>
                 <xsl:value-of select="xdd:printAttributes($vReturn, $vDataType, $vMethodName, $pNodeNameLocal, $pElementName, $vReturn, $pWriteInterface, xdd:isEnumType($pElementType))"/>
             </xsl:when>
-
+            
             <xsl:when test="xdd:isDataType($pElementType)">
                 <xsl:variable name="vDataType" select="xdd:CheckDataType($pElementType)"/>
-
+                
                 <xsl:value-of select="xdd:printDataType($vReturn, $vDataType, $vMethodName, $pNodeNameLocal, $pElementName, $vReturn, $pWriteInterface, contains($pMaxOccurs, 'unbounded'))"/>
             </xsl:when>
-
+            
             <xsl:when test="$pIsGeneric=false()">
                 <xsl:variable name="vReturnGeneric" select="xdd:createPascalizedName($pElementType, concat('&lt;', $pClassName, '&gt;'))"/>
                 <xsl:variable name="vElementTypeGeneric" select="xdd:createPascalizedName($pElementType, concat('&lt;', $pClassName, '&gt;'))"/>
@@ -870,7 +843,7 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
-
+            
             <xsl:otherwise>
                 <!-- it is a complex type -->
                 <xsl:variable name="vReturnGeneric" select="xdd:createPascalizedName($pElementType, concat('&lt;', $pClassName, '&lt;T&gt;&gt;'))"/>
@@ -918,11 +891,11 @@
                 <xsl:value-of select="xdd:writeDynamicImports($vName, $vNamespace, $pIsApi)"/>
             </xsl:for-each>
         </xsl:for-each>
-
+        
         <xsl:for-each select="$gEnums/enum[@name=$pClassName and @namespace=$pNamespace]">
             <xsl:value-of select="xdd:writeDynamicImport(@type, $pIsApi)"/>
         </xsl:for-each>
-
+        
     </xsl:function>
 
     <!-- ****************************************************** -->

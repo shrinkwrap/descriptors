@@ -13,41 +13,36 @@
   <modelVersion>4.0.0</modelVersion>
 
   <!-- Artifact Configuration -->
-  <artifactId>shrinkwrap-descriptors-cli</artifactId>
-  <name>ShrinkWrap Descriptors CLI</name>
-  <description>Command Line Interface for generating the ShrinkWrap Descriptors</description>
-  
+  <artifactId>shrinkwrap-descriptors-cli-test</artifactId>
+  <name>ShrinkWrap Descriptors CLI Tests</name>
+  <description>Handcoded Tests for the Generated Implementation via CLI</description>
+
   <build>
     <plugins>
-
+      
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <configuration>
-          <archive>
-            <manifest>
-              <addClasspath>true</addClasspath>
-            </manifest>
-          </archive>
-        </configuration>
+        <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+        <artifactId>shrinkwrap-descriptors-cli-plugin</artifactId>
+        <version>${project.version}</version>
+        <executions>
+          <execution>
+            <phase>validate</phase>
+            <goals>
+              <goal>transform</goal>
+            </goals>
+            <configuration>
+              <contextFile>${basedir}/src/test/resources/xml/schemasIronJacamar.xml</contextFile>
+              <targetDir>../src/main/java</targetDir> <!-- relative to tempDir -->
+              <testDir>../src/test/java</testDir>     <!-- relative to tempDir -->
+              <serviceDir>../src/main/resources/META-INF/services</serviceDir>  <!-- relative to tempDir -->
+              <tempDir>${basedir}/temp</tempDir>             
+              <trace>true</trace>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
-
-      <!-- builds 1 jar including all dependencies. Enter mvn assembly:assembly -->
-      <plugin>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <version>2.2.1</version>
-        <configuration>
-          <descriptorRefs>
-            <descriptorRef>jar-with-dependencies</descriptorRef>
-          </descriptorRefs>
-          <archive>
-            <manifest>
-              <mainClass>org.jboss.shrinkwrap.descriptor.cli.Main</mainClass>
-            </manifest>
-          </archive>
-        </configuration>
-      </plugin>
-
+      
+      <!-- Surefire -->
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
@@ -60,14 +55,21 @@
       </plugin>
     </plugins>
   </build>
-
-
+  
   <dependencies>
 
     <dependency>
       <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-      <artifactId>shrinkwrap-descriptors-api-base</artifactId>
+      <artifactId>shrinkwrap-descriptors-impl-javaee</artifactId>
       <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+      <artifactId>shrinkwrap-descriptors-impl-jboss</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
     </dependency>
 
     <dependency>
@@ -86,33 +88,9 @@
 
     <dependency>
       <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-      <artifactId>shrinkwrap-descriptors-gen</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jboss.shrinkwrap.descriptors</groupId>
       <artifactId>shrinkwrap-descriptors-test-util</artifactId>
       <version>${project.version}</version>
       <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>saxon</groupId>
-      <artifactId>saxon</artifactId>
-      <version>8.7</version>
-    </dependency>
-
-    <dependency>
-      <groupId>commons-logging</groupId>
-      <artifactId>commons-logging</artifactId>
-      <version>1.1</version>
-    </dependency>
-
-    <dependency>
-      <groupId>uk.co.flamingpenguin.jewelcli</groupId>
-      <artifactId>jewelcli</artifactId>
-      <version>0.6</version>
     </dependency>
 
     <dependency>
@@ -122,5 +100,6 @@
     </dependency>
 
   </dependencies>
+
 
 </project>

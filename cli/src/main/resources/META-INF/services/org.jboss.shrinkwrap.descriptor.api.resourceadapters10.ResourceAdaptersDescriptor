@@ -1,3 +1,0 @@
-implClass=org.jboss.shrinkwrap.descriptor.impl.resourceadapters10.ResourceAdaptersDescriptorImpl
-importerClass=org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomNodeDescriptorImporterImpl
-defaultName=resourceadapters.xml

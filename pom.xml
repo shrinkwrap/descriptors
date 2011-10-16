@@ -63,10 +63,12 @@
     <module>impl-base</module>
     <module>impl-javaee</module>
     <module>impl-jboss</module>
-    <module>cli</module>
     <module>spi</module>
     <module>test</module>
     <module>test-util</module>
+    <module>cli</module>
+    <module>cli-plugin</module>
+    <module>cli-test</module>
   </modules>
 
   <!-- Plugin Configuration -->
