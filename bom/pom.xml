@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!--
+  vi:ts=2:sw=2:expandtab:
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- Model Version -->
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- Artifact Configuration -->
+  <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+  <artifactId>shrinkwrap-descriptors-bom</artifactId>
+  <version>1.2.0-alpha-2-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>ShrinkWrap Descriptors Bill of Materials</name>
+  <description>Centralized dependencyManagement for the ShrinkWrap Descriptors Project</description>
+
+
+  <!-- Properties -->
+  <properties>
+
+    <!-- Versioning -->
+
+  </properties>
+
+  <!-- Dependency Management -->
+  <dependencyManagement>
+  
+    <dependencies>
+      <dependency>
+        <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+        <artifactId>shrinkwrap-descriptors-api-base</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+     <dependency>
+        <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+        <artifactId>shrinkwrap-descriptors-api-javaee</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+        <artifactId>shrinkwrap-descriptors-api-jboss</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+        <artifactId>shrinkwrap-descriptors-gen</artifactId>
+        <version>${project.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+        <artifactId>shrinkwrap-descriptors-impl-base</artifactId>
+        <version>${project.version}</version>
+        <scope>runtime</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+        <artifactId>shrinkwrap-descriptors-impl-javaee</artifactId>
+        <version>${project.version}</version>
+        <scope>runtime</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+        <artifactId>shrinkwrap-descriptors-impl-jboss</artifactId>
+        <version>${project.version}</version>
+        <scope>runtime</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+        <artifactId>shrinkwrap-descriptors-spi</artifactId>
+        <version>${project.version}</version>
+        <scope>runtime</scope>
+      </dependency>
+    </dependencies>
+  
+  </dependencyManagement>
+  
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.0-beta-9</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+</project>
