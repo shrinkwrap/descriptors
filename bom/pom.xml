@@ -10,7 +10,7 @@
   <!-- Artifact Configuration -->
   <groupId>org.jboss.shrinkwrap.descriptors</groupId>
   <artifactId>shrinkwrap-descriptors-bom</artifactId>
-  <version>1.2.0-alpha-2-SNAPSHOT</version>
+  <version>1.2.0-alpha-2</version>
   <packaging>pom</packaging>
   <name>ShrinkWrap Descriptors Bill of Materials</name>
   <description>Centralized dependencyManagement for the ShrinkWrap Descriptors Project</description>
