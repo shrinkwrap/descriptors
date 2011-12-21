@@ -26,5 +26,27 @@
             <namespace name="xmlns:xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
             <namespace name="xsi:schemaLocation" value="http://www.jboss.com/xml/ns/javaee http://www.jboss.org/j2ee/schema/jboss-web_6_0.xsd"/>
         </schema>
+        
+        <schema generateClass="true" generateDDClass="true" namespace="ironjacamar" packageApi="org.jboss.shrinkwrap.descriptor.api.ironjacamar10" packageImpl="org.jboss.shrinkwrap.descriptor.impl.ironjacamar10" style='ironjacamar' name="../xsd/ironjacamar/ironjacamar_1_0.xsd">
+            <namespace name="xmlns" value="http://www.jboss.org/ironjacamar/schema"/>
+            <namespace name="xmlns:xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
+            <namespace name="xsi:schemaLocation" value="http://www.jboss.org/ironjacamar/schema http://www.jboss.org/ironjacamar/schema/ironjacamar_1_0.xsd"/>
+            <rootelement name="ironjacamar" type="ironjacamar:ironjacamarType"/>
+        </schema>        
+        
+        <schema generateClass="true" generateDDClass="true" namespace="datasources" packageApi="org.jboss.shrinkwrap.descriptor.api.datasources10" packageImpl="org.jboss.shrinkwrap.descriptor.impl.datasources10" style='ironjacamar' name="../xsd/ironjacamar/datasources_1_0.xsd">
+            <namespace name="xmlns" value="http://www.jboss.org/ironjacamar/schema"/>
+            <namespace name="xmlns:xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
+            <namespace name="xsi:schemaLocation" value="http://www.jboss.org/ironjacamar/schema http://www.jboss.org/ironjacamar/schema/datasources_1_0.xsd"/>
+            <rootelement name="datasources" type="datasources:datasourcesType"/>
+        </schema>
+        
+        <schema generateClass="true" generateDDClass="true" namespace="resourceadapters" packageApi="org.jboss.shrinkwrap.descriptor.api.resourceadapters10" packageImpl="org.jboss.shrinkwrap.descriptor.impl.resourceadapters10" style='ironjacamar' name="../xsd/ironjacamar/resource-adapters_1_0.xsd">
+            <namespace name="xmlns" value="http://www.jboss.org/ironjacamar/schema"/>
+            <namespace name="xmlns:xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
+            <namespace name="xsi:schemaLocation" value="http://www.jboss.org/ironjacamar/schema http://www.jboss.org/ironjacamar/schema/resource-adapters_1_0.xsd"/>
+            <rootelement name="resource-adapters" type="resourceadapters:resource-adaptersType"/>
+        </schema>
+        
     </schemas>
 </dd>

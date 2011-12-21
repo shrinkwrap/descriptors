@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<connector> 
+    <display-name>Sample Adapter</display-name> 
+    <description>It is a sample resource adapter</description> 
+    <vendor-name>JBoss</vendor-name> 
+    <spec-version>1.0</spec-version> 
+    <eis-type>Sample</eis-type> 
+    <version>1.0</version> 
+    <license> 
+        <description>description0</description> 
+        <license-required>true</license-required> 
+    </license> 
+    <resourceadapter>
+        <managedconnectionfactory-class>org.jboss.messaging.adapters.jcasample.SampleManagedConnectionFactory</managedconnectionfactory-class> 
+        <connectionfactory-interface>javax.resource.cci.ConnectionFactory</connectionfactory-interface> 
+        <connectionfactory-impl-class>org.jboss.messaging.adapters.jcasample.SampleConnectionFactory</connectionfactory-impl-class> 
+        <connection-interface>javax.resource.cci.Connection</connection-interface> 
+        <connection-impl-class>org.jboss.messaging.adapters.jcasample.SampleConnection</connection-impl-class> 
+        <transaction-support>NoTransaction</transaction-support> 
+        <config-property> 
+            <config-property-name>Input</config-property-name> 
+            <config-property-type>java.lang.String</config-property-type> 
+            <config-property-value>test messages</config-property-value> 
+        </config-property> 
+        <authentication-mechanism> 
+            <authentication-mechanism-type>BasicPassword</authentication-mechanism-type> 
+            <credential-interface>javax.resource.security.PasswordCredential</credential-interface> 
+        </authentication-mechanism> 
+        <reauthentication-support>false</reauthentication-support> 
+    </resourceadapter> 
+</connector> 
