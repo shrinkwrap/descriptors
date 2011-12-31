@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<antlib>
-    <taskdef name="transform" classname="org.jboss.shrinkwrap.descriptor.cli.plugin.ant.TransformationTask"/>
-</antlib>
-

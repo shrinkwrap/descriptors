@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<metadata>
+    <datatypes/>
+    <enums>
+        <enum documentation="" name="transaction-supportType" namespace="ironjacamar" package="org.jboss.ironjacamar.api" schemaName="/home/bfr/shrinkdesc/SHRINKDESC-92/descriptors/metadata-parser/src/test/resources/xsd/ironjacamar_1_0.xsd">
+            <value>NoTransaction</value>
+            <value>LocalTransaction</value>
+            <value>XATransaction</value>
+        </enum>
+    </enums>
+    <groups/>
+    <classes>
+        <class documentation="" name="config-propertyType" namespace="ironjacamar" packageApi="org.jboss.ironjacamar.api" packageImpl="org.jboss.ironjacamar.impl" schemaName="/home/bfr/shrinkdesc/SHRINKDESC-92/descriptors/metadata-parser/src/test/resources/xsd/ironjacamar_1_0.xsd">
+            <element name="name" type="xs:token"/>
+        </class>
+        <class documentation="" name="ironjacamarType" namespace="ironjacamar" packageApi="org.jboss.ironjacamar.api" packageImpl="org.jboss.ironjacamar.impl" schemaName="/home/bfr/shrinkdesc/SHRINKDESC-92/descriptors/metadata-parser/src/test/resources/xsd/ironjacamar_1_0.xsd">
+            <element maxOccurs="1" name="bean-validation-groups" type="bean-validation-groupsType"/>
+            <element maxOccurs="1" name="bootstrap-context" type="xs:token"/>
+            <element maxOccurs="unbounded" name="config-property" type="config-propertyType"/>
+            <element name="transaction-support" type="transaction-supportType"/>
+            <element maxOccurs="1" name="connection-definitions" type="connection-definitionsType"/>
+            <element maxOccurs="1" name="admin-objects" type="admin-objectsType"/>
+        </class>
+        <class documentation="" name="common-attribute" namespace="ironjacamar" packageApi="org.jboss.ironjacamar.api" packageImpl="org.jboss.ironjacamar.impl" schemaName="/home/bfr/shrinkdesc/SHRINKDESC-92/descriptors/metadata-parser/src/test/resources/xsd/ironjacamar_1_0.xsd">
+            <element name="class-name" type="xs:token"/>
+            <element name="jndi-name" type="xs:token"/>
+            <element name="enabled" type="xs:boolean"/>
+            <element name="use-java-context" type="xs:boolean"/>
+            <element name="pool-name" type="xs:token"/>
+        </class>
+        <class documentation="" name="admin-objectType" namespace="ironjacamar" packageApi="org.jboss.ironjacamar.api" packageImpl="org.jboss.ironjacamar.impl" schemaName="/home/bfr/shrinkdesc/SHRINKDESC-92/descriptors/metadata-parser/src/test/resources/xsd/ironjacamar_1_0.xsd">
+            <element maxOccurs="unbounded" name="config-property" type="config-propertyType"/>
+        </class>
+        <class documentation="" name="timeoutType" namespace="ironjacamar" packageApi="org.jboss.ironjacamar.api" packageImpl="org.jboss.ironjacamar.impl" schemaName="/home/bfr/shrinkdesc/SHRINKDESC-92/descriptors/metadata-parser/src/test/resources/xsd/ironjacamar_1_0.xsd">
+            <element name="blocking-timeout-millis" type="xs:nonNegativeInteger"/>
+            <element name="idle-timeout-minutes" type="xs:nonNegativeInteger"/>
+            <element maxOccurs="1" name="allocation-retry" type="xs:nonNegativeInteger"/>
+            <element maxOccurs="1" name="allocation-retry-wait-millis" type="xs:nonNegativeInteger"/>
+            <element maxOccurs="1" name="xa-resource-timeout" type="xs:nonNegativeInteger"/>
+        </class>
+        <class documentation="" name="validationType" namespace="ironjacamar" packageApi="org.jboss.ironjacamar.api" packageImpl="org.jboss.ironjacamar.impl" schemaName="/home/bfr/shrinkdesc/SHRINKDESC-92/descriptors/metadata-parser/src/test/resources/xsd/ironjacamar_1_0.xsd">
+            <element name="background-validation" type="xs:boolean"/>
+            <element name="background-validation-millis" type="xs:nonNegativeInteger"/>
+            <element name="use-fast-fail" type="xs:boolean"/>
+        </class>
+        <class documentation="" name="connection-definitionsType" namespace="ironjacamar" packageApi="org.jboss.ironjacamar.api" packageImpl="org.jboss.ironjacamar.impl" schemaName="/home/bfr/shrinkdesc/SHRINKDESC-92/descriptors/metadata-parser/src/test/resources/xsd/ironjacamar_1_0.xsd">
+            <element maxOccurs="unbounded" name="connection-definition" type="connection-defintionType"/>
+        </class>
+        <class documentation="" name="connection-defintionType" namespace="ironjacamar" packageApi="org.jboss.ironjacamar.api" packageImpl="org.jboss.ironjacamar.impl" schemaName="/home/bfr/shrinkdesc/SHRINKDESC-92/descriptors/metadata-parser/src/test/resources/xsd/ironjacamar_1_0.xsd">
+            <element maxOccurs="unbounded" name="config-property" type="config-propertyType"/>
+            <element maxOccurs="1" name="pool" type="poolType"/>
+            <element maxOccurs="1" name="xa-pool" type="xa-poolType"/>
+            <element maxOccurs="1" name="security" type="securityType"/>
+            <element maxOccurs="1" name="timeout" type="timeoutType"/>
+            <element maxOccurs="1" name="validation" type="validationType"/>
+            <element maxOccurs="1" name="recovery" type="recoverType"/>
+            <element name="use-ccm" type="xs:boolean"/>
+        </class>
+        <class documentation="" name="poolType" namespace="ironjacamar" packageApi="org.jboss.ironjacamar.api" packageImpl="org.jboss.ironjacamar.impl" schemaName="/home/bfr/shrinkdesc/SHRINKDESC-92/descriptors/metadata-parser/src/test/resources/xsd/ironjacamar_1_0.xsd">
+            <element name="min-pool-size" type="xs:nonNegativeInteger"/>
+            <element name="max-pool-size" type="xs:nonNegativeInteger"/>
+            <element name="prefill" type="xs:boolean"/>
+            <element maxOccurs="1" name="use-strict-min" type="xs:boolean"/>
+            <element maxOccurs="1" name="flush-strategy" type="xs:token"/>
+        </class>
+        <class documentation="" name="xa-poolType" namespace="ironjacamar" packageApi="org.jboss.ironjacamar.api" packageImpl="org.jboss.ironjacamar.impl" schemaName="/home/bfr/shrinkdesc/SHRINKDESC-92/descriptors/metadata-parser/src/test/resources/xsd/ironjacamar_1_0.xsd">
+            <element name="is-same-rm-override" type="xs:boolean"/>
+            <element name="interleaving" type="boolean-presenceType"/>
+            <element name="no-tx-separate-pools" type="boolean-presenceType"/>
+            <element name="pad-xid" type="xs:boolean"/>
+            <element name="wrap-xa-resource" type="xs:boolean"/>
+        </class>
+        <class documentation="" name="securityType" namespace="ironjacamar" packageApi="org.jboss.ironjacamar.api" packageImpl="org.jboss.ironjacamar.impl" schemaName="/home/bfr/shrinkdesc/SHRINKDESC-92/descriptors/metadata-parser/src/test/resources/xsd/ironjacamar_1_0.xsd">
+            <element maxOccurs="1" name="application" type="boolean-presenceType"/>
+            <element maxOccurs="1" name="security-domain" type="xs:token"/>
+            <element maxOccurs="1" name="security-domain-and-application" type="xs:token"/>
+        </class>
+        <class documentation="" name="admin-objectsType" namespace="ironjacamar" packageApi="org.jboss.ironjacamar.api" packageImpl="org.jboss.ironjacamar.impl" schemaName="/home/bfr/shrinkdesc/SHRINKDESC-92/descriptors/metadata-parser/src/test/resources/xsd/ironjacamar_1_0.xsd">
+            <element maxOccurs="unbounded" name="admin-object" type="admin-objectType"/>
+        </class>
+        <class documentation="" name="bean-validation-groupsType" namespace="ironjacamar" packageApi="org.jboss.ironjacamar.api" packageImpl="org.jboss.ironjacamar.impl" schemaName="/home/bfr/shrinkdesc/SHRINKDESC-92/descriptors/metadata-parser/src/test/resources/xsd/ironjacamar_1_0.xsd">
+            <element maxOccurs="unbounded" name="bean-validation-group" type="xs:token"/>
+        </class>
+        <class documentation="" name="recoverType" namespace="ironjacamar" packageApi="org.jboss.ironjacamar.api" packageImpl="org.jboss.ironjacamar.impl" schemaName="/home/bfr/shrinkdesc/SHRINKDESC-92/descriptors/metadata-parser/src/test/resources/xsd/ironjacamar_1_0.xsd">
+            <element maxOccurs="1" name="recover-credential" type="credentialType"/>
+            <element maxOccurs="1" name="recover-plugin" type="extensionType"/>
+            <element name="no-recovery" type="xs:boolean"/>
+        </class>
+        <class documentation="" name="extensionType" namespace="ironjacamar" packageApi="org.jboss.ironjacamar.api" packageImpl="org.jboss.ironjacamar.impl" schemaName="/home/bfr/shrinkdesc/SHRINKDESC-92/descriptors/metadata-parser/src/test/resources/xsd/ironjacamar_1_0.xsd">
+            <element name="config-property" type="config-propertyType"/>
+            <element name="class-name" type="xs:token"/>
+        </class>
+        <class documentation="" name="credentialType" namespace="ironjacamar" packageApi="org.jboss.ironjacamar.api" packageImpl="org.jboss.ironjacamar.impl" schemaName="/home/bfr/shrinkdesc/SHRINKDESC-92/descriptors/metadata-parser/src/test/resources/xsd/ironjacamar_1_0.xsd">
+            <element name="user-name" type="xs:token"/>
+            <element name="password" type="xs:token"/>
+            <element maxOccurs="1" name="security-domain" type="xs:token"/>
+        </class>
+    </classes>
+</metadata>

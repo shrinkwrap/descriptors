@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<!-- Parent -->
+	<parent>
+		<groupId>org.jboss.shrinkwrap.descriptors</groupId>
+		<artifactId>shrinkwrap-descriptors-parent</artifactId>
+		<version>1.2.0-SD92-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<!-- Model Version -->
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- Artifact Configuration -->
+	<artifactId>shrinkwrap-descriptors-metadata-parser-test</artifactId>
+	<name>ShrinkWrap Descriptors Metadata Parser Tests</name>
+	<description>Handcoded Tests for the generated descriptors via metadata plugin</description>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.jboss.shrinkwrap.descriptors</groupId>
+				<artifactId>shrinkwrap-descriptors-metadata-parser</artifactId>
+				<version>${project.version}</version>
+				<configuration>
+					<pathToXsd>${basedir}/src/test/resources/xsd/ironjacamar_1_0.xsd</pathToXsd>
+					<nameSpace>ironjacamar</nameSpace>
+					<packageApi>org.jboss.ironjacamar.api</packageApi>
+					<packageImpl>org.jboss.ironjacamar.impl</packageImpl>
+					<elementName>ironjacamar</elementName>
+					<elementType>ironjacamar:ironjacamarType</elementType>
+					<pathToApi>${basedir}/src/main/java</pathToApi>
+					<pathToImpl>${basedir}/src/main/java</pathToImpl>
+					<pathToTest>${basedir}/src/test/java</pathToTest>
+					<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
+					<verbose>true</verbose>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>parse</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.jboss.shrinkwrap.descriptors</groupId>
+				<artifactId>shrinkwrap-descriptors-metadata-parser</artifactId>
+				<version>${project.version}</version>
+				<configuration>
+					<pathToXsd>${basedir}/src/test/resources/xsd/datasources_1_0.xsd</pathToXsd>
+					<nameSpace>datasources</nameSpace>
+					<packageApi>org.jboss.datasources.api</packageApi>
+					<packageImpl>org.jboss.datasources.impl</packageImpl>
+					<elementName>datasources</elementName>
+					<elementType>datasources:datasourcesType</elementType>
+					<pathToApi>${basedir}/src/main/java</pathToApi>
+					<pathToImpl>${basedir}/src/main/java</pathToImpl>
+					<pathToTest>${basedir}/src/test/java</pathToTest>
+					<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
+					<verbose>true</verbose>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>parse</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+            <plugin>
+				<groupId>org.jboss.shrinkwrap.descriptors</groupId>
+				<artifactId>shrinkwrap-descriptors-metadata-parser</artifactId>
+				<version>${project.version}</version>
+				<configuration>
+					<pathToXsd>${basedir}/src/test/resources/xsd/resource-adapters_1_0.xsd</pathToXsd>
+					<nameSpace>resourceadapters</nameSpace>
+					<packageApi>org.jboss.resourceadapters.api</packageApi>
+					<packageImpl>org.jboss.resourceadapters.impl</packageImpl>
+					<elementName>resourceadapters</elementName>
+					<elementType>resourceadapters:resource-adaptersType</elementType>
+					<pathToApi>${basedir}/src/main/java</pathToApi>
+					<pathToImpl>${basedir}/src/main/java</pathToImpl>
+					<pathToTest>${basedir}/src/test/java</pathToTest>
+					<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
+					<verbose>true</verbose>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>parse</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<!-- Surefire -->
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<!-- Run in Java5; be build with a JDK6 compiler so ensure we don't use any JDK6 libs -->
+					<jvm>${env.JAVA5_HOME}/bin/java</jvm>
+					<!-- Speeeeeeed -->
+					<forkMode>once</forkMode>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.jboss.shrinkwrap.descriptors</groupId>
+			<artifactId>shrinkwrap-descriptors-impl-javaee</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.shrinkwrap.descriptors</groupId>
+			<artifactId>shrinkwrap-descriptors-impl-jboss</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.shrinkwrap.descriptors</groupId>
+			<artifactId>shrinkwrap-descriptors-impl-base</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.shrinkwrap.descriptors</groupId>
+			<artifactId>shrinkwrap-descriptors-impl-base</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.shrinkwrap.descriptors</groupId>
+			<artifactId>shrinkwrap-descriptors-metadata-parser</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.shrinkwrap.descriptors</groupId>
+			<artifactId>shrinkwrap-descriptors-test-util</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+
+</project>

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<metadata>
+    <datatypes>
+        <datatype mappedTo="xsd:token" name="dewey-versionType" namespace="javaee" schemaName="../xsd/javaee_6.xsd"/>
+        <datatype mappedTo="javaee:string" name="ejb-linkType" namespace="javaee" schemaName="../xsd/javaee_6.xsd"/>
+        <datatype mappedTo="javaee:jndi-nameType" name="ejb-ref-nameType" namespace="javaee" schemaName="../xsd/javaee_6.xsd"/>
+        <datatype mappedTo="javaee:fully-qualified-classType" name="env-entry-type-valuesType" namespace="javaee" schemaName="../xsd/javaee_6.xsd"/>
+        <datatype mappedTo="javaee:string" name="fully-qualified-classType" namespace="javaee" schemaName="../xsd/javaee_6.xsd"/>
+        <datatype mappedTo="javaee:string" name="java-identifierType" namespace="javaee" schemaName="../xsd/javaee_6.xsd"/>
+        <datatype mappedTo="javaee:string" name="java-typeType" namespace="javaee" schemaName="../xsd/javaee_6.xsd"/>
+        <datatype mappedTo="javaee:string" name="jdbc-urlType" namespace="javaee" schemaName="../xsd/javaee_6.xsd"/>
+        <datatype mappedTo="javaee:string" name="jndi-nameType" namespace="javaee" schemaName="../xsd/javaee_6.xsd"/>
+        <datatype mappedTo="javaee:fully-qualified-classType" name="homeType" namespace="javaee" schemaName="../xsd/javaee_6.xsd"/>
+        <datatype mappedTo="javaee:fully-qualified-classType" name="localType" namespace="javaee" schemaName="../xsd/javaee_6.xsd"/>
+        <datatype mappedTo="javaee:fully-qualified-classType" name="local-homeType" namespace="javaee" schemaName="../xsd/javaee_6.xsd"/>
+        <datatype mappedTo="javaee:string" name="pathType" namespace="javaee" schemaName="../xsd/javaee_6.xsd"/>
+        <datatype mappedTo="javaee:fully-qualified-classType" name="remoteType" namespace="javaee" schemaName="../xsd/javaee_6.xsd"/>
+        <datatype mappedTo="javaee:string" name="role-nameType" namespace="javaee" schemaName="../xsd/javaee_6.xsd"/>
+        <datatype mappedTo="javaee:xsdBooleanType" name="true-falseType" namespace="javaee" schemaName="../xsd/javaee_6.xsd"/>
+        <datatype mappedTo="javaee:fully-qualified-classType" name="message-destination-typeType" namespace="javaee" schemaName="../xsd/javaee_6.xsd"/>
+        <datatype mappedTo="javaee:string" name="message-destination-linkType" namespace="javaee" schemaName="../xsd/javaee_6.xsd"/>
+    </datatypes>
+    <enums>
+        <enum documentation="" name="ejb-ref-typeType" namespace="javaee" package="org.jboss.shrinkwrap.descriptor.api.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <value>Entity</value>
+            <value>Session</value>
+        </enum>
+        <enum documentation="" name="generic-booleanType" namespace="javaee" package="org.jboss.shrinkwrap.descriptor.api.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <value>true</value>
+            <value>false</value>
+            <value>yes</value>
+            <value>no</value>
+        </enum>
+        <enum documentation="" name="isolation-levelType" namespace="javaee" package="org.jboss.shrinkwrap.descriptor.api.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <value>TRANSACTION_READ_UNCOMMITTED</value>
+            <value>TRANSACTION_READ_COMMITTED</value>
+            <value>TRANSACTION_REPEATABLE_READ</value>
+            <value>TRANSACTION_SERIALIZABLE</value>
+        </enum>
+        <enum documentation="" name="persistence-context-typeType" namespace="javaee" package="org.jboss.shrinkwrap.descriptor.api.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <value>Transaction</value>
+            <value>Extended</value>
+        </enum>
+        <enum documentation="" name="res-authType" namespace="javaee" package="org.jboss.shrinkwrap.descriptor.api.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <value>Application</value>
+            <value>Container</value>
+        </enum>
+        <enum documentation="" name="res-sharing-scopeType" namespace="javaee" package="org.jboss.shrinkwrap.descriptor.api.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <value>Shareable</value>
+            <value>Unshareable</value>
+        </enum>
+        <enum documentation="" name="message-destination-usageType" namespace="javaee" package="org.jboss.shrinkwrap.descriptor.api.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <value>Consumes</value>
+            <value>Produces</value>
+            <value>ConsumesProduces</value>
+        </enum>
+    </enums>
+    <groups>
+        <class documentation="" name="descriptionGroup" namespace="javaee" package="org.jboss.shrinkwrap.descriptor.api.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <element attribute="false" maxOccurs="unbounded" name="description" type="javaee:descriptionType"/>
+            <element attribute="false" maxOccurs="unbounded" name="display-name" type="javaee:display-nameType"/>
+            <element attribute="false" maxOccurs="unbounded" name="icon" type="javaee:iconType"/>
+        </class>
+        <class documentation="" name="jndiEnvironmentRefsGroup" namespace="javaee" package="org.jboss.shrinkwrap.descriptor.api.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <element attribute="false" maxOccurs="unbounded" name="env-entry" type="javaee:env-entryType"/>
+            <element attribute="false" maxOccurs="unbounded" name="ejb-ref" type="javaee:ejb-refType"/>
+            <element attribute="false" maxOccurs="unbounded" name="ejb-local-ref" type="javaee:ejb-local-refType"/>
+            <element attribute="false" maxOccurs="unbounded" name="resource-ref" type="javaee:resource-refType"/>
+            <element attribute="false" maxOccurs="unbounded" name="resource-env-ref" type="javaee:resource-env-refType"/>
+            <element attribute="false" maxOccurs="unbounded" name="message-destination-ref" type="javaee:message-destination-refType"/>
+            <element attribute="false" maxOccurs="unbounded" name="persistence-context-ref" type="javaee:persistence-context-refType"/>
+            <element attribute="false" maxOccurs="unbounded" name="persistence-unit-ref" type="javaee:persistence-unit-refType"/>
+            <element attribute="false" maxOccurs="unbounded" name="post-construct" type="javaee:lifecycle-callbackType"/>
+            <element attribute="false" maxOccurs="unbounded" name="pre-destroy" type="javaee:lifecycle-callbackType"/>
+            <element attribute="false" maxOccurs="unbounded" name="data-source" type="javaee:data-sourceType"/>
+            <include name="javaee:service-refGroup"/>
+        </class>
+        <class documentation="" name="resourceGroup" namespace="javaee" package="org.jboss.shrinkwrap.descriptor.api.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <element attribute="false" name="lookup-name" type="javaee:xsdStringType"/>
+            <include name="javaee:resourceBaseGroup"/>
+        </class>
+        <class documentation="" name="resourceBaseGroup" namespace="javaee" package="org.jboss.shrinkwrap.descriptor.api.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <element attribute="false" name="mapped-name" type="javaee:xsdStringType"/>
+            <element attribute="false" maxOccurs="unbounded" name="injection-target" type="javaee:injection-targetType"/>
+        </class>
+    </groups>
+    <classes>
+        <class documentation="" name="data-sourceType" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee6" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <element name="description" type="javaee:descriptionType"/>
+            <element name="name" type="javaee:jndi-nameType"/>
+            <element name="class-name" type="javaee:fully-qualified-classType"/>
+            <element name="server-name" type="javaee:string"/>
+            <element name="port-number" type="javaee:xsdIntegerType"/>
+            <element name="database-name" type="javaee:string"/>
+            <element name="url" type="javaee:jdbc-urlType"/>
+            <element name="user" type="javaee:string"/>
+            <element name="password" type="javaee:string"/>
+            <element maxOccurs="unbounded" name="property" type="javaee:propertyType"/>
+            <element name="login-timeout" type="javaee:xsdIntegerType"/>
+            <element name="transactional" type="javaee:xsdBooleanType"/>
+            <element name="isolation-level" type="javaee:isolation-levelType"/>
+            <element name="initial-pool-size" type="javaee:xsdIntegerType"/>
+            <element name="max-pool-size" type="javaee:xsdIntegerType"/>
+            <element name="min-pool-size" type="javaee:xsdIntegerType"/>
+            <element name="max-idle-time" type="javaee:xsdIntegerType"/>
+            <element name="max-statements" type="javaee:xsdIntegerType"/>
+        </class>
+        <class documentation="" name="ejb-local-refType" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee6" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <element maxOccurs="unbounded" name="description" type="javaee:descriptionType"/>
+            <element name="ejb-ref-name" type="javaee:ejb-ref-nameType"/>
+            <element name="ejb-ref-type" type="javaee:ejb-ref-typeType"/>
+            <element name="local-home" type="javaee:local-homeType"/>
+            <element name="local" type="javaee:localType"/>
+            <element name="ejb-link" type="javaee:ejb-linkType"/>
+            <include name="javaee:resourceGroup"/>
+        </class>
+        <class documentation="" name="ejb-refType" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee6" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <element maxOccurs="unbounded" name="description" type="javaee:descriptionType"/>
+            <element name="ejb-ref-name" type="javaee:ejb-ref-nameType"/>
+            <element name="ejb-ref-type" type="javaee:ejb-ref-typeType"/>
+            <element name="home" type="javaee:homeType"/>
+            <element name="remote" type="javaee:remoteType"/>
+            <element name="ejb-link" type="javaee:ejb-linkType"/>
+            <include name="javaee:resourceGroup"/>
+        </class>
+        <class documentation="" name="env-entryType" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee6" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <element maxOccurs="unbounded" name="description" type="javaee:descriptionType"/>
+            <element name="env-entry-name" type="javaee:jndi-nameType"/>
+            <element name="env-entry-type" type="javaee:env-entry-type-valuesType"/>
+            <element name="env-entry-value" type="javaee:xsdStringType"/>
+            <include name="javaee:resourceGroup"/>
+        </class>
+        <class documentation="" name="iconType" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee6" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <element name="small-icon" type="javaee:pathType"/>
+            <element name="large-icon" type="javaee:pathType"/>
+        </class>
+        <class documentation="" name="injection-targetType" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee6" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <element name="injection-target-class" type="javaee:fully-qualified-classType"/>
+            <element name="injection-target-name" type="javaee:java-identifierType"/>
+        </class>
+        <class documentation="" name="lifecycle-callbackType" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee6" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <element name="lifecycle-callback-class" type="javaee:fully-qualified-classType"/>
+            <element name="lifecycle-callback-method" type="javaee:java-identifierType"/>
+        </class>
+        <class documentation="" name="listenerType" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee6" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <element name="listener-class" type="javaee:fully-qualified-classType"/>
+            <include name="javaee:descriptionGroup"/>
+        </class>
+        <class documentation="" name="param-valueType" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee6" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <element maxOccurs="unbounded" name="description" type="javaee:descriptionType"/>
+            <element name="param-name" type="javaee:string"/>
+            <element name="param-value" type="javaee:xsdStringType"/>
+        </class>
+        <class documentation="" name="persistence-context-refType" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee6" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <element maxOccurs="unbounded" name="description" type="javaee:descriptionType"/>
+            <element name="persistence-context-ref-name" type="javaee:jndi-nameType"/>
+            <element name="persistence-unit-name" type="javaee:string"/>
+            <element name="persistence-context-type" type="javaee:persistence-context-typeType"/>
+            <element maxOccurs="unbounded" name="persistence-property" type="javaee:propertyType"/>
+            <include name="javaee:resourceBaseGroup"/>
+        </class>
+        <class documentation="" name="propertyType" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee6" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <element name="name" type="javaee:xsdStringType"/>
+            <element name="value" type="javaee:xsdStringType"/>
+        </class>
+        <class documentation="" name="persistence-unit-refType" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee6" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <element maxOccurs="unbounded" name="description" type="javaee:descriptionType"/>
+            <element name="persistence-unit-ref-name" type="javaee:jndi-nameType"/>
+            <element name="persistence-unit-name" type="javaee:string"/>
+            <include name="javaee:resourceBaseGroup"/>
+        </class>
+        <class documentation="" name="resource-env-refType" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee6" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <element maxOccurs="unbounded" name="description" type="javaee:descriptionType"/>
+            <element name="resource-env-ref-name" type="javaee:jndi-nameType"/>
+            <element name="resource-env-ref-type" type="javaee:fully-qualified-classType"/>
+            <include name="javaee:resourceGroup"/>
+        </class>
+        <class documentation="" name="resource-refType" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee6" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <element maxOccurs="unbounded" name="description" type="javaee:descriptionType"/>
+            <element name="res-ref-name" type="javaee:jndi-nameType"/>
+            <element name="res-type" type="javaee:fully-qualified-classType"/>
+            <element name="res-auth" type="javaee:res-authType"/>
+            <element name="res-sharing-scope" type="javaee:res-sharing-scopeType"/>
+            <include name="javaee:resourceGroup"/>
+        </class>
+        <class documentation="" name="run-asType" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee6" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <element maxOccurs="unbounded" name="description" type="javaee:descriptionType"/>
+            <element name="role-name" type="javaee:role-nameType"/>
+        </class>
+        <class documentation="" name="security-roleType" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee6" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <element maxOccurs="unbounded" name="description" type="javaee:descriptionType"/>
+            <element name="role-name" type="javaee:role-nameType"/>
+        </class>
+        <class documentation="" name="security-role-refType" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee6" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <element maxOccurs="unbounded" name="description" type="javaee:descriptionType"/>
+            <element name="role-name" type="javaee:role-nameType"/>
+            <element name="role-link" type="javaee:role-nameType"/>
+        </class>
+        <class documentation="" name="message-destinationType" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee6" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <element name="message-destination-name" type="javaee:string"/>
+            <element name="mapped-name" type="javaee:xsdStringType"/>
+            <element name="lookup-name" type="javaee:xsdStringType"/>
+            <include name="javaee:descriptionGroup"/>
+        </class>
+        <class documentation="" name="message-destination-refType" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.javaee6" packageImpl="org.jboss.shrinkwrap.descriptor.impl.javaee6" schemaName="../xsd/javaee_6.xsd">
+            <element maxOccurs="unbounded" name="description" type="javaee:descriptionType"/>
+            <element name="message-destination-ref-name" type="javaee:jndi-nameType"/>
+            <element name="message-destination-type" type="javaee:message-destination-typeType"/>
+            <element name="message-destination-usage" type="javaee:message-destination-usageType"/>
+            <element name="message-destination-link" type="javaee:message-destination-linkType"/>
+            <include name="javaee:resourceGroup"/>
+        </class>
+    </classes>
+</metadata>
