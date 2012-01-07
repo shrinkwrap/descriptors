@@ -53,17 +53,37 @@ public class ElementFilter implements Filter
          {
             final Element parentElementWithName = (Element) parentNodeWithName;
             final String groupOrClassName = MetadataUtil.getAttributeValue(parentElementWithName, "name");
+            
+            boolean isUnbounded = false;
+            final Element p = (Element) parent.getParentNode();            
+            if (p != null && XsdElementEnum.choice.isTagNameEqual(p.getTagName())) 
+            {
+               final String maxOccurs = MetadataUtil.getAttributeValue(p, "maxOccurs");
+               if(maxOccurs != null && !maxOccurs.equals("1"))
+               {
+                  isUnbounded = true;
+               }
+            }
+            
             if(groupOrClassName != null)
             {
                if (XsdElementEnum.group.isTagNameEqual(parentElementWithName.getTagName())) 
                {
                   final MetadataElement groupElement = new MetadataElement(element);
+                  if (isUnbounded)
+                  {
+                     groupElement.setMaxOccurs("unbounded");
+                  }
                   metadata.addGroupElement(groupOrClassName, groupElement);
                   return true;
                }
                else
                {
                   final MetadataElement classElement = new MetadataElement(element);
+                  if (isUnbounded)
+                  {
+                     classElement.setMaxOccurs("unbounded");
+                  }
                   metadata.addClassElement(groupOrClassName, classElement);
                   return true;
                }

@@ -24,83 +24,128 @@
 				<groupId>org.jboss.shrinkwrap.descriptors</groupId>
 				<artifactId>shrinkwrap-descriptors-metadata-parser</artifactId>
 				<version>${project.version}</version>
-				<configuration>
-					<pathToXsd>${basedir}/src/test/resources/xsd/ironjacamar_1_0.xsd</pathToXsd>
-					<nameSpace>ironjacamar</nameSpace>
-					<packageApi>org.jboss.ironjacamar.api</packageApi>
-					<packageImpl>org.jboss.ironjacamar.impl</packageImpl>
-					<elementName>ironjacamar</elementName>
-					<elementType>ironjacamar:ironjacamarType</elementType>
-					<pathToApi>${basedir}/src/main/java</pathToApi>
-					<pathToImpl>${basedir}/src/main/java</pathToImpl>
-					<pathToTest>${basedir}/src/test/java</pathToTest>
-					<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
-					<verbose>true</verbose>
-				</configuration>
+
 				<executions>
 					<execution>
+						<id>execution1</id>
 						<phase>validate</phase>
+						<configuration>
+							<pathToXsd>${basedir}/src/test/resources/xsd/ironjacamar_1_0.xsd</pathToXsd>
+							<nameSpace>ironjacamar</nameSpace>
+							<packageApi>org.jboss.ironjacamar.api</packageApi>
+							<packageImpl>org.jboss.ironjacamar.impl</packageImpl>
+							<elementName>ironjacamar</elementName>
+							<elementType>ironjacamar:ironjacamarType</elementType>
+							<pathToApi>${basedir}/src/main/java</pathToApi>
+							<pathToImpl>${basedir}/src/main/java</pathToImpl>
+							<pathToTest>${basedir}/src/test/java</pathToTest>
+							<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
+							<verbose>true</verbose>
+						</configuration>
 						<goals>
 							<goal>parse</goal>
 						</goals>
 					</execution>
-				</executions>
-			</plugin>
-			
-			<plugin>
-				<groupId>org.jboss.shrinkwrap.descriptors</groupId>
-				<artifactId>shrinkwrap-descriptors-metadata-parser</artifactId>
-				<version>${project.version}</version>
-				<configuration>
-					<pathToXsd>${basedir}/src/test/resources/xsd/datasources_1_0.xsd</pathToXsd>
-					<nameSpace>datasources</nameSpace>
-					<packageApi>org.jboss.datasources.api</packageApi>
-					<packageImpl>org.jboss.datasources.impl</packageImpl>
-					<elementName>datasources</elementName>
-					<elementType>datasources:datasourcesType</elementType>
-					<pathToApi>${basedir}/src/main/java</pathToApi>
-					<pathToImpl>${basedir}/src/main/java</pathToImpl>
-					<pathToTest>${basedir}/src/test/java</pathToTest>
-					<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
-					<verbose>true</verbose>
-				</configuration>
-				<executions>
+
 					<execution>
+						<id>execution2</id>
 						<phase>validate</phase>
+						<configuration>
+							<pathToXsd>${basedir}/src/test/resources/xsd/datasources_1_0.xsd</pathToXsd>
+							<nameSpace>datasources</nameSpace>
+							<packageApi>org.jboss.datasources.api</packageApi>
+							<packageImpl>org.jboss.datasources.impl</packageImpl>
+							<elementName>datasources</elementName>
+							<elementType>datasources:datasourcesType</elementType>
+							<pathToApi>${basedir}/src/main/java</pathToApi>
+							<pathToImpl>${basedir}/src/main/java</pathToImpl>
+							<pathToTest>${basedir}/src/test/java</pathToTest>
+							<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
+							<verbose>true</verbose>
+						</configuration>
 						<goals>
 							<goal>parse</goal>
 						</goals>
 					</execution>
+
+					<execution>
+						<id>execution3</id>
+						<phase>validate</phase>
+						<configuration>
+							<pathToXsd>${basedir}/src/test/resources/xsd/resource-adapters_1_0.xsd</pathToXsd>
+							<nameSpace>resourceadapters</nameSpace>
+							<packageApi>org.jboss.resourceadapters.api</packageApi>
+							<packageImpl>org.jboss.resourceadapters.impl</packageImpl>
+							<elementName>resource-adapters</elementName>
+							<elementType>resourceadapters:resource-adaptersType</elementType>
+							<pathToApi>${basedir}/src/main/java</pathToApi>
+							<pathToImpl>${basedir}/src/main/java</pathToImpl>
+							<pathToTest>${basedir}/src/test/java</pathToTest>
+							<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
+							<verbose>true</verbose>
+						</configuration>
+						<goals>
+							<goal>parse</goal>
+						</goals>
+					</execution>
+
 				</executions>
 			</plugin>
 
-            <plugin>
-				<groupId>org.jboss.shrinkwrap.descriptors</groupId>
-				<artifactId>shrinkwrap-descriptors-metadata-parser</artifactId>
-				<version>${project.version}</version>
-				<configuration>
-					<pathToXsd>${basedir}/src/test/resources/xsd/resource-adapters_1_0.xsd</pathToXsd>
-					<nameSpace>resourceadapters</nameSpace>
-					<packageApi>org.jboss.resourceadapters.api</packageApi>
-					<packageImpl>org.jboss.resourceadapters.impl</packageImpl>
-					<elementName>resourceadapters</elementName>
-					<elementType>resourceadapters:resource-adaptersType</elementType>
-					<pathToApi>${basedir}/src/main/java</pathToApi>
-					<pathToImpl>${basedir}/src/main/java</pathToImpl>
-					<pathToTest>${basedir}/src/test/java</pathToTest>
-					<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
-					<verbose>true</verbose>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>validate</phase>
-						<goals>
-							<goal>parse</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.jboss.shrinkwrap.descriptors</groupId> -->
+<!-- 				<artifactId>shrinkwrap-descriptors-metadata-parser</artifactId> -->
+<!-- 				<version>${project.version}</version> -->
+<!-- 				<configuration> -->
+<!-- 					<pathToXsd>${basedir}/src/test/resources/xsd/resource-adapters_1_0.xsd</pathToXsd> -->
+<!-- 					<nameSpace>resourceadapters</nameSpace> -->
+<!-- 					<packageApi>org.jboss.resourceadapters.api</packageApi> -->
+<!-- 					<packageImpl>org.jboss.resourceadapters.impl</packageImpl> -->
+<!-- 					<elementName>resourceadapters</elementName> -->
+<!-- 					<elementType>resourceadapters:resource-adaptersType</elementType> -->
+<!-- 					<pathToApi>${basedir}/src/main/java</pathToApi> -->
+<!-- 					<pathToImpl>${basedir}/src/main/java</pathToImpl> -->
+<!-- 					<pathToTest>${basedir}/src/test/java</pathToTest> -->
+<!-- 					<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices> -->
+<!-- 					<verbose>true</verbose> -->
+<!-- 				</configuration> -->
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<phase>validate</phase> -->
+<!-- 						<goals> -->
+<!-- 							<goal>parse</goal> -->
+<!-- 						</goals> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+<!-- 			</plugin> -->
+
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.jboss.shrinkwrap.descriptors</groupId> -->
+<!-- 				<artifactId>shrinkwrap-descriptors-metadata-parser</artifactId> -->
+<!-- 				<version>${project.version}</version> -->
+<!-- 				<configuration> -->
+<!-- 					<pathToXsd>${basedir}/src/test/resources/xsd/resource-adapters_1_0.xsd</pathToXsd> -->
+<!-- 					<nameSpace>resourceadapters</nameSpace> -->
+<!-- 					<packageApi>org.jboss.resourceadapters.api</packageApi> -->
+<!-- 					<packageImpl>org.jboss.resourceadapters.impl</packageImpl> -->
+<!-- 					<elementName>resourceadapters</elementName> -->
+<!-- 					<elementType>resourceadapters:resource-adaptersType</elementType> -->
+<!-- 					<pathToApi>${basedir}/src/main/java</pathToApi> -->
+<!-- 					<pathToImpl>${basedir}/src/main/java</pathToImpl> -->
+<!-- 					<pathToTest>${basedir}/src/test/java</pathToTest> -->
+<!-- 					<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices> -->
+<!-- 					<verbose>true</verbose> -->
+<!-- 				</configuration> -->
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<phase>validate</phase> -->
+<!-- 						<goals> -->
+<!-- 							<goal>parse</goal> -->
+<!-- 						</goals> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+<!-- 			</plugin> -->
+
 			<!-- Surefire -->
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>

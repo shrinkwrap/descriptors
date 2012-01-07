@@ -29,6 +29,12 @@ public class ComplexTypeFilter implements Filter
               dataType.setNamespace(metadata.getCurrentNamespace());
               dataType.setSchemaName(metadata.getCurrentSchmema());
               metadata.getDataTypeList().add(dataType);
+              
+              if (dataTypeName.toLowerCase().contains("boolean"))
+              {
+                 dataType.setMappedTo("javaee:emptyType");
+              }
+              
               return true;
     	  }    	  
       }

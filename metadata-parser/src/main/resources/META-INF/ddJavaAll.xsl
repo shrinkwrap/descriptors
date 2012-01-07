@@ -1009,6 +1009,7 @@
     <!-- ****************************************************** -->
     <xsl:function name="xdd:CheckDataType" as="xs:string">
         <xsl:param name="pTypeName"/>
+<!--         <xsl:message select="concat('xdd:CheckDataType: ', $pTypeName)"/> -->
         <xsl:choose>
             <xsl:when test=" starts-with($pTypeName, 'xsd:')">
                 <xsl:sequence select="xdd:getJavaDataType($pTypeName)"/>

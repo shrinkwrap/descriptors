@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 
 <datasources xmlns="http://www.jboss.org/ironjacamar/schema"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="http://www.jboss.org/ironjacamar/schema http://www.jboss.org/ironjacamar/schema/datasources_1_0.xsd">
+ -->
+ 
+<datasources>
     <datasource jta="true" jndi-name="jndi-name1" pool-name="pool-name1" enabled="true" use-java-context="true" spy="false" use-ccm="true">
         <connection-url>connection-url0</connection-url>
         <driver-class>driver-class0</driver-class>

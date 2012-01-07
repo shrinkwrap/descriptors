@@ -127,6 +127,7 @@ public class Metadata
    
    public void addGroupReference(final String groupName, final MetadataElement groupReference)
    {
+	  groupReference.setRef(getNamespaceValue(groupReference.getRef()));
       for (MetadataClass item: groupList)
       {
          if (item.getName().equals(groupName))
@@ -168,7 +169,7 @@ public class Metadata
    
    public void addClassReference(final String className, final MetadataElement classReference)
    {
-	   classReference.setType(getNamespaceValue(classReference.getType()));
+	  classReference.setRef(getNamespaceValue(classReference.getRef()));
       for (MetadataClass item: classList)
       {
          if (item.getName().equals(className))
@@ -187,9 +188,32 @@ public class Metadata
       classList.add(newItem);
    }
    
+
+   public void preResolveDataTypes()
+   {
+      for (MetadataClass metadataClass: classList)
+      {
+         for (MetadataElement element: metadataClass.getElements())
+         {  
+            for (MetadataType dataType: getDataTypeList())
+            {
+               final String str = dataType.getNamespace() + ":" + dataType.getName();
+               if (str.equals(element.getType()))
+               {
+                  element.setType(dataType.getMappedTo());
+               }
+            }
+         }
+      }
+   }
+   
+   //----------------------------------------------------------------------------------------------------------||
+   //-- Private Methods ---------------------------------------------------------------------------------------||
+   //----------------------------------------------------------------------------------------------------------||
+   
    private String getNamespaceValue(final String value)
    {
-	   	if (value == null || value.contains(":"))
+	   	if (value == null || value.contains(":") || value.equals("text"))
 	  	 {
 	  		 return value;
 	  	 }
@@ -198,4 +222,5 @@ public class Metadata
 	  		 return getCurrentNamespace() + ":" + value;
 	  	 }
    }
+   
 }

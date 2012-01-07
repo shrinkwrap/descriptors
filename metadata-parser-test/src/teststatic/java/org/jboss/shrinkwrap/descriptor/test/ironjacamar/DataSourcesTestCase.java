@@ -26,7 +26,7 @@ public class DataSourcesTestCase
    public void testGeneratedDataSourcesXml() throws Exception
    {  
 	   DatasourcesDescriptor dataSourcesGenerated = create()
-        .addDefaultNamespaces()
+        .addDefaultNamespaces()      
         .createDatasource()
             	.jta(true).jndiName("jndi-name1").poolName("pool-name1")
             	.enabled(true).useJavaContext(true).spy(false).useCcm(true)

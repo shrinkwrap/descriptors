@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 
 <resource-adapters xmlns="http://www.jboss.org/ironjacamar/schema"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="http://www.jboss.org/ironjacamar/schema http://www.jboss.org/ironjacamar/schema/resource-adapters_1_0.xsd">
+ -->
+ 
+<resource-adapters>
     <resource-adapter>
         <archive>archive0</archive>
         <bean-validation-groups>

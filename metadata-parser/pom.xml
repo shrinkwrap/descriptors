@@ -33,32 +33,32 @@
 				</configuration>
 			</plugin>
 
-			<plugin>
-				<groupId>org.jboss.shrinkwrap.descriptors</groupId>
-				<artifactId>shrinkwrap-descriptors-metadata-parser</artifactId>
-				<version>${project.version}</version>
-				<configuration>
-					<pathToXsd>${basedir}/src/test/resources/xsd/ironjacamar_1_0.xsd</pathToXsd>
-					<nameSpace>ironjacamar</nameSpace>
-					<packageApi>org.jboss.ironjacamar.api</packageApi>
-					<packageImpl>org.jboss.ironjacamar.impl</packageImpl>
-					<elementName>ironjacamar</elementName>
-					<elementType>ironjacamar:ironjacamarType</elementType>
-					<pathToApi>src1/java</pathToApi>
-					<pathToImpl>src1/java</pathToImpl>
-					<pathToTest>src1/test</pathToTest>
-					<pathToServices>src1/services</pathToServices>
-					<verbose>true</verbose>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>generate-test-sources</phase>
-						<goals>
-							<goal>parse</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.jboss.shrinkwrap.descriptors</groupId> -->
+<!-- 				<artifactId>shrinkwrap-descriptors-metadata-parser</artifactId> -->
+<!-- 				<version>${project.version}</version> -->
+<!-- 				<configuration> -->
+<!-- 					<pathToXsd>${basedir}/src/test/resources/xsd/ironjacamar_1_0.xsd</pathToXsd> -->
+<!-- 					<nameSpace>ironjacamar</nameSpace> -->
+<!-- 					<packageApi>org.jboss.ironjacamar.api</packageApi> -->
+<!-- 					<packageImpl>org.jboss.ironjacamar.impl</packageImpl> -->
+<!-- 					<elementName>ironjacamar</elementName> -->
+<!-- 					<elementType>ironjacamar:ironjacamarType</elementType> -->
+<!-- 					<pathToApi>src1/java</pathToApi> -->
+<!-- 					<pathToImpl>src1/java</pathToImpl> -->
+<!-- 					<pathToTest>src1/test</pathToTest> -->
+<!-- 					<pathToServices>src1/services</pathToServices> -->
+<!-- 					<verbose>true</verbose> -->
+<!-- 				</configuration> -->
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<phase>generate-test-sources</phase> -->
+<!-- 						<goals> -->
+<!-- 							<goal>parse</goal> -->
+<!-- 						</goals> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+<!-- 			</plugin> -->
 
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>

@@ -18,9 +18,11 @@ import org.jboss.shrinkwrap.descriptor.metadata.filter.AttributeGroupFilter;
 import org.jboss.shrinkwrap.descriptor.metadata.filter.ComplexTypeFilter;
 import org.jboss.shrinkwrap.descriptor.metadata.filter.ElementFilter;
 import org.jboss.shrinkwrap.descriptor.metadata.filter.EnumFilter;
+import org.jboss.shrinkwrap.descriptor.metadata.filter.ExtensionFilter;
 import org.jboss.shrinkwrap.descriptor.metadata.filter.Filter;
 import org.jboss.shrinkwrap.descriptor.metadata.filter.GroupFilter;
 import org.jboss.shrinkwrap.descriptor.metadata.filter.RestrictionFilter;
+import org.jboss.shrinkwrap.descriptor.metadata.filter.SimpleContentFilter;
 import org.jboss.shrinkwrap.descriptor.metadata.xslt.XsltTransformer;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -87,6 +89,8 @@ public class MetadataParser
         filterList.add(new AttributeGroupFilter());
         filterList.add(new RestrictionFilter());
         filterList.add(new ComplexTypeFilter());
+        filterList.add(new SimpleContentFilter());
+        filterList.add(new ExtensionFilter());
 
         metadata.setCurrentNamespace(nameSpace);
         metadata.setCurrentSchmema(pathToXsd);
@@ -107,6 +111,8 @@ public class MetadataParser
 
         traverseLevel(walker);
 
+        metadata.preResolveDataTypes();
+        
         if (pathToMetadata != null) {
             new DomWriter().write(metadata, pathToMetadata);
         }

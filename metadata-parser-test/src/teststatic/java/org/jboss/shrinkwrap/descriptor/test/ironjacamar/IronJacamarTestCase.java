@@ -121,7 +121,7 @@ public class IronJacamarTestCase
       String ironJacamarXmlGenerated = ironJacamarGenerated.exportAsString();
       String ironJacamarXmlOriginal = getResourceContents("src/test/resources/test-gen-ironjacamar.xml");
            
-      System.out.println(ironJacamarXmlGenerated);
+//      System.out.println(ironJacamarXmlGenerated);
       XmlAssert.assertIdentical(ironJacamarXmlOriginal, ironJacamarXmlGenerated);   
    }
    

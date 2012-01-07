@@ -180,9 +180,12 @@ public class DomWriter
                elType.setValue(element.getType());
                childElement.setAttributeNode(elType);
                
-               final Attr elAttribute = doc.createAttribute("attribute");
-               elAttribute.setValue(Boolean.toString(element.getIsAttribute()));
-               childElement.setAttributeNode(elAttribute);
+               if (element.getIsAttribute() == true)
+               {
+	               final Attr elAttribute = doc.createAttribute("attribute");
+	               elAttribute.setValue(Boolean.toString(element.getIsAttribute()));
+	               childElement.setAttributeNode(elAttribute);
+               }
                
                if (element.getMaxOccurs() != null)
                {
@@ -255,6 +258,13 @@ public class DomWriter
                   final Attr elMaxOccurs = doc.createAttribute("maxOccurs");
                   elMaxOccurs.setValue(element.getMaxOccurs());
                   childElement.setAttributeNode(elMaxOccurs);
+               }
+               
+               if (element.getIsAttribute() == true)
+               {
+	               final Attr elAttribute = doc.createAttribute("attribute");
+	               elAttribute.setValue(Boolean.toString(element.getIsAttribute()));
+	               childElement.setAttributeNode(elAttribute);
                }
                
                classElement.appendChild(childElement);
