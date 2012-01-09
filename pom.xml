@@ -66,10 +66,8 @@
     <module>spi</module>
     <module>test</module>
     <module>test-util</module>
-    <module>cli</module>
-    <module>cli-plugin</module>
-    <module>cli-test</module>
     <module>metadata-parser</module>
+    <module>metadata-parser-test</module>
   </modules>
 
   <!-- Plugin Configuration -->

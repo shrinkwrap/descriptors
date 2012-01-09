@@ -26,6 +26,11 @@ public class AttributeFilter implements Filter
                if (XsdElementEnum.group.isTagNameEqual(parentElementWithName.getTagName())) 
                {
                   final MetadataElement groupElement = new MetadataElement(element);
+                  String type = MetadataUtil.getAttributeValue(element, "type");
+                  if (type == null)
+                  {
+                     groupElement.setType("xsd:string");
+                  }
                   groupElement.setIsAttribute(true);
                   metadata.addGroupElement(groupOrClassName, groupElement);
                   return true;
@@ -33,6 +38,11 @@ public class AttributeFilter implements Filter
                else if (XsdElementEnum.attributeGroup.isTagNameEqual(parentElementWithName.getTagName())) 
                {
                   final MetadataElement groupElement = new MetadataElement(element);
+                  String type = MetadataUtil.getAttributeValue(element, "type");
+                  if (type == null)
+                  {
+                     groupElement.setType("xsd:string");
+                  }
                   groupElement.setIsAttribute(true);
                   metadata.addGroupElement(groupOrClassName, groupElement);
                   return true;
@@ -48,6 +58,11 @@ public class AttributeFilter implements Filter
                      }
                   
                      final MetadataElement classElement = new MetadataElement(element);
+                     String type = MetadataUtil.getAttributeValue(element, "type");
+                     if (type == null)
+                     {
+                        classElement.setType("xsd:string");
+                     }
                      classElement.setIsAttribute(true);
                      metadata.addClassElement(groupOrClassName, classElement);
                      return true;

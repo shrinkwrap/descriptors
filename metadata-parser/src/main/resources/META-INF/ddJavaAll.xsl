@@ -195,7 +195,7 @@
     <!-- ******************************************************* -->
     <xsl:template name="WriteInterface2">
         <xsl:param name="pClassNode" select="."/>
-        <xsl:variable name="vClassname" select="xdd:createPascalizedName($pClassNode/@name, '')"/>
+        <xsl:variable name="vClassname" select="xdd:createPascalizedName(xdd:checkForClassType($pClassNode/@name), '')"/>
         <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolderApi, @packageApi, $vClassname, 'java')"/>
         <xsl:if test="$vClassname=''">
             <xsl:value-of select="'cannot process'"/>: <xsl:value-of select=" name()"/>: <xsl:value-of select="position()"/>
@@ -313,7 +313,7 @@
         <xsl:param name="pDescriptor" select="."/>
         <xsl:variable name="vPackage" select="./@packageApi"/>
         <xsl:variable name="vSchema" select=" substring-after(@schemaName, '../xsd/')"/>
-        <xsl:variable name="vClassname" select="xdd:createPascalizedName($pDescriptor/@schemaName, 'Descriptor')"/>
+        <xsl:variable name="vClassname" select="xdd:createPascalizedName(xdd:checkForClassType($pDescriptor/@schemaName), 'Descriptor')"/>
         <xsl:message select="concat('Generating Descriptor Api: ', $vClassname)"/>
         <xsl:if test="$vClassname">
             <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolderApi, $vPackage, $vClassname, 'java')"/>
@@ -355,8 +355,8 @@
     <xsl:template name="WriteImplClasses">
         <xsl:param name="pClass" select="."/>
         <xsl:variable name="vPackage" select="@packageImpl"/>
-        <xsl:variable name="vInterfaceName" select="xdd:createPascalizedName($pClass/@name, '')"/>
-        <xsl:variable name="vClassnameImpl" select="xdd:createPascalizedName($pClass/@name, 'Impl')"/>
+        <xsl:variable name="vInterfaceName" select="xdd:createPascalizedName(xdd:checkForClassType($pClass/@name), '')"/>
+        <xsl:variable name="vClassnameImpl" select="xdd:createPascalizedName(xdd:checkForClassType($pClass/@name), 'Impl')"/>
         <xsl:message select="concat('Generating Implementation Class: ', $vClassnameImpl)"/>
         <xsl:if test="$vClassnameImpl">
             <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolder, $vPackage, $vClassnameImpl, 'java')"/>
@@ -477,9 +477,9 @@
         <xsl:param name="pIsDescriptor"/>
         <xsl:variable name="vPackage" select="$pPackage"/>
         <xsl:variable name="vNodeName" select="$pName"/>
-        <xsl:variable name="vInterfaceName" select="xdd:createPascalizedName($pName, '')"/>
-        <xsl:variable name="vClassnameImpl" select="xdd:createPascalizedName($pName, 'Impl')"/>
-        <xsl:variable name="vTestClassname" select="xdd:createPascalizedName($pName, 'ImplTestCase')"/>
+        <xsl:variable name="vInterfaceName" select="xdd:createPascalizedName(xdd:checkForClassType($pName), '')"/>
+        <xsl:variable name="vClassnameImpl" select="xdd:createPascalizedName(xdd:checkForClassType($pName), 'Impl')"/>
+        <xsl:variable name="vTestClassname" select="xdd:createPascalizedName(xdd:checkForClassType($pName), 'ImplTestCase')"/>
         <xsl:message select="concat('Generating Test Class: ', $vTestClassname)"/>
         <xsl:if test="$vTestClassname">
             <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolderTest, $vPackage, $vTestClassname, 'java')"/>
@@ -683,10 +683,10 @@
                                 <xsl:value-of select="concat('      assertNull(type.get', xdd:createPascalizedName(@name,''), '());', '&#10;')"/>
                             </xsl:when>
                             <xsl:otherwise>
-                                <xsl:value-of select="concat('      type.', xdd:createCamelizedName(xdd:checkForClassType(@name)), '(&quot;test&quot;);', '&#10;')"/>
-                                <xsl:value-of select="concat('      assertEquals(type.get', xdd:createPascalizedName(xdd:checkForClassType(@name),''), '(), &quot;test&quot;);', '&#10;')"/>
-                                <xsl:value-of select="concat('      type.remove', xdd:createPascalizedName(xdd:checkForClassType(@name),''), '();', '&#10;')"/>
-                                <xsl:value-of select="concat('      assertNull(type.get', xdd:createPascalizedName(xdd:checkForClassType(@name),''), '());', '&#10;')"/>
+                                <xsl:value-of select="concat('      type.', xdd:checkForClassType(xdd:createCamelizedName(@name)), '(&quot;test&quot;);', '&#10;')"/>
+                                <xsl:value-of select="concat('      assertEquals(type.get', xdd:checkForClassType(xdd:createPascalizedName(@name,'')), '(), &quot;test&quot;);', '&#10;')"/>
+                                <xsl:value-of select="concat('      type.remove', xdd:checkForClassType(xdd:createPascalizedName(@name,'')), '();', '&#10;')"/>
+                                <xsl:value-of select="concat('      assertNull(type.get', xdd:checkForClassType(xdd:createPascalizedName(@name,'')), '());', '&#10;')"/>
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:when>
@@ -873,8 +873,8 @@
 
             <xsl:otherwise>
                 <!-- it is a complex type -->
-                <xsl:variable name="vReturnGeneric" select="xdd:createPascalizedName($pElementType, concat('&lt;', $pClassName, '&lt;T&gt;&gt;'))"/>
-                <xsl:variable name="vElementTypeGeneric" select="xdd:createPascalizedName($pElementType, concat('&lt;', $pClassName, '&lt;T&gt;&gt;'))"/>
+                <xsl:variable name="vReturnGeneric" select="xdd:createPascalizedName($pElementType, concat('&lt;', xdd:checkForClassType($pClassName), '&lt;T&gt;&gt;'))"/>
+                <xsl:variable name="vElementTypeGeneric" select="xdd:createPascalizedName($pElementType, concat('&lt;', xdd:checkForClassType($pClassName), '&lt;T&gt;&gt;'))"/>
                 <xsl:variable name="vClassType" select="xdd:createPascalizedName($vElementTypeGeneric,'')"/>
                 <xsl:choose>
                     <xsl:when test="contains($pMaxOccurs, 'unbounded')">
@@ -2371,7 +2371,7 @@
             <xsl:when test="$vIsApi=true()">
                 <xsl:value-of select="'import java.util.ArrayList;&#10;'"/>
                 <xsl:value-of select="'import java.util.List;&#10;'"/>
-                <xsl:value-of select="'import java.util.Map;&#10;'"/>
+                <!--<xsl:value-of select="'import java.util.Map;&#10;'"/>-->
                 <xsl:value-of select="'import org.jboss.shrinkwrap.descriptor.api.Child;&#10;'"/>
             </xsl:when>
             <xsl:otherwise>
@@ -2584,7 +2584,7 @@
         <xsl:text>   public List&lt;String&gt; getNamespaces()&#10;</xsl:text>
         <xsl:text>   {&#10;</xsl:text>
         <xsl:value-of select="concat('      List&lt;String&gt; namespaceList = new ArrayList&lt;String&gt;();', '&#10;')"/>
-        <xsl:value-of select="concat('      Map&lt;String, String&gt; attributes = model.getAttributes();', '&#10;')"/>
+        <xsl:value-of select="concat('      java.util.Map&lt;String, String&gt; attributes = model.getAttributes();', '&#10;')"/>
         <xsl:value-of select="concat('      for (String name: attributes.keySet())', '&#10;')"/>
         <xsl:value-of select="concat('      {', '&#10;')"/>
         <xsl:value-of select="concat('         String value = attributes.get(name);', '&#10;')"/>
@@ -2603,7 +2603,7 @@
         <xsl:value-of select="concat('   public ', $pReturnType,' removeAllNamespaces()', '&#10;')"/>
         <xsl:text>   {&#10;</xsl:text>
         <xsl:value-of select="concat('      List&lt;String&gt; nameSpaceKeys = new ArrayList&lt;String&gt;();', '&#10;')"/>
-        <xsl:value-of select="concat('      Map&lt;String, String&gt; attributes = model.getAttributes();', '&#10;')"/>
+        <xsl:value-of select="concat('      java.util.Map&lt;String, String&gt; attributes = model.getAttributes();', '&#10;')"/>
         <xsl:value-of select="concat('      for (String name: attributes.keySet())', '&#10;')"/>
         <xsl:value-of select="concat('      {', '&#10;')"/>
         <xsl:value-of select="concat('         String value = attributes.get(name);', '&#10;')"/>
@@ -2988,6 +2988,18 @@
             </xsl:when>
             <xsl:when test="$vMethodName='Class'">
                 <xsl:sequence select="'Clazz'"/>
+            </xsl:when>
+            <xsl:when test="$vMethodName='default'">
+                <xsl:sequence select="'_default'"/>
+            </xsl:when>
+            <xsl:when test="$vMethodName='Default'">
+                <xsl:sequence select="'_Default'"/>
+            </xsl:when>
+            <xsl:when test="$vMethodName='Map'">
+                <xsl:sequence select="'_Map'"/>
+            </xsl:when>
+            <xsl:when test="$vMethodName='Set'">
+                <xsl:sequence select="'_Set'"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:sequence select="$vMethodName"/>
