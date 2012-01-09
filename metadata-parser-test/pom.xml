@@ -89,26 +89,26 @@
 						</goals>
 					</execution>
 
-					<execution>
-						<id>execution4</id>
-						<phase>validate</phase>
-						<configuration>
-							<pathToXsd>${basedir}/src/test/resources/xsd/jetty6.xsd</pathToXsd>
-							<nameSpace>jetty6</nameSpace>
-							<packageApi>org.jboss.shrinkwrap.descriptor.api.jetty6</packageApi>
-							<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jetty6</packageImpl>
-							<elementName>Configure</elementName>
-							<elementType>jetty6:Configure</elementType>
-							<pathToApi>${basedir}/src/main/java</pathToApi>
-							<pathToImpl>${basedir}/src/main/java</pathToImpl>
-							<pathToTest>${basedir}/src/test/java</pathToTest>
-							<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
-							<verbose>true</verbose>
-						</configuration>
-						<goals>
-							<goal>parse</goal>
-						</goals>
-					</execution>
+<!-- 					<execution> -->
+<!-- 						<id>execution4</id> -->
+<!-- 						<phase>validate</phase> -->
+<!-- 						<configuration> -->
+<!-- 							<pathToXsd>${basedir}/src/test/resources/xsd/jetty6.xsd</pathToXsd> -->
+<!-- 							<nameSpace>jetty6</nameSpace> -->
+<!-- 							<packageApi>org.jboss.shrinkwrap.descriptor.api.jetty6</packageApi> -->
+<!-- 							<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jetty6</packageImpl> -->
+<!-- 							<elementName>Configure</elementName> -->
+<!-- 							<elementType>jetty6:Configure</elementType> -->
+<!-- 							<pathToApi>${basedir}/src/main/java</pathToApi> -->
+<!-- 							<pathToImpl>${basedir}/src/main/java</pathToImpl> -->
+<!-- 							<pathToTest>${basedir}/src/test/java</pathToTest> -->
+<!-- 							<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices> -->
+<!-- 							<verbose>true</verbose> -->
+<!-- 						</configuration> -->
+<!-- 						<goals> -->
+<!-- 							<goal>parse</goal> -->
+<!-- 						</goals> -->
+<!-- 					</execution> -->
 
 				</executions>
 			</plugin>
