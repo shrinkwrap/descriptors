@@ -178,6 +178,36 @@
 				</configuration>
 			</plugin>
 		</plugins>
+    <pluginManagement>
+      <plugins>
+      <!-- So m2e doesn't throw errors for features it doesn't support in the 
+        POM -->
+        <plugin>
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+                    <artifactId>shrinkwrap-descriptors-metadata-parser</artifactId>
+                    <versionRange>[1.0.0,)</versionRange>
+                    <goals>
+                      <goal>parse</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <execute />
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
 	</build>
 
 	<dependencies>
