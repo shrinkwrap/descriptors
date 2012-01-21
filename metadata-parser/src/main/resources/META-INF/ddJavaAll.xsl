@@ -5,7 +5,7 @@
     <xsl:output method="text" indent="yes" media-type="text/plain"/>
     <xsl:param name="gOutputFolder" select="'../../../../../impl-gen/src/main/java'"/>
     <xsl:param name="gOutputFolderApi" select="'../../../../../api/src/main/java'"/>
-    <xsl:param name="gOutputFolderTest" select="'../../../../../impl-gen/src/test/java'"/>
+    <xsl:param name="gOutputFolderTest" select="''"/>
     <xsl:param name="gOutputFolderService" select="''"/>
     <xsl:variable name="vLower" select="'abcdefghijklmnopqrstuvwxyz'"/>
     <xsl:variable name="vUpper" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
@@ -157,13 +157,14 @@
         <xsl:if test="$gOutputFolderService != ''">
             <xsl:variable name="vPackage" select="./@packageApi"/>
             <xsl:variable name="vSchema" select=" substring-after(@schemaName, '../xsd/')"/>
-            <xsl:variable name="vInterfaceName" select="xdd:createPascalizedName($pDescriptor/@schemaName, 'Descriptor')"/>
+            <xsl:variable name="vInterfaceName" select="@name"/>
             <xsl:variable name="vFileName" select="concat($gOutputFolderService, '/' , $vPackage, '.' , $vInterfaceName)"/>
             <xsl:message select="concat('Generating service file: ', $vFileName)"/>
 
             <xsl:result-document href="{$vFileName}">
                 <xsl:variable name="vPackageImpl" select="@packageImpl"/>
-                <xsl:variable name="vClassnameImpl" select="xdd:createPascalizedName($pDescriptor/@schemaName, 'DescriptorImpl')"/>
+<!--                <xsl:variable name="vClassnameImpl" select="xdd:createPascalizedName($pDescriptor/@schemaName, 'DescriptorImpl')"/>-->
+                <xsl:variable name="vClassnameImpl" select=" concat(@name, 'Impl')"/>
                 <xsl:variable name="vImplClass" select="concat($vPackageImpl, '.' , $vClassnameImpl)"/>
                 <xsl:value-of select="concat('implClass=', $vImplClass, '&#10;')"/>
                 <xsl:value-of select="concat('importerClass=', 'org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomNodeDescriptorImporterImpl', '&#10;')"/>
@@ -298,7 +299,7 @@
                     <xsl:call-template name="WriteTestClasses">
                         <xsl:with-param name="pClass" select="."/>
                         <xsl:with-param name="pPackage" select="@packageImpl"/>
-                        <xsl:with-param name="pName" select="xdd:createPascalizedName(@schemaName, 'Descriptor')"/>
+                        <xsl:with-param name="pName" select="@name"/>
                         <xsl:with-param name="pIsDescriptor" select="'true'"/>
                     </xsl:call-template>
                 </xsl:if>
@@ -313,7 +314,8 @@
         <xsl:param name="pDescriptor" select="."/>
         <xsl:variable name="vPackage" select="./@packageApi"/>
         <xsl:variable name="vSchema" select=" substring-after(@schemaName, '../xsd/')"/>
-        <xsl:variable name="vClassname" select="xdd:createPascalizedName(xdd:checkForClassType($pDescriptor/@schemaName), 'Descriptor')"/>
+<!--        <xsl:variable name="vClassname" select="xdd:createPascalizedName(xdd:checkForClassType($pDescriptor/@schemaName), 'Descriptor')"/>-->
+        <xsl:variable name="vClassname" select="@name"/>
         <xsl:message select="concat('Generating Descriptor Api: ', $vClassname)"/>
         <xsl:if test="$vClassname">
             <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolderApi, $vPackage, $vClassname, 'java')"/>
@@ -412,8 +414,12 @@
         <xsl:variable name="vPackage" select="@packageImpl"/>
         <xsl:variable name="vNodeName" select="'model'"/>
         <xsl:variable name="vSchema" select=" substring-after(@schemaName, '../xsd/')"/>
-        <xsl:variable name="vInterfaceName" select="xdd:createPascalizedName($pDescriptor/@schemaName, 'Descriptor')"/>
-        <xsl:variable name="vClassnameImpl" select="xdd:createPascalizedName($pDescriptor/@schemaName, 'DescriptorImpl')"/>
+        <!--<xsl:variable name="vInterfaceName" select="xdd:createPascalizedName($pDescriptor/@schemaName, 'Descriptor')"/>
+        <xsl:variable name="vClassnameImpl" select="xdd:createPascalizedName($pDescriptor/@schemaName, 'DescriptorImpl')"/>-->
+        
+        <xsl:variable name="vInterfaceName" select="@name"/>
+        <xsl:variable name="vClassnameImpl" select=" concat(@name, 'Impl')"/>
+        
         <xsl:message select="concat('Generating DescriptorImpl: ', $vClassnameImpl)"/>
         <xsl:if test="$vClassnameImpl">
             <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolder, $vPackage, $vClassnameImpl, 'java')"/>
@@ -683,10 +689,10 @@
                                 <xsl:value-of select="concat('      assertNull(type.get', xdd:createPascalizedName(@name,''), '());', '&#10;')"/>
                             </xsl:when>
                             <xsl:otherwise>
-                                <xsl:value-of select="concat('      type.', xdd:checkForClassType(xdd:createCamelizedName(@name)), '(&quot;test&quot;);', '&#10;')"/>
-                                <xsl:value-of select="concat('      assertEquals(type.get', xdd:checkForClassType(xdd:createPascalizedName(@name,'')), '(), &quot;test&quot;);', '&#10;')"/>
-                                <xsl:value-of select="concat('      type.remove', xdd:checkForClassType(xdd:createPascalizedName(@name,'')), '();', '&#10;')"/>
-                                <xsl:value-of select="concat('      assertNull(type.get', xdd:checkForClassType(xdd:createPascalizedName(@name,'')), '());', '&#10;')"/>
+                                <xsl:value-of select="concat('      type.', xdd:createCamelizedName(xdd:checkForClassType(@name)), '(&quot;test&quot;);', '&#10;')"/>
+                                <xsl:value-of select="concat('      assertEquals(type.get', xdd:createPascalizedName(xdd:checkForClassType(@name),''), '(), &quot;test&quot;);', '&#10;')"/>
+                                <xsl:value-of select="concat('      type.remove', xdd:createPascalizedName(xdd:checkForClassType(@name),''), '();', '&#10;')"/>
+                                <xsl:value-of select="concat('      assertNull(type.get', xdd:createPascalizedName(xdd:checkForClassType(@name),''), '());', '&#10;')"/>
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:when>
@@ -2995,12 +3001,12 @@
             <xsl:when test="$vMethodName='Default'">
                 <xsl:sequence select="'_Default'"/>
             </xsl:when>
-            <xsl:when test="$vMethodName='Map'">
+           <!-- <xsl:when test="$vMethodName='Map'">
                 <xsl:sequence select="'_Map'"/>
-            </xsl:when>
-            <xsl:when test="$vMethodName='Set'">
+            </xsl:when>-->
+           <!-- <xsl:when test="$vMethodName='Set'">
                 <xsl:sequence select="'_Set'"/>
-            </xsl:when>
+            </xsl:when>-->
             <xsl:otherwise>
                 <xsl:sequence select="$vMethodName"/>
             </xsl:otherwise>

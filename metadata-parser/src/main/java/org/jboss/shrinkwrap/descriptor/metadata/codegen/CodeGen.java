@@ -8,9 +8,9 @@ import java.util.Map;
 import org.apache.commons.lang3.text.WordUtils;
 import org.jboss.shrinkwrap.descriptor.api.Child;
 import org.jboss.shrinkwrap.descriptor.metadata.Metadata;
-import org.jboss.shrinkwrap.descriptor.metadata.MetadataClass;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataElement;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataEnum;
+import org.jboss.shrinkwrap.descriptor.metadata.MetadataItem;
 
 import com.sun.codemodel.ClassType;
 import com.sun.codemodel.JClass;
@@ -86,7 +86,7 @@ public class CodeGen
         final JDefinedClass childInterface = cm._class("org.jboss.shrinkwrap.descriptor.api.ChildFFF", ClassType.INTERFACE);
         childInterface.generify("T");
         
-        for (final MetadataClass metadataClass : metadata.getClassList()) {
+        for (final MetadataItem metadataClass : metadata.getClassList()) {
             final String fqnInterface = metadataClass.getPackageApi() + "." + getPascalizeCase(metadataClass.getName());
             final JDefinedClass dc = cm._class(fqnInterface, ClassType.INTERFACE);
                         
@@ -167,7 +167,7 @@ public class CodeGen
         }
 
         // search in all classes
-        for (final MetadataClass metadataClass : metadata.getClassList()) {
+        for (final MetadataItem metadataClass : metadata.getClassList()) {
             if (metadataClass.getName().equals(localname) && metadataClass.getNamespace().equals(namespace)) {
                 return metadataClass.getPackageApi() + "." + getPascalizeCase(metadataClass.getName());
             }

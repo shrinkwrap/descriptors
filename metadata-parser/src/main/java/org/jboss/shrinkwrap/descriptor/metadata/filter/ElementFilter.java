@@ -1,8 +1,25 @@
+/*
+ * JBoss, Home of Professional Open Source
+ * Copyright 2011, Red Hat Middleware LLC, and individual contributors
+ * by the @authors tag. See the copyright.txt in the distribution for a
+ * full listing of individual contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.jboss.shrinkwrap.descriptor.metadata.filter;
 
 import org.jboss.shrinkwrap.descriptor.metadata.Metadata;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataElement;
-import org.jboss.shrinkwrap.descriptor.metadata.MetadataType;
+import org.jboss.shrinkwrap.descriptor.metadata.MetadataItem;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataUtil;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -49,8 +66,7 @@ public class ElementFilter implements Filter
             final String dataTypeName = MetadataUtil.getAttributeValue(element, "name");
             if (dataTypeName != null)
             {
-               final MetadataType dataType = new MetadataType();
-               dataType.setName(dataTypeName);
+               final MetadataItem dataType = new MetadataItem(dataTypeName);
                dataType.setMappedTo(typeStr);
                dataType.setNamespace(metadata.getCurrentNamespace());
                dataType.setSchemaName(metadata.getCurrentSchmema());
@@ -64,8 +80,7 @@ public class ElementFilter implements Filter
             {
                // may an unconstrained element of anyType, declare it as a string
                final String dataTypeName = MetadataUtil.getAttributeValue(element, "name");
-               final MetadataType dataType = new MetadataType();
-               dataType.setName(dataTypeName);
+               final MetadataItem dataType = new MetadataItem(dataTypeName);
                dataType.setMappedTo("xs:string");
                dataType.setNamespace(metadata.getCurrentNamespace());
                dataType.setSchemaName(metadata.getCurrentSchmema());

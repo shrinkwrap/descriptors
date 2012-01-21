@@ -23,218 +23,242 @@ import org.jboss.shrinkwrap.descriptor.metadata.MetadataParser;
 
 /**
  * Implementation class for the Shrinkwrap Descriptors CLI Mojo task.
- *
+ * 
  * @goal parse
  * 
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
 public class MetadataParserMojo extends AbstractMojo
 {
-    /** 
-     * Path to the XSD file to be parsed 
-     * 
-     * @parameter
-     */
-    private String pathToXsd;
-    
-    /** 
-     * The namespace for the given XSD.
-     * 
-     * @parameter
-     */
-    private String nameSpace;
-    
-    /** 
-     * The package name for the API classes. 
-     * 
-     * @parameter
-     */
-    private String packageApi;
-    
-    /** 
-     * The package name for the Implementation classes.
-     * 
-     * @parameter
-     */
-    private String packageImpl;
-    
-    /** 
-     * The name of the root element.
-     * 
-     * @parameter
-     */
-    private String elementName;
-    
-    
-    /** 
-     * The type of the root element.
-     * 
-     * @parameter
-     */
-    private String elementType;
-    
-    
-    /** 
-     * Trace flag 
-     * 
-     * @parameter
-     */
-    private boolean verbose;
-    
-    /** 
-     * Full path to the API folder in which the interfaces are generated. 
-     * 
-     * @parameter
-     */
-    private String pathToApi;
-    
-    /** 
-     * Full path to the implementation folder in which the classes are generated. 
-     * 
-     * @parameter
-     */
-    private String pathToImpl;
-    
-    /** 
-     * Full path to the test folder in which the unit tests are generated. 
-     * 
-     * @parameter
-     */
-    private String pathToTest;
-    
-    /** 
-     * Full path to the service folder in which the service files are generated. 
-     * 
-     * @parameter
-     */
-    private String pathToServices;
-    
-    
+   /**
+    * Path to the XSD file to be parsed
+    * 
+    * @parameter
+    */
+   private String pathToXsd;
 
-    public String getNameSpace()
-    {
-        return nameSpace;
-    }
+   /**
+    * The namespace for the given XSD.
+    * 
+    * @parameter
+    */
+   private String nameSpace;
 
-    public void setNameSpace(final String nameSpace)
-    {
-        this.nameSpace = nameSpace;
-    }
+   /**
+    * The package name for the API classes.
+    * 
+    * @parameter
+    */
+   private String packageApi;
 
-    public String getPackageApi()
-    {
-        return packageApi;
-    }
+   /**
+    * The package name for the Implementation classes.
+    * 
+    * @parameter
+    */
+   private String packageImpl;
 
-    public void setPackageApi(final String packageApi)
-    {
-        this.packageApi = packageApi;
-    }
+   /**
+    * The name of the descriptor.
+    * 
+    * @parameter
+    */
+   private String descriptorName;
 
-    public String getPackageImpl()
-    {
-        return packageImpl;
-    }
+   /**
+    * The name of the root element.
+    * 
+    * @parameter
+    */
+   private String elementName;
 
-    public void setPackageImpl(final String packageImpl)
-    {
-        this.packageImpl = packageImpl;
-    }
+   /**
+    * The type of the root element.
+    * 
+    * @parameter
+    */
+   private String elementType;
 
-    public String getPathToXsd()
-    {
-        return pathToXsd;
-    }
+   /**
+    * Trace flag
+    * 
+    * @parameter
+    */
+   private boolean verbose;
 
-    public void setPathToXsd(final String pathToXsd)
-    {
-        this.pathToXsd = pathToXsd;
-    }
+   /**
+    * Full path to the API folder in which the interfaces are generated.
+    * 
+    * @parameter
+    */
+   private String pathToApi;
 
-	public String getElementName() 
-	{
-		return elementName;
-	}
+   /**
+    * Full path to the implementation folder in which the classes are
+    * generated.
+    * 
+    * @parameter
+    */
+   private String pathToImpl;
 
-	public void setElementName(final String elementName) 
-	{
-		this.elementName = elementName;
-	}
+   /**
+    * Full path to the test folder in which the unit tests are generated.
+    * 
+    * @parameter
+    */
+   private String pathToTest;
 
-	public String getElementType() 
-	{
-		return elementType;
-	}
+   /**
+    * Full path to the service folder in which the service files are generated.
+    * 
+    * @parameter
+    */
+   private String pathToServices;
 
-	public void setElementType(final String elementType)
-	{
-		this.elementType = elementType;
-	}
+   public String getNameSpace()
+   {
+      return nameSpace;
+   }
 
-	public boolean isVerbose()
-    {
-        return verbose;
-    }
+   public void setNameSpace(final String nameSpace)
+   {
+      this.nameSpace = nameSpace;
+   }
 
-    public void setVerbose(boolean verbose)
-    {
-        this.verbose = verbose;
-    }
+   public String getPackageApi()
+   {
+      return packageApi;
+   }
 
-    public String getPathToApi() {
-		return pathToApi;
-	}
+   public void setPackageApi(final String packageApi)
+   {
+      this.packageApi = packageApi;
+   }
 
-	public void setPathToApi(String pathToApi) {
-		this.pathToApi = pathToApi;
-	}
+   public String getPackageImpl()
+   {
+      return packageImpl;
+   }
 
-	public String getPathToImpl() {
-		return pathToImpl;
-	}
+   public void setPackageImpl(final String packageImpl)
+   {
+      this.packageImpl = packageImpl;
+   }
 
-	public void setPathToImpl(String pathToImpl) {
-		this.pathToImpl = pathToImpl;
-	}
+   public String getPathToXsd()
+   {
+      return pathToXsd;
+   }
 
-	public String getPathToTest() {
-		return pathToTest;
-	}
+   public void setPathToXsd(final String pathToXsd)
+   {
+      this.pathToXsd = pathToXsd;
+   }
 
-	public void setPathToTest(String pathToTest) {
-		this.pathToTest = pathToTest;
-	}
+   public String getElementName()
+   {
+      return elementName;
+   }
 
-	public String getPathToServices() {
-		return pathToServices;
-	}
+   public void setElementName(final String elementName)
+   {
+      this.elementName = elementName;
+   }
 
-	public void setPathToServices(String pathToServices) {
-		this.pathToServices = pathToServices;
-	}
+   public String getElementType()
+   {
+      return elementType;
+   }
 
-	@Override
-    public void execute() throws MojoExecutionException, MojoFailureException
-    {
-        try 
-        {
-            final MetadataParser metadataParser = new MetadataParser(
-                getPathToXsd(),
-                getNameSpace(),
-                getPackageApi(),
-                getPackageImpl(), 
-                getElementName(),
-                getElementType(),
-                getPathToApi(),
-                getPathToImpl(),
-                getPathToTest(),
-                getPathToServices(),
-                isVerbose());
+   public void setElementType(final String elementType)
+   {
+      this.elementType = elementType;
+   }
 
-            metadataParser.parse();
-        }
-        catch (final Throwable t) {
-            throw new MojoFailureException(t.getMessage(), t);
-        }
-    }
+   public boolean isVerbose()
+   {
+      return verbose;
+   }
+
+   public void setVerbose(boolean verbose)
+   {
+      this.verbose = verbose;
+   }
+
+   public String getPathToApi()
+   {
+      return pathToApi;
+   }
+
+   public void setPathToApi(String pathToApi)
+   {
+      this.pathToApi = pathToApi;
+   }
+
+   public String getPathToImpl()
+   {
+      return pathToImpl;
+   }
+
+   public void setPathToImpl(String pathToImpl)
+   {
+      this.pathToImpl = pathToImpl;
+   }
+
+   public String getPathToTest()
+   {
+      return pathToTest;
+   }
+
+   public void setPathToTest(String pathToTest)
+   {
+      this.pathToTest = pathToTest;
+   }
+
+   public String getPathToServices()
+   {
+      return pathToServices;
+   }
+
+   public void setPathToServices(String pathToServices)
+   {
+      this.pathToServices = pathToServices;
+   }
+
+   public String getDescriptorName()
+   {
+      return descriptorName;
+   }
+
+   public void setDescriptorName(String descriptorName)
+   {
+      this.descriptorName = descriptorName;
+   }
+
+   @Override
+   public void execute() throws MojoExecutionException, MojoFailureException
+   {
+      try
+      {
+         final MetadataParser metadataParser = new MetadataParser(
+               getPathToXsd(), 
+               getNameSpace(), 
+               getPackageApi(),
+               getPackageImpl(), 
+               getDescriptorName(),
+               getElementName(), 
+               getElementType(), 
+               getPathToApi(), 
+               getPathToImpl(), 
+               getPathToTest(),
+               getPathToServices(),
+               isVerbose());
+
+         metadataParser.parse();
+      }
+      catch (final Throwable t)
+      {
+         throw new MojoFailureException(t.getMessage(), t);
+      }
+   }
 }

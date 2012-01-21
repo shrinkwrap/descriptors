@@ -1,6 +1,24 @@
+/*
+ * JBoss, Home of Professional Open Source
+ * Copyright 2011, Red Hat Middleware LLC, and individual contributors
+ * by the @authors tag. See the copyright.txt in the distribution for a
+ * full listing of individual contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.jboss.shrinkwrap.descriptor.metadata;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -13,6 +31,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.TransformerException;
 
 import org.jboss.shrinkwrap.descriptor.metadata.dom.DomWriter;
+import org.jboss.shrinkwrap.descriptor.metadata.dtd.MetadataDtdEventListener;
 import org.jboss.shrinkwrap.descriptor.metadata.filter.AttributeFilter;
 import org.jboss.shrinkwrap.descriptor.metadata.filter.AttributeGroupFilter;
 import org.jboss.shrinkwrap.descriptor.metadata.filter.ComplexTypeFilter;
@@ -29,7 +48,20 @@ import org.w3c.dom.Node;
 import org.w3c.dom.traversal.DocumentTraversal;
 import org.w3c.dom.traversal.NodeFilter;
 import org.w3c.dom.traversal.TreeWalker;
+import org.xml.sax.InputSource;
 
+import com.sun.xml.dtdparser.DTDParser;
+
+
+/**
+ * This class is the entry point for parsing either xsd or dtd files, and based on the extracted metadata information,
+ * the class is also able to produce Shrinkdesc API and implementation source code.
+ * is parsed.
+ * <p>
+ * The class will start a DTD parsing when the files are ending with '.dtd'. Otherwise, the files are considered as XSD's. 
+ *
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ */
 public class MetadataParser
 {
     private final List<Filter> filterList = new ArrayList<Filter>();
@@ -39,6 +71,7 @@ public class MetadataParser
     private final String nameSpace;
     private final String packageApi;
     private final String packageImpl;
+    private final String descriptorName;
     private final String rootElementName;
     private final String rootElementType;
     private final String pathToApi;
@@ -47,16 +80,41 @@ public class MetadataParser
     private final String pathToServices;
     private final boolean verbose;
 
+    /**
+     * Creates a new instance of the parser.
+     * @param pathToXsd Full path to the xsd or dtd file.
+     * @param nameSpace Defines the default namespace.
+     * @param packageApi Defines the package name for the API classes.
+     * @param packageImpl Defines the package name for the implementation classes.
+     * @param descriptorName Defines the descriptor name
+     * @param rootElementName Defines the root element name used by the to be created descriptor
+     * @param rootElementType Defines the type of the root element.
+     * @param pathToApi Path to the API folder. All API classes are created here.
+     * @param pathToImpl Path to the implementation folder. All implementation classes are created here.
+     * @param pathToTest Path to the test folder. All test classes are created here.If this is an empty string, then no classes are produced.
+     * @param pathToServices Path to the service folder. All service files are created here.If this is an empty string, then no service files are produced.
+     * @param verbose If true, the detailed parsing information are printed out.
+     * @throws IOException Thrown if a temporary file can not be created.
+     */
     public MetadataParser(final String pathToXsd,
-            final String nameSpace, final String packageApi,
-            final String packageImpl, final String rootElementName, final String rootElementType, 
-            final String pathToApi, final String pathToImpl, final String pathToTest, final String pathToServices, final boolean verbose) throws IOException
+            final String nameSpace, 
+            final String packageApi,
+            final String packageImpl, 
+            final String descriptorName,
+            final String rootElementName, 
+            final String rootElementType, 
+            final String pathToApi, 
+            final String pathToImpl, 
+            final String pathToTest, 
+            final String pathToServices, 
+            final boolean verbose) throws IOException
     {
         this.pathToXsd = pathToXsd;
         this.pathToMetadata = createTempFile();
         this.nameSpace = nameSpace;
         this.packageApi = packageApi;
         this.packageImpl = packageImpl;
+        this.descriptorName = descriptorName;
         this.rootElementName = rootElementName;
         this.rootElementType = rootElementType;
         this.pathToApi = pathToApi;
@@ -78,39 +136,53 @@ public class MetadataParser
      */
     public void parse() throws Exception
     {
-        final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        final DocumentBuilder loader = factory.newDocumentBuilder();
-        final Document document = loader.parse(pathToXsd);
-
-        filterList.add(new GroupFilter());
-        filterList.add(new ElementFilter());
-        filterList.add(new EnumFilter());
-        filterList.add(new AttributeFilter());
-        filterList.add(new AttributeGroupFilter());
-        filterList.add(new RestrictionFilter());
-        filterList.add(new ComplexTypeFilter());
-        filterList.add(new SimpleContentFilter());
-        filterList.add(new ExtensionFilter());
-
-        metadata.setCurrentNamespace(nameSpace);
+    	metadata.setCurrentNamespace(nameSpace);
         metadata.setCurrentSchmema(pathToXsd);
         metadata.setCurrentPackageApi(packageApi);
         metadata.setCurrentPackageImpl(packageImpl);
         
-        MetadataDescriptor metadataDescriptor = new MetadataDescriptor();
-        metadataDescriptor.setName(rootElementName);
-        metadataDescriptor.setType(rootElementType);
+        final MetadataDescriptor metadataDescriptor = new MetadataDescriptor(descriptorName);
+        metadataDescriptor.setRootElementName(rootElementName);
+        metadataDescriptor.setRootElementType(rootElementType);
         metadataDescriptor.setSchemaName(pathToXsd);
         metadataDescriptor.setPackageApi(packageApi);
         metadataDescriptor.setPackageImpl(packageImpl);
         metadataDescriptor.setNamespace(nameSpace);
         metadata.setMetadataDescriptor(metadataDescriptor);
-
-        final DocumentTraversal traversal = (DocumentTraversal) document;
-        final TreeWalker walker = traversal.createTreeWalker(document.getDocumentElement(), NodeFilter.SHOW_ELEMENT, null, true);
-
-        traverseLevel(walker);
-
+        
+    	if (pathToXsd.endsWith(".dtd"))
+    	{
+    		final InputSource in = new InputSource(new FileReader(pathToXsd));
+    		final MetadataDtdEventListener dtdEventListener = new MetadataDtdEventListener(metadata, verbose);
+    		final DTDParser parser = new DTDParser();
+    		parser.setDtdHandler(dtdEventListener);
+    		parser.parse(in);
+    	}
+    	else 
+    	{
+	        final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	        final DocumentBuilder loader = factory.newDocumentBuilder();
+	        final Document document = loader.parse(pathToXsd);
+	
+	        filterList.add(new GroupFilter());
+	        filterList.add(new ElementFilter());
+	        filterList.add(new EnumFilter());
+	        filterList.add(new AttributeFilter());
+	        filterList.add(new AttributeGroupFilter());
+	        filterList.add(new RestrictionFilter());
+	        filterList.add(new ComplexTypeFilter());
+	        filterList.add(new SimpleContentFilter());
+	        filterList.add(new ExtensionFilter());
+	
+	        final DocumentTraversal traversal = (DocumentTraversal) document;
+	        final TreeWalker walker = traversal.createTreeWalker(document.getDocumentElement(), NodeFilter.SHOW_ELEMENT, null, true);	
+	        traverseLevel(walker);
+    	}
+    	
+    	/**
+    	 * Analyze the data types defined in the elements. If an element data types points to a type defined in the data type
+    	 * section, and the data type is simple type like xsd:string then change the element data type directly here.
+    	 */
         metadata.preResolveDataTypes();
         
         if (pathToMetadata != null) {
@@ -149,6 +221,10 @@ public class MetadataParser
         walker.setCurrentNode(parend);
     }
     
+    /**
+     * Generates source code by applying the <code>ddJavaAll.xsl</code> XSLT extracted from the resource stream.
+     * @throws TransformerException
+     */
     public void generateCode() throws TransformerException
     {
     	/** initialize the map which will overwrite global parameters as defined in metadata.xsl/ddJava.xsl */
@@ -161,18 +237,14 @@ public class MetadataParser
         final InputStream is = MetadataParser.class.getResourceAsStream("/META-INF/ddJavaAll.xsl");
         System.out.println("Stream resource: " + is);
         
-    	/** generate java classes based on metadata.xml */
-//        XsltTransformer.simpleTransform(pathToMetadata, 
-//              "src/main/resources/META-INF/ddJavaAll.xsl", 
-//              "./tempddJava.xml", 
-//              xsltParameters);      
-        
-        XsltTransformer.simpleTransform(pathToMetadata, 
-        		is, 
-                new File("./tempddJava.xml"), 
-                xsltParameters);      
+        XsltTransformer.simpleTransform(pathToMetadata, is, new File("./tempddJava.xml"), xsltParameters);      
     }
     
+    /**
+     * Creates a temporary file.
+     * @return
+     * @throws IOException
+     */
 	private String createTempFile() throws IOException 
 	{
 		File tempFile = File.createTempFile("tempMetadata", ".xml");

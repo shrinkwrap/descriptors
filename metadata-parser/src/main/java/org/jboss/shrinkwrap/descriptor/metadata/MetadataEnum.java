@@ -1,20 +1,41 @@
+/*
+ * JBoss, Home of Professional Open Source
+ * Copyright 2011, Red Hat Middleware LLC, and individual contributors
+ * by the @authors tag. See the copyright.txt in the distribution for a
+ * full listing of individual contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.jboss.shrinkwrap.descriptor.metadata;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MetadataEnum
+/**
+ * This class holds the possible values for one specific enumeration class.
+ *
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ */
+public class MetadataEnum extends BaseMetadataItem
 {
    final private List<String> valueList = new ArrayList<String>();
-   private String name;
-   private String namespace;
-   private String schemaName;
-   private String packageApi;
-   private String documentation;
    
+   /**
+    * Constructs a new instance.
+    * @param name the name of the enumeration class.
+    */
    public MetadataEnum(final String name)
    {
-      this.name = name;
+      super(name);
    }
    
    public void addValue(String value)
@@ -26,50 +47,4 @@ public class MetadataEnum
    {
       return valueList;
    }
-
-   public String getName()
-   {
-      return name;
-   }
-
-   public String getNamespace()
-   {
-      return namespace;
-   }
-
-   public void setNamespace(String namespace)
-   {
-      this.namespace = namespace;
-   }
-
-   public String getSchemaName()
-   {
-      return schemaName;
-   }
-
-   public void setSchemaName(String schemaName)
-   {
-      this.schemaName = schemaName;
-   }
-
-   public String getPackageApi()
-   {
-      return packageApi;
-   }
-
-   public void setPackageApi(String packageApi)
-   {
-      this.packageApi = packageApi;
-   }
-
-   public String getDocumentation()
-   {
-      return documentation;
-   }
-
-   public void setDocumentation(String documentation)
-   {
-      this.documentation = documentation;
-   }
-   
 } 

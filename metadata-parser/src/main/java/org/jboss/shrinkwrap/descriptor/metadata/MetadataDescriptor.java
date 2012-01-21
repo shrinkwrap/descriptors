@@ -1,154 +1,66 @@
+/*
+ * JBoss, Home of Professional Open Source
+ * Copyright 2011, Red Hat Middleware LLC, and individual contributors
+ * by the @authors tag. See the copyright.txt in the distribution for a
+ * full listing of individual contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.jboss.shrinkwrap.descriptor.metadata;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
-public class MetadataDescriptor
+
+/**
+ * This class holds the information used for generating a descriptor interface and implementation class.
+ *
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ */
+public class MetadataDescriptor extends BaseMetadataItem
 {
-   private String name;
+   private String rootElementName;
 
-   private String type;
+   private String rootElementType;
+
+   private Map<String, String> descrNamespaces = new HashMap<String, String>();
+
+   public MetadataDescriptor(String name)
+   {
+      super(name);
+   }
    
-   private String namespace;
-
-   private String schemaName;
-
-   private String packageApi;
-
-   private String packageImpl;
-
-   private final List<DescriptorNamespace> descrNamespaces = new ArrayList<DescriptorNamespace>();
-
-	public String getName() 
-	{
-		return name;
-	}
-
-	public void setName(String name) 
-	{
-		this.name = name;
-	}
-
-	public String getType() 
-	{
-		return type;
-	}
-
-	public void setType(String type) 
-	{
-		this.type = type;
-	}
-
-   public String getNamespace()
+   public String getRootElementName()
    {
-      return namespace;
+      return rootElementName;
    }
 
-   public void setNamespace(final String namespace)
+   public void setRootElementName(String rootElementName)
    {
-      this.namespace = namespace;
+      this.rootElementName = rootElementName;
    }
 
-   public String getSchemaName()
+   public String getRootElementType()
    {
-      return schemaName;
+      return rootElementType;
    }
 
-   public void setSchemaName(final String schemaName)
+   public void setRootElementType(String rootElementType)
    {
-      this.schemaName = schemaName;
+      this.rootElementType = rootElementType;
    }
 
-   public String getPackageApi()
-   {
-      return packageApi;
-   }
-
-   public void setPackageApi(final String packageApi)
-   {
-      this.packageApi = packageApi;
-   }
-
-   public String getPackageImpl()
-   {
-      return packageImpl;
-   }
-
-   public void setPackageImpl(final String packageImpl)
-   {
-      this.packageImpl = packageImpl;
-   }
-
-   public List<DescriptorNamespace> getDescrNamespaces()
+   public Map<String, String> getDescrNamespaces()
    {
       return descrNamespaces;
    }
-
-   public class DescriptorNamespace
-   {
-      private String name;
-
-      private String value;
-
-      public String getName()
-      {
-         return name;
-      }
-
-      public void setName(final String name)
-      {
-         this.name = name;
-      }
-
-      public String getValue()
-      {
-         return value;
-      }
-
-      public void setValue(final String value)
-      {
-         this.value = value;
-      }
-
-   }
-
-//   public class DescriptorElement
-//   {
-//      private String name;
-//
-//      private String type;
-//
-//      private String defaultNamespaces;
-//
-//      public String getName()
-//      {
-//         return name;
-//      }
-//
-//      public void setName(final String name)
-//      {
-//         this.name = name;
-//      }
-//
-//      public String getType()
-//      {
-//         return type;
-//      }
-//
-//      public void setType(final String type)
-//      {
-//         this.type = type;
-//      }
-//
-//      public String getDefaultNamespaces()
-//      {
-//         return defaultNamespaces;
-//      }
-//
-//      public void setDefaultNamespaces(final String defaultNamespaces)
-//      {
-//         this.defaultNamespaces = defaultNamespaces;
-//      }
-//
-//   }
 }

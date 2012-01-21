@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure.dtd">
+<Configure class="class0" id="id0">
+  <New class="class1" id="id1">
+    <Arg type="type0">
+      <Array type="type1" id="id2">
+        <Item type="type2" id="id3">
+          <Call name="name0" class="class2" id="id4">
+            <Ref id="id5">
+              <Set name="name1" type="type3" class="class3">
+                <Call name="name2" class="class4" id="id6">
+                  <Property name="name3" default="default0" id="id7">
+                    <Get name="name4" class="class5" id="id8">
+                      <Set name="name5" type="type4" class="class6">
+                        <Ref id="id9">
+                          <Put name="name6" type="type5">
+                            <Get name="name7" class="class7" id="id10">
+                              <Array type="type6" id="id11"> </Array>
+                            </Get>
+                          </Put>
+                        </Ref>
+                      </Set>
+                    </Get>
+                  </Property>
+                </Call>
+              </Set>
+            </Ref>
+          </Call>
+        </Item>
+      </Array>
+    </Arg>
+    <Get name="name8" class="class8" id="id12">
+      <Property name="name9" default="default1" id="id13">
+        <New class="class9" id="id14">
+          <Arg type="type7">
+            <Get name="name10" class="class10" id="id15">
+              <Call name="name11" class="class11" id="id16">
+                <Property name="name12" default="default2" id="id17">
+                  <Array type="type8" id="id18"> </Array>
+                </Property>
+              </Call>
+            </Get>
+          </Arg>
+          <Put name="name13" type="type9">
+            <Property name="name14" default="default3" id="id19">
+              <Get name="name15" class="class12" id="id20">
+                <Array type="type10" id="id21"> </Array>
+              </Get>
+            </Property>
+          </Put>
+        </New>
+      </Property>
+    </Get>
+  </New>
+</Configure>

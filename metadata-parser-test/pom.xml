@@ -21,6 +21,36 @@
 		<plugins>
 
 			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.4.1</version>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>${basedir}/src/main/java</directory>
+							<includes>
+								<include>**/*.java</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+						<fileset>
+							<directory>${basedir}/src/test/java</directory>
+							<includes>
+								<include>**/*.java</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+						<fileset>
+							<directory>${basedir}/src/main/resources/META-INF/services</directory>
+							<includes>
+								<include>**/*.java</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
+
+			<plugin>
 				<groupId>org.jboss.shrinkwrap.descriptors</groupId>
 				<artifactId>shrinkwrap-descriptors-metadata-parser</artifactId>
 				<version>${project.version}</version>
@@ -34,6 +64,7 @@
 							<nameSpace>ironjacamar</nameSpace>
 							<packageApi>org.jboss.ironjacamar.api</packageApi>
 							<packageImpl>org.jboss.ironjacamar.impl</packageImpl>
+							<descriptorName>IronjacamarDescriptor</descriptorName>
 							<elementName>ironjacamar</elementName>
 							<elementType>ironjacamar:ironjacamarType</elementType>
 							<pathToApi>${basedir}/src/main/java</pathToApi>
@@ -55,6 +86,7 @@
 							<nameSpace>datasources</nameSpace>
 							<packageApi>org.jboss.datasources.api</packageApi>
 							<packageImpl>org.jboss.datasources.impl</packageImpl>
+							<descriptorName>DatasourcesDescriptor</descriptorName>
 							<elementName>datasources</elementName>
 							<elementType>datasources:datasourcesType</elementType>
 							<pathToApi>${basedir}/src/main/java</pathToApi>
@@ -76,6 +108,7 @@
 							<nameSpace>resourceadapters</nameSpace>
 							<packageApi>org.jboss.resourceadapters.api</packageApi>
 							<packageImpl>org.jboss.resourceadapters.impl</packageImpl>
+							<descriptorName>ResourceadapterDescriptor</descriptorName>
 							<elementName>resource-adapters</elementName>
 							<elementType>resourceadapters:resource-adaptersType</elementType>
 							<pathToApi>${basedir}/src/main/java</pathToApi>
@@ -89,83 +122,73 @@
 						</goals>
 					</execution>
 
-<!-- 					<execution> -->
-<!-- 						<id>execution4</id> -->
-<!-- 						<phase>validate</phase> -->
-<!-- 						<configuration> -->
-<!-- 							<pathToXsd>${basedir}/src/test/resources/xsd/jetty6.xsd</pathToXsd> -->
-<!-- 							<nameSpace>jetty6</nameSpace> -->
-<!-- 							<packageApi>org.jboss.shrinkwrap.descriptor.api.jetty6</packageApi> -->
-<!-- 							<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jetty6</packageImpl> -->
-<!-- 							<elementName>Configure</elementName> -->
-<!-- 							<elementType>jetty6:Configure</elementType> -->
-<!-- 							<pathToApi>${basedir}/src/main/java</pathToApi> -->
-<!-- 							<pathToImpl>${basedir}/src/main/java</pathToImpl> -->
+					<execution>
+						<id>execution4</id>
+						<phase>validate</phase>
+						<configuration>
+							<pathToXsd>${basedir}/src/test/resources/dtd/connector_1_0.dtd</pathToXsd>
+							<nameSpace>j2ee</nameSpace>
+							<packageApi>org.jboss.shrinkwrap.descriptor.test.api.connector10</packageApi>
+							<packageImpl>org.jboss.shrinkwrap.descriptor.test.impl.connector10</packageImpl>
+							<descriptorName>ConnectorDescriptor</descriptorName>
+							<elementName>connector</elementName>
+							<elementType>j2ee:connector</elementType>
+							<pathToApi>${basedir}/src/main/java</pathToApi>
+							<pathToImpl>${basedir}/src/main/java</pathToImpl>
+							<pathToTest>${basedir}/src/test/java</pathToTest>
+							<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
+							<verbose>true</verbose>
+						</configuration>
+						<goals>
+							<goal>parse</goal>
+						</goals>
+					</execution>
+
+					<execution>
+						<id>execution5</id>
+						<phase>validate</phase>
+						<configuration>
+							<pathToXsd>${basedir}/src/test/resources/xsd/jetty7.dtd</pathToXsd>
+							<nameSpace>jetty7</nameSpace>
+							<packageApi>org.jboss.shrinkwrap.descriptor.api.jetty7</packageApi>
+							<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jetty7</packageImpl>
+							<descriptorName>JettyDescriptor</descriptorName>
+							<elementName>Configure</elementName>
+							<elementType>jetty7:Configure</elementType>
+							<pathToApi>${basedir}/src/main/java</pathToApi>
+							<pathToImpl>${basedir}/src/main/java</pathToImpl>
 <!-- 							<pathToTest>${basedir}/src/test/java</pathToTest> -->
-<!-- 							<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices> -->
-<!-- 							<verbose>true</verbose> -->
-<!-- 						</configuration> -->
-<!-- 						<goals> -->
-<!-- 							<goal>parse</goal> -->
-<!-- 						</goals> -->
-<!-- 					</execution> -->
+							<pathToTest></pathToTest>
+							<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
+							<verbose>true</verbose>
+						</configuration>
+						<goals>
+							<goal>parse</goal>
+						</goals>
+					</execution>
 
 				</executions>
 			</plugin>
 
-			<!-- <plugin> -->
-			<!-- <groupId>org.jboss.shrinkwrap.descriptors</groupId> -->
-			<!-- <artifactId>shrinkwrap-descriptors-metadata-parser</artifactId> -->
-			<!-- <version>${project.version}</version> -->
-			<!-- <configuration> -->
-			<!-- <pathToXsd>${basedir}/src/test/resources/xsd/resource-adapters_1_0.xsd</pathToXsd> -->
-			<!-- <nameSpace>resourceadapters</nameSpace> -->
-			<!-- <packageApi>org.jboss.resourceadapters.api</packageApi> -->
-			<!-- <packageImpl>org.jboss.resourceadapters.impl</packageImpl> -->
-			<!-- <elementName>resourceadapters</elementName> -->
-			<!-- <elementType>resourceadapters:resource-adaptersType</elementType> -->
-			<!-- <pathToApi>${basedir}/src/main/java</pathToApi> -->
-			<!-- <pathToImpl>${basedir}/src/main/java</pathToImpl> -->
-			<!-- <pathToTest>${basedir}/src/test/java</pathToTest> -->
-			<!-- <pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices> -->
-			<!-- <verbose>true</verbose> -->
-			<!-- </configuration> -->
-			<!-- <executions> -->
-			<!-- <execution> -->
-			<!-- <phase>validate</phase> -->
-			<!-- <goals> -->
-			<!-- <goal>parse</goal> -->
-			<!-- </goals> -->
-			<!-- </execution> -->
-			<!-- </executions> -->
-			<!-- </plugin> -->
-
-			<!-- <plugin> -->
-			<!-- <groupId>org.jboss.shrinkwrap.descriptors</groupId> -->
-			<!-- <artifactId>shrinkwrap-descriptors-metadata-parser</artifactId> -->
-			<!-- <version>${project.version}</version> -->
-			<!-- <configuration> -->
-			<!-- <pathToXsd>${basedir}/src/test/resources/xsd/resource-adapters_1_0.xsd</pathToXsd> -->
-			<!-- <nameSpace>resourceadapters</nameSpace> -->
-			<!-- <packageApi>org.jboss.resourceadapters.api</packageApi> -->
-			<!-- <packageImpl>org.jboss.resourceadapters.impl</packageImpl> -->
-			<!-- <elementName>resourceadapters</elementName> -->
-			<!-- <elementType>resourceadapters:resource-adaptersType</elementType> -->
-			<!-- <pathToApi>${basedir}/src/main/java</pathToApi> -->
-			<!-- <pathToImpl>${basedir}/src/main/java</pathToImpl> -->
-			<!-- <pathToTest>${basedir}/src/test/java</pathToTest> -->
-			<!-- <pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices> -->
-			<!-- <verbose>true</verbose> -->
-			<!-- </configuration> -->
-			<!-- <executions> -->
-			<!-- <execution> -->
-			<!-- <phase>validate</phase> -->
-			<!-- <goals> -->
-			<!-- <goal>parse</goal> -->
-			<!-- </goals> -->
-			<!-- </execution> -->
-			<!-- </executions> -->
-			<!-- </plugin> -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.7</version>
+				<executions>
+					<execution>
+						<id>add-test-source</id>
+						<phase>generate-test-sources</phase>
+						<goals>
+							<goal>add-test-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src/teststatic/java</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 
 			<!-- Surefire -->
 			<plugin>
@@ -178,36 +201,35 @@
 				</configuration>
 			</plugin>
 		</plugins>
-    <pluginManagement>
-      <plugins>
-      <!-- So m2e doesn't throw errors for features it doesn't support in the 
-        POM -->
-        <plugin>
-          <groupId>org.eclipse.m2e</groupId>
-          <artifactId>lifecycle-mapping</artifactId>
-          <version>1.0.0</version>
-          <configuration>
-            <lifecycleMappingMetadata>
-              <pluginExecutions>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-                    <artifactId>shrinkwrap-descriptors-metadata-parser</artifactId>
-                    <versionRange>[1.0.0,)</versionRange>
-                    <goals>
-                      <goal>parse</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <execute />
-                  </action>
-                </pluginExecution>
-              </pluginExecutions>
-            </lifecycleMappingMetadata>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
+		<pluginManagement>
+			<plugins>
+				<!-- So m2e doesn't throw errors for features it doesn't support in the POM -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.jboss.shrinkwrap.descriptors</groupId>
+										<artifactId>shrinkwrap-descriptors-metadata-parser</artifactId>
+										<versionRange>[1.0.0,)</versionRange>
+										<goals>
+											<goal>parse</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 
 	<dependencies>

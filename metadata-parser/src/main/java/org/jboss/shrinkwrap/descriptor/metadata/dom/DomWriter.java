@@ -1,3 +1,21 @@
+/*
+ * JBoss, Home of Professional Open Source
+ * Copyright 2011, Red Hat Middleware LLC, and individual contributors
+ * by the @authors tag. See the copyright.txt in the distribution for a
+ * full listing of individual contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
 package org.jboss.shrinkwrap.descriptor.metadata.dom;
 
 import java.io.File;
@@ -12,17 +30,30 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.jboss.shrinkwrap.descriptor.metadata.Metadata;
-import org.jboss.shrinkwrap.descriptor.metadata.MetadataClass;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataDescriptor;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataElement;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataEnum;
-import org.jboss.shrinkwrap.descriptor.metadata.MetadataType;
+import org.jboss.shrinkwrap.descriptor.metadata.MetadataItem;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * This class writes an XML file based on the meta-data information.
+ *
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ */
 public class DomWriter
 {
+   
+   /**
+    * Writes an XML file based on the given meta-data information at the specified location.
+    * 
+    * TODO: a lot of recurring code is here, needs to be refactored.
+    * 
+    * @param metadata
+    * @param pathToMetadata
+    */
    public void write(final Metadata metadata, final String pathToMetadata)
    {
       try
@@ -85,7 +116,7 @@ public class DomWriter
          // add datatypes
          final Element datatypes = doc.createElement("datatypes");
          rootElement.appendChild(datatypes);
-         for (MetadataType metadataType: metadata.getDataTypeList())
+         for (MetadataItem metadataType: metadata.getDataTypeList())
          {  
             final Element datatype = doc.createElement("datatype");
             final Attr attrName = doc.createAttribute("name");
@@ -144,7 +175,7 @@ public class DomWriter
       
          final Element groups = doc.createElement("groups");
          rootElement.appendChild(groups);
-         for (MetadataClass metadataClass: metadata.getGroupList())
+         for (MetadataItem metadataClass: metadata.getGroupList())
          {  
             final Element classElement = doc.createElement("class");
             
@@ -197,7 +228,7 @@ public class DomWriter
                classElement.appendChild(childElement);
             }
             
-            for(MetadataElement element: metadataClass.getIncludes())
+            for(MetadataElement element: metadataClass.getReferences())
             {
                final Element childElement = doc.createElement("include");
                
@@ -213,7 +244,7 @@ public class DomWriter
          
          final Element classes = doc.createElement("classes");
          rootElement.appendChild(classes);
-         for (MetadataClass metadataClass: metadata.getClassList())
+         for (MetadataItem metadataClass: metadata.getClassList())
          {  
             final Element classElement = doc.createElement("class");
             
@@ -270,7 +301,7 @@ public class DomWriter
                classElement.appendChild(childElement);
             }
             
-            for(MetadataElement element: metadataClass.getIncludes())
+            for(MetadataElement element: metadataClass.getReferences())
             {
                final Element childElement = doc.createElement("include");
                
@@ -283,20 +314,17 @@ public class DomWriter
             
             classes.appendChild(classElement);
          }
-         
-//         <descriptor schemaName="../xsd/beans_1_0.xsd" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.beans10" packageImpl="org.jboss.shrinkwrap.descriptor.impl.beans10">
-//			<namespace name="xmlns" value="http://java.sun.com/xml/ns/javaee" />
-//			<namespace name="xmlns:xsi" value="http://www.w3.org/2001/XMLSchema-instance" />
-//			<namespace name="xsi:schemaLocation" value="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/beans_1_0.xsd" />
-//			<element name="beans" type="javaee:beans" defaultNamespaces="" />
-//		</descriptor>
-         
+           
          final Element descriptors = doc.createElement("descriptors");
          rootElement.appendChild(descriptors);
          
          final MetadataDescriptor metadataDescriptor = metadata.getMetadataDescriptor();         
          final Element descriptorElement = doc.createElement("descriptor");
          descriptors.appendChild(descriptorElement);
+         
+         final Attr attrName = doc.createAttribute("name");
+         attrName.setValue(metadataDescriptor.getName());
+         descriptorElement.setAttributeNode(attrName);
          
          final Attr attrSchemaName = doc.createAttribute("schemaName");
          attrSchemaName.setValue(metadataDescriptor.getSchemaName());
@@ -314,11 +342,11 @@ public class DomWriter
          descriptorElement.appendChild(element);
          
          final Attr attElementName = doc.createAttribute("name");
-         attElementName.setValue(metadataDescriptor.getName());
+         attElementName.setValue(metadataDescriptor.getRootElementName());
          element.setAttributeNode(attElementName);
          
          final Attr attElementType = doc.createAttribute("type");
-         attElementType.setValue(metadataDescriptor.getType());
+         attElementType.setValue(metadataDescriptor.getRootElementType());
          element.setAttributeNode(attElementType);
          
          TransformerFactory transformerFactory = TransformerFactory.newInstance();

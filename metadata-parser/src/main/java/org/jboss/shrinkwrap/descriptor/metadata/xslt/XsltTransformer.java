@@ -30,7 +30,8 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 /**
- * Executes the xslt transformation process.
+ * Executes a xslt transformation process.
+ * 
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
 public class XsltTransformer
@@ -46,7 +47,6 @@ public class XsltTransformer
    public static void simpleTransform(final String sourcePath, final String xsltPath, final String resultDir,
          final Map<String, String> parameters) throws TransformerException
    {
-//      final TransformerFactory tFactory = new net.sf.saxon.TransformerFactoryImpl();
       final TransformerFactory tFactory = TransformerFactory.newInstance("net.sf.saxon.TransformerFactoryImpl", null);
       final Transformer transformer = tFactory.newTransformer(new StreamSource(new File(xsltPath)));
       applyParameters(transformer, parameters);

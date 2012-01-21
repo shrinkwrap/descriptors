@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
-import org.jboss.resourceadapters.api.ResourceAdaptersDescriptor;
+import org.jboss.resourceadapters.api.ResourceadapterDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Before;
@@ -25,7 +25,7 @@ public class ResourceAdaptersTestCase
    @Test
    public void testGeneratedDataSourcesXml() throws Exception
    {  
-	   ResourceAdaptersDescriptor resourceAdaptersGenerated = create()
+	   ResourceadapterDescriptor resourceAdaptersGenerated = create()
         .addDefaultNamespaces()
         .createResourceAdapter()
         	.archive("archive0")
@@ -222,9 +222,9 @@ public class ResourceAdaptersTestCase
       return builder.toString();
    }
    
-   private ResourceAdaptersDescriptor create()
+   private ResourceadapterDescriptor create()
    {
-      return Descriptors.create(ResourceAdaptersDescriptor.class);
+      return Descriptors.create(ResourceadapterDescriptor.class);
    }
    
 }
