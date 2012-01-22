@@ -17,8 +17,10 @@
 
 package org.jboss.shrinkwrap.descriptor.metadata;
 
+import org.jboss.shrinkwrap.descriptor.metadata.filter.XsdElementEnum;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * Utility class serving useful methods for extracting node and element information.
@@ -75,6 +77,30 @@ public class MetadataUtil
       return parendElement;
    }
 
+   /**
+    * Checks the existence of a w3c child element.
+    * @param parentElement the element from which the search starts.
+    * @param child the <code>XsdElementEnum</code> specifying the child element.
+    * @return true, if found, otherwise false.
+    */
+   public static boolean hasChildOf(final Element parentElement, XsdElementEnum child )
+   {
+      NodeList nodeList = parentElement.getChildNodes();   
+      for (int i=0; i<nodeList.getLength(); i++)
+      {
+         final Node childNode = nodeList.item(i);
+         if (childNode.getNodeType() == Node.ELEMENT_NODE)
+         {
+            final Element childElement = (Element) childNode;
+            if (child.isTagNameEqual(childElement.getTagName())) 
+            {
+               return true;
+            }
+         }
+      }
+      return false;      
+   }
+   
    /**
     * Prints on the stdio out metadata information.
     * @param metadata

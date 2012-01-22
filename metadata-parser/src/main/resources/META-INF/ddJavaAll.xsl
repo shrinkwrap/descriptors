@@ -3001,9 +3001,9 @@
             <xsl:when test="$vMethodName='Default'">
                 <xsl:sequence select="'_Default'"/>
             </xsl:when>
-           <!-- <xsl:when test="$vMethodName='Map'">
-                <xsl:sequence select="'_Map'"/>
-            </xsl:when>-->
+           <xsl:when test="$vMethodName='package'">
+                <xsl:sequence select="'_package'"/>
+            </xsl:when>
            <!-- <xsl:when test="$vMethodName='Set'">
                 <xsl:sequence select="'_Set'"/>
             </xsl:when>-->

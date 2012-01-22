@@ -148,7 +148,7 @@
 						<id>execution5</id>
 						<phase>validate</phase>
 						<configuration>
-							<pathToXsd>${basedir}/src/test/resources/xsd/jetty7.dtd</pathToXsd>
+							<pathToXsd>${basedir}/src/test/resources/dtd/jetty_7_configure.dtd</pathToXsd>
 							<nameSpace>jetty7</nameSpace>
 							<packageApi>org.jboss.shrinkwrap.descriptor.api.jetty7</packageApi>
 							<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jetty7</packageImpl>
@@ -157,8 +157,53 @@
 							<elementType>jetty7:Configure</elementType>
 							<pathToApi>${basedir}/src/main/java</pathToApi>
 							<pathToImpl>${basedir}/src/main/java</pathToImpl>
-<!-- 							<pathToTest>${basedir}/src/test/java</pathToTest> -->
+							<!-- <pathToTest>${basedir}/src/test/java</pathToTest> -->
 							<pathToTest></pathToTest>
+							<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
+							<verbose>true</verbose>
+						</configuration>
+						<goals>
+							<goal>parse</goal>
+						</goals>
+					</execution>
+        
+					<execution>
+						<id>execution6</id>
+						<phase>validate</phase>
+						<configuration>
+							<pathToXsd>${basedir}/src/test/resources/xsd/persistence_1_0.xsd</pathToXsd>
+							<nameSpace>persistence</nameSpace>
+							<packageApi>org.jboss.shrinkwrap.descriptor.api.persistence10</packageApi>
+							<packageImpl>org.jboss.shrinkwrap.descriptor.impl.persistence10</packageImpl>
+							<descriptorName>PersistenceDescriptor</descriptorName>
+							<elementName>persistence</elementName>
+							<elementType>persistence:persistence</elementType>
+							<pathToApi>${basedir}/src/main/java</pathToApi>
+							<pathToImpl>${basedir}/src/main/java</pathToImpl>
+							<!-- <pathToTest>${basedir}/src/test/java</pathToTest> -->
+							<pathToTest></pathToTest>
+							<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
+							<verbose>true</verbose>
+						</configuration>
+						<goals>
+							<goal>parse</goal>
+						</goals>
+					</execution>
+					
+					<execution>
+						<id>execution7</id>
+						<phase>validate</phase>
+						<configuration>
+							<pathToXsd>${basedir}/src/test/resources/xsd/orm_1_0.xsd</pathToXsd>
+							<nameSpace>orm</nameSpace>
+							<packageApi>org.jboss.shrinkwrap.descriptor.api.orm10</packageApi>
+							<packageImpl>org.jboss.shrinkwrap.descriptor.impl.orm10</packageImpl>
+							<descriptorName>OrmDescriptor</descriptorName>
+							<elementName>entity-mappings</elementName>
+							<elementType>orm:entity-mappings</elementType>
+							<pathToApi>${basedir}/src/main/java</pathToApi>
+							<pathToImpl>${basedir}/src/main/java</pathToImpl>
+<!-- 							<pathToTest>${basedir}/src/test/java</pathToTest> -->
 							<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
 							<verbose>true</verbose>
 						</configuration>

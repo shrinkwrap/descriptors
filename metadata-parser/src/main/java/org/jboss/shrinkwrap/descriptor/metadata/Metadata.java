@@ -20,6 +20,8 @@ package org.jboss.shrinkwrap.descriptor.metadata;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jboss.shrinkwrap.descriptor.metadata.filter.JavaKeywordsEnum;
+
 /**
  * This class serves as a sink for all extracted meta-data information.
  *
@@ -296,8 +298,18 @@ public class Metadata
             }
          }
          
-         /** replace the xs namespace with xsd, ddJavaAll xslt likes this more */
+         /** 
+          * replace the xs namespace with xsd, ddJavaAll xslt likes this more 
+          */
          element.setType(element.getType().replace("xs:", "xsd:"));
+         
+         /**
+          * Check java keywords
+          */
+//         if (JavaKeywordsEnum.abstract_keyword.isJavaKeyword(element.getName()))
+//         {
+//            element.setName("_" + element.getName());
+//         }
       }
    }
    

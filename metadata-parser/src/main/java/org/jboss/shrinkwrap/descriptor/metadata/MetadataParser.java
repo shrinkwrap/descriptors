@@ -44,6 +44,7 @@ import org.jboss.shrinkwrap.descriptor.metadata.filter.RestrictionFilter;
 import org.jboss.shrinkwrap.descriptor.metadata.filter.SimpleContentFilter;
 import org.jboss.shrinkwrap.descriptor.metadata.xslt.XsltTransformer;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.traversal.DocumentTraversal;
 import org.w3c.dom.traversal.NodeFilter;
@@ -176,7 +177,7 @@ public class MetadataParser
 	
 	        final DocumentTraversal traversal = (DocumentTraversal) document;
 	        final TreeWalker walker = traversal.createTreeWalker(document.getDocumentElement(), NodeFilter.SHOW_ELEMENT, null, true);	
-	        traverseLevel(walker);
+	        traverseLevel(walker, "");
     	}
     	
     	/**
@@ -204,9 +205,14 @@ public class MetadataParser
      * @param walker
      * @param indent 
      */
-    private void traverseLevel(final TreeWalker walker)
+    private void traverseLevel(final TreeWalker walker, final String indent)
     {
         final Node parend = walker.getCurrentNode();
+        
+        if (verbose)
+        {
+           System.out.println(indent + "- " + ((Element) parend).getTagName());
+        }
         
         for (final Filter filter : filterList) {
             if (filter.filter(metadata, walker)) {
@@ -215,7 +221,7 @@ public class MetadataParser
         }
 
         for (Node n = walker.firstChild(); n != null; n = walker.nextSibling()) {
-            traverseLevel(walker);
+            traverseLevel(walker, indent + '\t');
         }
         
         walker.setCurrentNode(parend);

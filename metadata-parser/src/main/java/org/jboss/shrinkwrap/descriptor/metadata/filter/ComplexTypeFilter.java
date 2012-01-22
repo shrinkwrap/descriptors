@@ -24,6 +24,18 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.traversal.TreeWalker;
 
+
+/**
+ * This filter class analyzes <code>ComplexType</code> w3c elements.
+ * <p>
+ * According the specification, possible content can be:
+ * 
+ * <code>
+ * Content: (annotation?, (simpleContent | complexContent | ((group | all | choice | sequence)?, ((attribute | attributeGroup)*, anyAttribute?))))
+ * </code>
+ * 
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ */
 public class ComplexTypeFilter implements Filter
 {
    @Override
@@ -34,29 +46,38 @@ public class ComplexTypeFilter implements Filter
       
       if (XsdElementEnum.complexType.isTagNameEqual(element.getTagName())) 
       {
-    	  final String typeStr = MetadataUtil.getAttributeValue(element, "type");
-    	  
-    	  if (typeStr == null  && !element.hasChildNodes())
+    	  final String typeStr = MetadataUtil.getAttributeValue(element, "type");    	  
+    	  if (typeStr == null  && (!element.hasChildNodes()))
 		  {
-			  // may an unconstrained element of anyType, declare it as a string
 			  final String dataTypeName = MetadataUtil.getAttributeValue(element, "name");
 			  final MetadataItem dataType = new MetadataItem(dataTypeName);
-              dataType.setMappedTo("xsd:string");
+              dataType.setMappedTo("javaee:emptyType");
               dataType.setNamespace(metadata.getCurrentNamespace());
               dataType.setSchemaName(metadata.getCurrentSchmema());
-              metadata.getDataTypeList().add(dataType);
-              
-              if (dataTypeName.toLowerCase().contains("boolean"))
-              {
-                 dataType.setMappedTo("javaee:emptyType");
-              }
-              
+              metadata.getDataTypeList().add(dataType);              
               return true;
-    	  }    	  
+    	  }    	
+    	  else if (
+    	        !MetadataUtil.hasChildOf(element, XsdElementEnum.simpleContent) &&
+    	        !MetadataUtil.hasChildOf(element, XsdElementEnum.complexContent) &&
+    	        !MetadataUtil.hasChildOf(element, XsdElementEnum.group) &&
+    	        !MetadataUtil.hasChildOf(element, XsdElementEnum.all) &&
+    	        !MetadataUtil.hasChildOf(element, XsdElementEnum.choice) &&
+    	        !MetadataUtil.hasChildOf(element, XsdElementEnum.sequence) &&
+    	        !MetadataUtil.hasChildOf(element, XsdElementEnum.attribute) &&
+    	        !MetadataUtil.hasChildOf(element, XsdElementEnum.attributeGroup) &&
+    	        !MetadataUtil.hasChildOf(element, XsdElementEnum.anyAttribute))
+    	  {
+    	     final String dataTypeName = MetadataUtil.getAttributeValue(element, "name");
+             final MetadataItem dataType = new MetadataItem(dataTypeName);
+             dataType.setMappedTo("javaee:emptyType");
+             dataType.setNamespace(metadata.getCurrentNamespace());
+             dataType.setSchemaName(metadata.getCurrentSchmema());
+             metadata.getDataTypeList().add(dataType);
+             return true;
+    	  }
       }
       return false;
    }
-   
-   
 }
 

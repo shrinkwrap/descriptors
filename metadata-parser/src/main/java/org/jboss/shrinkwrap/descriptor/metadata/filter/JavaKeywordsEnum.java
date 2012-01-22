@@ -82,12 +82,28 @@ public enum JavaKeywordsEnum {
       return description;
    }
    
-   public boolean isTagNameEqual(final String tagName)
+   public boolean isJavaKeyword(final String ElementName)
    {
-      if (tagName != null)
+//      System.out.println("isJavaKeyword: " + ElementName);
+      if (ElementName != null)
       {
-         final String[] items = tagName.split(":", -1);
-         if (items.length == 2 && items[1].equals(name()))
+         for (XsdDatatypeEnum value : XsdDatatypeEnum.values())
+         {
+            if (ElementName.equals(value.getDescription()))
+            {
+               System.out.println("isJavaKeyword: " + ElementName + " found");
+               return true;
+            }
+         }
+      }
+      return false;
+   }
+   
+   public boolean isElementNameEqual(final String elementName)
+   {
+      if (elementName != null)
+      {
+         if (elementName.equals(name()))
             return true;
       }
       return false;
