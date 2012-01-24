@@ -4,3 +4,4 @@
 target
 bin
 metadata-parser-test/src/main/resources/META-INF
+metadata-parser-test/src/test/java

@@ -84,34 +84,40 @@ public class DomWriter
          final Element packages = doc.createElement("packages");
          rootElement.appendChild(packages);
          
-         final Element packageApi = doc.createElement("api");
-         final Attr packageApiName = doc.createAttribute("name");
-         packageApiName.setValue(metadata.getCurrentPackageApi());
-         packageApi.setAttributeNode(packageApiName);
+         for (String api: metadata.getPackageApiList())
+         {
+            final Element packageApi = doc.createElement("api");
+            final Attr packageApiName = doc.createAttribute("name");
+            packageApiName.setValue(api);
+            packageApi.setAttributeNode(packageApiName);
           
-         final Attr schemaNameApi = doc.createAttribute("schema");
-         schemaNameApi.setValue(metadata.getCurrentPackageApi());
-         packageApi.setAttributeNode(schemaNameApi);
+            final Attr schemaNameApi = doc.createAttribute("schema");
+            schemaNameApi.setValue(""); // TODO
+            packageApi.setAttributeNode(schemaNameApi);
+            
+            final Attr generateClassApi = doc.createAttribute("generateClass");
+            generateClassApi.setValue("true");
+            packageApi.setAttributeNode(generateClassApi);
+            
+            packages.appendChild(packageApi);
+         }
          
-         final Attr generateClassApi = doc.createAttribute("generateClass");
-         generateClassApi.setValue("true");
-         packageApi.setAttributeNode(generateClassApi);
-         
-         final Element packageImpl = doc.createElement("impl");
-         final Attr packageImplName = doc.createAttribute("name");         
-         packageImplName.setValue(metadata.getCurrentPackageImpl());
-         packageImpl.setAttributeNode(packageImplName);         
-         
-         final Attr schemaNameImpl = doc.createAttribute("schema");
-         schemaNameImpl.setValue(metadata.getCurrentPackageImpl());
-         packageImpl.setAttributeNode(schemaNameImpl);
-         
-         final Attr generateClassImpl = doc.createAttribute("generateClass");
-         generateClassImpl.setValue("true");
-         packageImpl.setAttributeNode(generateClassImpl);  
-         
-         packages.appendChild(packageApi);
-         packages.appendChild(packageImpl);
+         for (String impl: metadata.getPackageImplList())
+         {
+            final Element packageImpl = doc.createElement("impl");
+            final Attr packageImplName = doc.createAttribute("name");         
+            packageImplName.setValue(impl);
+            packageImpl.setAttributeNode(packageImplName);         
+            
+            final Attr schemaNameImpl = doc.createAttribute("schema");
+            schemaNameImpl.setValue(metadata.getCurrentPackageImpl());
+            packageImpl.setAttributeNode(schemaNameImpl);
+            
+            final Attr generateClassImpl = doc.createAttribute("generateClass");
+            generateClassImpl.setValue("true");
+            packageImpl.setAttributeNode(generateClassImpl);  
+            packages.appendChild(packageImpl);
+         }
          
          // add datatypes
          final Element datatypes = doc.createElement("datatypes");
@@ -318,36 +324,38 @@ public class DomWriter
          final Element descriptors = doc.createElement("descriptors");
          rootElement.appendChild(descriptors);
          
-         final MetadataDescriptor metadataDescriptor = metadata.getMetadataDescriptor();         
-         final Element descriptorElement = doc.createElement("descriptor");
-         descriptors.appendChild(descriptorElement);
-         
-         final Attr attrName = doc.createAttribute("name");
-         attrName.setValue(metadataDescriptor.getName());
-         descriptorElement.setAttributeNode(attrName);
-         
-         final Attr attrSchemaName = doc.createAttribute("schemaName");
-         attrSchemaName.setValue(metadataDescriptor.getSchemaName());
-         descriptorElement.setAttributeNode(attrSchemaName);
-         
-         final Attr attrPackageApi = doc.createAttribute("packageApi");
-         attrPackageApi.setValue(metadataDescriptor.getPackageApi());
-         descriptorElement.setAttributeNode(attrPackageApi);
-         
-         final Attr attrPackageImpl = doc.createAttribute("packageImpl");
-         attrPackageImpl.setValue(metadataDescriptor.getPackageImpl());
-         descriptorElement.setAttributeNode(attrPackageImpl);
-         
-         final Element element = doc.createElement("element");
-         descriptorElement.appendChild(element);
-         
-         final Attr attElementName = doc.createAttribute("name");
-         attElementName.setValue(metadataDescriptor.getRootElementName());
-         element.setAttributeNode(attElementName);
-         
-         final Attr attElementType = doc.createAttribute("type");
-         attElementType.setValue(metadataDescriptor.getRootElementType());
-         element.setAttributeNode(attElementType);
+         for (MetadataDescriptor descriptor: metadata.getMetadataDescriptorList())
+         {        
+            final Element descriptorElement = doc.createElement("descriptor");
+            descriptors.appendChild(descriptorElement);
+            
+            final Attr attrName = doc.createAttribute("name");
+            attrName.setValue(descriptor.getName());
+            descriptorElement.setAttributeNode(attrName);
+            
+            final Attr attrSchemaName = doc.createAttribute("schemaName");
+            attrSchemaName.setValue(descriptor.getSchemaName());
+            descriptorElement.setAttributeNode(attrSchemaName);
+            
+            final Attr attrPackageApi = doc.createAttribute("packageApi");
+            attrPackageApi.setValue(descriptor.getPackageApi());
+            descriptorElement.setAttributeNode(attrPackageApi);
+            
+            final Attr attrPackageImpl = doc.createAttribute("packageImpl");
+            attrPackageImpl.setValue(descriptor.getPackageImpl());
+            descriptorElement.setAttributeNode(attrPackageImpl);
+            
+            final Element element = doc.createElement("element");
+            descriptorElement.appendChild(element);
+            
+            final Attr attElementName = doc.createAttribute("name");
+            attElementName.setValue(descriptor.getRootElementName());
+            element.setAttributeNode(attElementName);
+            
+            final Attr attElementType = doc.createAttribute("type");
+            attElementType.setValue(descriptor.getRootElementType());
+            element.setAttributeNode(attElementType);
+         }
          
          TransformerFactory transformerFactory = TransformerFactory.newInstance();
          Transformer transformer = transformerFactory.newTransformer();

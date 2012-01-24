@@ -54,164 +54,94 @@
 				<groupId>org.jboss.shrinkwrap.descriptors</groupId>
 				<artifactId>shrinkwrap-descriptors-metadata-parser</artifactId>
 				<version>${project.version}</version>
-
 				<executions>
 					<execution>
 						<id>execution1</id>
 						<phase>validate</phase>
 						<configuration>
-							<pathToXsd>${basedir}/src/test/resources/xsd/ironjacamar_1_0.xsd</pathToXsd>
-							<nameSpace>ironjacamar</nameSpace>
-							<packageApi>org.jboss.ironjacamar.api</packageApi>
-							<packageImpl>org.jboss.ironjacamar.impl</packageImpl>
-							<descriptorName>IronjacamarDescriptor</descriptorName>
-							<elementName>ironjacamar</elementName>
-							<elementType>ironjacamar:ironjacamarType</elementType>
-							<pathToApi>${basedir}/src/main/java</pathToApi>
-							<pathToImpl>${basedir}/src/main/java</pathToImpl>
-							<pathToTest>${basedir}/src/test/java</pathToTest>
-							<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
-							<verbose>true</verbose>
-						</configuration>
-						<goals>
-							<goal>parse</goal>
-						</goals>
-					</execution>
+						    <verbose>true</verbose>
+							<path>
+								<pathToApi>${basedir}/src/main/java</pathToApi>
+								<pathToImpl>${basedir}/src/main/java</pathToImpl>
+<!-- 								<pathToTest>${basedir}/src/test/java</pathToTest> -->
+								<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
+							</path>
+							<descriptors>
+								<descriptor>
+									<pathToXsd>${basedir}/src/test/resources/xsd/ironjacamar_1_0.xsd</pathToXsd>
+									<nameSpace>ironjacamar</nameSpace>
+									<packageApi>org.jboss.ironjacamar.api</packageApi>
+									<packageImpl>org.jboss.ironjacamar.impl</packageImpl>
+									<descriptorName>IronjacamarDescriptor</descriptorName>
+									<elementName>ironjacamar</elementName>
+									<elementType>ironjacamar:ironjacamarType</elementType>
+								</descriptor>
 
-					<execution>
-						<id>execution2</id>
-						<phase>validate</phase>
-						<configuration>
-							<pathToXsd>${basedir}/src/test/resources/xsd/datasources_1_0.xsd</pathToXsd>
-							<nameSpace>datasources</nameSpace>
-							<packageApi>org.jboss.datasources.api</packageApi>
-							<packageImpl>org.jboss.datasources.impl</packageImpl>
-							<descriptorName>DatasourcesDescriptor</descriptorName>
-							<elementName>datasources</elementName>
-							<elementType>datasources:datasourcesType</elementType>
-							<pathToApi>${basedir}/src/main/java</pathToApi>
-							<pathToImpl>${basedir}/src/main/java</pathToImpl>
-							<pathToTest>${basedir}/src/test/java</pathToTest>
-							<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
-							<verbose>true</verbose>
-						</configuration>
-						<goals>
-							<goal>parse</goal>
-						</goals>
-					</execution>
+								<descriptor>
+									<pathToXsd>${basedir}/src/test/resources/xsd/datasources_1_0.xsd</pathToXsd>
+									<nameSpace>datasources</nameSpace>
+									<packageApi>org.jboss.datasources.api</packageApi>
+									<packageImpl>org.jboss.datasources.impl</packageImpl>
+									<descriptorName>DatasourcesDescriptor</descriptorName>
+									<elementName>datasources</elementName>
+									<elementType>datasources:datasourcesType</elementType>
+								</descriptor>
 
-					<execution>
-						<id>execution3</id>
-						<phase>validate</phase>
-						<configuration>
-							<pathToXsd>${basedir}/src/test/resources/xsd/resource-adapters_1_0.xsd</pathToXsd>
-							<nameSpace>resourceadapters</nameSpace>
-							<packageApi>org.jboss.resourceadapters.api</packageApi>
-							<packageImpl>org.jboss.resourceadapters.impl</packageImpl>
-							<descriptorName>ResourceadapterDescriptor</descriptorName>
-							<elementName>resource-adapters</elementName>
-							<elementType>resourceadapters:resource-adaptersType</elementType>
-							<pathToApi>${basedir}/src/main/java</pathToApi>
-							<pathToImpl>${basedir}/src/main/java</pathToImpl>
-							<pathToTest>${basedir}/src/test/java</pathToTest>
-							<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
-							<verbose>true</verbose>
-						</configuration>
-						<goals>
-							<goal>parse</goal>
-						</goals>
-					</execution>
+								<descriptor>
+									<pathToXsd>${basedir}/src/test/resources/xsd/resource-adapters_1_0.xsd</pathToXsd>
+									<nameSpace>resourceadapters</nameSpace>
+									<packageApi>org.jboss.resourceadapters.api</packageApi>
+									<packageImpl>org.jboss.resourceadapters.impl</packageImpl>
+									<descriptorName>ResourceadapterDescriptor</descriptorName>
+									<elementName>resource-adapters</elementName>
+									<elementType>resourceadapters:resource-adaptersType</elementType>
+								</descriptor>
 
-					<execution>
-						<id>execution4</id>
-						<phase>validate</phase>
-						<configuration>
-							<pathToXsd>${basedir}/src/test/resources/dtd/connector_1_0.dtd</pathToXsd>
-							<nameSpace>j2ee</nameSpace>
-							<packageApi>org.jboss.shrinkwrap.descriptor.test.api.connector10</packageApi>
-							<packageImpl>org.jboss.shrinkwrap.descriptor.test.impl.connector10</packageImpl>
-							<descriptorName>ConnectorDescriptor</descriptorName>
-							<elementName>connector</elementName>
-							<elementType>j2ee:connector</elementType>
-							<pathToApi>${basedir}/src/main/java</pathToApi>
-							<pathToImpl>${basedir}/src/main/java</pathToImpl>
-							<pathToTest>${basedir}/src/test/java</pathToTest>
-							<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
-							<verbose>true</verbose>
-						</configuration>
-						<goals>
-							<goal>parse</goal>
-						</goals>
-					</execution>
+								<descriptor>
+									<pathToXsd>${basedir}/src/test/resources/dtd/connector_1_0.dtd</pathToXsd>
+									<nameSpace>j2ee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.test.api.connector10</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.test.impl.connector10</packageImpl>
+									<descriptorName>ConnectorDescriptor</descriptorName>
+									<elementName>connector</elementName>
+									<elementType>j2ee:connector</elementType>
+								</descriptor>
 
-					<execution>
-						<id>execution5</id>
-						<phase>validate</phase>
-						<configuration>
-							<pathToXsd>${basedir}/src/test/resources/dtd/jetty_7_configure.dtd</pathToXsd>
-							<nameSpace>jetty7</nameSpace>
-							<packageApi>org.jboss.shrinkwrap.descriptor.api.jetty7</packageApi>
-							<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jetty7</packageImpl>
-							<descriptorName>JettyDescriptor</descriptorName>
-							<elementName>Configure</elementName>
-							<elementType>jetty7:Configure</elementType>
-							<pathToApi>${basedir}/src/main/java</pathToApi>
-							<pathToImpl>${basedir}/src/main/java</pathToImpl>
-							<!-- <pathToTest>${basedir}/src/test/java</pathToTest> -->
-							<pathToTest></pathToTest>
-							<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
-							<verbose>true</verbose>
-						</configuration>
-						<goals>
-							<goal>parse</goal>
-						</goals>
-					</execution>
-        
-					<execution>
-						<id>execution6</id>
-						<phase>validate</phase>
-						<configuration>
-							<pathToXsd>${basedir}/src/test/resources/xsd/persistence_1_0.xsd</pathToXsd>
-							<nameSpace>persistence</nameSpace>
-							<packageApi>org.jboss.shrinkwrap.descriptor.api.persistence10</packageApi>
-							<packageImpl>org.jboss.shrinkwrap.descriptor.impl.persistence10</packageImpl>
-							<descriptorName>PersistenceDescriptor</descriptorName>
-							<elementName>persistence</elementName>
-							<elementType>persistence:persistence</elementType>
-							<pathToApi>${basedir}/src/main/java</pathToApi>
-							<pathToImpl>${basedir}/src/main/java</pathToImpl>
-							<!-- <pathToTest>${basedir}/src/test/java</pathToTest> -->
-							<pathToTest></pathToTest>
-							<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
-							<verbose>true</verbose>
-						</configuration>
-						<goals>
-							<goal>parse</goal>
-						</goals>
-					</execution>
-					
-					<execution>
-						<id>execution7</id>
-						<phase>validate</phase>
-						<configuration>
-							<pathToXsd>${basedir}/src/test/resources/xsd/orm_1_0.xsd</pathToXsd>
-							<nameSpace>orm</nameSpace>
-							<packageApi>org.jboss.shrinkwrap.descriptor.api.orm10</packageApi>
-							<packageImpl>org.jboss.shrinkwrap.descriptor.impl.orm10</packageImpl>
-							<descriptorName>OrmDescriptor</descriptorName>
-							<elementName>entity-mappings</elementName>
-							<elementType>orm:entity-mappings</elementType>
-							<pathToApi>${basedir}/src/main/java</pathToApi>
-							<pathToImpl>${basedir}/src/main/java</pathToImpl>
-<!-- 							<pathToTest>${basedir}/src/test/java</pathToTest> -->
-							<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
-							<verbose>true</verbose>
-						</configuration>
-						<goals>
-							<goal>parse</goal>
-						</goals>
-					</execution>
+								<descriptor>
+									<pathToXsd>${basedir}/src/test/resources/dtd/jetty_7_configure.dtd</pathToXsd>
+									<nameSpace>jetty7</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.jetty7</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jetty7</packageImpl>
+									<descriptorName>JettyDescriptor</descriptorName>
+									<elementName>Configure</elementName>
+									<elementType>jetty7:Configure</elementType>
+								</descriptor>
 
+								<descriptor>
+									<pathToXsd>${basedir}/src/test/resources/xsd/persistence_1_0.xsd</pathToXsd>
+									<nameSpace>persistence</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.persistence10</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.persistence10</packageImpl>
+									<descriptorName>PersistenceDescriptor</descriptorName>
+									<elementName>persistence</elementName>
+									<elementType>persistence:persistence</elementType>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/test/resources/xsd/orm_1_0.xsd</pathToXsd>
+									<nameSpace>orm</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.orm10</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.orm10</packageImpl>
+									<descriptorName>OrmDescriptor</descriptorName>
+									<elementName>entity-mappings</elementName>
+									<elementType>orm:entity-mappings</elementType>
+								</descriptor>
+							</descriptors>
+						</configuration>
+						<goals>
+							<goal>parse</goal>
+						</goals>
+					</execution>
 				</executions>
 			</plugin>
 

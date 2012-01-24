@@ -13,15 +13,15 @@ public class MetadataParserTestCase
     public void generateTestCase() throws Exception
     {
        
-        final MetadataParser parser = new MetadataParser(
-                "src/test/resources/dtd/jetty_7_configure.dtd",
-                "/tmp/mmmm.xml",
-                "datasources",
-                "org.jboss.shrinkwrap.descriptor.api.datasources",
-                "org.jboss.shrinkwrap.descriptor.impl.datasources", 
-                "datasources", 
-                "datasources:datasourcesType", 
-                "src1/java","src1/java","src1/test","src1/services", true);
+//        final MetadataParser parser = new MetadataParser(
+//                "src/test/resources/dtd/jetty_7_configure.dtd",
+//                "/tmp/mmmm.xml",
+//                "datasources",
+//                "org.jboss.shrinkwrap.descriptor.api.datasources",
+//                "org.jboss.shrinkwrap.descriptor.impl.datasources", 
+//                "datasources", 
+//                "datasources:datasourcesType", 
+//                "src1/java","src1/java","src1/test","src1/services", true);
 
 //       final MetadataParser parser = new MetadataParser(
 //             "src/test/resources/dtd/configure.xsd",
@@ -32,7 +32,7 @@ public class MetadataParserTestCase
 //             "jetty6:Configure", "src1/java","src1/java","src1/test","src1/services", true);
 
        
-        parser.parse();
+//        parser.parse();
         
 //        
 //        experimental:
