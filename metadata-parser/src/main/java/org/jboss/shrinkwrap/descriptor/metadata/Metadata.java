@@ -33,21 +33,22 @@ public class Metadata
    private final List<MetadataEnum> enumList     = new ArrayList<MetadataEnum>();
    private final List<MetadataItem> groupList   = new ArrayList<MetadataItem>();
    private final List<MetadataItem> classList   = new ArrayList<MetadataItem>();
-   private MetadataDescriptor metadataDescriptor;
+   private final List<String> packageApiList   = new ArrayList<String>();
+   private final List<String> packageImplList   = new ArrayList<String>();
+   private List<MetadataDescriptor> metadataDescriptorList = new ArrayList<MetadataDescriptor>();
    private String currentNamespace;
    private String currentSchmema;
    private String currentPackageApi;
    private String currentPackageImpl;
-   
-   
-   public MetadataDescriptor getMetadataDescriptor() 
+
+   public List<MetadataDescriptor> getMetadataDescriptorList()
    {
-	  return metadataDescriptor;
+      return metadataDescriptorList;
    }
 
-   public void setMetadataDescriptor(MetadataDescriptor metadataDescriptor)
+   public void setMetadataDescriptorList(List<MetadataDescriptor> metadataDescriptorList)
    {
-	  this.metadataDescriptor = metadataDescriptor;
+      this.metadataDescriptorList = metadataDescriptorList;
    }
 
    public String getCurrentNamespace()
@@ -78,6 +79,7 @@ public class Metadata
    public void setCurrentPackageApi(String currentPackageApi)
    {
       this.currentPackageApi = currentPackageApi;
+      packageApiList.add(currentPackageApi);
    }
 
    public String getCurrentPackageImpl()
@@ -88,6 +90,7 @@ public class Metadata
    public void setCurrentPackageImpl(String currentPackageImpl)
    {
       this.currentPackageImpl = currentPackageImpl;
+      packageImplList.add(currentPackageImpl);
    }
 
    public List<MetadataItem> getDataTypeList()
@@ -110,6 +113,16 @@ public class Metadata
       return classList;
    }
    
+   public List<String> getPackageApiList()
+   {
+      return packageApiList;
+   }
+
+   public List<String> getPackageImplList()
+   {
+      return packageImplList;
+   }
+
    /**
     * Adds a enumeration value to the specified enumeration name. If no enumeration class is
     * found, then a new enumeration class will be created.
@@ -120,7 +133,7 @@ public class Metadata
    {
       for (MetadataEnum instance: enumList)
       {
-         if (instance.getName().equals(enumName))
+         if (instance.getName().equals(enumName) && instance.getNamespace().equals(getCurrentNamespace()))
          {
         	 instance.addValue(enumValue);
             return;
@@ -145,7 +158,7 @@ public class Metadata
    {
       for (MetadataItem item: groupList)
       {
-         if (item.getName().equals(groupName))
+         if (item.getName().equals(groupName) && item.getNamespace().equals(getCurrentNamespace()))
          {
             item.getElements().add(groupElement);
             return;
@@ -172,7 +185,7 @@ public class Metadata
 	  groupReference.setRef(getNamespaceValue(groupReference.getRef()));
       for (MetadataItem item: groupList)
       {
-         if (item.getName().equals(groupName))
+         if (item.getName().equals(groupName) && item.getNamespace().equals(getCurrentNamespace()))
          {
             item.getReferences().add(groupReference);
             return;
@@ -199,7 +212,7 @@ public class Metadata
 	  classElement.setType(getNamespaceValue(classElement.getType()));
       for (MetadataItem item: classList)
       {
-         if (item.getName().equals(className))
+         if (item.getName().equals(className) && item.getNamespace().equals(getCurrentNamespace()))
          {
             // check for a element with the same name, if found then set 'maxOccurs = unbounded'
             for (MetadataElement element: item.getElements())
@@ -236,7 +249,7 @@ public class Metadata
 	  classReference.setRef(getNamespaceValue(classReference.getRef()));
       for (MetadataItem item: classList)
       {
-         if (item.getName().equals(className))
+         if (item.getName().equals(className) && item.getNamespace().equals(getCurrentNamespace()))
          {
             item.getReferences().add(classReference);
             return;

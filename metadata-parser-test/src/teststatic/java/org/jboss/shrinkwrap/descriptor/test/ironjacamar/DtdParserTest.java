@@ -41,20 +41,20 @@ public class DtdParserTest
 //            null,
 //            true);
 
-      final MetadataParser metadataParser = new MetadataParser(
-            "src/test/resources/xsd/orm_1_0.xsd", 
-            "orm", 
-            "org.jboss.shrinkdesc,orm10.api", "org.jboss.shrinkdesc,orm10.impl", 
-            "OrmDescriptor",
-            "entity-mappings", 
-            "orm:entity-mappings", 
-            "src/main/java", 
-            "src/main/java",
-            null,
-            null,
-            true);
-      
-      metadataParser.parse();
+//      final MetadataParser metadataParser = new MetadataParser(
+//            "src/test/resources/xsd/orm_1_0.xsd", 
+//            "orm", 
+//            "org.jboss.shrinkdesc,orm10.api", "org.jboss.shrinkdesc,orm10.impl", 
+//            "OrmDescriptor",
+//            "entity-mappings", 
+//            "orm:entity-mappings", 
+//            "src/main/java", 
+//            "src/main/java",
+//            null,
+//            null,
+//            true);
+//      
+//      metadataParser.parse();
       
       
 //      final InputSource in = new InputSource(new FileReader(dtdFile));
@@ -105,7 +105,7 @@ public class DtdParserTest
       metadataDescriptor.setPackageImpl("org.jboss.shrinkwrap.descriptor.test.impl.connector10");
       metadataDescriptor.setNamespace("j2ee");
 
-      metadata.setMetadataDescriptor(metadataDescriptor);
+      metadata.getMetadataDescriptorList().add(metadataDescriptor);
       metadata.preResolveDataTypes();
       new MetadataUtil().print(metadata);
       new DomWriter().write(metadata, "/tmp/connector_1_0.xml");

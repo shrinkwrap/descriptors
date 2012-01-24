@@ -16,6 +16,8 @@
  */
 package org.jboss.shrinkwrap.descriptor.metadata.mojo;
 
+import java.util.List;
+
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -31,230 +33,31 @@ import org.jboss.shrinkwrap.descriptor.metadata.MetadataParser;
 public class MetadataParserMojo extends AbstractMojo
 {
    /**
-    * Path to the XSD file to be parsed
-    * 
+    * Path settings used for generating the interfaces and implementation classes.
     * @parameter
     */
-   private String pathToXsd;
-
+   private Path path;
+   
    /**
-    * The namespace for the given XSD.
-    * 
+    * List of descriptors specifying the descriptor details.
     * @parameter
     */
-   private String nameSpace;
-
-   /**
-    * The package name for the API classes.
-    * 
-    * @parameter
-    */
-   private String packageApi;
-
-   /**
-    * The package name for the Implementation classes.
-    * 
-    * @parameter
-    */
-   private String packageImpl;
-
-   /**
-    * The name of the descriptor.
-    * 
-    * @parameter
-    */
-   private String descriptorName;
-
-   /**
-    * The name of the root element.
-    * 
-    * @parameter
-    */
-   private String elementName;
-
-   /**
-    * The type of the root element.
-    * 
-    * @parameter
-    */
-   private String elementType;
-
+   private List descriptors;
+   
    /**
     * Trace flag
     * 
     * @parameter
     */
-   private boolean verbose;
-
-   /**
-    * Full path to the API folder in which the interfaces are generated.
-    * 
-    * @parameter
-    */
-   private String pathToApi;
-
-   /**
-    * Full path to the implementation folder in which the classes are
-    * generated.
-    * 
-    * @parameter
-    */
-   private String pathToImpl;
-
-   /**
-    * Full path to the test folder in which the unit tests are generated.
-    * 
-    * @parameter
-    */
-   private String pathToTest;
-
-   /**
-    * Full path to the service folder in which the service files are generated.
-    * 
-    * @parameter
-    */
-   private String pathToServices;
-
-   public String getNameSpace()
-   {
-      return nameSpace;
-   }
-
-   public void setNameSpace(final String nameSpace)
-   {
-      this.nameSpace = nameSpace;
-   }
-
-   public String getPackageApi()
-   {
-      return packageApi;
-   }
-
-   public void setPackageApi(final String packageApi)
-   {
-      this.packageApi = packageApi;
-   }
-
-   public String getPackageImpl()
-   {
-      return packageImpl;
-   }
-
-   public void setPackageImpl(final String packageImpl)
-   {
-      this.packageImpl = packageImpl;
-   }
-
-   public String getPathToXsd()
-   {
-      return pathToXsd;
-   }
-
-   public void setPathToXsd(final String pathToXsd)
-   {
-      this.pathToXsd = pathToXsd;
-   }
-
-   public String getElementName()
-   {
-      return elementName;
-   }
-
-   public void setElementName(final String elementName)
-   {
-      this.elementName = elementName;
-   }
-
-   public String getElementType()
-   {
-      return elementType;
-   }
-
-   public void setElementType(final String elementType)
-   {
-      this.elementType = elementType;
-   }
-
-   public boolean isVerbose()
-   {
-      return verbose;
-   }
-
-   public void setVerbose(boolean verbose)
-   {
-      this.verbose = verbose;
-   }
-
-   public String getPathToApi()
-   {
-      return pathToApi;
-   }
-
-   public void setPathToApi(String pathToApi)
-   {
-      this.pathToApi = pathToApi;
-   }
-
-   public String getPathToImpl()
-   {
-      return pathToImpl;
-   }
-
-   public void setPathToImpl(String pathToImpl)
-   {
-      this.pathToImpl = pathToImpl;
-   }
-
-   public String getPathToTest()
-   {
-      return pathToTest;
-   }
-
-   public void setPathToTest(String pathToTest)
-   {
-      this.pathToTest = pathToTest;
-   }
-
-   public String getPathToServices()
-   {
-      return pathToServices;
-   }
-
-   public void setPathToServices(String pathToServices)
-   {
-      this.pathToServices = pathToServices;
-   }
-
-   public String getDescriptorName()
-   {
-      return descriptorName;
-   }
-
-   public void setDescriptorName(String descriptorName)
-   {
-      this.descriptorName = descriptorName;
-   }
+   protected boolean verbose;
 
    @Override
    public void execute() throws MojoExecutionException, MojoFailureException
    {
       try
       {
-         final MetadataParser metadataParser = new MetadataParser(
-               getPathToXsd(), 
-               getNameSpace(), 
-               getPackageApi(),
-               getPackageImpl(), 
-               getDescriptorName(),
-               getElementName(), 
-               getElementType(), 
-               getPathToApi(), 
-               getPathToImpl(), 
-               getPathToTest(),
-               getPathToServices(),
-               isVerbose());
-
-         metadataParser.parse();
+         final MetadataParser metadataParser = new MetadataParser();
+         metadataParser.parse(path, descriptors, verbose);
       }
       catch (final Throwable t)
       {

@@ -22,7 +22,7 @@ import java.io.FileReader;
 import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.test.api.connector10.ConnectorDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.connector10.ConnectorDescriptor;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Test;
 
