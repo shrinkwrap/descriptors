@@ -59,11 +59,10 @@
 						<id>execution1</id>
 						<phase>validate</phase>
 						<configuration>
-						    <verbose>true</verbose>
+							<verbose>true</verbose>
 							<path>
 								<pathToApi>${basedir}/src/main/java</pathToApi>
 								<pathToImpl>${basedir}/src/main/java</pathToImpl>
-<!-- 								<pathToTest>${basedir}/src/test/java</pathToTest> -->
 								<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
 							</path>
 							<descriptors>
@@ -136,6 +135,64 @@
 									<elementName>entity-mappings</elementName>
 									<elementType>orm:entity-mappings</elementType>
 								</descriptor>
+
+							</descriptors>
+						</configuration>
+						<goals>
+							<goal>parse</goal>
+						</goals>
+					</execution>    
+        
+					<execution>
+						<id>executionJavaEE6</id>
+						<phase>validate</phase>
+						<configuration>
+							<verbose>true</verbose>
+							<path>
+								<pathToApi>${basedir}/src/main/java</pathToApi>
+								<pathToImpl>${basedir}/src/main/java</pathToImpl>
+								<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
+							</path>
+							<descriptors>
+								<descriptor>
+									<pathToXsd>${basedir}/src/test/resources/xsd/javaee_6.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.javaee6</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaee6</packageImpl>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/test/resources/xsd/web-common_3_0.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.webcommon30</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.webcommon30</packageImpl>
+								</descriptor>								
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/test/resources/xsd/jsp_2_2.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.jsp22</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jsp22</packageImpl>
+								</descriptor>								
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/test/resources/xsd/javaee_web_services_client_1_3.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient13</packageImpl>
+								</descriptor>								
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/test/resources/xsd/application_6.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.application6</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.application6</packageImpl>
+									<descriptorName>ApplicationDescriptor</descriptorName>
+									<elementName>application</elementName>
+									<elementType>javaee:applicationType</elementType>
+								</descriptor>
+						
+        
 							</descriptors>
 						</configuration>
 						<goals>

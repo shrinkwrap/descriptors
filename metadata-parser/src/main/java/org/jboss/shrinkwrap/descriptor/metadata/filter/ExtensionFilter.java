@@ -58,6 +58,24 @@ public class ExtensionFilter implements Filter
                   return true;
                }
             }
+            
+            final Node parentNodeWithName = MetadataUtil.getNextParentNodeWithAttr(parent.getParentNode(), "name");
+            if (parentNodeWithName != null)
+            {
+               final Element parentElementWithName = (Element) parentNodeWithName;
+               final String mixedStr = MetadataUtil.getAttributeValue(parentElementWithName, "mixed"); 
+               if (mixedStr == null || mixedStr.equals("false"))
+               {
+                  final String dataTypeName = MetadataUtil.getAttributeValue(parentElementWithName, "name");
+                  final String typeStr = MetadataUtil.getAttributeValue(element, "base");               
+                  final MetadataItem dataType = new MetadataItem(dataTypeName);
+                  dataType.setMappedTo(typeStr);
+                  dataType.setNamespace(metadata.getCurrentNamespace());
+                  dataType.setSchemaName(metadata.getCurrentSchmema());
+                  metadata.getDataTypeList().add(dataType);     
+               }
+            }
+            
          }  
       }
       

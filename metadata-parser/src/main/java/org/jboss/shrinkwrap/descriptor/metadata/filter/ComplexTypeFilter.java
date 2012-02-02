@@ -18,6 +18,7 @@
 package org.jboss.shrinkwrap.descriptor.metadata.filter;
 
 import org.jboss.shrinkwrap.descriptor.metadata.Metadata;
+import org.jboss.shrinkwrap.descriptor.metadata.MetadataElement;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataItem;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataUtil;
 import org.w3c.dom.Element;
@@ -46,7 +47,8 @@ public class ComplexTypeFilter implements Filter
       
       if (XsdElementEnum.complexType.isTagNameEqual(element.getTagName())) 
       {
-    	  final String typeStr = MetadataUtil.getAttributeValue(element, "type");    	  
+    	  final String typeStr = MetadataUtil.getAttributeValue(element, "type"); 
+    	  final String mixedStr = MetadataUtil.getAttributeValue(element, "mixed"); 
     	  if (typeStr == null  && (!element.hasChildNodes()))
 		  {
 			  final String dataTypeName = MetadataUtil.getAttributeValue(element, "name");
@@ -56,7 +58,17 @@ public class ComplexTypeFilter implements Filter
               dataType.setSchemaName(metadata.getCurrentSchmema());
               metadata.getDataTypeList().add(dataType);              
               return true;
-    	  }    	
+    	  }    
+    	  else if (mixedStr != null && mixedStr.equals("true"))
+    	  {
+    	     final String complexTypeName = MetadataUtil.getAttributeValue(element, "name");
+    	     final MetadataElement classElement = new MetadataElement();
+             classElement.setName(complexTypeName);
+             classElement.setType("text");
+             classElement.setIsRef(false);
+             classElement.setIsAttribute(false);
+             metadata.addClassElement(complexTypeName, classElement);
+    	  }
     	  else if (
     	        !MetadataUtil.hasChildOf(element, XsdElementEnum.simpleContent) &&
     	        !MetadataUtil.hasChildOf(element, XsdElementEnum.complexContent) &&
