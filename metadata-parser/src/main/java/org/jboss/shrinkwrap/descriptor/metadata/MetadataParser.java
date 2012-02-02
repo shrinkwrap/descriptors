@@ -40,8 +40,10 @@ import org.jboss.shrinkwrap.descriptor.metadata.filter.EnumFilter;
 import org.jboss.shrinkwrap.descriptor.metadata.filter.ExtensionFilter;
 import org.jboss.shrinkwrap.descriptor.metadata.filter.Filter;
 import org.jboss.shrinkwrap.descriptor.metadata.filter.GroupFilter;
+import org.jboss.shrinkwrap.descriptor.metadata.filter.ListFilter;
 import org.jboss.shrinkwrap.descriptor.metadata.filter.RestrictionFilter;
 import org.jboss.shrinkwrap.descriptor.metadata.filter.SimpleContentFilter;
+import org.jboss.shrinkwrap.descriptor.metadata.filter.UnionFilter;
 import org.jboss.shrinkwrap.descriptor.metadata.xslt.XsltTransformer;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -111,15 +113,17 @@ public class MetadataParser
          metadata.setCurrentPackageApi(metadataConf.getPackageApi());
          metadata.setCurrentPackageImpl(metadataConf.getPackageImpl());
 
-         final MetadataDescriptor metadataDescriptor = new MetadataDescriptor(metadataConf.getDescriptorName());
-         metadataDescriptor.setRootElementName(metadataConf.getElementName());
-         metadataDescriptor.setRootElementType(metadataConf.getElementType());
-         metadataDescriptor.setSchemaName(metadataConf.getPathToXsd());
-         metadataDescriptor.setPackageApi(metadataConf.getPackageApi());
-         metadataDescriptor.setPackageImpl(metadataConf.getPackageImpl());
-         metadataDescriptor.setNamespace(metadataConf.getNameSpace());
-         metadata.getMetadataDescriptorList().add(metadataDescriptor);
-
+         if (metadataConf.getElementName() != null && metadataConf.getElementType() != null) {
+            final MetadataDescriptor metadataDescriptor = new MetadataDescriptor(metadataConf.getDescriptorName());
+            metadataDescriptor.setRootElementName(metadataConf.getElementName());
+            metadataDescriptor.setRootElementType(metadataConf.getElementType());
+            metadataDescriptor.setSchemaName(metadataConf.getPathToXsd());
+            metadataDescriptor.setPackageApi(metadataConf.getPackageApi());
+            metadataDescriptor.setPackageImpl(metadataConf.getPackageImpl());
+            metadataDescriptor.setNamespace(metadataConf.getNameSpace());
+            metadata.getMetadataDescriptorList().add(metadataDescriptor);
+         }
+         
          if (metadataConf.getPathToXsd().endsWith(".dtd"))
          {
             final InputSource in = new InputSource(new FileReader(metadataConf.getPathToXsd()));
@@ -143,6 +147,8 @@ public class MetadataParser
             filterList.add(new ComplexTypeFilter());
             filterList.add(new SimpleContentFilter());
             filterList.add(new ExtensionFilter());
+            filterList.add(new UnionFilter());
+            filterList.add(new ListFilter());
 
             final DocumentTraversal traversal = (DocumentTraversal) document;
             final TreeWalker walker = traversal.createTreeWalker(document.getDocumentElement(),

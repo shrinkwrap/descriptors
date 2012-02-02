@@ -807,10 +807,10 @@
             <xsl:variable name="vMaxOccurs" select="concat('-', @maxOccurs)"/>
             <xsl:choose>
                 <xsl:when test="$pIsMaxOccursFromParent=true()">
-                    <xsl:value-of select=" xdd:writeMethodOrAttribute($pClassname, @name, @type, '-unbounded', $pWriteAttribute, $pWriteInterface, $pIsGeneric, $pNodeNameLocal, @attribute)"/>
+                    <xsl:value-of select=" xdd:writeMethodOrAttribute($pClassname, @name, @type, '-unbounded', $pWriteAttribute, $pWriteInterface, $pIsGeneric, $pNodeNameLocal, exists(@attribute))"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:value-of select=" xdd:writeMethodOrAttribute($pClassname, @name, @type, $vMaxOccurs, $pWriteAttribute, $pWriteInterface, $pIsGeneric, $pNodeNameLocal, @attribute)"/>
+                    <xsl:value-of select=" xdd:writeMethodOrAttribute($pClassname, @name, @type, $vMaxOccurs, $pWriteAttribute, $pWriteInterface, $pIsGeneric, $pNodeNameLocal, exists(@attribute))"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
@@ -1015,7 +1015,7 @@
     <!-- ****************************************************** -->
     <xsl:function name="xdd:CheckDataType" as="xs:string">
         <xsl:param name="pTypeName"/>
-<!--         <xsl:message select="concat('xdd:CheckDataType: ', $pTypeName)"/> -->
+        <xsl:message select="concat('xdd:CheckDataType: ', $pTypeName)"/>
         <xsl:choose>
             <xsl:when test=" starts-with($pTypeName, 'xsd:')">
                 <xsl:sequence select="xdd:getJavaDataType($pTypeName)"/>
@@ -1034,7 +1034,10 @@
             </xsl:when>
             <xsl:when test="contains($pTypeName, ':')">
                 <xsl:sequence select="xdd:CheckDataType( substring-after($pTypeName, ':'))"/>
-            </xsl:when>
+            </xsl:when>            
+            <xsl:when test="xdd:getJavaDataType($pTypeName) != ''">
+                <xsl:sequence select="xdd:getJavaDataType($pTypeName)"/>
+            </xsl:when>            
             <xsl:otherwise>
                 <xsl:for-each select="$gDataTypes/datatype">
                     <xsl:if test="@name=$pTypeName">
@@ -2956,6 +2959,9 @@
                 <xsl:sequence select="'String'"/>
             </xsl:when>
             <xsl:when test="$pText='xsd:token'">
+                <xsl:sequence select="'String'"/>
+            </xsl:when>
+            <xsl:when test="$pText='xsd:ID'">
                 <xsl:sequence select="'String'"/>
             </xsl:when>
             <xsl:when test="$pText='nonEmptyStringType'">
