@@ -141,7 +141,7 @@ public class EjbJarDescriptorTestCase
                            .portComponentLink("port-component-link0").up()
                         .getOrCreateHandlerChains()
                            .createHandlerChain()
-                              .protocolBindings("##a ##a http://www.oxygenxml.com/")
+                              .getOrCreateProtocolBindings().protocolBindingType("##a ##a http://www.oxygenxml.com/").up()
                               .createHandler()
                                  .handlerName("handler-name0")
                                  .handlerClass("handler-class0").up().up().up()

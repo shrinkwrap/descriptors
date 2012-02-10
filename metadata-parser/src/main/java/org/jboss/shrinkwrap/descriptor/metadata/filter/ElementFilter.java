@@ -57,6 +57,30 @@ public class ElementFilter implements Filter
                   metadata.addGroupReference(groupOrClassName, refElement);
                   return true;
                }
+               else if(XsdElementEnum.element.isTagNameEqual(parentElementWithName.getTagName()))
+               {
+                  final MetadataElement refElement = new MetadataElement(element);                   
+                  final Node parentNodeWithMaxOccurs = MetadataUtil.getNextParentNodeWithAttr(parent.getParentNode(), "maxOccurs");
+                  final Element p = (Element) parentNodeWithMaxOccurs;
+                  final String maxOccurs = MetadataUtil.getAttributeValue(p, "maxOccurs");
+                  if (maxOccurs != null && !maxOccurs.equals("1"))
+                  {
+                     refElement.setMaxOccurs("unbounded");
+                  }
+                  
+                  final String[] items = refStr.split(":", -1);
+                  if (items.length == 2)
+                  {
+                     refElement.setName(items[1]);
+                  }
+                  else
+                  {
+                     refElement.setName(refStr);
+                  }
+                  refElement.setType(refStr);
+                  metadata.addClassElement(groupOrClassName, refElement);
+                  return true;
+               }
             }
          }
          

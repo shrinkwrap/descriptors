@@ -46,11 +46,10 @@ public class UnionFilter implements Filter
                if (items != null && items.length > 1)
                {
                   final MetadataItem dataType = new MetadataItem(parentName);
-                  dataType.setMappedTo(items[0]);
+                  dataType.setMappedTo(getDataType(items));
                   dataType.setNamespace(metadata.getCurrentNamespace());
                   dataType.setSchemaName(metadata.getCurrentSchmema());
-                  metadata.getDataTypeList().add(dataType);
-               
+                  metadata.getDataTypeList().add(dataType); 
                }
             }
          }
@@ -58,4 +57,22 @@ public class UnionFilter implements Filter
       return false;
    }
 
+   /**
+    * Returns first data type which is a standard xsd data type. 
+    * If no such data type found, then the first one will be returned.
+    * @param items
+    * @return
+    */
+   @SuppressWarnings("unused")
+   private String getDataType(String[] items)
+   {
+      for (String item: items)
+      {
+         if (XsdDatatypeEnum.ENTITIES.isDataType(item))
+         {
+            return item;
+         }
+      }
+      return items[0];
+   }
 }
