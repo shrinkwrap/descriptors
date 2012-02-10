@@ -121,6 +121,7 @@ public class MetadataParser
             metadataDescriptor.setPackageApi(metadataConf.getPackageApi());
             metadataDescriptor.setPackageImpl(metadataConf.getPackageImpl());
             metadataDescriptor.setNamespace(metadataConf.getNameSpace());
+            metadataDescriptor.setNamespaces(metadataConf.getNamespaces());
             metadata.getMetadataDescriptorList().add(metadataDescriptor);
          }
          

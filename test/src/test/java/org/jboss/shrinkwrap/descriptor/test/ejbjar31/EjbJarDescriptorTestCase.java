@@ -4,9 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
+import java.util.logging.Logger;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.ejbjar31.EjbJarDescriptor;
+import org.jboss.shrinkwrap.descriptor.test.application5.ApplicationDescriptorTestCase;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +17,11 @@ import org.junit.Test;
 public class EjbJarDescriptorTestCase
 {
    final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-DD hh:mm:ss");
+   
+   /**
+    * Logger
+    */
+   private static final Logger log = Logger.getLogger(ApplicationDescriptorTestCase.class.getName());
    
    @Before
    public void init()
@@ -141,7 +148,7 @@ public class EjbJarDescriptorTestCase
                            .portComponentLink("port-component-link0").up()
                         .getOrCreateHandlerChains()
                            .createHandlerChain()
-                              .getOrCreateProtocolBindings().protocolBindingType("##a ##a http://www.oxygenxml.com/").up()
+                              .protocolBindings("##a ##a http://www.oxygenxml.com/")
                               .createHandler()
                                  .handlerName("handler-name0")
                                  .handlerClass("handler-class0").up().up().up()
@@ -496,6 +503,8 @@ public class EjbJarDescriptorTestCase
       
       String webXmlGenerated = ejbJarGenerated.exportAsString();
       String webXmlOriginal = getResourceContents("src/test/resources/test-gen-ejbjar31.xml");
+          
+      log.info(webXmlGenerated);
            
       XmlAssert.assertIdentical(webXmlOriginal, webXmlGenerated);   
    }

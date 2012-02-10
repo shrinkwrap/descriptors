@@ -19,6 +19,8 @@
 package org.jboss.shrinkwrap.descriptor.metadata.dom;
 
 import java.io.File;
+import java.util.Iterator;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -362,6 +364,25 @@ public class DomWriter
             final Attr attElementType = doc.createAttribute("type");
             attElementType.setValue(descriptor.getRootElementType());
             element.setAttributeNode(attElementType);
+            
+            for (Iterator it=descriptor.getNamespaces().entrySet().iterator(); it.hasNext(); ) 
+            {
+               Map.Entry entry = (Map.Entry)it.next();
+               String key = (String)entry.getKey();
+               String value = (String)entry.getValue();
+               
+               final Attr namespaceAttrName = doc.createAttribute("name");
+               namespaceAttrName.setValue(key);
+               
+               final Attr namespaceAttrValue = doc.createAttribute("value");
+               namespaceAttrValue.setValue(value);
+               
+               final Element namespaceElement = doc.createElement("namespace");
+               namespaceElement.setAttributeNode(namespaceAttrName);
+               namespaceElement.setAttributeNode(namespaceAttrValue);
+               
+               descriptorElement.appendChild(namespaceElement);  
+            }
          }
          
          TransformerFactory transformerFactory = TransformerFactory.newInstance();
