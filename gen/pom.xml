@@ -1,368 +1,482 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-  <!-- Parent -->
-  <parent>
-    <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-    <artifactId>shrinkwrap-descriptors-parent</artifactId>
-    <version>1.2.0-SD92-SNAPSHOT</version>
-    <relativePath>../pom.xml</relativePath>
-  </parent>
+	<!-- Parent -->
+	<parent>
+		<groupId>org.jboss.shrinkwrap.descriptors</groupId>
+		<artifactId>shrinkwrap-descriptors-parent</artifactId>
+		<version>1.2.0-SD92-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
 
-  <!-- Model Version -->
-  <modelVersion>4.0.0</modelVersion>
+	<!-- Model Version -->
+	<modelVersion>4.0.0</modelVersion>
 
-  <!-- Artifact Configuration -->
-  <artifactId>shrinkwrap-descriptors-gen</artifactId>
-  <name>ShrinkWrap Descriptors Source Generator</name>
-  <description>Generates various deployment descriptors via XSLT transformation</description>
+	<!-- Artifact Configuration -->
+	<artifactId>shrinkwrap-descriptors-gen</artifactId>
+	<name>ShrinkWrap Descriptors Source Generator</name>
+	<description>Generates various deployment descriptors via XSLT transformation</description>
 
-  <properties>
-    
-    <!-- output folders for the java ee related xslt transformation results -->
-    <output.folder.apl.javaee>../../../../../api-javaee/src/main/java</output.folder.apl.javaee>
-    <output.folder.impl.javaee>../../../../../impl-javaee/src/main/java</output.folder.impl.javaee>
-    <output.folder.test.javaee>../../../../../impl-javaee/src/test/java</output.folder.test.javaee>
-    
-    <!-- output folders for the jboss related xslt transformation results -->
-    <output.folder.apl.jboss>../../../../../api-jboss/src/main/java</output.folder.apl.jboss>
-    <output.folder.impl.jboss>../../../../../impl-jboss/src/main/java</output.folder.impl.jboss>
-    <output.folder.test.jboss>../../../../../impl-jboss/src/test/java</output.folder.test.jboss>
-    
-  </properties>
-  
-  <build>
-    <plugins>
-      
-      <plugin>
-        <artifactId>maven-clean-plugin</artifactId>
-        <version>2.4.1</version>
-        <configuration>
-          <filesets>
-            <fileset>
-              <directory>../api-javaee/src/main/java</directory>
-              <includes>
-                <include>**/*.java</include>
-              </includes>
-              <followSymlinks>false</followSymlinks>
-            </fileset>
-            <fileset>
-              <directory>../impl-javaee/src/main/java</directory>
-              <includes>
-                <include>**/*.java</include>
-              </includes>
-              <followSymlinks>false</followSymlinks>
-            </fileset>
-            <fileset>
-              <directory>../impl-javaee/src/test/java</directory>
-              <includes>
-                <include>**/*.java</include>
-              </includes>
-              <followSymlinks>false</followSymlinks>
-            </fileset>
-            <fileset>
-              <directory>../api-jboss/src/main/java</directory>
-              <includes>
-                <include>**/*.java</include>
-              </includes>
-              <followSymlinks>false</followSymlinks>
-            </fileset>
-            <fileset>
-              <directory>../impl-jboss/src/main/java</directory>
-              <includes>
-                <include>**/*.java</include>
-              </includes>
-              <followSymlinks>false</followSymlinks>
-            </fileset>
-            <fileset>
-              <directory>../impl-jboss/src/test/java</directory>
-              <includes>
-                <include>**/*.java</include>
-              </includes>
-              <followSymlinks>false</followSymlinks>
-            </fileset>
-          </filesets>
-        </configuration>
-      </plugin>
-      
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <!-- Run in Java5; be build with a JDK6 compiler so ensure we don't use any JDK6 libs-->
-          <jvm>${env.JAVA5_HOME}/bin/java</jvm>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>net.sf.xsltmp</groupId>
-        <artifactId>xslt-generator-maven-plugin</artifactId>
-        <version>1.6</version>
-        <executions>          
-          
-          <!-- 
-            Java EE 6 deplyoment descriptor xslt transformation
-          -->
-          <execution>
-            <id>transform-to-metadata-javaee6</id>
-            <goals>
-              <goal>many-to-one</goal>
-            </goals>
-            <configuration>
-              <xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate>
-              <srcDir>src/main/resources/xsd</srcDir>
-              <srcIncludes>**/*.xsd</srcIncludes>
-              <srcFile>src/main/resources/xslt/schemasJavaEE6.xml</srcFile>
-              <destFile>src/main/resources/xslt/metadataJavaEE6.xml</destFile>
-            </configuration>
-          </execution>
-        
-          <execution>
-            <id>transform-to-java-javaee6</id>
-            <goals>
-              <goal>many-to-one</goal>
-            </goals>
-            <configuration>
-              <parameters>
-                <gOutputFolder>${output.folder.impl.javaee}</gOutputFolder>
-                <gOutputFolderApi>${output.folder.apl.javaee}</gOutputFolderApi>
-                <gOutputFolderTest>${output.folder.test.javaee}</gOutputFolderTest>                
-              </parameters>
-              <xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
-              <srcDir>src/main/resources/xslt</srcDir>
-              <srcIncludes>**/*.xml</srcIncludes>
-              <srcFile>src/main/resources/xslt/metadataJavaEE6.xml</srcFile>
-              <destFile>src/main/resources/xslt/ddJavaJavaEE6.xml</destFile>
-            </configuration>
-          </execution>
-          
-          <!-- 
-            Java EE 5 deplyoment descriptor xslt transformation
-          -->
-          <execution>
-            <id>transform-to-metadata-javaee5</id>
-            <goals>
-              <goal>many-to-one</goal>
-            </goals>
-            <configuration>
-              <xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate>
-              <srcDir>src/main/resources/xsd</srcDir>
-              <srcIncludes>**/*.xsd</srcIncludes>
-              <srcFile>src/main/resources/xslt/schemasJavaEE5.xml</srcFile>
-              <destFile>src/main/resources/xslt/metadataJavaEE5.xml</destFile>
-            </configuration>
-          </execution>
-        
-          <execution>
-            <id>transform-to-java-javaee5</id>
-            <goals>
-              <goal>many-to-one</goal>
-            </goals>
-            <configuration>
-              <parameters>
-                <gOutputFolder>${output.folder.impl.javaee}</gOutputFolder>
-                <gOutputFolderApi>${output.folder.apl.javaee}</gOutputFolderApi>
-                <gOutputFolderTest>${output.folder.test.javaee}</gOutputFolderTest>                
-              </parameters>
-              <xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
-              <srcDir>src/main/resources/xslt</srcDir>
-              <srcIncludes>**/*.xml</srcIncludes>
-              <srcFile>src/main/resources/xslt/metadataJavaEE5.xml</srcFile>
-              <destFile>src/main/resources/xslt/ddJavaJavaEE5.xml</destFile>
-            </configuration>
-          </execution>
-          
-          <!-- 
-            J2ee 1.4 deplyoment descriptor xslt transformation
-          -->
-          <execution>
-            <id>transform-to-metadata-j2ee14</id>
-            <goals>
-              <goal>many-to-one</goal>
-            </goals>
-            <configuration>
-              <xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate>
-              <srcDir>src/main/resources/xsd</srcDir>
-              <srcIncludes>**/*.xsd</srcIncludes>
-              <srcFile>src/main/resources/xslt/schemasJ2ee14.xml</srcFile>
-              <destFile>src/main/resources/xslt/metadataJ2ee14.xml</destFile>
-            </configuration>
-          </execution>
-        
-          <execution>
-            <id>transform-to-java-j2ee14</id>
-            <goals>
-              <goal>many-to-one</goal>
-            </goals>
-            <configuration>
-              <parameters>
-                <gOutputFolder>${output.folder.impl.javaee}</gOutputFolder>
-                <gOutputFolderApi>${output.folder.apl.javaee}</gOutputFolderApi>
-                <gOutputFolderTest>${output.folder.test.javaee}</gOutputFolderTest>                
-              </parameters>
-              <xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
-              <srcDir>src/main/resources/xslt</srcDir>
-              <srcIncludes>**/*.xml</srcIncludes>
-              <srcFile>src/main/resources/xslt/metadataJ2ee14.xml</srcFile>
-              <destFile>src/main/resources/xslt/ddJavaJ2ee14.xml</destFile>
-            </configuration>
-          </execution>
-          
-          
-          <!-- 
-            J2ee 1.3 deplyoment descriptor xslt transformation
-          -->
-          <execution>
-            <id>transform-to-metadata-j2ee13</id>
-            <goals>
-              <goal>many-to-one</goal>
-            </goals>
-            <configuration>
-              <xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate>
-              <srcDir>src/main/resources/xsd</srcDir>
-              <srcIncludes>**/*.xsd</srcIncludes>
-              <srcFile>src/main/resources/xslt/schemasJ2ee13.xml</srcFile>
-              <destFile>src/main/resources/xslt/metadataJ2ee13.xml</destFile>
-            </configuration>
-          </execution>
-          
-          <execution>
-            <id>transform-to-java-j2ee13</id>
-            <goals>
-              <goal>many-to-one</goal>
-            </goals>
-            <configuration>
-              <parameters>
-                <gOutputFolder>${output.folder.impl.javaee}</gOutputFolder>
-                <gOutputFolderApi>${output.folder.apl.javaee}</gOutputFolderApi>
-                <gOutputFolderTest>${output.folder.test.javaee}</gOutputFolderTest>                
-              </parameters>
-              <xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
-              <srcDir>src/main/resources/xslt</srcDir>
-              <srcIncludes>**/*.xml</srcIncludes>
-              <srcFile>src/main/resources/xslt/metadataJ2ee13.xml</srcFile>
-              <destFile>src/main/resources/xslt/ddJavaJ2ee13.xml</destFile>
-            </configuration>
-          </execution>
-          
-          <!-- 
-            JBoss 5 deplyoment descriptor xslt transformation
-          -->
-          <execution>
-            <id>transform-to-metadata-jbossee5</id>
-            <goals>
-              <goal>many-to-one</goal>
-            </goals>
-            <configuration>
-              <xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate>
-              <srcDir>src/main/resources/xsd</srcDir>
-              <srcIncludes>**/*.xsd</srcIncludes>
-              <srcFile>src/main/resources/xslt/schemasJBossEE5.xml</srcFile>
-              <destFile>src/main/resources/xslt/metadataJBossEE5.xml</destFile>
-            </configuration>
-          </execution>
-          
-          <execution>
-            <id>transform-to-java-jbossee5</id>
-            <goals>
-              <goal>many-to-one</goal>
-            </goals>
-            <configuration>
-              <parameters>
-                <gOutputFolder>${output.folder.impl.jboss}</gOutputFolder>
-                <gOutputFolderApi>${output.folder.apl.jboss}</gOutputFolderApi>
-                <gOutputFolderTest>${output.folder.test.jboss}</gOutputFolderTest>                
-              </parameters>
-              <xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
-              <srcDir>src/main/resources/xslt</srcDir>
-              <srcIncludes>**/*.xml</srcIncludes>
-              <srcFile>src/main/resources/xslt/metadataJBossEE5.xml</srcFile>
-              <destFile>src/main/resources/xslt/ddJBossEE5.xml</destFile>
-            </configuration>
-          </execution>          
-          
-          <!-- 
-            JBoss 6 deplyoment descriptor xslt transformation
-          -->
-          <execution>
-            <id>transform-to-metadata-jbossee6</id>
-            <goals>
-              <goal>many-to-one</goal>
-            </goals>
-            <configuration>
-              <xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate>
-              <srcDir>src/main/resources/xsd</srcDir>
-              <srcIncludes>**/*.xsd</srcIncludes>
-              <srcFile>src/main/resources/xslt/schemasJBossEE6.xml</srcFile>
-              <destFile>src/main/resources/xslt/metadataJBossEE6.xml</destFile>
-            </configuration>
-          </execution>
-          
-          <execution>
-            <id>transform-to-java-jbossee6</id>
-            <goals>
-              <goal>many-to-one</goal>
-            </goals>
-            <configuration>
-              <parameters>
-                <gOutputFolder>${output.folder.impl.jboss}</gOutputFolder>
-                <gOutputFolderApi>${output.folder.apl.jboss}</gOutputFolderApi>
-                <gOutputFolderTest>${output.folder.test.jboss}</gOutputFolderTest>                
-              </parameters>
-              <xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
-              <srcDir>src/main/resources/xslt</srcDir>
-              <srcIncludes>**/*.xml</srcIncludes>
-              <srcFile>src/main/resources/xslt/metadataJBossEE6.xml</srcFile>
-              <destFile>src/main/resources/xslt/ddJBossEE6.xml</destFile>
-            </configuration>
-          </execution>
-        </executions>
-        <dependencies>
-          <dependency>
-            <groupId>net.sf.saxon</groupId>
-            <artifactId>saxon</artifactId>
-            <version>8.7</version>
-          </dependency>
-        </dependencies>
-      </plugin>
-    </plugins>
-    <pluginManagement>
-      <plugins>
-        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
-        <plugin>
-          <groupId>org.eclipse.m2e</groupId>
-          <artifactId>lifecycle-mapping</artifactId>
-          <version>1.0.0</version>
-          <configuration>
-            <lifecycleMappingMetadata>
-              <pluginExecutions>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>net.sf.xsltmp</groupId>
-                    <artifactId>xslt-generator-maven-plugin</artifactId>
-                    <versionRange>[1.6,)</versionRange>
-                    <goals>
-                      <goal>many-to-one</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore />
-                  </action>
-                </pluginExecution>
-              </pluginExecutions>
-            </lifecycleMappingMetadata>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-  </build>
+	<properties>
 
-  <dependencies>
+		<!-- output folders for the java ee related xslt transformation results -->
+		<output.folder.apl.javaee>../../../../../api-javaee/src/main/java</output.folder.apl.javaee>
+		<output.folder.impl.javaee>../../../../../impl-javaee/src/main/java</output.folder.impl.javaee>
+		<output.folder.test.javaee>../../../../../impl-javaee/src/test/java</output.folder.test.javaee>
 
-    <dependency>
-      <groupId>net.sf.saxon</groupId>
-      <artifactId>saxon</artifactId>
-      <version>8.7</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+		<!-- output folders for the jboss related xslt transformation results -->
+		<output.folder.apl.jboss>../../../../../api-jboss/src/main/java</output.folder.apl.jboss>
+		<output.folder.impl.jboss>../../../../../impl-jboss/src/main/java</output.folder.impl.jboss>
+		<output.folder.test.jboss>../../../../../impl-jboss/src/test/java</output.folder.test.jboss>
+
+	</properties>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.4.1</version>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>../api-javaee/src/main/java</directory>
+							<includes>
+								<include>**/*.java</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+						<fileset>
+							<directory>../impl-javaee/src/main/java</directory>
+							<includes>
+								<include>**/*.java</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+						<fileset>
+							<directory>../impl-javaee/src/test/java</directory>
+							<includes>
+								<include>**/*.java</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+						<fileset>
+							<directory>../api-jboss/src/main/java</directory>
+							<includes>
+								<include>**/*.java</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+						<fileset>
+							<directory>../impl-jboss/src/main/java</directory>
+							<includes>
+								<include>**/*.java</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+						<fileset>
+							<directory>../impl-jboss/src/test/java</directory>
+							<includes>
+								<include>**/*.java</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<!-- Run in Java5; be build with a JDK6 compiler so ensure we don't use any JDK6 libs -->
+					<jvm>${env.JAVA5_HOME}/bin/java</jvm>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jboss.shrinkwrap.descriptors</groupId>
+				<artifactId>shrinkwrap-descriptors-metadata-parser</artifactId>
+				<version>${project.version}</version>
+				<executions>
+
+					<execution>
+						<id>executionJavaEE6</id>
+						<phase>validate</phase>
+						<configuration>
+							<verbose>true</verbose>
+							<path>
+								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
+								<pathToImpl>${basedir}/../impl-javaee/src/main/java</pathToImpl>
+<!-- 								<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices> -->
+							</path>
+							<descriptors>
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/javaee_6.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.javaee6</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaee6</packageImpl>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/web-common_3_0.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.webcommon30</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.webcommon30</packageImpl>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/jsp_2_2.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.jsp22</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jsp22</packageImpl>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/javaee_web_services_client_1_3.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient13</packageImpl>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/application_6.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.application6</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.application6</packageImpl>
+									<descriptorName>ApplicationDescriptor</descriptorName>
+									<elementName>application</elementName>
+									<elementType>javaee:applicationType</elementType>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/web-app_3_0.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.webapp30</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.webapp30</packageImpl>
+									<descriptorName>WebAppDescriptor</descriptorName>
+									<elementName>web-app</elementName>
+									<elementType>javaee:web-appType</elementType>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/persistence_2_0.xsd</pathToXsd>
+									<nameSpace>persistence</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.persistence20</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.persistence20</packageImpl>
+									<descriptorName>PersistenceDescriptor</descriptorName>
+									<elementName>persistence</elementName>
+									<elementType>persistence:persistence</elementType>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/web-fragment_3_0.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.webfragment30</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.webfragment30</packageImpl>
+									<descriptorName>WebFragmentDescriptor</descriptorName>
+									<elementName>web-fragment</elementName>
+									<elementType>javaee:web-fragmentType</elementType>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/ejb-jar_3_1.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.ejbjar31</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.ejbjar31</packageImpl>
+									<descriptorName>EjbJarDescriptor</descriptorName>
+									<elementName>ejb-jar</elementName>
+									<elementType>javaee:ejb-jarType</elementType>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/connector_1_6.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.connector16</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.connector16</packageImpl>
+									<descriptorName>ConnectorDescriptor</descriptorName>
+									<elementName>connector</elementName>
+									<elementType>javaee:connectorType</elementType>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/beans_1_0.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.beans10</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.beans10</packageImpl>
+									<descriptorName>BeansDescriptor</descriptorName>
+									<elementName>beans</elementName>
+									<elementType>javaee:beans</elementType>
+								</descriptor>
+
+							</descriptors>
+						</configuration>
+						<goals>
+							<goal>parse</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+
+			<plugin>
+				<groupId>net.sf.xsltmp</groupId>
+				<artifactId>xslt-generator-maven-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+
+					<!-- Java EE 6 deplyoment descriptor xslt transformation -->
+<!-- 					<execution> -->
+<!-- 						<id>transform-to-metadata-javaee6</id> -->
+<!-- 						<goals> -->
+<!-- 							<goal>many-to-one</goal> -->
+<!-- 						</goals> -->
+<!-- 						<configuration> -->
+<!-- 							<xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate> -->
+<!-- 							<srcDir>src/main/resources/xsd</srcDir> -->
+<!-- 							<srcIncludes>**/*.xsd</srcIncludes> -->
+<!-- 							<srcFile>src/main/resources/xslt/schemasJavaEE6.xml</srcFile> -->
+<!-- 							<destFile>src/main/resources/xslt/metadataJavaEE6.xml</destFile> -->
+<!-- 						</configuration> -->
+<!-- 					</execution> -->
+
+<!-- 					<execution> -->
+<!-- 						<id>transform-to-java-javaee6</id> -->
+<!-- 						<goals> -->
+<!-- 							<goal>many-to-one</goal> -->
+<!-- 						</goals> -->
+<!-- 						<configuration> -->
+<!-- 							<parameters> -->
+<!-- 								<gOutputFolder>${output.folder.impl.javaee}</gOutputFolder> -->
+<!-- 								<gOutputFolderApi>${output.folder.apl.javaee}</gOutputFolderApi> -->
+<!-- 								<gOutputFolderTest>${output.folder.test.javaee}</gOutputFolderTest> -->
+<!-- 							</parameters> -->
+<!-- 							<xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate> -->
+<!-- 							<srcDir>src/main/resources/xslt</srcDir> -->
+<!-- 							<srcIncludes>**/*.xml</srcIncludes> -->
+<!-- 							<srcFile>src/main/resources/xslt/metadataJavaEE6.xml</srcFile> -->
+<!-- 							<destFile>src/main/resources/xslt/ddJavaJavaEE6.xml</destFile> -->
+<!-- 						</configuration> -->
+<!-- 					</execution> -->
+
+					<!-- Java EE 5 deplyoment descriptor xslt transformation -->
+					<execution>
+						<id>transform-to-metadata-javaee5</id>
+						<goals>
+							<goal>many-to-one</goal>
+						</goals>
+						<configuration>
+							<xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate>
+							<srcDir>src/main/resources/xsd</srcDir>
+							<srcIncludes>**/*.xsd</srcIncludes>
+							<srcFile>src/main/resources/xslt/schemasJavaEE5.xml</srcFile>
+							<destFile>src/main/resources/xslt/metadataJavaEE5.xml</destFile>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>transform-to-java-javaee5</id>
+						<goals>
+							<goal>many-to-one</goal>
+						</goals>
+						<configuration>
+							<parameters>
+								<gOutputFolder>${output.folder.impl.javaee}</gOutputFolder>
+								<gOutputFolderApi>${output.folder.apl.javaee}</gOutputFolderApi>
+								<gOutputFolderTest>${output.folder.test.javaee}</gOutputFolderTest>
+							</parameters>
+							<xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
+							<srcDir>src/main/resources/xslt</srcDir>
+							<srcIncludes>**/*.xml</srcIncludes>
+							<srcFile>src/main/resources/xslt/metadataJavaEE5.xml</srcFile>
+							<destFile>src/main/resources/xslt/ddJavaJavaEE5.xml</destFile>
+						</configuration>
+					</execution>
+
+					<!-- J2ee 1.4 deplyoment descriptor xslt transformation -->
+					<execution>
+						<id>transform-to-metadata-j2ee14</id>
+						<goals>
+							<goal>many-to-one</goal>
+						</goals>
+						<configuration>
+							<xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate>
+							<srcDir>src/main/resources/xsd</srcDir>
+							<srcIncludes>**/*.xsd</srcIncludes>
+							<srcFile>src/main/resources/xslt/schemasJ2ee14.xml</srcFile>
+							<destFile>src/main/resources/xslt/metadataJ2ee14.xml</destFile>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>transform-to-java-j2ee14</id>
+						<goals>
+							<goal>many-to-one</goal>
+						</goals>
+						<configuration>
+							<parameters>
+								<gOutputFolder>${output.folder.impl.javaee}</gOutputFolder>
+								<gOutputFolderApi>${output.folder.apl.javaee}</gOutputFolderApi>
+								<gOutputFolderTest>${output.folder.test.javaee}</gOutputFolderTest>
+							</parameters>
+							<xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
+							<srcDir>src/main/resources/xslt</srcDir>
+							<srcIncludes>**/*.xml</srcIncludes>
+							<srcFile>src/main/resources/xslt/metadataJ2ee14.xml</srcFile>
+							<destFile>src/main/resources/xslt/ddJavaJ2ee14.xml</destFile>
+						</configuration>
+					</execution>
+
+
+					<!-- J2ee 1.3 deplyoment descriptor xslt transformation -->
+					<execution>
+						<id>transform-to-metadata-j2ee13</id>
+						<goals>
+							<goal>many-to-one</goal>
+						</goals>
+						<configuration>
+							<xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate>
+							<srcDir>src/main/resources/xsd</srcDir>
+							<srcIncludes>**/*.xsd</srcIncludes>
+							<srcFile>src/main/resources/xslt/schemasJ2ee13.xml</srcFile>
+							<destFile>src/main/resources/xslt/metadataJ2ee13.xml</destFile>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>transform-to-java-j2ee13</id>
+						<goals>
+							<goal>many-to-one</goal>
+						</goals>
+						<configuration>
+							<parameters>
+								<gOutputFolder>${output.folder.impl.javaee}</gOutputFolder>
+								<gOutputFolderApi>${output.folder.apl.javaee}</gOutputFolderApi>
+								<gOutputFolderTest>${output.folder.test.javaee}</gOutputFolderTest>
+							</parameters>
+							<xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
+							<srcDir>src/main/resources/xslt</srcDir>
+							<srcIncludes>**/*.xml</srcIncludes>
+							<srcFile>src/main/resources/xslt/metadataJ2ee13.xml</srcFile>
+							<destFile>src/main/resources/xslt/ddJavaJ2ee13.xml</destFile>
+						</configuration>
+					</execution>
+
+					<!-- JBoss 5 deplyoment descriptor xslt transformation -->
+					<execution>
+						<id>transform-to-metadata-jbossee5</id>
+						<goals>
+							<goal>many-to-one</goal>
+						</goals>
+						<configuration>
+							<xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate>
+							<srcDir>src/main/resources/xsd</srcDir>
+							<srcIncludes>**/*.xsd</srcIncludes>
+							<srcFile>src/main/resources/xslt/schemasJBossEE5.xml</srcFile>
+							<destFile>src/main/resources/xslt/metadataJBossEE5.xml</destFile>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>transform-to-java-jbossee5</id>
+						<goals>
+							<goal>many-to-one</goal>
+						</goals>
+						<configuration>
+							<parameters>
+								<gOutputFolder>${output.folder.impl.jboss}</gOutputFolder>
+								<gOutputFolderApi>${output.folder.apl.jboss}</gOutputFolderApi>
+								<gOutputFolderTest>${output.folder.test.jboss}</gOutputFolderTest>
+							</parameters>
+							<xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
+							<srcDir>src/main/resources/xslt</srcDir>
+							<srcIncludes>**/*.xml</srcIncludes>
+							<srcFile>src/main/resources/xslt/metadataJBossEE5.xml</srcFile>
+							<destFile>src/main/resources/xslt/ddJBossEE5.xml</destFile>
+						</configuration>
+					</execution>
+
+					<!-- JBoss 6 deplyoment descriptor xslt transformation -->
+					<execution>
+						<id>transform-to-metadata-jbossee6</id>
+						<goals>
+							<goal>many-to-one</goal>
+						</goals>
+						<configuration>
+							<xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate>
+							<srcDir>src/main/resources/xsd</srcDir>
+							<srcIncludes>**/*.xsd</srcIncludes>
+							<srcFile>src/main/resources/xslt/schemasJBossEE6.xml</srcFile>
+							<destFile>src/main/resources/xslt/metadataJBossEE6.xml</destFile>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>transform-to-java-jbossee6</id>
+						<goals>
+							<goal>many-to-one</goal>
+						</goals>
+						<configuration>
+							<parameters>
+								<gOutputFolder>${output.folder.impl.jboss}</gOutputFolder>
+								<gOutputFolderApi>${output.folder.apl.jboss}</gOutputFolderApi>
+								<gOutputFolderTest>${output.folder.test.jboss}</gOutputFolderTest>
+							</parameters>
+							<xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
+							<srcDir>src/main/resources/xslt</srcDir>
+							<srcIncludes>**/*.xml</srcIncludes>
+							<srcFile>src/main/resources/xslt/metadataJBossEE6.xml</srcFile>
+							<destFile>src/main/resources/xslt/ddJBossEE6.xml</destFile>
+						</configuration>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>net.sf.saxon</groupId>
+						<artifactId>saxon</artifactId>
+						<version>8.7</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>net.sf.xsltmp</groupId>
+										<artifactId>xslt-generator-maven-plugin</artifactId>
+										<versionRange>[1.6,)</versionRange>
+										<goals>
+											<goal>many-to-one</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>net.sf.saxon</groupId>
+			<artifactId>saxon</artifactId>
+			<version>8.7</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 
 </project>

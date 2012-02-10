@@ -71,7 +71,6 @@ public enum XsdDatatypeEnum
     
     public boolean isDataType(final String tagName)
     {
-//        System.out.println("isDataType: "+ tagName);
         if (tagName != null) {
             final String[] items = tagName.split(":", -1);
             if (items.length == 2) {

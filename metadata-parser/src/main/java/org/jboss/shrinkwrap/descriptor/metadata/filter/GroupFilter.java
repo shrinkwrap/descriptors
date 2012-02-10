@@ -56,6 +56,14 @@ public class GroupFilter implements Filter
          {
             final MetadataElement refElement = new MetadataElement(element);  
             refElement.setIsRef(true);
+                             
+            final Node parentNodeWithMaxOccurs = MetadataUtil.getNextParentNodeWithAttr(parent, "maxOccurs");
+            final Element p = (Element) parentNodeWithMaxOccurs;
+            final String maxOccurs = MetadataUtil.getAttributeValue(p, "maxOccurs");
+            if (maxOccurs != null && !maxOccurs.equals("1"))
+            {
+               refElement.setMaxOccurs("unbounded");
+            }
             
             final Node parentNodeWithName = MetadataUtil.getNextParentNodeWithAttr(parent.getParentNode(), "name");
             if (parentNodeWithName != null)

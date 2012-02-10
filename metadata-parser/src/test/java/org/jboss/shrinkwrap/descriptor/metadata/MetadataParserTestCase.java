@@ -2,6 +2,9 @@ package org.jboss.shrinkwrap.descriptor.metadata;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -23,16 +26,23 @@ public class MetadataParserTestCase
 //                "datasources:datasourcesType", 
 //                "src1/java","src1/java","src1/test","src1/services", true);
 
-//       final MetadataParser parser = new MetadataParser(
-//             "src/test/resources/dtd/configure.xsd",
-//             "jetty6",
-//             "org.jboss.shrinkwrap.descriptor.api.jetty6",
-//             "org.jboss.shrinkwrap.descriptor.impl.jetty6", 
-//             "Configure", 
-//             "jetty6:Configure", "src1/java","src1/java","src1/test","src1/services", true);
-
+       final MetadataParserPath path = new MetadataParserPath();
+       final MetadataParserConfiguration conf = new MetadataParserConfiguration();
+   
+       conf.setNameSpace("javaee");
+       conf.setDescriptorName("BeansDescriptor");
+       conf.setElementName("beans");
+       conf.setElementType("javaee:beans");
+       conf.setPackageApi("org.jboss.descriptor.test.api");
+       conf.setPackageImpl("org.jboss.descriptor.test.impl");
+       conf.setPathToXsd("src/test/resources/xsd/testcases.xsd");
+    
+       final List<MetadataParserConfiguration> confList = new ArrayList<MetadataParserConfiguration>();
+       confList.add(conf);
        
-//        parser.parse();
+       final MetadataParser parser = new MetadataParser();
+       parser.parse(path, confList, true);
+
         
 //        
 //        experimental:

@@ -44,7 +44,7 @@ public class WebAppDescriptorImportAsTestCase
       assertEquals(web.getAllFilter().get(0).getFilterName(), "UrlRewriteFilter");
       assertEquals(web.getAllFilter().get(0).getFilterClass(), "org.tuckey.web.filters.urlrewrite.UrlRewriteFilter");
       assertEquals(web.getAllFilterMapping().get(0).getFilterName(), "UrlRewriteFilter");
-      assertEquals(web.getAllFilterMapping().get(0).getUrlPattern(), "/*");      
+      assertEquals(web.getAllFilterMapping().get(0).urlPattern(), "/*");      
    }
    
    @Test

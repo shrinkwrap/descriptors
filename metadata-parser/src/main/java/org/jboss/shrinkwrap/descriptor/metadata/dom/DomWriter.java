@@ -314,6 +314,13 @@ public class DomWriter
                final Attr elName = doc.createAttribute("name");
                elName.setValue(element.getRef());
                childElement.setAttributeNode(elName);
+               
+               if (element.getMaxOccurs() != null)
+               {
+                  final Attr elMaxOccurs = doc.createAttribute("maxOccurs");
+                  elMaxOccurs.setValue(element.getMaxOccurs());
+                  childElement.setAttributeNode(elMaxOccurs);
+               }
                               
                classElement.appendChild(childElement);
             }
