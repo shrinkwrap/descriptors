@@ -146,6 +146,11 @@
 									<descriptorName>ApplicationDescriptor</descriptorName>
 									<elementName>application</elementName>
 									<elementType>javaee:applicationType</elementType>
+									<namespaces>
+										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
+            							<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+                                        <xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd</xsi:schemaLocation>
+									</namespaces>
 								</descriptor>
 
 								<descriptor>
@@ -156,6 +161,11 @@
 									<descriptorName>WebAppDescriptor</descriptorName>
 									<elementName>web-app</elementName>
 									<elementType>javaee:web-appType</elementType>
+									<namespaces>
+										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
+            							<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+                                        <xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd</xsi:schemaLocation>
+									</namespaces>
 								</descriptor>
 
 								<descriptor>
@@ -166,6 +176,11 @@
 									<descriptorName>PersistenceDescriptor</descriptorName>
 									<elementName>persistence</elementName>
 									<elementType>persistence:persistence</elementType>
+									<namespaces>
+										<xmlns>http://java.sun.com/xml/ns/persistence</xmlns>
+            							<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+                                        <xsi:schemaLocation>http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd</xsi:schemaLocation>
+									</namespaces>
 								</descriptor>
 
 								<descriptor>
@@ -176,8 +191,13 @@
 									<descriptorName>WebFragmentDescriptor</descriptorName>
 									<elementName>web-fragment</elementName>
 									<elementType>javaee:web-fragmentType</elementType>
+									<namespaces>
+										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
+            							<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+                                        <xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-fragment_3_0.xsd</xsi:schemaLocation>
+									</namespaces>
 								</descriptor>
-
+            
 								<descriptor>
 									<pathToXsd>${basedir}/src/main/resources/xsd/ejb-jar_3_1.xsd</pathToXsd>
 									<nameSpace>javaee</nameSpace>
@@ -186,6 +206,11 @@
 									<descriptorName>EjbJarDescriptor</descriptorName>
 									<elementName>ejb-jar</elementName>
 									<elementType>javaee:ejb-jarType</elementType>
+									<namespaces>
+										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
+            							<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+                                        <xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd</xsi:schemaLocation>
+									</namespaces>
 								</descriptor>
 
 								<descriptor>
@@ -196,6 +221,11 @@
 									<descriptorName>ConnectorDescriptor</descriptorName>
 									<elementName>connector</elementName>
 									<elementType>javaee:connectorType</elementType>
+									<namespaces>
+										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
+            							<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+                                        <xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/connector_1_6.xsd</xsi:schemaLocation>
+									</namespaces>
 								</descriptor>
 
 								<descriptor>
@@ -206,6 +236,11 @@
 									<descriptorName>BeansDescriptor</descriptorName>
 									<elementName>beans</elementName>
 									<elementType>javaee:beans</elementType>
+									<namespaces>
+										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
+            							<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+                                        <xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/beans_1_0.xsd</xsi:schemaLocation>
+									</namespaces>
 								</descriptor>
 
 							</descriptors>

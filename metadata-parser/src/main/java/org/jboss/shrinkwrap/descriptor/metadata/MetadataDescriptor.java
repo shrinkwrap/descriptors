@@ -32,7 +32,7 @@ public class MetadataDescriptor extends BaseMetadataItem
 
    private String rootElementType;
 
-   private Map<String, String> descrNamespaces = new HashMap<String, String>();
+   private Map<String, String> namespaces = new HashMap<String, String>();
 
    public MetadataDescriptor(String name)
    {
@@ -59,8 +59,13 @@ public class MetadataDescriptor extends BaseMetadataItem
       this.rootElementType = rootElementType;
    }
 
-   public Map<String, String> getDescrNamespaces()
+   public Map<String, String> getNamespaces()
    {
-      return descrNamespaces;
+      return namespaces;
+   }
+   
+   public void setNamespaces(final Map<String, String> namespaces)
+   {
+      this.namespaces = namespaces;
    }
 }

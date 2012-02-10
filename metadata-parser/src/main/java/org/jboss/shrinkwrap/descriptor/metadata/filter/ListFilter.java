@@ -43,19 +43,28 @@ public class ListFilter implements Filter
             {
                final Element parentElementWithName = (Element)parentNodeWithName;
                final String parentName = MetadataUtil.getAttributeValue(parentElementWithName, "name");
-               
-               final String[] items = itemTypeStr.split(":", -1);
-               final MetadataElement classElement = new MetadataElement();
-               classElement.setName(itemTypeStr);
-               if (items != null && items.length == 2)
+               if (XsdElementEnum.simpleType.isTagNameEqual(parentElementWithName.getTagName()))
                {
-                  classElement.setName(items[1]);
-               }               
-               classElement.setType(itemTypeStr);
-               classElement.setIsRef(false);
-               classElement.setIsAttribute(false);
-               classElement.setMaxOccurs("unbounded");
-               metadata.addClassElement(parentName, classElement);
+                  final MetadataItem dataType = new MetadataItem(parentName);
+                  dataType.setMappedTo("xsd:string");
+                  dataType.setNamespace(metadata.getCurrentNamespace());
+                  dataType.setSchemaName(metadata.getCurrentSchmema());
+                  metadata.getDataTypeList().add(dataType);
+               }
+               
+//               
+//               final String[] items = itemTypeStr.split(":", -1);
+//               final MetadataElement classElement = new MetadataElement();
+//               classElement.setName(itemTypeStr);
+//               if (items != null && items.length == 2)
+//               {
+//                  classElement.setName(items[1]);
+//               }               
+//               classElement.setType(itemTypeStr);
+//               classElement.setIsRef(false);
+//               classElement.setIsAttribute(false);
+//               classElement.setMaxOccurs("unbounded");
+//               metadata.addClassElement(parentName, classElement);
             }
          }
       }

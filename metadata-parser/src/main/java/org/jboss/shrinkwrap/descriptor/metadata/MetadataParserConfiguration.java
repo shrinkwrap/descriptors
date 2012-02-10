@@ -16,6 +16,9 @@
  */
 package org.jboss.shrinkwrap.descriptor.metadata;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * Mojo configuration class for the Shrinkwrap Descriptors CLI Mojo task.
@@ -72,6 +75,10 @@ public class MetadataParserConfiguration
     */
    protected boolean verbose;
 
+   /**
+    * The map declaring the name spaces for the given descriptor.
+    */
+   protected Map<String, String> namespaces = new HashMap<String, String>();
 
    public String getNameSpace()
    {
@@ -152,4 +159,15 @@ public class MetadataParserConfiguration
    {
       this.descriptorName = descriptorName;
    }
+
+   public Map<String, String> getNamespaces()
+   {
+      return namespaces;
+   }
+
+   public void setNamespaces(final Map<String, String> namespaces)
+   {
+      this.namespaces = namespaces;
+   }
+   
 }
