@@ -100,6 +100,192 @@
 				<executions>
 
 					<execution>
+						<id>executionJ2ee13</id>
+						<phase>validate</phase>
+						<configuration>
+							<verbose>true</verbose>
+							<path>
+								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
+								<pathToImpl>${basedir}/../impl-javaee/src/main/java</pathToImpl>
+								<!-- <pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices> -->
+							</path>
+							<descriptors>
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/connector_1_0.dtd</pathToXsd>
+									<nameSpace>j2ee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.connector10</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.connector10</packageImpl>
+									<descriptorName>ConnectorDescriptor</descriptorName>
+									<elementName>connector</elementName>
+									<elementType>j2ee:connector</elementType>
+								</descriptor>
+							</descriptors>
+						</configuration>
+						<goals>
+							<goal>parse</goal>
+						</goals>
+					</execution>
+
+					<execution>
+						<id>executionJ2ee14</id>
+						<phase>validate</phase>
+						<configuration>
+							<verbose>true</verbose>
+							<path>
+								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
+								<pathToImpl>${basedir}/../impl-javaee/src/main/java</pathToImpl>
+								<!-- <pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices> -->
+							</path>
+							<descriptors>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/j2ee_1_4.xsd</pathToXsd>
+									<nameSpace>j2ee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.j2ee14</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.j2ee14</packageImpl>
+									<generateClasses>true</generateClasses>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/j2ee_web_services_client_1_1.xsd</pathToXsd>
+									<nameSpace>j2ee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.j2eewebservicesclient11</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.j2eewebservicesclient11</packageImpl>
+									<generateClasses>true</generateClasses>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/connector_1_5.xsd</pathToXsd>
+									<nameSpace>j2ee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.connector15</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.connector15</packageImpl>
+									<descriptorName>ConnectorDescriptor</descriptorName>
+									<elementName>connector</elementName>
+									<elementType>j2ee:connectorType</elementType>
+									<namespaces>
+										<xmlns>http://java.sun.com/xml/ns/j2ee</xmlns>
+										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+										<xsi:schemaLocation>http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/connector_1_5.xsd</xsi:schemaLocation>
+									</namespaces>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/web-jsptaglibrary_2_0.xsd</pathToXsd>
+									<nameSpace>j2ee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.jsptaglibrary20</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jsptaglibrary20</packageImpl>
+									<descriptorName>WebJsptaglibraryDescriptor</descriptorName>
+									<elementName>taglib</elementName>
+									<elementType>j2ee:tldTaglibType</elementType>
+									<namespaces>
+										<xmlns>http://java.sun.com/xml/ns/j2ee</xmlns>
+										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+										<xsi:schemaLocation>http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd</xsi:schemaLocation>
+									</namespaces>
+								</descriptor>
+
+							</descriptors>
+						</configuration>
+						<goals>
+							<goal>parse</goal>
+						</goals>
+					</execution>
+
+					<execution>
+						<id>executionJavaEE5</id>
+						<phase>validate</phase>
+						<configuration>
+							<verbose>true</verbose>
+							<path>
+								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
+								<pathToImpl>${basedir}/../impl-javaee/src/main/java</pathToImpl>
+								<!-- <pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices> -->
+							</path>
+							<descriptors>
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/javaee_5.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.javaee5</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaee5</packageImpl>
+									<generateClasses>true</generateClasses>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/javaee_web_services_client_1_2.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient12</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient12</packageImpl>
+									<generateClasses>true</generateClasses>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/application_5.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.application5</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.application5</packageImpl>
+									<descriptorName>ApplicationDescriptor</descriptorName>
+									<elementName>application</elementName>
+									<elementType>javaee:applicationType</elementType>
+									<namespaces>
+										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
+										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_5.xsd</xsi:schemaLocation>
+									</namespaces>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/persistence_1_0.xsd</pathToXsd>
+									<nameSpace>persistence</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.persistence10</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.persistence10</packageImpl>
+									<descriptorName>PersistenceDescriptor</descriptorName>
+									<elementName>persistence</elementName>
+									<elementType>persistence:persistence</elementType>
+									<namespaces>
+										<xmlns>http://java.sun.com/xml/ns/persistence</xmlns>
+										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+										<xsi:schemaLocation>http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd</xsi:schemaLocation>
+									</namespaces>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/ejb-jar_3_0.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.ejbjar30</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.ejbjar30</packageImpl>
+									<descriptorName>EjbJarDescriptor</descriptorName>
+									<elementName>ejb-jar</elementName>
+									<elementType>javaee:ejb-jarType</elementType>
+									<namespaces>
+										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
+										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_0.xsd</xsi:schemaLocation>
+									</namespaces>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/web-jsptaglibrary_2_1.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.jsptaglibrary21</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jsptaglibrary21</packageImpl>
+									<descriptorName>WebJsptaglibraryDescriptor</descriptorName>
+									<elementName>taglib</elementName>
+									<elementType>javaee:tldTaglibType</elementType>
+									<namespaces>
+										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
+										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd</xsi:schemaLocation>
+									</namespaces>
+								</descriptor>
+
+							</descriptors>
+						</configuration>
+						<goals>
+							<goal>parse</goal>
+						</goals>
+					</execution>
+
+					<execution>
 						<id>executionJavaEE6</id>
 						<phase>validate</phase>
 						<configuration>
@@ -107,7 +293,7 @@
 							<path>
 								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
 								<pathToImpl>${basedir}/../impl-javaee/src/main/java</pathToImpl>
-<!-- 								<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices> -->
+								<!-- <pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices> -->
 							</path>
 							<descriptors>
 								<descriptor>
@@ -115,6 +301,7 @@
 									<nameSpace>javaee</nameSpace>
 									<packageApi>org.jboss.shrinkwrap.descriptor.api.javaee6</packageApi>
 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaee6</packageImpl>
+									<generateClasses>true</generateClasses>
 								</descriptor>
 
 								<descriptor>
@@ -122,6 +309,7 @@
 									<nameSpace>javaee</nameSpace>
 									<packageApi>org.jboss.shrinkwrap.descriptor.api.webcommon30</packageApi>
 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.webcommon30</packageImpl>
+									<generateClasses>true</generateClasses>
 								</descriptor>
 
 								<descriptor>
@@ -129,6 +317,7 @@
 									<nameSpace>javaee</nameSpace>
 									<packageApi>org.jboss.shrinkwrap.descriptor.api.jsp22</packageApi>
 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jsp22</packageImpl>
+									<generateClasses>true</generateClasses>
 								</descriptor>
 
 								<descriptor>
@@ -136,6 +325,7 @@
 									<nameSpace>javaee</nameSpace>
 									<packageApi>org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13</packageApi>
 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient13</packageImpl>
+									<generateClasses>true</generateClasses>
 								</descriptor>
 
 								<descriptor>
@@ -148,8 +338,8 @@
 									<elementType>javaee:applicationType</elementType>
 									<namespaces>
 										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
-            							<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-                                        <xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd</xsi:schemaLocation>
+										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd</xsi:schemaLocation>
 									</namespaces>
 								</descriptor>
 
@@ -163,8 +353,8 @@
 									<elementType>javaee:web-appType</elementType>
 									<namespaces>
 										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
-            							<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-                                        <xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd</xsi:schemaLocation>
+										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd</xsi:schemaLocation>
 									</namespaces>
 								</descriptor>
 
@@ -178,8 +368,8 @@
 									<elementType>persistence:persistence</elementType>
 									<namespaces>
 										<xmlns>http://java.sun.com/xml/ns/persistence</xmlns>
-            							<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-                                        <xsi:schemaLocation>http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd</xsi:schemaLocation>
+										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+										<xsi:schemaLocation>http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd</xsi:schemaLocation>
 									</namespaces>
 								</descriptor>
 
@@ -193,11 +383,11 @@
 									<elementType>javaee:web-fragmentType</elementType>
 									<namespaces>
 										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
-            							<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-                                        <xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-fragment_3_0.xsd</xsi:schemaLocation>
+										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-fragment_3_0.xsd</xsi:schemaLocation>
 									</namespaces>
 								</descriptor>
-            
+
 								<descriptor>
 									<pathToXsd>${basedir}/src/main/resources/xsd/ejb-jar_3_1.xsd</pathToXsd>
 									<nameSpace>javaee</nameSpace>
@@ -208,8 +398,8 @@
 									<elementType>javaee:ejb-jarType</elementType>
 									<namespaces>
 										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
-            							<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-                                        <xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd</xsi:schemaLocation>
+										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd</xsi:schemaLocation>
 									</namespaces>
 								</descriptor>
 
@@ -223,8 +413,8 @@
 									<elementType>javaee:connectorType</elementType>
 									<namespaces>
 										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
-            							<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-                                        <xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/connector_1_6.xsd</xsi:schemaLocation>
+										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/connector_1_6.xsd</xsi:schemaLocation>
 									</namespaces>
 								</descriptor>
 
@@ -238,8 +428,8 @@
 									<elementType>javaee:beans</elementType>
 									<namespaces>
 										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
-            							<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-                                        <xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/beans_1_0.xsd</xsi:schemaLocation>
+										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/beans_1_0.xsd</xsi:schemaLocation>
 									</namespaces>
 								</descriptor>
 
@@ -249,6 +439,133 @@
 							<goal>parse</goal>
 						</goals>
 					</execution>
+					
+					<execution>
+						<id>executionJBossEE5</id>
+						<phase>validate</phase>
+						<configuration>
+							<verbose>true</verbose>
+							<path>
+								<pathToApi>${basedir}/../api-jboss/src/main/java</pathToApi>
+								<pathToImpl>${basedir}/../impl-jboss/src/main/java</pathToImpl>								
+							</path>
+							<descriptors>
+							
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/jboss-common_5_1.xsd</pathToXsd>
+									<nameSpace>jboss</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.jbosscommon51</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jbosscommon51</packageImpl>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/javaee_5.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.javaee5</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaee5</packageImpl>
+									<generateClasses>false</generateClasses>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/javaee_web_services_client_1_2.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient12</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient12</packageImpl>
+									<generateClasses>false</generateClasses>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/ejb-jar_3_0.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.ejbjar30</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.ejbjar30</packageImpl>
+									<generateClasses>false</generateClasses>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/jboss_5_1.xsd</pathToXsd>
+									<nameSpace>jboss</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.jboss51</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jboss51</packageImpl>
+									<descriptorName>JbossDescriptor</descriptorName>
+									<elementName>jboss</elementName>
+									<elementType>jboss:jbossType</elementType>
+									<namespaces>
+										<xmlns>http://www.jboss.com/xml/ns/javaee</xmlns>
+										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+										<xsi:schemaLocation>http://www.jboss.com/xml/ns/javaee http://www.jboss.org/j2ee/schema/jboss_5_1.xsd</xsi:schemaLocation>
+									</namespaces>
+								</descriptor>
+							</descriptors>
+						</configuration>
+						<goals>
+							<goal>parse</goal>
+						</goals>
+					</execution>
+					
+					<execution>
+						<id>executionJBossEE6</id>
+						<phase>validate</phase>
+						<configuration>
+							<verbose>true</verbose>
+							<path>
+								<pathToApi>${basedir}/../api-jboss/src/main/java</pathToApi>
+								<pathToImpl>${basedir}/../impl-jboss/src/main/java</pathToImpl>								
+							</path>
+							<descriptors>
+							
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/jboss-common_6_0.xsd</pathToXsd>
+									<nameSpace>jboss</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.jbosscommon60</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jbosscommon60</packageImpl>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/javaee_6.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.javaee6</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaee6</packageImpl>
+									<generateClasses>false</generateClasses>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/web-common_3_0.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.webcommon30</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.webcommon30</packageImpl>
+									<generateClasses>false</generateClasses>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/web-app_3_0.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.webapp30</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.webapp30</packageImpl>
+									<generateClasses>false</generateClasses>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/jboss-web_6_0.xsd</pathToXsd>
+									<nameSpace>jboss</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.jbossweb60</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jbossweb60</packageImpl>
+									<descriptorName>JbossWebDescriptor</descriptorName>
+									<elementName>jboss-web</elementName>
+									<elementType>jboss:jboss-webType</elementType>
+									<namespaces>
+										<xmlns>http://www.jboss.com/xml/ns/javaee</xmlns>
+										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+										<xsi:schemaLocation>http://www.jboss.com/xml/ns/javaee http://www.jboss.org/j2ee/schema/jboss-web_6_0.xsd</xsi:schemaLocation>
+									</namespaces>
+								</descriptor>
+							</descriptors>
+						</configuration>
+						<goals>
+							<goal>parse</goal>
+						</goals>
+					</execution>
+					
 				</executions>
 			</plugin>
 
@@ -259,9 +576,10 @@
 				<version>1.6</version>
 				<executions>
 
-					<!-- Java EE 6 deplyoment descriptor xslt transformation -->
+
+					<!-- JBoss 5 deplyoment descriptor xslt transformation -->
 <!-- 					<execution> -->
-<!-- 						<id>transform-to-metadata-javaee6</id> -->
+<!-- 						<id>transform-to-metadata-jbossee5</id> -->
 <!-- 						<goals> -->
 <!-- 							<goal>many-to-one</goal> -->
 <!-- 						</goals> -->
@@ -269,200 +587,30 @@
 <!-- 							<xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate> -->
 <!-- 							<srcDir>src/main/resources/xsd</srcDir> -->
 <!-- 							<srcIncludes>**/*.xsd</srcIncludes> -->
-<!-- 							<srcFile>src/main/resources/xslt/schemasJavaEE6.xml</srcFile> -->
-<!-- 							<destFile>src/main/resources/xslt/metadataJavaEE6.xml</destFile> -->
+<!-- 							<srcFile>src/main/resources/xslt/schemasJBossEE5.xml</srcFile> -->
+<!-- 							<destFile>src/main/resources/xslt/metadataJBossEE5.xml</destFile> -->
 <!-- 						</configuration> -->
 <!-- 					</execution> -->
 
 <!-- 					<execution> -->
-<!-- 						<id>transform-to-java-javaee6</id> -->
+<!-- 						<id>transform-to-java-jbossee5</id> -->
 <!-- 						<goals> -->
 <!-- 							<goal>many-to-one</goal> -->
 <!-- 						</goals> -->
 <!-- 						<configuration> -->
 <!-- 							<parameters> -->
-<!-- 								<gOutputFolder>${output.folder.impl.javaee}</gOutputFolder> -->
-<!-- 								<gOutputFolderApi>${output.folder.apl.javaee}</gOutputFolderApi> -->
-<!-- 								<gOutputFolderTest>${output.folder.test.javaee}</gOutputFolderTest> -->
+<!-- 								<gOutputFolder>${output.folder.impl.jboss}</gOutputFolder> -->
+<!-- 								<gOutputFolderApi>${output.folder.apl.jboss}</gOutputFolderApi> -->
+<!-- 								<gOutputFolderTest>${output.folder.test.jboss}</gOutputFolderTest> -->
 <!-- 							</parameters> -->
 <!-- 							<xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate> -->
 <!-- 							<srcDir>src/main/resources/xslt</srcDir> -->
 <!-- 							<srcIncludes>**/*.xml</srcIncludes> -->
-<!-- 							<srcFile>src/main/resources/xslt/metadataJavaEE6.xml</srcFile> -->
-<!-- 							<destFile>src/main/resources/xslt/ddJavaJavaEE6.xml</destFile> -->
+<!-- 							<srcFile>src/main/resources/xslt/metadataJBossEE5.xml</srcFile> -->
+<!-- 							<destFile>src/main/resources/xslt/ddJBossEE5.xml</destFile> -->
 <!-- 						</configuration> -->
 <!-- 					</execution> -->
 
-					<!-- Java EE 5 deplyoment descriptor xslt transformation -->
-					<execution>
-						<id>transform-to-metadata-javaee5</id>
-						<goals>
-							<goal>many-to-one</goal>
-						</goals>
-						<configuration>
-							<xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate>
-							<srcDir>src/main/resources/xsd</srcDir>
-							<srcIncludes>**/*.xsd</srcIncludes>
-							<srcFile>src/main/resources/xslt/schemasJavaEE5.xml</srcFile>
-							<destFile>src/main/resources/xslt/metadataJavaEE5.xml</destFile>
-						</configuration>
-					</execution>
-
-					<execution>
-						<id>transform-to-java-javaee5</id>
-						<goals>
-							<goal>many-to-one</goal>
-						</goals>
-						<configuration>
-							<parameters>
-								<gOutputFolder>${output.folder.impl.javaee}</gOutputFolder>
-								<gOutputFolderApi>${output.folder.apl.javaee}</gOutputFolderApi>
-								<gOutputFolderTest>${output.folder.test.javaee}</gOutputFolderTest>
-							</parameters>
-							<xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
-							<srcDir>src/main/resources/xslt</srcDir>
-							<srcIncludes>**/*.xml</srcIncludes>
-							<srcFile>src/main/resources/xslt/metadataJavaEE5.xml</srcFile>
-							<destFile>src/main/resources/xslt/ddJavaJavaEE5.xml</destFile>
-						</configuration>
-					</execution>
-
-					<!-- J2ee 1.4 deplyoment descriptor xslt transformation -->
-					<execution>
-						<id>transform-to-metadata-j2ee14</id>
-						<goals>
-							<goal>many-to-one</goal>
-						</goals>
-						<configuration>
-							<xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate>
-							<srcDir>src/main/resources/xsd</srcDir>
-							<srcIncludes>**/*.xsd</srcIncludes>
-							<srcFile>src/main/resources/xslt/schemasJ2ee14.xml</srcFile>
-							<destFile>src/main/resources/xslt/metadataJ2ee14.xml</destFile>
-						</configuration>
-					</execution>
-
-					<execution>
-						<id>transform-to-java-j2ee14</id>
-						<goals>
-							<goal>many-to-one</goal>
-						</goals>
-						<configuration>
-							<parameters>
-								<gOutputFolder>${output.folder.impl.javaee}</gOutputFolder>
-								<gOutputFolderApi>${output.folder.apl.javaee}</gOutputFolderApi>
-								<gOutputFolderTest>${output.folder.test.javaee}</gOutputFolderTest>
-							</parameters>
-							<xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
-							<srcDir>src/main/resources/xslt</srcDir>
-							<srcIncludes>**/*.xml</srcIncludes>
-							<srcFile>src/main/resources/xslt/metadataJ2ee14.xml</srcFile>
-							<destFile>src/main/resources/xslt/ddJavaJ2ee14.xml</destFile>
-						</configuration>
-					</execution>
-
-
-					<!-- J2ee 1.3 deplyoment descriptor xslt transformation -->
-					<execution>
-						<id>transform-to-metadata-j2ee13</id>
-						<goals>
-							<goal>many-to-one</goal>
-						</goals>
-						<configuration>
-							<xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate>
-							<srcDir>src/main/resources/xsd</srcDir>
-							<srcIncludes>**/*.xsd</srcIncludes>
-							<srcFile>src/main/resources/xslt/schemasJ2ee13.xml</srcFile>
-							<destFile>src/main/resources/xslt/metadataJ2ee13.xml</destFile>
-						</configuration>
-					</execution>
-
-					<execution>
-						<id>transform-to-java-j2ee13</id>
-						<goals>
-							<goal>many-to-one</goal>
-						</goals>
-						<configuration>
-							<parameters>
-								<gOutputFolder>${output.folder.impl.javaee}</gOutputFolder>
-								<gOutputFolderApi>${output.folder.apl.javaee}</gOutputFolderApi>
-								<gOutputFolderTest>${output.folder.test.javaee}</gOutputFolderTest>
-							</parameters>
-							<xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
-							<srcDir>src/main/resources/xslt</srcDir>
-							<srcIncludes>**/*.xml</srcIncludes>
-							<srcFile>src/main/resources/xslt/metadataJ2ee13.xml</srcFile>
-							<destFile>src/main/resources/xslt/ddJavaJ2ee13.xml</destFile>
-						</configuration>
-					</execution>
-
-					<!-- JBoss 5 deplyoment descriptor xslt transformation -->
-					<execution>
-						<id>transform-to-metadata-jbossee5</id>
-						<goals>
-							<goal>many-to-one</goal>
-						</goals>
-						<configuration>
-							<xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate>
-							<srcDir>src/main/resources/xsd</srcDir>
-							<srcIncludes>**/*.xsd</srcIncludes>
-							<srcFile>src/main/resources/xslt/schemasJBossEE5.xml</srcFile>
-							<destFile>src/main/resources/xslt/metadataJBossEE5.xml</destFile>
-						</configuration>
-					</execution>
-
-					<execution>
-						<id>transform-to-java-jbossee5</id>
-						<goals>
-							<goal>many-to-one</goal>
-						</goals>
-						<configuration>
-							<parameters>
-								<gOutputFolder>${output.folder.impl.jboss}</gOutputFolder>
-								<gOutputFolderApi>${output.folder.apl.jboss}</gOutputFolderApi>
-								<gOutputFolderTest>${output.folder.test.jboss}</gOutputFolderTest>
-							</parameters>
-							<xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
-							<srcDir>src/main/resources/xslt</srcDir>
-							<srcIncludes>**/*.xml</srcIncludes>
-							<srcFile>src/main/resources/xslt/metadataJBossEE5.xml</srcFile>
-							<destFile>src/main/resources/xslt/ddJBossEE5.xml</destFile>
-						</configuration>
-					</execution>
-
-					<!-- JBoss 6 deplyoment descriptor xslt transformation -->
-					<execution>
-						<id>transform-to-metadata-jbossee6</id>
-						<goals>
-							<goal>many-to-one</goal>
-						</goals>
-						<configuration>
-							<xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate>
-							<srcDir>src/main/resources/xsd</srcDir>
-							<srcIncludes>**/*.xsd</srcIncludes>
-							<srcFile>src/main/resources/xslt/schemasJBossEE6.xml</srcFile>
-							<destFile>src/main/resources/xslt/metadataJBossEE6.xml</destFile>
-						</configuration>
-					</execution>
-
-					<execution>
-						<id>transform-to-java-jbossee6</id>
-						<goals>
-							<goal>many-to-one</goal>
-						</goals>
-						<configuration>
-							<parameters>
-								<gOutputFolder>${output.folder.impl.jboss}</gOutputFolder>
-								<gOutputFolderApi>${output.folder.apl.jboss}</gOutputFolderApi>
-								<gOutputFolderTest>${output.folder.test.jboss}</gOutputFolderTest>
-							</parameters>
-							<xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate>
-							<srcDir>src/main/resources/xslt</srcDir>
-							<srcIncludes>**/*.xml</srcIncludes>
-							<srcFile>src/main/resources/xslt/metadataJBossEE6.xml</srcFile>
-							<destFile>src/main/resources/xslt/ddJBossEE6.xml</destFile>
-						</configuration>
-					</execution>
 				</executions>
 				<dependencies>
 					<dependency>
@@ -473,6 +621,7 @@
 				</dependencies>
 			</plugin>
 		</plugins>
+
 		<pluginManagement>
 			<plugins>
 				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->

@@ -70,6 +70,13 @@ public class MetadataParserConfiguration
    protected String elementType;
 
    /**
+    * If true, then the classes for this descriptor are generated, otherwise this descriptor
+    * is only used for the import section.
+    * 
+    */
+   protected boolean generateClasses = true;
+   
+   /**
     * Trace flag
     * 
     */
@@ -168,6 +175,16 @@ public class MetadataParserConfiguration
    public void setNamespaces(final Map<String, String> namespaces)
    {
       this.namespaces = namespaces;
+   }
+
+   public boolean isGenerateClasses()
+   {
+      return generateClasses;
+   }
+
+   public void setGenerateClasses(final boolean generateClasses)
+   {
+      this.generateClasses = generateClasses;
    }
    
 }

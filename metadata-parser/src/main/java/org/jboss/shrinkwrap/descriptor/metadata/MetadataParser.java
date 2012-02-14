@@ -113,7 +113,7 @@ public class MetadataParser
          metadata.setCurrentPackageApi(metadataConf.getPackageApi());
          metadata.setCurrentPackageImpl(metadataConf.getPackageImpl());
 
-         if (metadataConf.getElementName() != null && metadataConf.getElementType() != null) {
+//         if (metadataConf.getElementName() != null && metadataConf.getElementType() != null) {
             final MetadataDescriptor metadataDescriptor = new MetadataDescriptor(metadataConf.getDescriptorName());
             metadataDescriptor.setRootElementName(metadataConf.getElementName());
             metadataDescriptor.setRootElementType(metadataConf.getElementType());
@@ -122,8 +122,9 @@ public class MetadataParser
             metadataDescriptor.setPackageImpl(metadataConf.getPackageImpl());
             metadataDescriptor.setNamespace(metadataConf.getNameSpace());
             metadataDescriptor.setNamespaces(metadataConf.getNamespaces());
+            metadataDescriptor.setGenerateClasses(metadataConf.generateClasses);
             metadata.getMetadataDescriptorList().add(metadataDescriptor);
-         }
+//         }
          
          if (metadataConf.getPathToXsd().endsWith(".dtd"))
          {

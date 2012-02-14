@@ -49,6 +49,7 @@ public class ComplexTypeFilter implements Filter
       {
     	  final String typeStr = MetadataUtil.getAttributeValue(element, "type"); 
     	  final String mixedStr = MetadataUtil.getAttributeValue(element, "mixed"); 
+    	  final String abstractStr = MetadataUtil.getAttributeValue(element, "abstract");
     	  if (typeStr == null  && (!element.hasChildNodes()))
 		  {
 			  final String dataTypeName = MetadataUtil.getAttributeValue(element, "name");
@@ -69,6 +70,16 @@ public class ComplexTypeFilter implements Filter
              classElement.setIsAttribute(false);
              metadata.addClassElement(complexTypeName, classElement);
     	  }
+    	  else if (abstractStr != null && abstractStr.equals("true"))
+          {
+             final String complexTypeName = MetadataUtil.getAttributeValue(element, "name");
+             final MetadataElement classElement = new MetadataElement();
+             classElement.setName(complexTypeName);
+             classElement.setType(metadata.getCurrentNamespace() + ":" + complexTypeName);
+             classElement.setIsRef(false);
+             classElement.setIsAttribute(false);
+             metadata.addClassElement(complexTypeName, classElement);
+          }
     	  else if (
     	        !MetadataUtil.hasChildOf(element, XsdElementEnum.simpleContent) &&
     	        !MetadataUtil.hasChildOf(element, XsdElementEnum.complexContent) &&
