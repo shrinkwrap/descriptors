@@ -2943,6 +2943,9 @@
             <xsl:when test="$pText='xsdStringType'">
                 <xsl:sequence select="'String'"/>
             </xsl:when>
+            <xsl:when test="$pText='xsdNMTOKENType'">
+                <xsl:sequence select="'String'"/>
+            </xsl:when>
             <xsl:when test="$pText='string'">
                 <xsl:sequence select="'String'"/>
             </xsl:when>

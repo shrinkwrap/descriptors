@@ -31,6 +31,8 @@ public class MetadataDescriptor extends BaseMetadataItem
    private String rootElementName;
 
    private String rootElementType;
+   
+   private boolean generateClasses;
 
    private Map<String, String> namespaces = new HashMap<String, String>();
 
@@ -68,4 +70,14 @@ public class MetadataDescriptor extends BaseMetadataItem
    {
       this.namespaces = namespaces;
    }
+
+   public boolean isGenerateClasses()
+   {
+      return generateClasses;
+   }
+
+   public void setGenerateClasses(final boolean generateClasses)
+   {
+      this.generateClasses = generateClasses;
+   }   
 }
