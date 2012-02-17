@@ -13,33 +13,27 @@
   <modelVersion>4.0.0</modelVersion>
 
   <!-- Artifact Configuration -->
-  <artifactId>shrinkwrap-descriptors-test</artifactId>
-  <name>ShrinkWrap Descriptors Static Tests</name>
-  <description>Handcoded Tests for the Generated Implementation of the ShrinkWrap Descriptors Project</description>
+  <artifactId>shrinkwrap-descriptors-impl-misc</artifactId>
+  <name>ShrinkWrap Descriptors Generated Misc Impl</name>
+  <description>Generated JBoss Implementation of the ShrinkWrap Descriptors Project</description>
 
   <dependencies>
 
     <dependency>
       <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-      <artifactId>shrinkwrap-descriptors-impl-javaee</artifactId>
+      <artifactId>shrinkwrap-descriptors-api-javaee</artifactId>
       <version>${project.version}</version>
-      <scope>test</scope>
-    </dependency>
-    
+    </dependency> 
     <dependency>
       <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-      <artifactId>shrinkwrap-descriptors-impl-jboss</artifactId>
+      <artifactId>shrinkwrap-descriptors-api-misc</artifactId>
       <version>${project.version}</version>
-      <scope>test</scope>
-    </dependency>
-    
+    </dependency>     
     <dependency>
       <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-      <artifactId>shrinkwrap-descriptors-impl-misc</artifactId>
+      <artifactId>shrinkwrap-descriptors-impl-base</artifactId>
       <version>${project.version}</version>
-      <scope>test</scope>
     </dependency>
-    
     <dependency>
       <groupId>org.jboss.shrinkwrap.descriptors</groupId>
       <artifactId>shrinkwrap-descriptors-impl-base</artifactId>
@@ -47,14 +41,7 @@
       <type>test-jar</type>
       <scope>test</scope>
     </dependency>
-    
-    <dependency>
-      <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-      <artifactId>shrinkwrap-descriptors-test-util</artifactId>
-      <version>${project.version}</version>
-      <scope>test</scope>
-    </dependency>
-    
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -72,6 +59,8 @@
 					<!-- Run in Java5; be build with a JDK6 compiler so ensure we don't 
 						use any JDK6 libs -->
 					<jvm>${env.JAVA5_HOME}/bin/java</jvm>
+          <!-- Speeeeeeed -->
+          <forkMode>once</forkMode>
 				</configuration>
 			</plugin>
 		</plugins>

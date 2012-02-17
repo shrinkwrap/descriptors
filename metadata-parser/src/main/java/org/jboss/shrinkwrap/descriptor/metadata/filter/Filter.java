@@ -20,6 +20,11 @@ package org.jboss.shrinkwrap.descriptor.metadata.filter;
 import org.jboss.shrinkwrap.descriptor.metadata.Metadata;
 import org.w3c.dom.traversal.TreeWalker;
 
+/**
+ * This interface defines the contract all w3c elements have to implement.
+ * 
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ */
 public interface Filter
 {
    public boolean filter(final Metadata metadata, final TreeWalker walker);

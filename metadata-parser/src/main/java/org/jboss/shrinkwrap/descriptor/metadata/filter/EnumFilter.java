@@ -25,7 +25,9 @@ import org.w3c.dom.traversal.TreeWalker;
 
 
 /**
- * Class which is responsible for handling group tags.
+ * This class analyzes <code>Enumeration</code> w3c elements.
+ * 
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
 public class EnumFilter implements Filter
 {

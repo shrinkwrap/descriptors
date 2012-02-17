@@ -25,8 +25,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.traversal.TreeWalker;
 
 /**
+ * Class which is responsible for <code>SimpleContent</code> w3c elements.
+ * <p>
  * The simpleContent element contains extensions or restrictions on a text-only complex type or on a simple type as content and contains no elements.
- * 
+ * <p>
  * <simpleContent
  *    id=ID
  *   any attributes
@@ -34,8 +36,9 @@ import org.w3c.dom.traversal.TreeWalker;
  *   (annotation?,(restriction|extension))
  *
  *  </simpleContent> 
+ *  
+ *  @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
-
 public class SimpleContentFilter implements Filter
 {
    @Override

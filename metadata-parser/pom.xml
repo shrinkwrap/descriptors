@@ -71,20 +71,6 @@
 			<version>${project.version}</version>
 		</dependency>
 
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.jboss.shrinkwrap.descriptors</groupId> -->
-<!-- 			<artifactId>shrinkwrap-descriptors-impl-base</artifactId> -->
-<!-- 			<version>${project.version}</version> -->
-<!-- 			<type>test-jar</type> -->
-<!-- 			<scope>test</scope> -->
-<!-- 		</dependency> -->
-
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.jboss.shrinkwrap.descriptors</groupId> -->
-<!-- 			<artifactId>shrinkwrap-descriptors-gen</artifactId> -->
-<!-- 			<version>${project.version}</version> -->
-<!-- 		</dependency> -->
-
 		<dependency>
 			<groupId>org.jboss.shrinkwrap.descriptors</groupId>
 			<artifactId>shrinkwrap-descriptors-test-util</artifactId>

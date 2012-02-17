@@ -18,13 +18,18 @@
 package org.jboss.shrinkwrap.descriptor.metadata.filter;
 
 import org.jboss.shrinkwrap.descriptor.metadata.Metadata;
-import org.jboss.shrinkwrap.descriptor.metadata.MetadataElement;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataItem;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataUtil;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.traversal.TreeWalker;
 
+
+/**
+ * Class which is responsible for <code>List</code> w3c elements.
+ * 
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ */
 public class ListFilter implements Filter
 {
    @Override

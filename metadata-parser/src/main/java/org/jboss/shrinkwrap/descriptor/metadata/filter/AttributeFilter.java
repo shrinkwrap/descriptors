@@ -24,6 +24,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.traversal.TreeWalker;
 
+
+/**
+ * This class analyzes <code>Attribute</code> w3c elements.
+ * 
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ */
 public class AttributeFilter implements Filter
 {
    public boolean filter(final Metadata metadata, final TreeWalker walker)

@@ -24,6 +24,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.traversal.TreeWalker;
 
+
+/**
+ * Class which is responsible for <code>Union</code> w3c elements.
+ * 
+ *  @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ */
 public class UnionFilter implements Filter
 {
    @Override

@@ -17,20 +17,6 @@
 	<name>ShrinkWrap Descriptors Source Generator</name>
 	<description>Generates various deployment descriptors via XSLT transformation</description>
 
-	<properties>
-
-		<!-- output folders for the java ee related xslt transformation results -->
-		<output.folder.apl.javaee>../../../../../api-javaee/src/main/java</output.folder.apl.javaee>
-		<output.folder.impl.javaee>../../../../../impl-javaee/src/main/java</output.folder.impl.javaee>
-		<output.folder.test.javaee>../../../../../impl-javaee/src/test/java</output.folder.test.javaee>
-
-		<!-- output folders for the jboss related xslt transformation results -->
-		<output.folder.apl.jboss>../../../../../api-jboss/src/main/java</output.folder.apl.jboss>
-		<output.folder.impl.jboss>../../../../../impl-jboss/src/main/java</output.folder.impl.jboss>
-		<output.folder.test.jboss>../../../../../impl-jboss/src/test/java</output.folder.test.jboss>
-
-	</properties>
-
 	<build>
 		<plugins>
 
@@ -81,6 +67,28 @@
 							</includes>
 							<followSymlinks>false</followSymlinks>
 						</fileset>
+						<fileset>
+							<directory>../api-misc/src/main/java</directory>
+							<includes>
+								<include>**/*.java</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+						<fileset>
+							<directory>../impl-misc/src/main/java</directory>
+							<includes>
+								<include>**/*.java</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+						<fileset>
+							<directory>../impl-misc/src/test/java</directory>
+							<includes>
+								<include>**/*.java</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+
 					</filesets>
 				</configuration>
 			</plugin>
@@ -103,11 +111,10 @@
 						<id>executionJ2ee13</id>
 						<phase>validate</phase>
 						<configuration>
-							<verbose>true</verbose>
+							<verbose>false</verbose>
 							<path>
 								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
 								<pathToImpl>${basedir}/../impl-javaee/src/main/java</pathToImpl>
-								<!-- <pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices> -->
 							</path>
 							<descriptors>
 								<descriptor>
@@ -130,7 +137,7 @@
 						<id>executionJ2ee14</id>
 						<phase>validate</phase>
 						<configuration>
-							<verbose>true</verbose>
+							<verbose>false</verbose>
 							<path>
 								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
 								<pathToImpl>${basedir}/../impl-javaee/src/main/java</pathToImpl>
@@ -195,7 +202,7 @@
 						<id>executionJavaEE5</id>
 						<phase>validate</phase>
 						<configuration>
-							<verbose>true</verbose>
+							<verbose>false</verbose>
 							<path>
 								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
 								<pathToImpl>${basedir}/../impl-javaee/src/main/java</pathToImpl>
@@ -249,6 +256,21 @@
 								</descriptor>
 
 								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/orm_1_0.xsd</pathToXsd>
+									<nameSpace>orm</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.orm10</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.orm10</packageImpl>
+									<descriptorName>OrmDescriptor</descriptorName>
+									<elementName>entity-mappings</elementName>
+									<elementType>orm:entity-mappings</elementType>
+									<namespaces>
+										<xmlns>http://java.sun.com/xml/ns/persistence/orm</xmlns>
+										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+										<xsi:schemaLocation>http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd</xsi:schemaLocation>
+									</namespaces>
+								</descriptor>
+
+								<descriptor>
 									<pathToXsd>${basedir}/src/main/resources/xsd/ejb-jar_3_0.xsd</pathToXsd>
 									<nameSpace>javaee</nameSpace>
 									<packageApi>org.jboss.shrinkwrap.descriptor.api.ejbjar30</packageApi>
@@ -289,7 +311,7 @@
 						<id>executionJavaEE6</id>
 						<phase>validate</phase>
 						<configuration>
-							<verbose>true</verbose>
+							<verbose>false</verbose>
 							<path>
 								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
 								<pathToImpl>${basedir}/../impl-javaee/src/main/java</pathToImpl>
@@ -374,6 +396,20 @@
 								</descriptor>
 
 								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/orm_2_0.xsd</pathToXsd>
+									<nameSpace>orm</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.orm20</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.orm20</packageImpl>
+									<descriptorName>OrmDescriptor</descriptorName>
+									<elementName>entity-mappings</elementName>
+									<elementType>orm:entity-mappings</elementType>
+									<namespaces>
+										<xmlns>http://java.sun.com/xml/ns/persistence/orm</xmlns>
+										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+										<xsi:schemaLocation>http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd</xsi:schemaLocation>
+									</namespaces>
+								</descriptor>
+								<descriptor>
 									<pathToXsd>${basedir}/src/main/resources/xsd/web-fragment_3_0.xsd</pathToXsd>
 									<nameSpace>javaee</nameSpace>
 									<packageApi>org.jboss.shrinkwrap.descriptor.api.webfragment30</packageApi>
@@ -439,25 +475,25 @@
 							<goal>parse</goal>
 						</goals>
 					</execution>
-					
+
 					<execution>
 						<id>executionJBossEE5</id>
 						<phase>validate</phase>
 						<configuration>
-							<verbose>true</verbose>
+							<verbose>false</verbose>
 							<path>
 								<pathToApi>${basedir}/../api-jboss/src/main/java</pathToApi>
-								<pathToImpl>${basedir}/../impl-jboss/src/main/java</pathToImpl>								
+								<pathToImpl>${basedir}/../impl-jboss/src/main/java</pathToImpl>
 							</path>
 							<descriptors>
-							
+
 								<descriptor>
 									<pathToXsd>${basedir}/src/main/resources/xsd/jboss-common_5_1.xsd</pathToXsd>
 									<nameSpace>jboss</nameSpace>
 									<packageApi>org.jboss.shrinkwrap.descriptor.api.jbosscommon51</packageApi>
 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jbosscommon51</packageImpl>
 								</descriptor>
-								
+
 								<descriptor>
 									<pathToXsd>${basedir}/src/main/resources/xsd/javaee_5.xsd</pathToXsd>
 									<nameSpace>javaee</nameSpace>
@@ -473,7 +509,7 @@
 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient12</packageImpl>
 									<generateClasses>false</generateClasses>
 								</descriptor>
-								
+
 								<descriptor>
 									<pathToXsd>${basedir}/src/main/resources/xsd/ejb-jar_3_0.xsd</pathToXsd>
 									<nameSpace>javaee</nameSpace>
@@ -481,7 +517,7 @@
 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.ejbjar30</packageImpl>
 									<generateClasses>false</generateClasses>
 								</descriptor>
-								
+
 								<descriptor>
 									<pathToXsd>${basedir}/src/main/resources/xsd/jboss_5_1.xsd</pathToXsd>
 									<nameSpace>jboss</nameSpace>
@@ -502,25 +538,25 @@
 							<goal>parse</goal>
 						</goals>
 					</execution>
-					
+
 					<execution>
 						<id>executionJBossEE6</id>
 						<phase>validate</phase>
 						<configuration>
-							<verbose>true</verbose>
+							<verbose>false</verbose>
 							<path>
 								<pathToApi>${basedir}/../api-jboss/src/main/java</pathToApi>
-								<pathToImpl>${basedir}/../impl-jboss/src/main/java</pathToImpl>								
+								<pathToImpl>${basedir}/../impl-jboss/src/main/java</pathToImpl>
 							</path>
 							<descriptors>
-							
+
 								<descriptor>
 									<pathToXsd>${basedir}/src/main/resources/xsd/jboss-common_6_0.xsd</pathToXsd>
 									<nameSpace>jboss</nameSpace>
 									<packageApi>org.jboss.shrinkwrap.descriptor.api.jbosscommon60</packageApi>
 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jbosscommon60</packageImpl>
 								</descriptor>
-								
+
 								<descriptor>
 									<pathToXsd>${basedir}/src/main/resources/xsd/javaee_6.xsd</pathToXsd>
 									<nameSpace>javaee</nameSpace>
@@ -536,7 +572,7 @@
 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.webcommon30</packageImpl>
 									<generateClasses>false</generateClasses>
 								</descriptor>
-								
+
 								<descriptor>
 									<pathToXsd>${basedir}/src/main/resources/xsd/web-app_3_0.xsd</pathToXsd>
 									<nameSpace>javaee</nameSpace>
@@ -544,7 +580,7 @@
 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.webapp30</packageImpl>
 									<generateClasses>false</generateClasses>
 								</descriptor>
-								
+
 								<descriptor>
 									<pathToXsd>${basedir}/src/main/resources/xsd/jboss-web_6_0.xsd</pathToXsd>
 									<nameSpace>jboss</nameSpace>
@@ -565,60 +601,35 @@
 							<goal>parse</goal>
 						</goals>
 					</execution>
-					
-				</executions>
-			</plugin>
 
-
-			<plugin>
-				<groupId>net.sf.xsltmp</groupId>
-				<artifactId>xslt-generator-maven-plugin</artifactId>
-				<version>1.6</version>
-				<executions>
-
-
-					<!-- JBoss 5 deplyoment descriptor xslt transformation -->
-<!-- 					<execution> -->
-<!-- 						<id>transform-to-metadata-jbossee5</id> -->
-<!-- 						<goals> -->
-<!-- 							<goal>many-to-one</goal> -->
-<!-- 						</goals> -->
-<!-- 						<configuration> -->
-<!-- 							<xslTemplate>src/main/resources/xslt/metadata.xsl</xslTemplate> -->
-<!-- 							<srcDir>src/main/resources/xsd</srcDir> -->
-<!-- 							<srcIncludes>**/*.xsd</srcIncludes> -->
-<!-- 							<srcFile>src/main/resources/xslt/schemasJBossEE5.xml</srcFile> -->
-<!-- 							<destFile>src/main/resources/xslt/metadataJBossEE5.xml</destFile> -->
-<!-- 						</configuration> -->
-<!-- 					</execution> -->
-
-<!-- 					<execution> -->
-<!-- 						<id>transform-to-java-jbossee5</id> -->
-<!-- 						<goals> -->
-<!-- 							<goal>many-to-one</goal> -->
-<!-- 						</goals> -->
-<!-- 						<configuration> -->
-<!-- 							<parameters> -->
-<!-- 								<gOutputFolder>${output.folder.impl.jboss}</gOutputFolder> -->
-<!-- 								<gOutputFolderApi>${output.folder.apl.jboss}</gOutputFolderApi> -->
-<!-- 								<gOutputFolderTest>${output.folder.test.jboss}</gOutputFolderTest> -->
-<!-- 							</parameters> -->
-<!-- 							<xslTemplate>src/main/resources/xslt/ddJava.xsl</xslTemplate> -->
-<!-- 							<srcDir>src/main/resources/xslt</srcDir> -->
-<!-- 							<srcIncludes>**/*.xml</srcIncludes> -->
-<!-- 							<srcFile>src/main/resources/xslt/metadataJBossEE5.xml</srcFile> -->
-<!-- 							<destFile>src/main/resources/xslt/ddJBossEE5.xml</destFile> -->
-<!-- 						</configuration> -->
-<!-- 					</execution> -->
+					<execution>
+						<id>executionMisc</id>
+						<phase>validate</phase>
+						<configuration>
+							<verbose>false</verbose>
+							<path>
+								<pathToApi>${basedir}/../api-misc/src/main/java</pathToApi>
+								<pathToImpl>${basedir}/../impl-misc/src/main/java</pathToImpl>
+								<pathToServices>${basedir}/../impl-misc/src/main/resources/META-INF/services</pathToServices>
+							</path>
+							<descriptors>
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/jetty_7_configure.dtd</pathToXsd>
+									<nameSpace>jetty7</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.jetty7</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jetty7</packageImpl>
+									<descriptorName>JettyDescriptor</descriptorName>
+									<elementName>Configure</elementName>
+									<elementType>jetty7:Configure</elementType>
+								</descriptor>
+							</descriptors>
+						</configuration>
+						<goals>
+							<goal>parse</goal>
+						</goals>
+					</execution>
 
 				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>net.sf.saxon</groupId>
-						<artifactId>saxon</artifactId>
-						<version>8.7</version>
-					</dependency>
-				</dependencies>
 			</plugin>
 		</plugins>
 
@@ -634,12 +645,18 @@
 							<pluginExecutions>
 								<pluginExecution>
 									<pluginExecutionFilter>
-										<groupId>net.sf.xsltmp</groupId>
-										<artifactId>xslt-generator-maven-plugin</artifactId>
-										<versionRange>[1.6,)</versionRange>
+										<groupId>org.jboss.shrinkwrap.descriptors</groupId>
+										<artifactId>shrinkwrap-descriptors-metadata-parser</artifactId>
+										<versionRange>[1.0.0,)</versionRange>
 										<goals>
-											<goal>many-to-one</goal>
+											<goal>parse</goal>
 										</goals>
+<!-- 										<groupId>net.sf.xsltmp</groupId> -->
+<!-- 										<artifactId>xslt-generator-maven-plugin</artifactId> -->
+<!-- 										<versionRange>[1.6,)</versionRange> -->
+<!-- 										<goals> -->
+<!-- 											<goal>many-to-one</goal> -->
+<!-- 										</goals> -->
 									</pluginExecutionFilter>
 									<action>
 										<ignore />
@@ -652,15 +669,5 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-
-	<dependencies>
-
-		<dependency>
-			<groupId>net.sf.saxon</groupId>
-			<artifactId>saxon</artifactId>
-			<version>8.7</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
 
 </project>

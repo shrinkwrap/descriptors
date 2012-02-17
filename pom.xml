@@ -57,12 +57,14 @@
     <module>api-base</module>
     <module>api-javaee</module>
     <module>api-jboss</module>
+    <module>api-misc</module>
     <module>bom</module>
     <module>depchain</module>
     <module>gen</module>
     <module>impl-base</module>
     <module>impl-javaee</module>
     <module>impl-jboss</module>
+    <module>impl-misc</module>
     <module>spi</module>
     <module>test</module>
     <module>test-util</module>
