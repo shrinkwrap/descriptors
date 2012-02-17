@@ -24,22 +24,23 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.traversal.TreeWalker;
 
-
 /**
- Definition:
- <group
-   id = ID
-   maxOccurs = (nonNegativeInteger | unbounded)  : 1
-   minOccurs = nonNegativeInteger : 1
-   name = NCName
-   ref = QName
-   {any attributes with non-schema namespace . . .}>
-   Content: (annotation?, (all | choice | sequence)?)
- </group>
- */
-
-/**
- * Class which is responsible for handling group tags.
+ * Class which is responsible for <code>Group</code> w3c elements.
+ * 
+ <p>
+ * <code>
+    <group
+      id = ID
+      maxOccurs = (nonNegativeInteger | unbounded)  : 1
+      minOccurs = nonNegativeInteger : 1
+      name = NCName
+      ref = QName
+      {any attributes with non-schema namespace . . .}>
+      Content: (annotation?, (all | choice | sequence)?)
+    </group>
+ * </code>
+ * 
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
 public class GroupFilter implements Filter
 {

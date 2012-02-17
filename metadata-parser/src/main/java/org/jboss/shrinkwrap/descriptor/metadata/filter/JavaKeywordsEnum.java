@@ -17,8 +17,15 @@
 
 package org.jboss.shrinkwrap.descriptor.metadata.filter;
 
-public enum JavaKeywordsEnum {
-  
+
+/**
+ * Enum class defining all reserved Java key words. This is quite important because XSD's can 
+ * use such reserved key words.
+ * 
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ */
+public enum JavaKeywordsEnum 
+{  
    abstract_keyword("abstract"),
    continue_keyword("continue"),
    for_keyword("for"),

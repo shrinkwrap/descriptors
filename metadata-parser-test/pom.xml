@@ -59,7 +59,7 @@
 						<id>execution1</id>
 						<phase>validate</phase>
 						<configuration>
-							<verbose>true</verbose>
+							<verbose>false</verbose>
 							<path>
 								<pathToApi>${basedir}/src/main/java</pathToApi>
 								<pathToImpl>${basedir}/src/main/java</pathToImpl>
@@ -106,158 +106,12 @@
 									<elementType>j2ee:connector</elementType>
 								</descriptor>
 
-								<descriptor>
-									<pathToXsd>${basedir}/src/test/resources/dtd/jetty_7_configure.dtd</pathToXsd>
-									<nameSpace>jetty7</nameSpace>
-									<packageApi>org.jboss.shrinkwrap.descriptor.api.jetty7</packageApi>
-									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jetty7</packageImpl>
-									<descriptorName>JettyDescriptor</descriptorName>
-									<elementName>Configure</elementName>
-									<elementType>jetty7:Configure</elementType>
-								</descriptor>
-
-								<descriptor>
-									<pathToXsd>${basedir}/src/test/resources/xsd/persistence_1_0.xsd</pathToXsd>
-									<nameSpace>persistence</nameSpace>
-									<packageApi>org.jboss.shrinkwrap.descriptor.api.persistence10</packageApi>
-									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.persistence10</packageImpl>
-									<descriptorName>PersistenceDescriptor</descriptorName>
-									<elementName>persistence</elementName>
-									<elementType>persistence:persistence</elementType>
-								</descriptor>
-
-								<descriptor>
-									<pathToXsd>${basedir}/src/test/resources/xsd/orm_1_0.xsd</pathToXsd>
-									<nameSpace>orm</nameSpace>
-									<packageApi>org.jboss.shrinkwrap.descriptor.api.orm10</packageApi>
-									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.orm10</packageImpl>
-									<descriptorName>OrmDescriptor</descriptorName>
-									<elementName>entity-mappings</elementName>
-									<elementType>orm:entity-mappings</elementType>
-								</descriptor>
-
 							</descriptors>
 						</configuration>
 						<goals>
 							<goal>parse</goal>
 						</goals>
-					</execution>    
-        
-<!-- 					<execution> -->
-<!-- 						<id>executionJavaEE6</id> -->
-<!-- 						<phase>validate</phase> -->
-<!-- 						<configuration> -->
-<!-- 							<verbose>true</verbose> -->
-<!-- 							<path> -->
-<!-- 								<pathToApi>${basedir}/src/main/java</pathToApi> -->
-<!-- 								<pathToImpl>${basedir}/src/main/java</pathToImpl> -->
-<!-- 								<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices> -->
-<!-- 							</path> -->
-<!-- 							<descriptors> -->
-<!-- 								<descriptor> -->
-<!-- 									<pathToXsd>${basedir}/src/test/resources/xsd/javaee_6.xsd</pathToXsd> -->
-<!-- 									<nameSpace>javaee</nameSpace> -->
-<!-- 									<packageApi>org.jboss.shrinkwrap.descriptor.api.javaee6</packageApi> -->
-<!-- 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaee6</packageImpl> -->
-<!-- 								</descriptor> -->
-								
-<!-- 								<descriptor> -->
-<!-- 									<pathToXsd>${basedir}/src/test/resources/xsd/web-common_3_0.xsd</pathToXsd> -->
-<!-- 									<nameSpace>javaee</nameSpace> -->
-<!-- 									<packageApi>org.jboss.shrinkwrap.descriptor.api.webcommon30</packageApi> -->
-<!-- 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.webcommon30</packageImpl> -->
-<!-- 								</descriptor>								 -->
-								
-<!-- 								<descriptor> -->
-<!-- 									<pathToXsd>${basedir}/src/test/resources/xsd/jsp_2_2.xsd</pathToXsd> -->
-<!-- 									<nameSpace>javaee</nameSpace> -->
-<!-- 									<packageApi>org.jboss.shrinkwrap.descriptor.api.jsp22</packageApi> -->
-<!-- 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jsp22</packageImpl> -->
-<!-- 								</descriptor>								 -->
-								
-<!-- 								<descriptor> -->
-<!-- 									<pathToXsd>${basedir}/src/test/resources/xsd/javaee_web_services_client_1_3.xsd</pathToXsd> -->
-<!-- 									<nameSpace>javaee</nameSpace> -->
-<!-- 									<packageApi>org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13</packageApi> -->
-<!-- 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient13</packageImpl> -->
-<!-- 								</descriptor>								 -->
-								
-<!-- 								<descriptor> -->
-<!-- 									<pathToXsd>${basedir}/src/test/resources/xsd/application_6.xsd</pathToXsd> -->
-<!-- 									<nameSpace>javaee</nameSpace> -->
-<!-- 									<packageApi>org.jboss.shrinkwrap.descriptor.api.application6</packageApi> -->
-<!-- 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.application6</packageImpl> -->
-<!-- 									<descriptorName>ApplicationDescriptor</descriptorName> -->
-<!-- 									<elementName>application</elementName> -->
-<!-- 									<elementType>javaee:applicationType</elementType> -->
-<!-- 								</descriptor> -->
-						        
-<!-- 								<descriptor> -->
-<!-- 									<pathToXsd>${basedir}/src/test/resources/xsd/web-app_3_0.xsd</pathToXsd> -->
-<!-- 									<nameSpace>javaee</nameSpace> -->
-<!-- 									<packageApi>org.jboss.shrinkwrap.descriptor.api.webapp30</packageApi> -->
-<!-- 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.webapp30</packageImpl> -->
-<!-- 									<descriptorName>WebAppDescriptor</descriptorName> -->
-<!-- 									<elementName>web-app</elementName> -->
-<!-- 									<elementType>javaee:web-appType</elementType> -->
-<!-- 								</descriptor>								 -->
-								
-<!-- 								<descriptor> -->
-<!-- 									<pathToXsd>${basedir}/src/test/resources/xsd/persistence_2_0.xsd</pathToXsd> -->
-<!-- 									<nameSpace>persistence</nameSpace> -->
-<!-- 									<packageApi>org.jboss.shrinkwrap.descriptor.api.persistence20</packageApi> -->
-<!-- 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.persistence20</packageImpl> -->
-<!-- 									<descriptorName>PersistenceDescriptor</descriptorName> -->
-<!-- 									<elementName>persistence</elementName> -->
-<!-- 									<elementType>persistence:persistence</elementType> -->
-<!-- 								</descriptor> -->
-								
-<!-- 								<descriptor> -->
-<!-- 									<pathToXsd>${basedir}/src/test/resources/xsd/web-fragment_3_0.xsd</pathToXsd> -->
-<!-- 									<nameSpace>javaee</nameSpace> -->
-<!-- 									<packageApi>org.jboss.shrinkwrap.descriptor.api.webfragment30</packageApi> -->
-<!-- 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.webfragment30</packageImpl> -->
-<!-- 									<descriptorName>WebFragmentDescriptor</descriptorName> -->
-<!-- 									<elementName>web-fragment</elementName> -->
-<!-- 									<elementType>javaee:web-fragmentType</elementType> -->
-<!-- 								</descriptor> -->
-        
-<!-- 								<descriptor> -->
-<!-- 									<pathToXsd>${basedir}/src/test/resources/xsd/ejb-jar_3_1.xsd</pathToXsd> -->
-<!-- 									<nameSpace>javaee</nameSpace> -->
-<!-- 									<packageApi>org.jboss.shrinkwrap.descriptor.api.ejbjar31</packageApi> -->
-<!-- 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.ejbjar31</packageImpl> -->
-<!-- 									<descriptorName>EjbJarDescriptor</descriptorName> -->
-<!-- 									<elementName>ejb-jar</elementName> -->
-<!-- 									<elementType>javaee:ejb-jarType</elementType> -->
-<!-- 								</descriptor> -->
-							
-<!-- 								<descriptor> -->
-<!-- 									<pathToXsd>${basedir}/src/test/resources/xsd/connector_1_6.xsd</pathToXsd> -->
-<!-- 									<nameSpace>javaee</nameSpace> -->
-<!-- 									<packageApi>org.jboss.shrinkwrap.descriptor.api.connector16</packageApi> -->
-<!-- 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.connector16</packageImpl> -->
-<!-- 									<descriptorName>ConnectorDescriptor</descriptorName> -->
-<!-- 									<elementName>connector</elementName> -->
-<!-- 									<elementType>javaee:connectorType</elementType> -->
-<!-- 								</descriptor> -->
-        
-<!-- 								<descriptor> -->
-<!-- 									<pathToXsd>${basedir}/src/test/resources/xsd/beans_1_0.xsd</pathToXsd> -->
-<!-- 									<nameSpace>javaee</nameSpace> -->
-<!-- 									<packageApi>org.jboss.shrinkwrap.descriptor.api.beans10</packageApi> -->
-<!-- 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.beans10</packageImpl> -->
-<!-- 									<descriptorName>BeansDescriptor</descriptorName> -->
-<!-- 									<elementName>beans</elementName> -->
-<!-- 									<elementType>javaee:beans</elementType> -->
-<!-- 								</descriptor>							 -->
-								
-<!-- 							</descriptors> -->
-<!-- 						</configuration> -->
-<!-- 						<goals> -->
-<!-- 							<goal>parse</goal> -->
-<!-- 						</goals> -->
-<!-- 					</execution> -->
+					</execution>            
 				</executions>
 			</plugin>
 

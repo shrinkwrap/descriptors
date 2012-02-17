@@ -17,6 +17,12 @@
 
 package org.jboss.shrinkwrap.descriptor.metadata.filter;
 
+
+/**
+ * Enum class which defines all XSD w3c elements.
+ * 
+ *  @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ */
 public enum XsdElementEnum {
   
    all              ("Specifies that the child elements can appear in any order. Each child element can occur 0 or 1 time"),

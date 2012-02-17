@@ -26,20 +26,21 @@ import org.w3c.dom.traversal.TreeWalker;
 
 
 /**
- Definition:
- <group
-   id = ID
-   maxOccurs = (nonNegativeInteger | unbounded)  : 1
-   minOccurs = nonNegativeInteger : 1
-   name = NCName
-   ref = QName
-   {any attributes with non-schema namespace . . .}>
-   Content: (annotation?, (all | choice | sequence)?)
- </group>
- */
-
-/**
- * Class which is responsible for handling group tags.
+ * This class analyzes <code>AttributeGroup</code> w3c elements.
+ * <p>
+ * Definition:
+ * <p>
+ * <code>
+ *   <attributeGroup
+ *      id = ID
+ *      name = NCName
+ *      ref = QName
+ *      {any attributes with non-schema namespace . . .}>
+ *      Content: (annotation?, ((attribute | attributeGroup)*, anyAttribute?))
+ *   </attributeGroup>
+ * </code>
+ * 
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
 public class AttributeGroupFilter implements Filter
 {

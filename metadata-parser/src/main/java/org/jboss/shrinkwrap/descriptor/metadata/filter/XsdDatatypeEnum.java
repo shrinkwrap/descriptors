@@ -17,6 +17,12 @@
 
 package org.jboss.shrinkwrap.descriptor.metadata.filter;
 
+
+/**
+ * Enum class which defines all specified XSD simple data types.
+ * 
+ *  @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ */
 public enum XsdDatatypeEnum
 {
     normalizedString("normalizedString"),
