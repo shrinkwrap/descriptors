@@ -22,7 +22,6 @@
 
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
-				<version>2.4.1</version>
 				<configuration>
 					<filesets>
 						<fileset>
@@ -163,6 +162,19 @@
 										<versionRange>[1.0.0,)</versionRange>
 										<goals>
 											<goal>parse</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.mojo</groupId>
+				                        <artifactId>build-helper-maven-plugin</artifactId>
+										<versionRange>[1.0.0,)</versionRange>
+										<goals>
+											<goal>add-test-source</goal>
 										</goals>
 									</pluginExecutionFilter>
 									<action>
