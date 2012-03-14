@@ -21,6 +21,7 @@ package org.jboss.shrinkwrap.descriptor.metadata.dom;
 import java.io.File;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -47,7 +48,9 @@ import org.w3c.dom.Element;
  */
 public class DomWriter
 {
-   
+ 
+    private static final Logger log = Logger.getLogger(DomWriter.class.getName());
+    
    /**
     * Writes an XML file based on the given meta-data information at the specified location.
     * 
@@ -401,14 +404,15 @@ public class DomWriter
          TransformerFactory transformerFactory = TransformerFactory.newInstance();
          Transformer transformer = transformerFactory.newTransformer();
          DOMSource source = new DOMSource(doc);
-         StreamResult result = new StreamResult(new File(pathToMetadata));
+         final File file = new File(pathToMetadata);
+         StreamResult result = new StreamResult(file);
 
          // Output to console for testing
          // StreamResult result = new StreamResult(System.out);
 
          transformer.transform(source, result);
 
-         System.out.println("File saved!");
+         log.info("Saved: " + file.getAbsolutePath());
 
       }
       catch (ParserConfigurationException pce)

@@ -17,6 +17,8 @@
 
 package org.jboss.shrinkwrap.descriptor.metadata;
 
+import java.util.logging.Logger;
+
 import org.jboss.shrinkwrap.descriptor.metadata.filter.XsdElementEnum;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -29,6 +31,10 @@ import org.w3c.dom.NodeList;
  */
 public class MetadataUtil
 {
+    private static final Logger log = Logger.getLogger(MetadataUtil.class.getName());
+    private static final char NEWLINE = '\n';
+    private static final String LINE = "--------------------------------------------";
+    
    /**
     * Returns the attribute value for the given attribute name.
     * @param element the w3c dom element.
@@ -102,70 +108,96 @@ public class MetadataUtil
    }
    
    /**
-    * Prints on the stdio out metadata information.
+    * Logs out metadata information.
     * @param metadata
     */
-   public void print(final Metadata metadata)
+   public void log(final Metadata metadata)
    {
-      for (MetadataItem item : metadata.getGroupList())
-      {
-         System.out.println("--------------------------------------------");
-         System.out.println("Group: " + item.getName());
+      final StringBuilder sb = new StringBuilder();
+       
+      for (final MetadataItem item : metadata.getGroupList())
+      {   
+         sb.append(LINE);
+         sb.append(NEWLINE);
+         sb.append(LINE);
+         sb.append("Group: " + item.getName());
+         sb.append(NEWLINE);
          for (MetadataElement element : item.getElements())
          {
-            System.out.println("  Element  : " + element.getName());
-            System.out.println("  Type     : " + element.getType());
-            System.out.println("  MinOccurs: " + element.getMinOccurs());
-            System.out.println("  MaxOccurs: " + element.getMaxOccurs());
-            System.out.println("  IsAttr   : " + element.getIsAttribute());
-            System.out.println("");
+            sb.append("  Element  : " + element.getName());
+            sb.append(NEWLINE);
+            sb.append("  Type     : " + element.getType());
+            sb.append(NEWLINE);
+            sb.append("  MinOccurs: " + element.getMinOccurs());
+            sb.append(NEWLINE);
+            sb.append("  MaxOccurs: " + element.getMaxOccurs());
+            sb.append(NEWLINE);
+            sb.append("  IsAttr   : " + element.getIsAttribute());
+            sb.append(NEWLINE);
          }
 
          for (MetadataElement element : item.getReferences())
          {
-            System.out.println("  Ref      : " + element.getRef());
+           sb.append("  Ref      : " + element.getRef());
+           sb.append(NEWLINE);
          }
-         System.out.println("");
+         sb.append(NEWLINE);
+         
       }
 
       for (MetadataEnum enumItem : metadata.getEnumList())
       {
-         System.out.println("--------------------------------------------");
-         System.out.println("Enum: " + enumItem.getName());
+         sb.append(LINE);
+         sb.append(NEWLINE);
+         sb.append("Enum: " + enumItem.getName());
+         sb.append(NEWLINE);
          for (String enumValue : enumItem.getValueList())
          {
-            System.out.println("  Value    : " + enumValue);
+             sb.append("  Value    : " + enumValue);
+             sb.append(NEWLINE);
          }
-         System.out.println("");
+         sb.append(NEWLINE);
       }
 
       for (MetadataItem item : metadata.getClassList())
       {
-         System.out.println("--------------------------------------------");
-         System.out.println("Class: " + item.getName());
+         sb.append(LINE);
+         sb.append(NEWLINE);
+         sb.append("Class: " + item.getName());
+         sb.append(NEWLINE);
          for (MetadataElement element : item.getElements())
          {
-            System.out.println("  Element  : " + element.getName());
-            System.out.println("  Type     : " + element.getType());
-            System.out.println("  MinOccurs: " + element.getMinOccurs());
-            System.out.println("  MaxOccurs: " + element.getMaxOccurs());
-            System.out.println("  IsAttr   : " + element.getIsAttribute());
-            System.out.println("");
+            sb.append("  Element  : " + element.getName());
+            sb.append(NEWLINE);
+            sb.append("  Type     : " + element.getType());
+            sb.append(NEWLINE);
+            sb.append("  MinOccurs: " + element.getMinOccurs());
+            sb.append(NEWLINE);
+            sb.append("  MaxOccurs: " + element.getMaxOccurs());
+            sb.append(NEWLINE);
+            sb.append("  IsAttr   : " + element.getIsAttribute());
+            sb.append(NEWLINE);
          }
 
          for (MetadataElement element : item.getReferences())
          {
-            System.out.println("  Ref      : " + element.getRef());
+             sb.append("  Ref      : " + element.getRef());
+             sb.append(NEWLINE);
          }
-         System.out.println("");
+         sb.append(NEWLINE);
       }
 
       for (MetadataItem dataType : metadata.getDataTypeList())
       {
-         System.out.println("--------------------------------------------");
-         System.out.println("Name    : " + dataType.getName());
-         System.out.println("MappedTo: " + dataType.getMappedTo());
-         System.out.println("");
+         sb.append(LINE);
+         sb.append(NEWLINE);
+         sb.append("Name    : " + dataType.getName());
+         sb.append(NEWLINE);
+         sb.append("MappedTo: " + dataType.getMappedTo());
+         sb.append(NEWLINE);
       }
+      
+      // Log
+      log.info(sb.toString());
    }
 }

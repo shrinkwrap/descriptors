@@ -42,7 +42,7 @@ public class MetadataParserMojo extends AbstractMojo
     * List of descriptors specifying the descriptor details.
     * @parameter
     */
-   private List descriptors;
+   private List<?> descriptors;
    
    /**
     * Trace flag

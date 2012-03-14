@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -66,6 +67,8 @@ import com.sun.xml.dtdparser.DTDParser;
  */
 public class MetadataParser
 {
+   private static final Logger log = Logger.getLogger(MetadataParser.class.getName());
+
    private final List<Filter> filterList = new ArrayList<Filter>();
 
    private final Metadata metadata = new Metadata();
@@ -99,10 +102,10 @@ public class MetadataParser
     * Parses the specified schema and produces the <code>metadata</code> object.
     * @throws Exception 
     */
-   public void parse(final MetadataParserPath path, final List confList, final boolean verbose) throws Exception
+   public void parse(final MetadataParserPath path, final List<?> confList, final boolean verbose) throws Exception
    {
       pathToMetadata = createTempFile();
-      System.out.println("Path to temporary metadata file: " + pathToMetadata);
+      log.fine("Path to temporary metadata file: " + pathToMetadata);
 
       for (int i = 0; i < confList.size(); i++)
       {
@@ -155,7 +158,11 @@ public class MetadataParser
             final DocumentTraversal traversal = (DocumentTraversal) document;
             final TreeWalker walker = traversal.createTreeWalker(document.getDocumentElement(),
                   NodeFilter.SHOW_ELEMENT, null, true);
-            traverseLevel(walker, "", verbose);
+            final StringBuilder sb = verbose ? new StringBuilder() : null;
+            traverseLevel(walker, "", sb);
+            if(sb!=null){
+                log.info(sb.toString());
+            }
          }
       }
 
@@ -172,7 +179,7 @@ public class MetadataParser
 
       if (verbose)
       {
-         new MetadataUtil().print(metadata);
+         new MetadataUtil().log(metadata);
       }
 
       if (path.getPathToApi() != null && path.getPathToImpl() != null)
@@ -185,14 +192,16 @@ public class MetadataParser
     * Traverses the DOM and applies the filters for each visited node.
     * @param walker
     * @param indent 
+    * @param sb Optional {@link StringBuilder} used to track progress for logging purposes
     */
-   private void traverseLevel(final TreeWalker walker, final String indent, final boolean verbose)
+   private void traverseLevel(final TreeWalker walker, final String indent, final StringBuilder sb)
    {
       final Node parend = walker.getCurrentNode();
 
-      if (verbose)
+      if (sb!=null)
       {
-         System.out.println(indent + "- " + ((Element) parend).getTagName());
+         sb.append(indent + "- " + ((Element) parend).getTagName());
+         sb.append('\n');
       }
 
       for (final Filter filter : filterList)
@@ -205,7 +214,7 @@ public class MetadataParser
 
       for (Node n = walker.firstChild(); n != null; n = walker.nextSibling())
       {
-         traverseLevel(walker, indent + '\t', verbose);
+         traverseLevel(walker, indent + '\t', sb);
       }
 
       walker.setCurrentNode(parend);
@@ -225,7 +234,7 @@ public class MetadataParser
       xsltParameters.put("gOutputFolderService", path.getPathToServices());
 
       final InputStream is = MetadataParser.class.getResourceAsStream("/META-INF/ddJavaAll.xsl");
-      System.out.println("Stream resource: " + is);
+      log.fine("Stream resource: " + is);
 
       XsltTransformer.simpleTransform(pathToMetadata, is, new File("./tempddJava.xml"), xsltParameters);
    }
