@@ -300,6 +300,81 @@
 									</namespaces>
 								</descriptor>
 
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/web-facelettaglibrary_2_0.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.facelettaglibrary20</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.facelettaglibrary20</packageImpl>
+									<descriptorName>WebFacelettaglibraryDescriptor</descriptorName>
+									<elementName>facelet-taglib</elementName>
+									<elementType>javaee:facelet-taglibType</elementType>
+									<namespaces>
+										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
+										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd</xsi:schemaLocation>
+									</namespaces>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/web-facesconfig_2_0.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.facesconfig20</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.facesconfig20</packageImpl>
+									<descriptorName>WebFacesConfigDescriptor</descriptorName>
+									<elementName>faces-config</elementName>
+									<elementType>javaee:faces-configType</elementType>
+									<namespaces>
+										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
+										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd</xsi:schemaLocation>
+									</namespaces>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/web-facesconfig_2_1.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.facesconfig21</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.facesconfig21</packageImpl>
+									<descriptorName>WebFacesConfigDescriptor</descriptorName>
+									<elementName>faces-config</elementName>
+									<elementType>javaee:faces-configType</elementType>
+									<namespaces>
+										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
+										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd</xsi:schemaLocation>
+									</namespaces>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/web-facesuicomponent_2_0.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.facesuicomponent20</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.facesuicomponent20</packageImpl>
+									<descriptorName>WebFacesUIComponentDescriptor</descriptorName>
+									<elementName>attribute</elementName>
+									<elementType>javaee:uicomponent-attributeType</elementType>
+									<namespaces>
+										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
+										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesuicomponent_2_0.xsd</xsi:schemaLocation>
+									</namespaces>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/web-partialresponse_2_0.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.facespartialresponse20</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.facespartialresponse20</packageImpl>
+									<descriptorName>WebFacesPartialResponseDescriptor</descriptorName>
+									<elementName>partial-response</elementName>
+									<elementType>javaee:partial-responseType</elementType>
+									<namespaces>
+										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
+										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
+										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-partialresponse_2_0.xsd</xsi:schemaLocation>
+									</namespaces>
+								</descriptor>
+
 							</descriptors>
 						</configuration>
 						<goals>
