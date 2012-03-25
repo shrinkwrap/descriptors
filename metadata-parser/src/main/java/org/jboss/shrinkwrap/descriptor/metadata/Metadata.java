@@ -20,8 +20,6 @@ package org.jboss.shrinkwrap.descriptor.metadata;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jboss.shrinkwrap.descriptor.metadata.filter.JavaKeywordsEnum;
-
 /**
  * This class serves as a sink for all extracted meta-data information.
  *
@@ -212,7 +210,8 @@ public class Metadata
 	  classElement.setType(getNamespaceValue(classElement.getType()));
       for (MetadataItem item: classList)
       {
-         if (item.getName().equals(className) && item.getNamespace().equals(getCurrentNamespace()))
+         if (item.getName().equals(className) && item.getNamespace().equals(getCurrentNamespace())
+             && item.getPackageApi().equals(getCurrentPackageApi()))
          {
             // check for a element with the same name, if found then set 'maxOccurs = unbounded'
             for (MetadataElement element: item.getElements())
@@ -249,7 +248,8 @@ public class Metadata
 	  classReference.setRef(getNamespaceValue(classReference.getRef()));
       for (MetadataItem item: classList)
       {
-         if (item.getName().equals(className) && item.getNamespace().equals(getCurrentNamespace()))
+         if (item.getName().equals(className) && item.getNamespace().equals(getCurrentNamespace())
+             && item.getPackageApi().equals(getCurrentPackageApi()))
          {
             item.getReferences().add(classReference);
             return;
