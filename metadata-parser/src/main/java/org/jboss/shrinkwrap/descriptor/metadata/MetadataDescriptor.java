@@ -19,6 +19,7 @@ package org.jboss.shrinkwrap.descriptor.metadata;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 
 /**
@@ -34,7 +35,7 @@ public class MetadataDescriptor extends BaseMetadataItem
    
    private boolean generateClasses;
 
-   private Map<String, String> namespaces = new HashMap<String, String>();
+   private Properties namespaces = new Properties();
 
    public MetadataDescriptor(String name)
    {
@@ -61,12 +62,12 @@ public class MetadataDescriptor extends BaseMetadataItem
       this.rootElementType = rootElementType;
    }
 
-   public Map<String, String> getNamespaces()
+   public Properties getNamespaces()
    {
       return namespaces;
    }
    
-   public void setNamespaces(final Map<String, String> namespaces)
+   public void setNamespaces(final Properties namespaces)
    {
       this.namespaces = namespaces;
    }

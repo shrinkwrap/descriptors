@@ -19,6 +19,7 @@
 package org.jboss.shrinkwrap.descriptor.metadata.dom;
 
 import java.io.File;
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -379,13 +380,10 @@ public class DomWriter
                final Attr attElementType = doc.createAttribute("type");
                attElementType.setValue(descriptor.getRootElementType());
                element.setAttributeNode(attElementType);
-               
-               for (Iterator it=descriptor.getNamespaces().entrySet().iterator(); it.hasNext(); ) 
+                              
+               for (String key: descriptor.getNamespaces().stringPropertyNames())
                {
-                  Map.Entry entry = (Map.Entry)it.next();
-                  String key = (String)entry.getKey();
-                  String value = (String)entry.getValue();
-                  
+            	  final String value =  (String)descriptor.getNamespaces().get(key);                  
                   final Attr namespaceAttrName = doc.createAttribute("name");
                   namespaceAttrName.setValue(key);
                   

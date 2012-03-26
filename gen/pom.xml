@@ -170,9 +170,9 @@
 									<elementName>connector</elementName>
 									<elementType>j2ee:connectorType</elementType>
 									<namespaces>
-										<xmlns>http://java.sun.com/xml/ns/j2ee</xmlns>
-										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-										<xsi:schemaLocation>http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/connector_1_5.xsd</xsi:schemaLocation>
+									    <property><name>xmlns</name><value>http://java.sun.com/xml/ns/j2ee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/connector_1_5.xsd</value></property>
 									</namespaces>
 								</descriptor>
 
@@ -185,9 +185,9 @@
 									<elementName>taglib</elementName>
 									<elementType>j2ee:tldTaglibType</elementType>
 									<namespaces>
-										<xmlns>http://java.sun.com/xml/ns/j2ee</xmlns>
-										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-										<xsi:schemaLocation>http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd</xsi:schemaLocation>
+										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/j2ee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd</value></property>
 									</namespaces>
 								</descriptor>
 
@@ -234,9 +234,9 @@
 									<elementName>application</elementName>
 									<elementType>javaee:applicationType</elementType>
 									<namespaces>
-										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
-										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_5.xsd</xsi:schemaLocation>
+										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_5.xsd</value></property>
 									</namespaces>
 								</descriptor>
 
@@ -249,9 +249,9 @@
 									<elementName>persistence</elementName>
 									<elementType>persistence:persistence</elementType>
 									<namespaces>
-										<xmlns>http://java.sun.com/xml/ns/persistence</xmlns>
-										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-										<xsi:schemaLocation>http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd</xsi:schemaLocation>
+										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/persistence</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd</value></property>
 									</namespaces>
 								</descriptor>
 
@@ -264,9 +264,9 @@
 									<elementName>entity-mappings</elementName>
 									<elementType>orm:entity-mappings</elementType>
 									<namespaces>
-										<xmlns>http://java.sun.com/xml/ns/persistence/orm</xmlns>
-										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-										<xsi:schemaLocation>http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd</xsi:schemaLocation>
+										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/persistence/orm</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd</value></property>
 									</namespaces>
 								</descriptor>
 
@@ -279,9 +279,9 @@
 									<elementName>ejb-jar</elementName>
 									<elementType>javaee:ejb-jarType</elementType>
 									<namespaces>
-										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
-										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_0.xsd</xsi:schemaLocation>
+										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_0.xsd</value></property>
 									</namespaces>
 								</descriptor>
 
@@ -294,9 +294,9 @@
 									<elementName>taglib</elementName>
 									<elementType>javaee:tldTaglibType</elementType>
 									<namespaces>
-										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
-										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd</xsi:schemaLocation>
+										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd</value></property>
 									</namespaces>
 								</descriptor>
 
@@ -309,9 +309,9 @@
 									<elementName>facelet-taglib</elementName>
 									<elementType>javaee:facelet-taglibType</elementType>
 									<namespaces>
-										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
-										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd</xsi:schemaLocation>
+										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd</value></property>
 									</namespaces>
 								</descriptor>
 
@@ -324,9 +324,9 @@
 									<elementName>faces-config</elementName>
 									<elementType>javaee:faces-configType</elementType>
 									<namespaces>
-										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
-										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd</xsi:schemaLocation>
+										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd</value></property>
 									</namespaces>
 								</descriptor>
 
@@ -339,9 +339,9 @@
 									<elementName>faces-config</elementName>
 									<elementType>javaee:faces-configType</elementType>
 									<namespaces>
-										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
-										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd</xsi:schemaLocation>
+										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd</value></property>
 									</namespaces>
 								</descriptor>
 
@@ -354,9 +354,9 @@
 									<elementName>attribute</elementName>
 									<elementType>javaee:uicomponent-attributeType</elementType>
 									<namespaces>
-										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
-										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesuicomponent_2_0.xsd</xsi:schemaLocation>
+										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesuicomponent_2_0.xsd</value></property>
 									</namespaces>
 								</descriptor>
 
@@ -369,9 +369,9 @@
 									<elementName>partial-response</elementName>
 									<elementType>javaee:partial-responseType</elementType>
 									<namespaces>
-										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
-										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-partialresponse_2_0.xsd</xsi:schemaLocation>
+										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-partialresponse_2_0.xsd</value></property>
 									</namespaces>
 								</descriptor>
 
@@ -434,9 +434,9 @@
 									<elementName>application</elementName>
 									<elementType>javaee:applicationType</elementType>
 									<namespaces>
-										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
-										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd</xsi:schemaLocation>
+										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd</value></property>
 									</namespaces>
 								</descriptor>
 
@@ -449,9 +449,9 @@
 									<elementName>web-app</elementName>
 									<elementType>javaee:web-appType</elementType>
 									<namespaces>
-										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
-										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd</xsi:schemaLocation>
+										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd</value></property>
 									</namespaces>
 								</descriptor>
 
@@ -464,9 +464,9 @@
 									<elementName>persistence</elementName>
 									<elementType>persistence:persistence</elementType>
 									<namespaces>
-										<xmlns>http://java.sun.com/xml/ns/persistence</xmlns>
-										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-										<xsi:schemaLocation>http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd</xsi:schemaLocation>
+										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/persistence</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd</value></property>
 									</namespaces>
 								</descriptor>
 
@@ -479,9 +479,9 @@
 									<elementName>entity-mappings</elementName>
 									<elementType>orm:entity-mappings</elementType>
 									<namespaces>
-										<xmlns>http://java.sun.com/xml/ns/persistence/orm</xmlns>
-										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-										<xsi:schemaLocation>http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd</xsi:schemaLocation>
+										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/persistence/orm</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd</value></property>
 									</namespaces>
 								</descriptor>
 								<descriptor>
@@ -493,9 +493,9 @@
 									<elementName>web-fragment</elementName>
 									<elementType>javaee:web-fragmentType</elementType>
 									<namespaces>
-										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
-										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-fragment_3_0.xsd</xsi:schemaLocation>
+										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-fragment_3_0.xsd</value></property>
 									</namespaces>
 								</descriptor>
 
@@ -508,9 +508,9 @@
 									<elementName>ejb-jar</elementName>
 									<elementType>javaee:ejb-jarType</elementType>
 									<namespaces>
-										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
-										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd</xsi:schemaLocation>
+										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd</value></property>
 									</namespaces>
 								</descriptor>
 
@@ -523,9 +523,9 @@
 									<elementName>connector</elementName>
 									<elementType>javaee:connectorType</elementType>
 									<namespaces>
-										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
-										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/connector_1_6.xsd</xsi:schemaLocation>
+										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/connector_1_6.xsd</value></property>
 									</namespaces>
 								</descriptor>
 
@@ -538,9 +538,9 @@
 									<elementName>beans</elementName>
 									<elementType>javaee:beans</elementType>
 									<namespaces>
-										<xmlns>http://java.sun.com/xml/ns/javaee</xmlns>
-										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-										<xsi:schemaLocation>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/beans_1_0.xsd</xsi:schemaLocation>
+										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/beans_1_0.xsd</value></property>
 									</namespaces>
 								</descriptor>
 
@@ -602,9 +602,9 @@
 									<elementName>jboss</elementName>
 									<elementType>jboss:jbossType</elementType>
 									<namespaces>
-										<xmlns>http://www.jboss.com/xml/ns/javaee</xmlns>
-										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-										<xsi:schemaLocation>http://www.jboss.com/xml/ns/javaee http://www.jboss.org/j2ee/schema/jboss_5_1.xsd</xsi:schemaLocation>
+										<property><name>xmlns</name><value>http://www.jboss.com/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://www.jboss.com/xml/ns/javaee http://www.jboss.org/j2ee/schema/jboss_5_1.xsd</value></property>
 									</namespaces>
 								</descriptor>
 							</descriptors>
@@ -665,9 +665,9 @@
 									<elementName>jboss-web</elementName>
 									<elementType>jboss:jboss-webType</elementType>
 									<namespaces>
-										<xmlns>http://www.jboss.com/xml/ns/javaee</xmlns>
-										<xmlns:xsi>http://www.w3.org/2001/XMLSchema-instance</xmlns:xsi>
-										<xsi:schemaLocation>http://www.jboss.com/xml/ns/javaee http://www.jboss.org/j2ee/schema/jboss-web_6_0.xsd</xsi:schemaLocation>
+										<property><name>xmlns</name><value>http://www.jboss.com/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://www.jboss.com/xml/ns/javaee http://www.jboss.org/j2ee/schema/jboss-web_6_0.xsd</value></property>
 									</namespaces>
 								</descriptor>
 							</descriptors>
