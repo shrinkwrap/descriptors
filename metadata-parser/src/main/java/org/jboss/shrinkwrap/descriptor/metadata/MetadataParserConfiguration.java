@@ -19,6 +19,7 @@ package org.jboss.shrinkwrap.descriptor.metadata;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 
 /**
@@ -86,7 +87,7 @@ public class MetadataParserConfiguration
    /**
     * The map declaring the name spaces for the given descriptor.
     */
-   protected Map<String, String> namespaces = new HashMap<String, String>();
+   protected Properties namespaces = new Properties();
 
    public String getNameSpace()
    {
@@ -168,12 +169,12 @@ public class MetadataParserConfiguration
       this.descriptorName = descriptorName;
    }
 
-   public Map<String, String> getNamespaces()
+   public Properties getNamespaces()
    {
       return namespaces;
    }
 
-   public void setNamespaces(final Map<String, String> namespaces)
+   public void setNamespaces(final Properties namespaces)
    {
       this.namespaces = namespaces;
    }
