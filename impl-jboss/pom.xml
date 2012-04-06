@@ -21,11 +21,6 @@
 
     <dependency>
       <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-      <artifactId>shrinkwrap-descriptors-api-javaee</artifactId>
-      <version>${project.version}</version>
-    </dependency> 
-    <dependency>
-      <groupId>org.jboss.shrinkwrap.descriptors</groupId>
       <artifactId>shrinkwrap-descriptors-api-jboss</artifactId>
       <version>${project.version}</version>
     </dependency>     
@@ -34,11 +29,6 @@
       <artifactId>shrinkwrap-descriptors-impl-javaee</artifactId>
       <version>${project.version}</version>
     </dependency>     
-    <dependency>
-      <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-      <artifactId>shrinkwrap-descriptors-impl-base</artifactId>
-      <version>${project.version}</version>
-    </dependency>
     <dependency>
       <groupId>org.jboss.shrinkwrap.descriptors</groupId>
       <artifactId>shrinkwrap-descriptors-impl-base</artifactId>

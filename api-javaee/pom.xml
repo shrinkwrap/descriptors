@@ -28,6 +28,7 @@
       <groupId>org.jboss.shrinkwrap.descriptors</groupId>
       <artifactId>shrinkwrap-descriptors-gen</artifactId>
       <version>${project.version}</version>
+      <scope>provided</scope>
     </dependency>
 
   </dependencies>
