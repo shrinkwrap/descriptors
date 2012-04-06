@@ -18,6 +18,12 @@
   <description>Handcoded Tests for the Generated Implementation of the ShrinkWrap Descriptors Project</description>
 
   <dependencies>
+    <dependency>
+      <groupId>org.jboss.spec</groupId>
+      <artifactId>jboss-javaee-6.0</artifactId>
+      <type>pom</type>
+      <version>1.0.0.Final</version>
+    </dependency>
 
     <dependency>
       <groupId>org.jboss.shrinkwrap.descriptors</groupId>

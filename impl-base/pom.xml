@@ -31,14 +31,6 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- TODO: Remove this when all POC stuff is gone from impl-base -->
-    <dependency>
-      <groupId>org.jboss.spec</groupId>
-      <artifactId>jboss-javaee-6.0</artifactId>
-      <type>pom</type>
-      <version>1.0.0.Beta7</version>
-    </dependency>
-
   </dependencies>
 
 	<build>
