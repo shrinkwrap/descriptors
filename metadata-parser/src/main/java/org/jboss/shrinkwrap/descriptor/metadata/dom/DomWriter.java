@@ -129,6 +129,7 @@ public class DomWriter
             final Attr generateClassImpl = doc.createAttribute("generateClass");
             generateClassImpl.setValue(Boolean.toString(descriptor.isGenerateClasses()));
             packageImpl.setAttributeNode(generateClassImpl);  
+                        
             packages.appendChild(packageImpl);
          }
          
@@ -365,7 +366,11 @@ public class DomWriter
                
                final Attr attrPackageImpl = doc.createAttribute("packageImpl");
                attrPackageImpl.setValue(descriptor.getPackageImpl());
-               descriptorElement.setAttributeNode(attrPackageImpl);
+               descriptorElement.setAttributeNode(attrPackageImpl);               
+
+               final Attr defaultFileName = doc.createAttribute("defaultFileName");
+               defaultFileName.setValue(descriptor.getDefaultFileName());
+               descriptorElement.setAttributeNode(defaultFileName);  
                
                final Element element = doc.createElement("element");
                descriptorElement.appendChild(element);

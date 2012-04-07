@@ -1,3 +1,0 @@
-implClass=org.jboss.shrinkwrap.descriptor.api.TestDescriptorImpl
-importerClass=org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomNodeDescriptorImporterImpl
-defaultName=test.xml

@@ -68,6 +68,12 @@ public class MetadataParserConfiguration
     * 
     */
    protected String elementType;
+   
+   /**
+    * The default descriptor file name.
+    * 
+    */
+   protected String defaultFileName;
 
    /**
     * If true, then the classes for this descriptor are generated, otherwise this descriptor
@@ -185,6 +191,14 @@ public class MetadataParserConfiguration
    public void setGenerateClasses(final boolean generateClasses)
    {
       this.generateClasses = generateClasses;
+   }
+
+   public String getDefaultFileName() {
+	  return defaultFileName;
+   }
+	
+   public void setDefaultFileName(final String defaultFileName) {
+	  this.defaultFileName = defaultFileName;
    }
    
 }

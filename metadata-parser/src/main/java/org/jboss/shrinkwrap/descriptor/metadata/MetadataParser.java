@@ -88,16 +88,17 @@ public class MetadataParser
          metadata.setCurrentPackageApi(metadataConf.getPackageApi());
          metadata.setCurrentPackageImpl(metadataConf.getPackageImpl());
 
-         final MetadataDescriptor metadataDescriptor = new MetadataDescriptor(metadataConf.getDescriptorName());
-         metadataDescriptor.setRootElementName(metadataConf.getElementName());
-         metadataDescriptor.setRootElementType(metadataConf.getElementType());
-         metadataDescriptor.setSchemaName(metadataConf.getPathToXsd());
-         metadataDescriptor.setPackageApi(metadataConf.getPackageApi());
-         metadataDescriptor.setPackageImpl(metadataConf.getPackageImpl());
-         metadataDescriptor.setNamespace(metadataConf.getNameSpace());
-         metadataDescriptor.setNamespaces(metadataConf.getNamespaces());
-         metadataDescriptor.setGenerateClasses(metadataConf.generateClasses);
-         metadata.getMetadataDescriptorList().add(metadataDescriptor);
+        final MetadataDescriptor metadataDescriptor = new MetadataDescriptor(metadataConf.getDescriptorName());
+        metadataDescriptor.setRootElementName(metadataConf.getElementName());
+        metadataDescriptor.setRootElementType(metadataConf.getElementType());
+        metadataDescriptor.setSchemaName(metadataConf.getPathToXsd());
+        metadataDescriptor.setPackageApi(metadataConf.getPackageApi());
+        metadataDescriptor.setPackageImpl(metadataConf.getPackageImpl());
+        metadataDescriptor.setNamespace(metadataConf.getNameSpace());
+        metadataDescriptor.setNamespaces(metadataConf.getNamespaces());
+        metadataDescriptor.setGenerateClasses(metadataConf.generateClasses);
+        metadataDescriptor.setDefaultFileName(metadataConf.getDefaultFileName());
+        metadata.getMetadataDescriptorList().add(metadataDescriptor);
          
          log.info(metadataConf.getPathToXsd());
          if (metadataConf.getPathToXsd().endsWith(".dtd"))
