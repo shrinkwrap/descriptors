@@ -20,6 +20,8 @@ package org.jboss.shrinkwrap.descriptor.metadata;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jboss.shrinkwrap.descriptor.metadata.filter.XsdDatatypeEnum;
+
 /**
  * This class serves as a sink for all extracted meta-data information.
  *
@@ -315,6 +317,12 @@ public class Metadata
           * replace the xs namespace with xsd, ddJavaAll xslt likes this more 
           */
          element.setType(element.getType().replace("xs:", "xsd:"));
+         
+         /** 
+          * Set default xsd namespace 
+          */
+         if(!element.getType().contains(":") && XsdDatatypeEnum.integer.isDataType("xsd:"+element.getType()))
+        	 element.setType("xsd:"+element.getType());
          
          /**
           * Check java keywords
