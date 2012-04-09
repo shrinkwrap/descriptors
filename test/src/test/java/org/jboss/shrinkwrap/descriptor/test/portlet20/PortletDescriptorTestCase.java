@@ -39,7 +39,6 @@ public class PortletDescriptorTestCase
             	.up().up();
       String portletXmlGenerated = portlet.exportAsString();
       String portletXmlOriginal = getResourceContents("src/test/resources/test-gen-portlet20.xml");
-      System.out.println(portletXmlGenerated);
       XmlAssert.assertIdentical(portletXmlOriginal, portletXmlGenerated);   
    }
    

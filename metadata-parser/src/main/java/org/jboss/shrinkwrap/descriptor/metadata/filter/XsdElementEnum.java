@@ -76,6 +76,8 @@ public enum XsdElementEnum {
          final String[] items = tagName.split(":", -1);
          if (items.length == 2 && items[1].equals(name()))
             return true;
+         if (items.length == 1 && items[0].equals(name()))
+            return true;
       }
       return false;
    }
