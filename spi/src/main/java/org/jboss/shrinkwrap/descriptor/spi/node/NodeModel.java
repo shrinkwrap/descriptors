@@ -1,6 +1,6 @@
 /*
  * JBoss, Home of Professional Open Source
- * Copyright 2010, Red Hat Middleware LLC, and individual contributors
+ * Copyright 2012, Red Hat Middleware LLC, and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
  *
@@ -16,13 +16,16 @@
  */
 package org.jboss.shrinkwrap.descriptor.spi.node;
 
-import org.jboss.shrinkwrap.descriptor.api.Descriptor;
-
 /**
- * A {@link Descriptor} based on a {@link NodeModel} (ie. hierarchal, typically representing XML metadata).
+ * Any model based on a root {@link Node} structure (ie. hierarchal, typically representing XML metadata).
  * 
- * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
- * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
+ * @author <a href="mailto:alr@alrubinger.com">Andrew Lee Rubinger</a>
  */
-public interface NodeDescriptor extends Descriptor, NodeModel {
+public interface NodeModel {
+    /**
+     * Obtains the top-level root {@link Node} for this {@link NodeModel}
+     * 
+     * @return
+     */
+    Node getRootNode();
 }

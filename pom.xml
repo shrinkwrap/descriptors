@@ -56,6 +56,7 @@
   <modules>
     <module>api-base</module>
     <module>api-javaee</module>
+    <module>api-javaee-prototype</module>
     <module>api-jboss</module>
     <module>api-misc</module>
     <module>bom</module>
@@ -63,6 +64,7 @@
     <module>gen</module>
     <module>impl-base</module>
     <module>impl-javaee</module>
+    <module>impl-javaee-prototype</module>
     <module>impl-jboss</module>
     <module>impl-misc</module>
     <module>spi</module>

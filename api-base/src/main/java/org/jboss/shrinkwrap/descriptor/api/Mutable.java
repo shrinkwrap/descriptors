@@ -1,6 +1,6 @@
 /*
  * JBoss, Home of Professional Open Source
- * Copyright 2010, Red Hat Middleware LLC, and individual contributors
+ * Copyright 2012, Red Hat Middleware LLC, and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
  *
@@ -14,15 +14,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.spi.node;
-
-import org.jboss.shrinkwrap.descriptor.api.Descriptor;
+package org.jboss.shrinkwrap.descriptor.api;
 
 /**
- * A {@link Descriptor} based on a {@link NodeModel} (ie. hierarchal, typically representing XML metadata).
+ * A mutable view which supports converstion to a read-only {@link Immutable} view.
  * 
- * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
- * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
+ * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
  */
-public interface NodeDescriptor extends Descriptor, NodeModel {
+public interface Mutable<IMMUTABLEVIEW extends Immutable<MUTABLEVIEW, IMMUTABLEVIEW>, MUTABLEVIEW extends Mutable<IMMUTABLEVIEW, MUTABLEVIEW>> {
+
+    /**
+     * Returns the immutable view of this object.
+     * 
+     * @return
+     */
+    IMMUTABLEVIEW toImmutable();
 }

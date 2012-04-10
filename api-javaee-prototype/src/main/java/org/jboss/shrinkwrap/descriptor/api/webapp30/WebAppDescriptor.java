@@ -1,6 +1,6 @@
 /*
  * JBoss, Home of Professional Open Source
- * Copyright 2010, Red Hat Middleware LLC, and individual contributors
+ * Copyright 2012, Red Hat Middleware LLC, and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
  *
@@ -14,15 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.shrinkwrap.descriptor.spi.node;
+package org.jboss.shrinkwrap.descriptor.api.webapp30;
 
-import org.jboss.shrinkwrap.descriptor.api.Descriptor;
+import org.jboss.shrinkwrap.descriptor.api.Immutable;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.FilterType;
 
 /**
- * A {@link Descriptor} based on a {@link NodeModel} (ie. hierarchal, typically representing XML metadata).
+ * Read-only view of a web application deployment descriptor (ie. web.xml).
  * 
- * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
- * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
+ * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
  */
-public interface NodeDescriptor extends Descriptor, NodeModel {
+/*
+ * TODO: This is for use by end-users, and correctly closes the generic context
+ */
+public interface WebAppDescriptor extends WebAppDescriptorBase<FilterType, WebAppDescriptor>,
+    Immutable<WebAppMutableDescriptor, WebAppDescriptor> {
+
 }
