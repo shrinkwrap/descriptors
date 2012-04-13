@@ -100,13 +100,24 @@ public class ManifestDescriptorImporter implements DescriptorImporter<ManifestDe
          }
       }
    }
+   
+   /*
+    * (non-Javadoc)
+    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.lang.String)
+    */
+   @Override
+   @Deprecated
+   public ManifestDescriptor from(String manifest) throws IllegalArgumentException, DescriptorImportException
+   {
+       return fromString(manifest);
+   }
 
    /*
     * (non-Javadoc)
     * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.lang.String)
     */
    @Override
-   public ManifestDescriptor from(String manifest) throws IllegalArgumentException, DescriptorImportException
+   public ManifestDescriptor fromString(String manifest) throws IllegalArgumentException, DescriptorImportException
    {
       if (manifest == null)
          throw new IllegalArgumentException("Manifest cannot be null");
