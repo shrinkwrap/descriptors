@@ -116,7 +116,19 @@ public abstract class DescriptorImporterBase<T extends Descriptor> implements De
     * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.lang.String)
     */
    @Override
+   @Deprecated
    public T from(final String string) throws IllegalArgumentException, DescriptorImportException
+   {
+       return fromString(string);
+   }
+
+          /**
+    * {@inheritDoc}
+    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.lang.String)
+    */
+   @Override
+   @Deprecated
+   public T fromString(final String string) throws IllegalArgumentException, DescriptorImportException
    {
       // Precondition check
       if (string == null)
