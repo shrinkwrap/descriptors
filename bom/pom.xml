@@ -71,31 +71,26 @@
         <groupId>org.jboss.shrinkwrap.descriptors</groupId>
         <artifactId>shrinkwrap-descriptors-gen</artifactId>
         <version>${project.version}</version>
-        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.jboss.shrinkwrap.descriptors</groupId>
         <artifactId>shrinkwrap-descriptors-impl-base</artifactId>
         <version>${project.version}</version>
-        <scope>runtime</scope>
       </dependency>
       <dependency>
         <groupId>org.jboss.shrinkwrap.descriptors</groupId>
         <artifactId>shrinkwrap-descriptors-impl-javaee</artifactId>
         <version>${project.version}</version>
-        <scope>runtime</scope>
       </dependency>
       <dependency>
         <groupId>org.jboss.shrinkwrap.descriptors</groupId>
         <artifactId>shrinkwrap-descriptors-impl-jboss</artifactId>
         <version>${project.version}</version>
-        <scope>runtime</scope>
       </dependency>
       <dependency>
         <groupId>org.jboss.shrinkwrap.descriptors</groupId>
         <artifactId>shrinkwrap-descriptors-spi</artifactId>
         <version>${project.version}</version>
-        <scope>runtime</scope>
       </dependency>
     </dependencies>
   
