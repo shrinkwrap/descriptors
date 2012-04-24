@@ -65,11 +65,23 @@ public interface DescriptorImporter<T extends Descriptor>
    T from(InputStream in, boolean close) throws IllegalArgumentException, DescriptorImportException;
 
    /**
-    * Creates a new {@link Descriptor} from the given input {@link String}
+    * Creates a new {@link Descriptor} from the given input XML data {@link String}
+    * 
+    * @param string the resource data
+    * @return the imported descriptor
+    * @throws IllegalArgumentException If the String was not specified
+    * @throws DescriptorImportException
+    */
+   @Deprecated
+   T from(String string) throws IllegalArgumentException, DescriptorImportException;
+   
+   /**
+    * Creates a new {@link Descriptor} from the given input XML data {@link String}
     * @param string the resource URI
     * @return the imported descriptor
     * @throws IllegalArgumentException If the String was not specified
     * @throws DescriptorImportException
     */
-   T from(String string) throws IllegalArgumentException, DescriptorImportException;
+   T fromString(String string) throws IllegalArgumentException, DescriptorImportException;
+      
 }
