@@ -59,7 +59,7 @@ public final class WebAppDescriptorImpl extends WebAppDescriptorImplBase<FilterT
      */
     @Override
     public WebAppMutableDescriptor toMutable() {
-        return new WebAppMutableDescriptorImpl(this.getDescriptorName(), this.getRootNode());
+        return new WebAppMutableDescriptorImpl(this.getDescriptorName(), this.getRootNode().deepCopy());
     }
 
 }

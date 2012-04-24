@@ -85,7 +85,7 @@ public class WebAppDescriptorTestCase {
      * read-only view, and keep the data model intact.
      */
     @Test
-    public void mutableRoundtrip() {
+    public void mutableViewToImmutableRetainsDataModel() {
         // Make a new descriptor
         final WebAppDescriptor readonly = Descriptors.create(WebAppDescriptor.class);
 
@@ -100,6 +100,42 @@ public class WebAppDescriptorTestCase {
 
         // Ensure the roundtrip still has a filter w/ two descriptions
         Assert.assertEquals(2, roundtrip.getAllFilter().get(0).getAllDescription().size());
+    }
+    
+    /**
+     * Ensures that changes made to the model of a mutable view 
+     * obtained via an immutable view do not affect the original 
+     * immutable view
+     */
+    @Test
+    public void immutableViewToMutableReturnsCopy() {
+        // Make a new descriptor
+        final WebAppDescriptor readonly = Descriptors.create(WebAppDescriptor.class);
+
+        // Ensure the original immutable view still has no filters
+        Assert.assertEquals(0, readonly.getAllFilter().size());
+        
+        // Get a mutable view
+        final WebAppMutableDescriptor mutable = readonly.toMutable();
+
+        // Add a filter with two descriptions
+        Assert.assertEquals(2, mutable.getOrCreateFilter().description("one", "two").getAllDescription().size());
+
+        // Ensure the original immutable view still has no filters
+        Assert.assertEquals(
+            "Changes to a mutable view obtained from an immutable view should not affect the original immutable view",
+            0, readonly.getAllFilter().size());
+    }
+    
+    /**
+     * Ensures we cannot simply cast from an immutable view to a mutable one (ensuring we cannot write to the impl
+     * without invoking on the copy operation {@link WebAppDescriptor#toMutable()}).
+     */
+    @Test(expected = ClassCastException.class)
+    public void cannotCastFromImmutableToMutable() {
+        // Make a new descriptor
+        final WebAppDescriptor readonly = Descriptors.create(WebAppDescriptor.class);
+        WebAppMutableDescriptor.class.cast(readonly);
     }
 
 }

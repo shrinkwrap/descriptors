@@ -21,6 +21,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 
 /**
@@ -520,6 +521,55 @@ public class Node
    {
       return Collections.unmodifiableList(children);
    }
+   
+    /**
+     * Returns a deep copy of this {@link Node}
+     * 
+     * @return
+     */
+    public Node deepCopy() {
+        // Create new Node
+        final Node newRoot = new Node(this.getName());
+
+        // Set attributes
+        this.deepCopy(newRoot);
+        
+        // Return
+        return newRoot;
+    }
+    
+    /**
+     * Copies <code>this</code> reference to the specified {@link Node}
+     * @param copyTarget
+     * @return
+     */
+    private Node deepCopy(final Node copyTarget){
+        
+        // Precondition checks
+        assert copyTarget != null : "Node to copy information into must be specified";
+
+        // Set attributes
+        final Map<String, String> attributes = this.getAttributes();
+        final Set<String> attributeKeys = attributes.keySet();
+        for (final String key : attributeKeys) {
+            final String value = attributes.get(key);
+            copyTarget.attribute(key, value);
+        }
+
+        // Set text
+        copyTarget.text(this.getText());
+
+        // Set children
+        final List<Node> children = this.getChildren();
+        for (final Node child : children) {
+            final Node newChild = copyTarget.createChild(child.getName());
+            // Recurse in
+            child.deepCopy(newChild);
+        }
+
+        // Return
+        return this;
+    }
 
    // -------------------------------------------------------------------------------------||
    // Override ----------------------------------------------------------------------------||
