@@ -88,7 +88,7 @@ public class XmlDomNodeImporterTestCase
       XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor> xmlDomNodeDescriptorImporter = new XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor>(DummyNodeDescriptor.class, "test-descriptor");
       
       // when
-      DummyNodeDescriptor nodeDescriptor = xmlDomNodeDescriptorImporter.from(SINGLE_NODE);
+      DummyNodeDescriptor nodeDescriptor = xmlDomNodeDescriptorImporter.fromString(SINGLE_NODE);
 
       // then
       XmlAssert.assertIdentical(SINGLE_NODE, nodeDescriptor.exportAsString());
@@ -102,7 +102,7 @@ public class XmlDomNodeImporterTestCase
       Node expectedRoot = new Node("dummy");
       
       // when
-      Node importedRoot = xmlDomNodeDescriptorImporter.from("").getRootNode();
+      Node importedRoot = xmlDomNodeDescriptorImporter.fromString("").getRootNode();
 
       // then
       Assert.assertEquals(expectedRoot.getName(), importedRoot.getName());
@@ -121,7 +121,7 @@ public class XmlDomNodeImporterTestCase
                   .text("doovde");
       
       // when
-      Node root = xmlDomNodeDescriptorImporter.from(new File("src/test/resources/single.xml")).getRootNode();
+      Node root = xmlDomNodeDescriptorImporter.fromFile(new File("src/test/resources/single.xml")).getRootNode();
 
       // then
       Assert.assertEquals(expectedRoot.toString(true), root.toString(true));
@@ -134,7 +134,7 @@ public class XmlDomNodeImporterTestCase
       XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor> xmlDomNodeDescriptorImporter = new XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor>(DummyNodeDescriptor.class, "test-descriptor");
       
       // when
-      Node root = xmlDomNodeDescriptorImporter.from(new File("not-existing-file.xml")).getRootNode();
+      Node root = xmlDomNodeDescriptorImporter.fromFile(new File("not-existing-file.xml")).getRootNode();
 
       // then
       // exception should be thrown

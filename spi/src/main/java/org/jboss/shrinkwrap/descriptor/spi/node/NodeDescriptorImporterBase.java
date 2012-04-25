@@ -58,10 +58,10 @@ public abstract class NodeDescriptorImporterBase<T extends Descriptor> extends D
 
    /**
     * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.io.InputStream)
+    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#fromStream(java.io.InputStream)
     */
    @Override
-   public T from(final InputStream in, final boolean close) throws IllegalArgumentException, DescriptorImportException
+   public T fromStream(final InputStream in, final boolean close) throws IllegalArgumentException, DescriptorImportException
    {
       // Precondition check
       if (in == null)

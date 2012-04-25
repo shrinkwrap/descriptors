@@ -68,14 +68,14 @@ public class FacesConfigDescriptorTestCase {
     @Test
     public void shouldBeAbleToOverrideVersionInWebFacesConfigDescriptor() throws Exception {
         // Make a descriptor
-        final WebFacesConfigDescriptor facesConfig = Descriptors.importAs(WebFacesConfigDescriptor.class).from(source);
+        final WebFacesConfigDescriptor facesConfig = Descriptors.importAs(WebFacesConfigDescriptor.class).fromString(source);
 
         facesConfig.version("2.0");
         Assert.assertEquals("2.0", facesConfig.getVersionAsString());
 
         // Get as Node structure
         final InputStream stream = new ByteArrayInputStream(facesConfig.exportAsString().getBytes());
-        final WebFacesConfigDescriptor fromFacesConfigXml = Descriptors.importAs(WebFacesConfigDescriptor.class).from(
+        final WebFacesConfigDescriptor fromFacesConfigXml = Descriptors.importAs(WebFacesConfigDescriptor.class).fromStream(
             stream);
         final Node root = ((NodeDescriptor) fromFacesConfigXml).getRootNode();
 

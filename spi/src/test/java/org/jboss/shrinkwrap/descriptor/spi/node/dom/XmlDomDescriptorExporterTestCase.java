@@ -133,7 +133,7 @@ public class XmlDomDescriptorExporterTestCase
       Node expectedRoot = new Node("dummy");
       
       // when
-      Node importedRoot = xmlDomNodeDescriptorImporter.from("").getRootNode();
+      Node importedRoot = xmlDomNodeDescriptorImporter.fromString("").getRootNode();
 
       // then
       Assert.assertEquals(expectedRoot.getName(), importedRoot.getName());

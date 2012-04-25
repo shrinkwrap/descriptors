@@ -39,8 +39,30 @@ public interface DescriptorImporter<T extends Descriptor>
     * @throws IllegalArgumentException If the file was not specified, does not
     *   exist, or is a directory
     * @throws DescriptorImportException If there was some error on import
+    * @deprecated Use instead {@link DescriptorImporter#fromFile(File)}
     */
+   @Deprecated
    T from(File file) throws IllegalArgumentException, DescriptorImportException;
+    
+   /**
+    * Creates a new {@link Descriptor} from the given input file 
+    * @param file the input file
+    * @return the imported descriptor
+    * @throws IllegalArgumentException If the file was not specified, does not
+    *   exist, or is a directory
+    * @throws DescriptorImportException If there was some error on import
+    */
+   T fromFile(File file) throws IllegalArgumentException, DescriptorImportException;
+   
+   /**
+    * Creates a new {@link Descriptor} from the given input file path
+    * @param file Path to the input file
+    * @return the imported descriptor
+    * @throws IllegalArgumentException If the file was not specified, does not
+    *   exist, or is a directory
+    * @throws DescriptorImportException If there was some error on import
+    */
+   T fromFile(String file) throws IllegalArgumentException, DescriptorImportException;
 
    /**
     * Creates a new {@link Descriptor} from the given input stream, closing the specified
@@ -50,9 +72,35 @@ public interface DescriptorImporter<T extends Descriptor>
     * @return the imported descriptor
     * @throws IllegalArgumentException If the stream was not specified
     * @throws DescriptorImportException If there was some error on import
+    * @deprecated Use instead {@link DescriptorImporter#fromStream(InputStream)}
     */
+   @Deprecated
    T from(InputStream in) throws IllegalArgumentException, DescriptorImportException;
-
+   
+   /**
+    * Creates a new {@link Descriptor} from the given input stream, closing the specified
+    * stream when done, if applicable for the given input stream implementation.
+    *
+    * @param in the <tt>InputStream</tt>
+    * @return the imported descriptor
+    * @throws IllegalArgumentException If the stream was not specified
+    * @throws DescriptorImportException If there was some error on import
+    */
+   T fromStream(InputStream in) throws IllegalArgumentException, DescriptorImportException;
+   
+   /**
+    * Creates a new {@link Descriptor} from the given input
+    *
+    * @param in the <tt>InputStream</tt> to use
+    * @param close whether to close the specified stream or not
+    * @return the imported descriptor
+    * @throws IllegalArgumentException If the stream was not specified
+    * @throws DescriptorImportException If there was some error on import
+    * @deprecated Use instead {@link DescriptorImporter#fromStream(InputStream, boolean)}
+    */
+   @Deprecated
+   T from(InputStream in, boolean close) throws IllegalArgumentException, DescriptorImportException;
+   
    /**
     * Creates a new {@link Descriptor} from the given input
     *
@@ -62,7 +110,7 @@ public interface DescriptorImporter<T extends Descriptor>
     * @throws IllegalArgumentException If the stream was not specified
     * @throws DescriptorImportException If there was some error on import
     */
-   T from(InputStream in, boolean close) throws IllegalArgumentException, DescriptorImportException;
+   T fromStream(InputStream in, boolean close) throws IllegalArgumentException, DescriptorImportException;
 
    /**
     * Creates a new {@link Descriptor} from the given input XML data {@link String}
@@ -71,6 +119,7 @@ public interface DescriptorImporter<T extends Descriptor>
     * @return the imported descriptor
     * @throws IllegalArgumentException If the String was not specified
     * @throws DescriptorImportException
+    * @deprecated Use instead {@link DescriptorImporter#fromString(String)}
     */
    @Deprecated
    T from(String string) throws IllegalArgumentException, DescriptorImportException;

@@ -52,7 +52,7 @@ public class DescriptorsTestCase
    @Test
    public void shouldBeAbleToConstructDescriptorFromString() throws Exception
    {
-      final WebAppDescriptor web = Descriptors.importAs(WebAppDescriptor.class).from(
+      final WebAppDescriptor web = Descriptors.importAs(WebAppDescriptor.class).fromStream(
             new ByteArrayInputStream(source.getBytes()));
 
       Assert.assertNotNull(web);

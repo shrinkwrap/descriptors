@@ -193,7 +193,7 @@ public class WebAppDescriptorTestCase
    public void shouldBeAbleToOverrideVersionInWebAppDescriptor() throws Exception
    {
       // Make a descriptor
-      final WebAppDescriptor web = Descriptors.importAs(WebAppDescriptor.class).from(
+      final WebAppDescriptor web = Descriptors.importAs(WebAppDescriptor.class).fromString(
             source);
      
       web.version("3.0");
@@ -201,7 +201,7 @@ public class WebAppDescriptorTestCase
       
       // Get as Node structure
       final InputStream stream = new ByteArrayInputStream(web.exportAsString().getBytes());
-      final WebAppDescriptor fromWebXml = Descriptors.importAs(WebAppDescriptor.class).from(stream);
+      final WebAppDescriptor fromWebXml = Descriptors.importAs(WebAppDescriptor.class).fromStream(stream);
       final Node root = ((NodeDescriptor) fromWebXml).getRootNode();
       
       // Preconditions

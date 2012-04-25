@@ -233,7 +233,7 @@ public class BeansDescriptorTestCase
       final String desc = create().getOrCreateDecorators()
             .clazz(TestDecorator.class.getName(), TestDecorator.class.getName()).up().exportAsString();
 
-      final String roundtrip = Descriptors.importAs(BeansDescriptor.class).from(desc).exportAsString();
+      final String roundtrip = Descriptors.importAs(BeansDescriptor.class).fromString(desc).exportAsString();
       
       assertPresenceUsingXPath(roundtrip, "/beans/decorators/class", TestDecorator.class.getName(), TestDecorator.class.getName());
       

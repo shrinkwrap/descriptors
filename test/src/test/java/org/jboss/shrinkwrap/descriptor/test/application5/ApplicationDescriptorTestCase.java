@@ -79,7 +79,7 @@ public class ApplicationDescriptorTestCase
    @Before
    public void createFullyPopulatedDescriptor()
    {
-      fullyPopulatedDescriptor = Descriptors.importAs(ApplicationDescriptor.class).from(
+      fullyPopulatedDescriptor = Descriptors.importAs(ApplicationDescriptor.class).fromStream(
             Thread.currentThread().getContextClassLoader().getResourceAsStream(NAME_EAR_XML));
       log.info(fullyPopulatedDescriptor.exportAsString());
    }

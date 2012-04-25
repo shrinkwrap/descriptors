@@ -88,10 +88,10 @@ public abstract class DescriptorImporterBase<T extends Descriptor> implements De
 
    /**
     * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.io.File)
+    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#fromFile(java.io.File)
     */
    @Override
-   public T from(final File file) throws IllegalArgumentException, DescriptorImportException
+   public T fromFile(final File file) throws IllegalArgumentException, DescriptorImportException
    {
       // Precondition checks
       if (file == null)
@@ -102,7 +102,7 @@ public abstract class DescriptorImporterBase<T extends Descriptor> implements De
       // Delegate
       try
       {
-         return this.from(new FileInputStream(file));
+         return this.fromStream(new FileInputStream(file));
       }
       catch (final FileNotFoundException e)
       {
@@ -122,12 +122,11 @@ public abstract class DescriptorImporterBase<T extends Descriptor> implements De
        return fromString(string);
    }
 
-          /**
+   /**
     * {@inheritDoc}
     * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.lang.String)
     */
    @Override
-   @Deprecated
    public T fromString(final String string) throws IllegalArgumentException, DescriptorImportException
    {
       // Precondition check
@@ -143,16 +142,52 @@ public abstract class DescriptorImporterBase<T extends Descriptor> implements De
       }
 
       // Return
-      return this.from(new ByteArrayInputStream(string.getBytes()));
+      return this.fromStream(new ByteArrayInputStream(string.getBytes()));
    }
 
    /**
     * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.io.InputStream)
+    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#fromStream(java.io.InputStream)
     */
    @Override
-   public T from(final InputStream in) throws IllegalArgumentException, DescriptorImportException
+   public T fromStream(final InputStream in) throws IllegalArgumentException, DescriptorImportException
    {
-      return from(in, true);
-   }
+      return fromStream(in, true);
+    }
+
+   /**
+    * {@inheritDoc}
+    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.io.File)
+    */
+    @Override
+    public T from(final File file) throws IllegalArgumentException, DescriptorImportException {
+        return this.fromFile(file);
+    }
+
+    /**
+     * {@inheritDoc}
+     * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#fromFile(java.lang.String)
+     */
+    @Override
+    public T fromFile(final String file) throws IllegalArgumentException, DescriptorImportException {
+        return this.from(new File(file));
+    }
+
+    /**
+     * {@inheritDoc}
+     * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.io.InputStream)
+     */
+    @Override
+    public T from(final InputStream in) throws IllegalArgumentException, DescriptorImportException {
+        return this.fromStream(in);
+    }
+
+    /**
+     * {@inheritDoc}
+     * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.io.InputStream, boolean)
+     */
+    @Override
+    public T from(final InputStream in, boolean close) throws IllegalArgumentException, DescriptorImportException {
+        return this.fromStream(in, close);
+    }
 }

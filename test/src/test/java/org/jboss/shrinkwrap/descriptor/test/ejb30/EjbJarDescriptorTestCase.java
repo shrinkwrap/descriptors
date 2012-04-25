@@ -54,7 +54,7 @@ public class EjbJarDescriptorTestCase
    @Before
    public void createDescriptor()
    {
-      fullyPopulatedDescriptor = Descriptors.importAs(EjbJarDescriptor.class).from(
+      fullyPopulatedDescriptor = Descriptors.importAs(EjbJarDescriptor.class).fromStream(
             Thread.currentThread().getContextClassLoader().getResourceAsStream(NAME_EJB_JAR));
       log.info(fullyPopulatedDescriptor.exportAsString());
    }
