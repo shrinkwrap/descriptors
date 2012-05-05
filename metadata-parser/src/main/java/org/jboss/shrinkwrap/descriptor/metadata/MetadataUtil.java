@@ -134,6 +134,7 @@ public class MetadataUtil
             sb.append(NEWLINE);
             sb.append("  IsAttr   : " + element.getIsAttribute());
             sb.append(NEWLINE);
+            sb.append(NEWLINE);
          }
 
          for (MetadataElement element : item.getReferences())
@@ -176,6 +177,7 @@ public class MetadataUtil
             sb.append("  MaxOccurs: " + element.getMaxOccurs());
             sb.append(NEWLINE);
             sb.append("  IsAttr   : " + element.getIsAttribute());
+            sb.append(NEWLINE);
             sb.append(NEWLINE);
          }
 

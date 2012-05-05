@@ -64,6 +64,7 @@ public class SimpleContentFilter implements Filter
 	             classElement.setIsRef(false);
 	             classElement.setIsAttribute(false);
 	             metadata.addClassElement(groupOrClassName, classElement);
+	             return true;
              }
           }
       }
