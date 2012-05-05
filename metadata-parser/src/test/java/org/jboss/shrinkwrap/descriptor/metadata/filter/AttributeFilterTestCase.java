@@ -10,7 +10,7 @@ import org.jboss.shrinkwrap.descriptor.metadata.MetadataElement;
 import org.junit.Test;
 
 /**
- * Test class testing the {@link AttributeFilter] class.
+ * Test class testing the {@link AttributeFilter} class.
  * 
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */

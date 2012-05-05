@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.descriptor.metadata.Metadata;
 import org.junit.Test;
 
 /**
- * Test class testing the {@link EnumFilter] class.
+ * Test class testing the {@link EnumFilter} class.
  * 
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
