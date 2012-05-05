@@ -55,6 +55,7 @@ public class ListFilter implements Filter
                   dataType.setNamespace(metadata.getCurrentNamespace());
                   dataType.setSchemaName(metadata.getCurrentSchmema());
                   metadata.getDataTypeList().add(dataType);
+                  return true;
                }
                
 //               

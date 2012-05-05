@@ -21,7 +21,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,22 +32,8 @@ import javax.xml.transform.TransformerException;
 
 import org.jboss.shrinkwrap.descriptor.metadata.dom.DomWriter;
 import org.jboss.shrinkwrap.descriptor.metadata.dtd.MetadataDtdEventListener;
-import org.jboss.shrinkwrap.descriptor.metadata.filter.AttributeFilter;
-import org.jboss.shrinkwrap.descriptor.metadata.filter.AttributeGroupFilter;
-import org.jboss.shrinkwrap.descriptor.metadata.filter.ComplexTypeFilter;
-import org.jboss.shrinkwrap.descriptor.metadata.filter.ElementFilter;
-import org.jboss.shrinkwrap.descriptor.metadata.filter.EnumFilter;
-import org.jboss.shrinkwrap.descriptor.metadata.filter.ExtensionFilter;
-import org.jboss.shrinkwrap.descriptor.metadata.filter.Filter;
-import org.jboss.shrinkwrap.descriptor.metadata.filter.GroupFilter;
-import org.jboss.shrinkwrap.descriptor.metadata.filter.ListFilter;
-import org.jboss.shrinkwrap.descriptor.metadata.filter.RestrictionFilter;
-import org.jboss.shrinkwrap.descriptor.metadata.filter.SimpleContentFilter;
-import org.jboss.shrinkwrap.descriptor.metadata.filter.UnionFilter;
 import org.jboss.shrinkwrap.descriptor.metadata.xslt.XsltTransformer;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.traversal.DocumentTraversal;
 import org.w3c.dom.traversal.NodeFilter;
 import org.w3c.dom.traversal.TreeWalker;
@@ -69,8 +54,8 @@ public class MetadataParser
 {
    private static final Logger log = Logger.getLogger(MetadataParser.class.getName());
 
-   private final List<Filter> filterList = new ArrayList<Filter>();
-
+   private final FilterChain filterChain = new FilterChain();
+   
    private final Metadata metadata = new Metadata();
 
    private String pathToMetadata;
@@ -116,16 +101,16 @@ public class MetadataParser
          metadata.setCurrentPackageApi(metadataConf.getPackageApi());
          metadata.setCurrentPackageImpl(metadataConf.getPackageImpl());
 
-        final MetadataDescriptor metadataDescriptor = new MetadataDescriptor(metadataConf.getDescriptorName());
-        metadataDescriptor.setRootElementName(metadataConf.getElementName());
-        metadataDescriptor.setRootElementType(metadataConf.getElementType());
-        metadataDescriptor.setSchemaName(metadataConf.getPathToXsd());
-        metadataDescriptor.setPackageApi(metadataConf.getPackageApi());
-        metadataDescriptor.setPackageImpl(metadataConf.getPackageImpl());
-        metadataDescriptor.setNamespace(metadataConf.getNameSpace());
-        metadataDescriptor.setNamespaces(metadataConf.getNamespaces());
-        metadataDescriptor.setGenerateClasses(metadataConf.generateClasses);
-        metadata.getMetadataDescriptorList().add(metadataDescriptor);
+         final MetadataDescriptor metadataDescriptor = new MetadataDescriptor(metadataConf.getDescriptorName());
+         metadataDescriptor.setRootElementName(metadataConf.getElementName());
+         metadataDescriptor.setRootElementType(metadataConf.getElementType());
+         metadataDescriptor.setSchemaName(metadataConf.getPathToXsd());
+         metadataDescriptor.setPackageApi(metadataConf.getPackageApi());
+         metadataDescriptor.setPackageImpl(metadataConf.getPackageImpl());
+         metadataDescriptor.setNamespace(metadataConf.getNameSpace());
+         metadataDescriptor.setNamespaces(metadataConf.getNamespaces());
+         metadataDescriptor.setGenerateClasses(metadataConf.generateClasses);
+         metadata.getMetadataDescriptorList().add(metadataDescriptor);
          
          if (metadataConf.getPathToXsd().endsWith(".dtd"))
          {
@@ -141,23 +126,13 @@ public class MetadataParser
             final DocumentBuilder loader = factory.newDocumentBuilder();
             final Document document = loader.parse(metadataConf.getPathToXsd());
 
-            filterList.add(new GroupFilter());
-            filterList.add(new ElementFilter());
-            filterList.add(new EnumFilter());
-            filterList.add(new AttributeFilter());
-            filterList.add(new AttributeGroupFilter());
-            filterList.add(new RestrictionFilter());
-            filterList.add(new ComplexTypeFilter());
-            filterList.add(new SimpleContentFilter());
-            filterList.add(new ExtensionFilter());
-            filterList.add(new UnionFilter());
-            filterList.add(new ListFilter());
-
             final DocumentTraversal traversal = (DocumentTraversal) document;
             final TreeWalker walker = traversal.createTreeWalker(document.getDocumentElement(),
                   NodeFilter.SHOW_ELEMENT, null, true);
             final StringBuilder sb = verbose ? new StringBuilder() : null;
-            traverseLevel(walker, "", sb);
+            
+            filterChain.traverseAndFilter(walker, "", metadata, sb);
+            
             if(sb!=null){
                 log.info(sb.toString());
             }
@@ -187,38 +162,6 @@ public class MetadataParser
    }
 
    /**
-    * Traverses the DOM and applies the filters for each visited node.
-    * @param walker
-    * @param indent 
-    * @param sb Optional {@link StringBuilder} used to track progress for logging purposes
-    */
-   private void traverseLevel(final TreeWalker walker, final String indent, final StringBuilder sb)
-   {
-      final Node parend = walker.getCurrentNode();
-
-      if (sb!=null)
-      {
-         sb.append(indent + "- " + ((Element) parend).getTagName());
-         sb.append('\n');
-      }
-
-      for (final Filter filter : filterList)
-      {
-         if (filter.filter(metadata, walker))
-         {
-            break;
-         }
-      }
-
-      for (Node n = walker.firstChild(); n != null; n = walker.nextSibling())
-      {
-         traverseLevel(walker, indent + '\t', sb);
-      }
-
-      walker.setCurrentNode(parend);
-   }
-
-   /**
     * Generates source code by applying the <code>ddJavaAll.xsl</code> XSLT extracted from the resource stream.
     * @throws TransformerException
     */
@@ -237,9 +180,13 @@ public class MetadataParser
       XsltTransformer.simpleTransform(pathToMetadata, is, new File("./tempddJava.xml"), xsltParameters);
    }
 
+   // -------------------------------------------------------------------------------------------------||
+   // -- Private Methods ------------------------------------------------------------------------------||
+   // -------------------------------------------------------------------------------------------------||
+   
    /**
     * Creates a temporary file.
-    * @return
+    * @return absolute path of the temporary file.
     * @throws IOException
     */
    private String createTempFile() throws IOException
@@ -247,4 +194,5 @@ public class MetadataParser
       File tempFile = File.createTempFile("tempMetadata", ".xml");
       return tempFile.getAbsolutePath();
    }
+   
 }

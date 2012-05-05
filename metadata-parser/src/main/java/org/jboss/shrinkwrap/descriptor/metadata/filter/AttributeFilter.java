@@ -19,6 +19,7 @@ package org.jboss.shrinkwrap.descriptor.metadata.filter;
 
 import org.jboss.shrinkwrap.descriptor.metadata.Metadata;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataElement;
+import org.jboss.shrinkwrap.descriptor.metadata.MetadataItem;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataUtil;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -46,70 +47,93 @@ public class AttributeFilter implements Filter
             final String groupOrClassName = MetadataUtil.getAttributeValue(parentElementWithName, "name");
             if(groupOrClassName != null)
             {
-               if (XsdElementEnum.group.isTagNameEqual(parentElementWithName.getTagName())) 
+               final String ref = MetadataUtil.getAttributeValue(element, "ref");
+               if (XsdElementEnum.group.isTagNameEqual(parentElementWithName.getTagName()) ||
+            	   XsdElementEnum.attributeGroup.isTagNameEqual(parentElementWithName.getTagName())) 
                {
-                  final MetadataElement groupElement = new MetadataElement(element);
-                  String type = MetadataUtil.getAttributeValue(element, "type");
-                  if (type == null)
-                  {
-                     groupElement.setType("xsd:string");
-                  }
-                  groupElement.setIsAttribute(true);
-                  metadata.addGroupElement(groupOrClassName, groupElement);
-                  return true;
-               }
-               else if (XsdElementEnum.attributeGroup.isTagNameEqual(parentElementWithName.getTagName())) 
-               {
-                  final MetadataElement groupElement = new MetadataElement(element);
-                  String type = MetadataUtil.getAttributeValue(element, "type");
-                  if (type == null)
-                  {
-                     groupElement.setType("xsd:string");
-                  }
-                  groupElement.setIsAttribute(true);
-                  metadata.addGroupElement(groupOrClassName, groupElement);
-                  return true;
+            	   if (ref != null) 
+            	   {
+                  	  for (MetadataItem dataType: metadata.getDataTypeList()) {
+                  		 if (dataType.getName().equals(ref)) {
+                  			 final MetadataElement classElement = new MetadataElement();
+                  			 classElement.setName(ref);
+                  			 classElement.setType(dataType.getMappedTo());
+      	                     classElement.setIsAttribute(true);
+      	                     metadata.addClassElement(groupOrClassName, classElement);
+      	                     return true;
+                  		 }
+                  	  }
+                   }
+            	   else 
+            	   {
+                      final MetadataElement groupElement = new MetadataElement(element);
+                      String type = MetadataUtil.getAttributeValue(element, "type");
+                      if (type == null)
+                      {
+                         groupElement.setType("xsd:string");
+                      }
+                      groupElement.setIsAttribute(true);
+                      metadata.addGroupElement(groupOrClassName, groupElement);
+                      return true;
+            	  }
                }
                else
                {
-                  final Node node = element.getAttributes().getNamedItem("type");
-                  if(node != null)
-                  {
-                     if(node.getNodeValue().endsWith(":ID"))
+            	  if (ref != null) 
+            	  {
+                     for (MetadataItem dataType: metadata.getDataTypeList()) 
                      {
-                        return false;
+                        if (dataType.getName().equals(ref)) 
+                        {
+                  		   final MetadataElement classElement = new MetadataElement();
+                  		   classElement.setName(ref);
+                  		   classElement.setType(dataType.getMappedTo());
+      	                   classElement.setIsAttribute(true);
+      	                   metadata.addClassElement(groupOrClassName, classElement);
+      	                   return true;
+                  	    }
                      }
-                  
-                     final MetadataElement classElement = new MetadataElement(element);
-                     String type = MetadataUtil.getAttributeValue(element, "type");
-                     if (type == null)
+                  }
+            	  else 
+            	  {
+                     final Node node = element.getAttributes().getNamedItem("type");
+                     if(node != null)
                      {
-                        classElement.setType("xsd:string");
+                        if (node.getNodeValue().endsWith(":ID"))
+                        {
+                           return false;
+                        }                  
+                   
+	                    final MetadataElement classElement = new MetadataElement(element);
+	                    String type = MetadataUtil.getAttributeValue(element, "type");
+	                    if (type == null)
+	                    {
+	                       classElement.setType("xsd:string");
+	                    }
+	                    classElement.setIsAttribute(true);
+	                    metadata.addClassElement(groupOrClassName, classElement);
+	                    return true;
                      }
-                     classElement.setIsAttribute(true);
-                     metadata.addClassElement(groupOrClassName, classElement);
-                     return true;
                   }
                }
             }
-         }
-      }
-      return false;
-   }
-   
-   
-   private boolean hasNestedComplexType(final Node parent)
-   {
-      if (parent.hasChildNodes())
-      {
-         for (int i=0; i<parent.getChildNodes().getLength(); i++)    
-         {
-            final Node childNode = parent.getChildNodes().item(i);
-            if (childNode.getNodeType() == Node.ELEMENT_NODE)
+            else 
             {
-               final Element childElement = (Element) childNode;
-               if (XsdElementEnum.complexType.isTagNameEqual(childElement.getTagName())) 
+               // check a global declaration
+               final Element rootElement = (Element) parentNodeWithName;
+               if (XsdElementEnum.schema.isTagNameEqual(rootElement.getTagName())) 
                {
+            	  final String attrName = MetadataUtil.getAttributeValue(element, "name");
+            	  String type = MetadataUtil.getAttributeValue(element, "type");
+            	  final MetadataItem dataType = new MetadataItem(attrName);
+                  dataType.setMappedTo(type);
+                  if (type == null)
+                  {
+                     dataType.setMappedTo("xsd:string");
+                  }
+                  dataType.setNamespace(metadata.getCurrentNamespace());
+                  dataType.setSchemaName(metadata.getCurrentSchmema());
+                  metadata.getDataTypeList().add(dataType);
                   return true;
                }
             }
@@ -117,5 +141,6 @@ public class AttributeFilter implements Filter
       }
       return false;
    }
+   
 }
 

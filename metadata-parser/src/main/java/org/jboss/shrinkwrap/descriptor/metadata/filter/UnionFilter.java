@@ -69,7 +69,6 @@ public class UnionFilter implements Filter
     * @param items
     * @return
     */
-   @SuppressWarnings("unused")
    private String getDataType(String[] items)
    {
       for (String item: items)
