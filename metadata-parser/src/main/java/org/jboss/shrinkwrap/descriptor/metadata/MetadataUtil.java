@@ -108,6 +108,37 @@ public class MetadataUtil
    }
    
    /**
+    * Checks the existence of a w3c child element.
+    * @param parentElement the element from which the search starts.
+    * @param child the <code>XsdElementEnum</code> specifying the child element.
+    * @return true, if found, otherwise false.
+    */
+   public static boolean hasChildsOf(final Element parentElement, XsdElementEnum child )
+   {
+      NodeList nodeList = parentElement.getChildNodes();   
+      for (int i=0; i<nodeList.getLength(); i++)
+      {
+         final Node childNode = nodeList.item(i);
+         if (childNode.getNodeType() == Node.ELEMENT_NODE)
+         {
+            final Element childElement = (Element) childNode;
+            if (child.isTagNameEqual(childElement.getTagName())) 
+            {
+               return true;
+            }
+            
+            if (childElement.hasChildNodes())
+            {
+            	if (hasChildsOf(childElement, child)) {
+            		return true;
+            	}
+            }
+         }
+      }
+      return false;      
+   }
+   
+   /**
     * Logs out metadata information.
     * @param metadata
     */

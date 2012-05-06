@@ -37,7 +37,7 @@ public class AttributeFilterTestCase {
 	}
 	
 	@Test
-	public void testAttributeFilterWithComplexTypeAsParen() throws Exception {		
+	public void testAttributeFilterWithComplexTypeAsParent() throws Exception {		
 		final boolean isLogging = false;		
 		final String xmlFragment = 
 		"<xsd:schema xmlns=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" >" + 
@@ -68,4 +68,31 @@ public class AttributeFilterTestCase {
 		DomTestUtil.assertClassAttribute(e.get(7), "<xsd:attribute name=\"table\" type=\"xsd:string\"/>");
 	}
 	
+	@Test
+	public void testAttributeFilterWithGlobalDeclaration() throws Exception {		
+		final boolean isLogging = false;		
+		final String xmlFragment = 
+		"<xs:schema xmlns=\"http://www.w3.org/2001/XMLSchema\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" >" + 
+		"   <xs:attribute name=\"lang\"/>" +
+		"   <xs:attribute name=\"space\"/>" +		
+		"   <xs:complexType name=\"attrType\">" +
+		"      <xs:attribute ref=\"lang\" use=\"required\"/>" +
+		"      <xs:attribute ref=\"space\" default=\"preserve\"/>" +
+		"      <xs:attribute name=\"version\" type=\"xs:string\" fixed=\"1.0\"/>" +
+		"   </xs:complexType>" +
+		"</xs:schema>";
+		
+		final Metadata metadata = DomTestUtil.parse(xmlFragment, isLogging);
+				
+		Assert.assertEquals("lang", metadata.getDataTypeList().get(0).getName(), "lang");	
+		Assert.assertEquals("space", metadata.getDataTypeList().get(1).getName(), "space");
+		Assert.assertEquals("xsd:string", metadata.getDataTypeList().get(0).getMappedTo(), "xsd:string");			
+		Assert.assertEquals("xsd:string", metadata.getDataTypeList().get(1).getMappedTo(), "xsd:string");
+		
+		Assert.assertEquals("attrType", metadata.getClassList().get(0).getName(), "attrType");
+		final List<MetadataElement> e = metadata.getClassList().get(0).getElements();
+		DomTestUtil.assertClassAttribute(e.get(0), "<xsd:attribute name=\"lang\" type=\"xsd:string\"/>");
+		DomTestUtil.assertClassAttribute(e.get(1), "<xsd:attribute name=\"space\" type=\"xsd:string\"/>");
+		DomTestUtil.assertClassAttribute(e.get(2), "<xs:attribute name=\"version\" type=\"xs:string\" fixed=\"1.0\"/>");
+	}
 }

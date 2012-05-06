@@ -15,7 +15,7 @@ public class ListFilterTestCase {
 
 	@Test
 	public void testListFilterWithSimpleTypeAsParent() throws Exception {		
-		final boolean isLogging = true;		
+		final boolean isLogging = false;		
 		final String xmlFragment = 
 		"<xsd:schema xmlns=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" >" + 
 		"   <xsd:simpleType name=\"protocol-bindingListType\">" +

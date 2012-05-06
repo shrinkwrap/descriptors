@@ -92,10 +92,9 @@ public class XsltTransformer
     * @param transformer
     * @param parameters
     */
-   @SuppressWarnings("unchecked")
    private static void applyParameters(final Transformer transformer, final Map<String, String> parameters)
    {
-      final Set keys = parameters.keySet();
+      final Set<String> keys = parameters.keySet();
       for (Iterator<String> iterator = keys.iterator(); iterator.hasNext();)
       {
          final String key = iterator.next();

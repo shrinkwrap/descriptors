@@ -17,8 +17,6 @@
 
 package org.jboss.shrinkwrap.descriptor.metadata;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
 

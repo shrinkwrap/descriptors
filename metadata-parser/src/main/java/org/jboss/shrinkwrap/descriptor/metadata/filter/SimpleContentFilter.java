@@ -56,16 +56,23 @@ public class SimpleContentFilter implements Filter
              final Element parentElementWithName = (Element) parentNodeWithName;
              final String groupOrClassName = MetadataUtil.getAttributeValue(parentElementWithName, "name");
              
-             if (groupOrClassName != null && (!element.hasChildNodes()))
+             if (groupOrClassName != null)
              {
-	             final MetadataElement classElement = new MetadataElement();
-	             classElement.setName(groupOrClassName);
-	             classElement.setType("text");
-	             classElement.setIsRef(false);
-	             classElement.setIsAttribute(false);
-	             metadata.addClassElement(groupOrClassName, classElement);
-	             return true;
-             }
+            	 if (!element.hasChildNodes()  ||
+            		(MetadataUtil.hasChildOf(element, XsdElementEnum.extension) || MetadataUtil.hasChildOf(element, XsdElementEnum.restriction))) 
+            	 {
+            		 if (!MetadataUtil.hasChildsOf(element, XsdElementEnum.enumeration))
+            		 {
+		                final MetadataElement classElement = new MetadataElement();
+		                classElement.setName(groupOrClassName);
+		                classElement.setType("text");
+		                classElement.setIsRef(false);
+		                classElement.setIsAttribute(false);
+		                metadata.addClassElement(groupOrClassName, classElement);
+		                return true;
+            		 }
+            	 }
+              }
           }
       }
       return false;

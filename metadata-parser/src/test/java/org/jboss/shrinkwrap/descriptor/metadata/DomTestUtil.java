@@ -79,6 +79,9 @@ public class DomTestUtil {
 				else if (attrName.equals("maxOccurs")) {
 					Assert.assertEquals(attrValue, element.getMaxOccurs());
 				}
+				else if (attrName.equals("ref")) {
+					Assert.assertEquals(attrValue, element.getType());
+				}
 			}
 		}		
 	}

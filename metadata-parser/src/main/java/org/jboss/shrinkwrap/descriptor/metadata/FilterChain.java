@@ -42,7 +42,7 @@ public class FilterChain {
 		filterList.add(new AttributeGroupFilter());
 		filterList.add(new RestrictionFilter());
 		filterList.add(new ComplexTypeFilter());
-		filterList.add(new SimpleContentFilter());
+//		filterList.add(new SimpleContentFilter()); // simpleContent used for text only types are not supported currently
 		filterList.add(new ExtensionFilter());
 		filterList.add(new UnionFilter());
 		filterList.add(new ListFilter());

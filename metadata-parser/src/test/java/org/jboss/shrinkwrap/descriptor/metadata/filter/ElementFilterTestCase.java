@@ -80,5 +80,67 @@ public class ElementFilterTestCase {
 		DomTestUtil.assertElement(e.get(9), "<xsd:element name=\"pre-destroy\" type=\"javaee:lifecycle-callbackType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/>");
 		DomTestUtil.assertElement(e.get(10), "<xsd:element name=\"data-source\" type=\"javaee:data-sourceType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/>");
 	}
+	
+	@Test
+	public void testElementsWithReferencedElements() throws Exception {
+		final boolean isLogging = false;
+		final String xmlFragment = 
+		"<xs:schema xmlns=\"http://www.w3.org/2001/XMLSchema\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" >" + 
+	    "   <xs:element name=\"beans\">" +
+	    "      <xs:complexType>" +
+	    "         <xs:choice minOccurs=\"0\" maxOccurs=\"unbounded\">" +
+	    "             <xs:element ref=\"javaee:interceptors\" />" +
+	    "             <xs:element ref=\"javaee:decorators\" />" +
+	    "             <xs:element ref=\"javaee:alternatives\" />" +
+	    "             <xs:any namespace=\"##other\" processContents=\"lax\"/>" +
+	    "         </xs:choice></xs:complexType>" +
+	    "   </xs:element>" +
+	    "   <xs:element name=\"interceptors\">" +
+	    "      <xs:complexType>" +
+	    "         <xs:choice minOccurs=\"0\" maxOccurs=\"unbounded\">" +
+	    "            <xs:element name=\"class\" type=\"xs:string\">" +
+	    "            </xs:element>" +
+	    "         </xs:choice>" +
+	    "      </xs:complexType>" +
+	    "   </xs:element>" +
+	    "   <xs:element name=\"decorators\">" +
+	    "      <xs:complexType>" +
+	    "         <xs:choice minOccurs=\"0\" maxOccurs=\"unbounded\">" +
+	    "            <xs:element name=\"class\" type=\"xs:string\"></xs:element>" +
+	    "         </xs:choice>" +
+	    "      </xs:complexType>" +
+	    "   </xs:element>" +
+	    "   <xs:element name=\"alternatives\">" +
+	    "      <xs:complexType>" +
+	    "         <xs:choice minOccurs=\"0\" maxOccurs=\"unbounded\">" +
+	    "            <xs:element name=\"class\" type=\"xs:string\"></xs:element>" +
+	    "            <xs:element name=\"stereotype\" type=\"xs:string\"></xs:element>" +
+	    "         </xs:choice>" +
+	    "      </xs:complexType>" +
+	    "   </xs:element>" +
+	    "</xs:schema>";		
+		
+		final Metadata metadata = DomTestUtil.parse(xmlFragment, isLogging);
+		
+		Assert.assertEquals("beans",        metadata.getClassList().get(0).getName(), "beans");
+		Assert.assertEquals("interceptors", metadata.getClassList().get(1).getName(), "interceptors");
+		Assert.assertEquals("decorators",   metadata.getClassList().get(2).getName(), "decorators");
+		Assert.assertEquals("alternatives", metadata.getClassList().get(3).getName(), "alternatives");
+		
+		final List<MetadataElement> e = metadata.getClassList().get(0).getElements();		
+		DomTestUtil.assertElement(e.get(0), "<xs:element ref=\"javaee:interceptors\" />");
+		DomTestUtil.assertElement(e.get(1), "<xs:element ref=\"javaee:decorators\" />");
+		DomTestUtil.assertElement(e.get(2), "<xs:element ref=\"javaee:alternatives\" />");
+		
+		final List<MetadataElement> e1 = metadata.getClassList().get(1).getElements();		
+		DomTestUtil.assertElement(e1.get(0), "<xs:element name=\"class\" type=\"xs:string\">");
+		
+		final List<MetadataElement> e2 = metadata.getClassList().get(2).getElements();		
+		DomTestUtil.assertElement(e2.get(0), "<xs:element name=\"class\" type=\"xs:string\"></xs:element>");
+		
+		final List<MetadataElement> e3 = metadata.getClassList().get(3).getElements();		
+		DomTestUtil.assertElement(e3.get(0), "<xs:element name=\"class\" type=\"xs:string\"></xs:element>");
+		DomTestUtil.assertElement(e3.get(1), "<xs:element name=\"stereotype\" type=\"xs:string\"></xs:element>");
+	}
 
 }
