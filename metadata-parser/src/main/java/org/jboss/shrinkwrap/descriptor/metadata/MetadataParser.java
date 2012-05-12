@@ -60,35 +60,22 @@ public class MetadataParser
 
    private String pathToMetadata;
 
-   /**
-    * Creates a new instance of the parser.
-    * @param pathToXsd Full path to the xsd or dtd file.
-    * @param nameSpace Defines the default namespace.
-    * @param packageApi Defines the package name for the API classes.
-    * @param packageImpl Defines the package name for the implementation classes.
-    * @param descriptorName Defines the descriptor name
-    * @param rootElementName Defines the root element name used by the to be created descriptor
-    * @param rootElementType Defines the type of the root element.
-    * @param pathToApi Path to the API folder. All API classes are created here.
-    * @param pathToImpl Path to the implementation folder. All implementation classes are created here.
-    * @param pathToTest Path to the test folder. All test classes are created here.If this is an empty string, then no classes are produced.
-    * @param pathToServices Path to the service folder. All service files are created here.If this is an empty string, then no service files are produced.
-    * @param verbose If true, the detailed parsing information are printed out.
-    * @throws IOException Thrown if a temporary file can not be created.
-    */
-  
-
    public Metadata getMetadata()
    {
       return metadata;
    }
 
    /**
-    * Parses the specified schema and produces the <code>metadata</code> object.
+    * Parses one or more XSD schemas or DTD and produces java classes based on the parsing results.
+    * @param path specifies where to create the interface, implementation and test case java classes.
+    * @param confList list <code>MetadataParserConfiguration</code> objects.
+    * @param verbose if true, additional parsing information are printed out, otherwise not.
     * @throws Exception 
     */
    public void parse(final MetadataParserPath path, final List<?> confList, final boolean verbose) throws Exception
    {
+	  checkArguments(path, confList);
+	   
       pathToMetadata = createTempFile();
       log.fine("Path to temporary metadata file: " + pathToMetadata);
 
@@ -112,6 +99,7 @@ public class MetadataParser
          metadataDescriptor.setGenerateClasses(metadataConf.generateClasses);
          metadata.getMetadataDescriptorList().add(metadataDescriptor);
          
+         log.info(metadataConf.getPathToXsd());
          if (metadataConf.getPathToXsd().endsWith(".dtd"))
          {
             final InputSource in = new InputSource(new FileReader(metadataConf.getPathToXsd()));
@@ -126,6 +114,7 @@ public class MetadataParser
             final DocumentBuilder loader = factory.newDocumentBuilder();
             final Document document = loader.parse(metadataConf.getPathToXsd());
 
+            log.info(document.getDocumentURI());
             final DocumentTraversal traversal = (DocumentTraversal) document;
             final TreeWalker walker = traversal.createTreeWalker(document.getDocumentElement(),
                   NodeFilter.SHOW_ELEMENT, null, true);
@@ -180,6 +169,16 @@ public class MetadataParser
       XsltTransformer.simpleTransform(pathToMetadata, is, new File("./tempddJava.xml"), xsltParameters);
    }
 
+   /**
+    * Returns the path and name of the generated metadata xml file, if configured to produce it and the <code>parse</code>
+    * method is executed successfully.
+    * @return full path of the generated metadata XML file.
+    */
+   public String getPathToMetadataFile()
+   {
+	   return pathToMetadata;
+   }
+   
    // -------------------------------------------------------------------------------------------------||
    // -- Private Methods ------------------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------------------||
@@ -195,4 +194,22 @@ public class MetadataParser
       return tempFile.getAbsolutePath();
    }
    
+   /**
+    * Validates the given arguments.
+    * @param path
+    * @param confList
+    */
+   private void checkArguments(final MetadataParserPath path, final List<?> confList)
+   {
+	   if (path == null) {
+		   throw new IllegalArgumentException("Invalid configuration. The 'path' element missing!");
+	   }
+	   else if (confList == null) {
+		   throw new IllegalArgumentException("Invalid configuration. At least one 'descriptor' element has to be defined!");
+	   }
+	   else if (confList.isEmpty()) {
+		   throw new IllegalArgumentException("Invalid configuration. At least one 'descriptor' element has to be defined!");
+	   }
+	   
+   }
 }

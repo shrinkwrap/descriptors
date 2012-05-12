@@ -1,5 +1,7 @@
 package org.jboss.shrinkwrap.descriptor.metadata;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import junit.framework.Assert;
@@ -128,5 +130,29 @@ public class DomTestUtil {
 				}				
 			}
 		}		
+	}
+	
+	/**
+	 * Tests that a class, enum or group name is not multiple times defined.
+	 */
+	public static void assertDistinctElements(final Metadata metadata) {
+		final Map<String, Object> map = new HashMap<String, Object>();
+		
+		for (final MetadataItem item: metadata.getClassList()) {
+			add(map, item.getName(), item);
+		}
+		
+		for (final MetadataEnum enumeration: metadata.getEnumList()) {
+			add(map, enumeration.getName(), enumeration);
+		}
+		
+		for (final MetadataItem item: metadata.getGroupList()) {
+			add(map, item.getName(), item);
+		}
+	}
+	
+	private static void add(final Map<String, Object> map, final String key, final Object obj) {
+		Assert.assertFalse("Dublicate name found: " + key, map.containsKey(key));
+		map.put(key, obj);
 	}
 }

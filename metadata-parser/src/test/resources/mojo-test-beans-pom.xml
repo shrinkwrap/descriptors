@@ -1,11 +1,12 @@
 <?xml version="1.0"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<!-- Parent -->
 	<parent>
 		<groupId>org.jboss.shrinkwrap.descriptors</groupId>
 		<artifactId>shrinkwrap-descriptors-parent</artifactId>
-		<version>2.0.0-alpha-4-SNAPSHOT</version>
+		<version>2.0.0-alpha-3-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
@@ -13,44 +14,42 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<!-- Artifact Configuration -->
-	<artifactId>shrinkwrap-descriptors-metadata-parser</artifactId>
-	<name>ShrinkWrap Descriptors Metadata Parser</name>
+	<artifactId>shrinkwrap-descriptors-metadata-parser-test</artifactId>
+	<name>ShrinkWrap Descriptors Metadata Parser test</name>
 	<description>XSD and DTD parser for the ShrinkWrap Descriptors</description>
 	<packaging>maven-plugin</packaging>
 
 	<build>
 		<plugins>
-
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
+				<artifactId>shrinkwrap-descriptors-metadata-parser</artifactId>
 				<configuration>
-					<archive>
-						<manifest>
-							<addClasspath>true</addClasspath>
-						</manifest>
-					</archive>
+					<verbose>false</verbose>
+					<path>
+						<pathToApi>target/mojo-test/test-api/src/main/java</pathToApi>
+						<pathToImpl>target/mojo-test/test-impl/src/main/java</pathToImpl>
+						<pathToTest>target/mojo-test/test-test/src/main/java</pathToTest>
+					</path>
+					<descriptors>
+						<descriptor>
+							<pathToXsd>src/test/resources/xsd/testcases.xsd</pathToXsd>
+							<nameSpace>javaee</nameSpace>
+							<packageApi>org.jboss.shrinkwrap.descriptor.api.beans10</packageApi>
+							<packageImpl>org.jboss.shrinkwrap.descriptor.impl.beans10</packageImpl>
+							<descriptorName>BeansDescriptor</descriptorName>
+							<elementName>beans</elementName>
+							<elementType>javaee:beans</elementType>
+							<namespaces>
+								<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
+								<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+								<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/beans_1_0.xsd</value></property>
+							</namespaces>
+						</descriptor>
+					</descriptors>
 				</configuration>
-			</plugin>
-
-			<plugin>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<!-- Run in Java5; be build with a JDK6 compiler so ensure we don't 
-						use any JDK6 libs -->
-					<jvm>${env.JAVA5_HOME}/bin/java</jvm>
-					<!-- Speeeeeeed -->
-					<forkMode>once</forkMode>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
+				<goals>
+					<goal>parse</goal>
+				</goals>
 			</plugin>
 		</plugins>
 	</build>
