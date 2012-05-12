@@ -89,6 +89,8 @@ public class MetadataParser
     */
    public void parse(final MetadataParserPath path, final List<?> confList, final boolean verbose) throws Exception
    {
+	  checkArguments(path, confList);
+	   
       pathToMetadata = createTempFile();
       log.fine("Path to temporary metadata file: " + pathToMetadata);
 
@@ -195,4 +197,22 @@ public class MetadataParser
       return tempFile.getAbsolutePath();
    }
    
+   /**
+    * Validates the given arguments.
+    * @param path
+    * @param confList
+    */
+   private void checkArguments(final MetadataParserPath path, final List<?> confList)
+   {
+	   if (path == null) {
+		   throw new IllegalArgumentException("Invalid configuration. The 'path' element missing!");
+	   }
+	   else if (confList == null) {
+		   throw new IllegalArgumentException("Invalid configuration. At least one 'descriptor' element has to be defined!");
+	   }
+	   else if (confList.isEmpty()) {
+		   throw new IllegalArgumentException("Invalid configuration. At least one 'descriptor' element has to be defined!");
+	   }
+	   
+   }
 }

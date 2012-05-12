@@ -36,13 +36,13 @@ public class MetadataParserMojo extends AbstractMojo
     * Path settings used for generating the interfaces and implementation classes.
     * @parameter
     */
-   private Path path;
+	protected Path path;
    
    /**
     * List of descriptors specifying the descriptor details.
     * @parameter
     */
-   private List<?> descriptors;
+   protected List<?> descriptors;
    
    /**
     * Trace flag
