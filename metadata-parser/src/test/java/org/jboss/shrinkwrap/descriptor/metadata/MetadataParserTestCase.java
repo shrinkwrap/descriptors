@@ -12,7 +12,7 @@ import junit.framework.Assert;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Test;
 
-public class MetadataParserTest {
+public class MetadataParserTestCase {
 
 	@Test
 	public void testParseWithNullArguments() throws Exception {
