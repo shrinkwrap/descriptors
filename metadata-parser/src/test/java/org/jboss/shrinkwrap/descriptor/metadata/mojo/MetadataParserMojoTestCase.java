@@ -13,7 +13,7 @@ import org.junit.Test;
  * the maven-plugin-testing-harness plugin. This test plugin cannot be used for an
  * integration test.
  */
-public class MetadataParserMojoTest extends AbstractMojoTestCase {
+public class MetadataParserMojoTestCase extends AbstractMojoTestCase {
 
 	protected void setUp() throws Exception {
         super.setUp();
