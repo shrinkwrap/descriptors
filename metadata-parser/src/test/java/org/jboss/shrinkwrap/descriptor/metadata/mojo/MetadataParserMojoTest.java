@@ -4,23 +4,21 @@ import java.io.File;
 
 import org.apache.maven.plugin.testing.AbstractMojoTestCase;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataParserConfiguration;
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 
 /**
- * This class is able to test the metadata-parser-plugin as maven plugin.
+ * This class is able to test the metadata-parser-plugin as maven plugin using
+ * the maven-plugin-testing-harness plugin. This test plugin cannot be used for an
+ * integration test.
  */
-public class MetadataParserMojoTestCase extends AbstractMojoTestCase {
+public class MetadataParserMojoTest extends AbstractMojoTestCase {
 
-	@BeforeClass
-    protected void init() throws Exception {
+	protected void setUp() throws Exception {
         super.setUp();
     }
 
-	@AfterClass
     protected void shutdown() throws Exception {
         super.tearDown();
     }
@@ -31,7 +29,8 @@ public class MetadataParserMojoTestCase extends AbstractMojoTestCase {
 	 */
 	@Test
     public void testConfiguration() throws Exception {
-        final File pom = getTestFile("src/test/resources/mojo-test-harness-pom.xml");
+		final String pathToTestPom = getBasedir() + "/src/test/resources/mojo-test-harness-pom.xml";
+		final File pom = new File(pathToTestPom);
         Assert.assertNotNull(pom);
         Assert.assertTrue(pom.exists());
 
@@ -55,38 +54,4 @@ public class MetadataParserMojoTestCase extends AbstractMojoTestCase {
         Assert.assertEquals(metadataConf.getNamespaces().getProperty("xmlns:xsi"), "http://www.w3.org/2001/XMLSchema-instance");
         Assert.assertEquals(metadataConf.getNamespaces().getProperty("xsi:schemaLocation"), "http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd");
     }
-    
-	/**
-	 * Tests the generation of interface and implementation classes. 
-	 * @throws Exception
-	 */
-	@Test
-    public void testExecute() throws Exception {
-        final File pom = getTestFile("src/test/resources/mojo-test-beans-pom.xml");
-        Assert.assertNotNull(pom);
-        Assert.assertTrue(pom.exists());
-
-        final MetadataParserMojo myMojo = (MetadataParserMojo) lookupMojo("parse", pom);
-        Assert.assertNotNull(myMojo);
-        myMojo.execute();
-        
-        assertFile("target/mojo-test/test-api/src/main/java/org/jboss/shrinkwrap/descriptor/api/beans10/Beans.java");
-        assertFile("target/mojo-test/test-api/src/main/java/org/jboss/shrinkwrap/descriptor/api/beans10/BeansDescriptor.java");
-        assertFile("target/mojo-test/test-api/src/main/java/org/jboss/shrinkwrap/descriptor/api/beans10/Decorators.java");
-        assertFile("target/mojo-test/test-api/src/main/java/org/jboss/shrinkwrap/descriptor/api/beans10/Interceptors.java");
-        assertFile("target/mojo-test/test-api/src/main/java/org/jboss/shrinkwrap/descriptor/api/beans10/package-info.java");
-        
-        assertFile("target/mojo-test/test-impl/src/main/java/org/jboss/shrinkwrap/descriptor/impl/beans10/BeansImpl.java");
-        assertFile("target/mojo-test/test-impl/src/main/java/org/jboss/shrinkwrap/descriptor/impl/beans10/BeansDescriptorImpl.java");
-        assertFile("target/mojo-test/test-impl/src/main/java/org/jboss/shrinkwrap/descriptor/impl/beans10/DecoratorsImpl.java");
-        assertFile("target/mojo-test/test-impl/src/main/java/org/jboss/shrinkwrap/descriptor/impl/beans10/InterceptorsImpl.java");
-        assertFile("target/mojo-test/test-impl/src/main/java/org/jboss/shrinkwrap/descriptor/impl/beans10/package-info.java");        
-    }
-	
-	private void assertFile(final String file)
-	{
-        final File generatedFile = new File(file);        
-        Assert.assertTrue(generatedFile.exists());
-        Assert.assertTrue(generatedFile.isFile());
-	}
 }

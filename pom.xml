@@ -95,6 +95,7 @@
           <printSummary>true</printSummary>
           <includes>
             <include>**/*TestCase.java</include>
+            <include>**/*MojoTest.java</include>
             <include>**/*TestSuite.java</include>
           </includes>
           <forkMode>always</forkMode>

@@ -26,9 +26,9 @@
 				<configuration>
 					<verbose>true</verbose>
 					<path>
-						<pathToApi>target/mojo-test/test-api/src/main/java</pathToApi>
-						<pathToImpl>target/mojo-test/test-impl/src/main/java</pathToImpl>
-						<pathToTest>target/mojo-test/test-test/src/main/java</pathToTest>
+						<pathToApi>${basedir}/target/mojo-test/test-api/src/main/java</pathToApi>
+						<pathToImpl>${basedir}/target/mojo-test/test-impl/src/main/java</pathToImpl>
+						<pathToTest>${basedir}/target/mojo-test/test-test/src/main/java</pathToTest>
 					</path>
 					<descriptors>
 						<descriptor>
