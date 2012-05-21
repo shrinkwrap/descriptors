@@ -123,7 +123,7 @@ public class DomWriter
             packageImpl.setAttributeNode(packageImplName);         
             
             final Attr schemaNameImpl = doc.createAttribute("schema");
-            schemaNameImpl.setValue(metadata.getCurrentPackageImpl());
+            schemaNameImpl.setValue(descriptor.getSchemaName());
             packageImpl.setAttributeNode(schemaNameImpl);
             
             final Attr generateClassImpl = doc.createAttribute("generateClass");
