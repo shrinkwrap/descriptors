@@ -102,7 +102,8 @@ public class MetadataParserTestCase {
 		final String metadataXmlGenerated = getResourceContents(pathToMetadata);
 		final String metadataXmlOriginal = getResourceContents(urlMetadata.getFile());
 		
-		XmlAssert.assertIdentical(metadataXmlOriginal, metadataXmlGenerated);     
+		// assertIdentical is to strong since the schema location is different
+		XmlAssert.assertSimilar(metadataXmlOriginal, metadataXmlGenerated);     
     }
 	
 
