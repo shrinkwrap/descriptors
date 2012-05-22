@@ -9,8 +9,11 @@ import java.util.Properties;
 
 import junit.framework.Assert;
 
+import org.custommonkey.xmlunit.Difference;
+import org.custommonkey.xmlunit.DifferenceListener;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Test;
+import org.w3c.dom.Node;
 
 public class MetadataParserTestCase {
 
@@ -54,6 +57,13 @@ public class MetadataParserTestCase {
 		}
 		
 		Assert.assertTrue(isRuntimeExceptionThrown);
+	}
+	
+	@Test
+	public void testReplaceTest() throws Exception {
+		final String str = "schema=\"/home/bfr/shrinkdesc/SD-105-real/descriptors/metadata-parser/target/test-classes/xsd/testcases.xsd\" />";
+		final String repl = str.replaceAll("schema=\"(.)*testcases.xsd\"", "schema=\"testcases.xsd\"");		
+		Assert.assertEquals("schema=\"testcases.xsd\" />", repl);
 	}
 
 	/**
@@ -99,11 +109,11 @@ public class MetadataParserTestCase {
 		
 		final URL urlMetadata = this.getClass().getResource("/xsd/tempMetadata3117577610235292908.xml");
      
-		final String metadataXmlGenerated = getResourceContents(pathToMetadata);
-		final String metadataXmlOriginal = getResourceContents(urlMetadata.getFile());
+		// replace the individual schema location per installation folder with an generic one
+		final String metadataXmlGenerated = getResourceContents(pathToMetadata).replaceAll("schema=\"(.)*testcases.xsd\"", "schema=\"testcases.xsd\"");	
+		final String metadataXmlOriginal = getResourceContents(urlMetadata.getFile()).replaceAll("schema=\"(.)*testcases.xsd\"", "schema=\"testcases.xsd\"");	
 		
-		// assertIdentical is to strong since the schema location is different
-		XmlAssert.assertSimilar(metadataXmlOriginal, metadataXmlGenerated);     
+		XmlAssert.assertIdentical(metadataXmlOriginal, metadataXmlGenerated);     
     }
 	
 
@@ -123,4 +133,5 @@ public class MetadataParserTestCase {
 		}
 		return builder.toString();
 	}
+	
 }
