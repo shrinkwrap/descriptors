@@ -104,8 +104,13 @@ public class MetadataParserTestCase {
 		final URL urlMetadata = this.getClass().getResource("/xsd/tempMetadata3117577610235292908.xml");
      
 		// replace the individual schema location per installation folder with an generic one
-		final String metadataXmlGenerated = getResourceContents(pathToMetadata).replaceAll(pathToMetadata, "testcases.xsd");	
-		final String metadataXmlOriginal = getResourceContents(urlMetadata.getFile()).replaceAll(urlMetadata.getFile(), "testcases.xsd");	
+		final String metadataXmlGenerated = getResourceContents(pathToMetadata)
+			.replaceAll("schema=\"([a-zA-Z0-9/-])*testcases.xsd\"", "schema=\"testcases.xsd\"")
+			.replaceAll("schemaName=\"([a-zA-Z0-9/-])*testcases.xsd\"", "schemaName=\"testcases.xsd\"");
+		
+		final String metadataXmlOriginal = getResourceContents(urlMetadata.getFile())
+			.replaceAll("schema=\"([a-zA-Z0-9/-])*testcases.xsd\"", "schema=\"testcases.xsd\"")
+			.replaceAll("schemaName=\"([a-zA-Z0-9/-])*testcases.xsd\"", "schemaName=\"testcases.xsd\"");	
 		
 		XmlAssert.assertIdentical(metadataXmlOriginal, metadataXmlGenerated);     
     }
