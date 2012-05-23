@@ -1,6 +1,7 @@
 package org.jboss.shrinkwrap.descriptor.metadata;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.net.URL;
 import java.util.ArrayList;
@@ -59,13 +60,6 @@ public class MetadataParserTestCase {
 		Assert.assertTrue(isRuntimeExceptionThrown);
 	}
 	
-	@Test
-	public void testReplaceTest() throws Exception {
-		final String str = "schema=\"/home/bfr/shrinkdesc/SD-105-real/descriptors/metadata-parser/target/test-classes/xsd/testcases.xsd\" />";
-		final String repl = str.replaceAll("schema=\"(.)*testcases.xsd\"", "schema=\"testcases.xsd\"");		
-		Assert.assertEquals("schema=\"testcases.xsd\" />", repl);
-	}
-
 	/**
 	 * Tests parsing and generating of the metada XML file. 
 	 * The test uses a copy of the beans.xsd as test descriptor (testcases.xsd).
@@ -110,8 +104,8 @@ public class MetadataParserTestCase {
 		final URL urlMetadata = this.getClass().getResource("/xsd/tempMetadata3117577610235292908.xml");
      
 		// replace the individual schema location per installation folder with an generic one
-		final String metadataXmlGenerated = getResourceContents(pathToMetadata).replaceAll("schema=\"(.)*testcases.xsd\"", "schema=\"testcases.xsd\"");	
-		final String metadataXmlOriginal = getResourceContents(urlMetadata.getFile()).replaceAll("schema=\"(.)*testcases.xsd\"", "schema=\"testcases.xsd\"");	
+		final String metadataXmlGenerated = getResourceContents(pathToMetadata).replaceAll(pathToMetadata, "testcases.xsd");	
+		final String metadataXmlOriginal = getResourceContents(urlMetadata.getFile()).replaceAll(urlMetadata.getFile(), "testcases.xsd");	
 		
 		XmlAssert.assertIdentical(metadataXmlOriginal, metadataXmlGenerated);     
     }
