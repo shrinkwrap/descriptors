@@ -42,47 +42,24 @@ public class BeansDescriptorTestCase
    {
       final BeansDescriptor beansDescr = create()
             .addDefaultNamespaces()
-            .createInterceptors()
+            .getOrCreateInterceptors()
                .clazz("class0")
                .clazz("class1")
                .clazz("class2")
                .clazz("class3")
                .clazz("class4").up()
-            .createDecorators()
+            .getOrCreateDecorators()
                .clazz("class5")
                .clazz("class6")
                .clazz("class7")
                .clazz("class8")
                .clazz("class9").up()
-            .createAlternatives()
+            .getOrCreateAlternatives()
                .clazz("class10")
                .clazz("class11")
                .stereotype("stereotype0")
                .stereotype("stereotype1")
-               .stereotype("stereotype2").up()
-            .createInterceptors()
-               .clazz("class12")
-               .clazz("class13")
-               .clazz("class14")
-               .clazz("class15")
-               .clazz("class16").up()
-            .createAlternatives()
-               .clazz("class33")
-               .stereotype("stereotype7")
-               .clazz("class34")
-               .stereotype("stereotype8")
-               .clazz("class35")
-               .stereotype("stereotype9")
-               .clazz("class36")
-               .stereotype("stereotype10")
-               .clazz("class37")
-               .stereotype("stereotype11").up()
-            .createAlternatives()
-               .stereotype("stereotype15")
-               .clazz("class61")               
-               .clazz("class62")
-               .stereotype("stereotype18")
-               .clazz("class64").up();
+               .stereotype("stereotype2").up();
      
       String webXmlGenerated = beansDescr.exportAsString();
       String webXmlOriginal = getResourceContents("src/test/resources/test-gen-beans10.xml");
@@ -90,17 +67,6 @@ public class BeansDescriptorTestCase
       XmlAssert.assertIdentical(webXmlOriginal, webXmlGenerated);   
    }
    
-
-   @Test
-   public void testSD115()  throws Exception
-   {
-	   final BeansDescriptor beansXml = create();	   
-	   beansXml.getOrCreateAlternatives().clazz("com.example.shrinkwraptestskeleton.Production");	   
-	   beansXml.getOrCreateAlternatives();	   
-	   Assert.assertTrue(beansXml.getAllAlternatives().size() == 1);
-       beansXml.exportTo(System.err);
-   }
-
    //-------------------------------------------------------------------------------------||
    // Internal Helper --------------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||

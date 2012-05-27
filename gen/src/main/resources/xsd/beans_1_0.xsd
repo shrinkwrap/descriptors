@@ -44,12 +44,11 @@
          </xs:documentation>
       </xs:annotation>
       <xs:complexType>
-         <xs:choice minOccurs="0" maxOccurs="unbounded">
-            <xs:element ref="javaee:interceptors" />
-            <xs:element ref="javaee:decorators" />
-            <xs:element ref="javaee:alternatives" />
-            <xs:any namespace="##other" processContents="lax"/>
-         </xs:choice>
+         <xs:all>
+            <xs:element ref="javaee:interceptors" minOccurs="0" />
+            <xs:element ref="javaee:decorators" minOccurs="0" />
+            <xs:element ref="javaee:alternatives" minOccurs="0" />
+         </xs:all>
       </xs:complexType>
    </xs:element>
 

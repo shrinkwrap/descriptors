@@ -23,32 +23,32 @@
         <stereotype>stereotype1</stereotype>
         <stereotype>stereotype2</stereotype>
     </alternatives>
-    <interceptors>
-        <class>class12</class>
-        <class>class13</class>
-        <class>class14</class>
-        <class>class15</class>
-        <class>class16</class>
-    </interceptors>
+<!--     <interceptors> -->
+<!--         <class>class12</class> -->
+<!--         <class>class13</class> -->
+<!--         <class>class14</class> -->
+<!--         <class>class15</class> -->
+<!--         <class>class16</class> -->
+<!--     </interceptors> -->
 
-    <alternatives>
-        <class>class33</class>
-        <stereotype>stereotype7</stereotype>
-        <class>class34</class>
-        <stereotype>stereotype8</stereotype>
-        <class>class35</class>
-        <stereotype>stereotype9</stereotype>
-        <class>class36</class>
-        <stereotype>stereotype10</stereotype>
-        <class>class37</class>
-        <stereotype>stereotype11</stereotype>
-    </alternatives>
+<!--     <alternatives> -->
+<!--         <class>class33</class> -->
+<!--         <stereotype>stereotype7</stereotype> -->
+<!--         <class>class34</class> -->
+<!--         <stereotype>stereotype8</stereotype> -->
+<!--         <class>class35</class> -->
+<!--         <stereotype>stereotype9</stereotype> -->
+<!--         <class>class36</class> -->
+<!--         <stereotype>stereotype10</stereotype> -->
+<!--         <class>class37</class> -->
+<!--         <stereotype>stereotype11</stereotype> -->
+<!--     </alternatives> -->
 
-    <alternatives>
-        <stereotype>stereotype15</stereotype>
-        <class>class61</class>
-        <class>class62</class>
-        <stereotype>stereotype18</stereotype>
-        <class>class64</class>
-    </alternatives>
+<!--     <alternatives> -->
+<!--         <stereotype>stereotype15</stereotype> -->
+<!--         <class>class61</class> -->
+<!--         <class>class62</class> -->
+<!--         <stereotype>stereotype18</stereotype> -->
+<!--         <class>class64</class> -->
+<!--     </alternatives> -->
 </beans>
