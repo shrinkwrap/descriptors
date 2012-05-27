@@ -19,6 +19,8 @@ package org.jboss.shrinkwrap.descriptor.test.beans10;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+import junit.framework.Assert;
+
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.beans10.BeansDescriptor;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
@@ -88,6 +90,16 @@ public class BeansDescriptorTestCase
       XmlAssert.assertIdentical(webXmlOriginal, webXmlGenerated);   
    }
    
+
+   @Test
+   public void testSD115()  throws Exception
+   {
+	   final BeansDescriptor beansXml = create();	   
+	   beansXml.getOrCreateAlternatives().clazz("com.example.shrinkwraptestskeleton.Production");	   
+	   beansXml.getOrCreateAlternatives();	   
+	   Assert.assertTrue(beansXml.getAllAlternatives().size() == 1);
+       beansXml.exportTo(System.err);
+   }
 
    //-------------------------------------------------------------------------------------||
    // Internal Helper --------------------------------------------------------------------||

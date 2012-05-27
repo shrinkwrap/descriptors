@@ -109,8 +109,8 @@ public class WebAppDescriptorTestCase
    {
       WebAppDescriptor web = create()
                     .createFilter()
-                       .getOrCreateIcon().smallIcon("small1").largeIcon("large1").up()
-                       .getOrCreateIcon().smallIcon("small2").largeIcon("large2").up()
+                       .createIcon().smallIcon("small1").largeIcon("large1").up()
+                       .createIcon().smallIcon("small2").largeIcon("large2").up()
                     .up();
 
      List<IconType<FilterType<WebAppDescriptor>>> list = web.getAllFilter().get(0).getAllIcon();

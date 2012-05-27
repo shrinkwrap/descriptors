@@ -59,8 +59,8 @@ public class WebAppDescriptorAttributeGroupTestCase
    public void testIcon() throws Exception
    {
       final WebAppDescriptor webApp = create()
-         .createFilter().getOrCreateIcon().largeIcon("largeIcon1").up()
-                  .getOrCreateIcon().smallIcon("smallIcon2").up().up();
+         .createFilter().createIcon().largeIcon("largeIcon1").up()
+                  .createIcon().smallIcon("smallIcon2").up().up();
       
       assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/filter/icon[1]/large-icon", "largeIcon1");
       assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/filter/icon[2]/small-icon", "smallIcon2");

@@ -386,10 +386,10 @@ public class PersistenceDescriptorTestCase
       final String nonjtaDataSource = "jdbc/__default";
 
       final PersistenceDescriptor persistence = Descriptors.create(PersistenceDescriptor.class)
-            .getOrCreatePersistenceUnit().name(hibernateUnit).transactionType(txTypeJta)
-            .provider(providerTypeHibernate).jtaDataSource(jtaDataSource).clazz(PersistenceDescriptor.class.getName())
-            .up().getOrCreatePersistenceUnit().name(eclipseLinkUnit).transactionType(txTypeResourceLocal)
-            .provider(eclipseLinkProvider).nonJtaDataSource(nonjtaDataSource).excludeUnlistedClasses(true).up();
+            .createPersistenceUnit().name(hibernateUnit).transactionType(txTypeJta)
+            	.provider(providerTypeHibernate).jtaDataSource(jtaDataSource).clazz(PersistenceDescriptor.class.getName()).up()
+            .createPersistenceUnit().name(eclipseLinkUnit).transactionType(txTypeResourceLocal)
+            	.provider(eclipseLinkProvider).nonJtaDataSource(nonjtaDataSource).excludeUnlistedClasses(true).up();
 
       final String desc = persistence.exportAsString();
       log.info(desc);
