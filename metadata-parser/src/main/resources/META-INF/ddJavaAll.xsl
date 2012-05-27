@@ -1324,7 +1324,7 @@
                 <xsl:value-of select="concat('   ', $vStandardCreateSignature, '&#10;')"/>
                 <xsl:value-of select="concat('   {', '&#10;')"/>
                 <xsl:value-of select="concat('      List', '&lt;', 'Node', '&gt;', ' nodeList = ', $pNodeNameLocal , '.get(&quot;', $pElementName, '&quot;);', '&#10;')"/>
-                <xsl:value-of select="concat('      if (nodeList != null', ' &amp;&amp; ', ' nodeList.size() &gt; 1)', '&#10;')"/>
+                <xsl:value-of select="concat('      if (nodeList != null', ' &amp;&amp; ', ' nodeList.size() &gt; 0)', '&#10;')"/>
                 <xsl:value-of select="concat('      {', '&#10;')"/>
                 <xsl:value-of select="concat('         return new ', $vConstructor, '(this, &quot;', $pElementName, '&quot;, ', $pNodeNameLocal, ', nodeList.get(0));', '&#10;')"/>
                 <xsl:value-of select="concat('      }', '&#10;')"/>
