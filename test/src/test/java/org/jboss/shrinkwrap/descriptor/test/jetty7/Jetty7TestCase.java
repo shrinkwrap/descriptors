@@ -2,14 +2,22 @@ package org.jboss.shrinkwrap.descriptor.test.jetty7;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.logging.Logger;
 
+import org.custommonkey.xmlunit.XMLUnit;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.jetty7.JettyDescriptor;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Test;
+import org.xml.sax.EntityResolver;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 public class Jetty7TestCase
 {
+   private static final Logger log = Logger.getLogger(Jetty7TestCase.class.getName());
    
    @Test
    public void testJettyConfiguration() throws Exception 
@@ -70,7 +78,18 @@ public class Jetty7TestCase
        String generatedJettyXml = jetty7Generated.exportAsString();
        String originalJettyXml = this.getResourceContents("src/test/resources/test-orig-jetty7.xml");
  
-       System.out.println(generatedJettyXml);
+       log.fine(generatedJettyXml);
+       
+       // set an own entity resolver for preventing network access
+       XMLUnit.setControlEntityResolver(new EntityResolver() 
+       {
+           @Override
+           public InputSource resolveEntity(String publicId, String systemId)
+                   throws SAXException, IOException {
+        	   log.fine("Ignoring " + publicId + ", " + systemId);
+               return new InputSource(new StringReader(""));
+           }
+       });
        
        XmlAssert.assertIdentical(originalJettyXml, generatedJettyXml);       
    }
