@@ -21,7 +21,7 @@ import org.jboss.shrinkwrap.descriptor.api.webcommon30.FilterType;
 
 /**
  * Read-only view of a web application deployment descriptor (ie. web.xml).
- * 
+ *
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
  */
 /*
