@@ -19,6 +19,10 @@
 package org.jboss.shrinkwrap.descriptor.metadata.dom;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilder;

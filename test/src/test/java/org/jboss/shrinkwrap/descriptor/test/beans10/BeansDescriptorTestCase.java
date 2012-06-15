@@ -23,6 +23,7 @@ import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.beans10.BeansDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.beans10.MutableBeansDescriptor;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Test;
 
@@ -40,8 +41,8 @@ public class BeansDescriptorTestCase
    @Test
    public void testGeneratedXml() throws Exception
    {
-      final BeansDescriptor beansDescr = create()
-            .addDefaultNamespaces()
+      final MutableBeansDescriptor beansDescr = create().getRoot()
+//            .addDefaultNamespaces()
             .getOrCreateInterceptors()
                .clazz("class0")
                .clazz("class1")
@@ -59,7 +60,7 @@ public class BeansDescriptorTestCase
                .clazz("class11")
                .stereotype("stereotype0")
                .stereotype("stereotype1")
-               .stereotype("stereotype2").up();
+               .stereotype("stereotype2").up().up();
      
       String webXmlGenerated = beansDescr.exportAsString();
       String webXmlOriginal = getResourceContents("src/test/resources/test-gen-beans10.xml");
@@ -85,8 +86,8 @@ public class BeansDescriptorTestCase
       return builder.toString();
    }
 
-   private BeansDescriptor create()
+   private MutableBeansDescriptor create()
    {
-      return Descriptors.create(BeansDescriptor.class);
+      return Descriptors.create(MutableBeansDescriptor.class);
    }
 }

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
+import org.jboss.shrinkwrap.descriptor.api.portletapp20.MutablePortletDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.portletapp20.PortletDescriptor;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Test;
@@ -14,8 +15,8 @@ public class PortletDescriptorTestCase
    @Test
    public void testGeneratedPortletXml() throws Exception
    {
-      final PortletDescriptor portlet = create()
-            .addDefaultNamespaces()
+      final MutablePortletDescriptor portlet = create().getRoot()
+//            .addDefaultNamespaces()
             .version("2.0")
             .createPortlet()
             	.portletName("HelloPortlet")
@@ -36,7 +37,7 @@ public class PortletDescriptorTestCase
             		.portletMode("help").up()
             	.getOrCreatePortletInfo()
             		.title("Hello Portlet")
-            	.up().up();
+            	.up().up().up();
       String portletXmlGenerated = portlet.exportAsString();
       String portletXmlOriginal = getResourceContents("src/test/resources/test-gen-portlet20.xml");
       XmlAssert.assertIdentical(portletXmlOriginal, portletXmlGenerated);   
@@ -61,8 +62,8 @@ public class PortletDescriptorTestCase
       return builder.toString();
    }
 
-   private PortletDescriptor create()
+   private MutablePortletDescriptor create()
    {
-      return Descriptors.create(PortletDescriptor.class);
+      return Descriptors.create(MutablePortletDescriptor.class);
    }
 }

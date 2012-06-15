@@ -359,37 +359,22 @@
 									</namespaces>
 								</descriptor>
 
-								<descriptor>
-									<pathToXsd>${basedir}/src/main/resources/xsd/web-facesconfig_2_1.xsd</pathToXsd>
-									<nameSpace>javaee</nameSpace>
-									<packageApi>org.jboss.shrinkwrap.descriptor.api.facesconfig21</packageApi>
-									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.facesconfig21</packageImpl>
-									<descriptorName>WebFacesConfigDescriptor</descriptorName>
-									<elementName>faces-config</elementName>
-									<elementType>javaee:faces-configType</elementType>
-								    <defaultFileName>faces-config.xml</defaultFileName>
-									<namespaces>
-										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
-										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
-										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd</value></property>
-									</namespaces>
-								</descriptor>
-
-								<descriptor>
-									<pathToXsd>${basedir}/src/main/resources/xsd/web-facesuicomponent_2_0.xsd</pathToXsd>
-									<nameSpace>javaee</nameSpace>
-									<packageApi>org.jboss.shrinkwrap.descriptor.api.facesuicomponent20</packageApi>
-									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.facesuicomponent20</packageImpl>
-									<descriptorName>WebFacesUIComponentDescriptor</descriptorName>
-									<elementName>attribute</elementName>
-									<elementType>javaee:uicomponent-attributeType</elementType>
-								    <defaultFileName>default.xml</defaultFileName>
-									<namespaces>
-										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
-										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
-										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesuicomponent_2_0.xsd</value></property>
-									</namespaces>
-								</descriptor>
+<!-- deactivated because of generation problem. the root element is calling recursively itself!!!! -->
+<!-- 								<descriptor> -->
+<!-- 									<pathToXsd>${basedir}/src/main/resources/xsd/web-facesuicomponent_2_0.xsd</pathToXsd> -->
+<!-- 									<nameSpace>javaee</nameSpace> -->
+<!-- 									<packageApi>org.jboss.shrinkwrap.descriptor.api.facesuicomponent20</packageApi> -->
+<!-- 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.facesuicomponent20</packageImpl> -->
+<!-- 									<descriptorName>WebFacesUIComponentDescriptor</descriptorName> -->
+<!-- 									<elementName>attribute</elementName> -->
+<!-- 									<elementType>javaee:uicomponent-attributeType</elementType> -->
+<!-- 								    <defaultFileName>default.xml</defaultFileName> -->
+<!-- 									<namespaces> -->
+<!-- 										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property> -->
+<!-- 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property> -->
+<!-- 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesuicomponent_2_0.xsd</value></property> -->
+<!-- 									</namespaces> -->
+<!-- 								</descriptor> -->
 
 								<descriptor>
 									<pathToXsd>${basedir}/src/main/resources/xsd/web-partialresponse_2_0.xsd</pathToXsd>
@@ -414,6 +399,58 @@
 						</goals>
 					</execution>
 
+					<execution>
+						<id>executionJavaEE5_facesconfig_2_1</id>
+						<phase>validate</phase>
+						<configuration>
+						    <context>JavaEE5_facesconfig_2_1</context>
+							<verbose>false</verbose>
+							<path>
+								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
+								<pathToImpl>${basedir}/../impl-javaee/src/main/java</pathToImpl>
+							    <pathToServices>${basedir}/../impl-javaee/src/main/resources/META-INF/services</pathToServices> 
+							</path>
+							<descriptors>
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/javaee_5.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.javaee5</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaee5</packageImpl>
+									<generateClasses>false</generateClasses>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/javaee_web_services_client_1_2.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient12</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient12</packageImpl>
+									<generateClasses>false</generateClasses>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/web-facesconfig_2_1.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.facesconfig21</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.facesconfig21</packageImpl>
+									<descriptorName>WebFacesConfigDescriptor</descriptorName>
+									<elementName>faces-config</elementName>
+									<elementType>javaee:faces-configType</elementType>
+								    <defaultFileName>faces-config.xml</defaultFileName>
+									<namespaces>
+										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd</value></property>
+									</namespaces>
+								</descriptor>
+
+
+							</descriptors>
+						</configuration>
+						<goals>
+							<goal>parse</goal>
+						</goals>
+					</execution>
+					
 					<execution>
 						<id>executionJavaEE6</id>
 						<phase>validate</phase>

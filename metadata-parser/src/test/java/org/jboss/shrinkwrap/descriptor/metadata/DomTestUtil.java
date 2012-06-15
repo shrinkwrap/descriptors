@@ -37,7 +37,7 @@ public class DomTestUtil {
         final TreeWalker walker = traversal.createTreeWalker(w3cDoc.getDocumentElement(),
               NodeFilter.SHOW_ELEMENT, null, true);
 		
-        filterChain.traverseAndFilter(walker, "", metadata, sb);
+        filterChain.traverseAndFilter(walker, "", metadata, null, sb);
         
         if (isLogging) {
     		log.info(sb.toString());

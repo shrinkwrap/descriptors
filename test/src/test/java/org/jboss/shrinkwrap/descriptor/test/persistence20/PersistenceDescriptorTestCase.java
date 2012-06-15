@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
+import org.jboss.shrinkwrap.descriptor.api.persistence20.MutablePersistenceDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.persistence20.PersistenceDescriptor;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Test;
@@ -14,8 +15,8 @@ public class PersistenceDescriptorTestCase
    @Test
    public void testGeneratedPersistenceXml() throws Exception
    {
-      final PersistenceDescriptor persistence = create()
-            .addDefaultNamespaces()
+      final MutablePersistenceDescriptor persistence = create().getRoot()
+//            .addDefaultNamespaces()
             .version("2.0")
             .createPersistenceUnit()
                .name("name1")
@@ -56,7 +57,7 @@ public class PersistenceDescriptorTestCase
                .getOrCreateProperties()
                   .createProperty().name("name9").value("value5").up()
                   .createProperty().name("name11").value("value7").up()
-               .up().up();            
+               .up().up().up();            
      
       String webXmlGenerated = persistence.exportAsString();
       String webXmlOriginal = getResourceContents("src/test/resources/test-gen-persistence20.xml");
@@ -83,8 +84,8 @@ public class PersistenceDescriptorTestCase
       return builder.toString();
    }
 
-   private PersistenceDescriptor create()
+   private MutablePersistenceDescriptor create()
    {
-      return Descriptors.create(PersistenceDescriptor.class);
+      return Descriptors.create(MutablePersistenceDescriptor.class);
    }
 }

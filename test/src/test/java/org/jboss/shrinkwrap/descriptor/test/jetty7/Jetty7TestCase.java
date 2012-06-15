@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 import org.custommonkey.xmlunit.XMLUnit;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.jetty7.JettyDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.jetty7.MutableJettyDescriptor;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Test;
 import org.xml.sax.EntityResolver;
@@ -22,7 +22,7 @@ public class Jetty7TestCase
    @Test
    public void testJettyConfiguration() throws Exception 
    {
-      final JettyDescriptor jetty7Generated = create().clazz("class0").id("id0")
+      final MutableJettyDescriptor jetty7Generated = create().getRoot().clazz("class0").id("id0")
         .getOrCreateNew().clazz("class1").id("id1")
            .createArg().type("type0")
               .getOrCreateArray().type("type1").id("id2")
@@ -73,7 +73,7 @@ public class Jetty7TestCase
                  .up()
               .up()
            .up()        
-        .up();
+        .up().up();
                        
        String generatedJettyXml = jetty7Generated.exportAsString();
        String originalJettyXml = this.getResourceContents("src/test/resources/test-orig-jetty7.xml");
@@ -113,9 +113,9 @@ public class Jetty7TestCase
       return builder.toString();
    }
    
-   private JettyDescriptor create()
+   private MutableJettyDescriptor create()
    {
-      return Descriptors.create(JettyDescriptor.class);
+      return Descriptors.create(MutableJettyDescriptor.class);
    }
    
 }

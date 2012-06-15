@@ -41,6 +41,7 @@ public class Metadata
    private String currentSchmema;
    private String currentPackageApi;
    private String currentPackageImpl;
+   private Integer currentSeqNo;
 
    public List<MetadataDescriptor> getMetadataDescriptorList()
    {
