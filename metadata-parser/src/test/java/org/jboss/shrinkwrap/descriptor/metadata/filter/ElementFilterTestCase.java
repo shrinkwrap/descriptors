@@ -1,5 +1,6 @@
 package org.jboss.shrinkwrap.descriptor.metadata.filter;
 
+import java.io.File;
 import java.util.List;
 
 import junit.framework.Assert;
@@ -7,6 +8,7 @@ import junit.framework.Assert;
 import org.jboss.shrinkwrap.descriptor.metadata.DomTestUtil;
 import org.jboss.shrinkwrap.descriptor.metadata.Metadata;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataElement;
+import org.jboss.shrinkwrap.descriptor.metadata.dom.DomWriter;
 import org.junit.Test;
 
 /**
@@ -42,7 +44,7 @@ public class ElementFilterTestCase {
 
 	@Test
 	public void testElementsWithGroupAsParent() throws Exception {
-		final boolean isLogging = false;
+		final boolean isLogging = true;
 		final String xmlFragment = 
 		"<xsd:schema xmlns=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" >" + 
 	    "   <xsd:group name=\"jndiEnvironmentRefsGroup\">" +
@@ -79,6 +81,87 @@ public class ElementFilterTestCase {
 		DomTestUtil.assertElement(e.get(8), "<xsd:element name=\"post-construct\" type=\"javaee:lifecycle-callbackType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> ");
 		DomTestUtil.assertElement(e.get(9), "<xsd:element name=\"pre-destroy\" type=\"javaee:lifecycle-callbackType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/>");
 		DomTestUtil.assertElement(e.get(10), "<xsd:element name=\"data-source\" type=\"javaee:data-sourceType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/>");
+	}
+	
+	@Test
+	public void testElementsWithMultipleSequences() throws Exception {
+		final boolean isLogging = true;
+		final String xmlFragment = 
+		"<xsd:schema xmlns=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" >" + 
+//	    "   <xsd:element name=\"env-entry\" type=\"javaee:env-entryType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+//	    "   <xsd:group name=\"jndiEnvironmentRefsGroup\">" +
+//	    "      <xsd:sequence>" +
+//	    "         <xsd:element name=\"env-entry\" type=\"javaee:env-entryType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+//		"         <xsd:element name=\"ejb-ref\" type=\"javaee:ejb-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+//	    "         <xsd:element name=\"ejb-local-ref\" type=\"javaee:ejb-local-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+//		"         <xsd:group ref=\"javaee:service-refGroup\"/>" +
+//		"         <xsd:element name=\"resource-ref\" type=\"javaee:resource-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+//		"         <xsd:element name=\"resource-env-ref\" type=\"javaee:resource-env-refType\" minOccurs=\"0\"  maxOccurs=\"unbounded\"/> " +
+//		"         <xsd:element name=\"message-destination-ref\" type=\"javaee:message-destination-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+//		"         <xsd:element name=\"persistence-context-ref\" type=\"javaee:persistence-context-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+//		"         <xsd:element name=\"persistence-unit-ref\" type=\"javaee:persistence-unit-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+//		"         <xsd:element name=\"post-construct\" type=\"javaee:lifecycle-callbackType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+//		"         <xsd:element name=\"pre-destroy\" type=\"javaee:lifecycle-callbackType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+//		"         <xsd:element name=\"data-source\" type=\"javaee:data-sourceType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/>" +
+//		"      </xsd:sequence>" +
+//		"   </xsd:group>" +
+		"   <xsd:complexType name=\"jndiEnvironmentRefsGroup2\">" +
+		"      <xsd:sequence>" +
+		"         <xsd:element name=\"env-entry\" type=\"javaee:env-entryType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+		"         <xsd:element name=\"ejb-ref\" type=\"javaee:ejb-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+		"         <xsd:element name=\"ejb-local-ref\" type=\"javaee:ejb-local-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+		"         <xsd:group ref=\"javaee:service-refGroup\"/>" +
+		"         <xsd:element name=\"resource-ref\" type=\"javaee:resource-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+		"         <xsd:element name=\"resource-env-ref\" type=\"javaee:resource-env-refType\" minOccurs=\"0\"  maxOccurs=\"unbounded\"/> " +
+		"         <xsd:element name=\"message-destination-ref\" type=\"javaee:message-destination-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+		"         <xsd:element name=\"persistence-context-ref\" type=\"javaee:persistence-context-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+		"         <xsd:element name=\"persistence-unit-ref\" type=\"javaee:persistence-unit-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+		"         <xsd:element name=\"post-construct\" type=\"javaee:lifecycle-callbackType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+		"         <xsd:element name=\"pre-destroy\" type=\"javaee:lifecycle-callbackType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+		"         <xsd:element name=\"data-source\" type=\"javaee:data-sourceType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/>" +
+		"      </xsd:sequence>" +
+		"      <xsd:sequence>" +
+		"         <xsd:element name=\"env-entry\" type=\"javaee:env-entryType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+		"         <xsd:element name=\"ejb-ref\" type=\"javaee:ejb-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+		"         <xsd:element name=\"ejb-local-ref\" type=\"javaee:ejb-local-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+		"         <xsd:group ref=\"javaee:service-refGroup\"/>" +
+		"         <xsd:element name=\"resource-ref\" type=\"javaee:resource-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+		"         <xsd:element name=\"resource-env-ref\" type=\"javaee:resource-env-refType\" minOccurs=\"0\"  maxOccurs=\"unbounded\"/> " +
+		"         <xsd:sequence>" +
+		"            <xsd:element name=\"env-entry\" type=\"javaee:env-entryType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+		"            <xsd:element name=\"ejb-ref\" type=\"javaee:ejb-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+		"            <xsd:element name=\"ejb-local-ref\" type=\"javaee:ejb-local-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+		"         </xsd:sequence>" +
+		"         <xsd:element name=\"message-destination-ref\" type=\"javaee:message-destination-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+		"         <xsd:element name=\"persistence-context-ref\" type=\"javaee:persistence-context-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+		"         <xsd:element name=\"persistence-unit-ref\" type=\"javaee:persistence-unit-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+		"         <xsd:element name=\"post-construct\" type=\"javaee:lifecycle-callbackType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+		"         <xsd:element name=\"pre-destroy\" type=\"javaee:lifecycle-callbackType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+		"         <xsd:element name=\"data-source\" type=\"javaee:data-sourceType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/>" +
+		"      </xsd:sequence>" +
+		"   </xsd:complexType>" +
+//	    "   <xsd:element name=\"env-entry\" type=\"javaee:env-entryType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> " +
+		"</xsd:schema>";
+		
+		final Metadata metadata = DomTestUtil.parse(xmlFragment, isLogging);
+		
+//		Assert.assertEquals("jndiEnvironmentRefsGroup", metadata.getGroupList().get(0).getName(), "jndiEnvironmentRefsGroup");		
+//		
+//		final List<MetadataElement> e = metadata.getGroupList().get(0).getElements();
+//		DomTestUtil.assertElement(e.get(0), "<xsd:element name=\"env-entry\" type=\"javaee:env-entryType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> ");		
+//		DomTestUtil.assertElement(e.get(1), "<xsd:element name=\"ejb-ref\" type=\"javaee:ejb-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> ");		
+//		DomTestUtil.assertElement(e.get(2), "<xsd:element name=\"ejb-local-ref\" type=\"javaee:ejb-local-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/>");		
+//		DomTestUtil.assertElement(e.get(3), "<xsd:element name=\"resource-ref\" type=\"javaee:resource-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/>");
+//		DomTestUtil.assertElement(e.get(4), "<xsd:element name=\"resource-env-ref\" type=\"javaee:resource-env-refType\" minOccurs=\"0\"  maxOccurs=\"unbounded\"/>");		
+//		DomTestUtil.assertElement(e.get(5), "<xsd:element name=\"message-destination-ref\" type=\"javaee:message-destination-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> ");		
+//		DomTestUtil.assertElement(e.get(6), "<xsd:element name=\"persistence-context-ref\" type=\"javaee:persistence-context-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/>");
+//		DomTestUtil.assertElement(e.get(7), "<xsd:element name=\"persistence-unit-ref\" type=\"javaee:persistence-unit-refType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/>");
+//		DomTestUtil.assertElement(e.get(8), "<xsd:element name=\"post-construct\" type=\"javaee:lifecycle-callbackType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/> ");
+//		DomTestUtil.assertElement(e.get(9), "<xsd:element name=\"pre-destroy\" type=\"javaee:lifecycle-callbackType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/>");
+//		DomTestUtil.assertElement(e.get(10), "<xsd:element name=\"data-source\" type=\"javaee:data-sourceType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/>");
+		
+		File tempFile = File.createTempFile("tempMetadata", ".xml");
+		new DomWriter().write(metadata, tempFile.getAbsolutePath());
 	}
 	
 	@Test

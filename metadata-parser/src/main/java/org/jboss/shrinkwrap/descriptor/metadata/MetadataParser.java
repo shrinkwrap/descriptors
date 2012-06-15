@@ -121,7 +121,7 @@ public class MetadataParser
                   NodeFilter.SHOW_ELEMENT, null, true);
             final StringBuilder sb = verbose ? new StringBuilder() : null;
             
-            filterChain.traverseAndFilter(walker, "", metadata, sb);
+            filterChain.traverseAndFilter(walker, "", metadata, null, sb);
             
             if(sb!=null){
                 log.info(sb.toString());

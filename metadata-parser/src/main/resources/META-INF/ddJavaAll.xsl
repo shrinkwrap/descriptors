@@ -1419,6 +1419,9 @@
         <xsl:param name="pTypeName"/>
         <!--<xsl:message select="concat('xdd:CheckDataType: ', $pTypeName)"/>-->
         <xsl:choose>
+            <xsl:when test="$pTypeName= 'fully-qualified-classType'">
+                <xsl:sequence select="concat('StringAndClassType', '')"/>
+            </xsl:when>
             <xsl:when test=" starts-with($pTypeName, 'xsd:')">
                 <xsl:sequence select="xdd:getJavaDataType($pTypeName)"/>
             </xsl:when>
@@ -2407,27 +2410,52 @@
                         <xsl:value-of select=" xdd:printGetUnboundedDataType($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:value-of select="xdd:printGetSingleDataType($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                        <xsl:choose>
+                            <xsl:when test="$pElementType='StringAndClassType' or $pMethodName='class'">
+                                <xsl:value-of select="xdd:printGetSingleDataType($pClassType, 'String', $pMethodName, $pNodeNameLocal, $pElementName, 'String', $pIsInterface)"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="xdd:printGetSingleDataType($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:choose>
                     <xsl:when test="$pIsUnbounded = true()">
-                        <xsl:value-of select=" xdd:printSetVarArgUnboundedDataType($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
-                        <xsl:value-of select=" xdd:printGetUnboundedDataType($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
-                        <xsl:value-of select=" xdd:printRemoveUnboundedDataType($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                        <xsl:message select="concat('printDataType: ', $pMethodName)"/>
+                        <xsl:choose>
+                            <xsl:when test="$pElementName='class'">
+                                <xsl:value-of select=" xdd:printSetVarArgUnboundedClassDataType($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                                <xsl:value-of select=" xdd:printSetVarArgUnboundedDataType($pClassType, 'String', $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                                <xsl:value-of select=" xdd:printGetUnboundedDataType($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                                <xsl:value-of select=" xdd:printRemoveUnboundedDataType($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select=" xdd:printSetVarArgUnboundedDataType($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                                <xsl:value-of select=" xdd:printGetUnboundedDataType($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                                <xsl:value-of select=" xdd:printRemoveUnboundedDataType($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:choose>
                             <xsl:when test="$pElementType='java.util.Date'">
                                 <xsl:value-of select="xdd:printSetSingleXmlDate($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                                <xsl:value-of select="xdd:printGetSingleDataType($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                            </xsl:when>
+                            <xsl:when test="$pElementType='StringAndClassType' or $pMethodName='class'">
+                                <xsl:value-of select="xdd:printSetSingleDataType($pClassType, 'String', $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                                <xsl:value-of select="xdd:printSetClassType($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                                <xsl:value-of select="xdd:printGetSingleDataType($pClassType, 'String', $pMethodName, $pNodeNameLocal, $pElementName, 'String', $pIsInterface)"/>
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:value-of select="xdd:printSetSingleDataType($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                                <xsl:value-of select="xdd:printGetSingleDataType($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
                             </xsl:otherwise>
                         </xsl:choose>
-                        <xsl:value-of select="xdd:printGetSingleDataType($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+<!--                        <xsl:value-of select="xdd:printGetSingleDataType($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>-->
                         <xsl:value-of select="xdd:printRemoveSingleDataType($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -2468,6 +2496,77 @@
         </xsl:choose>
     </xsl:function>
 
+
+    <!-- *********************************************************** -->
+    <!-- ****** Function which writes the printSetClassType Body *** -->
+    <!-- *********************************************************** -->
+    <xsl:function name="xdd:printSetClassType">
+        <xsl:param name="pClassType"/>
+        <xsl:param name="pElementType"/>
+        <xsl:param name="pMethodName"/>
+        <xsl:param name="pNodeNameLocal"/>
+        <xsl:param name="pElementName"/>
+        <xsl:param name="pReturnTypeName"/>
+        <xsl:param name="pIsInterface" as="xs:boolean"/>
+        <xsl:variable name="vSetSignature" select="concat('   public ', $pClassType, ' ', xdd:checkForReservedKeywords(xdd:LowerCaseFirstChar($pMethodName)), '(',  'Class&lt;?&gt;',' ',xdd:checkForReservedKeywords(xdd:createCamelizedName($pElementName)), ')')"/>
+        <xsl:value-of select="concat('', '&#10;')"/>
+        <xsl:value-of select="concat('   /**', '&#10;')"/>
+        <xsl:value-of select="concat('    * Sets the &lt;code&gt;', $pElementName,'&lt;/code&gt; element&#10;')"/>
+        <xsl:value-of select="concat('    * @param ', xdd:checkForReservedKeywords(xdd:createCamelizedName($pElementName)), ' the value for the element &lt;code&gt;', $pElementName,'&lt;/code&gt; &#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the current instance of &lt;code&gt;', $pReturnTypeName, '&lt;/code&gt; &#10;')"/>
+        <xsl:value-of select="concat('    */', '&#10;')"/>
+        <xsl:choose>
+            <xsl:when test="$pIsInterface=true()">
+                <xsl:value-of select="concat($vSetSignature, ';&#10;')"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="concat($vSetSignature, '&#10;')"/>
+                <xsl:value-of select="concat('   {', '&#10;')"/>
+                <xsl:value-of select="concat('      ', $pNodeNameLocal, '.getOrCreate(&quot;', $pElementName, '&quot;).text(', xdd:checkForReservedKeywords(xdd:createCamelizedName($pElementName)), '.getName());', '&#10;')"/>
+                <xsl:value-of select="concat('      return this;', '&#10;')"/>
+                <xsl:value-of select="concat('   }', '&#10;')"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+
+    <!-- *********************************************************** -->
+    <!-- ****** Function which writes the SetVarArgBody          *** -->
+    <!-- *********************************************************** -->
+    <xsl:function name="xdd:printSetVarArgUnboundedClassDataType">
+        <xsl:param name="pClassType"/>
+        <xsl:param name="pElementType"/>
+        <xsl:param name="pMethodName"/>
+        <xsl:param name="pNodeNameLocal"/>
+        <xsl:param name="pElementName"/>
+        <xsl:param name="pReturnTypeName"/>
+        <xsl:param name="pIsInterface" as="xs:boolean"/>
+        <xsl:variable name="vSetVarArgSignature" select="concat('   public ', $pClassType, ' ', xdd:checkForReservedKeywords(xdd:LowerCaseFirstChar($pMethodName)), '(', 'Class&lt;?&gt;',' ... values)')"/>
+        <xsl:value-of select="concat('', '&#10;')"/>
+        <xsl:value-of select="concat('   /**', '&#10;')"/>
+        <xsl:value-of select="concat('    * Creates for all ', $pElementType, ' objects representing &lt;code&gt;', $pElementName,'&lt;/code&gt; elements, &#10;')"/>
+        <xsl:value-of select="concat('    * a new &lt;code&gt;', $pElementName,'&lt;/code&gt; element &#10;')"/>
+        <xsl:value-of select="concat('    * @param ', 'values', ' list of &lt;code&gt;', $pElementName,'&lt;/code&gt; objects &#10;')"/>
+        <xsl:value-of select="concat('    * @return ', 'the current instance of &lt;code&gt;', $pReturnTypeName, '&lt;/code&gt; &#10;')"/>
+        <xsl:value-of select="concat('    */', '&#10;')"/>
+        <xsl:choose>
+            <xsl:when test="$pIsInterface=true()">
+                <xsl:value-of select="concat($vSetVarArgSignature, ';&#10;')"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="concat($vSetVarArgSignature, '&#10;')"/>
+                <xsl:value-of select="concat('   {', '&#10;')"/>
+                <xsl:value-of select="concat('      if (values != null)', '&#10;')"/>
+                <xsl:value-of select="concat('      {', '&#10;')"/>
+                <xsl:value-of select="concat('         for(', 'Class&lt;?&gt;', ' clazz: values)', '&#10;')"/>
+                <xsl:value-of select="concat('         {', '&#10;')"/>
+                <xsl:value-of select="concat('            ', $pNodeNameLocal, '.createChild(&quot;', $pElementName, '&quot;).text(clazz.getName());', '&#10;')"/>
+                <xsl:value-of select="concat('         }', '&#10;')"/>
+                <xsl:value-of select="concat('      }', '&#10;')"/>
+                <xsl:value-of select="concat('      return this;', '&#10;')"/>
+                <xsl:value-of select="concat('   }', '&#10;')"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
 
     <!-- *********************************************************** -->
     <!-- ****** Function which writes the GetOrCreateXMLDateBody *** -->
