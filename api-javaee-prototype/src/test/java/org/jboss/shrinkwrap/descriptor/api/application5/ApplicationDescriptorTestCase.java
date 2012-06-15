@@ -17,10 +17,7 @@
 package org.jboss.shrinkwrap.descriptor.api.application5;
 
 
-import java.io.OutputStream;
-import java.util.List;
-
-import org.jboss.shrinkwrap.descriptor.api.DescriptorExportException;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -29,6 +26,7 @@ import org.junit.Test;
  * is working as expected
  *
  */
+@Ignore
 public class ApplicationDescriptorTestCase
 {
  
