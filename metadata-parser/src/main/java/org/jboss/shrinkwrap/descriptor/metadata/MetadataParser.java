@@ -72,7 +72,7 @@ public class MetadataParser
     * @param verbose if true, additional parsing information are printed out, otherwise not.
     * @throws Exception 
     */
-   public void parse(final MetadataParserPath path, final List<?> confList, final boolean verbose) throws Exception
+   public void parse(final MetadataParserPath path, final List<?> confList, final boolean verbose, final String context) throws Exception
    {
 	  checkArguments(path, confList);
 	   
@@ -87,7 +87,8 @@ public class MetadataParser
          metadata.setCurrentSchmema(metadataConf.getPathToXsd());
          metadata.setCurrentPackageApi(metadataConf.getPackageApi());
          metadata.setCurrentPackageImpl(metadataConf.getPackageImpl());
-
+         metadata.setCurrentContext(context);
+         
         final MetadataDescriptor metadataDescriptor = new MetadataDescriptor(metadataConf.getDescriptorName());
         metadataDescriptor.setRootElementName(metadataConf.getElementName());
         metadataDescriptor.setRootElementType(metadataConf.getElementType());

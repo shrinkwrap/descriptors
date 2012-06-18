@@ -50,6 +50,13 @@ public class MetadataParserMojo extends AbstractMojo
     * @parameter
     */
    protected boolean verbose;
+   
+   /**
+	* Defines the context for this configuration. E.g. JavaEE5.
+	* 
+	* @parameter
+	*/
+   protected String context;
 
    @Override
    public void execute() throws MojoExecutionException, MojoFailureException
@@ -57,7 +64,7 @@ public class MetadataParserMojo extends AbstractMojo
       try
       {
          final MetadataParser metadataParser = new MetadataParser();
-         metadataParser.parse(path, descriptors, verbose);
+         metadataParser.parse(path, descriptors, verbose, context);
       }
       catch (final Throwable t)
       {
