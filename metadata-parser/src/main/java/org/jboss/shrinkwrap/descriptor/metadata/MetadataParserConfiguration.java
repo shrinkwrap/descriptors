@@ -27,6 +27,7 @@ import java.util.Properties;
  */
 public class MetadataParserConfiguration
 {
+	   
    /**
     * Path to the XSD file to be parsed
     * 

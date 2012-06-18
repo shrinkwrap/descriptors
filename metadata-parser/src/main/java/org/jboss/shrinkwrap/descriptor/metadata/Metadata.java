@@ -37,6 +37,7 @@ public class Metadata
    private final List<String> packageImplList   = new ArrayList<String>();
    private List<MetadataDescriptor> metadataDescriptorList = new ArrayList<MetadataDescriptor>();
    private String currentNamespace;
+   private String currentContext;
    private String currentSchmema;
    private String currentPackageApi;
    private String currentPackageImpl;
@@ -134,7 +135,15 @@ public class Metadata
       this.currentSeqNo = currentSeqNo;
    }
 
-   /**
+   public String getCurrentContext() {
+	  return currentContext;
+   }
+
+   public void setCurrentContext(final String currentContext) {
+      this.currentContext = currentContext;
+   }
+
+/**
     * Adds a enumeration value to the specified enumeration name. If no enumeration class is
     * found, then a new enumeration class will be created.
     * @param enumName the enumeration class name.
@@ -222,9 +231,6 @@ public class Metadata
    {
 	  classElement.setType(getNamespaceValue(classElement.getType()));
 	  classElement.setSeqNo(currentSeqNo);
-	  if (classElement.getMaxOccurs() != null && classElement.getMaxOccurs().equals("unbounded")) {
-		  classElement.setSeqNo(null);
-	  }
       for (MetadataItem item: classList)
       {
          if (item.getName().equals(className) && item.getNamespace().equals(getCurrentNamespace())

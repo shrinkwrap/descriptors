@@ -111,6 +111,7 @@
 						<id>executionJ2ee13</id>
 						<phase>validate</phase>
 						<configuration>
+						    <context>J2ee13</context>
 							<verbose>false</verbose>
 							<path>
 								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
@@ -139,6 +140,7 @@
 						<id>executionJ2ee14</id>
 						<phase>validate</phase>
 						<configuration>
+						    <context>J2ee14</context>
 							<verbose>false</verbose>
 							<path>
 								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
@@ -221,6 +223,7 @@
 						<id>executionJavaEE5</id>
 						<phase>validate</phase>
 						<configuration>
+						    <context>JavaEE5</context>
 							<verbose>false</verbose>
 							<path>
 								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
@@ -415,6 +418,7 @@
 						<id>executionJavaEE6</id>
 						<phase>validate</phase>
 						<configuration>
+						    <context>JavaEE6</context>
 							<verbose>false</verbose>
 							<path>
 								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
@@ -592,6 +596,7 @@
 						<id>executionJBossEE5</id>
 						<phase>validate</phase>
 						<configuration>
+						    <context>JBossEE5</context>
 							<verbose>false</verbose>
 							<path>
 								<pathToApi>${basedir}/../api-jboss/src/main/java</pathToApi>
@@ -657,6 +662,7 @@
 						<id>executionJBossEE6</id>
 						<phase>validate</phase>
 						<configuration>
+						    <context>JBossEE6</context>
 							<verbose>false</verbose>
 							<path>
 								<pathToApi>${basedir}/../api-jboss/src/main/java</pathToApi>
@@ -722,6 +728,7 @@
 						<id>executionMisc</id>
 						<phase>validate</phase>
 						<configuration>
+						    <context>Misc</context>
 							<verbose>false</verbose>
 							<path>
 								<pathToApi>${basedir}/../api-misc/src/main/java</pathToApi>

@@ -296,6 +296,10 @@ public class DomWriter
             attrDocumentation.setValue("");
             classElement.setAttributeNode(attrDocumentation);
             
+            final Attr attrContext = doc.createAttribute("context");
+            attrContext.setValue(metadata.getCurrentContext());
+            classElement.setAttributeNode(attrContext);
+            
             checkClassElementSequence(doc, classElement, metadataClass.getElements());
             for(MetadataElement element: metadataClass.getElements())
             {
@@ -449,7 +453,7 @@ public class DomWriter
 	   }
 	   
 	   for (final List<MetadataElement> elementList: sequencedElementList.values()) {
-		   if (elementList.size() > 1 && elementList.size() < 4) {
+		   if (elementList.size() > 1 && elementList.size() < 6) {
 			   final Element childElement = doc.createElement("sequence");
 			   
 			   for (MetadataElement element: elementList) {
@@ -463,6 +467,12 @@ public class DomWriter
 	               elType.setValue(element.getType());
 	               sequenceElement.setAttributeNode(elType);
 	               
+	               if (element.getMaxOccurs() != null)
+	               {
+	                  final Attr elMaxOccurs = doc.createAttribute("maxOccurs");
+	                  elMaxOccurs.setValue(element.getMaxOccurs());
+	                  sequenceElement.setAttributeNode(elMaxOccurs);
+	               }
 	               childElement.appendChild(sequenceElement);
 			   }
 			   

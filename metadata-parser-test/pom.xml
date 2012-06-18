@@ -58,6 +58,7 @@
 						<id>execution1</id>
 						<phase>validate</phase>
 						<configuration>
+						    <context>IronJacamer</context>
 							<verbose>false</verbose>
 							<path>
 								<pathToApi>${basedir}/src/main/java</pathToApi>
