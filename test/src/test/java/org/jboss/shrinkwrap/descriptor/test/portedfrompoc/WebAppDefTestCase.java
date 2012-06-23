@@ -26,9 +26,11 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.MutableWebAppDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.ServletMappingType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.ServletType;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.WebAppTypeMutable;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -105,7 +107,7 @@ public class WebAppDefTestCase
    @Test
    public void verifySchemaLocation()
    {
-      final WebAppDescriptor desc = create();
+      final MutableWebAppDescriptor desc = create();
       final String descString = desc.exportAsString();
       log.info(descString);
       final String expectedSchemaLocation = "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd";
@@ -119,8 +121,8 @@ public class WebAppDefTestCase
       String clazz = "com.ocpsoft.pretty." + name;
       String mapping = "/*";
 
-      final String desc = create().getOrCreateFilter().filterClass(clazz).filterName(name).up().getOrCreateFilterMapping()
-            .filterName(name).urlPattern(mapping).up().exportAsString();
+      final String desc = create().getRoot().getOrCreateFilter().filterClass(clazz).filterName(name).up().getOrCreateFilterMapping()
+            .filterName(name).urlPattern(mapping).up().up().exportAsString();
 
       log.fine(desc);
 
@@ -137,8 +139,8 @@ public class WebAppDefTestCase
       String clazz = "javax.faces.webapp." + name;
       String mapping = "/*";
 
-      final String desc = create().getOrCreateServlet().servletClass(clazz).servletName(name).up()
-            .getOrCreateServletMapping().servletName(name).urlPattern(mapping).up().exportAsString();
+      final String desc = create().getRoot().getOrCreateServlet().servletClass(clazz).servletName(name).up()
+            .getOrCreateServletMapping().servletName(name).urlPattern(mapping).up().up().exportAsString();
 
       log.fine(desc);
 
@@ -154,7 +156,7 @@ public class WebAppDefTestCase
       String name = "FacesServlet";
       String clazz = "javax.faces.webapp." + name;
 
-      ServletType<WebAppDescriptor> servlet = create().getOrCreateServlet().servletClass(clazz).servletName(name);
+      ServletType<WebAppTypeMutable> servlet = create().getRoot().getOrCreateServlet().servletClass(clazz).servletName(name);
 
       assertEquals(clazz, servlet.getServletClass());
    }
@@ -166,11 +168,11 @@ public class WebAppDefTestCase
       final String clazz = "javax.faces.webapp." + name;
       final String mapping = "/*";
 
-      final WebAppDescriptor webXml = create().getOrCreateServlet().servletClass(clazz).servletName(name).up()
-            .getOrCreateServletMapping().servletName(name).urlPattern(mapping).up();
+      final MutableWebAppDescriptor webXml = create().getRoot().getOrCreateServlet().servletClass(clazz).servletName(name).up()
+            .getOrCreateServletMapping().servletName(name).urlPattern(mapping).up().up();
 
-      final List<ServletType<WebAppDescriptor>> servlets = webXml.getAllServlet();
-      final List<ServletMappingType<WebAppDescriptor>> mappings = webXml.getAllServletMapping();
+      final List<ServletType<WebAppTypeMutable>> servlets = webXml.getRoot().getAllServlet();
+      final List<ServletMappingType<WebAppTypeMutable>> mappings = webXml.getRoot().getAllServletMapping();
       assertEquals(1, servlets.size());
       assertEquals(name, servlets.get(0).getServletName());
       assertEquals(mapping, mappings.get(0).getAllUrlPattern().get(0));
@@ -250,7 +252,7 @@ public class WebAppDefTestCase
    {
       String version = "2.5";
 
-      String desc = create().version(version).metadataComplete(true).exportAsString();
+      String desc = create().getRoot().version(version).metadataComplete(true).up().exportAsString();
 
       log.fine(desc);
 
@@ -287,8 +289,8 @@ public class WebAppDefTestCase
    {
       final String securityConstraintDisplayName = "Default security constraint";
 
-      final String webAppDescriptor = Descriptors.create(WebAppDescriptor.class).getOrCreateSecurityConstraint()
-            .displayName(securityConstraintDisplayName).up().exportAsString().trim();
+      final String webAppDescriptor = Descriptors.create(MutableWebAppDescriptor.class).getRoot().getOrCreateSecurityConstraint()
+            .displayName(securityConstraintDisplayName).up().up().exportAsString().trim();
 
       assertPresenceUsingXPath(webAppDescriptor, "/web-app/security-constraint/display-name", securityConstraintDisplayName);
    }
@@ -307,9 +309,9 @@ public class WebAppDefTestCase
       return builder.toString();
    }
 
-   private WebAppDescriptor create()
+   private MutableWebAppDescriptor create()
    {
-      return Descriptors.create(WebAppDescriptor.class);
+      return Descriptors.create(MutableWebAppDescriptor.class);
    }
 
 }

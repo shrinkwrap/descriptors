@@ -1,3 +1,0 @@
-implClass=org.jboss.shrinkwrap.descriptor.impl.jsptaglibrary21.WebJsptaglibraryDescriptorImpl
-importerClass=org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomNodeDescriptorImporterImpl
-defaultName=taglibrary.tld

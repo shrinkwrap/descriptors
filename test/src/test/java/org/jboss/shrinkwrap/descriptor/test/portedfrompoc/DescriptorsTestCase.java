@@ -57,7 +57,7 @@ public class DescriptorsTestCase
 
       Assert.assertNotNull(web);
 
-      Assert.assertEquals(1, web.getAllFilter().size());
-      Assert.assertEquals(1, web.getAllFilterMapping().size());
+      Assert.assertEquals(1, web.getRoot().getAllFilter().size());
+      Assert.assertEquals(1, web.getRoot().getAllFilterMapping().size());
    }
 }

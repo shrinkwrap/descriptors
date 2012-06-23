@@ -24,6 +24,7 @@ import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.application5.ApplicationDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.application5.MutableApplicationDescriptor;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -59,12 +60,12 @@ public class ApplicationDescriptorTestCase
    /**
     * Default, empty application descriptor
     */
-   private ApplicationDescriptor emptyDescriptor;
+   private MutableApplicationDescriptor emptyDescriptor;
 
    /**
     * Fully-populated application descriptor
     */
-   private ApplicationDescriptor fullyPopulatedDescriptor;
+   private MutableApplicationDescriptor fullyPopulatedDescriptor;
 
    //-------------------------------------------------------------------------------------||
    // Lifecycle --------------------------------------------------------------------------||
@@ -73,13 +74,13 @@ public class ApplicationDescriptorTestCase
    @Before
    public void createEmptyDescriptor()
    {
-      emptyDescriptor = Descriptors.create(ApplicationDescriptor.class);
+      emptyDescriptor = Descriptors.create(MutableApplicationDescriptor.class);
    }
 
    @Before
    public void createFullyPopulatedDescriptor()
    {
-      fullyPopulatedDescriptor = Descriptors.importAs(ApplicationDescriptor.class).fromStream(
+      fullyPopulatedDescriptor = Descriptors.importAs(MutableApplicationDescriptor.class).fromStream(
             Thread.currentThread().getContextClassLoader().getResourceAsStream(NAME_EAR_XML));
       log.info(fullyPopulatedDescriptor.exportAsString());
    }
@@ -106,7 +107,7 @@ public class ApplicationDescriptorTestCase
    public void shouldBeAbleToAddDescription() throws Exception
    {
       final String descName = "Description";
-      final String desc = emptyDescriptor.description(descName).exportAsString();
+      final String desc = emptyDescriptor.getRoot().description(descName).up().exportAsString();
       assertPresenceUsingXPath(desc, "/application/description", descName);
    }
 
@@ -114,7 +115,7 @@ public class ApplicationDescriptorTestCase
    public void shouldBeAbleToAddDisplayName() throws Exception
    {
       final String displayName = "Display Name";
-      final String desc = emptyDescriptor.displayName(displayName).exportAsString();
+      final String desc = emptyDescriptor.getRoot().displayName(displayName).up().exportAsString();
       assertPresenceUsingXPath(desc, "/application/display-name", displayName);
    }
 
@@ -122,7 +123,7 @@ public class ApplicationDescriptorTestCase
    public void shouldBeAbleToAddLibraryDirectory() throws Exception
    {
       final String libraryDir = "Library Dir";
-      final String desc = emptyDescriptor.libraryDirectory(libraryDir).exportAsString();
+      final String desc = emptyDescriptor.getRoot().libraryDirectory(libraryDir).up().exportAsString();
       assertPresenceUsingXPath(desc, "/application/library-directory", libraryDir);
    }
 
@@ -172,7 +173,7 @@ public class ApplicationDescriptorTestCase
    public void shouldBeAbleToAddASecurityRole() throws Exception
    {
       final String roleName = "Security Role";
-      String desc = emptyDescriptor.createSecurityRole().roleName(roleName).up().exportAsString();
+      String desc = emptyDescriptor.getRoot().createSecurityRole().roleName(roleName).up().up().exportAsString();
       assertPresenceUsingXPath(desc, "/application/security-role/role-name", roleName);
    }
 
@@ -180,7 +181,7 @@ public class ApplicationDescriptorTestCase
    public void shouldBeAbleToAddASecurityRoleWithDescription() throws Exception
    {
       final String roleDescription = "Security Description";
-      String desc = emptyDescriptor.createSecurityRole().description(roleDescription).up().exportAsString();
+      String desc = emptyDescriptor.getRoot().createSecurityRole().description(roleDescription).up().up().exportAsString();
       assertPresenceUsingXPath(desc, "/application/security-role/description", roleDescription);
    }
 

@@ -15,6 +15,7 @@ import org.jboss.shrinkwrap.descriptor.metadata.filter.ListFilter;
 import org.jboss.shrinkwrap.descriptor.metadata.filter.RestrictionFilter;
 import org.jboss.shrinkwrap.descriptor.metadata.filter.SimpleContentFilter;
 import org.jboss.shrinkwrap.descriptor.metadata.filter.UnionFilter;
+import org.jboss.shrinkwrap.descriptor.metadata.filter.XsdElementEnum;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.traversal.TreeWalker;
@@ -33,6 +34,8 @@ public class FilterChain {
 	private final static String ELEMENT_LOG = "%s- %s name: %s";
 
 	private final List<Filter> filterList = new ArrayList<Filter>();
+
+    private int seqNo = 0;
 
 	public FilterChain() {
 		filterList.add(new GroupFilter());
@@ -58,15 +61,21 @@ public class FilterChain {
 	 *            logging purposes.
 	 */
 	public void traverseAndFilter(final TreeWalker walker, final String indent,
-			final Metadata metadata, final StringBuilder sb) {
+			final Metadata metadata, final Integer currSeqNo, final StringBuilder sb) {
 		
 		final Node parend = walker.getCurrentNode();
 
 		final boolean isLogged = appendText(indent, (Element) parend, sb);
-
+		
+		Integer nodeSeqNo = null;
+		if (XsdElementEnum.sequence.isTagNameEqual(((Element) parend).getTagName())) {
+	        nodeSeqNo = ++seqNo;
+	    }
+		
+		metadata.setCurrentSeqNo(currSeqNo);
 		for (final Filter filter : filterList) {
 			if (filter.filter(metadata, walker)) {
-				appendText(" catched by: " + filter.getClass().getSimpleName(), sb);
+				appendText(" catched by: " + filter.getClass().getSimpleName() + " seqNo: " + currSeqNo, sb);
 				break;
 			}
 		}
@@ -76,7 +85,7 @@ public class FilterChain {
 		}
 
 		for (Node n = walker.firstChild(); n != null; n = walker.nextSibling()) {
-			traverseAndFilter(walker, indent + "  ", metadata, sb);
+			traverseAndFilter(walker, indent + "  ", metadata, nodeSeqNo, sb);
 		}
 
 		walker.setCurrentNode(parend);

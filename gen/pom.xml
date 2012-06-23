@@ -111,10 +111,12 @@
 						<id>executionJ2ee13</id>
 						<phase>validate</phase>
 						<configuration>
+						    <context>J2ee13</context>
 							<verbose>false</verbose>
 							<path>
 								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
 								<pathToImpl>${basedir}/../impl-javaee/src/main/java</pathToImpl>
+							  <pathToServices>${basedir}/../impl-javaee/src/main/resources/META-INF/services</pathToServices>
 							</path>
 							<descriptors>
 								<descriptor>
@@ -122,9 +124,10 @@
 									<nameSpace>j2ee</nameSpace>
 									<packageApi>org.jboss.shrinkwrap.descriptor.api.connector10</packageApi>
 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.connector10</packageImpl>
-									<descriptorName>ConnectorDescriptor</descriptorName>
+									<descriptorName>ConnectorDescriptor</descriptorName>								  
 									<elementName>connector</elementName>
 									<elementType>j2ee:connector</elementType>
+								    <defaultFileName>ra.xml</defaultFileName>
 								</descriptor>
 							</descriptors>
 						</configuration>
@@ -137,11 +140,12 @@
 						<id>executionJ2ee14</id>
 						<phase>validate</phase>
 						<configuration>
+						    <context>J2ee14</context>
 							<verbose>false</verbose>
 							<path>
 								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
 								<pathToImpl>${basedir}/../impl-javaee/src/main/java</pathToImpl>
-								<!-- <pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices> -->
+							  <pathToServices>${basedir}/../impl-javaee/src/main/resources/META-INF/services</pathToServices> 
 							</path>
 							<descriptors>
 
@@ -169,8 +173,9 @@
 									<descriptorName>ConnectorDescriptor</descriptorName>
 									<elementName>connector</elementName>
 									<elementType>j2ee:connectorType</elementType>
+								    <defaultFileName>ra.xml</defaultFileName>
 									<namespaces>
-									    <property><name>xmlns</name><value>http://java.sun.com/xml/ns/j2ee</value></property>
+									  <property><name>xmlns</name><value>http://java.sun.com/xml/ns/j2ee</value></property>
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/connector_1_5.xsd</value></property>
 									</namespaces>
@@ -184,6 +189,7 @@
 									<descriptorName>WebJsptaglibraryDescriptor</descriptorName>
 									<elementName>taglib</elementName>
 									<elementType>j2ee:tldTaglibType</elementType>
+								    <defaultFileName>taglibrary.tld</defaultFileName>
 									<namespaces>
 										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/j2ee</value></property>
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
@@ -199,6 +205,7 @@
 									<descriptorName>PortletDescriptor</descriptorName>
 									<elementName>portlet-app</elementName>
 									<elementType>portlet:portlet-appType</elementType>
+                                                                        <defaultFileName>portlet.xml</defaultFileName>
 									<namespaces>
 										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd</value></property>
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
@@ -216,11 +223,12 @@
 						<id>executionJavaEE5</id>
 						<phase>validate</phase>
 						<configuration>
+						    <context>JavaEE5</context>
 							<verbose>false</verbose>
 							<path>
 								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
 								<pathToImpl>${basedir}/../impl-javaee/src/main/java</pathToImpl>
-								<!-- <pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices> -->
+							    <pathToServices>${basedir}/../impl-javaee/src/main/resources/META-INF/services</pathToServices> 
 							</path>
 							<descriptors>
 								<descriptor>
@@ -247,6 +255,7 @@
 									<descriptorName>ApplicationDescriptor</descriptorName>
 									<elementName>application</elementName>
 									<elementType>javaee:applicationType</elementType>
+								    <defaultFileName>application.xml</defaultFileName>
 									<namespaces>
 										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
@@ -262,6 +271,7 @@
 									<descriptorName>PersistenceDescriptor</descriptorName>
 									<elementName>persistence</elementName>
 									<elementType>persistence:persistence</elementType>
+								    <defaultFileName>persistence.xml</defaultFileName>
 									<namespaces>
 										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/persistence</value></property>
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
@@ -277,6 +287,7 @@
 									<descriptorName>OrmDescriptor</descriptorName>
 									<elementName>entity-mappings</elementName>
 									<elementType>orm:entity-mappings</elementType>
+								    <defaultFileName>orm.xml</defaultFileName>
 									<namespaces>
 										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/persistence/orm</value></property>
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
@@ -292,6 +303,7 @@
 									<descriptorName>EjbJarDescriptor</descriptorName>
 									<elementName>ejb-jar</elementName>
 									<elementType>javaee:ejb-jarType</elementType>
+							  	    <defaultFileName>ejb-jar.xml</defaultFileName>
 									<namespaces>
 										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
@@ -307,6 +319,7 @@
 									<descriptorName>WebJsptaglibraryDescriptor</descriptorName>
 									<elementName>taglib</elementName>
 									<elementType>javaee:tldTaglibType</elementType>
+								    <defaultFileName>taglibrary.tld</defaultFileName>
 									<namespaces>
 										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
@@ -322,6 +335,7 @@
 									<descriptorName>WebFacelettaglibraryDescriptor</descriptorName>
 									<elementName>facelet-taglib</elementName>
 									<elementType>javaee:facelet-taglibType</elementType>
+								    <defaultFileName>taglib.xml</defaultFileName>
 									<namespaces>
 										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
@@ -337,6 +351,7 @@
 									<descriptorName>WebFacesConfigDescriptor</descriptorName>
 									<elementName>faces-config</elementName>
 									<elementType>javaee:faces-configType</elementType>
+								    <defaultFileName>faces-config.xml</defaultFileName>
 									<namespaces>
 										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
@@ -344,35 +359,22 @@
 									</namespaces>
 								</descriptor>
 
-								<descriptor>
-									<pathToXsd>${basedir}/src/main/resources/xsd/web-facesconfig_2_1.xsd</pathToXsd>
-									<nameSpace>javaee</nameSpace>
-									<packageApi>org.jboss.shrinkwrap.descriptor.api.facesconfig21</packageApi>
-									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.facesconfig21</packageImpl>
-									<descriptorName>WebFacesConfigDescriptor</descriptorName>
-									<elementName>faces-config</elementName>
-									<elementType>javaee:faces-configType</elementType>
-									<namespaces>
-										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
-										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
-										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd</value></property>
-									</namespaces>
-								</descriptor>
-
-								<descriptor>
-									<pathToXsd>${basedir}/src/main/resources/xsd/web-facesuicomponent_2_0.xsd</pathToXsd>
-									<nameSpace>javaee</nameSpace>
-									<packageApi>org.jboss.shrinkwrap.descriptor.api.facesuicomponent20</packageApi>
-									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.facesuicomponent20</packageImpl>
-									<descriptorName>WebFacesUIComponentDescriptor</descriptorName>
-									<elementName>attribute</elementName>
-									<elementType>javaee:uicomponent-attributeType</elementType>
-									<namespaces>
-										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
-										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
-										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesuicomponent_2_0.xsd</value></property>
-									</namespaces>
-								</descriptor>
+<!-- deactivated because of generation problem. the root element is calling recursively itself!!!! -->
+<!-- 								<descriptor> -->
+<!-- 									<pathToXsd>${basedir}/src/main/resources/xsd/web-facesuicomponent_2_0.xsd</pathToXsd> -->
+<!-- 									<nameSpace>javaee</nameSpace> -->
+<!-- 									<packageApi>org.jboss.shrinkwrap.descriptor.api.facesuicomponent20</packageApi> -->
+<!-- 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.facesuicomponent20</packageImpl> -->
+<!-- 									<descriptorName>WebFacesUIComponentDescriptor</descriptorName> -->
+<!-- 									<elementName>attribute</elementName> -->
+<!-- 									<elementType>javaee:uicomponent-attributeType</elementType> -->
+<!-- 								    <defaultFileName>default.xml</defaultFileName> -->
+<!-- 									<namespaces> -->
+<!-- 										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property> -->
+<!-- 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property> -->
+<!-- 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesuicomponent_2_0.xsd</value></property> -->
+<!-- 									</namespaces> -->
+<!-- 								</descriptor> -->
 
 								<descriptor>
 									<pathToXsd>${basedir}/src/main/resources/xsd/web-partialresponse_2_0.xsd</pathToXsd>
@@ -382,6 +384,7 @@
 									<descriptorName>WebFacesPartialResponseDescriptor</descriptorName>
 									<elementName>partial-response</elementName>
 									<elementType>javaee:partial-responseType</elementType>
+								    <defaultFileName>default.xml</defaultFileName>
 									<namespaces>
 										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
@@ -397,14 +400,67 @@
 					</execution>
 
 					<execution>
-						<id>executionJavaEE6</id>
+						<id>executionJavaEE5_facesconfig_2_1</id>
 						<phase>validate</phase>
 						<configuration>
+						    <context>JavaEE5_facesconfig_2_1</context>
 							<verbose>false</verbose>
 							<path>
 								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
 								<pathToImpl>${basedir}/../impl-javaee/src/main/java</pathToImpl>
-								<!-- <pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices> -->
+							    <pathToServices>${basedir}/../impl-javaee/src/main/resources/META-INF/services</pathToServices> 
+							</path>
+							<descriptors>
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/javaee_5.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.javaee5</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaee5</packageImpl>
+									<generateClasses>false</generateClasses>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/javaee_web_services_client_1_2.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient12</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient12</packageImpl>
+									<generateClasses>false</generateClasses>
+								</descriptor>
+
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/web-facesconfig_2_1.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.facesconfig21</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.facesconfig21</packageImpl>
+									<descriptorName>WebFacesConfigDescriptor</descriptorName>
+									<elementName>faces-config</elementName>
+									<elementType>javaee:faces-configType</elementType>
+								    <defaultFileName>faces-config.xml</defaultFileName>
+									<namespaces>
+										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd</value></property>
+									</namespaces>
+								</descriptor>
+
+
+							</descriptors>
+						</configuration>
+						<goals>
+							<goal>parse</goal>
+						</goals>
+					</execution>
+					
+					<execution>
+						<id>executionJavaEE6</id>
+						<phase>validate</phase>
+						<configuration>
+						    <context>JavaEE6</context>
+							<verbose>false</verbose>
+							<path>
+								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
+								<pathToImpl>${basedir}/../impl-javaee/src/main/java</pathToImpl>
+							  <pathToServices>${basedir}/../impl-javaee/src/main/resources/META-INF/services</pathToServices> 
 							</path>
 							<descriptors>
 								<descriptor>
@@ -447,6 +503,7 @@
 									<descriptorName>ApplicationDescriptor</descriptorName>
 									<elementName>application</elementName>
 									<elementType>javaee:applicationType</elementType>
+								    <defaultFileName>application.xml</defaultFileName>
 									<namespaces>
 										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
@@ -462,6 +519,7 @@
 									<descriptorName>WebAppDescriptor</descriptorName>
 									<elementName>web-app</elementName>
 									<elementType>javaee:web-appType</elementType>
+								    <defaultFileName>web.xml</defaultFileName>
 									<namespaces>
 										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
@@ -477,6 +535,7 @@
 									<descriptorName>PersistenceDescriptor</descriptorName>
 									<elementName>persistence</elementName>
 									<elementType>persistence:persistence</elementType>
+								    <defaultFileName>persistence.xml</defaultFileName>
 									<namespaces>
 										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/persistence</value></property>
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
@@ -492,6 +551,7 @@
 									<descriptorName>OrmDescriptor</descriptorName>
 									<elementName>entity-mappings</elementName>
 									<elementType>orm:entity-mappings</elementType>
+								    <defaultFileName>orm.xml</defaultFileName>
 									<namespaces>
 										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/persistence/orm</value></property>
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
@@ -506,6 +566,7 @@
 									<descriptorName>WebFragmentDescriptor</descriptorName>
 									<elementName>web-fragment</elementName>
 									<elementType>javaee:web-fragmentType</elementType>
+								    <defaultFileName>webfragment.xml</defaultFileName>
 									<namespaces>
 										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
@@ -521,6 +582,7 @@
 									<descriptorName>EjbJarDescriptor</descriptorName>
 									<elementName>ejb-jar</elementName>
 									<elementType>javaee:ejb-jarType</elementType>
+								    <defaultFileName>ejb-jar.xml</defaultFileName>
 									<namespaces>
 										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
@@ -536,6 +598,7 @@
 									<descriptorName>ConnectorDescriptor</descriptorName>
 									<elementName>connector</elementName>
 									<elementType>javaee:connectorType</elementType>
+								    <defaultFileName>ra.xml</defaultFileName>
 									<namespaces>
 										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
@@ -551,6 +614,7 @@
 									<descriptorName>BeansDescriptor</descriptorName>
 									<elementName>beans</elementName>
 									<elementType>javaee:beans</elementType>
+								    <defaultFileName>beans.xml</defaultFileName>
 									<namespaces>
 										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
@@ -569,10 +633,12 @@
 						<id>executionJBossEE5</id>
 						<phase>validate</phase>
 						<configuration>
+						    <context>JBossEE5</context>
 							<verbose>false</verbose>
 							<path>
 								<pathToApi>${basedir}/../api-jboss/src/main/java</pathToApi>
-								<pathToImpl>${basedir}/../impl-jboss/src/main/java</pathToImpl>
+							 	<pathToImpl>${basedir}/../impl-jboss/src/main/java</pathToImpl>
+							  <pathToServices>${basedir}/../impl-jboss/src/main/resources/META-INF/services</pathToServices> 
 							</path>
 							<descriptors>
 
@@ -615,6 +681,7 @@
 									<descriptorName>JbossDescriptor</descriptorName>
 									<elementName>jboss</elementName>
 									<elementType>jboss:jbossType</elementType>
+								    <defaultFileName>jboss.xml</defaultFileName>
 									<namespaces>
 										<property><name>xmlns</name><value>http://www.jboss.com/xml/ns/javaee</value></property>
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
@@ -632,10 +699,12 @@
 						<id>executionJBossEE6</id>
 						<phase>validate</phase>
 						<configuration>
+						    <context>JBossEE6</context>
 							<verbose>false</verbose>
 							<path>
 								<pathToApi>${basedir}/../api-jboss/src/main/java</pathToApi>
-								<pathToImpl>${basedir}/../impl-jboss/src/main/java</pathToImpl>
+							 	<pathToImpl>${basedir}/../impl-jboss/src/main/java</pathToImpl>
+							  <pathToServices>${basedir}/../impl-jboss/src/main/resources/META-INF/services</pathToServices> 
 							</path>
 							<descriptors>
 
@@ -678,6 +747,7 @@
 									<descriptorName>JbossWebDescriptor</descriptorName>
 									<elementName>jboss-web</elementName>
 									<elementType>jboss:jboss-webType</elementType>
+								    <defaultFileName>jboss-web.xml</defaultFileName>
 									<namespaces>
 										<property><name>xmlns</name><value>http://www.jboss.com/xml/ns/javaee</value></property>
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
@@ -695,6 +765,7 @@
 						<id>executionMisc</id>
 						<phase>validate</phase>
 						<configuration>
+						    <context>Misc</context>
 							<verbose>false</verbose>
 							<path>
 								<pathToApi>${basedir}/../api-misc/src/main/java</pathToApi>
@@ -710,6 +781,7 @@
 									<descriptorName>JettyDescriptor</descriptorName>
 									<elementName>Configure</elementName>
 									<elementType>jetty7:Configure</elementType>
+								    <defaultFileName>jetty.xml</defaultFileName>
 								</descriptor>
 							</descriptors>
 						</configuration>
