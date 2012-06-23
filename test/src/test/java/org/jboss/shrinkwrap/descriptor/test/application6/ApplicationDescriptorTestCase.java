@@ -7,6 +7,7 @@ import java.io.FileReader;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.application6.ApplicationDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.application6.MutableApplicationDescriptor;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,8 +18,7 @@ public class ApplicationDescriptorTestCase
    @Test
    public void testImportGeneratedApplicationXml() throws Exception
    {
-      ApplicationDescriptor app6Descr = create()
-         .addDefaultNamespaces()
+	   MutableApplicationDescriptor app6Descr = create().getRoot()
          .version("6")
          .applicationName("application-name0")
          .description("description0")
@@ -191,7 +191,7 @@ public class ApplicationDescriptorTestCase
              .maxPoolSize(0)
              .minPoolSize(0)
              .maxIdleTime(0)
-             .maxStatements(0).up();
+             .maxStatements(0).up().up();
       
       String appXmlOriginal = getResourceContents("src/test/resources/test-gen-application6.xml");
       String appXmlGenerated = app6Descr.exportAsString();
@@ -218,9 +218,9 @@ public class ApplicationDescriptorTestCase
       return builder.toString();
    }
    
-   private ApplicationDescriptor create()
+   private MutableApplicationDescriptor create()
    {
-      return Descriptors.create(ApplicationDescriptor.class);
+      return Descriptors.create(MutableApplicationDescriptor.class);
    }
 
 }

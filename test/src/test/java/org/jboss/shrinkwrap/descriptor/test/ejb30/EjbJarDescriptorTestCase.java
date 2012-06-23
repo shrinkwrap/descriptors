@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.ejbjar30.EjbJarDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar30.MutableEjbJarDescriptor;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -46,7 +47,7 @@ public class EjbJarDescriptorTestCase
    /**
     * Descriptor under test
     */
-   private EjbJarDescriptor fullyPopulatedDescriptor;
+   private MutableEjbJarDescriptor fullyPopulatedDescriptor;
 
    /**
     * Creates the fully-populated descriptor
@@ -54,7 +55,7 @@ public class EjbJarDescriptorTestCase
    @Before
    public void createDescriptor()
    {
-      fullyPopulatedDescriptor = Descriptors.importAs(EjbJarDescriptor.class).fromStream(
+      fullyPopulatedDescriptor = Descriptors.importAs(MutableEjbJarDescriptor.class).fromStream(
             Thread.currentThread().getContextClassLoader().getResourceAsStream(NAME_EJB_JAR));
       log.info(fullyPopulatedDescriptor.exportAsString());
    }
@@ -64,7 +65,7 @@ public class EjbJarDescriptorTestCase
    {
       //TODO Placeholder for porting tests // SHRINKDESC-61
       @SuppressWarnings("unused")
-      final EjbJarDescriptor d = Descriptors.create(EjbJarDescriptor.class);
+      final MutableEjbJarDescriptor d = Descriptors.create(MutableEjbJarDescriptor.class);
       log.info(fullyPopulatedDescriptor.exportAsString());
    }
 
