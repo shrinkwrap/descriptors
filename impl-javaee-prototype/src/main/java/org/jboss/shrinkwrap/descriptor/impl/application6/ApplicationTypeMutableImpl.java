@@ -1,6 +1,12 @@
-package org.jboss.shrinkwrap.descriptor.api.application5; 
+package org.jboss.shrinkwrap.descriptor.impl.application6; 
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.jboss.shrinkwrap.descriptor.api.application5.MutableApplicationType;
+import org.jboss.shrinkwrap.descriptor.api.application5.ModuleType;
+import org.jboss.shrinkwrap.descriptor.api.application5.MutableApplicationDescriptor;
+import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 
 /**
  * This interface defines the contract for the <code> applicationType </code> xsd type 
@@ -9,7 +15,12 @@ import java.util.List;
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
  * @since Generation date :2012-06-28T12:19:49.689-04:00
  */
-public interface MutableApplicationType extends ApplicationTypeBase<MutableApplicationType, MutableApplicationDescriptor> {
+public final class ApplicationTypeMutableImpl extends ApplicationTypeBaseImpl<MutableApplicationType, MutableApplicationDescriptor>
+    implements MutableApplicationType {
+
+   public ApplicationTypeMutableImpl(final MutableApplicationDescriptorImpl parent, final Node model) throws IllegalArgumentException {
+      super(parent, model);
+   }
  
    // --------------------------------------------------------------------------------------------------------||
    // ClassName: ApplicationTypeMutable ElementName: xsd:string ElementType : description
@@ -22,19 +33,42 @@ public interface MutableApplicationType extends ApplicationTypeBase<MutableAppli
     * @param values list of <code>description</code> objects 
     * @return the current instance of <code>ApplicationTypeMutable</code> 
     */
-   public MutableApplicationType description(String ... values);
+   public MutableApplicationType description(String ... values)
+   {
+      if (values != null)
+      {
+         for(String name: values)
+         {
+            getRootNode().createChild("description").text(name);
+         }
+      }
+      return this;
+   }
 
    /**
     * Returns all <code>description</code> elements
     * @return list of <code>description</code> 
     */
-   public List<String> getAllDescription();
+   public List<String> getAllDescription()
+   {
+      List<String> result = new ArrayList<String>();
+      List<Node> nodes = getRootNode().get("description");
+      for (Node node : nodes)
+      {
+         result.add(node.getText());
+      }
+      return result;
+   }
 
    /**
     * Removes the <code>description</code> element 
     * @return the current instance of <code>ApplicationTypeMutable</code> 
     */
-   public MutableApplicationType removeAllDescription();
+   public MutableApplicationType removeAllDescription()
+   {
+      getRootNode().removeChildren("description");
+      return this;
+   }
  
    // --------------------------------------------------------------------------------------------------------||
    // ClassName: ApplicationTypeMutable ElementName: xsd:token ElementType : display-name
@@ -47,25 +81,52 @@ public interface MutableApplicationType extends ApplicationTypeBase<MutableAppli
     * @param values list of <code>display-name</code> objects 
     * @return the current instance of <code>ApplicationTypeMutable</code> 
     */
-   public MutableApplicationType displayName(String ... values);
+   public MutableApplicationType displayName(String ... values)
+   {
+      if (values != null)
+      {
+         for(String name: values)
+         {
+            getRootNode().createChild("display-name").text(name);
+         }
+      }
+      return this;
+   }
 
    /**
     * Returns all <code>display-name</code> elements
     * @return list of <code>display-name</code> 
     */
-   public List<String> getAllDisplayName();
+   public List<String> getAllDisplayName()
+   {
+      List<String> result = new ArrayList<String>();
+      List<Node> nodes = getRootNode().get("display-name");
+      for (Node node : nodes)
+      {
+         result.add(node.getText());
+      }
+      return result;
+   }
 
    /**
     * Removes the <code>display-name</code> element 
     * @return the current instance of <code>ApplicationTypeMutable</code> 
     */
-   public MutableApplicationType removeAllDisplayName();
-  
-   // --------------------------------------------------------------------------------------------------------||
-   // ClassName: ApplicationTypeMutable ElementName: javaee:service-refType ElementType : service-ref
-   // MaxOccurs: -unbounded  isGeneric: false   isAttribute: false isEnum: false isDataType: false
-   // --------------------------------------------------------------------------------------------------------||
-
+   public MutableApplicationType removeAllDisplayName()
+   {
+      getRootNode().removeChildren("display-name");
+      return this;
+   }
+ 
+   /**
+    * Removes all <code>icon</code> elements 
+    * @return the current instance of <code>IconType<ApplicationTypeMutable></code> 
+    */
+   public MutableApplicationType removeAllIcon()
+   {
+      getRootNode().removeChildren("icon");
+      return this;
+   }
  
    // --------------------------------------------------------------------------------------------------------||
    // ClassName: ApplicationTypeMutable ElementName: xsd:token ElementType : application-name
@@ -77,19 +138,49 @@ public interface MutableApplicationType extends ApplicationTypeBase<MutableAppli
     * @param applicationName the value for the element <code>application-name</code> 
     * @return the current instance of <code>ApplicationTypeMutable</code> 
     */
-   public MutableApplicationType applicationName(String applicationName);
+   public MutableApplicationType applicationName(String applicationName)
+   {
+      getRootNode().getOrCreate("application-name").text(applicationName);
+      return this;
+   }
 
    /**
     * Returns the <code>application-name</code> element
     * @return the node defined for the element <code>application-name</code> 
     */
-   public String getApplicationName();
+   public String getApplicationName()
+   {
+      return getRootNode().getTextValueForPatternName("application-name");
+   }
 
    /**
     * Removes the <code>application-name</code> element 
     * @return the current instance of <code>ApplicationTypeMutable</code> 
     */
-   public MutableApplicationType removeApplicationName();
+   public MutableApplicationType removeApplicationName()
+   {
+      getRootNode().removeChildren("application-name");
+      return this;
+   }
+
+   /**
+    * Returns the <code>initialize-in-order</code> element
+    * @return the value found for the element <code>initialize-in-order</code> 
+    */
+   public String  getInitializeInOrderAsString()
+   {
+      return getRootNode().getTextValueForPatternName("initialize-in-order");
+   }
+
+   /**
+    * Removes the <code>initialize-in-order</code> attribute 
+    * @return the current instance of <code>ApplicationTypeMutable</code> 
+    */
+   public MutableApplicationType removeInitializeInOrder()
+   {
+      getRootNode().removeAttribute("initialize-in-order");
+      return this;
+   }
 
  
    // --------------------------------------------------------------------------------------------------------||
@@ -102,25 +193,50 @@ public interface MutableApplicationType extends ApplicationTypeBase<MutableAppli
     * Otherwise, the first existing <code>module</code> element will be returned.
     * @return the instance defined for the element <code>module</code> 
     */
-   public ModuleType<MutableApplicationType> getOrCreateModule();
+   public ModuleType<MutableApplicationType> getOrCreateModule()
+   {
+      List<Node> nodeList = getRootNode().get("module");
+      if (nodeList != null &&  nodeList.size() > 0)
+      {
+         return new ModuleTypeImpl<MutableApplicationType>(this, "module", getRootNode(), nodeList.get(0));
+      }
+      return createModule();
+   }
 
    /**
     * Creates a new <code>module</code> element 
     * @return the new created instance of <code>ModuleType<ApplicationTypeMutable></code> 
     */
-   public ModuleType<MutableApplicationType> createModule();
+   public ModuleType<MutableApplicationType> createModule()
+   {
+      return new ModuleTypeImpl<MutableApplicationType>(this, "module", getRootNode());
+   }
 
    /**
     * Returns all <code>module</code> elements
     * @return list of <code>module</code> 
     */
-   public List<ModuleType<MutableApplicationType>> getAllModule();
+   public List<ModuleType<MutableApplicationType>> getAllModule()
+   {
+      List<ModuleType<MutableApplicationType>> list = new ArrayList<ModuleType<MutableApplicationType>>();
+      List<Node> nodeList = getRootNode().get("module");
+      for(Node node: nodeList)
+      {
+         ModuleType<MutableApplicationType>  type = new ModuleTypeImpl<MutableApplicationType>(this, "module", getRootNode(), node);
+         list.add(type);
+      }
+      return list;
+   }
 
    /**
     * Removes all <code>module</code> elements 
     * @return the current instance of <code>ModuleType<ApplicationTypeMutable></code> 
     */
-   public MutableApplicationType removeAllModule();
+   public MutableApplicationType removeAllModule()
+   {
+      getRootNode().removeChildren("module");
+      return this;
+   }
 
  
    // --------------------------------------------------------------------------------------------------------||
@@ -133,21 +249,39 @@ public interface MutableApplicationType extends ApplicationTypeBase<MutableAppli
     * @param libraryDirectory the value for the element <code>library-directory</code> 
     * @return the current instance of <code>ApplicationTypeMutable</code> 
     */
-   public MutableApplicationType libraryDirectory(String libraryDirectory);
+   public MutableApplicationType libraryDirectory(String libraryDirectory)
+   {
+      getRootNode().getOrCreate("library-directory").text(libraryDirectory);
+      return this;
+   }
 
    /**
     * Returns the <code>library-directory</code> element
     * @return the node defined for the element <code>library-directory</code> 
     */
-   public String getLibraryDirectory();
+   public String getLibraryDirectory()
+   {
+      return getRootNode().getTextValueForPatternName("library-directory");
+   }
 
    /**
     * Removes the <code>library-directory</code> element 
     * @return the current instance of <code>ApplicationTypeMutable</code> 
     */
-   public MutableApplicationType removeLibraryDirectory();
+   public MutableApplicationType removeLibraryDirectory()
+   {
+      getRootNode().removeChildren("library-directory");
+      return this;
+   }
 
-    
+ 
+
+ 
+
+ 
+ 
+
+ 
    // --------------------------------------------------------------------------------------------------------||
    // ClassName: ApplicationTypeMutable ElementName: xsd:token ElementType : version
    // MaxOccurs: -  isGeneric: false   isAttribute: true isEnum: false isDataType: true
@@ -158,17 +292,28 @@ public interface MutableApplicationType extends ApplicationTypeBase<MutableAppli
     * @param version the value for the attribute <code>version</code> 
     * @return the current instance of <code>ApplicationTypeMutable</code> 
     */
-   public MutableApplicationType version(String version);
+   public MutableApplicationType version(String version)
+   {
+      getRootNode().attribute("version", version);
+      return this;
+   }
 
    /**
     * Returns the <code>version</code> attribute
     * @return the value defined for the attribute <code>version</code> 
     */
-   public String getVersion();
+      public String getVersion()
+   {
+      return getRootNode().getAttribute("version");
+   }
 
    /**
     * Removes the <code>version</code> attribute 
     * @return the current instance of <code>ApplicationTypeMutable</code> 
     */
-   public MutableApplicationType removeVersion();
+   public MutableApplicationType removeVersion()
+   {
+      getRootNode().removeAttribute("version");
+      return this;
+   }
 }

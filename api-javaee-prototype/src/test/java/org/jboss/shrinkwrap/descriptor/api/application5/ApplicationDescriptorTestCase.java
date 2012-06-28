@@ -44,8 +44,11 @@ public class ApplicationDescriptorTestCase
       appDescriptor.getLibraryDirectory();
       appDescriptor.getAllModule().get(0).getWeb().up().up();
       
+      appDescriptorMutable.createModule();
+      
+      
       // test toMutable() and traversing back to the original descriptor
-      appDescriptor.getAllModule().get(0).toMutable().getOrCreateWeb().removeContextRoot().removeWebUri().up().up();
+//      appDescriptor.getAllModule().get(0).toMutable().getOrCreateWeb().removeContextRoot().removeWebUri().up().up();
       
       appDescriptorMutable.createModule().altDd("").connector("").ejb("").getOrCreateWeb().up().up();
       
@@ -77,21 +80,21 @@ public class ApplicationDescriptorTestCase
    @Test
    public void mutableRoundtrip() 
    {      
-//       // Make a new descriptor
-//       final ApplicationDescriptor readonly = Descriptors.create(ApplicationDescriptor.class);
-//       
-//       // Get a mutable view
-//       final ApplicationDescriptorMutable mutable = readonly.toMutable();
-//
-//       mutable.getOrCreateModule().getOrCreateWeb().webUri("two").up().up().up();
-//
-//       // Roundtrip to immutable
-//       final ApplicationDescriptor roundtrip = mutable.toImmutable();
-//
-//       roundtrip.getAllModule().get(0).getWeb().getWebUri();
+       // Make a new descriptor
+       final ApplicationDescriptor readonly = null;
+       
+       // Get a mutable view
+       final MutableApplicationDescriptor mutable = readonly.toMutable();
+
+       mutable.getOrCreateModule().getOrCreateWeb().webUri("two").up().up().up();
+
+       // Roundtrip to immutable
+       final ApplicationDescriptor roundtrip = mutable.toImmutable();
+
+       roundtrip.getAllModule().get(0).getWeb().getWebUri();
 //       roundtrip.getAllModule().get(0).getWeb().removeWebUri(); // not allowed ...
-//       
-//       System.out.println("Roundtrip: "+roundtrip.exportAsString());
+       
+       System.out.println("Roundtrip: "+roundtrip.exportAsString());
 
        // Ensure the roundtrip still has a filter w/ two descriptions
 //       Assert.assertEquals(2, roundtrip..getAllFilter().get(0).getAllDescription().size());

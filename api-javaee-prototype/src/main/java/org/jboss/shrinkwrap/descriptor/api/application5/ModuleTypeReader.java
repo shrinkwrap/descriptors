@@ -8,20 +8,13 @@ import org.jboss.shrinkwrap.descriptor.api.Child;
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
  * @since Generation date :2012-06-28T12:19:49.689-04:00
  */
-public interface ModuleType<T> extends Child<T>
+public interface ModuleTypeReader<T> extends Child<T>
 {
  
    // --------------------------------------------------------------------------------------------------------||
-   // ClassName: ModuleType ElementName: xsd:token ElementType : connector
+   // ClassName: ModuleTypeReader ElementName: xsd:token ElementType : connector
    // MaxOccurs: -  isGeneric: true   isAttribute: false isEnum: false isDataType: true
    // --------------------------------------------------------------------------------------------------------||
-
-   /**
-    * Sets the <code>connector</code> element
-    * @param connector the value for the element <code>connector</code> 
-    * @return the current instance of <code>ModuleType<T></code> 
-    */
-   public ModuleType<T> connector(String connector);
 
    /**
     * Returns the <code>connector</code> element
@@ -29,24 +22,11 @@ public interface ModuleType<T> extends Child<T>
     */
    public String getConnector();
 
-   /**
-    * Removes the <code>connector</code> element 
-    * @return the current instance of <code>ModuleType<T></code> 
-    */
-   public ModuleType<T> removeConnector();
-
  
    // --------------------------------------------------------------------------------------------------------||
-   // ClassName: ModuleType ElementName: xsd:token ElementType : ejb
+   // ClassName: ModuleTypeReader ElementName: xsd:token ElementType : ejb
    // MaxOccurs: -  isGeneric: true   isAttribute: false isEnum: false isDataType: true
    // --------------------------------------------------------------------------------------------------------||
-
-   /**
-    * Sets the <code>ejb</code> element
-    * @param ejb the value for the element <code>ejb</code> 
-    * @return the current instance of <code>ModuleType<T></code> 
-    */
-   public ModuleType<T> ejb(String ejb);
 
    /**
     * Returns the <code>ejb</code> element
@@ -54,24 +34,11 @@ public interface ModuleType<T> extends Child<T>
     */
    public String getEjb();
 
-   /**
-    * Removes the <code>ejb</code> element 
-    * @return the current instance of <code>ModuleType<T></code> 
-    */
-   public ModuleType<T> removeEjb();
-
  
    // --------------------------------------------------------------------------------------------------------||
-   // ClassName: ModuleType ElementName: xsd:token ElementType : java
+   // ClassName: ModuleTypeReader ElementName: xsd:token ElementType : java
    // MaxOccurs: -  isGeneric: true   isAttribute: false isEnum: false isDataType: true
    // --------------------------------------------------------------------------------------------------------||
-
-   /**
-    * Sets the <code>java</code> element
-    * @param java the value for the element <code>java</code> 
-    * @return the current instance of <code>ModuleType<T></code> 
-    */
-   public ModuleType<T> java(String java);
 
    /**
     * Returns the <code>java</code> element
@@ -79,59 +46,27 @@ public interface ModuleType<T> extends Child<T>
     */
    public String getJava();
 
-   /**
-    * Removes the <code>java</code> element 
-    * @return the current instance of <code>ModuleType<T></code> 
-    */
-   public ModuleType<T> removeJava();
-
  
    // --------------------------------------------------------------------------------------------------------||
-   // ClassName: ModuleType ElementName: javaee:webType ElementType : web
+   // ClassName: ModuleTypeReader ElementName: javaee:webType ElementType : web
    // MaxOccurs: -  isGeneric: true   isAttribute: false isEnum: false isDataType: false
    // --------------------------------------------------------------------------------------------------------||
 
    /**
     * Returns the <code>web</code> element.
-    * @return  the existing instance of <code>WebType<ModuleType<T>></code>, or null if not found
+    * @return  the existing instance of <code>WebTypeReader<ModuleTypeReader<T>></code>, or null if not found
     */
-   public WebType<ModuleType<T>> getWeb();
-
-   /**
-    * If not already created, a new <code>web</code> element with the given value will be created.
-    * Otherwise, the existing <code>web</code> element will be returned.
-    * @return  a new or existing instance of <code>WebType<ModuleType<T>></code> 
-    */
-   public WebType<ModuleType<T>> getOrCreateWeb();
-
-   /**
-    * Removes the <code>web</code> element 
-    * @return the current instance of <code>ModuleType<T></code> 
-    */
-   public ModuleType<T> removeWeb();
+   public WebTypeReader<ModuleTypeReader<T>> getWeb();
 
  
    // --------------------------------------------------------------------------------------------------------||
-   // ClassName: ModuleType ElementName: xsd:token ElementType : alt-dd
+   // ClassName: ModuleTypeReader ElementName: xsd:token ElementType : alt-dd
    // MaxOccurs: -  isGeneric: true   isAttribute: false isEnum: false isDataType: true
    // --------------------------------------------------------------------------------------------------------||
-
-   /**
-    * Sets the <code>alt-dd</code> element
-    * @param altDd the value for the element <code>alt-dd</code> 
-    * @return the current instance of <code>ModuleType<T></code> 
-    */
-   public ModuleType<T> altDd(String altDd);
 
    /**
     * Returns the <code>alt-dd</code> element
     * @return the node defined for the element <code>alt-dd</code> 
     */
    public String getAltDd();
-
-   /**
-    * Removes the <code>alt-dd</code> element 
-    * @return the current instance of <code>ModuleType<T></code> 
-    */
-   public ModuleType<T> removeAltDd();
 }
