@@ -72,7 +72,7 @@ public class MetadataParser
     * @param verbose if true, additional parsing information are printed out, otherwise not.
     * @throws Exception 
     */
-   public void parse(final MetadataParserPath path, final List<?> confList, final boolean verbose) throws Exception
+   public void parse(final MetadataParserPath path, final List<?> confList, final boolean verbose, final String context) throws Exception
    {
 	  checkArguments(path, confList);
 	   
@@ -87,17 +87,19 @@ public class MetadataParser
          metadata.setCurrentSchmema(metadataConf.getPathToXsd());
          metadata.setCurrentPackageApi(metadataConf.getPackageApi());
          metadata.setCurrentPackageImpl(metadataConf.getPackageImpl());
-
-         final MetadataDescriptor metadataDescriptor = new MetadataDescriptor(metadataConf.getDescriptorName());
-         metadataDescriptor.setRootElementName(metadataConf.getElementName());
-         metadataDescriptor.setRootElementType(metadataConf.getElementType());
-         metadataDescriptor.setSchemaName(metadataConf.getPathToXsd());
-         metadataDescriptor.setPackageApi(metadataConf.getPackageApi());
-         metadataDescriptor.setPackageImpl(metadataConf.getPackageImpl());
-         metadataDescriptor.setNamespace(metadataConf.getNameSpace());
-         metadataDescriptor.setNamespaces(metadataConf.getNamespaces());
-         metadataDescriptor.setGenerateClasses(metadataConf.generateClasses);
-         metadata.getMetadataDescriptorList().add(metadataDescriptor);
+         metadata.setCurrentContext(context);
+         
+        final MetadataDescriptor metadataDescriptor = new MetadataDescriptor(metadataConf.getDescriptorName());
+        metadataDescriptor.setRootElementName(metadataConf.getElementName());
+        metadataDescriptor.setRootElementType(metadataConf.getElementType());
+        metadataDescriptor.setSchemaName(metadataConf.getPathToXsd());
+        metadataDescriptor.setPackageApi(metadataConf.getPackageApi());
+        metadataDescriptor.setPackageImpl(metadataConf.getPackageImpl());
+        metadataDescriptor.setNamespace(metadataConf.getNameSpace());
+        metadataDescriptor.setNamespaces(metadataConf.getNamespaces());
+        metadataDescriptor.setGenerateClasses(metadataConf.generateClasses);
+        metadataDescriptor.setDefaultFileName(metadataConf.getDefaultFileName());
+        metadata.getMetadataDescriptorList().add(metadataDescriptor);
          
          log.info(metadataConf.getPathToXsd());
          if (metadataConf.getPathToXsd().endsWith(".dtd"))
@@ -120,7 +122,7 @@ public class MetadataParser
                   NodeFilter.SHOW_ELEMENT, null, true);
             final StringBuilder sb = verbose ? new StringBuilder() : null;
             
-            filterChain.traverseAndFilter(walker, "", metadata, sb);
+            filterChain.traverseAndFilter(walker, "", metadata, null, sb);
             
             if(sb!=null){
                 log.info(sb.toString());

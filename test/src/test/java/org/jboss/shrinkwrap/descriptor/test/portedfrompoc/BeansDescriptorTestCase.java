@@ -30,6 +30,7 @@ import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.beans10.BeansDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.beans10.MutableBeansDescriptor;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -81,7 +82,7 @@ public class BeansDescriptorTestCase
    @Test
    public void shouldBeAbleToSetName() throws Exception
    {
-      Assert.assertEquals("test.xml", Descriptors.create(BeansDescriptor.class, "test.xml").getDescriptorName());
+      Assert.assertEquals("test.xml", Descriptors.create(MutableBeansDescriptor.class, "test.xml").getDescriptorName());
    }
    
    @Test
@@ -233,7 +234,7 @@ public class BeansDescriptorTestCase
       final String desc = create().getOrCreateDecorators()
             .clazz(TestDecorator.class.getName(), TestDecorator.class.getName()).up().exportAsString();
 
-      final String roundtrip = Descriptors.importAs(BeansDescriptor.class).fromString(desc).exportAsString();
+      final String roundtrip = Descriptors.importAs(MutableBeansDescriptor.class).fromString(desc).exportAsString();
       
       assertPresenceUsingXPath(roundtrip, "/beans/decorators/class", TestDecorator.class.getName(), TestDecorator.class.getName());
       
@@ -246,7 +247,7 @@ public class BeansDescriptorTestCase
    @Test
    public void shouldBeAbleToGenerateComplexDescriptor() throws Exception
    {
-      final BeansDescriptor beans = Descriptors.create(BeansDescriptor.class).getOrCreateInterceptors()
+      final MutableBeansDescriptor beans = Descriptors.create(MutableBeansDescriptor.class).getOrCreateInterceptors()
             .clazz(TestInterceptor.class.getName(), TestAnotherInterceptor.class.getName()).up()
             .getOrCreateDecorators().clazz(TestDecorator.class.getName()).up().getOrCreateAlternatives()
             .stereotype(TestAlternativeStereoType.class.getName()).up();
@@ -261,8 +262,8 @@ public class BeansDescriptorTestCase
    // Internal Helper --------------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||
 
-   private BeansDescriptor create()
+   private MutableBeansDescriptor create()
    {
-      return Descriptors.create(BeansDescriptor.class);
+      return Descriptors.create(MutableBeansDescriptor.class);
    }
 }

@@ -30,6 +30,8 @@ public class MetadataDescriptor extends BaseMetadataItem
    private String rootElementName;
 
    private String rootElementType;
+  
+   private String defaultFileName;
    
    private boolean generateClasses;
 
@@ -78,5 +80,14 @@ public class MetadataDescriptor extends BaseMetadataItem
    public void setGenerateClasses(final boolean generateClasses)
    {
       this.generateClasses = generateClasses;
+   }
+
+   public String getDefaultFileName() {
+	  return defaultFileName;
+   }
+
+   public void setDefaultFileName(final String defaultFileName) {
+	  this.defaultFileName = defaultFileName;
    }   
+   
 }

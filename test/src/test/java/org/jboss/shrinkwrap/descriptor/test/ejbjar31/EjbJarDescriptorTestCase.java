@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.ejbjar31.EjbJarDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.ejbjar31.MutableEjbJarDescriptor;
 import org.jboss.shrinkwrap.descriptor.test.application5.ApplicationDescriptorTestCase;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Before;
@@ -32,8 +33,8 @@ public class EjbJarDescriptorTestCase
    @Test
    public void testGeneratedEjbJarXml() throws Exception
    {  
-      EjbJarDescriptor ejbJarGenerated = create()
-            .addDefaultNamespaces()
+	   MutableEjbJarDescriptor ejbJarGenerated = create()
+//            .addDefaultNamespaces()
             .version("3.1")
             .moduleName("module-name0")
             .description("description0")
@@ -512,8 +513,8 @@ public class EjbJarDescriptorTestCase
    @Test
    public void testInterceptors() throws Exception
    {  
-      EjbJarDescriptor ejbJarGenerated = create()
-            .addDefaultNamespaces()
+	   MutableEjbJarDescriptor ejbJarGenerated = create()
+//            .addDefaultNamespaces()
             .version("3.1")
             .getOrCreateInterceptors()
                .createInterceptor().interceptorClass(" enterprise.annot_ovd_interceptor_ejb.NullChecker ").up()
@@ -557,9 +558,9 @@ public class EjbJarDescriptorTestCase
       return builder.toString();
    }
    
-   private EjbJarDescriptor create()
+   private MutableEjbJarDescriptor create()
    {
-      return Descriptors.create(EjbJarDescriptor.class);
+      return Descriptors.create(MutableEjbJarDescriptor.class);
    }
    
 }

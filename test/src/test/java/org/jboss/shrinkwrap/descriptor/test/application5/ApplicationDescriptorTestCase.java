@@ -24,6 +24,7 @@ import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.application5.ApplicationDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.application5.MutableApplicationDescriptor;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -59,12 +60,12 @@ public class ApplicationDescriptorTestCase
    /**
     * Default, empty application descriptor
     */
-   private ApplicationDescriptor emptyDescriptor;
+   private MutableApplicationDescriptor emptyDescriptor;
 
    /**
     * Fully-populated application descriptor
     */
-   private ApplicationDescriptor fullyPopulatedDescriptor;
+   private MutableApplicationDescriptor fullyPopulatedDescriptor;
 
    //-------------------------------------------------------------------------------------||
    // Lifecycle --------------------------------------------------------------------------||
@@ -73,13 +74,13 @@ public class ApplicationDescriptorTestCase
    @Before
    public void createEmptyDescriptor()
    {
-      emptyDescriptor = Descriptors.create(ApplicationDescriptor.class);
+      emptyDescriptor = Descriptors.create(MutableApplicationDescriptor.class);
    }
 
    @Before
    public void createFullyPopulatedDescriptor()
    {
-      fullyPopulatedDescriptor = Descriptors.importAs(ApplicationDescriptor.class).fromStream(
+      fullyPopulatedDescriptor = Descriptors.importAs(MutableApplicationDescriptor.class).fromStream(
             Thread.currentThread().getContextClassLoader().getResourceAsStream(NAME_EAR_XML));
       log.info(fullyPopulatedDescriptor.exportAsString());
    }

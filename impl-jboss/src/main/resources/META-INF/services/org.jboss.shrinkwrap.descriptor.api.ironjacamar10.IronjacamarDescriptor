@@ -1,3 +1,0 @@
-implClass=org.jboss.shrinkwrap.descriptor.impl.ironjacamar10.IronjacamarDescriptorImpl
-importerClass=org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomNodeDescriptorImporterImpl
-defaultName=ironjacamar.xml

@@ -11,6 +11,7 @@ import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.facesconfig20.FacesConfigVersionType;
+import org.jboss.shrinkwrap.descriptor.api.facesconfig20.MutableWebFacesConfigDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.facesconfig20.WebFacesConfigDescriptor;
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptor;
@@ -68,14 +69,14 @@ public class FacesConfigDescriptorTestCase {
     @Test
     public void shouldBeAbleToOverrideVersionInWebFacesConfigDescriptor() throws Exception {
         // Make a descriptor
-        final WebFacesConfigDescriptor facesConfig = Descriptors.importAs(WebFacesConfigDescriptor.class).fromString(source);
+        final MutableWebFacesConfigDescriptor facesConfig = Descriptors.importAs(MutableWebFacesConfigDescriptor.class).fromString(source);
 
         facesConfig.version("2.0");
         Assert.assertEquals("2.0", facesConfig.getVersionAsString());
 
         // Get as Node structure
         final InputStream stream = new ByteArrayInputStream(facesConfig.exportAsString().getBytes());
-        final WebFacesConfigDescriptor fromFacesConfigXml = Descriptors.importAs(WebFacesConfigDescriptor.class).fromStream(
+        final MutableWebFacesConfigDescriptor fromFacesConfigXml = Descriptors.importAs(MutableWebFacesConfigDescriptor.class).fromStream(
             stream);
         final Node root = ((NodeDescriptor) fromFacesConfigXml).getRootNode();
 
@@ -92,8 +93,8 @@ public class FacesConfigDescriptorTestCase {
 
     @Test
     public void testGeneratedFacesConfigXml() throws Exception {
-        final WebFacesConfigDescriptor facesConfig = create()
-            .addDefaultNamespaces()
+        final MutableWebFacesConfigDescriptor facesConfig = create()
+//            .addDefaultNamespaces()
             .version(FacesConfigVersionType._2_0)
             .name("SeamBooking")
             .getOrCreateNavigationRule()
@@ -217,8 +218,8 @@ public class FacesConfigDescriptorTestCase {
         return builder.toString();
     }
 
-    private WebFacesConfigDescriptor create() {
-        return Descriptors.create(WebFacesConfigDescriptor.class);
+    private MutableWebFacesConfigDescriptor create() {
+        return Descriptors.create(MutableWebFacesConfigDescriptor.class);
     }
 
 }

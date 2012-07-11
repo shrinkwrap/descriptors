@@ -23,6 +23,7 @@ import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.connector16.ConnectorDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.connector16.MutableConnectorDescriptor;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Test;
 
@@ -49,8 +50,8 @@ public class ConnectorDescriptorTestCase
    @Test
    public void testGenExample() throws Exception 
    {
-      ConnectorDescriptor jca16Descr = create()
-         .addDefaultNamespaces()
+	   MutableConnectorDescriptor jca16Descr = create()
+//         .addDefaultNamespaces()
          .version("1.6")
          .moduleName("module-name0")
          .description("description0")
@@ -142,9 +143,9 @@ public class ConnectorDescriptorTestCase
       return builder.toString();
    }
    
-   private ConnectorDescriptor create()
+   private MutableConnectorDescriptor create()
    {
-      return Descriptors.create(ConnectorDescriptor.class);
+      return Descriptors.create(MutableConnectorDescriptor.class);
    }
    
 }

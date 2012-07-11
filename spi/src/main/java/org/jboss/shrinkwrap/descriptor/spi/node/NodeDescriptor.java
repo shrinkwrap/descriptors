@@ -19,18 +19,10 @@ package org.jboss.shrinkwrap.descriptor.spi.node;
 import org.jboss.shrinkwrap.descriptor.api.Descriptor;
 
 /**
- * A {@link Descriptor} based on a {@link Node} model
- * (ie. hierarchal, typically representing XML metadata).
- *
+ * A {@link Descriptor} based on a {@link NodeModel} (ie. hierarchal, typically representing XML metadata).
+ * 
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public interface NodeDescriptor extends Descriptor
-{
-   /**
-    * Obtains the top-level root {@link Node} for this
-    * {@link NodeDescriptor} 
-    * @return
-    */
-   Node getRootNode();
+public interface NodeDescriptor extends Descriptor, NodeModel {
 }

@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
+import org.jboss.shrinkwrap.descriptor.api.jsptaglibrary21.MutableWebJsptaglibraryDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.jsptaglibrary21.WebJsptaglibraryDescriptor;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Before;
@@ -45,8 +46,8 @@ public class WebJspTagLibraryDescriptorTestCase
    @Test
    public void testGeneratedWebJspTagLibrary21Xml() throws Exception
    {  
-	   WebJsptaglibraryDescriptor ejbJarGenerated = create()
-            .addDefaultNamespaces()
+	   MutableWebJsptaglibraryDescriptor ejbJarGenerated = create()
+//            .addDefaultNamespaces()
             .version("2.1")
             .description("description0")
             .description("description1")
@@ -233,9 +234,9 @@ public class WebJspTagLibraryDescriptorTestCase
       return builder.toString();
    }
    
-   private WebJsptaglibraryDescriptor create()
+   private MutableWebJsptaglibraryDescriptor create()
    {
-      return Descriptors.create(WebJsptaglibraryDescriptor.class);
+      return Descriptors.create(MutableWebJsptaglibraryDescriptor.class);
    }
    
 }

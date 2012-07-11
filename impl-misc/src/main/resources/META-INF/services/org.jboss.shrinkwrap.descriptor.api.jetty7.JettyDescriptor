@@ -1,3 +1,0 @@
-implClass=org.jboss.shrinkwrap.descriptor.impl.jetty7.JettyDescriptorImpl
-importerClass=org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomNodeDescriptorImporterImpl
-defaultName=default.xml

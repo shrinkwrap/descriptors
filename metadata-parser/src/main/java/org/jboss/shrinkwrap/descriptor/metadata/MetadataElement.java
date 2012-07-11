@@ -34,6 +34,7 @@ public class MetadataElement
    private String minOccurs;
    private String maxOccurs;
    private String mappedTo;
+   private Integer seqNo;
       
    /**
     * Creates a new and empty instance.
@@ -139,6 +140,16 @@ public class MetadataElement
    public void setMappedTo(final String mappedTo)
    {
       this.mappedTo = mappedTo;
+   }
+
+   public Integer getSeqNo()
+   {
+      return seqNo;
+   }
+
+   public void setSeqNo(final Integer seqID)
+   {
+      this.seqNo = seqID;
    }
    
    

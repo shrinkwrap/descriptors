@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
 import org.jboss.ironjacamar.api.IronjacamarDescriptor;
+import org.jboss.ironjacamar.api.MutableIronjacamarDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Before;
@@ -25,8 +26,8 @@ public class IronJacamarTestCase
    @Test
    public void testGeneratedIronJacamarXml() throws Exception
    {  
-	   IronjacamarDescriptor ironJacamarGenerated = create()
-            .addDefaultNamespaces()
+	   MutableIronjacamarDescriptor ironJacamarGenerated = create()
+//            .addDefaultNamespaces()
             .getOrCreateBeanValidationGroups()
             	.beanValidationGroup("bean-validation-group0")
             	.beanValidationGroup("bean-validation-group1").up()
@@ -144,9 +145,9 @@ public class IronJacamarTestCase
       return builder.toString();
    }
    
-   private IronjacamarDescriptor create()
+   private MutableIronjacamarDescriptor create()
    {
-      return Descriptors.create(IronjacamarDescriptor.class);
+      return Descriptors.create(MutableIronjacamarDescriptor.class);
    }
    
 }

@@ -58,6 +58,7 @@
 						<id>execution1</id>
 						<phase>validate</phase>
 						<configuration>
+						    <context>IronJacamer</context>
 							<verbose>false</verbose>
 							<path>
 								<pathToApi>${basedir}/src/main/java</pathToApi>
@@ -73,6 +74,7 @@
 									<descriptorName>IronjacamarDescriptor</descriptorName>
 									<elementName>ironjacamar</elementName>
 									<elementType>ironjacamar:ironjacamarType</elementType>
+									<defaultFileName>default.xml</defaultFileName>
 								</descriptor>
 
 								<descriptor>
@@ -83,6 +85,7 @@
 									<descriptorName>DatasourcesDescriptor</descriptorName>
 									<elementName>datasources</elementName>
 									<elementType>datasources:datasourcesType</elementType>
+									<defaultFileName>default.xml</defaultFileName>
 								</descriptor>
 
 								<descriptor>
@@ -93,6 +96,7 @@
 									<descriptorName>ResourceadapterDescriptor</descriptorName>
 									<elementName>resource-adapters</elementName>
 									<elementType>resourceadapters:resource-adaptersType</elementType>
+									<defaultFileName>default.xml</defaultFileName>
 								</descriptor>
 
 								<descriptor>
@@ -103,6 +107,7 @@
 									<descriptorName>ConnectorDescriptor</descriptorName>
 									<elementName>connector</elementName>
 									<elementType>j2ee:connector</elementType>
+									<defaultFileName>ra.xml</defaultFileName>
 								</descriptor>
 
 							</descriptors>

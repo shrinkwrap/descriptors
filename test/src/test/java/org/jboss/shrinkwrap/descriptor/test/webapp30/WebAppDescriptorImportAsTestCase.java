@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.util.logging.Logger;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.MutableWebAppDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
 import org.junit.Test;
 
@@ -38,7 +39,7 @@ public class WebAppDescriptorImportAsTestCase
    public void shouldBeAbleToImport() throws Exception
    {
       // Make a descriptor
-      final WebAppDescriptor web = Descriptors.importAs(WebAppDescriptor.class).fromString(
+      final MutableWebAppDescriptor web = Descriptors.importAs(MutableWebAppDescriptor.class).fromString(
             source);
       
       log.info(web.exportAsString());
@@ -54,7 +55,7 @@ public class WebAppDescriptorImportAsTestCase
    {
       String web_source_generated = getResourceContents("src/test/resources/test-orig-webapp30.xml");
       
-      final WebAppDescriptor webapp = Descriptors.importAs(WebAppDescriptor.class).fromString(
+      final MutableWebAppDescriptor webapp = Descriptors.importAs(MutableWebAppDescriptor.class).fromString(
             web_source_generated);
       
       assertTrue(webapp.getAllDisplayName().size() == 1);
@@ -86,7 +87,7 @@ public class WebAppDescriptorImportAsTestCase
    {
       String web_source_generated = getResourceContents("src/test/resources/test-gen-webapp30.xml");
       
-      final WebAppDescriptor web = Descriptors.importAs(WebAppDescriptor.class).fromString(
+      final MutableWebAppDescriptor web = Descriptors.importAs(MutableWebAppDescriptor.class).fromString(
             web_source_generated);
       
       assertEquals(web.getAllModuleName().get(0), "module-name0");

@@ -19,6 +19,10 @@
 package org.jboss.shrinkwrap.descriptor.metadata.dom;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -129,6 +133,7 @@ public class DomWriter
             final Attr generateClassImpl = doc.createAttribute("generateClass");
             generateClassImpl.setValue(Boolean.toString(descriptor.isGenerateClasses()));
             packageImpl.setAttributeNode(generateClassImpl);  
+                        
             packages.appendChild(packageImpl);
          }
          
@@ -291,6 +296,11 @@ public class DomWriter
             attrDocumentation.setValue("");
             classElement.setAttributeNode(attrDocumentation);
             
+            final Attr attrContext = doc.createAttribute("context");
+            attrContext.setValue(metadata.getCurrentContext());
+            classElement.setAttributeNode(attrContext);
+            
+            checkClassElementSequence(doc, classElement, metadataClass.getElements());
             for(MetadataElement element: metadataClass.getElements())
             {
                final Element childElement = doc.createElement("element");
@@ -365,7 +375,11 @@ public class DomWriter
                
                final Attr attrPackageImpl = doc.createAttribute("packageImpl");
                attrPackageImpl.setValue(descriptor.getPackageImpl());
-               descriptorElement.setAttributeNode(attrPackageImpl);
+               descriptorElement.setAttributeNode(attrPackageImpl);               
+
+               final Attr defaultFileName = doc.createAttribute("defaultFileName");
+               defaultFileName.setValue(descriptor.getDefaultFileName());
+               descriptorElement.setAttributeNode(defaultFileName);  
                
                final Element element = doc.createElement("element");
                descriptorElement.appendChild(element);
@@ -418,5 +432,52 @@ public class DomWriter
       {
          tfe.printStackTrace();
       }
+   }
+   
+   /**
+    * Checks the existence of sequenced class elements and tries to 
+    * to reflect that into the metadata XML tree.
+    * @param doc
+    * @param classElement
+    * @param classElementList
+    */
+   private void checkClassElementSequence(final Document doc, final Element classElement, final List<MetadataElement> classElementList) {
+	   final Map<Integer, List<MetadataElement>> sequencedElementList = new HashMap<Integer, List<MetadataElement>>();
+	   for(final MetadataElement metadataElement: classElementList) {
+		   if (metadataElement.getSeqNo() != null) {
+			   if (!sequencedElementList.containsKey(metadataElement.getSeqNo())) {
+				   sequencedElementList.put(metadataElement.getSeqNo(), new ArrayList<MetadataElement>());
+			   }
+			   sequencedElementList.get(metadataElement.getSeqNo()).add(metadataElement);
+		   }
+	   }
+	   
+	   for (final List<MetadataElement> elementList: sequencedElementList.values()) {
+		   if (elementList.size() > 1 && elementList.size() < 6) {
+			   final Element childElement = doc.createElement("sequence");
+			   
+			   for (MetadataElement element: elementList) {
+				   final Element sequenceElement = doc.createElement("element");
+				   
+				   final Attr elName = doc.createAttribute("name");
+	               elName.setValue(element.getName());
+	               sequenceElement.setAttributeNode(elName);
+	               
+	               final Attr elType = doc.createAttribute("type");
+	               elType.setValue(element.getType());
+	               sequenceElement.setAttributeNode(elType);
+	               
+	               if (element.getMaxOccurs() != null)
+	               {
+	                  final Attr elMaxOccurs = doc.createAttribute("maxOccurs");
+	                  elMaxOccurs.setValue(element.getMaxOccurs());
+	                  sequenceElement.setAttributeNode(elMaxOccurs);
+	               }
+	               childElement.appendChild(sequenceElement);
+			   }
+			   
+			   classElement.appendChild(childElement);
+		   }
+	   }
    }
 }

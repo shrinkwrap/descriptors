@@ -19,6 +19,7 @@ package org.jboss.shrinkwrap.descriptor.test.portedfrompoc;
 import java.io.ByteArrayOutputStream;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.MutableWebAppDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -38,7 +39,7 @@ public class DescriptorExporterTestCase
    public void shouldBeAbleToExportToStream() throws Exception
    {
       final String name = DescriptorExporterTestCase.class.getName();
-      final WebAppDescriptor descriptor = Descriptors.create(WebAppDescriptor.class).displayName(name);
+      final MutableWebAppDescriptor descriptor = Descriptors.create(MutableWebAppDescriptor.class).displayName(name);
 
       final ByteArrayOutputStream output = new ByteArrayOutputStream();
       descriptor.exportTo(output);

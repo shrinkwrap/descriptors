@@ -25,6 +25,7 @@ import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.connector10.ConnectorDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.connector10.MutableConnectorDescriptor;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Test;
 
@@ -51,7 +52,7 @@ public class ConnectorDescriptorTestCase
    @Test
    public void testHornetQExample() throws Exception 
    {
-      ConnectorDescriptor jca10Generated = create()
+	   MutableConnectorDescriptor jca10Generated = create()
       	.displayName("Sample Adapter")
       	.description("It is a sample resource adapter")
       	.vendorName("JBoss")
@@ -106,9 +107,9 @@ public class ConnectorDescriptorTestCase
       return builder.toString();
    }
    
-   private ConnectorDescriptor create()
+   private MutableConnectorDescriptor create()
    {
-      return Descriptors.create(ConnectorDescriptor.class);
+      return Descriptors.create(MutableConnectorDescriptor.class);
    }
    
 }

@@ -25,6 +25,7 @@ import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.connector15.ConnectorDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.connector15.MutableConnectorDescriptor;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Test;
 
@@ -51,8 +52,8 @@ public class ConnectorDescriptorTestCase
    @Test
    public void testHornetQExample() throws Exception 
    {
-      ConnectorDescriptor jca15Generated = create()
-         .addDefaultNamespaces()
+	   MutableConnectorDescriptor jca15Generated = create()
+//         .addDefaultNamespaces()
          .version("1.5")
          .description("HornetQ 2.0 Resource Adapter")
          .displayName("HornetQ 2.0 Resource Adapter")
@@ -150,9 +151,9 @@ public class ConnectorDescriptorTestCase
       return builder.toString();
    }
    
-   private ConnectorDescriptor create()
+   private MutableConnectorDescriptor create()
    {
-      return Descriptors.create(ConnectorDescriptor.class);
+      return Descriptors.create(MutableConnectorDescriptor.class);
    }
    
 }

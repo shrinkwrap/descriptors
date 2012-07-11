@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.logging.Logger;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.MutableWebAppDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
 import org.junit.Test;
 
@@ -26,7 +27,7 @@ public class WebAppDescriptorAttributeGroupTestCase
    @Test
    public void testDescription() throws Exception
    {
-      final WebAppDescriptor webApp = create()
+      final MutableWebAppDescriptor webApp = create()
          .createServlet()
             .description("Description1")
             .description("Description2").up();
@@ -42,7 +43,7 @@ public class WebAppDescriptorAttributeGroupTestCase
    @Test
    public void testDisplayName() throws Exception
    {
-      final WebAppDescriptor webApp = create()
+      final MutableWebAppDescriptor webApp = create()
          .createFilter()
             .displayName("displayName1")
             .displayName("displayName2").up();
@@ -58,7 +59,7 @@ public class WebAppDescriptorAttributeGroupTestCase
    @Test
    public void testIcon() throws Exception
    {
-      final WebAppDescriptor webApp = create()
+      final MutableWebAppDescriptor webApp = create()
          .createFilter().createIcon().largeIcon("largeIcon1").up()
                   .createIcon().smallIcon("smallIcon2").up().up();
       
@@ -81,8 +82,8 @@ public class WebAppDescriptorAttributeGroupTestCase
    // Helper Methods ----------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
    
-   private WebAppDescriptor create()
+   private MutableWebAppDescriptor create()
    {
-      return Descriptors.create(WebAppDescriptor.class);
+      return Descriptors.create(MutableWebAppDescriptor.class);
    }
 }

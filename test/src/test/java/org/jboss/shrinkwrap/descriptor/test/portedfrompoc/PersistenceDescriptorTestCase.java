@@ -25,7 +25,9 @@ import java.util.logging.Logger;
 import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
+import org.jboss.shrinkwrap.descriptor.api.persistence20.MutablePersistenceDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.persistence20.PersistenceDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.persistence20.PersistenceMutable;
 import org.jboss.shrinkwrap.descriptor.api.persistence20.PersistenceUnit;
 import org.jboss.shrinkwrap.descriptor.api.persistence20.PersistenceUnitTransactionType;
 import org.jboss.shrinkwrap.descriptor.api.persistence20.Properties;
@@ -126,9 +128,8 @@ public class PersistenceDescriptorTestCase
    @Test
    public void shouldBeAbleToAddDescription() throws Exception
    {
-      PersistenceUnit<PersistenceDescriptor> unit = create().getOrCreatePersistenceUnit().description(name);
-      String desc = unit.up()
-                     .exportAsString();
+      PersistenceUnit<MutablePersistenceDescriptor> unit = create().getOrCreatePersistenceUnit().description(name);
+      String desc = unit.up().exportAsString();
       assertPresenceUsingXPath(desc, "/persistence/persistence-unit/description", name);
       Assert.assertEquals(name, unit.getDescription());
    }
@@ -152,7 +153,7 @@ public class PersistenceDescriptorTestCase
    @Test
    public void shouldBeAbleToSetJTADataSource() throws Exception
    {
-      PersistenceUnit<PersistenceDescriptor> unit = create().getOrCreatePersistenceUnit().jtaDataSource(name);
+      PersistenceUnit<MutablePersistenceDescriptor> unit = create().getOrCreatePersistenceUnit().jtaDataSource(name);
       String desc = unit.up().exportAsString();
    
       assertPresenceUsingXPath(desc, "/persistence/persistence-unit/jta-data-source", name);
@@ -182,7 +183,7 @@ public class PersistenceDescriptorTestCase
    @Test
    public void shouldBeAbleToSetNonJtaDataSource() throws Exception
    {
-      PersistenceUnit<PersistenceDescriptor> unit = create().getOrCreatePersistenceUnit().nonJtaDataSource(name);
+      PersistenceUnit<MutablePersistenceDescriptor> unit = create().getOrCreatePersistenceUnit().nonJtaDataSource(name);
       String desc = unit.up().exportAsString();
    
       assertPresenceUsingXPath(desc, "/persistence/persistence-unit/non-jta-data-source", name);
@@ -260,12 +261,12 @@ public class PersistenceDescriptorTestCase
    @Test
    public void shouldBeAbleToGetProperties() throws Exception
    {
-      PersistenceUnit<PersistenceDescriptor> def = create().getOrCreatePersistenceUnit()
+      Properties<PersistenceUnit<MutablePersistenceDescriptor>> def = create().getOrCreatePersistenceUnit()
                                                            .getOrCreateProperties()
                                                            .createProperty().name(name).value(name2).up()
-                                                           .createProperty().name(name2).value(name).up().up();
+                                                           .createProperty().name(name2).value(name).up();
    
-      List<Property<Properties<PersistenceUnit<PersistenceDescriptor>>>> properties = def.getOrCreateProperties().getAllProperty();
+      List<Property<Properties<PersistenceUnit<MutablePersistenceDescriptor>>>> properties = def.getAllProperty();
       assertEquals(2, properties.size());
       assertEquals(name, properties.get(0).getName());
       assertEquals(name2, properties.get(0).getValue());
@@ -310,12 +311,12 @@ public class PersistenceDescriptorTestCase
    @Test
    public void shouldBeAbleToClearProperties() throws Exception
    {
-      Properties<PersistenceUnit<PersistenceDescriptor>> def = create().getOrCreatePersistenceUnit()
+      Properties<PersistenceUnit<MutablePersistenceDescriptor>> def = create().getOrCreatePersistenceUnit()
                                        .getOrCreateProperties()
                                        .createProperty().name(name).value(name2).up()
                                        .createProperty().name(name2).value(name).up();
    
-      List<Property<Properties<PersistenceUnit<PersistenceDescriptor>>>> props = def.getAllProperty();
+      List<Property<Properties<PersistenceUnit<MutablePersistenceDescriptor>>>> props = def.getAllProperty();
       assertEquals(2, props.size());
    
       def.removeAllProperty();
@@ -327,12 +328,12 @@ public class PersistenceDescriptorTestCase
    @Test
    public void shouldBeAbleToClearPropertiesAndAddNew() throws Exception
    {
-      Properties<PersistenceUnit<PersistenceDescriptor>> def = create().getOrCreatePersistenceUnit()
+      Properties<PersistenceUnit<MutablePersistenceDescriptor>> def = create().getOrCreatePersistenceUnit()
             .getOrCreateProperties()
             .createProperty().name(name).value(name2).up()
             .createProperty().name(name2).value(name).up();
 
-      List<Property<Properties<PersistenceUnit<PersistenceDescriptor>>>> props = def.getAllProperty();
+      List<Property<Properties<PersistenceUnit<MutablePersistenceDescriptor>>>> props = def.getAllProperty();
       assertEquals(2, props.size());
       
       def.removeAllProperty();
@@ -385,7 +386,7 @@ public class PersistenceDescriptorTestCase
       final String eclipseLinkProvider = "org.eclipse.persistence.jpa.PersistenceProvider";
       final String nonjtaDataSource = "jdbc/__default";
 
-      final PersistenceDescriptor persistence = Descriptors.create(PersistenceDescriptor.class)
+      final MutablePersistenceDescriptor persistence = Descriptors.create(MutablePersistenceDescriptor.class)
             .createPersistenceUnit().name(hibernateUnit).transactionType(txTypeJta)
             	.provider(providerTypeHibernate).jtaDataSource(jtaDataSource).clazz(PersistenceDescriptor.class.getName()).up()
             .createPersistenceUnit().name(eclipseLinkUnit).transactionType(txTypeResourceLocal)
@@ -412,8 +413,8 @@ public class PersistenceDescriptorTestCase
    // Internal Helper --------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
 
-   private PersistenceDescriptor create()
+   private MutablePersistenceDescriptor create()
    {
-      return Descriptors.create(PersistenceDescriptor.class).getOrCreatePersistenceUnit().name(name).up();
+      return Descriptors.create(MutablePersistenceDescriptor.class).getOrCreatePersistenceUnit().name(name).up();
    }
 }

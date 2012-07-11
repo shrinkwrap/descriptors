@@ -23,6 +23,7 @@ import java.util.TimeZone;
 import java.util.logging.Logger;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
+import org.jboss.shrinkwrap.descriptor.api.jsptaglibrary20.MutableWebJsptaglibraryDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.jsptaglibrary20.WebJsptaglibraryDescriptor;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Before;
@@ -48,8 +49,8 @@ public class WebJspTagLibraryDescriptorTestCase
    @Test
    public void testGeneratedWebJspTagLibrary20Xml() throws Exception
    {  
-	   WebJsptaglibraryDescriptor ejbJarGenerated = create()
-            .addDefaultNamespaces()
+	   MutableWebJsptaglibraryDescriptor ejbJarGenerated = create()
+//            .addDefaultNamespaces()
             .version("2.0")
             .description("description0")
             .description("description1")
@@ -237,9 +238,9 @@ public class WebJspTagLibraryDescriptorTestCase
       return builder.toString();
    }
    
-   private WebJsptaglibraryDescriptor create()
+   private MutableWebJsptaglibraryDescriptor create()
    {
-      return Descriptors.create(WebJsptaglibraryDescriptor.class);
+      return Descriptors.create(MutableWebJsptaglibraryDescriptor.class);
    }
    
 }

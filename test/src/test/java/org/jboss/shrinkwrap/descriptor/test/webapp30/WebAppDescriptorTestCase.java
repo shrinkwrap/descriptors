@@ -1,7 +1,7 @@
 package org.jboss.shrinkwrap.descriptor.test.webapp30;
 
-import static org.jboss.shrinkwrap.descriptor.test.util.XmlAssert.*;
-
+import static org.jboss.shrinkwrap.descriptor.test.util.XmlAssert.assertPresenceUsingXPath;
+import static org.jboss.shrinkwrap.descriptor.test.util.XmlAssert.assertSchemaLocation;
 import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayInputStream;
@@ -13,9 +13,11 @@ import junit.framework.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.javaee6.IconType;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.MutableWebAppDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.FilterType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.TrackingModeType;
+import org.jboss.shrinkwrap.descriptor.api.webcommon30.WebAppTypeMutable;
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptor;
 import org.junit.Test;
@@ -52,7 +54,7 @@ public class WebAppDescriptorTestCase
    @Test
    public void shouldBeAbleToSetName() throws Exception
    {
-      Assert.assertEquals("test.xml", Descriptors.create(WebAppDescriptor.class, "test.xml").getDescriptorName());
+      Assert.assertEquals("test.xml", Descriptors.create(MutableWebAppDescriptor.class, "test.xml").getDescriptorName());
    }
 
    /**
@@ -107,13 +109,13 @@ public class WebAppDescriptorTestCase
    @Test
    public void shouldBeAbleToGetFilterIcons() throws Exception
    {
-      WebAppDescriptor web = create()
+	   MutableWebAppDescriptor web = create()
                     .createFilter()
                        .createIcon().smallIcon("small1").largeIcon("large1").up()
                        .createIcon().smallIcon("small2").largeIcon("large2").up()
                     .up();
 
-     List<IconType<FilterType<WebAppDescriptor>>> list = web.getAllFilter().get(0).getAllIcon();
+     List<IconType<FilterType<MutableWebAppDescriptor>>> list = web.getAllFilter().get(0).getAllIcon();
      assertTrue(list.size() == 2);
      for (IconType<?> icon: list) 
      {
@@ -193,7 +195,7 @@ public class WebAppDescriptorTestCase
    public void shouldBeAbleToOverrideVersionInWebAppDescriptor() throws Exception
    {
       // Make a descriptor
-      final WebAppDescriptor web = Descriptors.importAs(WebAppDescriptor.class).fromString(
+      final MutableWebAppDescriptor web = Descriptors.importAs(MutableWebAppDescriptor.class).fromString(
             source);
      
       web.version("3.0");
@@ -201,7 +203,7 @@ public class WebAppDescriptorTestCase
       
       // Get as Node structure
       final InputStream stream = new ByteArrayInputStream(web.exportAsString().getBytes());
-      final WebAppDescriptor fromWebXml = Descriptors.importAs(WebAppDescriptor.class).fromStream(stream);
+      final MutableWebAppDescriptor fromWebXml = Descriptors.importAs(MutableWebAppDescriptor.class).fromStream(stream);
       final Node root = ((NodeDescriptor) fromWebXml).getRootNode();
       
       // Preconditions
@@ -222,8 +224,8 @@ public class WebAppDescriptorTestCase
    // Helper Methods ----------------------------------------------------------------------||
    // -------------------------------------------------------------------------------------||
    
-   private WebAppDescriptor create()
+   private MutableWebAppDescriptor create()
    {
-      return Descriptors.create(WebAppDescriptor.class);
+      return Descriptors.create(MutableWebAppDescriptor.class);
    }
 }

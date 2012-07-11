@@ -37,9 +37,11 @@ public class Metadata
    private final List<String> packageImplList   = new ArrayList<String>();
    private List<MetadataDescriptor> metadataDescriptorList = new ArrayList<MetadataDescriptor>();
    private String currentNamespace;
+   private String currentContext;
    private String currentSchmema;
    private String currentPackageApi;
    private String currentPackageImpl;
+   private Integer currentSeqNo;
 
    public List<MetadataDescriptor> getMetadataDescriptorList()
    {
@@ -121,6 +123,24 @@ public class Metadata
    public List<String> getPackageImplList()
    {
       return packageImplList;
+   }
+
+   public Integer getCurrentSeqNo()
+   {
+      return currentSeqNo;
+   }
+
+   public void setCurrentSeqNo(final Integer currentSeqNo)
+   {
+      this.currentSeqNo = currentSeqNo;
+   }
+
+   public String getCurrentContext() {
+	  return currentContext;
+   }
+
+   public void setCurrentContext(final String currentContext) {
+      this.currentContext = currentContext;
    }
 
    /**
@@ -210,6 +230,7 @@ public class Metadata
    public void addClassElement(final String className, final MetadataElement classElement)
    {
 	  classElement.setType(getNamespaceValue(classElement.getType()));
+	  classElement.setSeqNo(currentSeqNo);
       for (MetadataItem item: classList)
       {
          if (item.getName().equals(className) && item.getNamespace().equals(getCurrentNamespace())

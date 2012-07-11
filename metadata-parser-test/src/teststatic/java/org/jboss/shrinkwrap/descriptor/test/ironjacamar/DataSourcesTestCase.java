@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
-import org.jboss.datasources.api.DatasourcesDescriptor;
+import org.jboss.datasources.api.MutableDatasourcesDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Before;
@@ -25,8 +25,8 @@ public class DataSourcesTestCase
    @Test
    public void testGeneratedDataSourcesXml() throws Exception
    {  
-	   DatasourcesDescriptor dataSourcesGenerated = create()
-        .addDefaultNamespaces()      
+	   MutableDatasourcesDescriptor dataSourcesGenerated = create()
+//        .addDefaultNamespaces()      
         .createDatasource()
             	.jta(true).jndiName("jndi-name1").poolName("pool-name1")
             	.enabled(true).useJavaContext(true).spy(false).useCcm(true)
@@ -193,9 +193,9 @@ public class DataSourcesTestCase
       return builder.toString();
    }
    
-   private DatasourcesDescriptor create()
+   private MutableDatasourcesDescriptor create()
    {
-      return Descriptors.create(DatasourcesDescriptor.class);
+      return Descriptors.create(MutableDatasourcesDescriptor.class);
    }
    
 }

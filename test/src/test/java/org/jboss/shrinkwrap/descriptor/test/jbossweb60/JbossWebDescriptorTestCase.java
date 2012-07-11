@@ -7,6 +7,7 @@ import java.util.TimeZone;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.jbossweb60.JbossWebDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.jbossweb60.MutableJbossWebDescriptor;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,8 +26,8 @@ public class JbossWebDescriptorTestCase
    @Test
    public void testGeneratedJbossWeb60Xml() throws Exception
    {  
-	   JbossWebDescriptor ejbJarGenerated = create()
-            .addDefaultNamespaces()
+	   MutableJbossWebDescriptor ejbJarGenerated = create()
+//            .addDefaultNamespaces()
             .version("6.0")
             .getOrCreateClassLoading().javaClassLoadingCompliance(false)
             	.getOrCreateLoaderRepository().loaderRepositoryClass("loaderRepositoryClass1")
@@ -591,9 +592,9 @@ public class JbossWebDescriptorTestCase
       return builder.toString();
    }
    
-   private JbossWebDescriptor create()
+   private MutableJbossWebDescriptor create()
    {
-      return Descriptors.create(JbossWebDescriptor.class);
+      return Descriptors.create(MutableJbossWebDescriptor.class);
    }
    
 }
