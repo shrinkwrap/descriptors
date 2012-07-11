@@ -18,7 +18,7 @@ public class PersistenceDescriptorHibernateTestCase
    @Test
    public void shouldBeAbleSetProviderHibernate() throws Exception
    {
-      String desc = create().getRoot().getOrCreatePersistenceUnit().provider("HIBERNATE").up().up().exportAsString();
+      String desc = create().getOrCreatePersistenceUnit().provider("HIBERNATE").up().exportAsString();
 
       assertPresenceUsingXPath(desc, "/persistence/persistence-unit/provider", "HIBERNATE");
    }
@@ -98,6 +98,6 @@ public class PersistenceDescriptorHibernateTestCase
 //   
    private MutablePersistenceDescriptor create()
    {
-      return Descriptors.create(MutablePersistenceDescriptor.class).getRoot().getOrCreatePersistenceUnit().name(this.getClass().getSimpleName()).up().up();
+      return Descriptors.create(MutablePersistenceDescriptor.class).getOrCreatePersistenceUnit().name(this.getClass().getSimpleName()).up();
    }
 }

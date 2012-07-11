@@ -26,7 +26,7 @@ public class JbossWebDescriptorTestCase
    @Test
    public void testGeneratedJbossWeb60Xml() throws Exception
    {  
-	   MutableJbossWebDescriptor ejbJarGenerated = create().getRoot()
+	   MutableJbossWebDescriptor ejbJarGenerated = create()
 //            .addDefaultNamespaces()
             .version("6.0")
             .getOrCreateClassLoading().javaClassLoadingCompliance(false)
@@ -564,7 +564,7 @@ public class JbossWebDescriptorTestCase
 	            	.location("location0")
 	            	.maxFileSize(-1073741773L)
 	            	.maxRequestSize(-1073741773L)
-	            	.fileSizeThreshold(0).up().up().up()
+	            	.fileSizeThreshold(0).up().up()
            ;                     
       
       String webXmlGenerated = ejbJarGenerated.exportAsString();

@@ -50,7 +50,7 @@ public class ConnectorDescriptorTestCase
    @Test
    public void testGenExample() throws Exception 
    {
-	   MutableConnectorDescriptor jca16Descr = create().getRoot()
+	   MutableConnectorDescriptor jca16Descr = create()
 //         .addDefaultNamespaces()
          .version("1.6")
          .moduleName("module-name0")
@@ -116,7 +116,7 @@ public class ConnectorDescriptorTestCase
             .createSecurityPermission()
                .description("description6")
                .securityPermissionSpec("security-permission-spec0").up().up()
-        .requiredWorkContext("required-work-context0").up();
+        .requiredWorkContext("required-work-context0");
          
        String createdRaXml = jca16Descr.exportAsString();
        String generatedRaXml = getResourceContents("src/test/resources/test-gen-connector16.xml");

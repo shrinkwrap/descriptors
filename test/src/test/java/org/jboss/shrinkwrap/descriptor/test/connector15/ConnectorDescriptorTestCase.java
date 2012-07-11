@@ -52,7 +52,7 @@ public class ConnectorDescriptorTestCase
    @Test
    public void testHornetQExample() throws Exception 
    {
-	   MutableConnectorDescriptor jca15Generated = create().getRoot()
+	   MutableConnectorDescriptor jca15Generated = create()
 //         .addDefaultNamespaces()
          .version("1.5")
          .description("HornetQ 2.0 Resource Adapter")
@@ -124,7 +124,7 @@ public class ConnectorDescriptorTestCase
                  .up()
               .up()
            .up()
-       .up().up();
+       .up();
         
        String generatedRaXml = jca15Generated.exportAsString();
        String hornetQRaXml = this.getResourceContents("src/test/resources/test-orig-connector15.xml");

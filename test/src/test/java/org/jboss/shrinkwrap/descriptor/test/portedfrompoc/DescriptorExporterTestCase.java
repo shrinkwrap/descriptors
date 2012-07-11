@@ -39,7 +39,7 @@ public class DescriptorExporterTestCase
    public void shouldBeAbleToExportToStream() throws Exception
    {
       final String name = DescriptorExporterTestCase.class.getName();
-      final MutableWebAppDescriptor descriptor = Descriptors.create(MutableWebAppDescriptor.class).getRoot().displayName(name).up();
+      final MutableWebAppDescriptor descriptor = Descriptors.create(MutableWebAppDescriptor.class).displayName(name);
 
       final ByteArrayOutputStream output = new ByteArrayOutputStream();
       descriptor.exportTo(output);

@@ -1,9 +1,16 @@
-package org.jboss.shrinkwrap.descriptor.impl.application6; 
+package org.jboss.shrinkwrap.descriptor.impl.application5; 
 
+import java.util.ArrayList;
+import java.util.List;
+import org.jboss.shrinkwrap.descriptor.api.Child;
 import org.jboss.shrinkwrap.descriptor.api.application5.ApplicationDescriptorBase;
 import org.jboss.shrinkwrap.descriptor.api.application5.ApplicationTypeBase;
-import org.jboss.shrinkwrap.descriptor.spi.node.Node;
+import org.jboss.shrinkwrap.descriptor.api.Descriptor;
 import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
+import org.jboss.shrinkwrap.descriptor.spi.node.Node;
+import org.jboss.shrinkwrap.descriptor.api.Mutable;
+import org.jboss.shrinkwrap.descriptor.api.Immutable;
 /** 
  * <p> 
  * This deployment descriptor provides the functionalities as described in the  specification
@@ -17,7 +24,7 @@ import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase;
  *
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
- * @since Generation date :2012-06-28T12:19:49.689-04:00
+ * @since Generation date :2012-07-08T16:29:08.216+02:00
  */
 public abstract class ApplicationDescriptorBaseImpl<ROOTTYPE extends ApplicationTypeBase<ROOTTYPE, DESCRIPTORTYPE>, DESCRIPTORTYPE
     extends ApplicationDescriptorBase<ROOTTYPE, DESCRIPTORTYPE>>
@@ -58,7 +65,7 @@ public abstract class ApplicationDescriptorBaseImpl<ROOTTYPE extends Application
    private void addDefaultNamespaces()
    {
       addNamespace("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
-      addNamespace("xsi:schemaLocation", "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd");
+      addNamespace("xsi:schemaLocation", "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_5.xsd");
       addNamespace("xmlns", "http://java.sun.com/xml/ns/javaee");
    }
 

@@ -25,7 +25,7 @@ public class ResourceAdaptersTestCase
    @Test
    public void testGeneratedDataSourcesXml() throws Exception
    {  
-	   MutableResourceadapterDescriptor resourceAdaptersGenerated = create().getRoot()
+	   MutableResourceadapterDescriptor resourceAdaptersGenerated = create()
 //        .addDefaultNamespaces()
         .createResourceAdapter()
         	.archive("archive0")
@@ -192,7 +192,7 @@ public class ResourceAdaptersTestCase
 	            			.useJavaContext(true).poolName("pool-name15")
 	            			.createConfigProperty().name("name45").text("config-property22").up()
 		            	    .createConfigProperty().name("name47").text("config-property23").up().up()
-		            	.up().up().up()
+		            	.up().up()
            ;                     
     		
       

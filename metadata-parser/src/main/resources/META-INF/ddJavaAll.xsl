@@ -18,9 +18,11 @@
     <xsl:variable name="gCopyright" select="//copyright"/>
     <xsl:variable name="gContributors" select="//contributors"/>
 
-    <xsl:variable name="vBooleanMethodTypes"> javaee:emptyType; javaee:ordering-othersType; javaee:facelet-taglib-extensionType; javaee:facelet-taglib-tag-behavior-extensionType; javaee:facelet-taglib-tag-component-extensionType; javaee:facelet-taglib-tag-converter-extensionType; javaee:facelet-taglib-tag-extensionType; javaee:facelet-taglib-tag-validator-extensionType; javaee:faces-config-application-extensionType; javaee:faces-config-attribute-extensionType;
-        javaee:faces-config-behavior-extensionType; javaee:faces-config-component-extensionType; javaee:faces-config-converter-extensionType; javaee:faces-config-extensionType; javaee:faces-config-facet-extensionType; javaee:faces-config-factory-extensionType; javaee:faces-config-lifecycle-extensionType; javaee:faces-config-managed-bean-extensionType; javaee:faces-config-navigation-rule-extensionType; javaee:faces-config-null-valueType; javaee:faces-config-ordering-othersType;
-        javaee:faces-config-property-extensionType; javaee:faces-config-render-kit-extensionType; javaee:faces-config-renderer-extensionType; javaee:faces-config-validator-extensionType; javaee:partial-response-extensionType; extensibleType; </xsl:variable>
+    <xsl:variable name="vBooleanMethodTypes"> javaee:emptyType; javaee:ordering-othersType; javaee:facelet-taglib-extensionType; javaee:facelet-taglib-tag-behavior-extensionType; javaee:facelet-taglib-tag-component-extensionType; javaee:facelet-taglib-tag-converter-extensionType;
+        javaee:facelet-taglib-tag-extensionType; javaee:facelet-taglib-tag-validator-extensionType; javaee:faces-config-application-extensionType; javaee:faces-config-attribute-extensionType; javaee:faces-config-behavior-extensionType; javaee:faces-config-component-extensionType;
+        javaee:faces-config-converter-extensionType; javaee:faces-config-extensionType; javaee:faces-config-facet-extensionType; javaee:faces-config-factory-extensionType; javaee:faces-config-lifecycle-extensionType; javaee:faces-config-managed-bean-extensionType;
+        javaee:faces-config-navigation-rule-extensionType; javaee:faces-config-null-valueType; javaee:faces-config-ordering-othersType; javaee:faces-config-property-extensionType; javaee:faces-config-render-kit-extensionType; javaee:faces-config-renderer-extensionType;
+        javaee:faces-config-validator-extensionType; javaee:partial-response-extensionType; extensibleType; </xsl:variable>
 
     <!--    <xsl:include href="../lib/xdd-printElement.xsl"/>-->
 
@@ -36,7 +38,7 @@ SD-21:
     <xsl:template match="/">
         <xsl:call-template name="GenerateEnums"/>
         <xsl:call-template name="GenerateRootElement"/>
-        <xsl:call-template name="GenerateRootImplElement"/>
+<!--        <xsl:call-template name="GenerateRootImplElement"/>-->
         <xsl:call-template name="GenerateInterfaces"/>
         <xsl:call-template name="GenerateDescriptors"/>
         <xsl:call-template name="GenerateDescriptorsImpl"/>
@@ -351,7 +353,7 @@ SD-21:
                 <xsl:choose>
                     <xsl:when test="$pMode='BASE'">
                         <xsl:value-of select="concat('&lt;', 'RETURNTYPE extends ', $vClassname, '&lt;RETURNTYPE, PARENTTYPE&gt;', ', PARENTTYPE&gt;', ' extends Child&lt;PARENTTYPE&gt; {', '&#10;')"/>
-<!--                        <xsl:value-of select="xdd:writeGetRoot('RETURNTYPE', true())"/>-->
+                        <!--                        <xsl:value-of select="xdd:writeGetRoot('RETURNTYPE', true())"/>-->
                         <!-- <xsl:for-each select="include">
                             <xsl:value-of select="xdd:includeGroupRefs($vClassname, @name, false(), true(), true(), '', @maxOccurs='unbounded', true(), true())"/>
                         </xsl:for-each>
@@ -608,10 +610,10 @@ SD-21:
                         <xsl:value-of select="concat('    private DESCRIPTORTYPE parent;', '&#10;')"/>
                         <xsl:value-of select="concat('    private Node model;', '&#10;')"/>
                         <xsl:value-of select="xdd:writeRootElementImplClassConstructor($vRootNameImplBase, '', 'BASE')"/>
-                        <xsl:value-of select="xdd:writeNodeProviderMethods('model')"/>                        
+                        <xsl:value-of select="xdd:writeNodeProviderMethods('model')"/>
                         <xsl:value-of select="xdd:writeChildUp('DESCRIPTORTYPE', 'parent')"/>
-                        
-<!--                        <xsl:value-of select="xdd:writeGetRoot('ROOTTYPE', false())"/>-->
+
+                        <!--                        <xsl:value-of select="xdd:writeGetRoot('ROOTTYPE', false())"/>-->
 
                         <!-- <xsl:for-each select="include">
                             <xsl:value-of select="xdd:includeGroupRefs($vClassname, @name, false(), true(), true(), '', @maxOccurs='unbounded', true(), true())"/>
@@ -1087,7 +1089,7 @@ SD-21:
                     <xsl:value-of select="xdd:writeCopyright()"/>
                     <xsl:value-of select="xdd:writePackageLine($vPackage)"/>
                     <xsl:value-of select="xdd:writeImports(true())"/>
-                   
+
                     <xsl:value-of select="xdd:writeRootElementImports($pDescriptor/element/@type, true(), $pDescriptor/@schemaName, $pMode)"/>
                     <xsl:value-of select="concat('import org.jboss.shrinkwrap.descriptor.api.Descriptor;', '&#10;')"/>
                     <xsl:value-of select="concat('import org.jboss.shrinkwrap.descriptor.api.DescriptorNamespace;', '&#10;')"/>
@@ -1111,7 +1113,13 @@ SD-21:
                     <xsl:value-of select="xdd:writeDescriptorJavaDoc($vClassname, $vSchema, $gContributors)"/>
                     <xsl:value-of select="xdd:classHeaderDeclaration('interface', $vClassname)"/>
                     <xsl:variable name="vRootElementType" select="xdd:getRootElementName($vType, $pMode, false(), true())"/>
-                    
+                    <xsl:variable name="vRootNameBase" select="xdd:getRootElementName($vType, 'BASE', false(), true())"/>
+                    <xsl:variable name="vRootNameMutabel" select="xdd:getRootElementName($vType, 'MUTABLE', false(), true())"/>
+                    <xsl:variable name="vRootNameImplMutabel" select="xdd:getRootElementName($vType, 'MUTABLE', false(), false())"/>
+                    <xsl:variable name="vRootNameReadOnly" select="xdd:getRootElementName($vType, 'READ-ONLY', false(), true())"/>
+                    <xsl:variable name="vRootNameReadOnlyImpl" select="xdd:getRootElementName($vType, 'READ-ONLY', false(), false())"/>
+                    <xsl:variable name="vRootNameImplBase" select="xdd:getRootElementName($vType, 'BASE', false(), false())"/>
+
                     <xsl:choose>
                         <xsl:when test="$pMode='BASE'">
 
@@ -1127,9 +1135,9 @@ SD-21:
                             <xsl:value-of select="concat('    extends ', $vClassname , '&lt;ROOTTYPE, DESCRIPTORTYPE&gt;&gt;', '&#10;')"/>
                             <xsl:value-of select="concat('    extends ', 'Descriptor', ' {', '&#10;')"/>
 
-                            <xsl:value-of select="xdd:writeGetRoot('ROOTTYPE', true())"/>
-                            
-                         <!--   <xsl:call-template name="WriteRootElementInterfaceMethods">
+                            <!--                            <xsl:value-of select="xdd:writeGetRoot('ROOTTYPE', true())"/>-->
+
+                            <!--   <xsl:call-template name="WriteRootElementInterfaceMethods">
                                 <xsl:with-param name="pClassNode" select="."/>
                                 <xsl:with-param name="pDescriptorNode" select="$pDescriptor"/>
                                 <xsl:with-param name="pMode" select="$pMode"/>
@@ -1167,43 +1175,62 @@ SD-21:
                             <xsl:value-of select="concat(' extends ', $vDescriptorNameBase, '&lt;', $vRootElementType, ',', $vClassname, '&gt;,', '&#10;')"/>
                             <xsl:value-of select="concat('    Mutable', '&lt;', $vDescriptorNameReadOnly, ',', $vClassname, '&gt; {', '&#10;')"/>
 
-                         <!--   <xsl:call-template name="WriteRootElementInterfaceMethods">
+                            <!--   <xsl:call-template name="WriteRootElementInterfaceMethods">
                                 <xsl:with-param name="pClassNode" select="."/>
                                 <xsl:with-param name="pDescriptorNode" select="$pDescriptor"/>
                                 <xsl:with-param name="pMode" select="$pMode"/>
                             </xsl:call-template>-->
 
-                            <!--  <xsl:variable name="vClassnameBase" select="xdd:getRootElementName(./@name, 'BASE', false(), true())"/>
-                       
-                        <xsl:for-each select="include">
-                            <xsl:value-of select="xdd:includeGroupRefs($vClassname, @name, false(), true(), false(), '', @maxOccurs='unbounded', false(), false())"/>
-                        </xsl:for-each>
-                        <xsl:for-each select="element">
-                            <xsl:variable name="vMaxOccurs" select="concat('-',  @maxOccurs)"/>
-                            <xsl:choose>
-                                <xsl:when test="@type='javaee:ejb-relationship-roleType' and position()=4"/>
-                                <xsl:otherwise>
-                                    <xsl:value-of select="xdd:writeMethodOrAttribute($vClassname, @name, @type, $vMaxOccurs, false(), true(), false(), '', exists(@attribute), false(), false())"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                            <xsl:if test="position()!= last()">
-                                <xsl:text>&#10;</xsl:text>
-                            </xsl:if>
-                        </xsl:for-each>-->
+                            <xsl:variable name="vClassnameBase" select="xdd:getRootElementName(./@name, 'BASE', false(), true())"/>
+                            <xsl:variable name="vType" select=" substring-after($pDescriptor/element/@type, ':')"/>
+                            <xsl:variable name="vNamespace" select=" substring-before($pDescriptor/element/@type, ':')"/>
+                            <xsl:for-each select="//classes/class[@name=$vType and @namespace=$vNamespace and (@packageApi=$vPackage or not(xdd:versionLessPackageName(@packageApi) = xdd:versionLessPackageName($vPackage)))]">
 
+                                <xsl:for-each select="include">
+                                    <xsl:value-of select="xdd:includeGroupRefs($vClassname, @name, false(), true(), false(), '', @maxOccurs='unbounded', false(), false())"/>
+                                </xsl:for-each>
+                                <xsl:for-each select="element">
+                                    <xsl:variable name="vMaxOccurs" select="concat('-',  @maxOccurs)"/>
+                                    <xsl:choose>
+                                        <xsl:when test="@type='javaee:ejb-relationship-roleType' and position()=4"/>
+                                        <xsl:otherwise>
+                                            <xsl:value-of select="xdd:writeMethodOrAttribute($vClassname, @name, @type, $vMaxOccurs, false(), true(), false(), '', exists(@attribute), false(), false())"/>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                    <xsl:if test="position()!= last()">
+                                        <xsl:text>&#10;</xsl:text>
+                                    </xsl:if>
+                                </xsl:for-each>
+                            </xsl:for-each>
                             <xsl:value-of select="concat('}', '&#10;')"/>
 
                         </xsl:when>
                         <xsl:otherwise>
-                           <!-- <xsl:variable name="vClassnameBase" select="xdd:getRootElementName(@name, 'BASE', true(), true())"/>
-                            <xsl:variable name="vClassnameMutable" select="xdd:getRootElementName(@name, 'MUTABLE', true(), true())"/>-->
-                            <!-- 
-                           public interface WebAppDescriptor extends WebAppDescriptorBase<FilterType, WebAppDescriptor>,
-                           Immutable<WebAppMutableDescriptor, WebAppDescriptor> {
-                       -->
 
                             <xsl:value-of select="concat(' extends ', $vDescriptorNameBase, '&lt;', $vRootElementType, ',', $vClassname , '&gt;,', '&#10;')"/>
                             <xsl:value-of select="concat('    Immutable', '&lt;', $vDescriptorNameMutable, ',', $vClassname, '&gt; {', '&#10;')"/>
+
+                            <xsl:variable name="vType" select=" substring-after($pDescriptor/element/@type, ':')"/>
+                            <xsl:variable name="vNamespace" select=" substring-before($pDescriptor/element/@type, ':')"/>
+                            <xsl:for-each select="//classes/class[@name=$vType and @namespace=$vNamespace and (@packageApi=$vPackage or not(xdd:versionLessPackageName(@packageApi) = xdd:versionLessPackageName($vPackage)))]">
+
+                                <xsl:for-each select="include">
+                                    <xsl:value-of select="xdd:includeGroupRefs($vClassname, @name, false(), true(), false(), '', @maxOccurs='unbounded', true(), false())"/>
+                                </xsl:for-each>
+                                <xsl:for-each select="element">
+                                    <xsl:variable name="vMaxOccurs" select="concat('-',  @maxOccurs)"/>
+                                    <xsl:choose>
+                                        <xsl:when test="@type='javaee:ejb-relationship-roleType' and position()=4"/>
+                                        <xsl:otherwise>
+                                            <xsl:value-of select="xdd:writeMethodOrAttribute($vClassname, @name, @type, $vMaxOccurs, false(), true(), false(), '', exists(@attribute), true(), false())"/>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                    <xsl:if test="position()!= last()">
+                                        <xsl:text>&#10;</xsl:text>
+                                    </xsl:if>
+                                </xsl:for-each>
+
+                            </xsl:for-each>
                             <xsl:value-of select="concat('}', '&#10;')"/>
 
                         </xsl:otherwise>
@@ -1528,6 +1555,8 @@ SD-21:
         <xsl:variable name="vPackage" select="./@packageImpl"/>
         <xsl:variable name="vSchema" select=" substring-after(@schemaName, '../xsd/')"/>
         <xsl:variable name="vClassname" select="xdd:getRootElementName(@name, $pMode, true(), false())"/>
+        <xsl:variable name="vClassnameReadOnly" select="xdd:getRootElementName(@name, $pMode, true(), true())"/>
+        <xsl:variable name="vClassnameAPI" select="xdd:getRootElementName(@name, $pMode, false(), true())"/>
         <xsl:message select="concat('Generating Descriptor Impl: ', $vClassname)"/>
         <xsl:if test="$vClassname">
             <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolder, $vPackage, $vClassname, 'java')"/>
@@ -1548,23 +1577,37 @@ SD-21:
                     <xsl:when test="$pMode='BASE'">
                         <xsl:value-of select="concat('import ', $pDescriptor/@packageApi, '.', $vDescriptorNameBase, ';&#10;')"/>
                         <xsl:value-of select="xdd:writeRootElementImports(./element/@type, true(), $pDescriptor/@schemaName, 'BASE')"/>
-                        <xsl:value-of select="xdd:writeRootElementImports(./element/@type, false(), $pDescriptor/@schemaName, 'BASE')"/>
+<!--                        <xsl:value-of select="xdd:writeRootElementImports(./element/@type, false(), $pDescriptor/@schemaName, 'BASE')"/>-->
                     </xsl:when>
                     <xsl:when test="$pMode='MUTABLE'">
+                        <xsl:for-each select="element">
+                            <xsl:variable name="vType" select=" substring-after(@type, ':')"/>
+                            <xsl:variable name="vType" select=" substring-after(./@type, ':')"/>
+                            <xsl:variable name="vNamespace" select=" substring-before(./@type, ':')"/>
+                            <xsl:value-of select="xdd:writeDynamicImports($vType, $vNamespace, $vPackage, false(), false())"/>
+                        </xsl:for-each>
+                        <xsl:value-of select="xdd:writeImports(false())"/>
                         <xsl:value-of select="concat('import ', $pDescriptor/@packageApi, '.', $vDescriptorNameMutable, ';&#10;')"/>
                         <xsl:value-of select="concat('import ', $pDescriptor/@packageApi, '.', $vDescriptorNameReadOnly, ';&#10;')"/>
                         <xsl:value-of select="concat('import ', $pDescriptor/@packageImpl, '.', $vDescriptorNameReadOnlyImpl, ';&#10;')"/>
                         <xsl:value-of select="xdd:writeRootElementImports(./element/@type, true(), $pDescriptor/@schemaName, 'MUTABLE')"/>
-                        <xsl:value-of select="xdd:writeRootElementImports(./element/@type, false(), $pDescriptor/@schemaName, 'MUTABLE')"/>
+<!--                        <xsl:value-of select="xdd:writeRootElementImports(./element/@type, false(), $pDescriptor/@schemaName, 'MUTABLE')"/>-->
                         <!-- <xsl:value-of select="xdd:writeDynamicImports($pClassNode/@name, $pClassNode/@namespace, $pClassNode/@packageApi, true(), false())"/>
                         <xsl:value-of select="concat('import ', $pDescriptorNode/@packageApi, '.', $vDescriptorNameMutable, ';&#10;')"/>-->
                     </xsl:when>
                     <xsl:otherwise>
+                        <xsl:for-each select="element">
+                            <xsl:variable name="vType" select=" substring-after(@type, ':')"/>
+                            <xsl:variable name="vType" select=" substring-after(./@type, ':')"/>
+                            <xsl:variable name="vNamespace" select=" substring-before(./@type, ':')"/>
+                            <xsl:value-of select="xdd:writeDynamicImports($vType, $vNamespace, $vPackage, false(), true())"/>
+                        </xsl:for-each>
+                        <xsl:value-of select="xdd:writeImports(false())"/>
                         <xsl:value-of select="concat('import ', $pDescriptor/@packageApi, '.', $vDescriptorNameMutable, ';&#10;')"/>
                         <xsl:value-of select="concat('import ', $pDescriptor/@packageImpl, '.', $vDescriptorNameMutableImpl, ';&#10;')"/>
-                         <xsl:value-of select="concat('import ', $pDescriptor/@packageApi, '.', $vDescriptorNameReadOnly, ';&#10;')"/>
+                        <xsl:value-of select="concat('import ', $pDescriptor/@packageApi, '.', $vDescriptorNameReadOnly, ';&#10;')"/>
                         <xsl:value-of select="xdd:writeRootElementImports(./element/@type, true(), $pDescriptor/@schemaName, 'READ-ONLY')"/>
-                        <xsl:value-of select="xdd:writeRootElementImports(./element/@type, false(), $pDescriptor/@schemaName, 'READ-ONLY')"/>                       
+<!--                        <xsl:value-of select="xdd:writeRootElementImports(./element/@type, false(), $pDescriptor/@schemaName, 'READ-ONLY')"/>-->
                     </xsl:otherwise>
                 </xsl:choose>
 
@@ -1622,14 +1665,36 @@ SD-21:
                             public final class WebAppMutableDescriptorImpl 
                             extends WebAppDescriptorImplBase<FilterMutableType, WebAppMutableDescriptor> 
                             implements WebAppMutableDescriptor {
-                            
+                            <<<<<
                      -->
 
                         <xsl:value-of select="concat(' extends ', $vClassnameBase, '&lt;', $vRootElementType, ',', $vClassnameMutable, '&gt;', '&#10;')"/>
                         <xsl:value-of select="concat('   implements ', $vClassnameMutable, ' {', '&#10;')"/>
                         <xsl:value-of select="xdd:writeDescrImplClassConstructor($vClassname)"/>
-                        <xsl:value-of select="xdd:writeToMutableImmutable($vDescriptorNameReadOnly, $vDescriptorNameMutable, false())"/>                        
-                        <xsl:value-of select="xdd:writeGetRoot($vRootElementTypeMutable, false())"/>                        
+                        <xsl:value-of select="xdd:writeToMutableImmutable($vDescriptorNameReadOnly, $vDescriptorNameMutable, false())"/>
+                        <!--                        <xsl:value-of select="xdd:writeGetRoot($vRootElementTypeMutable, false())"/>-->
+
+                        <xsl:for-each select="element">
+                            <xsl:variable name="vType" select=" substring-after(@type, ':')"/>
+                            <xsl:for-each select="//classes/class[@name=$vType and (@packageImpl=$vPackage or not(xdd:versionLessPackageName(@packageImpl) = xdd:versionLessPackageName($vPackage)))]">
+                                <xsl:for-each select="include">
+                                    <xsl:value-of select="xdd:includeGroupRefs($vClassnameReadOnly, @name, false(), false(), false(), 'getRootNode()', @maxOccurs='unbounded', false(), false())"/>
+                                </xsl:for-each>
+                                <xsl:for-each select="element">
+                                    <xsl:variable name="vMaxOccurs" select="concat('-',  @maxOccurs)"/>
+                                    <xsl:choose>
+                                        <xsl:when test="@type='javaee:ejb-relationship-roleType' and position()=4"/>
+                                        <xsl:otherwise>
+                                            <xsl:value-of select="xdd:writeMethodOrAttribute($vClassnameReadOnly, @name, @type, $vMaxOccurs, false(), false(), false(), 'getRootNode()', exists(@attribute), false(), false())"/>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                    <xsl:if test="position()!= last()">
+                                        <xsl:text>&#10;</xsl:text>
+                                    </xsl:if>
+                                </xsl:for-each>
+
+                            </xsl:for-each>
+                        </xsl:for-each>
                         <xsl:value-of select="concat('}', '&#10;')"/>
 
                     </xsl:when>
@@ -1651,9 +1716,32 @@ SD-21:
 
                         <!--                         <xsl:value-of select=" xdd:writeAttribute('Node', 'childNode', false())"/>-->
                         <xsl:value-of select=" xdd:writeDescrImplClassConstructor($vClassname)"/>
-                        <xsl:value-of select="xdd:writeToMutableImmutable($vDescriptorNameReadOnly, $vDescriptorNameMutable, true())"/>                        
-                        <xsl:value-of select="xdd:writeGetRoot($vRootElementTypeReadOnly, false())"/>
-                        
+                        <xsl:value-of select="xdd:writeToMutableImmutable($vDescriptorNameReadOnly, $vDescriptorNameMutable, true())"/>
+                        <!--                        <xsl:value-of select="xdd:writeGetRoot($vRootElementTypeReadOnly, false())"/>-->
+
+                        <xsl:variable name="vClassnameBase" select="xdd:getRootElementName(@name, 'BASE', false(), true())"/>
+
+                        <xsl:for-each select="element">
+                            <xsl:variable name="vType" select=" substring-after(@type, ':')"/>
+                            <xsl:for-each select="//classes/class[@name=$vType and (@packageImpl=$vPackage or not(xdd:versionLessPackageName(@packageImpl) = xdd:versionLessPackageName($vPackage)))]">
+                                <xsl:for-each select="include">
+                                    <xsl:value-of select="xdd:includeGroupRefs($vClassnameAPI, @name, false(), false(), false(), 'getRootNode()', @maxOccurs='unbounded', true(), false())"/>
+                                </xsl:for-each>
+                                <xsl:for-each select="element">
+                                    <xsl:variable name="vMaxOccurs" select="concat('-',  @maxOccurs)"/>
+                                    <xsl:choose>
+                                        <xsl:when test="@type='javaee:ejb-relationship-roleType' and position()=4"/>
+                                        <xsl:otherwise>
+                                            <xsl:value-of select="xdd:writeMethodOrAttribute($vClassnameAPI, @name, @type, $vMaxOccurs, false(), false(), false(), 'getRootNode()', exists(@attribute), true(), false())"/>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                    <xsl:if test="position()!= last()">
+                                        <xsl:text>&#10;</xsl:text>
+                                    </xsl:if>
+                                </xsl:for-each>
+                            </xsl:for-each>
+                        </xsl:for-each>
+
                         <xsl:value-of select="concat('}', '&#10;')"/>
 
                     </xsl:otherwise>
@@ -4330,15 +4418,15 @@ SD-21:
         <xsl:value-of select="concat('      return ', $pNodeNameLocal, ';&#10;')"/>
         <xsl:text>   }&#10;&#10;</xsl:text>
     </xsl:function>
-    
-    
+
+
     <!-- ****************************************************** -->
     <!-- ****** Function which writes the node provider methods -->
     <!-- ****************************************************** -->
     <xsl:function name="xdd:writeGetRoot">
         <xsl:param name="pRootElement"/>
-        <xsl:param name="pIsApi" as="xs:boolean"/>        
-        <xsl:variable name="vSignature" select="concat('public ', $pRootElement, ' getRoot()')"/>        
+        <xsl:param name="pIsApi" as="xs:boolean"/>
+        <xsl:variable name="vSignature" select="concat('public ', $pRootElement, ' getRoot()')"/>
         <xsl:choose>
             <xsl:when test="$pIsApi">
                 <xsl:value-of select="concat('', '&#10;')"/>
@@ -4353,7 +4441,7 @@ SD-21:
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
+
 
     <!-- ************************************************************ -->
     <!-- ****** Function which writes the DescriptorNamespace methods -->

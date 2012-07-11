@@ -41,7 +41,7 @@ public class BeansDescriptorTestCase
    @Test
    public void testGeneratedXml() throws Exception
    {
-      final MutableBeansDescriptor beansDescr = create().getRoot()
+      final MutableBeansDescriptor beansDescr = create()
 //            .addDefaultNamespaces()
             .getOrCreateInterceptors()
                .clazz("class0")
@@ -60,7 +60,7 @@ public class BeansDescriptorTestCase
                .clazz("class11")
                .stereotype("stereotype0")
                .stereotype("stereotype1")
-               .stereotype("stereotype2").up().up();
+               .stereotype("stereotype2").up();
      
       String webXmlGenerated = beansDescr.exportAsString();
       String webXmlOriginal = getResourceContents("src/test/resources/test-gen-beans10.xml");

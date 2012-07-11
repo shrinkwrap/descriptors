@@ -76,9 +76,9 @@ public class WebAppDescriptorTestCase
       String clazz = "com.ocpsoft.pretty." + name;
       String mapping = "/*";
 
-      String desc = create().getRoot()
+      String desc = create()
                      .createFilter().filterClass(clazz).filterName(name).up()
-                     .createFilterMapping().filterName(name).urlPattern(mapping).up().up()
+                     .createFilterMapping().filterName(name).urlPattern(mapping).up()
                      .exportAsString();
 
       log.fine(desc);
@@ -93,10 +93,10 @@ public class WebAppDescriptorTestCase
    @Test
    public void shouldBeAbleToSetWelcomeFiles() throws Exception
    {
-      String desc = create().getRoot()
+      String desc = create()
       				.createWelcomeFileList()
       					.welcomeFile("WelcomeFile1")
-      					.welcomeFile("WelcomeFile2").up().up()
+      					.welcomeFile("WelcomeFile2").up()
                     .exportAsString();
 
       log.fine(desc);
@@ -109,13 +109,13 @@ public class WebAppDescriptorTestCase
    @Test
    public void shouldBeAbleToGetFilterIcons() throws Exception
    {
-	   MutableWebAppDescriptor web = create().getRoot()
+	   MutableWebAppDescriptor web = create()
                     .createFilter()
                        .createIcon().smallIcon("small1").largeIcon("large1").up()
-                       .createIcon().smallIcon("small2").largeIcon("large2").up().up()
+                       .createIcon().smallIcon("small2").largeIcon("large2").up()
                     .up();
 
-     List<IconType<FilterType<WebAppTypeMutable>>> list = web.getRoot().getAllFilter().get(0).getAllIcon();
+     List<IconType<FilterType<MutableWebAppDescriptor>>> list = web.getAllFilter().get(0).getAllIcon();
      assertTrue(list.size() == 2);
      for (IconType<?> icon: list) 
      {
@@ -133,9 +133,9 @@ public class WebAppDescriptorTestCase
       String clazz = "javax.faces.webapp." + name;
       String mapping = "/*";
 
-      String desc = create().getRoot()
+      String desc = create()
                      .createServlet().servletClass(clazz).servletName(name).up()
-                     .createServletMapping().servletName(name).urlPattern(mapping).up().up()
+                     .createServletMapping().servletName(name).urlPattern(mapping).up()
                      .exportAsString();
 
       log.fine(desc);
@@ -153,8 +153,8 @@ public class WebAppDescriptorTestCase
    {
       String version = "2.5";
 
-      String desc = create().getRoot()
-                        .version(version).metadataComplete(true).up()
+      String desc = create()
+                        .version(version).metadataComplete(true)
                         .exportAsString();
 
       log.fine(desc);
@@ -172,10 +172,10 @@ public class WebAppDescriptorTestCase
       int timeout = 3600;
       int maxAge = 3600;
 
-      String desc = create().getRoot()
+      String desc = create()
                      .createSessionConfig().sessionTimeout(timeout)
                         .getOrCreateCookieConfig().name(name).domain(domain).path(path).maxAge(maxAge).up()
-                        .trackingMode(TrackingModeType._COOKIE.name()).up().up()
+                        .trackingMode(TrackingModeType._COOKIE.name()).up()
                      .exportAsString();
 
       log.fine(desc);
@@ -198,8 +198,8 @@ public class WebAppDescriptorTestCase
       final MutableWebAppDescriptor web = Descriptors.importAs(MutableWebAppDescriptor.class).fromString(
             source);
      
-      web.getRoot().version("3.0");
-      Assert.assertEquals("3.0", web.getRoot().getVersionAsString());
+      web.version("3.0");
+      Assert.assertEquals("3.0", web.getVersionAsString());
       
       // Get as Node structure
       final InputStream stream = new ByteArrayInputStream(web.exportAsString().getBytes());
@@ -207,14 +207,14 @@ public class WebAppDescriptorTestCase
       final Node root = ((NodeDescriptor) fromWebXml).getRootNode();
       
       // Preconditions
-      Assert.assertEquals("3.0", web.getRoot().getVersionAsString());
+      Assert.assertEquals("3.0", web.getVersionAsString());
       Assert.assertTrue(root.getAttribute("xsi:schemaLocation").contains("web-app_3_0.xsd"));
       
       // Change the version
-      web.getRoot().version("2.5");
+      web.version("2.5");
      
       // Check that everything was updated
-      Assert.assertEquals("2.5", web.getRoot().getVersionAsString());
+      Assert.assertEquals("2.5", web.getVersionAsString());
       
       // Log just for fun
       // log.info("web.xml after update: " + web.exportAsString());

@@ -71,8 +71,8 @@ public class FacesConfigDescriptorTestCase {
         // Make a descriptor
         final MutableWebFacesConfigDescriptor facesConfig = Descriptors.importAs(MutableWebFacesConfigDescriptor.class).fromString(source);
 
-        facesConfig.getRoot().version("2.0");
-        Assert.assertEquals("2.0", facesConfig.getRoot().getVersionAsString());
+        facesConfig.version("2.0");
+        Assert.assertEquals("2.0", facesConfig.getVersionAsString());
 
         // Get as Node structure
         final InputStream stream = new ByteArrayInputStream(facesConfig.exportAsString().getBytes());
@@ -81,19 +81,19 @@ public class FacesConfigDescriptorTestCase {
         final Node root = ((NodeDescriptor) fromFacesConfigXml).getRootNode();
 
         // Preconditions
-        Assert.assertEquals("2.0", facesConfig.getRoot().getVersionAsString());
+        Assert.assertEquals("2.0", facesConfig.getVersionAsString());
         Assert.assertTrue(root.getAttribute("xsi:schemaLocation").contains("web-facesconfig_2_0.xsd"));
 
         // Change the version
-        facesConfig.getRoot().version("2.1");
+        facesConfig.version("2.1");
 
         // Check that everything was updated
-        Assert.assertEquals("2.1", facesConfig.getRoot().getVersionAsString());
+        Assert.assertEquals("2.1", facesConfig.getVersionAsString());
     }
 
     @Test
     public void testGeneratedFacesConfigXml() throws Exception {
-        final MutableWebFacesConfigDescriptor facesConfig = create().getRoot()
+        final MutableWebFacesConfigDescriptor facesConfig = create()
 //            .addDefaultNamespaces()
             .version(FacesConfigVersionType._2_0)
             .name("SeamBooking")
@@ -194,7 +194,7 @@ public class FacesConfigDescriptorTestCase {
                     .baseName("messages")
                     .var("messages")
                 .up()
-            .up().up();
+            .up();
 
         String facesConfigXmlGenerated = facesConfig.exportAsString();
         String facesConfigXmlOriginal = getResourceContents("src/test/resources/test-orig-facesconfig20.xml");

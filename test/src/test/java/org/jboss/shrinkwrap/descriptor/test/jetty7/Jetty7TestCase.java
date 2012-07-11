@@ -22,7 +22,7 @@ public class Jetty7TestCase
    @Test
    public void testJettyConfiguration() throws Exception 
    {
-      final MutableJettyDescriptor jetty7Generated = create().getRoot().clazz("class0").id("id0")
+      final MutableJettyDescriptor jetty7Generated = create().clazz("class0").id("id0")
         .getOrCreateNew().clazz("class1").id("id1")
            .createArg().type("type0")
               .getOrCreateArray().type("type1").id("id2")
@@ -73,7 +73,7 @@ public class Jetty7TestCase
                  .up()
               .up()
            .up()        
-        .up().up();
+        .up();
                        
        String generatedJettyXml = jetty7Generated.exportAsString();
        String originalJettyXml = this.getResourceContents("src/test/resources/test-orig-jetty7.xml");

@@ -42,16 +42,16 @@ public class EjbJarDescriptorReaderTestCase
    public void testGeneratedEjbJarReaderXml() throws Exception
    {  
       final EjbJarDescriptor ejbJarReader = importFromString(getResourceContents("src/test/resources/test-gen-ejbjar31.xml"));      
-      assertEquals(ejbJarReader.getRoot().getVersion(), "3.1");
-      assertEquals(ejbJarReader.getRoot().getModuleName(), "module-name0");
-      assertEquals(ejbJarReader.getRoot().getAllDescription().get(0), "description0");
-      assertEquals(ejbJarReader.getRoot().getAllDisplayName().get(0), "display-name0");
+      assertEquals(ejbJarReader.getVersion(), "3.1");
+      assertEquals(ejbJarReader.getModuleName(), "module-name0");
+      assertEquals(ejbJarReader.getAllDescription().get(0), "description0");
+      assertEquals(ejbJarReader.getAllDisplayName().get(0), "display-name0");
       
-      final IconTypeReader iconTypeReader = ejbJarReader.getRoot().getAllIcon().get(0);
+      final IconTypeReader iconTypeReader = ejbJarReader.getAllIcon().get(0);
       assertEquals(iconTypeReader.getSmallIcon(), "small-icon0");
       assertEquals(iconTypeReader.getLargeIcon(), "large-icon0");
     
-      final EnterpriseBeansTypeReader enterpriseBeansTypeReader = ejbJarReader.getRoot().getEnterpriseBeans();
+      final EnterpriseBeansTypeReader enterpriseBeansTypeReader = ejbJarReader.getEnterpriseBeans();
       final MessageDrivenBeanTypeReader messageDrivenBeanTypeReader = (MessageDrivenBeanTypeReader) enterpriseBeansTypeReader.getAllMessageDriven().get(0);
      
       assertEquals(messageDrivenBeanTypeReader.getAllDescription().get(0), "description1");

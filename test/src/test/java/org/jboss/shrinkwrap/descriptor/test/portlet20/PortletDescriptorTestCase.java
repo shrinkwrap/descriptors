@@ -15,7 +15,7 @@ public class PortletDescriptorTestCase
    @Test
    public void testGeneratedPortletXml() throws Exception
    {
-      final MutablePortletDescriptor portlet = create().getRoot()
+      final MutablePortletDescriptor portlet = create()
 //            .addDefaultNamespaces()
             .version("2.0")
             .createPortlet()
@@ -37,7 +37,7 @@ public class PortletDescriptorTestCase
             		.portletMode("help").up()
             	.getOrCreatePortletInfo()
             		.title("Hello Portlet")
-            	.up().up().up();
+            	.up().up();
       String portletXmlGenerated = portlet.exportAsString();
       String portletXmlOriginal = getResourceContents("src/test/resources/test-gen-portlet20.xml");
       XmlAssert.assertIdentical(portletXmlOriginal, portletXmlGenerated);   

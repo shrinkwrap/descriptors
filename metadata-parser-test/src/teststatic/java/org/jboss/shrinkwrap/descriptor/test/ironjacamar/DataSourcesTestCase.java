@@ -25,7 +25,7 @@ public class DataSourcesTestCase
    @Test
    public void testGeneratedDataSourcesXml() throws Exception
    {  
-	   MutableDatasourcesDescriptor dataSourcesGenerated = create().getRoot()
+	   MutableDatasourcesDescriptor dataSourcesGenerated = create()
 //        .addDefaultNamespaces()      
         .createDatasource()
             	.jta(true).jndiName("jndi-name1").poolName("pool-name1")
@@ -164,7 +164,7 @@ public class DataSourcesTestCase
     				.datasourceClass("datasource-class3")
     				.xaDatasourceClass("xa-datasource-class1")
     			.up()
-    		.up().up();
+    		.up();
     		
       
       String dataSourcesGeneratedXmlGenerated = dataSourcesGenerated.exportAsString();

@@ -86,7 +86,7 @@ public class ApplicationDescriptorTestCase
        // Get a mutable view
        final MutableApplicationDescriptor mutable = readonly.toMutable();
 
-       mutable.getOrCreateModule().getOrCreateWeb().webUri("two").up().up().up();
+       mutable.getOrCreateModule().getOrCreateWeb().webUri("two").up().up();
 
        // Roundtrip to immutable
        final ApplicationDescriptor roundtrip = mutable.toImmutable();

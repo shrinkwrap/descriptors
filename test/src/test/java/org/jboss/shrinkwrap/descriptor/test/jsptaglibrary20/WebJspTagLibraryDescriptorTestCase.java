@@ -49,7 +49,7 @@ public class WebJspTagLibraryDescriptorTestCase
    @Test
    public void testGeneratedWebJspTagLibrary20Xml() throws Exception
    {  
-	   MutableWebJsptaglibraryDescriptor ejbJarGenerated = create().getRoot()
+	   MutableWebJsptaglibraryDescriptor ejbJarGenerated = create()
 //            .addDefaultNamespaces()
             .version("2.0")
             .description("description0")
@@ -208,7 +208,7 @@ public class WebJspTagLibraryDescriptorTestCase
 	            .name("name9")
 	            .functionClass("function-class1")
 	            .functionSignature("function-signature1")
-	            .example("example5").up().up()
+	            .example("example5").up()
            ;                     
       
       String webXmlGenerated = ejbJarGenerated.exportAsString();

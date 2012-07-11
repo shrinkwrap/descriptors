@@ -7,7 +7,7 @@ import java.util.List;
  *  
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
- * @since Generation date :2012-06-28T12:19:49.689-04:00
+ * @since Generation date :2012-07-08T16:29:08.216+02:00
  */
 public interface ApplicationType extends ApplicationTypeBase<ApplicationType, ApplicationDescriptor> {
  
@@ -32,18 +32,6 @@ public interface ApplicationType extends ApplicationTypeBase<ApplicationType, Ap
     * @return list of <code>display-name</code> 
     */
    public List<String> getAllDisplayName();
-
- 
-   // --------------------------------------------------------------------------------------------------------||
-   // ClassName: ApplicationType ElementName: xsd:token ElementType : application-name
-   // MaxOccurs: -  isGeneric: false   isAttribute: false isEnum: false isDataType: true
-   // --------------------------------------------------------------------------------------------------------||
-
-   /**
-    * Returns the <code>application-name</code> element
-    * @return the node defined for the element <code>application-name</code> 
-    */
-   public String getApplicationName();
  
    // --------------------------------------------------------------------------------------------------------||
    // ClassName: ApplicationType ElementName: javaee:moduleType ElementType : module
@@ -56,6 +44,7 @@ public interface ApplicationType extends ApplicationTypeBase<ApplicationType, Ap
     */
    public List<ModuleTypeReader<ApplicationType>> getAllModule();
 
+
  
    // --------------------------------------------------------------------------------------------------------||
    // ClassName: ApplicationType ElementName: xsd:token ElementType : library-directory
@@ -67,7 +56,7 @@ public interface ApplicationType extends ApplicationTypeBase<ApplicationType, Ap
     * @return the node defined for the element <code>library-directory</code> 
     */
    public String getLibraryDirectory();
-   
+
  
    // --------------------------------------------------------------------------------------------------------||
    // ClassName: ApplicationType ElementName: xsd:token ElementType : version

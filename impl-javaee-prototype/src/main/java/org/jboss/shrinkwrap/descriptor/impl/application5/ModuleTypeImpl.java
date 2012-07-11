@@ -1,16 +1,22 @@
-package org.jboss.shrinkwrap.descriptor.impl.application6; 
+package org.jboss.shrinkwrap.descriptor.impl.application5; 
 
-import org.jboss.shrinkwrap.descriptor.api.Child;
-import org.jboss.shrinkwrap.descriptor.api.application5.ModuleType;
-import org.jboss.shrinkwrap.descriptor.api.application5.WebType;
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
+import org.jboss.shrinkwrap.descriptor.api.application5.ModuleType;
+import java.util.ArrayList;
+import java.util.List;
+import org.jboss.shrinkwrap.descriptor.api.Child;
+import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;
+import org.jboss.shrinkwrap.descriptor.impl.base.Strings;
+import org.jboss.shrinkwrap.descriptor.api.DescriptorExporter;
+import org.jboss.shrinkwrap.descriptor.api.application5.WebType;
+import org.jboss.shrinkwrap.descriptor.impl.application5.WebTypeImpl;
 
 
 /**
  * This class implements the <code> moduleType </code> xsd type 
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
- * @since Generation date :2012-06-28T12:19:49.689-04:00
+ * @since Generation date :2012-07-08T16:29:08.216+02:00
  */
 public class ModuleTypeImpl<T> implements Child<T>, ModuleType<T>
 {

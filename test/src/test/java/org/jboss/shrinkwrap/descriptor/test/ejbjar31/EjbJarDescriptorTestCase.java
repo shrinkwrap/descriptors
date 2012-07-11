@@ -33,7 +33,7 @@ public class EjbJarDescriptorTestCase
    @Test
    public void testGeneratedEjbJarXml() throws Exception
    {  
-	   MutableEjbJarDescriptor ejbJarGenerated = create().getRoot()
+	   MutableEjbJarDescriptor ejbJarGenerated = create()
 //            .addDefaultNamespaces()
             .version("3.1")
             .moduleName("module-name0")
@@ -500,7 +500,7 @@ public class EjbJarDescriptorTestCase
                      .exceptionClass("exception-class0")
                      .rollback(false)
                      .inherited(false).up().up()
-              .ejbClientJar("ejb-client-jar0").up();                     
+              .ejbClientJar("ejb-client-jar0");                     
       
       String webXmlGenerated = ejbJarGenerated.exportAsString();
       String webXmlOriginal = getResourceContents("src/test/resources/test-gen-ejbjar31.xml");
@@ -513,7 +513,7 @@ public class EjbJarDescriptorTestCase
    @Test
    public void testInterceptors() throws Exception
    {  
-	   MutableEjbJarDescriptor ejbJarGenerated = create().getRoot()
+	   MutableEjbJarDescriptor ejbJarGenerated = create()
 //            .addDefaultNamespaces()
             .version("3.1")
             .getOrCreateInterceptors()
@@ -531,7 +531,7 @@ public class EjbJarDescriptorTestCase
                      .methodName("isOddNumber")
                   .up()
                .up()
-            .up().up();
+            .up();
       
       String webXmlGenerated = ejbJarGenerated.exportAsString();
       String webXmlOriginal = getResourceContents("src/test/resources/test-orig-ejbjar31.xml");

@@ -68,7 +68,7 @@ public class PersistenceDescriptorEclipseLinkTestCase
    
    private MutablePersistenceDescriptor create()
    {
-      return Descriptors.create(MutablePersistenceDescriptor.class).getRoot().getOrCreatePersistenceUnit().name(this.getClass().getSimpleName()).up().up();
+      return Descriptors.create(MutablePersistenceDescriptor.class).getOrCreatePersistenceUnit().name(this.getClass().getSimpleName()).up();
    }
    
 }

@@ -7,9 +7,9 @@ import java.util.List;
  *  
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
- * @since Generation date :2012-06-28T12:19:49.689-04:00
+ * @since Generation date :2012-07-08T16:29:08.216+02:00
  */
-public interface MutableApplicationType extends ApplicationTypeBase<MutableApplicationType, MutableApplicationDescriptor> {
+public interface ApplicationTypeMutable extends ApplicationTypeBase<ApplicationTypeMutable, MutableApplicationDescriptor> {
  
    // --------------------------------------------------------------------------------------------------------||
    // ClassName: ApplicationTypeMutable ElementName: xsd:string ElementType : description
@@ -22,7 +22,7 @@ public interface MutableApplicationType extends ApplicationTypeBase<MutableAppli
     * @param values list of <code>description</code> objects 
     * @return the current instance of <code>ApplicationTypeMutable</code> 
     */
-   public MutableApplicationType description(String ... values);
+   public ApplicationTypeMutable description(String ... values);
 
    /**
     * Returns all <code>description</code> elements
@@ -34,7 +34,7 @@ public interface MutableApplicationType extends ApplicationTypeBase<MutableAppli
     * Removes the <code>description</code> element 
     * @return the current instance of <code>ApplicationTypeMutable</code> 
     */
-   public MutableApplicationType removeAllDescription();
+   public ApplicationTypeMutable removeAllDescription();
  
    // --------------------------------------------------------------------------------------------------------||
    // ClassName: ApplicationTypeMutable ElementName: xsd:token ElementType : display-name
@@ -47,7 +47,7 @@ public interface MutableApplicationType extends ApplicationTypeBase<MutableAppli
     * @param values list of <code>display-name</code> objects 
     * @return the current instance of <code>ApplicationTypeMutable</code> 
     */
-   public MutableApplicationType displayName(String ... values);
+   public ApplicationTypeMutable displayName(String ... values);
 
    /**
     * Returns all <code>display-name</code> elements
@@ -59,38 +59,8 @@ public interface MutableApplicationType extends ApplicationTypeBase<MutableAppli
     * Removes the <code>display-name</code> element 
     * @return the current instance of <code>ApplicationTypeMutable</code> 
     */
-   public MutableApplicationType removeAllDisplayName();
-  
-   // --------------------------------------------------------------------------------------------------------||
-   // ClassName: ApplicationTypeMutable ElementName: javaee:service-refType ElementType : service-ref
-   // MaxOccurs: -unbounded  isGeneric: false   isAttribute: false isEnum: false isDataType: false
-   // --------------------------------------------------------------------------------------------------------||
-
+   public ApplicationTypeMutable removeAllDisplayName();
  
-   // --------------------------------------------------------------------------------------------------------||
-   // ClassName: ApplicationTypeMutable ElementName: xsd:token ElementType : application-name
-   // MaxOccurs: -  isGeneric: false   isAttribute: false isEnum: false isDataType: true
-   // --------------------------------------------------------------------------------------------------------||
-
-   /**
-    * Sets the <code>application-name</code> element
-    * @param applicationName the value for the element <code>application-name</code> 
-    * @return the current instance of <code>ApplicationTypeMutable</code> 
-    */
-   public MutableApplicationType applicationName(String applicationName);
-
-   /**
-    * Returns the <code>application-name</code> element
-    * @return the node defined for the element <code>application-name</code> 
-    */
-   public String getApplicationName();
-
-   /**
-    * Removes the <code>application-name</code> element 
-    * @return the current instance of <code>ApplicationTypeMutable</code> 
-    */
-   public MutableApplicationType removeApplicationName();
-
  
    // --------------------------------------------------------------------------------------------------------||
    // ClassName: ApplicationTypeMutable ElementName: javaee:moduleType ElementType : module
@@ -102,26 +72,27 @@ public interface MutableApplicationType extends ApplicationTypeBase<MutableAppli
     * Otherwise, the first existing <code>module</code> element will be returned.
     * @return the instance defined for the element <code>module</code> 
     */
-   public ModuleType<MutableApplicationType> getOrCreateModule();
+   public ModuleType<ApplicationTypeMutable> getOrCreateModule();
 
    /**
     * Creates a new <code>module</code> element 
     * @return the new created instance of <code>ModuleType<ApplicationTypeMutable></code> 
     */
-   public ModuleType<MutableApplicationType> createModule();
+   public ModuleType<ApplicationTypeMutable> createModule();
 
    /**
     * Returns all <code>module</code> elements
     * @return list of <code>module</code> 
     */
-   public List<ModuleType<MutableApplicationType>> getAllModule();
+   public List<ModuleType<ApplicationTypeMutable>> getAllModule();
 
    /**
     * Removes all <code>module</code> elements 
     * @return the current instance of <code>ModuleType<ApplicationTypeMutable></code> 
     */
-   public MutableApplicationType removeAllModule();
+   public ApplicationTypeMutable removeAllModule();
 
+ 
  
    // --------------------------------------------------------------------------------------------------------||
    // ClassName: ApplicationTypeMutable ElementName: xsd:token ElementType : library-directory
@@ -133,7 +104,7 @@ public interface MutableApplicationType extends ApplicationTypeBase<MutableAppli
     * @param libraryDirectory the value for the element <code>library-directory</code> 
     * @return the current instance of <code>ApplicationTypeMutable</code> 
     */
-   public MutableApplicationType libraryDirectory(String libraryDirectory);
+   public ApplicationTypeMutable libraryDirectory(String libraryDirectory);
 
    /**
     * Returns the <code>library-directory</code> element
@@ -145,9 +116,9 @@ public interface MutableApplicationType extends ApplicationTypeBase<MutableAppli
     * Removes the <code>library-directory</code> element 
     * @return the current instance of <code>ApplicationTypeMutable</code> 
     */
-   public MutableApplicationType removeLibraryDirectory();
+   public ApplicationTypeMutable removeLibraryDirectory();
 
-    
+ 
    // --------------------------------------------------------------------------------------------------------||
    // ClassName: ApplicationTypeMutable ElementName: xsd:token ElementType : version
    // MaxOccurs: -  isGeneric: false   isAttribute: true isEnum: false isDataType: true
@@ -158,7 +129,7 @@ public interface MutableApplicationType extends ApplicationTypeBase<MutableAppli
     * @param version the value for the attribute <code>version</code> 
     * @return the current instance of <code>ApplicationTypeMutable</code> 
     */
-   public MutableApplicationType version(String version);
+   public ApplicationTypeMutable version(String version);
 
    /**
     * Returns the <code>version</code> attribute
@@ -170,5 +141,5 @@ public interface MutableApplicationType extends ApplicationTypeBase<MutableAppli
     * Removes the <code>version</code> attribute 
     * @return the current instance of <code>ApplicationTypeMutable</code> 
     */
-   public MutableApplicationType removeVersion();
+   public ApplicationTypeMutable removeVersion();
 }

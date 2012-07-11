@@ -52,8 +52,8 @@ public class WebAppDescriptorNamespaceTestCase
    @Ignore
    public void testRemoveAllNamespaces() throws Exception
    {
-      final String app = create().getRoot()
-            .version("3.0").up()
+      final String app = create()
+            .version("3.0")
 //            .addDefaultNamespaces()
 //            .removeAllNamespaces()
             .exportAsString();

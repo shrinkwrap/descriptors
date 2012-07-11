@@ -18,7 +18,7 @@ public class ApplicationDescriptorTestCase
    @Test
    public void testImportGeneratedApplicationXml() throws Exception
    {
-	   MutableApplicationDescriptor app6Descr = create().getRoot()
+	   MutableApplicationDescriptor app6Descr = create()
          .version("6")
          .applicationName("application-name0")
          .description("description0")
@@ -191,7 +191,7 @@ public class ApplicationDescriptorTestCase
              .maxPoolSize(0)
              .minPoolSize(0)
              .maxIdleTime(0)
-             .maxStatements(0).up().up();
+             .maxStatements(0).up();
       
       String appXmlOriginal = getResourceContents("src/test/resources/test-gen-application6.xml");
       String appXmlGenerated = app6Descr.exportAsString();

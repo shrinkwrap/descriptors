@@ -93,9 +93,9 @@ public class BeansDescriptorTestCase
       		"http://java.sun.com/xml/ns/javaee/beans_1_0.xsd";
       
       // when
-      final String descriptorXml = create().getRoot().getOrCreateAlternatives()
+      final String descriptorXml = create().getOrCreateAlternatives()
                                            .stereotype(TestAlternativeStereoType.class.getName())
-                                           .up().up()
+                                           .up()
                                            .exportAsString();
       
       // then
@@ -112,13 +112,13 @@ public class BeansDescriptorTestCase
    @Test(expected = IllegalArgumentException.class)
    public void shouldNotBeAbleToAddNonAlternativeStereoType()
    {
-      create().getRoot().getOrCreateAlternatives().clazz(Override.class.getName());
+      create().getOrCreateAlternatives().clazz(Override.class.getName());
    }
 
    @Test
    public void shouldBeAbleToAddAlternativeStereoType() throws Exception
    {
-      final String desc = create().getRoot().getOrCreateAlternatives().stereotype(TestAlternativeStereoType.class.getName()).up().up()
+      final String desc = create().getOrCreateAlternatives().stereotype(TestAlternativeStereoType.class.getName()).up()
             .exportAsString();
       log.info(desc);      
       
@@ -128,8 +128,8 @@ public class BeansDescriptorTestCase
    @Test
    public void shouldBeAbleToAddAlternativeStereoTypes() throws Exception
    {
-      final String desc = create().getRoot().getOrCreateAlternatives()
-            .stereotype(TestAlternativeStereoType.class.getName(), TestAlternativeStereoType.class.getName()).up().up()
+      final String desc = create().getOrCreateAlternatives()
+            .stereotype(TestAlternativeStereoType.class.getName(), TestAlternativeStereoType.class.getName()).up()
             .exportAsString();
       log.info(desc);
       assertPresenceUsingXPath(desc, "/beans/alternatives/stereotype", TestAlternativeStereoType.class.getName(), TestAlternativeStereoType.class.getName());
@@ -145,14 +145,14 @@ public class BeansDescriptorTestCase
    @Test(expected = IllegalArgumentException.class)
    public void shouldNotBeAbleToAddNonAlternativeClass()
    {
-      create().getRoot().getOrCreateAlternatives()
+      create().getOrCreateAlternatives()
       .clazz(String.class.getName());
    }
 
    @Test
    public void shouldBeAbleToAddAlternativeClass() throws Exception
    {
-      final String desc = create().getRoot().getOrCreateAlternatives().clazz(TestAlternativeClass.class.getName()).up().up()
+      final String desc = create().getOrCreateAlternatives().clazz(TestAlternativeClass.class.getName()).up()
             .exportAsString();
       
       assertPresenceUsingXPath(desc, "/beans/alternatives/class", TestAlternativeClass.class.getName());
@@ -161,8 +161,8 @@ public class BeansDescriptorTestCase
    @Test
    public void shouldBeAbleToAddAlternativeClasses() throws Exception
    {
-      final String desc = create().getRoot().getOrCreateAlternatives()
-            .clazz(TestAlternativeClass.class.getName(), TestAlternativeClass.class.getName()).up().up().exportAsString(); 
+      final String desc = create().getOrCreateAlternatives()
+            .clazz(TestAlternativeClass.class.getName(), TestAlternativeClass.class.getName()).up().exportAsString(); 
       assertPresenceUsingXPath(desc, "/beans/alternatives/class", TestAlternativeClass.class.getName(), TestAlternativeClass.class.getName());
    }
 
@@ -176,13 +176,13 @@ public class BeansDescriptorTestCase
    @Test(expected = IllegalArgumentException.class)
    public void shouldNotBeAbleToAddNonInterceptor() throws Exception
    {
-      create().getRoot().getOrCreateInterceptors().clazz(String.class.getName());
+      create().getOrCreateInterceptors().clazz(String.class.getName());
    }
 
    @Test
    public void shouldBeAbleToAddInterceptor() throws Exception
    {
-      final String desc = create().getRoot().getOrCreateInterceptors().clazz(TestInterceptor.class.getName()).up().up()
+      final String desc = create().getOrCreateInterceptors().clazz(TestInterceptor.class.getName()).up()
             .exportAsString();
       
       assertPresenceUsingXPath(desc, "/beans/interceptors/class", TestInterceptor.class.getName());
@@ -191,8 +191,8 @@ public class BeansDescriptorTestCase
    @Test
    public void shouldBeAbleToAddInterceptors() throws Exception
    {
-      final String desc = create().getRoot().getOrCreateInterceptors()
-            .clazz(TestInterceptor.class.getName(), TestInterceptor.class.getName()).up().up().exportAsString(); 
+      final String desc = create().getOrCreateInterceptors()
+            .clazz(TestInterceptor.class.getName(), TestInterceptor.class.getName()).up().exportAsString(); 
       assertPresenceUsingXPath(desc, "/beans/interceptors/class", TestInterceptor.class.getName(), TestInterceptor.class.getName());
    }
 
@@ -206,21 +206,21 @@ public class BeansDescriptorTestCase
    @Test(expected = IllegalArgumentException.class)
    public void shouldNotBeAbleToAddNonDecorator() throws Exception
    {
-      create().getRoot().getOrCreateDecorators().clazz(String.class.getName());
+      create().getOrCreateDecorators().clazz(String.class.getName());
    }
 
    @Test
    public void shouldBeAbleToAddDescorator() throws Exception
    {
-      String desc = create().getRoot().getOrCreateDecorators().clazz(TestDecorator.class.getName()).up().up().exportAsString();   
+      String desc = create().getOrCreateDecorators().clazz(TestDecorator.class.getName()).up().exportAsString();   
       assertPresenceUsingXPath(desc, "/beans/decorators/class", TestDecorator.class.getName());
    }
 
    @Test
    public void shouldBeAbleToAddDescorators() throws Exception
    {
-      final String desc = create().getRoot().getOrCreateDecorators()
-            .clazz(TestDecorator.class.getName(), TestDecorator.class.getName()).up().up().exportAsString();
+      final String desc = create().getOrCreateDecorators()
+            .clazz(TestDecorator.class.getName(), TestDecorator.class.getName()).up().exportAsString();
       assertPresenceUsingXPath(desc, "/beans/decorators/class", TestDecorator.class.getName(), TestDecorator.class.getName());
    }
 
@@ -231,8 +231,8 @@ public class BeansDescriptorTestCase
    @Test
    public void shouldBeAbleToReadWhatWasExported() throws Exception
    {
-      final String desc = create().getRoot().getOrCreateDecorators()
-            .clazz(TestDecorator.class.getName(), TestDecorator.class.getName()).up().up().exportAsString();
+      final String desc = create().getOrCreateDecorators()
+            .clazz(TestDecorator.class.getName(), TestDecorator.class.getName()).up().exportAsString();
 
       final String roundtrip = Descriptors.importAs(MutableBeansDescriptor.class).fromString(desc).exportAsString();
       
@@ -247,10 +247,10 @@ public class BeansDescriptorTestCase
    @Test
    public void shouldBeAbleToGenerateComplexDescriptor() throws Exception
    {
-      final MutableBeansDescriptor beans = Descriptors.create(MutableBeansDescriptor.class).getRoot().getOrCreateInterceptors()
+      final MutableBeansDescriptor beans = Descriptors.create(MutableBeansDescriptor.class).getOrCreateInterceptors()
             .clazz(TestInterceptor.class.getName(), TestAnotherInterceptor.class.getName()).up()
             .getOrCreateDecorators().clazz(TestDecorator.class.getName()).up().getOrCreateAlternatives()
-            .stereotype(TestAlternativeStereoType.class.getName()).up().up();
+            .stereotype(TestAlternativeStereoType.class.getName()).up();
       String xml = beans.exportAsString();
 
       assertPresenceUsingXPath(xml, "/beans/interceptors/class", TestInterceptor.class.getName(), TestAnotherInterceptor.class.getName());

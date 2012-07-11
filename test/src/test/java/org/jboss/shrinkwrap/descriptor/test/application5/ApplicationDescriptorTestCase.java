@@ -107,7 +107,7 @@ public class ApplicationDescriptorTestCase
    public void shouldBeAbleToAddDescription() throws Exception
    {
       final String descName = "Description";
-      final String desc = emptyDescriptor.getRoot().description(descName).up().exportAsString();
+      final String desc = emptyDescriptor.description(descName).exportAsString();
       assertPresenceUsingXPath(desc, "/application/description", descName);
    }
 
@@ -115,7 +115,7 @@ public class ApplicationDescriptorTestCase
    public void shouldBeAbleToAddDisplayName() throws Exception
    {
       final String displayName = "Display Name";
-      final String desc = emptyDescriptor.getRoot().displayName(displayName).up().exportAsString();
+      final String desc = emptyDescriptor.displayName(displayName).exportAsString();
       assertPresenceUsingXPath(desc, "/application/display-name", displayName);
    }
 
@@ -123,7 +123,7 @@ public class ApplicationDescriptorTestCase
    public void shouldBeAbleToAddLibraryDirectory() throws Exception
    {
       final String libraryDir = "Library Dir";
-      final String desc = emptyDescriptor.getRoot().libraryDirectory(libraryDir).up().exportAsString();
+      final String desc = emptyDescriptor.libraryDirectory(libraryDir).exportAsString();
       assertPresenceUsingXPath(desc, "/application/library-directory", libraryDir);
    }
 
@@ -173,7 +173,7 @@ public class ApplicationDescriptorTestCase
    public void shouldBeAbleToAddASecurityRole() throws Exception
    {
       final String roleName = "Security Role";
-      String desc = emptyDescriptor.getRoot().createSecurityRole().roleName(roleName).up().up().exportAsString();
+      String desc = emptyDescriptor.createSecurityRole().roleName(roleName).up().exportAsString();
       assertPresenceUsingXPath(desc, "/application/security-role/role-name", roleName);
    }
 
@@ -181,7 +181,7 @@ public class ApplicationDescriptorTestCase
    public void shouldBeAbleToAddASecurityRoleWithDescription() throws Exception
    {
       final String roleDescription = "Security Description";
-      String desc = emptyDescriptor.getRoot().createSecurityRole().description(roleDescription).up().up().exportAsString();
+      String desc = emptyDescriptor.createSecurityRole().description(roleDescription).up().exportAsString();
       assertPresenceUsingXPath(desc, "/application/security-role/description", roleDescription);
    }
 

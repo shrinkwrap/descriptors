@@ -29,27 +29,27 @@ public class WebAppDescriptorSimpleTypeTestCase
    @Test
    public void testLoadOnStartupType() throws Exception
    {
-      final MutableWebAppDescriptor webApp = create().getRoot().createServlet().loadOnStartup(1).up().up();      
-      assertTrue(webApp.getRoot().getAllServlet().get(0).getLoadOnStartup()==1);
+      final MutableWebAppDescriptor webApp = create().createServlet().loadOnStartup(1).up();      
+      assertTrue(webApp.getAllServlet().get(0).getLoadOnStartup()==1);
       webApp.exportAsString();
       assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/servlet/load-on-startup", "1");
       
-      webApp.getRoot().getAllServlet().get(0).loadOnStartup(0);
+      webApp.getAllServlet().get(0).loadOnStartup(0);
       assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/servlet/load-on-startup", "0");
       
-      webApp.getRoot().getAllServlet().get(0).removeLoadOnStartup();
+      webApp.getAllServlet().get(0).removeLoadOnStartup();
       assertTrue(webApp.exportAsString().indexOf("load-on-startup") == -1);
    }
    
    @Test
    public void testWebAppVersionType() throws Exception
    {
-      final MutableWebAppDescriptor webApp = create().getRoot().version("3.0").up();
-      assertEquals(webApp.getRoot().getVersionAsString(), "3.0");
+      final MutableWebAppDescriptor webApp = create().version("3.0");
+      assertEquals(webApp.getVersionAsString(), "3.0");
       assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/@version", "3.0");
       
-      webApp.getRoot().version("3.x");
-      assertEquals(webApp.getRoot().getVersionAsString(), "3.x");
+      webApp.version("3.x");
+      assertEquals(webApp.getVersionAsString(), "3.x");
       assertPresenceUsingXPath(webApp.exportAsString(), "/web-app/@version", "3.x");
    }
    

@@ -15,7 +15,7 @@ public class PersistenceDescriptorTestCase
    @Test
    public void testGeneratedPersistenceXml() throws Exception
    {
-      final MutablePersistenceDescriptor persistence = create().getRoot()
+      final MutablePersistenceDescriptor persistence = create()
 //            .addDefaultNamespaces()
             .version("2.0")
             .createPersistenceUnit()
@@ -57,7 +57,7 @@ public class PersistenceDescriptorTestCase
                .getOrCreateProperties()
                   .createProperty().name("name9").value("value5").up()
                   .createProperty().name("name11").value("value7").up()
-               .up().up().up();            
+               .up().up();            
      
       String webXmlGenerated = persistence.exportAsString();
       String webXmlOriginal = getResourceContents("src/test/resources/test-gen-persistence20.xml");

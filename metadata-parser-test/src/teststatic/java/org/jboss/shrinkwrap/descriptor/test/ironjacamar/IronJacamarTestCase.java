@@ -26,7 +26,7 @@ public class IronJacamarTestCase
    @Test
    public void testGeneratedIronJacamarXml() throws Exception
    {  
-	   MutableIronjacamarDescriptor ironJacamarGenerated = create().getRoot()
+	   MutableIronjacamarDescriptor ironJacamarGenerated = create()
 //            .addDefaultNamespaces()
             .getOrCreateBeanValidationGroups()
             	.beanValidationGroup("bean-validation-group0")
@@ -116,7 +116,7 @@ public class IronJacamarTestCase
             			.useJavaContext(true).poolName("pool-name7")
             			.createConfigProperty().name("name21").text("config-property10").up()
 	            	    .createConfigProperty().name("name23").text("config-property11").up().up()
-	            	.up().up()
+	            	.up()
            ;                     
       
       String ironJacamarXmlGenerated = ironJacamarGenerated.exportAsString();

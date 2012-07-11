@@ -44,7 +44,7 @@ public class ConnectorDescriptorTestCase
    @Test
    public void testHornetQExample() throws Exception 
    {
-	   MutableConnectorDescriptor jca10Generated = create().getRoot()
+	   MutableConnectorDescriptor jca10Generated = create()
       	.displayName("Sample Adapter")
       	.description("It is a sample resource adapter")
       	.vendorName("JBoss")
@@ -70,7 +70,7 @@ public class ConnectorDescriptorTestCase
       			.authenticationMechanismType("BasicPassword")
       			.credentialInterface("javax.resource.security.PasswordCredential").up()
       		.reauthenticationSupport("false")
-      	.up().up();
+      	.up();
       	        
        String generatedRaXml = jca10Generated.exportAsString();
        String originalRaXml = this.getResourceContents("src/test/resources/test-orig-connector10.xml");
