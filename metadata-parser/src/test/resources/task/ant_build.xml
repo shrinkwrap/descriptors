@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="MyTask" basedir="." default="test">
+
+    <path id="test.classes">
+        <pathelement path="${basedir}/target/classes" />
+    </path>    
+    
+	<target name="test.init" description="Taskdef the metadata-parser task">
+		<taskdef name="metadata-parser"
+			classname="org.jboss.shrinkwrap.descriptor.metadata.task.MetadataParserTask"
+			classpathref="test.classes" />
+	</target>
+
+    <target name="test.missingPathElement" description="no path element defined"
+		depends="test.init">
+		<metadata-parser 
+		    verbose="false" 
+		    classpathref="test.classes">
+			
+			<descriptors>
+				<descriptor 
+				    pathToXsd="src/test/resources/dtd/connector_1_0.dtd" 
+				    nameSpace="j2ee"
+					packageApi="org.jboss.shrinkwrap.descriptor.api.connector10"
+					packageImpl="org.jboss.shrinkwrap.descriptor.impl.connector10"
+					descriptorName="ConnectorDescriptor" 
+					elementName="connector"
+					elementType="j2ee:connector" />
+			</descriptors>
+		</metadata-parser>
+	</target>
+
+    <target name="test.missingDescriptorsElement" description="no descriptors element defined"
+		depends="test.init">
+		<metadata-parser 
+		    verbose="false" 
+		    classpathref="test.classes">
+			<path 
+			    pathToApi="src/main/java" 
+			    pathToImpl="src/main/java"
+				pathToServices="src/main/resources/META-INF/services" />			
+		</metadata-parser>
+	</target>	
+	
+	<target name="test.missingDescriptorElements" description="no descriptor element defined"
+		depends="test.init">
+		<metadata-parser 
+		    verbose="false" 
+		    classpathref="test.classes">
+			<path 
+			    pathToApi="src/main/java" 
+			    pathToImpl="src/main/java"
+				pathToServices="src/main/resources/META-INF/services" />
+			<descriptors>
+				
+			</descriptors>
+		</metadata-parser>
+	</target>
+	
+	<target name="test.nestedElements" description="Use with nested elements"
+		depends="test.init">
+		<metadata-parser 
+		    verbose="false" 
+		    classpathref="test.classes">
+			<path
+			    pathToImpl="src/main/java"
+				pathToServices="src/main/resources/META-INF/services" />
+			<descriptors>
+				<descriptor 
+				    pathToXsd="src/test/resources/dtd/connector_1_0.dtd" 
+				    nameSpace="j2ee"
+					packageApi="org.jboss.shrinkwrap.descriptor.api.connector10"
+					packageImpl="org.jboss.shrinkwrap.descriptor.impl.connector10"
+					descriptorName="ConnectorDescriptor" 
+					elementName="connector"
+					elementType="j2ee:connector" />
+			</descriptors>
+		</metadata-parser>
+	</target>
+
+</project>
