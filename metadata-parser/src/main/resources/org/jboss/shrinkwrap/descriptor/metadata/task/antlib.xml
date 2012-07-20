@@ -1,0 +1,3 @@
+<antlib >
+  <taskdef name="metadata-parser" classname="org.jboss.shrinkwrap.descriptor.metadata.task.MetadataParserTask"/>
+</antlib>
