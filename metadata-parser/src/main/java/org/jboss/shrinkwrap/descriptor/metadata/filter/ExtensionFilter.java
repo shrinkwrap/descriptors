@@ -70,15 +70,18 @@ public class ExtensionFilter implements Filter
             {
                final Element parentElementWithName = (Element) parentNodeWithName;
                final String mixedStr = MetadataUtil.getAttributeValue(parentElementWithName, "mixed"); 
-               if (mixedStr == null || mixedStr.equals("false"))
-               {
-                  final String dataTypeName = MetadataUtil.getAttributeValue(parentElementWithName, "name");
-                  final String typeStr = MetadataUtil.getAttributeValue(element, "base");               
-                  final MetadataItem dataType = new MetadataItem(dataTypeName);
-                  dataType.setMappedTo(typeStr);
-                  dataType.setNamespace(metadata.getCurrentNamespace());
-                  dataType.setSchemaName(metadata.getCurrentSchmema());
-                  metadata.getDataTypeList().add(dataType);     
+               final boolean isTextOnlyElement = MetadataUtil.hasParentOf(element, XsdElementEnum.simpleContent);
+               if (!isTextOnlyElement || parentElementWithName.hasChildNodes() || baseStr.indexOf(":string") > 0) {
+	               if (mixedStr == null || mixedStr.equals("false"))
+	               {
+	                  final String dataTypeName = MetadataUtil.getAttributeValue(parentElementWithName, "name");
+	                  final String typeStr = MetadataUtil.getAttributeValue(element, "base");               
+	                  final MetadataItem dataType = new MetadataItem(dataTypeName);
+	                  dataType.setMappedTo(typeStr);
+	                  dataType.setNamespace(metadata.getCurrentNamespace());
+	                  dataType.setSchemaName(metadata.getCurrentSchmema());
+	                  metadata.getDataTypeList().add(dataType);     
+	               }
                }
             }
             

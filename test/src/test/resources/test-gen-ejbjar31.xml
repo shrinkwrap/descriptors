@@ -13,7 +13,7 @@
         <message-driven>
             <description>description1</description>
             <display-name>display-name1</display-name>
-            <icon>
+            <icon id="iconID1">
                 <small-icon>small-icon1</small-icon>
                 <large-icon>large-icon1</large-icon>
             </icon>
@@ -111,7 +111,7 @@
             <service-ref>
                 <description>description7</description>
                 <display-name>display-name2</display-name>
-                <icon>
+                <icon id="iconID2">
                     <small-icon>small-icon2</small-icon>
                     <large-icon>large-icon2</large-icon>
                 </icon>
