@@ -32,13 +32,14 @@ public class ComplexTypeFilterTestCase {
 	
 	@Test
 	public void testComplexTypeFilterWithMixedContent() throws Exception {		
-		final boolean isLogging = false;		
+		final boolean isLogging = true;		
 		final String xmlFragment = 
 		"<xsd:schema xmlns=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" >" + 
 		"   <xsd:complexType name=\"loader-repositoryType\" mixed=\"true\">" +
 		"      <xsd:sequence>" +
 		"          <xsd:element name=\"loader-repository-config\" type=\"jboss:loader-repository-configType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/>" +
-		"      </xsd:sequence><xsd:attribute name=\"id\" type=\"xsd:ID\"/>" +
+		"      </xsd:sequence>" +
+		"      <xsd:attribute name=\"id\" type=\"xsd:ID\"/>" +
 		"      <xsd:attribute name=\"loaderRepositoryClass\" type=\"xsd:string\"/>" +
 		"   </xsd:complexType>\">" +
 		"</xsd:schema>";
@@ -50,7 +51,8 @@ public class ComplexTypeFilterTestCase {
 		final List<MetadataElement> e = metadata.getClassList().get(0).getElements();
 		DomTestUtil.assertElement(e.get(0), "<xsd:element name=\"loader-repositoryType\" type=\"text\"/>");
 		DomTestUtil.assertElement(e.get(1), "<xsd:element name=\"loader-repository-config\" type=\"jboss:loader-repository-configType\" minOccurs=\"0\" maxOccurs=\"unbounded\"/>");
-		DomTestUtil.assertClassAttribute(e.get(2), "<xsd:attribute name=\"loaderRepositoryClass\" type=\"xsd:string\"/>");	
+		DomTestUtil.assertClassAttribute(e.get(2), "<xsd:attribute name=\"id\" type=\"xsd:ID\"/>");
+		DomTestUtil.assertClassAttribute(e.get(3), "<xsd:attribute name=\"loaderRepositoryClass\" type=\"xsd:string\"/>");
 	}
 	
 	@Test

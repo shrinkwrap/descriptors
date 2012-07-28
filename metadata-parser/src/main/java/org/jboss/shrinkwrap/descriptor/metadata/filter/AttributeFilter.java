@@ -99,9 +99,12 @@ public class AttributeFilter implements Filter
                      final Node node = element.getAttributes().getNamedItem("type");
                      if(node != null)
                      {
+                    	final boolean isTextOnlyElement = MetadataUtil.hasParentOf(element, XsdElementEnum.simpleContent);
                         if (node.getNodeValue().endsWith(":ID"))
                         {
-                           return false;
+                        	if (isTextOnlyElement) {
+                                return false;
+                        	}
                         }                  
                    
 	                    final MetadataElement classElement = new MetadataElement(element);

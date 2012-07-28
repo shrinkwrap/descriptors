@@ -138,6 +138,30 @@ public class MetadataUtil
       return false;      
    }
    
+
+   /**
+    * Checks for the first parent node occurrence of the a w3c parentEnum element.
+    * @param parentElement the element from which the search starts.
+    * @param parentEnum the <code>XsdElementEnum</code> specifying the parent element.
+    * @return true, if found, otherwise false.
+    */
+   public static boolean hasParentOf(final Element parentElement, XsdElementEnum parentEnum )
+   {
+      Node parent = parentElement.getParentNode();   
+      while (parent != null) {
+    	  if (parent.getNodeType() == Node.ELEMENT_NODE)
+          {
+             final Element parentElm = (Element) parent;
+             if (parentEnum.isTagNameEqual(parentElm.getTagName())) 
+             {
+                return true;
+             }             
+          }
+    	  parent = parent.getParentNode();
+      }
+      return false;      
+   }
+   
    /**
     * Logs out metadata information.
     * @param metadata
