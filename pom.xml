@@ -71,6 +71,7 @@
     <module>test-util</module>
     <module>metadata-parser</module>
     <module>metadata-parser-test</module>
+    <module>extension</module>
   </modules>
 
   <!-- Plugin Configuration -->
