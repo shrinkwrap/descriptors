@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ironjacamar xmlns="http://www.jboss.org/ironjacamar/schema"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.jboss.org/ironjacamar/schema file:/home/bfr/shrinkdesc/SHRINKDESC-93/descriptors/gen/src/main/resources/xsd/ironjacamar/ironjacamar_1_0.xsd">
+    <bean-validation-groups>
+        <bean-validation-group>bean-validation-group0</bean-validation-group>
+        <bean-validation-group>bean-validation-group1</bean-validation-group>
+    </bean-validation-groups>
+    <bootstrap-context>bootstrap-context0</bootstrap-context>
+    <config-property name="name1">config-property0</config-property>
+    <config-property name="name3">config-property1</config-property>
+    <transaction-support>NoTransaction</transaction-support>
+    <connection-definitions>
+        <connection-definition use-ccm="true" class-name="class-name1" jndi-name="jndi-name1" enabled="true" use-java-context="true" pool-name="pool-name1">
+            <config-property name="name5">config-property2</config-property>
+            <config-property name="name7">config-property3</config-property>
+            <pool>
+                <min-pool-size>50</min-pool-size>
+                <max-pool-size>50</max-pool-size>
+                <prefill>false</prefill>
+                <use-strict-min>false</use-strict-min>
+                <flush-strategy>flush-strategy0</flush-strategy>
+            </pool>
+            <security>
+                <security-domain-and-application>security-domain-and-application0</security-domain-and-application>
+            </security>
+            <timeout>
+                <blocking-timeout-millis>50</blocking-timeout-millis>
+                <idle-timeout-minutes>50</idle-timeout-minutes>
+                <allocation-retry>50</allocation-retry>
+                <allocation-retry-wait-millis>50</allocation-retry-wait-millis>
+                <xa-resource-timeout>50</xa-resource-timeout>
+            </timeout>
+            <validation>
+                <background-validation>false</background-validation>
+                <background-validation-millis>50</background-validation-millis>
+                <use-fast-fail>false</use-fast-fail>
+            </validation>
+            <recovery no-recovery="false">
+                <recover-credential>
+                    <user-name>user-name0</user-name>
+                    <password>password0</password>
+                    <security-domain>security-domain0</security-domain>
+                </recover-credential>
+                <recover-plugin class-name="class-name3">
+                    <config-property name="name9">config-property4</config-property>
+                </recover-plugin>
+            </recovery>
+        </connection-definition>
+        <connection-definition use-ccm="true" class-name="class-name5" jndi-name="jndi-name3" enabled="true" use-java-context="true" pool-name="pool-name3">
+            <config-property name="name11">config-property5</config-property>
+            <config-property name="name13">config-property6</config-property>
+            <xa-pool>
+                <min-pool-size>50</min-pool-size>
+                <max-pool-size>50</max-pool-size>
+                <prefill>false</prefill>
+                <use-strict-min>false</use-strict-min>
+                <flush-strategy>flush-strategy1</flush-strategy>
+                <is-same-rm-override>false</is-same-rm-override>
+                <interleaving/>
+                <no-tx-separate-pools/>
+                <pad-xid>false</pad-xid>
+                <wrap-xa-resource>false</wrap-xa-resource>
+            </xa-pool>
+            <security>
+                <security-domain-and-application>security-domain-and-application1</security-domain-and-application>
+            </security>
+            <timeout>
+                <blocking-timeout-millis>50</blocking-timeout-millis>
+                <idle-timeout-minutes>50</idle-timeout-minutes>
+                <allocation-retry>50</allocation-retry>
+                <allocation-retry-wait-millis>50</allocation-retry-wait-millis>
+                <xa-resource-timeout>50</xa-resource-timeout>
+            </timeout>
+            <validation>
+                <background-validation>false</background-validation>
+                <background-validation-millis>50</background-validation-millis>
+                <use-fast-fail>false</use-fast-fail>
+            </validation>
+            <recovery no-recovery="false">
+                <recover-credential>
+                    <user-name>user-name1</user-name>
+                    <password>password1</password>
+                    <security-domain>security-domain1</security-domain>
+                </recover-credential>
+                <recover-plugin class-name="class-name7">
+                    <config-property name="name15">config-property7</config-property>
+                </recover-plugin>
+            </recovery>
+        </connection-definition>
+    </connection-definitions>
+    <admin-objects>
+        <admin-object class-name="class-name9" jndi-name="jndi-name5" enabled="true" use-java-context="true" pool-name="pool-name5">
+            <config-property name="name17">config-property8</config-property>
+            <config-property name="name19">config-property9</config-property>
+        </admin-object>
+        <admin-object class-name="class-name11" jndi-name="jndi-name7" enabled="true" use-java-context="true" pool-name="pool-name7">
+            <config-property name="name21">config-property10</config-property>
+            <config-property name="name23">config-property11</config-property>
+        </admin-object>
+    </admin-objects>
+</ironjacamar>
