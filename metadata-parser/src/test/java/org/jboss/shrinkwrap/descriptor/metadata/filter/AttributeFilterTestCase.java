@@ -50,6 +50,7 @@ public class AttributeFilterTestCase {
 		"      <xsd:attribute name=\"updatable\" type=\"xsd:boolean\"/>" +
 		"      <xsd:attribute name=\"column-definition\" type=\"xsd:string\"/>" +
 		"      <xsd:attribute name=\"table\" type=\"xsd:string\"/>" +
+		"      <xsd:attribute name=\"id\" type=\"xsd:ID\"/>" +
 		"   </xsd:complexType>" +
 		"</xsd:schema>";
 		
@@ -66,6 +67,7 @@ public class AttributeFilterTestCase {
 		DomTestUtil.assertClassAttribute(e.get(5), "<xsd:attribute name=\"updatable\" type=\"xsd:boolean\"/>");
 		DomTestUtil.assertClassAttribute(e.get(6), "<xsd:attribute name=\"column-definition\" type=\"xsd:string\"/>");
 		DomTestUtil.assertClassAttribute(e.get(7), "<xsd:attribute name=\"table\" type=\"xsd:string\"/>");
+		DomTestUtil.assertClassAttribute(e.get(8), "<xsd:attribute name=\"id\" type=\"xsd:ID\"/>");
 	}
 	
 	@Test

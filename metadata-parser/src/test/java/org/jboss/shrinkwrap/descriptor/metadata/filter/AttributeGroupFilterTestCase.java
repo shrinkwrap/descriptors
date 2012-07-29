@@ -51,6 +51,7 @@ public class AttributeGroupFilterTestCase {
 		"          <xsd:element name=\"absolute-ordering\" type=\"javaee:absoluteOrderingType\"/>" +
 		"      </xsd:choice>" +
 		"      <xsd:attributeGroup ref=\"javaee:web-common-attributes\"/>" +
+		"      <xsd:attribute name=\"id\" type=\"xsd:ID\"/>" +
 		"   </xsd:complexType>" +
 		"</xsd:schema>";
 		
@@ -59,6 +60,7 @@ public class AttributeGroupFilterTestCase {
 		Assert.assertEquals("web-appType", metadata.getClassList().get(0).getName(), "web-appType");
 		Assert.assertEquals("javaee:web-commonType", metadata.getClassList().get(0).getReferences().get(0).getRef(), "javaee:web-commonType");
 		Assert.assertEquals("javaee:web-common-attributes", metadata.getClassList().get(0).getReferences().get(1).getRef(), "javaee:web-common-attributes");
+		DomTestUtil.assertClassAttribute(metadata.getClassList().get(0).getElements().get(2), "<xsd:attribute name=\"id\" type=\"xsd:ID\"");
 	}
 	
 }
