@@ -7,7 +7,7 @@
     
 	<target name="test.init" description="Taskdef the metadata-parser task">
 		<taskdef name="metadata-parser"
-			classname="org.jboss.shrinkwrap.descriptor.metadata.task.MetadataParserTask"
+			classname="org.jboss.shrinkwrap.descriptor.extension.ant.task.MetadataParserTask"
 			classpathref="test.classes" />
 	</target>
 
@@ -15,8 +15,7 @@
 		depends="test.init">
 		<metadata-parser 
 		    verbose="false" 
-		    classpathref="test.classes">
-			
+		    classpathref="test.classes">			
 			<descriptors>
 				<descriptor 
 				    pathToXsd="src/test/resources/dtd/connector_1_0.dtd" 
