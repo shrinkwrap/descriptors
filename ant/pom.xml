@@ -14,9 +14,9 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<!-- Artifact Configuration -->
-	<artifactId>shrinkwrap-descriptors-extension</artifactId>
-	<name>ShrinkWrap Descriptors Extension</name>
-	<description>Extension module for features which are not part of the core functionality</description>
+	<artifactId>shrinkwrap-descriptors-ant</artifactId>
+	<name>ShrinkWrap Descriptors Ant Extension</name>
+	<description>Extension module for ShrinkWrap Descriptors Ant Tasks </description>
 	
 	<build>
 		<plugins>

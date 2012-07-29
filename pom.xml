@@ -58,6 +58,7 @@
     <module>api-javaee</module>
     <module>api-jboss</module>
     <module>api-misc</module>
+    <module>ant</module>
     <module>bom</module>
     <module>depchain</module>
     <module>gen</module>
@@ -70,7 +71,6 @@
     <module>test-util</module>
     <module>metadata-parser</module>
     <module>metadata-parser-test</module>
-    <module>extension</module>
   </modules>
 
   <!-- Plugin Configuration -->
