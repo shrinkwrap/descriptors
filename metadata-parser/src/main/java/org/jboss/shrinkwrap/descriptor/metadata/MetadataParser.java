@@ -99,7 +99,7 @@ public class MetadataParser
          metadataDescriptor.setGenerateClasses(metadataConf.generateClasses);
          metadata.getMetadataDescriptorList().add(metadataDescriptor);
          
-         log.info(metadataConf.getPathToXsd());
+         log.fine(metadataConf.getPathToXsd());
          if (metadataConf.getPathToXsd().endsWith(".dtd"))
          {
             final InputSource in = new InputSource(new FileReader(metadataConf.getPathToXsd()));
@@ -114,7 +114,7 @@ public class MetadataParser
             final DocumentBuilder loader = factory.newDocumentBuilder();
             final Document document = loader.parse(metadataConf.getPathToXsd());
 
-            log.info(document.getDocumentURI());
+            log.fine(document.getDocumentURI());
             final DocumentTraversal traversal = (DocumentTraversal) document;
             final TreeWalker walker = traversal.createTreeWalker(document.getDocumentElement(),
                   NodeFilter.SHOW_ELEMENT, null, true);
@@ -146,7 +146,7 @@ public class MetadataParser
 
       if (path.getPathToApi() != null && path.getPathToImpl() != null)
       {
-         generateCode(path);
+         generateCode(path, verbose);
       }
    }
 
@@ -154,7 +154,7 @@ public class MetadataParser
     * Generates source code by applying the <code>ddJavaAll.xsl</code> XSLT extracted from the resource stream.
     * @throws TransformerException
     */
-   public void generateCode(final MetadataParserPath path) throws TransformerException
+   public void generateCode(final MetadataParserPath path, final boolean verbose) throws TransformerException
    {
       /** initialize the map which will overwrite global parameters as defined in metadata.xsl/ddJava.xsl */
       final Map<String, String> xsltParameters = new HashMap<String, String>();
@@ -162,6 +162,7 @@ public class MetadataParser
       xsltParameters.put("gOutputFolderApi", path.getPathToApi());
       xsltParameters.put("gOutputFolderTest", path.getPathToTest());
       xsltParameters.put("gOutputFolderService", path.getPathToServices());
+      xsltParameters.put("gVerbose", Boolean.toString(verbose));
 
       final InputStream is = MetadataParser.class.getResourceAsStream("/META-INF/ddJavaAll.xsl");
       log.fine("Stream resource: " + is);

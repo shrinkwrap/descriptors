@@ -84,7 +84,6 @@ public enum XsdDatatypeEnum
                 {
                     if (items[1].equals(value.getDescription()))
                     {
-                        System.out.println("isDataType: "+ tagName + " found");
                         return true;
                     }
                 }
