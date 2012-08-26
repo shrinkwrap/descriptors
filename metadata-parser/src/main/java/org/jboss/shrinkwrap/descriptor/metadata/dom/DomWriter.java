@@ -20,6 +20,7 @@ package org.jboss.shrinkwrap.descriptor.metadata.dom;
 
 import java.io.File;
 import java.util.Enumeration;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -410,7 +411,9 @@ public class DomWriter
 
          transformer.transform(source, result);
 
-         log.fine("Saved: " + file.getAbsolutePath());
+         if(log.isLoggable(Level.FINE)){
+             log.fine("Saved: " + file.getAbsolutePath());
+         }
 
       }
       catch (ParserConfigurationException pce)

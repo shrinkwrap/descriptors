@@ -24,6 +24,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -77,7 +78,9 @@ public class MetadataParser
 	  checkArguments(path, confList);
 	   
       pathToMetadata = createTempFile();
-      log.fine("Path to temporary metadata file: " + pathToMetadata);
+      if (log.isLoggable(Level.FINE)) {
+          log.fine("Path to temporary metadata file: " + pathToMetadata);
+      }
 
       for (int i = 0; i < confList.size(); i++)
       {
@@ -99,7 +102,9 @@ public class MetadataParser
          metadataDescriptor.setGenerateClasses(metadataConf.generateClasses);
          metadata.getMetadataDescriptorList().add(metadataDescriptor);
          
-         log.fine(metadataConf.getPathToXsd());
+         if(log.isLoggable(Level.FINE)){
+             log.fine(metadataConf.getPathToXsd());
+         }
          if (metadataConf.getPathToXsd().endsWith(".dtd"))
          {
             final InputSource in = new InputSource(new FileReader(metadataConf.getPathToXsd()));
@@ -114,7 +119,9 @@ public class MetadataParser
             final DocumentBuilder loader = factory.newDocumentBuilder();
             final Document document = loader.parse(metadataConf.getPathToXsd());
 
-            log.fine(document.getDocumentURI());
+            if(log.isLoggable(Level.FINE)){
+                log.fine(document.getDocumentURI());
+            }
             final DocumentTraversal traversal = (DocumentTraversal) document;
             final TreeWalker walker = traversal.createTreeWalker(document.getDocumentElement(),
                   NodeFilter.SHOW_ELEMENT, null, true);
@@ -165,7 +172,9 @@ public class MetadataParser
       xsltParameters.put("gVerbose", Boolean.toString(verbose));
 
       final InputStream is = MetadataParser.class.getResourceAsStream("/META-INF/ddJavaAll.xsl");
-      log.fine("Stream resource: " + is);
+      if(log.isLoggable(Level.FINE)){
+          log.fine("Stream resource: " + is);
+      }
 
       XsltTransformer.simpleTransform(pathToMetadata, is, new File("./tempddJava.xml"), xsltParameters);
    }
