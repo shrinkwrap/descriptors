@@ -7,6 +7,7 @@
     <xsl:param name="gOutputFolderApi" select="'../../../../../api/src/main/java'"/>
     <xsl:param name="gOutputFolderTest" select="''"/>
     <xsl:param name="gOutputFolderService" select="''"/>
+    <xsl:param name="gVerbose" as="xs:boolean" select="false()"/>
     <xsl:variable name="vLower" select="'abcdefghijklmnopqrstuvwxyz'"/>
     <xsl:variable name="vUpper" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
     <xsl:variable name="gDataTypes" select="//datatypes"/>
@@ -85,7 +86,9 @@
             <xsl:if test="xdd:isGenerateClassTrue(@package)">
                 <xsl:variable name="vClassname" select="xdd:createPascalizedName(@name, '')"/>
                 <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolderApi, @package, $vClassname, 'java')"/>
-                <xsl:message select="concat('Generating Enum: ', $vClassname)"/>
+                <xsl:if test="$gVerbose">
+                    <xsl:message select="concat('Generating Enum: ', $vClassname)"/>
+                </xsl:if>
                 <xsl:result-document href="{$vFilename}">
                     <xsl:value-of select="xdd:writeCopyright()"/>
                     <xsl:value-of select="xdd:writePackageLine(@package)"/>
@@ -143,7 +146,9 @@
             <xsl:variable name="vClassname" select="'package-info'"/>
             <xsl:variable name="vSchema" select=" substring-after(@schema, '../xsd/')"/>
             <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolderApi, @name, $vClassname,'java')"/>
-            <xsl:message select="concat('Generating api package-info: ', $vFilename)"/>
+            <xsl:if test="$gVerbose">
+                <xsl:message select="concat('Generating api package-info: ', $vFilename)"/>
+            </xsl:if>
             <xsl:result-document href="{$vFilename}">
                 <xsl:value-of select="concat(' /**', '&#10;')"/>
                 <xsl:value-of select="concat('  * Provides the interfaces and enumeration types as defined in the schema ', $vSchema, '&#10;')"/>
@@ -156,7 +161,9 @@
             <xsl:variable name="vClassname" select="'package-info'"/>
             <xsl:variable name="vSchema" select=" substring-after(@schema, '../xsd/')"/>
             <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolder, @name, $vClassname,'java')"/>
-            <xsl:message select="concat('Generating impl package-info: ', $vFilename)"/>
+            <xsl:if test="$gVerbose">
+                <xsl:message select="concat('Generating impl package-info: ', $vFilename)"/>
+            </xsl:if>
             <xsl:result-document href="{$vFilename}">
                 <xsl:value-of select="concat(' /**', '&#10;')"/>
                 <xsl:value-of select="concat('  * Provides the implementation classes as defined in the schema ', $vSchema, '&#10;')"/>
@@ -189,8 +196,9 @@
             <xsl:variable name="vSchema" select=" substring-after(@schemaName, '../xsd/')"/>
             <xsl:variable name="vInterfaceName" select="@name"/>
             <xsl:variable name="vFileName" select="concat($gOutputFolderService, '/' , $vPackage, '.' , $vInterfaceName)"/>
-            <xsl:message select="concat('Generating service file: ', $vFileName)"/>
-
+            <xsl:if test="$gVerbose">
+                <xsl:message select="concat('Generating service file: ', $vFileName)"/>
+            </xsl:if>
             <xsl:result-document href="{$vFileName}">
                 <xsl:variable name="vPackageImpl" select="@packageImpl"/>
 <!--                <xsl:variable name="vClassnameImpl" select="xdd:createPascalizedName($pDescriptor/@schemaName, 'DescriptorImpl')"/>-->
@@ -233,7 +241,9 @@
             <xsl:text>&#10;</xsl:text>
         </xsl:if>
         <xsl:if test="$vClassname">
-            <xsl:message select="concat('Generating Interface: ', $vClassname)"/>
+            <xsl:if test="$gVerbose">
+                <xsl:message select="concat('Generating Interface: ', $vClassname)"/>
+            </xsl:if>
             <xsl:result-document href="{$vFilename}">
                 <xsl:value-of select="xdd:writeCopyright()"/>
                 <xsl:value-of select="xdd:writePackageLine(@packageApi)"/>
@@ -346,7 +356,9 @@
         <xsl:variable name="vSchema" select=" substring-after(@schemaName, '../xsd/')"/>
 <!--        <xsl:variable name="vClassname" select="xdd:createPascalizedName(xdd:checkForReservedKeywords($pDescriptor/@schemaName), 'Descriptor')"/>-->
         <xsl:variable name="vClassname" select="@name"/>
-        <xsl:message select="concat('Generating Descriptor Api: ', $vClassname)"/>
+        <xsl:if test="$gVerbose">
+            <xsl:message select="concat('Generating Descriptor Api: ', $vClassname)"/>
+        </xsl:if>
         <xsl:if test="$vClassname">
             <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolderApi, $vPackage, $vClassname, 'java')"/>
             <xsl:result-document href="{$vFilename}">
@@ -389,7 +401,9 @@
         <xsl:variable name="vPackage" select="@packageImpl"/>
         <xsl:variable name="vInterfaceName" select="xdd:createPascalizedName(xdd:checkForReservedKeywords($pClass/@name), '')"/>
         <xsl:variable name="vClassnameImpl" select="xdd:createPascalizedName(xdd:checkForReservedKeywords($pClass/@name), 'Impl')"/>
-        <xsl:message select="concat('Generating Implementation Class: ', $vClassnameImpl)"/>
+        <xsl:if test="$gVerbose">
+            <xsl:message select="concat('Generating Implementation Class: ', $vClassnameImpl)"/>
+        </xsl:if>
         <xsl:if test="$vClassnameImpl">
             <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolder, $vPackage, $vClassnameImpl, 'java')"/>
             <xsl:result-document href="{$vFilename}">
@@ -449,8 +463,9 @@
         
         <xsl:variable name="vInterfaceName" select="@name"/>
         <xsl:variable name="vClassnameImpl" select=" concat(@name, 'Impl')"/>
-        
-        <xsl:message select="concat('Generating DescriptorImpl: ', $vClassnameImpl)"/>
+        <xsl:if test="$gVerbose">
+            <xsl:message select="concat('Generating DescriptorImpl: ', $vClassnameImpl)"/>
+        </xsl:if>
         <xsl:if test="$vClassnameImpl">
             <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolder, $vPackage, $vClassnameImpl, 'java')"/>
             <xsl:result-document href="{$vFilename}">
@@ -516,7 +531,9 @@
         <xsl:variable name="vInterfaceName" select="xdd:createPascalizedName(xdd:checkForReservedKeywords($pName), '')"/>
         <xsl:variable name="vClassnameImpl" select="xdd:createPascalizedName(xdd:checkForReservedKeywords($pName), 'Impl')"/>
         <xsl:variable name="vTestClassname" select="xdd:createPascalizedName(xdd:checkForReservedKeywords($pName), 'ImplTestCase')"/>
-        <xsl:message select="concat('Generating Test Class: ', $vTestClassname)"/>
+        <xsl:if test="$gVerbose">
+            <xsl:message select="concat('Generating Test Class: ', $vTestClassname)"/>
+        </xsl:if>
         <xsl:if test="$vTestClassname">
             <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolderTest, $vPackage, $vTestClassname, 'java')"/>
             <xsl:result-document href="{$vFilename}">

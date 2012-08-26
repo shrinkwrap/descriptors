@@ -410,7 +410,7 @@ public class DomWriter
 
          transformer.transform(source, result);
 
-         log.info("Saved: " + file.getAbsolutePath());
+         log.fine("Saved: " + file.getAbsolutePath());
 
       }
       catch (ParserConfigurationException pce)
