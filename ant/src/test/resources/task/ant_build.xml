@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project name="MyTask" basedir="." default="test">
 
-    <path id="test.classes">
-        <pathelement path="${basedir}/target/classes" />
-    </path>    
-    
+	<path id="test.classes">
+		<pathelement path="${basedir}/target/classes" />
+	</path>
+
 	<target name="test.init" description="Taskdef the metadata-parser task">
 		<taskdef name="metadata-parser"
 			classname="org.jboss.shrinkwrap.descriptor.extension.ant.task.MetadataParserTask"
 			classpathref="test.classes" />
 	</target>
 
-    <target name="test.missingPathElement" description="no path element defined"
+	<target name="test.missingPathElement" description="no path element defined"
 		depends="test.init">
 		<metadata-parser 
 		    verbose="false" 
-		    classpathref="test.classes">			
+		    classpathref="test.classes">
 			<descriptors>
 				<descriptor 
 				    pathToXsd="src/test/resources/dtd/connector_1_0.dtd" 
@@ -29,7 +29,7 @@
 		</metadata-parser>
 	</target>
 
-    <target name="test.missingDescriptorsElement" description="no descriptors element defined"
+	<target name="test.missingDescriptorsElement" description="no descriptors element defined"
 		depends="test.init">
 		<metadata-parser 
 		    verbose="false" 
@@ -37,10 +37,10 @@
 			<path 
 			    pathToApi="src/main/java" 
 			    pathToImpl="src/main/java"
-				pathToServices="src/main/resources/META-INF/services" />			
+				pathToServices="src/main/resources/META-INF/services" />
 		</metadata-parser>
-	</target>	
-	
+	</target>
+
 	<target name="test.missingDescriptorElements" description="no descriptor element defined"
 		depends="test.init">
 		<metadata-parser 
@@ -51,11 +51,11 @@
 			    pathToImpl="src/main/java"
 				pathToServices="src/main/resources/META-INF/services" />
 			<descriptors>
-				
+
 			</descriptors>
 		</metadata-parser>
 	</target>
-	
+
 	<target name="test.nestedElements" description="Use with nested elements"
 		depends="test.init">
 		<metadata-parser 
@@ -73,6 +73,34 @@
 					descriptorName="ConnectorDescriptor" 
 					elementName="connector"
 					elementType="j2ee:connector" />
+			</descriptors>
+		</metadata-parser>
+	</target>
+
+	<target name="test.withAuthors" description="Use with nested elements" depends="test.init">
+		<metadata-parser 
+			    verbose="false" 
+			    classpathref="test.classes">
+			<javadocs>
+				<javadoc
+					tag="@author"
+					value="&lt;a href=&quot;mailto:ralf.battenfeld@bluewin.ch&quot;&gt;Ralf Battenfeld&lt;/a&gt;"/>
+				<javadoc
+					tag="@author"
+					value="&lt;a href=&quot;mailto:alr@jboss.org&quot;&gt;Andrew Lee Rubinger&lt;/a&gt;" />
+			</javadocs>
+			<path
+				    pathToImpl="src/main/java"
+					pathToServices="src/main/resources/META-INF/services" />
+			<descriptors>
+				<descriptor 
+					    pathToXsd="src/test/resources/dtd/connector_1_0.dtd" 
+					    nameSpace="j2ee"
+						packageApi="org.jboss.shrinkwrap.descriptor.api.connector10"
+						packageImpl="org.jboss.shrinkwrap.descriptor.impl.connector10"
+						descriptorName="ConnectorDescriptor" 
+						elementName="connector"
+						elementType="j2ee:connector" />
 			</descriptors>
 		</metadata-parser>
 	</target>

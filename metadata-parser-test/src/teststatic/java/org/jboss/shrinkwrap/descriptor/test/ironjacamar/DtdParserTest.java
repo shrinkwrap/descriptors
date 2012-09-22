@@ -108,7 +108,7 @@ public class DtdParserTest
       metadata.getMetadataDescriptorList().add(metadataDescriptor);
       metadata.preResolveDataTypes();
       new MetadataUtil().log(metadata);
-      new DomWriter().write(metadata, "/tmp/connector_1_0.xml");
+      new DomWriter().write(metadata, "/tmp/connector_1_0.xml", null);
       //
       // if (verbose) {
       // new MetadataUtil().print(metadata);

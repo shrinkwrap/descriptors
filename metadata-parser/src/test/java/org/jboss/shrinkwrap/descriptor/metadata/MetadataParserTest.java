@@ -23,7 +23,7 @@ public class MetadataParserTest {
 		final MetadataParser parser = new MetadataParser();
 		boolean isRuntimeExceptionThrown = false;
 		try {
-			parser.parse(null, null, false);
+			parser.parse(null, null, null, false);
 		}
 		catch(IllegalArgumentException ex) {
 			isRuntimeExceptionThrown = true;
@@ -37,7 +37,7 @@ public class MetadataParserTest {
 		final MetadataParser parser = new MetadataParser();
 		boolean isRuntimeExceptionThrown = false;
 		try {
-			parser.parse(null, new ArrayList<Object>(), false);
+			parser.parse(null, new ArrayList<Object>(), null, false);
 		}
 		catch(IllegalArgumentException ex) {
 			isRuntimeExceptionThrown = true;
@@ -51,7 +51,7 @@ public class MetadataParserTest {
 		final MetadataParser parser = new MetadataParser();
 		boolean isRuntimeExceptionThrown = false;
 		try {
-			parser.parse(new MetadataParserPath(), null, false);
+			parser.parse(new MetadataParserPath(), null, null, false);
 		}
 		catch(IllegalArgumentException ex) {
 			isRuntimeExceptionThrown = true;
@@ -95,8 +95,20 @@ public class MetadataParserTest {
 		final List<Object> confList = new ArrayList<Object>();
 		confList.add(conf);
 		
+//		final MetadataJavaDoc javadoc1 = new MetadataJavaDoc();
+//		javadoc1.setTag("@author");
+//		javadoc1.setValue("&lt;a href=&quot;mailto:ralf.battenfeld@bluewin.ch&quot;&gt;Ralf Battenfeld&lt;/a&gt;");
+//		
+//		final MetadataJavaDoc javadoc2 = new MetadataJavaDoc();
+//		javadoc2.setTag("@author");
+//		javadoc2.setValue("&lt;a href=&quot;mailto:alr@jboss.org&quot;&gt;Andrew Lee Rubinger&lt;/a&gt;");
+//		
+//		final List<Object> javadocList = new ArrayList<Object>();
+//		javadocList.add(javadoc1);
+//		javadocList.add(javadoc2);
+		
 		final MetadataParser parser = new MetadataParser();
-		parser.parse(path, confList, true);
+		parser.parse(path, confList, null, true);
 		
 		final String pathToMetadata = parser.getPathToMetadataFile();
 		Assert.assertNotNull(pathToMetadata);

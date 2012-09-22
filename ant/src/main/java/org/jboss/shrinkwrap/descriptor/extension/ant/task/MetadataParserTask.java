@@ -22,7 +22,7 @@ import java.util.Properties;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
-
+import org.jboss.shrinkwrap.descriptor.metadata.MetadataJavaDoc;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataParser;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataParserConfiguration;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataParserPath;
@@ -45,6 +45,9 @@ public class MetadataParserTask extends Task
 
    /** Descriptors */
    protected Descriptors descriptors;
+   
+   /** JavaDocs */
+   protected Javadocs javadocs;
 
    /** Classpath */
    protected Classpath classpath;
@@ -58,6 +61,7 @@ public class MetadataParserTask extends Task
       this.classpathRef = null;
       this.path = null;
       this.descriptors = null;
+      this.javadocs = null;
       this.classpath = null;
    }
 
@@ -90,6 +94,16 @@ public class MetadataParserTask extends Task
    }
 
    /**
+    * Create the javadoc list
+    * @return The value
+    */
+   public Javadocs createJavadocs()
+   {
+	  javadocs = new Javadocs();
+      return javadocs;
+   }
+   
+   /**
     * Create the descriptors
     * @return The value
     */
@@ -108,7 +122,8 @@ public class MetadataParserTask extends Task
       classpath = new Classpath(getProject());
       return classpath;
    }
-
+   
+   
    /**
     * Execute Ant task
     *
@@ -150,14 +165,20 @@ public class MetadataParserTask extends Task
             Thread.currentThread().setContextClassLoader(cl);
          }
 
-         List<Descriptor> data = descriptors.getData();
+         final List<Descriptor> data = descriptors.getData();
          for (Descriptor d : data)
          {
             d.applyNamespaces();
          }
 
-         MetadataParser metadataParser = new MetadataParser();
-         metadataParser.parse(path, data, verbose);
+         List<Javadoc> javadoc = null;
+         if (javadocs != null)
+         {
+        	 javadoc = javadocs.getData();
+         }
+         
+         final MetadataParser metadataParser = new MetadataParser();
+         metadataParser.parse(path, data, javadoc, verbose);
       }
       catch (Throwable t)
       {
@@ -246,6 +267,75 @@ public class MetadataParserTask extends Task
       }
    }
 
+   /**
+    * JavaDoc
+    */
+   public class Javadoc extends MetadataJavaDoc
+   {	   
+	  /**
+	   * Constructor
+	   */
+	  public Javadoc()
+	  {
+	     super();
+	  }
+	   
+	  @Override
+	  public void setTag(final String tag) 
+	  {
+		 super.setTag(getProject().replaceProperties(tag));
+	  }
+
+	  @Override
+	  public void setValue(final String value)
+      {
+		 super.setValue(getProject().replaceProperties(value));
+	  }	   
+   }
+   
+   /**
+    * JavaDocs
+    */
+	public class Javadocs
+	{
+		private List<Javadoc> data;
+
+		/**
+		 * Constructor
+		 */
+		public Javadocs() 
+		{
+			this.data = null;
+		}
+
+		/**
+		 * Create a JavaDoc
+		 * 
+		 * @return The value
+		 */
+		public Javadoc createJavadoc() 
+		{
+			if (data == null)
+			{
+				data = new ArrayList<Javadoc>(1);
+			}
+			
+			final Javadoc javaDoc = new Javadoc();
+			data.add(javaDoc);
+			return javaDoc;
+		}
+
+		/**
+		 * Get data
+		 * 
+		 * @return The value
+		 */
+		List<Javadoc> getData() 
+		{
+			return data;
+		}
+	}
+   
    /**
     * Descriptor
     */
