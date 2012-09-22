@@ -8,6 +8,7 @@
     <xsl:param name="gOutputFolderTest" select="''"/>
     <xsl:param name="gOutputFolderService" select="''"/>
     <xsl:param name="gVerbose" as="xs:boolean" select="false()"/>
+    <xsl:param name="gIsSinceJavaDocEnabled" as="xs:boolean" select="false()"/>
     <xsl:variable name="vLower" select="'abcdefghijklmnopqrstuvwxyz'"/>
     <xsl:variable name="vUpper" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
     <xsl:variable name="gDataTypes" select="//datatypes"/>
@@ -17,7 +18,8 @@
     <xsl:variable name="gPackageApis" select="//packages/api"/>
     <xsl:variable name="gPackageImpls" select="//packages/impl"/>
     <xsl:variable name="gCopyright" select="//copyright"/>
-    <xsl:variable name="gContributors" select="//contributors"/>
+  <!--  <xsl:variable name="gContributors" select="//contributors"/>-->
+    <xsl:variable name="gJavaDocs" select="//javadocs/tag"/>
 
     <xsl:variable name="vBooleanMethodTypes">
         javaee:emptyType;
@@ -92,7 +94,7 @@
                 <xsl:result-document href="{$vFilename}">
                     <xsl:value-of select="xdd:writeCopyright()"/>
                     <xsl:value-of select="xdd:writePackageLine(@package)"/>
-                    <xsl:value-of select="xdd:writeClassJavaDoc(@documentation, @name, false(), true(), $gContributors)"/>
+                    <xsl:value-of select="xdd:writeClassJavaDoc(@documentation, @name, false(), true(), $gJavaDocs)"/>
                     <xsl:value-of select="xdd:classHeaderDeclaration('enum', $vClassname)"/>
                     <xsl:text>&#10;{&#10;</xsl:text>
                     <xsl:for-each select="value">
@@ -249,7 +251,7 @@
                 <xsl:value-of select="xdd:writePackageLine(@packageApi)"/>
                 <xsl:value-of select="xdd:writeImports(true())"/>
                 <xsl:value-of select="xdd:writeDynamicImports($pClassNode/@name, $pClassNode/@namespace, $pClassNode/@packageApi, true())"/>
-                <xsl:value-of select="xdd:writeClassJavaDoc(@documentation, $pClassNode/@name, true(), true(), $gContributors)"/>
+                <xsl:value-of select="xdd:writeClassJavaDoc(@documentation, $pClassNode/@name, true(), true(), $gJavaDocs)"/>
                 <xsl:value-of select="xdd:classHeaderDeclaration('interface', $vClassname)"/>
                 <xsl:text>&lt;T&gt;</xsl:text>
                 <xsl:text> extends Child&lt;T&gt;</xsl:text>
@@ -372,7 +374,7 @@
                 </xsl:for-each>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.api.Descriptor;&#10;</xsl:text>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.api.DescriptorNamespace;&#10;&#10;</xsl:text>
-                <xsl:value-of select=" xdd:writeDescriptorJavaDoc($vClassname, $vSchema, $gContributors)"/>
+                <xsl:value-of select=" xdd:writeDescriptorJavaDoc($vClassname, $vSchema, $gJavaDocs)"/>
                 <xsl:value-of select="xdd:classHeaderDeclaration('interface', $vClassname)"/>
                 <xsl:value-of select="concat(' extends Descriptor, DescriptorNamespace', '&lt;', $vClassname, '&gt;')"/>
                 <xsl:text>&#10;{&#10;</xsl:text>
@@ -415,7 +417,7 @@
                 <xsl:value-of select="xdd:writeImports(false())"/>
                 <xsl:value-of select="xdd:writeDynamicImports($pClass/@name, $pClass/@namespace, $vPackage, false())"/>
                 <xsl:text>&#10;</xsl:text>
-                <xsl:value-of select="xdd:writeClassJavaDoc(@documentation, $pClass/@name, false(), true(), $gContributors)"/>
+                <xsl:value-of select="xdd:writeClassJavaDoc(@documentation, $pClass/@name, false(), true(), $gJavaDocs)"/>
                 <xsl:variable name="vName" select="@name"/>
                 <xsl:value-of select="xdd:classHeaderDeclaration('class', $vClassnameImpl)"/>
                 <xsl:text>&lt;T&gt;</xsl:text>
@@ -484,7 +486,7 @@
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;&#10;</xsl:text>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.node.Node;&#10;</xsl:text>
                 <xsl:text>&#10;</xsl:text>
-                <xsl:value-of select=" xdd:writeDescriptorJavaDoc($vInterfaceName, $vSchema, $gContributors)"/>
+                <xsl:value-of select=" xdd:writeDescriptorJavaDoc($vInterfaceName, $vSchema, $gJavaDocs)"/>
                 <xsl:value-of select="xdd:classHeaderDeclaration('class', $vClassnameImpl)"/>
                 <xsl:value-of select="concat(' extends NodeDescriptorImplBase implements DescriptorNamespace', '&lt;', $vInterfaceName, '&gt;', ', ')"/>
                 <xsl:value-of select="xdd:createPascalizedName($vInterfaceName, '')"/>
@@ -2748,7 +2750,7 @@
         <xsl:param name="pElementName"/>
         <xsl:param name="pIsInterface" as="xs:boolean"/>
         <xsl:param name="pIsClassHeader" as="xs:boolean"/>
-        <xsl:param name="pContributors"/>
+        <xsl:param name="pJavaDocs"/>
 
         <xsl:value-of select="'/**&#10;'"/>
         <xsl:if test="$pIsClassHeader=true()">
@@ -2777,9 +2779,11 @@
                 </xsl:choose>
             </xsl:for-each>
             <xsl:value-of select="' *&#10;'"/>
+            <xsl:value-of select="' *&#10;'"/>
         </xsl:if>
-        <xsl:value-of select="xdd:writeContributors($pContributors)"/>
-        <xsl:value-of select="concat(' * @since Generation date :', current-dateTime(), '&#10;')"/>
+        <xsl:for-each select="$pJavaDocs">
+            <xsl:value-of select="concat(' * ', @tag, ' ', @value, '&#10;')"/>            
+        </xsl:for-each>
         <xsl:value-of select="' */&#10;'"/>
     </xsl:function>
 
@@ -2790,7 +2794,7 @@
     <xsl:function name="xdd:writeDescriptorJavaDoc">
         <xsl:param name="pDescriptorName"/>
         <xsl:param name="pDescriptorSchema"/>
-        <xsl:param name="pContributors"/>
+        <xsl:param name="pJavaDocs"/>
         <xsl:value-of select="concat('/**',' &#10;')"/>
         <xsl:value-of select="concat(' * &lt;p&gt; ', '&#10;')"/>
         <xsl:value-of select="concat(' * This deployment descriptor provides the functionalities as described in the ', $pDescriptorSchema,' specification&#10;')"/>
@@ -2801,9 +2805,10 @@
         <xsl:value-of select="concat(' *     ', $pDescriptorName, ' descriptor = Descriptors.create(', $pDescriptorName, '.class);', '&#10;')"/>
         <xsl:value-of select="concat(' * &lt;/code&gt;', ' &#10;')"/>
         <xsl:value-of select="concat(' *', '&#10;')"/>
-        <xsl:value-of select="concat(' *', '&#10;')"/>
-        <xsl:value-of select="xdd:writeContributors($pContributors)"/>
-        <xsl:value-of select="concat(' * @since Generation date :', current-dateTime(), '&#10;')"/>
+        <xsl:value-of select="concat(' *', '&#10;')"/>        
+        <xsl:for-each select="$pJavaDocs">
+            <xsl:value-of select="concat(' * ', @tag, ' ', @value, '&#10;')"/>            
+        </xsl:for-each>
         <xsl:value-of select="concat(' */', '&#10;')"/>
     </xsl:function>
     

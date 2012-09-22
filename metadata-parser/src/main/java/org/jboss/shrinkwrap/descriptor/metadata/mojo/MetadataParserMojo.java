@@ -45,8 +45,13 @@ public class MetadataParserMojo extends AbstractMojo
    protected List<?> descriptors;
    
    /**
+    * List of javadoc tags used for class header comments.
+    * @parameter
+    */
+   protected List<?> javadocs;
+   
+   /**
     * Trace flag
-    * 
     * @parameter
     */
    protected boolean verbose;
@@ -57,7 +62,7 @@ public class MetadataParserMojo extends AbstractMojo
       try
       {
          final MetadataParser metadataParser = new MetadataParser();
-         metadataParser.parse(path, descriptors, verbose);
+         metadataParser.parse(path, descriptors, javadocs, verbose);
       }
       catch (final Throwable t)
       {

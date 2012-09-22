@@ -20,6 +20,7 @@ package org.jboss.shrinkwrap.descriptor.metadata.dom;
 
 import java.io.File;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,6 +38,7 @@ import org.jboss.shrinkwrap.descriptor.metadata.MetadataDescriptor;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataElement;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataEnum;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataItem;
+import org.jboss.shrinkwrap.descriptor.metadata.MetadataJavaDoc;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -59,7 +61,7 @@ public class DomWriter
     * @param metadata
     * @param pathToMetadata
     */
-   public void write(final Metadata metadata, final String pathToMetadata)
+   public void write(final Metadata metadata, final String pathToMetadata, final List<MetadataJavaDoc> javadocTags)
    {
       try
       {
@@ -70,30 +72,27 @@ public class DomWriter
          final Document doc = docBuilder.newDocument();
          final Element rootElement = doc.createElement("metadata");
          doc.appendChild(rootElement);
-                
-         // add contributor
-         final Element contributors = doc.createElement("contributors");
-         rootElement.appendChild(contributors);
-             
-         final Element contributorRalf = doc.createElement("contributor");
-         final Attr contributorName = doc.createAttribute("name");
-         contributorName.setValue("Ralf Battenfeld");
-         contributorRalf.setAttributeNode(contributorName);
+              
+         final Element javadocsElement = doc.createElement("javadocs");
+         rootElement.appendChild(javadocsElement);
          
-         final Attr mailto = doc.createAttribute("mailto");
-         mailto.setValue("ralf.battenfeld@bluewin.ch");
-         contributorRalf.setAttributeNode(mailto);
-         contributors.appendChild(contributorRalf);         
-         
-         final Element contributorAndrew = doc.createElement("contributor");
-         final Attr contributorNameAndrew = doc.createAttribute("name");
-         contributorNameAndrew.setValue("Andrew Lee Rubinger");
-         contributorAndrew.setAttributeNode(contributorNameAndrew);
-         
-         final Attr mailtoAndrew = doc.createAttribute("mailto");
-         mailtoAndrew.setValue("alr@jboss.org");
-         contributorAndrew.setAttributeNode(mailtoAndrew);
-         contributors.appendChild(contributorAndrew);
+         if (javadocTags !=  null)
+         {	         
+	         for (final MetadataJavaDoc javaDoc: javadocTags)
+	         {
+	        	 final Attr javadocName = doc.createAttribute("tag");
+	             javadocName.setValue(javaDoc.getTag());
+	            
+	             final Attr javadocValue = doc.createAttribute("value");
+	             javadocValue.setValue(javaDoc.getValue());
+	            
+	             final Element tagElement = doc.createElement("tag");
+	             tagElement.setAttributeNode(javadocName);
+	             tagElement.setAttributeNode(javadocValue);
+	            
+	             javadocsElement.appendChild(tagElement);  	        	 
+	         }
+         }
          
          // add packages
          final Element packages = doc.createElement("packages");
@@ -380,7 +379,7 @@ public class DomWriter
                attElementType.setValue(descriptor.getRootElementType());
                element.setAttributeNode(attElementType);
                   
-               final Enumeration em = descriptor.getNamespaces().keys();
+               final Enumeration<?> em = descriptor.getNamespaces().keys();
                while(em.hasMoreElements())
                {
             	  final String key = (String)em.nextElement();

@@ -73,11 +73,13 @@ public class MetadataParser
     * @param verbose if true, additional parsing information are printed out, otherwise not.
     * @throws Exception 
     */
-   public void parse(final MetadataParserPath path, final List<?> confList, final boolean verbose) throws Exception
+   @SuppressWarnings("unchecked")
+public void parse(final MetadataParserPath path, final List<?> confList, final List<?> javadocTags, final boolean verbose) throws Exception
    {
 	  checkArguments(path, confList);
 	   
-      pathToMetadata = createTempFile();
+      pathToMetadata = createTempFile(verbose);
+      
       if (log.isLoggable(Level.FINE)) {
           log.fine("Path to temporary metadata file: " + pathToMetadata);
       }
@@ -105,6 +107,7 @@ public class MetadataParser
          if(log.isLoggable(Level.FINE)){
              log.fine(metadataConf.getPathToXsd());
          }
+         
          if (metadataConf.getPathToXsd().endsWith(".dtd"))
          {
             final InputSource in = new InputSource(new FileReader(metadataConf.getPathToXsd()));
@@ -122,9 +125,11 @@ public class MetadataParser
             if(log.isLoggable(Level.FINE)){
                 log.fine(document.getDocumentURI());
             }
+            
             final DocumentTraversal traversal = (DocumentTraversal) document;
             final TreeWalker walker = traversal.createTreeWalker(document.getDocumentElement(),
                   NodeFilter.SHOW_ELEMENT, null, true);
+            
             final StringBuilder sb = verbose ? new StringBuilder() : null;
             
             filterChain.traverseAndFilter(walker, "", metadata, sb);
@@ -143,7 +148,7 @@ public class MetadataParser
 
       if (pathToMetadata != null)
       {
-         new DomWriter().write(metadata, pathToMetadata);
+         new DomWriter().write(metadata, pathToMetadata, (List<MetadataJavaDoc>)javadocTags);
       }
 
       if (verbose)
@@ -198,9 +203,15 @@ public class MetadataParser
     * @return absolute path of the temporary file.
     * @throws IOException
     */
-   private String createTempFile() throws IOException
+   private String createTempFile(final boolean verbose) throws IOException
    {
-      File tempFile = File.createTempFile("tempMetadata", ".xml");
+      final File tempFile = File.createTempFile("tempMetadata", ".xml");
+      
+      if (!verbose)
+      {
+    	  tempFile.deleteOnExit();
+      }
+      
       return tempFile.getAbsolutePath();
    }
    

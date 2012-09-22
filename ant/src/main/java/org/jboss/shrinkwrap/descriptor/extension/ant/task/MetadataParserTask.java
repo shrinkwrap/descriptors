@@ -22,7 +22,7 @@ import java.util.Properties;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
-
+import org.jboss.shrinkwrap.descriptor.metadata.MetadataJavaDoc;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataParser;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataParserConfiguration;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataParserPath;
@@ -45,6 +45,9 @@ public class MetadataParserTask extends Task
 
    /** Descriptors */
    protected Descriptors descriptors;
+   
+   /** javadoc list */
+   protected List<MetadataJavaDoc> javadoc;
 
    /** Classpath */
    protected Classpath classpath;
@@ -58,6 +61,7 @@ public class MetadataParserTask extends Task
       this.classpathRef = null;
       this.path = null;
       this.descriptors = null;
+      this.javadoc = null;
       this.classpath = null;
    }
 
@@ -90,6 +94,16 @@ public class MetadataParserTask extends Task
    }
 
    /**
+    * Create the javadoc list
+    * @return The value
+    */
+   public List<MetadataJavaDoc> createJavaDocs()
+   {
+	  javadoc = new ArrayList<MetadataJavaDoc>();
+      return javadoc;
+   }
+   
+   /**
     * Create the descriptors
     * @return The value
     */
@@ -108,7 +122,8 @@ public class MetadataParserTask extends Task
       classpath = new Classpath(getProject());
       return classpath;
    }
-
+   
+   
    /**
     * Execute Ant task
     *
@@ -157,7 +172,7 @@ public class MetadataParserTask extends Task
          }
 
          MetadataParser metadataParser = new MetadataParser();
-         metadataParser.parse(path, data, verbose);
+         metadataParser.parse(path, data, javadoc, verbose);
       }
       catch (Throwable t)
       {

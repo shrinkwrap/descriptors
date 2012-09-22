@@ -1,1 +1,31 @@
-<?xml version="1.0" encoding="UTF-8"?><metadata><contributors><contributor mailto="ralf.battenfeld@bluewin.ch" name="Ralf Battenfeld"/><contributor mailto="alr@jboss.org" name="Andrew Lee Rubinger"/></contributors><packages><api generateClass="false" name="org.jboss.shrinkwrap.descriptor.api.beans10" schema="/home/bfr/shrinkdesc/SD-105-real/descriptors/metadata-parser/target/test-classes/xsd/testcases.xsd"/><impl generateClass="false" name="org.jboss.shrinkwrap.descriptor.impl.beans10" schema="/home/bfr/shrinkdesc/SD-105-real/descriptors/metadata-parser/target/test-classes/xsd/testcases.xsd"/></packages><datatypes/><enums/><groups/><classes><class documentation="" name="beans" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.beans10" packageImpl="org.jboss.shrinkwrap.descriptor.impl.beans10" schemaName="/home/bfr/shrinkdesc/SD-105-real/descriptors/metadata-parser/target/test-classes/xsd/testcases.xsd"><element maxOccurs="unbounded" name="interceptors" type="javaee:interceptors"/><element maxOccurs="unbounded" name="decorators" type="javaee:decorators"/></class><class documentation="" name="interceptors" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.beans10" packageImpl="org.jboss.shrinkwrap.descriptor.impl.beans10" schemaName="/home/bfr/shrinkdesc/SD-105-real/descriptors/metadata-parser/target/test-classes/xsd/testcases.xsd"><element maxOccurs="unbounded" name="class" type="xsd:string"/></class><class documentation="" name="decorators" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.beans10" packageImpl="org.jboss.shrinkwrap.descriptor.impl.beans10" schemaName="/home/bfr/shrinkdesc/SD-105-real/descriptors/metadata-parser/target/test-classes/xsd/testcases.xsd"><element maxOccurs="unbounded" name="class" type="xsd:string"/></class></classes><descriptors><descriptor name="BeansDescriptor" packageApi="org.jboss.shrinkwrap.descriptor.api.beans10" packageImpl="org.jboss.shrinkwrap.descriptor.impl.beans10" schemaName="/home/bfr/shrinkdesc/SD-105-real/descriptors/metadata-parser/target/test-classes/xsd/testcases.xsd"><element name="beans" type="javaee:beans"/><namespace name="xmlns:xsi" value="http://www.w3.org/2001/XMLSchema-instance"/><namespace name="xsi:schemaLocation" value="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/beans_1_0.xsd"/><namespace name="xmlns" value="http://java.sun.com/xml/ns/javaee"/></descriptor></descriptors></metadata>
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <javadocs/>
+    <packages>
+        <api generateClass="false" name="org.jboss.shrinkwrap.descriptor.api.beans10" schema="/home/bfr/shrinkdesc/SD-105-real/descriptors/metadata-parser/target/test-classes/xsd/testcases.xsd"/>
+        <impl generateClass="false" name="org.jboss.shrinkwrap.descriptor.impl.beans10" schema="/home/bfr/shrinkdesc/SD-105-real/descriptors/metadata-parser/target/test-classes/xsd/testcases.xsd"/>
+    </packages>
+    <datatypes/>
+    <enums/>
+    <groups/>
+    <classes>
+        <class documentation="" name="beans" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.beans10" packageImpl="org.jboss.shrinkwrap.descriptor.impl.beans10" schemaName="/home/bfr/shrinkdesc/SD-105-real/descriptors/metadata-parser/target/test-classes/xsd/testcases.xsd">
+            <element maxOccurs="unbounded" name="interceptors" type="javaee:interceptors"/>
+            <element maxOccurs="unbounded" name="decorators" type="javaee:decorators"/>
+        </class>
+        <class documentation="" name="interceptors" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.beans10" packageImpl="org.jboss.shrinkwrap.descriptor.impl.beans10" schemaName="/home/bfr/shrinkdesc/SD-105-real/descriptors/metadata-parser/target/test-classes/xsd/testcases.xsd">
+            <element maxOccurs="unbounded" name="class" type="xsd:string"/>
+        </class>
+        <class documentation="" name="decorators" namespace="javaee" packageApi="org.jboss.shrinkwrap.descriptor.api.beans10" packageImpl="org.jboss.shrinkwrap.descriptor.impl.beans10" schemaName="/home/bfr/shrinkdesc/SD-105-real/descriptors/metadata-parser/target/test-classes/xsd/testcases.xsd">
+            <element maxOccurs="unbounded" name="class" type="xsd:string"/>
+        </class>
+    </classes>
+    <descriptors>
+        <descriptor name="BeansDescriptor" packageApi="org.jboss.shrinkwrap.descriptor.api.beans10" packageImpl="org.jboss.shrinkwrap.descriptor.impl.beans10" schemaName="/home/bfr/shrinkdesc/SD-105-real/descriptors/metadata-parser/target/test-classes/xsd/testcases.xsd">
+            <element name="beans" type="javaee:beans"/>
+            <namespace name="xmlns:xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
+            <namespace name="xsi:schemaLocation" value="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/beans_1_0.xsd"/>
+            <namespace name="xmlns" value="http://java.sun.com/xml/ns/javaee"/>
+        </descriptor>
+    </descriptors>
+</metadata>
