@@ -46,8 +46,8 @@ public class MetadataParserTask extends Task
    /** Descriptors */
    protected Descriptors descriptors;
    
-   /** javadoc list */
-   protected List<MetadataJavaDoc> javadoc;
+   /** JavaDocs */
+   protected Javadocs javadocs;
 
    /** Classpath */
    protected Classpath classpath;
@@ -61,7 +61,7 @@ public class MetadataParserTask extends Task
       this.classpathRef = null;
       this.path = null;
       this.descriptors = null;
-      this.javadoc = null;
+      this.javadocs = null;
       this.classpath = null;
    }
 
@@ -97,10 +97,10 @@ public class MetadataParserTask extends Task
     * Create the javadoc list
     * @return The value
     */
-   public List<MetadataJavaDoc> createJavaDocs()
+   public Javadocs createJavadocs()
    {
-	  javadoc = new ArrayList<MetadataJavaDoc>();
-      return javadoc;
+	  javadocs = new Javadocs();
+      return javadocs;
    }
    
    /**
@@ -165,13 +165,19 @@ public class MetadataParserTask extends Task
             Thread.currentThread().setContextClassLoader(cl);
          }
 
-         List<Descriptor> data = descriptors.getData();
+         final List<Descriptor> data = descriptors.getData();
          for (Descriptor d : data)
          {
             d.applyNamespaces();
          }
 
-         MetadataParser metadataParser = new MetadataParser();
+         List<Javadoc> javadoc = null;
+         if (javadocs != null)
+         {
+        	 javadoc = javadocs.getData();
+         }
+         
+         final MetadataParser metadataParser = new MetadataParser();
          metadataParser.parse(path, data, javadoc, verbose);
       }
       catch (Throwable t)
@@ -261,6 +267,75 @@ public class MetadataParserTask extends Task
       }
    }
 
+   /**
+    * JavaDoc
+    */
+   public class Javadoc extends MetadataJavaDoc
+   {	   
+	  /**
+	   * Constructor
+	   */
+	  public Javadoc()
+	  {
+	     super();
+	  }
+	   
+	  @Override
+	  public void setTag(final String tag) 
+	  {
+		 super.setTag(getProject().replaceProperties(tag));
+	  }
+
+	  @Override
+	  public void setValue(final String value)
+      {
+		 super.setValue(getProject().replaceProperties(value));
+	  }	   
+   }
+   
+   /**
+    * JavaDocs
+    */
+	public class Javadocs
+	{
+		private List<Javadoc> data;
+
+		/**
+		 * Constructor
+		 */
+		public Javadocs() 
+		{
+			this.data = null;
+		}
+
+		/**
+		 * Create a JavaDoc
+		 * 
+		 * @return The value
+		 */
+		public Javadoc createJavadoc() 
+		{
+			if (data == null)
+			{
+				data = new ArrayList<Javadoc>(1);
+			}
+			
+			final Javadoc javaDoc = new Javadoc();
+			data.add(javaDoc);
+			return javaDoc;
+		}
+
+		/**
+		 * Get data
+		 * 
+		 * @return The value
+		 */
+		List<Javadoc> getData() 
+		{
+			return data;
+		}
+	}
+   
    /**
     * Descriptor
     */

@@ -55,5 +55,11 @@ public class AntTaskParserTestCase extends BuildFileTest {
         executeTarget("test.nestedElements");
         assertEquals("Message was logged but should not.", this.getLog(), "");
     }
+    
+    @Test
+    public void testWithAuthors() {
+        executeTarget("test.withAuthors");
+        assertEquals("Message was logged but should not.", this.getLog(), "");
+    }
    
 }
