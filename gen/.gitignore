@@ -1,4 +1,3 @@
-src/main/java
 src/test/java
 src/main/resources/xslt/metadata*.xml
 >>>>>>> a98e8f7... [SHRINKDESC-62] Splitting api-javaee api-jboss, adding static tests for coverage
