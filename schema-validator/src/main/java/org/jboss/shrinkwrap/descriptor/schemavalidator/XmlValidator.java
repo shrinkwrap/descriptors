@@ -21,6 +21,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 import java.util.List;
 
 import javax.xml.transform.stream.StreamSource;
@@ -38,7 +40,6 @@ import org.apache.xerces.xni.parser.XMLErrorHandler;
 import org.apache.xerces.xni.parser.XMLInputSource;
 import org.apache.xerces.xni.parser.XMLParseException;
 import org.apache.xerces.xni.parser.XMLParserConfiguration;
-import org.jboss.shrinkwrap.descriptor.gen.ResourcerReader;
 
 
 /**
@@ -194,7 +195,7 @@ public class XmlValidator {
 	 */
 	public void loadGrammar(final String schema) throws XNIException, IOException {		
 		if (isResourceCandidate(schema)) {
-			final InputStream inputStream = ResourcerReader.getResourceAsStream(schema);
+            final InputStream inputStream = getClassLoaderForClass(this.getClass()).getResourceAsStream(schema);
 			if (inputStream != null) {
 				XMLInputSource xmlInputStream = new XMLInputSource(null, 
 						schema, null, inputStream, null);
@@ -338,9 +339,7 @@ public class XmlValidator {
 			InputStream inputStream = null;
 			if (resourceIdentifier.getExpandedSystemId().equals("http://www.w3.org/2001/xml.xsd")) {
 				
-				inputStream = Thread.currentThread()
-						.getContextClassLoader()
-						.getResourceAsStream("META-INF/2001/xml.xsd");
+                inputStream = getClassLoaderForClass(this.getClass()).getResourceAsStream("META-INF/2001/xml.xsd");
 				
 			} else {
 				
@@ -367,7 +366,7 @@ public class XmlValidator {
 	
 	private InputStream getInputStream(final XMLResourceIdentifier resourceIdentifier) throws MalformedURLException {
 		final File url = new File(resourceIdentifier.getExpandedSystemId());		
-		return ResourcerReader.getResourceAsStream(url.getName());
+        return getClassLoaderForClass(this.getClass()).getResourceAsStream(url.getName());
 	}
 	
 	/**
@@ -392,5 +391,21 @@ public class XmlValidator {
 				XMLParseException exception) throws XNIException {
 			throw new XNIException(exception);
 		}	
+	}
+	
+	
+	private static ClassLoader getClassLoaderForClass(final Class<?> clazz){
+	    assert clazz!=null:"Class must be specified";
+	    if(System.getSecurityManager()==null){
+	        return clazz.getClassLoader();
+	    }
+	    else{
+	        return AccessController.doPrivileged(new PrivilegedAction<ClassLoader>(){
+
+                @Override
+                public ClassLoader run() {
+                    return clazz.getClassLoader();
+                }});
+	    }
 	}
 }
