@@ -9,7 +9,6 @@ import java.io.InputStreamReader;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.Reader;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,8 +41,6 @@ import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.ls.LSInput;
 import org.w3c.dom.ls.LSResourceResolver;
-
-import com.sun.msv.grammar.xmlschema.XMLSchemaGrammar;
 
 public class ValidatorEvaluationTest {
 
