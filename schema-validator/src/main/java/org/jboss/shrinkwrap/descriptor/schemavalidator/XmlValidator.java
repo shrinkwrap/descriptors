@@ -49,6 +49,7 @@ import org.apache.xerces.xni.parser.XMLParserConfiguration;
  * The implementation is based on the xerces xni library.
  * 
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
  */
 public class XmlValidator {	
 
@@ -94,8 +95,7 @@ public class XmlValidator {
 		
 		if (schemaType == SchemaType.DTD) {
 			preparser.registerPreparser(XMLGrammarDescription.XML_DTD, null);	
-		}
-		else {
+		} else {
 			preparser.registerPreparser(XMLGrammarDescription.XML_SCHEMA, null);
 		}
 		
@@ -141,8 +141,7 @@ public class XmlValidator {
 				
 		if (schemaType == SchemaType.DTD) {
 			preparser.registerPreparser(XMLGrammarDescription.XML_DTD, null);	
-		}
-		else {
+		} else {
 			preparser.registerPreparser(XMLGrammarDescription.XML_SCHEMA, null);
 		}
 	}
@@ -195,7 +194,7 @@ public class XmlValidator {
 	 */
 	public void loadGrammar(final String schema) throws XNIException, IOException {		
 		if (isResourceCandidate(schema)) {
-            final InputStream inputStream = getClassLoaderForClass(this.getClass()).getResourceAsStream(schema);
+			final InputStream inputStream = getFirstValidInputStream("xsd/" + schema, schema);
 			if (inputStream != null) {
 				XMLInputSource xmlInputStream = new XMLInputSource(null, 
 						schema, null, inputStream, null);
@@ -260,11 +259,9 @@ public class XmlValidator {
 		String grammarDescr = null;
 		if (schemaType == SchemaType.DTD) {
 			grammarDescr = XMLGrammarDescription.XML_DTD;
-		}
-		else if (schemaType == SchemaType.XSD) {
+		} else if (schemaType == SchemaType.XSD) {
 			grammarDescr = XMLGrammarDescription.XML_SCHEMA;
-		}
-		else {
+		} else {
 			throw new RuntimeException("Not supported: " + schemaType);
 		}
 		return grammarDescr;
@@ -338,8 +335,7 @@ public class XmlValidator {
 			XMLInputSource xmlInputStream = null;
 			InputStream inputStream = null;
 			if (resourceIdentifier.getExpandedSystemId().equals("http://www.w3.org/2001/xml.xsd")) {
-				
-                inputStream = getClassLoaderForClass(this.getClass()).getResourceAsStream("META-INF/2001/xml.xsd");
+				inputStream = getFirstValidInputStream("META-INF/2001/xml.xsd", "xml.xsd");
 				
 			} else {
 				
@@ -357,6 +353,14 @@ public class XmlValidator {
 		
 	}
 	
+	/**
+	 * Checks if the given resource name starts with a path seperator. If yes, 
+	 * then the resource is a <code>File</code> resource. If not, then
+	 * we assume that the resource can be loaded via resource stream.
+	 * @param resourceName
+	 * @return true, if the resource can be loaded via resources stream, otherwise
+	 * it is assumed that the resource is file on the file system.
+	 */
 	private boolean isResourceCandidate(final String resourceName) {
 		if (resourceName.indexOf(File.pathSeparator) >= 0) {
 			return false;
@@ -366,7 +370,23 @@ public class XmlValidator {
 	
 	private InputStream getInputStream(final XMLResourceIdentifier resourceIdentifier) throws MalformedURLException {
 		final File url = new File(resourceIdentifier.getExpandedSystemId());		
-        return getClassLoaderForClass(this.getClass()).getResourceAsStream(url.getName());
+		return getFirstValidInputStream("xsd/" + url.getName(), url.getName());
+	}
+	
+	/**
+	 * Returns the first not nullable <code>InputStream</code>.
+	 * @param resources
+	 * @return the first resolvable <code>InputStream</code>, or null if non of the resources are found.
+	 */
+	private InputStream getFirstValidInputStream(String ... resources) {
+		InputStream inputStream = null;
+		for (String resource: resources) {
+			inputStream = getClassLoaderForClass(this.getClass()).getResourceAsStream(resource);
+			if (inputStream != null) {
+				break;
+			}
+		}
+		return inputStream;
 	}
 	
 	/**
@@ -393,7 +413,11 @@ public class XmlValidator {
 		}	
 	}
 	
-	
+	/**
+	 * Returns the right ClassLoader.
+	 * @param clazz
+	 * @return 
+	 */
 	private static ClassLoader getClassLoaderForClass(final Class<?> clazz){
 	    assert clazz!=null:"Class must be specified";
 	    if(System.getSecurityManager()==null){
