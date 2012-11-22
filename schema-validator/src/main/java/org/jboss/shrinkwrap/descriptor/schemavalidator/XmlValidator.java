@@ -60,15 +60,8 @@ public class XmlValidator {
 	}	
 	
 	/** contains all search locations used by <code>getResourceAsStream()</code> */
-	private static List<String> searchLocationList = new ArrayList<String>();
+	private List<String> searchLocationList = new ArrayList<String>();
 		
-	static {
-		searchLocationList.add("META-INF/xsd/");
-		searchLocationList.add("xsd/");
-		searchLocationList.add("");
-		searchLocationList.add("META-INF/2001/");
-	}
-	
 	/** schema type we have to know for loading the grammars */
 	private final SchemaType schemaType;
 	
@@ -95,8 +88,8 @@ public class XmlValidator {
 	//-----------------------------------------------------------------------||
 	
 	/**
-	 * Default constructor. Initializes the DTD and XSD preparser.
-	 * TODO describe default settings
+	 * Default constructor. Initializes the DTD and XSD preparser with 
+	 * default settings.
 	 */
 	public XmlValidator(final SchemaType type) {
 		schemaType = type;
@@ -118,16 +111,17 @@ public class XmlValidator {
 		
 		// apply default settings
 		initializePreparser();
+		initializeSearchLocations();
 	}
 	
 	/**
 	 * Constructs an individual configured validator.
 	 * @param type defines the schema type.
-	 * @param nameSpacesFeatureID TODO
-	 * @param validationFeatureID TODO
-	 * @param schemaValidationFeatureID TODO
-	 * @param schemaFullCheckingFeatureID TODO
-	 * @param honourAllSchemaLocationsID TODO
+	 * @param nameSpacesFeatureID the namespaces feature id
+	 * @param validationFeatureID the validation feature id
+	 * @param schemaValidationFeatureID the validation feature id
+	 * @param schemaFullCheckingFeatureID the schema full checking feature id
+	 * @param honourAllSchemaLocationsID the honour all schema locations feature id
 	 */
 	public XmlValidator(final SchemaType type, 
 			final boolean nameSpacesFeatureID, 
@@ -148,6 +142,7 @@ public class XmlValidator {
 		
 		// apply given settings
 		initializePreparser();
+		initializeSearchLocations();
 				
 		if (schemaType == SchemaType.DTD) {
 			preparser.registerPreparser(XMLGrammarDescription.XML_DTD, null);	
@@ -182,6 +177,8 @@ public class XmlValidator {
 		this.schemaType = type;
 		this.preparser = preparser;
 		this.grammarPool = preparser.getGrammarPool();
+		
+		initializeSearchLocations();
 	}
 	
 	//-----------------------------------------------------------------------||
@@ -196,8 +193,16 @@ public class XmlValidator {
 		this.errorHandler = errorHandler;
 	}
 	
+	/**
+	 * Adds a new search location to the existing locations.
+	 * A location is an absolute path on the classpath, .e.g 'META-INF/xsd'
+	 * without a leading slash ('/').
+	 * @param location
+	 */
 	public void addSearchLocation(final String location) {
-		searchLocationList.add(location);
+		synchronized (searchLocationList) {
+		    searchLocationList.add(location);
+		}
 	}
 	
 	/**
@@ -401,6 +406,16 @@ public class XmlValidator {
 			}
 		}
 		return inputStream;
+	}
+	
+	/**
+	 * Initializes the location list.
+	 */
+	private void initializeSearchLocations() {
+		searchLocationList.add("META-INF/xsd/");
+		searchLocationList.add("xsd/");
+		searchLocationList.add("");
+		searchLocationList.add("META-INF/2001/");	
 	}
 	
 	/**
