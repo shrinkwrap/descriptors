@@ -1,5 +1,8 @@
 package org.jboss.shrinkwrap.descriptor.schemavalidator;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +16,18 @@ import org.junit.Test;
 
 public class XmlValidatorTestCase {
 
+	final XmlValidator defaultValidator = new XmlValidator(SchemaType.XSD); 
+	
+	public XmlValidatorTestCase() {
+		try {
+			defaultValidator.loadGrammar("application_6.xsd");
+		} catch (XNIException e) {
+			throw new RuntimeException(e);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
 	@Test
 	public void testXmlValidatorSchemaTypeXSD() {		
 		final XmlValidator validator = new XmlValidator(SchemaType.XSD);
@@ -43,17 +58,13 @@ public class XmlValidatorTestCase {
 	}
 
 	@Test
-	public void testValidApplicationXML() throws Exception {		
-		final XmlValidator validator = new XmlValidator(SchemaType.XSD);
-		validator.loadGrammar("application_6.xsd");
-		validator.validate("src/test/resources/test-valid-application-6.xml");
+	public void testValidApplicationXML() throws Exception {
+		defaultValidator.validateFile("src/test/resources/test-valid-application-6.xml");
 	}
 	
 	@Test(expected = XNIException.class)
-	public void testInvalidApplicationXML() throws Exception {		
-		final XmlValidator validator = new XmlValidator(SchemaType.XSD);
-		validator.loadGrammar("application_6.xsd");
-		validator.validate("src/test/resources/test-invalid-application-6.xml");
+	public void testInvalidApplicationXML() throws Exception {	
+		defaultValidator.validateFile("src/test/resources/test-invalid-application-6.xml");
 	}
 	
 	@Test
@@ -62,7 +73,7 @@ public class XmlValidatorTestCase {
 		final List<String> schemas = new ArrayList<String>();
 		schemas.add("application_6.xsd");			
 		validator.loadGrammars(schemas);
-		validator.validate("src/test/resources/test-valid-application-6.xml");
+		validator.validateFile("src/test/resources/test-valid-application-6.xml");
 	}
 	
 	@Test(expected = XNIException.class)
@@ -71,7 +82,35 @@ public class XmlValidatorTestCase {
 		final List<String> schemas = new ArrayList<String>();	
 		schemas.add("application_6.xsd");		
 		validator.loadGrammars(schemas);
-		validator.validate("src/test/resources/test-invalid-application-6.xml");
+		validator.validateFile("src/test/resources/test-invalid-application-6.xml");
+	}	
+
+	@Test
+	public void testValidApplicationXMLFromStreamSource() throws Exception {	
+		final String resource = getResourceContents("src/test/resources/test-valid-application-6.xml");	
+		defaultValidator.validateContent(resource);
+	}
+	
+	@Test(expected = XNIException.class)
+	public void testInvalidApplicationXMLFromStreamSource() throws Exception {	
+		final String resource = getResourceContents("src/test/resources/test-invalid-application-6.xml");		
+		defaultValidator.validateContent(resource);
 	}
 
+    // -------------------------------------------------------------------------------------||
+    // Helper Methods ----------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+   
+    private String getResourceContents(String resource) throws Exception {
+        assert resource != null && resource.length() > 0 : "Resource must be specified";
+        final BufferedReader reader = new BufferedReader(new FileReader(resource));
+        final StringBuilder builder = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            builder.append(line);
+            builder.append("\n");
+        }
+        return builder.toString();
+    }
+	   
 }

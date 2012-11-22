@@ -40,6 +40,14 @@
 							<followSymlinks>false</followSymlinks>
 						</fileset>
 						<fileset>
+							<directory>../impl-javaee/src/main/resources/META-INF/xsd</directory>
+							<includes>
+								<include>**/*.xsd</include>
+								<include>**/*.dtd</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+						<fileset>
 							<directory>../impl-javaee/src/test/java</directory>
 							<includes>
 								<include>**/*.java</include>
@@ -61,6 +69,14 @@
 							<followSymlinks>false</followSymlinks>
 						</fileset>
 						<fileset>
+							<directory>../impl-jboss/src/main/resources/META-INF/xsd</directory>
+							<includes>
+								<include>**/*.xsd</include>
+								<include>**/*.dtd</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+						<fileset>
 							<directory>../impl-jboss/src/test/java</directory>
 							<includes>
 								<include>**/*.java</include>
@@ -78,6 +94,14 @@
 							<directory>../impl-misc/src/main/java</directory>
 							<includes>
 								<include>**/*.java</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+						<fileset>
+							<directory>../impl-misc/src/main/resources/META-INF/xsd</directory>
+							<includes>
+								<include>**/*.xsd</include>
+								<include>**/*.dtd</include>
 							</includes>
 							<followSymlinks>false</followSymlinks>
 						</fileset>
@@ -125,6 +149,7 @@
 							<path>
 								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
 								<pathToImpl>${basedir}/../impl-javaee/src/main/java</pathToImpl>
+								<pathToResources>${basedir}/../impl-javaee/src/main/resources/META-INF/xsd</pathToResources>
 							</path>
 							<descriptors>
 								<descriptor>
@@ -161,6 +186,7 @@
 							<path>
 								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
 								<pathToImpl>${basedir}/../impl-javaee/src/main/java</pathToImpl>
+								<pathToResources>${basedir}/../impl-javaee/src/main/resources/META-INF/xsd</pathToResources>
 								<!-- <pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices> -->
 							</path>
 							<descriptors>
@@ -250,6 +276,7 @@
 							<path>
 								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
 								<pathToImpl>${basedir}/../impl-javaee/src/main/java</pathToImpl>
+								<pathToResources>${basedir}/../impl-javaee/src/main/resources/META-INF/xsd</pathToResources>
 								<!-- <pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices> -->
 							</path>
 							<descriptors>
@@ -444,6 +471,7 @@
 							<path>
 								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
 								<pathToImpl>${basedir}/../impl-javaee/src/main/java</pathToImpl>
+								<pathToResources>${basedir}/../impl-javaee/src/main/resources/META-INF/xsd</pathToResources>
 								<!-- <pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices> -->
 							</path>
 							<descriptors>
@@ -623,6 +651,7 @@
 							<path>
 								<pathToApi>${basedir}/../api-jboss/src/main/java</pathToApi>
 								<pathToImpl>${basedir}/../impl-jboss/src/main/java</pathToImpl>
+								<pathToResources>${basedir}/../impl-jboss/src/main/resources/META-INF/xsd</pathToResources>
 							</path>
 							<descriptors>
 
@@ -696,6 +725,7 @@
 							<path>
 								<pathToApi>${basedir}/../api-jboss/src/main/java</pathToApi>
 								<pathToImpl>${basedir}/../impl-jboss/src/main/java</pathToImpl>
+								<pathToResources>${basedir}/../impl-jboss/src/main/resources/META-INF/xsd</pathToResources>
 							</path>
 							<descriptors>
 
@@ -770,6 +800,7 @@
 								<pathToApi>${basedir}/../api-misc/src/main/java</pathToApi>
 								<pathToImpl>${basedir}/../impl-misc/src/main/java</pathToImpl>
 								<pathToServices>${basedir}/../impl-misc/src/main/resources/META-INF/services</pathToServices>
+								<pathToResources>${basedir}/../impl-misc/src/main/resources/META-INF/xsd</pathToResources>
 							</path>
 							<descriptors>
 								<descriptor>

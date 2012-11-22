@@ -17,10 +17,10 @@
 package org.jboss.shrinkwrap.descriptor.test.beans10;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 
-import junit.framework.Assert;
-
+import org.apache.xerces.xni.XNIException;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.beans10.BeansDescriptor;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
@@ -64,7 +64,16 @@ public class BeansDescriptorTestCase
       String webXmlGenerated = beansDescr.exportAsString();
       String webXmlOriginal = getResourceContents("src/test/resources/test-gen-beans10.xml");
       
-      XmlAssert.assertIdentical(webXmlOriginal, webXmlGenerated);   
+      XmlAssert.assertIdentical(webXmlOriginal, webXmlGenerated); 
+      
+      beansDescr.validate();
+   }
+   
+   @Test(expected = XNIException.class)
+   public void testInvalidXml() throws Exception
+   {
+	   final BeansDescriptor beansDD = Descriptors.importAs(BeansDescriptor.class).fromFile(new File("src/test/resources/test-invalid-beans10.xml"));
+	   beansDD.validate();
    }
    
    //-------------------------------------------------------------------------------------||

@@ -9,3 +9,6 @@ api-javaee/src/
 api-misc/src/
 impl-jboss/src/main/java/
 impl-misc/src/main/java/
+impl-javaee/src/main/resources/META-INF/xsd/
+impl-jboss/src/main/resources/META-INF/xsd/
+impl-misc/src/main/resources/META-INF/xsd/

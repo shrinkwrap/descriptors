@@ -20,12 +20,12 @@ package org.jboss.shrinkwrap.descriptor.schemavalidator;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringReader;
 import java.net.MalformedURLException;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.xml.transform.stream.StreamSource;
 
 import org.apache.xerces.parsers.XIncludeAwareParserConfiguration;
 import org.apache.xerces.parsers.XMLGrammarPreparser;
@@ -58,6 +58,16 @@ public class XmlValidator {
 		DTD,
 		XSD
 	}	
+	
+	/** contains all search locations used by <code>getResourceAsStream()</code> */
+	private static List<String> searchLocationList = new ArrayList<String>();
+		
+	static {
+		searchLocationList.add("META-INF/xsd/");
+		searchLocationList.add("xsd/");
+		searchLocationList.add("");
+		searchLocationList.add("META-INF/2001/");
+	}
 	
 	/** schema type we have to know for loading the grammars */
 	private final SchemaType schemaType;
@@ -186,6 +196,10 @@ public class XmlValidator {
 		this.errorHandler = errorHandler;
 	}
 	
+	public void addSearchLocation(final String location) {
+		searchLocationList.add(location);
+	}
+	
 	/**
 	 * Loads the grammar.
 	 * @param schema the grammar to be loaded.
@@ -194,7 +208,7 @@ public class XmlValidator {
 	 */
 	public void loadGrammar(final String schema) throws XNIException, IOException {		
 		if (isResourceCandidate(schema)) {
-			final InputStream inputStream = getFirstValidInputStream("xsd/" + schema, schema);
+			final InputStream inputStream = getFirstValidInputStream(schema);
 			if (inputStream != null) {
 				XMLInputSource xmlInputStream = new XMLInputSource(null, 
 						schema, null, inputStream, null);
@@ -222,20 +236,21 @@ public class XmlValidator {
 	//-- Public Validator  Methods ------------------------------------------||
 	//-----------------------------------------------------------------------||
 	
-	public void validate(final String pathToFile) throws XNIException, IOException {
+	public void validateFile(final String pathToFile) throws XNIException, IOException {
 		checkGrammarPoolSize();
 		final XMLParserConfiguration parserConfiguration = getParserConfiguration();
 		parserConfiguration.parse(stringToXIS(pathToFile));
 	}
 
-	public void validate(final File xmlFile) throws XNIException, IOException  {
+	public void validateFile(final File xmlFile) throws XNIException, IOException  {
 		checkGrammarPoolSize();
-		validate(xmlFile.getAbsolutePath());
+		validateFile(xmlFile.getAbsolutePath());
 	}
 
-	public void validate(final StreamSource xmlSource) throws XNIException, IOException  {
+	public void validateContent(final String xmlString) throws XNIException, IOException  {
 		checkGrammarPoolSize();
-		throw new UnsupportedOperationException(); // TODO
+		final XMLParserConfiguration parserConfiguration = getParserConfiguration();
+		parserConfiguration.parse(new XMLInputSource(null, null, null, new StringReader(xmlString), null));
 	}	
 
 	//-----------------------------------------------------------------------||
@@ -335,11 +350,10 @@ public class XmlValidator {
 			XMLInputSource xmlInputStream = null;
 			InputStream inputStream = null;
 			if (resourceIdentifier.getExpandedSystemId().equals("http://www.w3.org/2001/xml.xsd")) {
-				inputStream = getFirstValidInputStream("META-INF/2001/xml.xsd", "xml.xsd");
+				inputStream = getFirstValidInputStream("xml.xsd");
 				
-			} else {
-				
-				// try to get the resource from the gen package
+			} else {				
+				// try to get the resource from a resource
 				inputStream = getInputStream(resourceIdentifier); 
 			}
 			
@@ -370,7 +384,7 @@ public class XmlValidator {
 	
 	private InputStream getInputStream(final XMLResourceIdentifier resourceIdentifier) throws MalformedURLException {
 		final File url = new File(resourceIdentifier.getExpandedSystemId());		
-		return getFirstValidInputStream("xsd/" + url.getName(), url.getName());
+		return getFirstValidInputStream(url.getName());
 	}
 	
 	/**
@@ -378,10 +392,10 @@ public class XmlValidator {
 	 * @param resources
 	 * @return the first resolvable <code>InputStream</code>, or null if non of the resources are found.
 	 */
-	private InputStream getFirstValidInputStream(String ... resources) {
+	private InputStream getFirstValidInputStream(final String schema) {
 		InputStream inputStream = null;
-		for (String resource: resources) {
-			inputStream = getClassLoaderForClass(this.getClass()).getResourceAsStream(resource);
+		for (String location: searchLocationList) {
+			inputStream = getClassLoaderForClass(this.getClass()).getResourceAsStream(location + schema);
 			if (inputStream != null) {
 				break;
 			}

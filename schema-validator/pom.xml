@@ -57,13 +57,14 @@
 
 
 	<dependencies>
-	
+		
 	    <dependency>
-			<groupId>org.jboss.shrinkwrap.descriptors</groupId>
-			<artifactId>shrinkwrap-descriptors-gen</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-
+	        <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+	        <artifactId>shrinkwrap-descriptors-gen</artifactId>
+	        <version>${project.version}</version>
+	        <scope>test</scope>
+	    </dependency>
+	
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
@@ -76,43 +77,11 @@
 			<scope>test</scope>
 		</dependency>
 
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.apache.maven</groupId> -->
-<!-- 			<artifactId>maven-plugin-api</artifactId> -->
-<!-- 			<version>3.0.3</version> -->
-<!-- 		</dependency> -->
-		
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.apache.maven.plugin-testing</groupId> -->
-<!-- 			<artifactId>maven-plugin-testing-harness</artifactId> -->
-<!-- 			<version>2.0-alpha-1</version> -->
-<!-- 			<scope>test</scope> -->
-<!-- 		</dependency> -->
-
-		<dependency>
-			<groupId>msv</groupId>
-			<artifactId>msv</artifactId>
-			<version>20050913</version>
-		</dependency>
-
-		<dependency>
-			<groupId>msv</groupId>
-			<artifactId>relaxngDatatype</artifactId>
-			<version>20030225</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.sun.msv.datatype.xsd</groupId>
-			<artifactId>xsdlib</artifactId>
-			<version>20060615</version>
-		</dependency>
-
 		<dependency>
 			<groupId>xerces</groupId>
 			<artifactId>xercesImpl</artifactId>
 			<version>2.10.0</version>
 		</dependency>
-
 
 	</dependencies>
 

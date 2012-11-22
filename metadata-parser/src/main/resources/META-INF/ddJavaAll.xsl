@@ -355,8 +355,8 @@
     <xsl:template name="WriteDescriptor">
         <xsl:param name="pDescriptor" select="."/>
         <xsl:variable name="vPackage" select="./@packageApi"/>
-        <xsl:variable name="vSchema" select=" substring-after(@schemaName, '../xsd/')"/>
-<!--        <xsl:variable name="vClassname" select="xdd:createPascalizedName(xdd:checkForReservedKeywords($pDescriptor/@schemaName), 'Descriptor')"/>-->
+        <xsl:variable name="vPackageImpl" select="./@packageImpl"/>
+        <xsl:variable name="vSchemaName" select=" tokenize(@schemaName, '/')[last()]"/>
         <xsl:variable name="vClassname" select="@name"/>
         <xsl:if test="$gVerbose">
             <xsl:message select="concat('Generating Descriptor Api: ', $vClassname)"/>
@@ -374,12 +374,17 @@
                 </xsl:for-each>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.api.Descriptor;&#10;</xsl:text>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.api.DescriptorNamespace;&#10;&#10;</xsl:text>
-                <xsl:value-of select=" xdd:writeDescriptorJavaDoc($vClassname, $vSchema, $gJavaDocs)"/>
+                <xsl:text>import org.apache.xerces.xni.XNIException;&#10;</xsl:text>
+                <xsl:text>import java.io.IOException;&#10;</xsl:text>
+                <xsl:value-of select="xdd:writeDescriptorJavaDoc($vClassname, $vSchemaName, $gJavaDocs)"/>
                 <xsl:value-of select="xdd:classHeaderDeclaration('interface', $vClassname)"/>
                 <xsl:value-of select="concat(' extends Descriptor, DescriptorNamespace', '&lt;', $vClassname, '&gt;')"/>
                 <xsl:text>&#10;{&#10;</xsl:text>
                 <xsl:variable name="vType" select=" substring-after($pDescriptor/element/@type, ':')"/>
                 <xsl:variable name="vNamespace" select=" substring-before($pDescriptor/element/@type, ':')"/>
+                <xsl:if test="$gPackageImpls[@name=$vPackageImpl]/@pathToResource!=''">
+                    <xsl:value-of select="xdd:writeValidatorMethods($vSchemaName, true())"/>
+                </xsl:if>
                 <xsl:for-each select="//classes/class[@name=$vType and @namespace=$vNamespace and (@packageApi=$vPackage or not(xdd:versionLessPackageName(@packageApi) = xdd:versionLessPackageName($vPackage)))]">
                     <xsl:for-each select="include">
                         <xsl:value-of select="xdd:includeGroupRefs($vClassname, @name, false(), true(), false(), '', @maxOccurs='unbounded')"/>
@@ -458,11 +463,9 @@
     <xsl:template name="WriteDescriptorImpl">
         <xsl:param name="pDescriptor" select="."/>
         <xsl:variable name="vPackage" select="@packageImpl"/>
+        <xsl:variable name="vPackageImpl" select="./@packageImpl"/>
         <xsl:variable name="vNodeName" select="'model'"/>
-        <xsl:variable name="vSchema" select=" substring-after(@schemaName, '../xsd/')"/>
-        <!--<xsl:variable name="vInterfaceName" select="xdd:createPascalizedName($pDescriptor/@schemaName, 'Descriptor')"/>
-        <xsl:variable name="vClassnameImpl" select="xdd:createPascalizedName($pDescriptor/@schemaName, 'DescriptorImpl')"/>-->
-        
+        <xsl:variable name="vSchemaName" select=" tokenize(@schemaName, '/')[last()]"/>
         <xsl:variable name="vInterfaceName" select="@name"/>
         <xsl:variable name="vClassnameImpl" select=" concat(@name, 'Impl')"/>
         <xsl:if test="$gVerbose">
@@ -485,8 +488,14 @@
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase;&#10;</xsl:text>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;&#10;</xsl:text>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.node.Node;&#10;</xsl:text>
+                <xsl:text>import org.apache.xerces.xni.XNIException;&#10;</xsl:text>
+                <xsl:text>import org.jboss.shrinkwrap.descriptor.schemavalidator.XmlValidator;&#10;</xsl:text>
+                <xsl:text>import org.jboss.shrinkwrap.descriptor.schemavalidator.XmlValidator.SchemaType;&#10;</xsl:text>
+                <xsl:text>import javax.xml.transform.stream.StreamSource;&#10;</xsl:text>
+                <xsl:text>import java.io.StringReader;&#10;</xsl:text>
+                <xsl:text>import java.io.IOException;&#10;</xsl:text>
                 <xsl:text>&#10;</xsl:text>
-                <xsl:value-of select=" xdd:writeDescriptorJavaDoc($vInterfaceName, $vSchema, $gJavaDocs)"/>
+                <xsl:value-of select=" xdd:writeDescriptorJavaDoc($vInterfaceName, $vSchemaName, $gJavaDocs)"/>
                 <xsl:value-of select="xdd:classHeaderDeclaration('class', $vClassnameImpl)"/>
                 <xsl:value-of select="concat(' extends NodeDescriptorImplBase implements DescriptorNamespace', '&lt;', $vInterfaceName, '&gt;', ', ')"/>
                 <xsl:value-of select="xdd:createPascalizedName($vInterfaceName, '')"/>
@@ -501,6 +510,9 @@
                 <!-- write all methods -->
                 <xsl:value-of select="xdd:writeNodeProviderMethods($vNodeName)"/>
                 <xsl:value-of select="xdd:writeDescriptorNamespaceMethods($pDescriptor, $vInterfaceName)"/>
+                <xsl:if test="$gPackageImpls[@name=$vPackageImpl]/@pathToResource!=''">
+                    <xsl:value-of select="xdd:writeValidatorMethods($vSchemaName, false())"/>
+                </xsl:if>
                 <xsl:for-each select="element">
                     <xsl:variable name="vType" select=" substring-after(@type, ':')"/>
                     <xsl:for-each select="//classes/class[@name=$vType and (@packageImpl=$vPackage or not(xdd:versionLessPackageName(@packageImpl) = xdd:versionLessPackageName($vPackage)))]">
@@ -2662,6 +2674,41 @@
         <xsl:text>   {&#10;</xsl:text>
         <xsl:value-of select="concat('      return ', $pNodeNameLocal, ';&#10;')"/>
         <xsl:text>   }&#10;&#10;</xsl:text>
+    </xsl:function>
+    
+    <!-- ****************************************************** -->
+    <!-- ****** Function which writes the node provider methods -->
+    <!-- ****************************************************** -->
+    <xsl:function name="xdd:writeValidatorMethods">
+        <xsl:param name="pDescriptorName"/>
+        <xsl:param name="pIsInterface" as="xs:boolean"/>
+        <xsl:variable name="vValidateSignature" select="concat('   public void ', 'validate() throws XNIException, IOException')"/>
+        <xsl:value-of select="concat('', '&#10;')"/>
+        <xsl:value-of select="concat('   /**', '&#10;')"/>
+        <xsl:value-of select="concat('    * Validates the current descriptor instance against the &lt;code&gt;', $pDescriptorName,'&lt;/code&gt; schema. &#10;')"/>
+        <xsl:value-of select="concat('    * @throws ', 'XNIException if an validation exception occurs.&#10;')"/>
+        <xsl:value-of select="concat('    * @throws ', 'IOException if the given source is not readable.&#10;')"/>
+        <xsl:value-of select="concat('    */', '&#10;')"/>   
+        <xsl:choose>
+            <xsl:when test="$pIsInterface=true()">
+                <xsl:value-of select="concat($vValidateSignature, ';&#10;')"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="concat($vValidateSignature, '&#10;')"/>
+                <xsl:value-of select="concat('   {', '&#10;')"/>  
+                <xsl:choose>
+                    <xsl:when test=" contains($pDescriptorName, '.dtd')">
+                        <xsl:value-of select="concat('      final XmlValidator validator = new XmlValidator(SchemaType.DTD);', '&#10;')"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="concat('      final XmlValidator validator = new XmlValidator(SchemaType.XSD);', '&#10;')"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+                <xsl:value-of select="concat('      validator.loadGrammar(&quot;', $pDescriptorName, '&quot;);', '&#10;')"/>
+                <xsl:value-of select="concat('      validator.validateContent(exportAsString());', '&#10;')"/>                
+                <xsl:value-of select="concat('   }', '&#10;')"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:function>
 
     <!-- ************************************************************ -->
