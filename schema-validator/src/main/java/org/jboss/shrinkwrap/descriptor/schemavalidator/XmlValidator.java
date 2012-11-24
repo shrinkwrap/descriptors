@@ -24,8 +24,9 @@ import java.io.StringReader;
 import java.net.MalformedURLException;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.apache.xerces.parsers.XIncludeAwareParserConfiguration;
 import org.apache.xerces.parsers.XMLGrammarPreparser;
@@ -41,12 +42,21 @@ import org.apache.xerces.xni.parser.XMLInputSource;
 import org.apache.xerces.xni.parser.XMLParseException;
 import org.apache.xerces.xni.parser.XMLParserConfiguration;
 
-
 /**
  * This class is able to validate XML files against corresponding
  * DTD and XSD schemas.
  * <p>
  * The implementation is based on the xerces xni library.
+ * <p>
+ * In order to make validations fast, the required schemas should be
+ * available on the classpath. The implementation searches the resources
+ * at the following locations:
+ * <ol>
+ * <li>META-INF/xsd/</li>
+ * <li>xsd/</li>
+ * <li>./.</li>
+ * <li>META-INF/2001//</li>
+ * </ol> 
  * 
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
@@ -60,7 +70,7 @@ public class XmlValidator {
 	}	
 	
 	/** contains all search locations used by <code>getResourceAsStream()</code> */
-	private List<String> searchLocationList = new ArrayList<String>();
+	private List<String> searchLocationList = new CopyOnWriteArrayList<String>();
 		
 	/** schema type we have to know for loading the grammars */
 	private final SchemaType schemaType;
@@ -194,15 +204,28 @@ public class XmlValidator {
 	}
 	
 	/**
-	 * Adds a new search location to the existing locations.
+	 * Adds a new search location to the existing locations by inserting the
+	 * new location at the first position.
+	 * <p>
 	 * A location is an absolute path on the classpath, .e.g 'META-INF/xsd'
 	 * without a leading slash ('/').
 	 * @param location
 	 */
 	public void addSearchLocation(final String location) {
-		synchronized (searchLocationList) {
-		    searchLocationList.add(location);
+		if (!searchLocationList.isEmpty()) {
+			searchLocationList.add(0, location);
 		}
+		else {
+			searchLocationList.add(location);
+		}
+	}
+	
+	/**
+	 * Returns the current search locations.
+	 * @return a unmodifiable list of the current search locations.
+	 */
+	public List<String> getSearchLocations() {
+		return Collections.unmodifiableList(searchLocationList);
 	}
 	
 	/**

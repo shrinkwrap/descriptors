@@ -97,6 +97,19 @@ public class XmlValidatorTestCase {
 		defaultValidator.validateContent(resource);
 	}
 
+	@Test
+	public void testDefaultSearchLocation() throws Exception {
+		Assert.assertTrue(defaultValidator.getSearchLocations().size() == 4);
+	}
+	
+	@Test
+	public void testAddSearchLocation() throws Exception {
+		final XmlValidator validator = new XmlValidator(SchemaType.XSD);
+		validator.addSearchLocation("META-INF/schema");
+		Assert.assertTrue(validator.getSearchLocations().size() == 5);
+		Assert.assertEquals("META-INF/schema", validator.getSearchLocations().get(0));
+	}
+	
     // -------------------------------------------------------------------------------------||
     // Helper Methods ----------------------------------------------------------------------||
     // -------------------------------------------------------------------------------------||
