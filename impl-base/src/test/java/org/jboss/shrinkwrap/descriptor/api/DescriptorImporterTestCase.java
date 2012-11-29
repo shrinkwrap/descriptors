@@ -20,6 +20,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -68,11 +69,11 @@ public class DescriptorImporterTestCase
    }
    
    @Test
-   public void deprecatedFromFile(){
+   public void deprecatedFromFile() throws IllegalArgumentException, DescriptorImportException, URISyntaxException{
        // Use from(File); may be removed in Major Version 3 of SHRINKDESC
        @SuppressWarnings("deprecation")
         final TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).from(
-            new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + "test.xml"));
+            new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI().getPath() + "test.xml"));
        Assert.assertNotNull(
              "Verify the descriptor was created", 
              descriptor); 
