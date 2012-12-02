@@ -197,6 +197,8 @@ public class ApplicationDescriptorTestCase
       String appXmlGenerated = app6Descr.exportAsString();
        
       XmlAssert.assertIdentical(appXmlOriginal, appXmlGenerated);       
+      
+      app6Descr.validate();
    }
      
  

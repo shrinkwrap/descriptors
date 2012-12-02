@@ -50,6 +50,11 @@ public class MetadataParserPath
     */
    protected String pathToServices;
 
+   /**
+    * Full path to the resource folder in which schemas are copied.
+    * 
+    */
+   protected String pathToResources;
   
 
    public String getPathToApi()
@@ -91,4 +96,15 @@ public class MetadataParserPath
    {
       this.pathToServices = pathToServices;
    }
+
+   public String getPathToResources() 
+   {
+	  return pathToResources;
+   }
+
+   public void setPathToResources(final String pathToResources) 
+   {
+	  this.pathToResources = pathToResources;
+   }   
+   
 }

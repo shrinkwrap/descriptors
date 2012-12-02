@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<!-- Parent -->
+	<parent>
+		<groupId>org.jboss.shrinkwrap.descriptors</groupId>
+		<artifactId>shrinkwrap-descriptors-parent</artifactId>
+		<version>2.0.0-alpha-5-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<!-- Model Version -->
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- Artifact Configuration -->
+	<artifactId>shrinkwrap-descriptors-schema-validator</artifactId>
+	<name>ShrinkWrap Descriptors Schema Validator</name>
+	<description>XSD and DTD schema validator for the ShrinkWrap Descriptors</description>
+<!-- 	<packaging>maven-plugin</packaging> -->
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<!-- Run in Java5; be build with a JDK6 compiler so ensure we don't 
+						use any JDK6 libs -->
+					<jvm>${env.JAVA5_HOME}/bin/java</jvm>
+					<!-- Speeeeeeed -->
+					<forkMode>once</forkMode>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+	<dependencies>
+		
+	    <dependency>
+	        <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+	        <artifactId>shrinkwrap-descriptors-gen</artifactId>
+	        <version>${project.version}</version>
+	        <scope>test</scope>
+	    </dependency>
+	
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+			<version>2.10.0</version>
+		</dependency>
+
+	</dependencies>
+
+</project>

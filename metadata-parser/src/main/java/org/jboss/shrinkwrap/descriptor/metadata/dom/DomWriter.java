@@ -39,6 +39,7 @@ import org.jboss.shrinkwrap.descriptor.metadata.MetadataElement;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataEnum;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataItem;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataJavaDoc;
+import org.jboss.shrinkwrap.descriptor.metadata.MetadataParserPath;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -61,8 +62,8 @@ public class DomWriter
     * @param metadata
     * @param pathToMetadata
     */
-   public void write(final Metadata metadata, final String pathToMetadata, final List<MetadataJavaDoc> javadocTags)
-   {
+   public void write(final Metadata metadata, final String pathToMetadata, 
+	  final List<MetadataJavaDoc> javadocTags, final MetadataParserPath path) {
       try
       {
          final DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -130,6 +131,13 @@ public class DomWriter
             final Attr generateClassImpl = doc.createAttribute("generateClass");
             generateClassImpl.setValue(Boolean.toString(descriptor.isGenerateClasses()));
             packageImpl.setAttributeNode(generateClassImpl);  
+            
+            if (path.getPathToResources() != null && !path.getPathToResources().isEmpty()) {
+               final Attr pathToResource = doc.createAttribute("pathToResource");
+               pathToResource.setValue(path.getPathToResources());
+               packageImpl.setAttributeNode(pathToResource);  
+            }
+            
             packages.appendChild(packageImpl);
          }
          

@@ -18,9 +18,12 @@
 package org.jboss.shrinkwrap.descriptor.metadata;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.channels.FileChannel;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,8 +77,7 @@ public class MetadataParser
     * @throws Exception 
     */
    @SuppressWarnings("unchecked")
-public void parse(final MetadataParserPath path, final List<?> confList, final List<?> javadocTags, final boolean verbose) throws Exception
-   {
+   public void parse(final MetadataParserPath path, final List<?> confList, final List<?> javadocTags, final boolean verbose) throws Exception {
 	  checkArguments(path, confList);
 	   
       pathToMetadata = createTempFile(verbose);
@@ -84,8 +86,7 @@ public void parse(final MetadataParserPath path, final List<?> confList, final L
           log.fine("Path to temporary metadata file: " + pathToMetadata);
       }
 
-      for (int i = 0; i < confList.size(); i++)
-      {
+      for (int i = 0; i < confList.size(); i++) {
          final MetadataParserConfiguration metadataConf = (MetadataParserConfiguration) confList.get(i);
 
          metadata.setCurrentNamespace(metadataConf.getNameSpace());
@@ -104,25 +105,22 @@ public void parse(final MetadataParserPath path, final List<?> confList, final L
          metadataDescriptor.setGenerateClasses(metadataConf.generateClasses);
          metadata.getMetadataDescriptorList().add(metadataDescriptor);
          
-         if(log.isLoggable(Level.FINE)){
+         if (log.isLoggable(Level.FINE)){
              log.fine(metadataConf.getPathToXsd());
          }
          
-         if (metadataConf.getPathToXsd().endsWith(".dtd"))
-         {
+         if (metadataConf.getPathToXsd().endsWith(".dtd")) {
             final InputSource in = new InputSource(new FileReader(metadataConf.getPathToXsd()));
             final MetadataDtdEventListener dtdEventListener = new MetadataDtdEventListener(metadata, verbose);
             final DTDParser parser = new DTDParser();
             parser.setDtdHandler(dtdEventListener);
             parser.parse(in);
-         }
-         else
-         {
+         } else {
             final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             final DocumentBuilder loader = factory.newDocumentBuilder();
             final Document document = loader.parse(metadataConf.getPathToXsd());
 
-            if(log.isLoggable(Level.FINE)){
+            if (log.isLoggable(Level.FINE)) {
                 log.fine(document.getDocumentURI());
             }
             
@@ -134,7 +132,7 @@ public void parse(final MetadataParserPath path, final List<?> confList, final L
             
             filterChain.traverseAndFilter(walker, "", metadata, sb);
             
-            if(sb!=null){
+            if (sb!=null) {
                 log.info(sb.toString());
             }
          }
@@ -146,19 +144,21 @@ public void parse(final MetadataParserPath path, final List<?> confList, final L
        */
       metadata.preResolveDataTypes();
 
-      if (pathToMetadata != null)
-      {
-         new DomWriter().write(metadata, pathToMetadata, (List<MetadataJavaDoc>)javadocTags);
+      if (pathToMetadata != null) {
+         new DomWriter().write(metadata, pathToMetadata, (List<MetadataJavaDoc>)javadocTags, path);
       }
 
-      if (verbose)
-      {
+      if (verbose) {
          new MetadataUtil().log(metadata);
       }
 
-      if (path.getPathToApi() != null && path.getPathToImpl() != null)
-      {
+      if (path.getPathToApi() != null && path.getPathToImpl() != null) {
          generateCode(path, verbose);
+         if (path.getPathToResources() != null) {
+        	 for (MetadataDescriptor metadataDescriptor: metadata.getMetadataDescriptorList()) {
+        		 copyFile(new File(metadataDescriptor.getSchemaName()), path.getPathToResources());
+        	 }
+         }
       }
    }
 
@@ -166,8 +166,8 @@ public void parse(final MetadataParserPath path, final List<?> confList, final L
     * Generates source code by applying the <code>ddJavaAll.xsl</code> XSLT extracted from the resource stream.
     * @throws TransformerException
     */
-   public void generateCode(final MetadataParserPath path, final boolean verbose) throws TransformerException
-   {
+   public void generateCode(final MetadataParserPath path, final boolean verbose) throws TransformerException {
+	   
       /** initialize the map which will overwrite global parameters as defined in metadata.xsl/ddJava.xsl */
       final Map<String, String> xsltParameters = new HashMap<String, String>();
       xsltParameters.put("gOutputFolder", path.getPathToImpl());
@@ -189,8 +189,7 @@ public void parse(final MetadataParserPath path, final List<?> confList, final L
     * method is executed successfully.
     * @return full path of the generated metadata XML file.
     */
-   public String getPathToMetadataFile()
-   {
+   public String getPathToMetadataFile() {
 	   return pathToMetadata;
    }
    
@@ -203,12 +202,10 @@ public void parse(final MetadataParserPath path, final List<?> confList, final L
     * @return absolute path of the temporary file.
     * @throws IOException
     */
-   private String createTempFile(final boolean verbose) throws IOException
-   {
+   private String createTempFile(final boolean verbose) throws IOException {
       final File tempFile = File.createTempFile("tempMetadata", ".xml");
       
-      if (!verbose)
-      {
+      if (!verbose) {
     	  tempFile.deleteOnExit();
       }
       
@@ -220,17 +217,45 @@ public void parse(final MetadataParserPath path, final List<?> confList, final L
     * @param path
     * @param confList
     */
-   private void checkArguments(final MetadataParserPath path, final List<?> confList)
-   {
+   private void checkArguments(final MetadataParserPath path, final List<?> confList) {
 	   if (path == null) {
 		   throw new IllegalArgumentException("Invalid configuration. The 'path' element missing!");
-	   }
-	   else if (confList == null) {
+	   } else if (confList == null) {
 		   throw new IllegalArgumentException("Invalid configuration. At least one 'descriptor' element has to be defined!");
-	   }
-	   else if (confList.isEmpty()) {
+	   } else if (confList.isEmpty()) {
 		   throw new IllegalArgumentException("Invalid configuration. At least one 'descriptor' element has to be defined!");
-	   }
-	   
-   }
+	   }	   
+    }
+   
+
+   /**
+    * Copies a file by using NIO.
+    * @param sourceFile the source file.
+    * @param destFile the target file location.
+    * @throws IOException
+    */
+   private void copyFile(File sourceFile, String destPath) throws IOException {
+	   final File destFolder = new File(destPath);
+	    if(!destFolder.exists()) {
+	    	destFolder.mkdir();
+	    }
+
+	    FileChannel source = null;
+	    FileChannel destination = null;
+
+	    try {
+	    	final File destFile = new File(destPath + File.separatorChar + sourceFile.getName());		
+	        source = new FileInputStream(sourceFile).getChannel();
+	        destination = new FileOutputStream(destFile).getChannel();
+	        destination.transferFrom(source, 0, source.size());
+	    }
+	    finally {
+	        if (source != null) {
+	            source.close();
+	        }
+	        if (destination != null) {
+	            destination.close();
+	        }
+	    }
+	}
 }

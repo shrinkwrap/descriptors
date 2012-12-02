@@ -6,6 +6,7 @@ import org.jboss.shrinkwrap.descriptor.metadata.Metadata;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataDescriptor;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataElement;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataParser;
+import org.jboss.shrinkwrap.descriptor.metadata.MetadataParserPath;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataUtil;
 import org.jboss.shrinkwrap.descriptor.metadata.dom.DomWriter;
 import org.junit.Ignore;
@@ -108,7 +109,7 @@ public class DtdParserTest
       metadata.getMetadataDescriptorList().add(metadataDescriptor);
       metadata.preResolveDataTypes();
       new MetadataUtil().log(metadata);
-      new DomWriter().write(metadata, "/tmp/connector_1_0.xml", null);
+      new DomWriter().write(metadata, "/tmp/connector_1_0.xml", null, new MetadataParserPath());
       //
       // if (verbose) {
       // new MetadataUtil().print(metadata);

@@ -19,11 +19,9 @@ package org.jboss.shrinkwrap.descriptor.metadata.codegen;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.text.WordUtils;
-import org.jboss.shrinkwrap.descriptor.api.Child;
 import org.jboss.shrinkwrap.descriptor.metadata.Metadata;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataElement;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataEnum;
@@ -37,8 +35,6 @@ import com.sun.codemodel.JDefinedClass;
 import com.sun.codemodel.JDocComment;
 import com.sun.codemodel.JExpr;
 import com.sun.codemodel.JMethod;
-import com.sun.codemodel.JType;
-import com.sun.codemodel.JTypeVar;
 
 /**
  * Experimental class which may replaced the current xslt based java code generation step.
@@ -116,25 +112,25 @@ public class CodeGen
 //            JTypeVar typeVat = new JTypeVar(cm, "T");
             
 //            final JDefinedClass dcChild = cm._class(Child.class.getCanonicalName(), ClassType.INTERFACE); 
-            final JClass child = cm.ref(Child.class);
-            if (child.isParameterized())
-            {
-            	List<JClass> types = child.getTypeParameters();
-            	for (JClass jclass: types)
-            	{
-            		jclass.toString();
-            	}
-            }
-            
-            dc._extends(childInterface);
-            JTypeVar type = dc.generify("T");
-            child.narrow(type);
-            JType erasureType = dc.erasure();
-            List<JClass> types = dc.getTypeParameters();
-            for (JClass jclass: types)
-        	{
-            	child.narrow(erasureType);
-        	}
+//            final JClass child = cm.ref(Child.class);
+//            if (child.isParameterized())
+//            {
+//            	List<JClass> types = child.getTypeParameters();
+//            	for (JClass jclass: types)
+//            	{
+//            		jclass.toString();
+//            	}
+//            }
+//            
+//            dc._extends(childInterface);
+//            JTypeVar type = dc.generify("T");
+//            child.narrow(type);
+//            JType erasureType = dc.erasure();
+//            List<JClass> types = dc.getTypeParameters();
+//            for (JClass jclass: types)
+//        	{
+//            	child.narrow(erasureType);
+//        	}
             
             final JDocComment javaDocComment = dc.javadoc();
             final Map<String, String> part = javaDocComment.addXdoclet("author");

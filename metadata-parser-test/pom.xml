@@ -45,6 +45,14 @@
 							</includes>
 							<followSymlinks>false</followSymlinks>
 						</fileset>
+						<fileset>
+							<directory>${basedir}/src/main/resources/META-INF/xsd</directory>
+							<includes>
+								<include>**/*.xsd</include>
+								<include>**/*.dtd</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
 					</filesets>
 				</configuration>
 			</plugin>
@@ -63,6 +71,7 @@
 								<pathToApi>${basedir}/src/main/java</pathToApi>
 								<pathToImpl>${basedir}/src/main/java</pathToImpl>
 								<pathToServices>${basedir}/src/main/resources/META-INF/services</pathToServices>
+								<pathToResources>${basedir}/src/main/resources/META-INF/xsd</pathToResources>
 							</path>
 							<descriptors>
 								<descriptor>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  version="6" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd">
+ 
+  <application-name>test-app</application-name>
+  <initialize-in-order>true</initialize-in-order>
+  <module>
+    <web>
+      <web-uri>test-web.war</web-uri>
+      <context-root>test</context-root>
+    </web>
+  </module>
+ 
+  <module>
+    <ejb>test-ejb.jar</ejb>
+  </module>
+  <library-directory>lib</library-directory>
+</application>
