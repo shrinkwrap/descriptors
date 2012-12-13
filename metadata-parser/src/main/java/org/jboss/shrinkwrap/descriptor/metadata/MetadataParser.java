@@ -55,6 +55,8 @@ public class MetadataParser
 {
    private static final Logger log = Logger.getLogger(MetadataParser.class.getName());
 
+   private static final String FILE_PROTOCOL = "file:///";
+
    private final FilterChain filterChain = new FilterChain();
    
    private final Metadata metadata = new Metadata();
@@ -170,10 +172,10 @@ public void parse(final MetadataParserPath path, final List<?> confList, final L
    {
       /** initialize the map which will overwrite global parameters as defined in metadata.xsl/ddJava.xsl */
       final Map<String, String> xsltParameters = new HashMap<String, String>();
-      xsltParameters.put("gOutputFolder", path.getPathToImpl());
-      xsltParameters.put("gOutputFolderApi", path.getPathToApi());
-      xsltParameters.put("gOutputFolderTest", path.getPathToTest());
-      xsltParameters.put("gOutputFolderService", path.getPathToServices());
+      xsltParameters.put("gOutputFolder", FILE_PROTOCOL + path.getPathToImpl());
+      xsltParameters.put("gOutputFolderApi", FILE_PROTOCOL + path.getPathToApi());
+      xsltParameters.put("gOutputFolderTest", FILE_PROTOCOL + path.getPathToTest());
+      xsltParameters.put("gOutputFolderService", FILE_PROTOCOL + path.getPathToServices());
       xsltParameters.put("gVerbose", Boolean.toString(verbose));
 
       final InputStream is = MetadataParser.class.getResourceAsStream("/META-INF/ddJavaAll.xsl");
