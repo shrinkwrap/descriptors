@@ -9,3 +9,5 @@ api-javaee/src/
 api-misc/src/
 impl-jboss/src/main/java/
 impl-misc/src/main/java/
+/.idea
+*.iml
