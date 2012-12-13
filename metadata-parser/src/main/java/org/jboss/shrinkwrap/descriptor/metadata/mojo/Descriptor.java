@@ -18,14 +18,12 @@ package org.jboss.shrinkwrap.descriptor.metadata.mojo;
 
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataParserConfiguration;
 
-
 /**
- * Mojo configuration class for the Shrinkwrap Descriptors CLI Mojo task. 
+ * Mojo configuration class for the Shrinkwrap Descriptors CLI Mojo task.
  * <p>
  * This class must be in the same package as the mojo class according the plugin requirement.
- * 
+ *
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
-public class Descriptor extends MetadataParserConfiguration
-{
+public class Descriptor extends MetadataParserConfiguration {
 }

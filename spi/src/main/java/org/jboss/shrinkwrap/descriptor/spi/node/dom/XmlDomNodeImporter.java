@@ -24,26 +24,25 @@ import org.jboss.shrinkwrap.descriptor.spi.node.NodeImporter;
 import org.w3c.dom.Document;
 
 /**
- * Singleton publicly-visible view of the {@link DescriptorImporter}
- * using a {@link Document} API strategy.
- * 
+ * Singleton publicly-visible view of the {@link DescriptorImporter} using a {@link Document} API strategy.
+ *
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
  */
 public enum XmlDomNodeImporter implements NodeImporter {
-   INSTANCE;
+    INSTANCE;
 
-   /**
-    * Internal delegate, singleton
-    */
-   private final NodeImporter delegate = new XmlDomNodeImporterImpl();
+    /**
+     * Internal delegate, singleton
+     */
+    private final NodeImporter delegate = new XmlDomNodeImporterImpl();
 
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.spi.node.NodeImporter#importAsNode(java.io.InputStream, boolean)
-    */
-   public Node importAsNode(InputStream stream, boolean close) throws IllegalArgumentException
-   {
-      return delegate.importAsNode(stream, close);
-   }
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.jboss.shrinkwrap.descriptor.spi.node.NodeImporter#importAsNode(java.io.InputStream, boolean)
+     */
+    public Node importAsNode(InputStream stream, boolean close) throws IllegalArgumentException {
+        return delegate.importAsNode(stream, close);
+    }
 
 }

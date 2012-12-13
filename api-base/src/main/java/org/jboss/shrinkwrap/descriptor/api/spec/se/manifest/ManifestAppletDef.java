@@ -21,16 +21,15 @@ package org.jboss.shrinkwrap.descriptor.api.spec.se.manifest;
  *
  * @author Davide D'Alto
  */
-public interface ManifestAppletDef extends ManifestDescriptor
-{
-   ManifestAppletDef appletExtensionName(String name);
+public interface ManifestAppletDef extends ManifestDescriptor {
+    ManifestAppletDef appletExtensionName(String name);
 
-   ManifestAppletDef appletSpecificationVersion(String version);
+    ManifestAppletDef appletSpecificationVersion(String version);
 
-   ManifestAppletDef appletImplementationVersion(String version);
+    ManifestAppletDef appletImplementationVersion(String version);
 
-   ManifestAppletDef appletImplementationVendorId(String vendorId);
+    ManifestAppletDef appletImplementationVendorId(String vendorId);
 
-   ManifestAppletDef appletImplementationUrl(String url);
+    ManifestAppletDef appletImplementationUrl(String url);
 
 }

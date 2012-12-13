@@ -24,24 +24,21 @@ package org.jboss.shrinkwrap.descriptor.impl.base;
 
 /**
  * String utilities.
- * 
+ *
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
- * 
+ *
  */
-public final class Strings
-{
+public final class Strings {
 
-   /**
-    * Internal constructor
-    */
-   private Strings()
-   {
-      throw new UnsupportedOperationException("no instances");
-   }
+    /**
+     * Internal constructor
+     */
+    private Strings() {
+        throw new UnsupportedOperationException("no instances");
+    }
 
-   public static boolean isTrue(final String value)
-   {
-      return value == null ? false : Boolean.TRUE.toString().equalsIgnoreCase(value.trim());
-   }
+    public static boolean isTrue(final String value) {
+        return value == null ? false : Boolean.TRUE.toString().equalsIgnoreCase(value.trim());
+    }
 
 }

@@ -25,26 +25,24 @@ import java.util.List;
  *
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
-public class MetadataEnum extends BaseMetadataItem
-{
-   final private List<String> valueList = new ArrayList<String>();
-   
-   /**
-    * Constructs a new instance.
-    * @param name the name of the enumeration class.
-    */
-   public MetadataEnum(final String name)
-   {
-      super(name);
-   }
-   
-   public void addValue(String value)
-   {
-      valueList.add(value);
-   }
+public class MetadataEnum extends BaseMetadataItem {
+    private final List<String> valueList = new ArrayList<String>();
 
-   public List<String> getValueList()
-   {
-      return valueList;
-   }
-} 
+    /**
+     * Constructs a new instance.
+     *
+     * @param name
+     *            the name of the enumeration class.
+     */
+    public MetadataEnum(final String name) {
+        super(name);
+    }
+
+    public void addValue(String value) {
+        valueList.add(value);
+    }
+
+    public List<String> getValueList() {
+        return valueList;
+    }
+}

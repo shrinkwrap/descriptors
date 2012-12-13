@@ -25,57 +25,56 @@ import org.jboss.shrinkwrap.descriptor.api.Descriptor;
  *
  * @author Davide D'Alto
  */
-public interface ManifestCommonDef<T> extends Descriptor
-{
-   final Name JAVA_BEAN = new Name("Java-Bean");
+public interface ManifestCommonDef<T> extends Descriptor {
+    Name JAVA_BEAN = new Name("Java-Bean");
 
-   final Name X_DIGEST_Y = new Name("x-Digest-y");
+    Name X_DIGEST_Y = new Name("x-Digest-y");
 
-   final Name MAGIC = new Name("Magic");
+    Name MAGIC = new Name("Magic");
 
-   final Name CREATED_BY = new Name("Created-By");
+    Name CREATED_BY = new Name("Created-By");
 
-   final Name EXTENSION_LIST = new Name("Extension-List");
+    Name EXTENSION_LIST = new Name("Extension-List");
 
-   final String TRUE = String.valueOf(true);
+    String TRUE = String.valueOf(true);
 
-   final String FALSE = String.valueOf(false);
+    String FALSE = String.valueOf(false);
 
-   ManifestDescriptor main();
+    ManifestDescriptor main();
 
-   ManifestEntryDef entry(String name);
+    ManifestEntryDef entry(String name);
 
-   ManifestAppletDef applet(String name);
+    ManifestAppletDef applet(String name);
 
-   T version(String version);
+    T version(String version);
 
-   T createdBy(String creator);
+    T createdBy(String creator);
 
-   T signatureVersion(String version);
+    T signatureVersion(String version);
 
-   T addToClassPath(String value);
+    T addToClassPath(String value);
 
-   T mainClass(String mainClass);
+    T mainClass(String mainClass);
 
-   T implementationTitle(String title);
+    T implementationTitle(String title);
 
-   T implementationVersion(String version);
+    T implementationVersion(String version);
 
-   T implementationVendor(String vendor);
+    T implementationVendor(String vendor);
 
-   T implementationVendorId(String vendorId);
+    T implementationVendorId(String vendorId);
 
-   T implementationUrl(String url);
+    T implementationUrl(String url);
 
-   T specificationTitle(String title);
+    T specificationTitle(String title);
 
-   T specificationVersion(String version);
+    T specificationVersion(String version);
 
-   T specificationVendor(String vendor);
+    T specificationVendor(String vendor);
 
-   T sealed();
+    T sealed();
 
-   T notSealed();
+    T notSealed();
 
-   T attribute(String name, String value);
+    T attribute(String name, String value);
 }

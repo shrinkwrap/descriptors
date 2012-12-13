@@ -29,21 +29,20 @@ public class ElementFilterTestCase {
 		"       <xsd:attribute name=\"id\" type=\"xsd:ID\"/>" +
 		"   </xsd:complexType> " +
 		"</xsd:schema>";
-		
-		final Metadata metadata = DomTestUtil.parse(xmlFragment, isLogging);
-		
-		Assert.assertTrue("webType", metadata.getClassList().get(0).getName().equals("webType"));
-		
-		final List<MetadataElement> e = metadata.getClassList().get(0).getElements();
-		DomTestUtil.assertElement(e.get(0), "<xsd:element name=\"web-uri\" type=\"javaee:pathType\"></xsd:element>");		
-		DomTestUtil.assertElement(e.get(1), "<xsd:element name=\"context-root\" type=\"javaee:string\"></xsd:element>");	
-	}
-	
 
-	@Test
-	public void testElementsWithGroupAsParent() throws Exception {
-		final boolean isLogging = false;
-		final String xmlFragment = 
+        final Metadata metadata = DomTestUtil.parse(xmlFragment, isLogging);
+
+        Assert.assertTrue("webType", metadata.getClassList().get(0).getName().equals("webType"));
+
+        final List<MetadataElement> e = metadata.getClassList().get(0).getElements();
+        DomTestUtil.assertElement(e.get(0), "<xsd:element name=\"web-uri\" type=\"javaee:pathType\"></xsd:element>");
+        DomTestUtil.assertElement(e.get(1), "<xsd:element name=\"context-root\" type=\"javaee:string\"></xsd:element>");
+    }
+
+    @Test
+    public void testElementsWithGroupAsParent() throws Exception {
+        final boolean isLogging = false;
+        final String xmlFragment =
 		"<xsd:schema xmlns=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" >" + 
 	    "   <xsd:group name=\"jndiEnvironmentRefsGroup\">" +
 	    "      <xsd:sequence>" +

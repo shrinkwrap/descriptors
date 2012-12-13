@@ -31,74 +31,86 @@ import javax.xml.transform.stream.StreamSource;
 
 /**
  * Executes a xslt transformation process.
- * 
+ *
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
-public class XsltTransformer
-{
-   /** 
-    * Simple transformation method. 
-    * @param sourcePath - Absolute path to source xml file. 
-    * @param xsltPath - Absolute path to xslt file. 
-    * @param resultDir - Directory where you want to put resulting files. 
-    * @param parameters - Map defining global XSLT parameters based via tranformer to the XSLT file. 
-    * @throws TransformerException 
-    */
-   public static void simpleTransform(final String sourcePath, final String xsltPath, final String resultDir,
-         final Map<String, String> parameters) throws TransformerException
-   {
-      final TransformerFactory tFactory = TransformerFactory.newInstance("net.sf.saxon.TransformerFactoryImpl", null);
-      final Transformer transformer = tFactory.newTransformer(new StreamSource(new File(xsltPath)));
-      applyParameters(transformer, parameters);
-      transformer.transform(new StreamSource(new File(sourcePath)), new StreamResult(new File(resultDir)));
-   }
+public class XsltTransformer {
+    /**
+     * Simple transformation method.
+     *
+     * @param sourcePath
+     *            - Absolute path to source xml file.
+     * @param xsltPath
+     *            - Absolute path to xslt file.
+     * @param resultDir
+     *            - Directory where you want to put resulting files.
+     * @param parameters
+     *            - Map defining global XSLT parameters based via tranformer to the XSLT file.
+     * @throws TransformerException
+     */
+    public static void simpleTransform(final String sourcePath, final String xsltPath, final String resultDir,
+        final Map<String, String> parameters) throws TransformerException {
+        final TransformerFactory tFactory = TransformerFactory.newInstance("net.sf.saxon.TransformerFactoryImpl", null);
+        final Transformer transformer = tFactory.newTransformer(new StreamSource(new File(xsltPath)));
+        applyParameters(transformer, parameters);
+        transformer.transform(new StreamSource(new File(sourcePath)), new StreamResult(new File(resultDir)));
+    }
 
-   /** 
-    * Simple transformation method. 
-    * @param sourcePath - Absolute path to source xml file. 
-    * @param StreamSource - the xslt file. 
-    * @param resultDir - Directory where you want to put resulting files. 
-    * @param parameters - Map defining global XSLT parameters based via tranformer to the XSLT file. 
-    * @throws TransformerException 
-    */
-   public static void simpleTransform(final String sourcePath, final StreamSource xsltSource, 
-         final String resultDir, final Map<String, String> parameters) throws TransformerException
-   {
-      final TransformerFactory tFactory = TransformerFactory.newInstance("net.sf.saxon.TransformerFactoryImpl", null);
-      final Transformer transformer = tFactory.newTransformer(xsltSource);
-      applyParameters(transformer, parameters);
-      transformer.transform(new StreamSource(new File(sourcePath)), new StreamResult(new File(resultDir  + "/metadata.xml")));
-   }
-   
-   /** 
-    * Simple transformation method. 
-    * @param contextFile - Absolute path to source xml file. 
-    * @param StreamSource - the xslt file. 
-    * @param resultDir - Directory where you want to put resulting files. 
-    * @param parameters - Map defining global XSLT parameters based via transformer to the XSLT file. 
-    * @throws TransformerException 
-    */
-   public static void simpleTransform(final String contextFile, final InputStream xsltSource, 
-         final File result, final Map<String, String> parameters) throws TransformerException
-   {
-      final TransformerFactory tFactory = TransformerFactory.newInstance("net.sf.saxon.TransformerFactoryImpl", null);
-      final Transformer transformer = tFactory.newTransformer(new StreamSource(xsltSource));
-      applyParameters(transformer, parameters);
-      transformer.transform(new StreamSource(new File(contextFile)), new StreamResult(result));
-   }
+    /**
+     * Simple transformation method.
+     *
+     * @param sourcePath
+     *            - Absolute path to source xml file.
+     * @param StreamSource
+     *            - the xslt file.
+     * @param resultDir
+     *            - Directory where you want to put resulting files.
+     * @param parameters
+     *            - Map defining global XSLT parameters based via tranformer to the XSLT file.
+     * @throws TransformerException
+     */
+    public static void simpleTransform(final String sourcePath, final StreamSource xsltSource, final String resultDir,
+        final Map<String, String> parameters) throws TransformerException {
+        final TransformerFactory tFactory = TransformerFactory.newInstance("net.sf.saxon.TransformerFactoryImpl", null);
+        final Transformer transformer = tFactory.newTransformer(xsltSource);
+        applyParameters(transformer, parameters);
+        transformer.transform(new StreamSource(new File(sourcePath)), new StreamResult(new File(resultDir
+            + "/metadata.xml")));
+    }
 
-   /**
-    * Applies all key/value pairs as defined by the given <code>Map</code> to the given <code>Transformer</code> instance.
-    * @param transformer
-    * @param parameters
-    */
-   private static void applyParameters(final Transformer transformer, final Map<String, String> parameters)
-   {
-      final Set<String> keys = parameters.keySet();
-      for (Iterator<String> iterator = keys.iterator(); iterator.hasNext();)
-      {
-         final String key = iterator.next();
-         transformer.setParameter(key, parameters.get(key));
-      }
-   }
+    /**
+     * Simple transformation method.
+     *
+     * @param contextFile
+     *            - Absolute path to source xml file.
+     * @param StreamSource
+     *            - the xslt file.
+     * @param resultDir
+     *            - Directory where you want to put resulting files.
+     * @param parameters
+     *            - Map defining global XSLT parameters based via transformer to the XSLT file.
+     * @throws TransformerException
+     */
+    public static void simpleTransform(final String contextFile, final InputStream xsltSource, final File result,
+        final Map<String, String> parameters) throws TransformerException {
+        final TransformerFactory tFactory = TransformerFactory.newInstance("net.sf.saxon.TransformerFactoryImpl", null);
+        final Transformer transformer = tFactory.newTransformer(new StreamSource(xsltSource));
+        applyParameters(transformer, parameters);
+        transformer.transform(new StreamSource(new File(contextFile)), new StreamResult(result));
+    }
+
+    /**
+     * Applies all key/value pairs as defined by the given <code>Map</code> to the given <code>Transformer</code>
+     * instance.
+     *
+     * @param transformer
+     * @param parameters
+     */
+    private static void applyParameters(final Transformer transformer, final Map<String, String> parameters) {
+        final Set<String> keys = parameters.keySet();
+        for (Iterator<String> iterator = keys.iterator(); iterator.hasNext();) {
+            final String key = iterator.next();
+            transformer.setParameter(key, parameters.get(key));
+        }
+    }
 }

@@ -17,101 +17,84 @@
 
 package org.jboss.shrinkwrap.descriptor.metadata;
 
-
 /**
  * This class serves as a base data class holding metadata information.
  *
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
-public class BaseMetadataItem
-{
-   private String name;
+public class BaseMetadataItem {
+    private String name;
 
-   private String namespace;
+    private String namespace;
 
-   private String schemaName;
+    private String schemaName;
 
-   private String packageApi;
+    private String packageApi;
 
-   private String packageImpl;
+    private String packageImpl;
 
-   private String documentation;
-   
-   private String mappedTo;   
+    private String documentation;
 
-   public BaseMetadataItem(final String name)
-   {
-      this.name = name;
-   }
+    private String mappedTo;
 
-   public String getName()
-   {
-      return name;
-   }
+    public BaseMetadataItem(final String name) {
+        this.name = name;
+    }
 
-   public void setName(final String name)
-   {
-      this.name = name;
-   }
+    public String getName() {
+        return name;
+    }
 
-   public String getNamespace()
-   {
-      return namespace;
-   }
+    public void setName(final String name) {
+        this.name = name;
+    }
 
-   public void setNamespace(final String namespace)
-   {
-      this.namespace = namespace;
-   }
+    public String getNamespace() {
+        return namespace;
+    }
 
-   public String getSchemaName()
-   {
-      return schemaName;
-   }
+    public void setNamespace(final String namespace) {
+        this.namespace = namespace;
+    }
 
-   public void setSchemaName(final String schemaName)
-   {
-      this.schemaName = schemaName;
-   }
+    public String getSchemaName() {
+        return schemaName;
+    }
 
-   public String getPackageApi()
-   {
-      return packageApi;
-   }
+    public void setSchemaName(final String schemaName) {
+        this.schemaName = schemaName;
+    }
 
-   public void setPackageApi(final String packageApi)
-   {
-      this.packageApi = packageApi;
-   }
+    public String getPackageApi() {
+        return packageApi;
+    }
 
-   public String getPackageImpl()
-   {
-      return packageImpl;
-   }
+    public void setPackageApi(final String packageApi) {
+        this.packageApi = packageApi;
+    }
 
-   public void setPackageImpl(final String packageImpl)
-   {
-      this.packageImpl = packageImpl;
-   }
+    public String getPackageImpl() {
+        return packageImpl;
+    }
 
-   public String getDocumentation()
-   {
-      return documentation;
-   }
+    public void setPackageImpl(final String packageImpl) {
+        this.packageImpl = packageImpl;
+    }
 
-   public void setDocumentation(final String documentation)
-   {
-      this.documentation = documentation;
-   }
+    public String getDocumentation() {
+        return documentation;
+    }
 
-   public String getMappedTo()
-   {
-      return mappedTo;
-   }
+    public void setDocumentation(final String documentation) {
+        this.documentation = documentation;
+    }
 
-   public void setMappedTo(String mappedTo)
-   {
-      this.mappedTo = mappedTo;
-   }
+    public String getMappedTo() {
+        return mappedTo;
+    }
+
+    public void setMappedTo(String mappedTo) {
+        this.mappedTo = mappedTo;
+    }
 
 }

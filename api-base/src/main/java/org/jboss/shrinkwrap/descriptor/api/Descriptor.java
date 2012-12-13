@@ -24,31 +24,35 @@ import java.io.OutputStream;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public interface Descriptor
-{
-   /**
-    * Get the {@link Descriptor} name. The name can be specified by 
-    * user at construction time, or predefined as a default by type.
-    * 
-    * @return the descriptor name
-    */
-   String getDescriptorName();
-   
-   /**
-    * Exports the descriptor as a {@link String}
-    * @return
-    * @throws DescriptorExportException
-    */
-   String exportAsString() throws DescriptorExportException;
+public interface Descriptor {
 
-   /**
-    * Export the descriptor to a given {@link OutputStream}.
-    * The {@link OutputStream} will not be flushed or closed by this operation.
-    * 
-    * @param output Where to export
-    * @throws IllegalArgumentException if output is null
-    * @throws DescriptorExportException if problems exporting
-    */
-   void exportTo(OutputStream output) throws DescriptorExportException, IllegalArgumentException;
+    /**
+     * Get the {@link Descriptor} name. The name can be specified by user at construction time, or predefined as a
+     * default by type.
+     *
+     * @return the descriptor name
+     */
+    String getDescriptorName();
+
+    /**
+     * Exports the descriptor as a {@link String}
+     *
+     * @return
+     * @throws DescriptorExportException
+     */
+    String exportAsString() throws DescriptorExportException;
+
+    /**
+     * Export the descriptor to a given {@link OutputStream}. The {@link OutputStream} will not be flushed or closed by
+     * this operation.
+     *
+     * @param output
+     *            Where to export
+     * @throws IllegalArgumentException
+     *             if output is null
+     * @throws DescriptorExportException
+     *             if problems exporting
+     */
+    void exportTo(OutputStream output) throws DescriptorExportException, IllegalArgumentException;
 
 }

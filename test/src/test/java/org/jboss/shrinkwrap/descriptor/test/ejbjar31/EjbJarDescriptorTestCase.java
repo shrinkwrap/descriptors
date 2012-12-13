@@ -13,25 +13,21 @@ import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Before;
 import org.junit.Test;
 
+public class EjbJarDescriptorTestCase {
+    final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-DD hh:mm:ss");
 
-public class EjbJarDescriptorTestCase
-{
-   final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-DD hh:mm:ss");
-   
-   /**
-    * Logger
-    */
-   private static final Logger log = Logger.getLogger(ApplicationDescriptorTestCase.class.getName());
-   
-   @Before
-   public void init()
-   {
-      sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
-   }
-   
-   @Test
-   public void testGeneratedEjbJarXml() throws Exception
-   {  
+    /**
+     * Logger
+     */
+    private static final Logger log = Logger.getLogger(ApplicationDescriptorTestCase.class.getName());
+
+    @Before
+    public void init() {
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+    }
+
+    @Test
+    public void testGeneratedEjbJarXml() throws Exception {
       EjbJarDescriptor ejbJarGenerated = create()
             .addDefaultNamespaces()
             .version("3.1")
@@ -158,7 +154,7 @@ public class EjbJarDescriptorTestCase
                         .createInjectionTarget()
                            .injectionTargetClass("injection-target-class3")
                            .injectionTargetName("$").up()
-                        .lookupName("lookup-name3").up()                      
+                        .lookupName("lookup-name3").up()
                   .createResourceRef()
                      .description("description8")
                      .resRefName("res-ref-name0")
@@ -192,7 +188,7 @@ public class EjbJarDescriptorTestCase
                      .lookupName("lookup-name6").up()
                   .createPersistenceContextRef()
                      .description("description11")
-                     .persistenceContextRefName("persistence-context-ref-name0")            
+                     .persistenceContextRefName("persistence-context-ref-name0")
                      .persistenceUnitName("persistence-unit-name0")
                      .persistenceContextType("Transaction")
                      .createPersistenceProperty()
@@ -215,7 +211,7 @@ public class EjbJarDescriptorTestCase
                       .lifecycleCallbackMethod("$").up()
                    .createPreDestroy()
                       .lifecycleCallbackClass("lifecycle-callback-class1")
-                      .lifecycleCallbackMethod("$").up()                   
+                      .lifecycleCallbackMethod("$").up()
                    .createDataSource()
                       .description("description13")
                       .name("name1")
@@ -366,7 +362,7 @@ public class EjbJarDescriptorTestCase
                      .lookupName("lookup-name13").up()
                   .createPersistenceContextRef()
                      .description("description27")
-                     .persistenceContextRefName("persistence-context-ref-name1")            
+                     .persistenceContextRefName("persistence-context-ref-name1")
                      .persistenceUnitName("persistence-unit-name2")
                      .persistenceContextType("Transaction")
                      .createPersistenceProperty()
@@ -389,7 +385,7 @@ public class EjbJarDescriptorTestCase
                       .lifecycleCallbackMethod("$").up()
                    .createPreDestroy()
                       .lifecycleCallbackClass("lifecycle-callback-class3")
-                      .lifecycleCallbackMethod("$").up()       
+                      .lifecycleCallbackMethod("$").up()
                    .createDataSource()
                       .description("description29")
                       .name("name4")
@@ -413,7 +409,7 @@ public class EjbJarDescriptorTestCase
                       .maxStatements(0).up()
                    .createPostActivate()
                       .lifecycleCallbackClass("lifecycle-callback-class4")
-                      .lifecycleCallbackMethod("$").up() 
+                      .lifecycleCallbackMethod("$").up()
                    .createPrePassivate()
                        .lifecycleCallbackClass("lifecycle-callback-class5")
                       .lifecycleCallbackMethod("$").up() .up().up()
@@ -501,19 +497,18 @@ public class EjbJarDescriptorTestCase
                      .exceptionClass("exception-class0")
                      .rollback(false)
                      .inherited(false).up().up()
-              .ejbClientJar("ejb-client-jar0");                     
-      
-      String webXmlGenerated = ejbJarGenerated.exportAsString();
-      String webXmlOriginal = getResourceContents("src/test/resources/test-gen-ejbjar31.xml");
-          
-      log.info(webXmlGenerated);
-           
-      XmlAssert.assertIdentical(webXmlOriginal, webXmlGenerated);   
-   }
-   
-   @Test
-   public void testInterceptors() throws Exception
-   {  
+              .ejbClientJar("ejb-client-jar0");
+
+        String webXmlGenerated = ejbJarGenerated.exportAsString();
+        String webXmlOriginal = getResourceContents("src/test/resources/test-gen-ejbjar31.xml");
+
+        log.info(webXmlGenerated);
+
+        XmlAssert.assertIdentical(webXmlOriginal, webXmlGenerated);
+    }
+
+    @Test
+    public void testInterceptors() throws Exception {
       EjbJarDescriptor ejbJarGenerated = create()
             .addDefaultNamespaces()
             .version("3.1")
@@ -533,35 +528,31 @@ public class EjbJarDescriptorTestCase
                   .up()
                .up()
             .up();
-      
-      String webXmlGenerated = ejbJarGenerated.exportAsString();
-      String webXmlOriginal = getResourceContents("src/test/resources/test-orig-ejbjar31.xml");
-      
-      XmlAssert.assertIdentical(webXmlOriginal, webXmlGenerated);
-   }
-   
-   
-   // -------------------------------------------------------------------------------------||
-   // Helper Methods ----------------------------------------------------------------------||
-   // -------------------------------------------------------------------------------------||
-   
-   private String getResourceContents(String resource) throws Exception
-   {
-      assert resource != null && resource.length() > 0 : "Resource must be specified";
-      final BufferedReader reader = new BufferedReader(new FileReader(resource));
-      final StringBuilder builder = new StringBuilder();
-      String line;
-      while ((line = reader.readLine()) != null)
-      {
-         builder.append(line);
-         builder.append("\n");
-      }
-      return builder.toString();
-   }
-   
-   private EjbJarDescriptor create()
-   {
-      return Descriptors.create(EjbJarDescriptor.class);
-   }
-   
+
+        String webXmlGenerated = ejbJarGenerated.exportAsString();
+        String webXmlOriginal = getResourceContents("src/test/resources/test-orig-ejbjar31.xml");
+
+        XmlAssert.assertIdentical(webXmlOriginal, webXmlGenerated);
+    }
+
+    // -------------------------------------------------------------------------------------||
+    // Helper Methods ----------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+
+    private String getResourceContents(String resource) throws Exception {
+        assert resource != null && resource.length() > 0 : "Resource must be specified";
+        final BufferedReader reader = new BufferedReader(new FileReader(resource));
+        final StringBuilder builder = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            builder.append(line);
+            builder.append("\n");
+        }
+        return builder.toString();
+    }
+
+    private EjbJarDescriptor create() {
+        return Descriptors.create(EjbJarDescriptor.class);
+    }
+
 }

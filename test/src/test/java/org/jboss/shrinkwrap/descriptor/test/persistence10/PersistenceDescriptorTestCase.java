@@ -8,12 +8,10 @@ import org.jboss.shrinkwrap.descriptor.api.persistence10.PersistenceDescriptor;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Test;
 
-public class PersistenceDescriptorTestCase
-{
+public class PersistenceDescriptorTestCase {
 
-   @Test
-   public void testGeneratedPersistenceXml() throws Exception
-   {
+    @Test
+    public void testGeneratedPersistenceXml() throws Exception {
       final PersistenceDescriptor persistence = create()
             .addDefaultNamespaces()
             .version("1.0")
@@ -50,35 +48,31 @@ public class PersistenceDescriptorTestCase
                .getOrCreateProperties()
                   .createProperty().name("name9").value("value5").up()
                   .createProperty().name("name11").value("value7").up()
-               .up().up();            
-     
-      String webXmlGenerated = persistence.exportAsString();
-      String webXmlOriginal = getResourceContents("src/test/resources/test-gen-persistence10.xml");
-      
-      XmlAssert.assertIdentical(webXmlOriginal, webXmlGenerated);   
-   }
-   
-   
-   // -------------------------------------------------------------------------------------||
-   // Internal Helper ---------------------------------------------------------------------||
-   // -------------------------------------------------------------------------------------||
+               .up().up();
 
-   private String getResourceContents(String resource) throws Exception
-   {
-      assert resource != null && resource.length() > 0 : "Resource must be specified";
-      final BufferedReader reader = new BufferedReader(new FileReader(resource));
-      final StringBuilder builder = new StringBuilder();
-      String line;
-      while ((line = reader.readLine()) != null)
-      {
-         builder.append(line);
-         builder.append("\n");
-      }
-      return builder.toString();
-   }
+        String webXmlGenerated = persistence.exportAsString();
+        String webXmlOriginal = getResourceContents("src/test/resources/test-gen-persistence10.xml");
 
-   private PersistenceDescriptor create()
-   {
-      return Descriptors.create(PersistenceDescriptor.class);
-   }
+        XmlAssert.assertIdentical(webXmlOriginal, webXmlGenerated);
+    }
+
+    // -------------------------------------------------------------------------------------||
+    // Internal Helper ---------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+
+    private String getResourceContents(String resource) throws Exception {
+        assert resource != null && resource.length() > 0 : "Resource must be specified";
+        final BufferedReader reader = new BufferedReader(new FileReader(resource));
+        final StringBuilder builder = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            builder.append(line);
+            builder.append("\n");
+        }
+        return builder.toString();
+    }
+
+    private PersistenceDescriptor create() {
+        return Descriptors.create(PersistenceDescriptor.class);
+    }
 }

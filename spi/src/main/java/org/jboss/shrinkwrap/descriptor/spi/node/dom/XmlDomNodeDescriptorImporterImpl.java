@@ -23,36 +23,34 @@ import org.jboss.shrinkwrap.descriptor.spi.node.NodeImporter;
 import org.w3c.dom.Document;
 
 /**
- * Adaptor to use a {@link Document} API approach to {@link Descriptor} imports
- * as defined by the {@link DescriptorImporter} API
- * 
+ * Adaptor to use a {@link Document} API approach to {@link Descriptor} imports as defined by the
+ * {@link DescriptorImporter} API
+ *
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
  */
-public class XmlDomNodeDescriptorImporterImpl<T extends Descriptor> extends NodeDescriptorImporterBase<T>
-      implements
-         DescriptorImporter<T>
-{
+public class XmlDomNodeDescriptorImporterImpl<T extends Descriptor> extends NodeDescriptorImporterBase<T> implements
+    DescriptorImporter<T> {
 
-   /**
-    * Creates a new instance
-    * @param endUserViewImplType
-    * @param descriptorName
-    * @throws IllegalArgumentException
-    */
-   public XmlDomNodeDescriptorImporterImpl(final Class<T> endUserViewImplType, final String descriptorName)
-         throws IllegalArgumentException
-   {
-      super(endUserViewImplType, descriptorName);
-   }
+    /**
+     * Creates a new instance
+     *
+     * @param endUserViewImplType
+     * @param descriptorName
+     * @throws IllegalArgumentException
+     */
+    public XmlDomNodeDescriptorImporterImpl(final Class<T> endUserViewImplType, final String descriptorName)
+        throws IllegalArgumentException {
+        super(endUserViewImplType, descriptorName);
+    }
 
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImporterBase#getNodeImporter()
-    */
-   @Override
-   public NodeImporter getNodeImporter()
-   {
-      return XmlDomNodeImporter.INSTANCE;
-   }
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImporterBase#getNodeImporter()
+     */
+    @Override
+    public NodeImporter getNodeImporter() {
+        return XmlDomNodeImporter.INSTANCE;
+    }
 
 }

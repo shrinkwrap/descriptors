@@ -19,18 +19,16 @@ package org.jboss.shrinkwrap.descriptor.api;
 import java.security.PrivilegedAction;
 
 /**
- * {@link PrivilegedAction} implementation to get at the {@link Thread} 
- * Context {@link ClassLoader}
- * 
+ * {@link PrivilegedAction} implementation to get at the {@link Thread} Context {@link ClassLoader}
+ *
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
 enum GetTcclAction implements PrivilegedAction<ClassLoader> {
-   INSTANCE;
+    INSTANCE;
 
-   @Override
-   public ClassLoader run()
-   {
-      return Thread.currentThread().getContextClassLoader();
-   }
+    @Override
+    public ClassLoader run() {
+        return Thread.currentThread().getContextClassLoader();
+    }
 
 }

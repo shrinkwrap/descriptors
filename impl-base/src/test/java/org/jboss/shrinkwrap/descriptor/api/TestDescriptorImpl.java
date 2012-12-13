@@ -21,45 +21,43 @@ import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase;
 
 /**
  * {@link TestDescriptor} implementation for use in testing
- * 
+ *
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
  */
-public class TestDescriptorImpl extends NodeDescriptorImplBase implements TestDescriptor
-{
+public class TestDescriptorImpl extends NodeDescriptorImplBase implements TestDescriptor {
 
-   /**
-    * Root Node
-    */
-   private final Node root;
-   
-   /**
-    * Creates a new instance w/ the specified name
-    * @param name
-    */   
-   public TestDescriptorImpl(String descriptorName)
-   {
-       this(descriptorName, new Node("test"));
-   }
+    /**
+     * Root Node
+     */
+    private final Node root;
 
-   /**
-    * Creates a new instance w/ the specified name
-    * and root node
-    * @param name
-    * @param node
-    */
-   public TestDescriptorImpl(final String descriptorName, final Node node)
-   {
-      super(descriptorName);
-      this.root = node;
-   }
+    /**
+     * Creates a new instance w/ the specified name
+     *
+     * @param name
+     */
+    public TestDescriptorImpl(String descriptorName) {
+        this(descriptorName, new Node("test"));
+    }
 
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.spi.NodeProvider#getRootNode()
-    */
-   @Override
-   public Node getRootNode()
-   {
-      return root;
-   }
+    /**
+     * Creates a new instance w/ the specified name and root node
+     *
+     * @param name
+     * @param node
+     */
+    public TestDescriptorImpl(final String descriptorName, final Node node) {
+        super(descriptorName);
+        this.root = node;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.jboss.shrinkwrap.descriptor.spi.NodeProvider#getRootNode()
+     */
+    @Override
+    public Node getRootNode() {
+        return root;
+    }
 }

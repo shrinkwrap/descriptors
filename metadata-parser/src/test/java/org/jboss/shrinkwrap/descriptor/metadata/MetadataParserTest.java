@@ -1,7 +1,6 @@
 package org.jboss.shrinkwrap.descriptor.metadata;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.net.URL;
 import java.util.ArrayList;
@@ -10,11 +9,8 @@ import java.util.Properties;
 
 import junit.framework.Assert;
 
-import org.custommonkey.xmlunit.Difference;
-import org.custommonkey.xmlunit.DifferenceListener;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Test;
-import org.w3c.dom.Node;
 
 public class MetadataParserTest {
 
@@ -37,7 +33,7 @@ public class MetadataParserTest {
 		final MetadataParser parser = new MetadataParser();
 		boolean isRuntimeExceptionThrown = false;
 		try {
-			parser.parse(null, new ArrayList<Object>(), null, false);
+			parser.parse(null, new ArrayList<MetadataParserConfiguration>(), null, false);
 		}
 		catch(IllegalArgumentException ex) {
 			isRuntimeExceptionThrown = true;
@@ -92,7 +88,7 @@ public class MetadataParserTest {
 		conf.setPathToXsd(url.getFile());
 		conf.setVerbose(false);
 		
-		final List<Object> confList = new ArrayList<Object>();
+		final List<MetadataParserConfiguration> confList = new ArrayList<MetadataParserConfiguration>();
 		confList.add(conf);
 		
 //		final MetadataJavaDoc javadoc1 = new MetadataJavaDoc();

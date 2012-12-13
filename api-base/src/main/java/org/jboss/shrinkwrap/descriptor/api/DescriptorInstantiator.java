@@ -23,258 +23,232 @@ import java.security.AccessController;
 import java.util.Properties;
 
 /**
- * Utility capable of creating {@link Descriptor} instances given 
- * a requested end-user view. 
- * 
+ * Utility capable of creating {@link Descriptor} instances given a requested end-user view.
+ *
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-class DescriptorInstantiator
-{
-   //-------------------------------------------------------------------------------------||
-   // Class Members ----------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+class DescriptorInstantiator {
+    // -------------------------------------------------------------------------------------||
+    // Class Members ----------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-   /**
-    * Classpath location under which mapping configuration between
-    * ens-user view and implementation types is located
-    */
-   private static final String MAPPING_LOCATION = "META-INF/services/";
+    /**
+     * Classpath location under which mapping configuration between ens-user view and implementation types is located
+     */
+    private static final String MAPPING_LOCATION = "META-INF/services/";
 
-   /**
-    * Key of the property denoting the implementation class for a given end-user view type
-    */
-   private static final String KEY_IMPL_CLASS_NAME = "implClass";
+    /**
+     * Key of the property denoting the implementation class for a given end-user view type
+     */
+    private static final String KEY_IMPL_CLASS_NAME = "implClass";
 
-   /**
-    * Key of the property denoting the default descriptor name
-    */
-   private static final String KEY_DEFAULT_NAME = "defaultName";
+    /**
+     * Key of the property denoting the default descriptor name
+     */
+    private static final String KEY_DEFAULT_NAME = "defaultName";
 
-   /**
-    * Key of the property denoting the backing model class for a given end-user view type
-    */
-   private static final String KEY_IMPORTER_CLASS_NAME = "importerClass";
+    /**
+     * Key of the property denoting the backing model class for a given end-user view type
+     */
+    private static final String KEY_IMPORTER_CLASS_NAME = "importerClass";
 
-   //-------------------------------------------------------------------------------------||
-   // Constructor ------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+    // Constructor ------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-   /**
-    * Internal constructor; not to be called
-    */
-   private DescriptorInstantiator()
-   {
-      throw new UnsupportedOperationException("No instances permitted");
-   }
+    /**
+     * Internal constructor; not to be called
+     */
+    private DescriptorInstantiator() {
+        throw new UnsupportedOperationException("No instances permitted");
+    }
 
-   //-------------------------------------------------------------------------------------||
-   // Functional Methods -----------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+    // Functional Methods -----------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-   /**
-    * Creates a new {@link Descriptor} instance of the specified user view type.
-    * Will consult a configuration file visible to the {@link Thread} Context {@link ClassLoader}
-    * named "META-INF/services/$fullyQualfiedClassName" which should contain a key=value
-    * format with the keys {@link DescriptorInstantiator#KEY_IMPL_CLASS_NAME} and
-    * {@link DescriptorInstantiator#KEY_MODEL_CLASS_NAME}.  The implementation class name
-    * must have a constructor accepting an instance of the model class, and the model
-    * class must have a no-arg constructor.
-    * 
-    * @param <T>
-    * @param userViewClass
-    * @param descriptorName The name of the descriptor. If argument is null, the default name will be used.
-    * @return
-    * @throws IllegalArgumentException If the user view class was not specified
-    */
-   static <T extends Descriptor> T createFromUserView(final Class<T> userViewClass, String descriptorName)
-         throws IllegalArgumentException
-   {
-      // Get the construction information
-      final DescriptorConstructionInfo info = getDescriptorConstructionInfoForUserView(userViewClass);
+    /**
+     * Creates a new {@link Descriptor} instance of the specified user view type. Will consult a configuration file
+     * visible to the {@link Thread} Context {@link ClassLoader} named "META-INF/services/$fullyQualfiedClassName" which
+     * should contain a key=value format with the keys {@link DescriptorInstantiator#KEY_IMPL_CLASS_NAME} and
+     * {@link DescriptorInstantiator#KEY_MODEL_CLASS_NAME}. The implementation class name must have a constructor
+     * accepting an instance of the model class, and the model class must have a no-arg constructor.
+     *
+     * @param <T>
+     * @param userViewClass
+     * @param descriptorName
+     *            The name of the descriptor. If argument is null, the default name will be used.
+     * @return
+     * @throws IllegalArgumentException
+     *             If the user view class was not specified
+     */
+    static <T extends Descriptor> T createFromUserView(final Class<T> userViewClass, String descriptorName)
+        throws IllegalArgumentException {
+        // Get the construction information
+        final DescriptorConstructionInfo info = getDescriptorConstructionInfoForUserView(userViewClass);
 
-      @SuppressWarnings("unchecked")
-      final Class<? extends Descriptor> implClass = (Class<? extends Descriptor>) info.implClass;
-      String name = info.defaultName;
-      if (descriptorName != null)
-      {
-         name = descriptorName;
-      }
+        @SuppressWarnings("unchecked")
+        final Class<? extends Descriptor> implClass = (Class<? extends Descriptor>) info.implClass;
+        String name = info.defaultName;
+        if (descriptorName != null) {
+            name = descriptorName;
+        }
 
-      // Make model class 
-      final Descriptor descriptor = createFromImplModelType(implClass, name);
+        // Make model class
+        final Descriptor descriptor = createFromImplModelType(implClass, name);
 
-      // Return
-      return userViewClass.cast(descriptor);
-   }
-   
-   /**
-    * Creates a {@link Descriptor} instance from the specified implementation
-    * class name, also using the specified name
-    * @param implClass
-    * @param descriptorName
-    * @return
-    * @throws IllegalArgumentException If either argument is not specified
-    */
-   static Descriptor createFromImplModelType(final Class<? extends Descriptor> implClass, String descriptorName)
-         throws IllegalArgumentException
-   {
-      // Precondition checks
-      if (implClass == null)
-      {
-         throw new IllegalArgumentException("implClass must be specified");
-      }
-      if (descriptorName == null || descriptorName.length() == 0)
-      {
-         throw new IllegalArgumentException("descriptorName must be specified");
-      }
+        // Return
+        return userViewClass.cast(descriptor);
+    }
 
-      // Get the constructor to use in making the new instance
-      final Constructor<? extends Descriptor> ctor;
-      try
-      {
-         ctor = implClass.getConstructor(String.class);
-      }
-      catch (final NoSuchMethodException nsme)
-      {
-         throw new RuntimeException(implClass + " must contain a constructor with a single String argument");
-      }
+    /**
+     * Creates a {@link Descriptor} instance from the specified implementation class name, also using the specified name
+     *
+     * @param implClass
+     * @param descriptorName
+     * @return
+     * @throws IllegalArgumentException
+     *             If either argument is not specified
+     */
+    static Descriptor createFromImplModelType(final Class<? extends Descriptor> implClass, String descriptorName)
+        throws IllegalArgumentException {
+        // Precondition checks
+        if (implClass == null) {
+            throw new IllegalArgumentException("implClass must be specified");
+        }
+        if (descriptorName == null || descriptorName.length() == 0) {
+            throw new IllegalArgumentException("descriptorName must be specified");
+        }
 
-      // Create a new descriptor instance using the backing model
-      final Descriptor descriptor;
-      try
-      {
-         descriptor = ctor.newInstance(descriptorName);
-      }
-      // Handle all construction errors equally
-      catch (final Exception e)
-      {
-         throw new RuntimeException("Could not create new descriptor instance", e);
-      }
+        // Get the constructor to use in making the new instance
+        final Constructor<? extends Descriptor> ctor;
+        try {
+            ctor = implClass.getConstructor(String.class);
+        } catch (final NoSuchMethodException nsme) {
+            throw new RuntimeException(implClass + " must contain a constructor with a single String argument");
+        }
 
-      // Return
-      return descriptor;
-   }
+        // Create a new descriptor instance using the backing model
+        final Descriptor descriptor;
+        try {
+            descriptor = ctor.newInstance(descriptorName);
+        }
+        // Handle all construction errors equally
+        catch (final Exception e) {
+            throw new RuntimeException("Could not create new descriptor instance", e);
+        }
 
-   /**
-    * Creates a new {@link DescriptorImporter} instance of the specified user view type.
-    * Will consult a configuration file visible to the {@link Thread} Context {@link ClassLoader}
-    * named "META-INF/services/$fullyQualfiedClassName" which should contain a key=value
-    * format with the keys {@link DescriptorInstantiator#KEY_IMPL_CLASS_NAME} and
-    * {@link DescriptorInstantiator#KEY_MODEL_CLASS_NAME}.  The implementation class name
-    * must have a constructor accepting an instance of the model class, and the model
-    * class must have a no-arg constructor.
-    * 
-    * @param <T>
-    * @param userViewClass
-    * @param descriptorName The name of the descriptor. If argument is null, the default name will be used.
-    * @return
-    * @throws IllegalArgumentException If the user view class was not specified
-    */
-   @SuppressWarnings("unchecked")
-   static <T extends Descriptor> DescriptorImporter<T> createImporterFromUserView(final Class<T> userViewClass, String descriptorName)
-         throws IllegalArgumentException
-   {
-      // Get the construction information
-      final DescriptorConstructionInfo info = getDescriptorConstructionInfoForUserView(userViewClass);
+        // Return
+        return descriptor;
+    }
 
-      // Create an importer
-      final Class<?> implClass = info.implClass;
-      if (!userViewClass.isAssignableFrom(implClass))
-      {
-         throw new RuntimeException("Configured implementation class for " + userViewClass.getName()
-               + " is not assignable: " + implClass.getName());
-      }
-      final Class<T> implClassCasted = (Class<T>) implClass;
+    /**
+     * Creates a new {@link DescriptorImporter} instance of the specified user view type. Will consult a configuration
+     * file visible to the {@link Thread} Context {@link ClassLoader} named "META-INF/services/$fullyQualfiedClassName"
+     * which should contain a key=value format with the keys {@link DescriptorInstantiator#KEY_IMPL_CLASS_NAME} and
+     * {@link DescriptorInstantiator#KEY_MODEL_CLASS_NAME}. The implementation class name must have a constructor
+     * accepting an instance of the model class, and the model class must have a no-arg constructor.
+     *
+     * @param <T>
+     * @param userViewClass
+     * @param descriptorName
+     *            The name of the descriptor. If argument is null, the default name will be used.
+     * @return
+     * @throws IllegalArgumentException
+     *             If the user view class was not specified
+     */
+    @SuppressWarnings("unchecked")
+    static <T extends Descriptor> DescriptorImporter<T> createImporterFromUserView(final Class<T> userViewClass,
+        String descriptorName) throws IllegalArgumentException {
+        // Get the construction information
+        final DescriptorConstructionInfo info = getDescriptorConstructionInfoForUserView(userViewClass);
 
-      String name = info.defaultName;
-      if(descriptorName != null)
-      {
-         name = descriptorName;
-      }
+        // Create an importer
+        final Class<?> implClass = info.implClass;
+        if (!userViewClass.isAssignableFrom(implClass)) {
+            throw new RuntimeException("Configured implementation class for " + userViewClass.getName()
+                + " is not assignable: " + implClass.getName());
+        }
+        final Class<T> implClassCasted = (Class<T>) implClass;
 
-      final DescriptorImporter<T> importer;
-      try
-      {
-         importer = (DescriptorImporter<T>)info.importerClass.getConstructor(Class.class, String.class).newInstance(implClassCasted, name);
-      }
-      catch (Exception e) 
-      {
-         throw new RuntimeException("Configured importer for " + userViewClass.getName()
-               + " of type: " + info.importerClass + " could not be created", e);
-      }
-     
-      
-      // Return
-      return importer;
-   }
+        String name = info.defaultName;
+        if (descriptorName != null) {
+            name = descriptorName;
+        }
 
-   //-------------------------------------------------------------------------------------||
-   // Internal Helper Members ------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+        final DescriptorImporter<T> importer;
+        try {
+            importer = (DescriptorImporter<T>) info.importerClass.getConstructor(Class.class, String.class)
+                .newInstance(implClassCasted, name);
+        } catch (Exception e) {
+            throw new RuntimeException("Configured importer for " + userViewClass.getName() + " of type: "
+                + info.importerClass + " could not be created", e);
+        }
 
-   /**
-    * Obtains the {@link DescriptorConstructionInfo} for the giving end user view, using 
-    * a configuration file loaded from the TCCL of name "META-INF/services.$fullyQualifiedClassName"
-    * having properties as described by {@link DescriptorInstantiator#createFromUserView(Class)}.
-    * 
-    * @param userViewClass
-    * @return The construction information needed to create new instances conforming to the user view
-    * @throws IllegalArgumentException If the user view was not specified
-    */
-   private static DescriptorConstructionInfo getDescriptorConstructionInfoForUserView(final Class<?> userViewClass)
-         throws IllegalArgumentException
-   {
-      // Precondition checks
-      if (userViewClass == null)
-      {
-         throw new IllegalArgumentException("User view class must be specified");
-      }
+        // Return
+        return importer;
+    }
 
-      // Get the configuration from which we'll create new instances
-      final String className = userViewClass.getName();
-      final String resourceName = MAPPING_LOCATION + className;
-      final ClassLoader tccl = AccessController.doPrivileged(GetTcclAction.INSTANCE);
-      final InputStream resourceStream = tccl.getResourceAsStream(resourceName);
-      if (resourceStream == null)
-      {
-         throw new IllegalArgumentException("No resource " + resourceName
-               + " was found configured for user view class " + userViewClass.getName());
-      }
+    // -------------------------------------------------------------------------------------||
+    // Internal Helper Members ------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-      // Load
-      final Properties props = new Properties();
-      try
-      {
-         props.load(resourceStream);
-      }
-      catch (final IOException e)
-      {
-         throw new RuntimeException("I/O Problem in reading the properties for " + userViewClass.getName(), e);
-      }
-      final String implClassName = props.getProperty(KEY_IMPL_CLASS_NAME);
-      if (implClassName == null || implClassName.length() == 0)
-      {
-         throw new IllegalStateException("Resource " + resourceName + " for " + userViewClass
-               + " does not contain key " + KEY_IMPL_CLASS_NAME);
-      }
-      final String importerClassName = props.getProperty(KEY_IMPORTER_CLASS_NAME);
-      if (importerClassName == null || importerClassName.length() == 0)
-      {
-         throw new IllegalStateException("Resource " + resourceName + " for " + userViewClass
-               + " does not contain key " + KEY_IMPORTER_CLASS_NAME);
-      }
-       
-      final String defaultName = props.getProperty(KEY_DEFAULT_NAME);
-      if(defaultName == null)
-      {
-         throw new IllegalStateException("Resource " + resourceName + " for " + userViewClass
-               + " does not contain key " + KEY_DEFAULT_NAME);
-      }
+    /**
+     * Obtains the {@link DescriptorConstructionInfo} for the giving end user view, using a configuration file loaded
+     * from the TCCL of name "META-INF/services.$fullyQualifiedClassName" having properties as described by
+     * {@link DescriptorInstantiator#createFromUserView(Class)}.
+     *
+     * @param userViewClass
+     * @return The construction information needed to create new instances conforming to the user view
+     * @throws IllegalArgumentException
+     *             If the user view was not specified
+     */
+    private static DescriptorConstructionInfo getDescriptorConstructionInfoForUserView(final Class<?> userViewClass)
+        throws IllegalArgumentException {
+        // Precondition checks
+        if (userViewClass == null) {
+            throw new IllegalArgumentException("User view class must be specified");
+        }
 
-      // Get the construction information
-      final DescriptorConstructionInfo info = new DescriptorConstructionInfo(implClassName, importerClassName, defaultName);
+        // Get the configuration from which we'll create new instances
+        final String className = userViewClass.getName();
+        final String resourceName = MAPPING_LOCATION + className;
+        final ClassLoader tccl = AccessController.doPrivileged(GetTcclAction.INSTANCE);
+        final InputStream resourceStream = tccl.getResourceAsStream(resourceName);
+        if (resourceStream == null) {
+            throw new IllegalArgumentException("No resource " + resourceName
+                + " was found configured for user view class " + userViewClass.getName());
+        }
 
-      // Return 
-      return info;
-   }
+        // Load
+        final Properties props = new Properties();
+        try {
+            props.load(resourceStream);
+        } catch (final IOException e) {
+            throw new RuntimeException("I/O Problem in reading the properties for " + userViewClass.getName(), e);
+        }
+        final String implClassName = props.getProperty(KEY_IMPL_CLASS_NAME);
+        if (implClassName == null || implClassName.length() == 0) {
+            throw new IllegalStateException("Resource " + resourceName + " for " + userViewClass
+                + " does not contain key " + KEY_IMPL_CLASS_NAME);
+        }
+        final String importerClassName = props.getProperty(KEY_IMPORTER_CLASS_NAME);
+        if (importerClassName == null || importerClassName.length() == 0) {
+            throw new IllegalStateException("Resource " + resourceName + " for " + userViewClass
+                + " does not contain key " + KEY_IMPORTER_CLASS_NAME);
+        }
+
+        final String defaultName = props.getProperty(KEY_DEFAULT_NAME);
+        if (defaultName == null) {
+            throw new IllegalStateException("Resource " + resourceName + " for " + userViewClass
+                + " does not contain key " + KEY_DEFAULT_NAME);
+        }
+
+        // Get the construction information
+        final DescriptorConstructionInfo info = new DescriptorConstructionInfo(implClassName, importerClassName,
+            defaultName);
+
+        // Return
+        return info;
+    }
 }

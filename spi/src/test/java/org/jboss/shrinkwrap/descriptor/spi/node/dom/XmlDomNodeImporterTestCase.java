@@ -29,147 +29,140 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * 
+ *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:bartosz.majsak@gmail.com">Bartosz Majsak</a>
  * @version $Revision: $
  */
-public class XmlDomNodeImporterTestCase
-{
-   
-   private static final String XML_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>";
-   
-   public static final String XML_WITH_COMMENT = "" +
+public class XmlDomNodeImporterTestCase {
+
+    private static final String XML_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>";
+
+    public static final String XML_WITH_COMMENT = "" +
    		XML_HEADER +
    		"<root>" +
    		"  <!-- comment -->" +
    		"  <child>test</child>" +
    		"</root>";
    
-   private static final String SINGLE_NODE = XML_HEADER + "<root></root>"; 
+   private static final String SINGLE_NODE = XML_HEADER + "<root></root>";
 
    /*
     * SHRINKDESC-31 - Comments in XML input Cause Export error
-    * 
+    *
     * Node[#comment] children[0] text[ comment ] 
-    * Caused by: org.w3c.dom.DOMException: INVALID_CHARACTER_ERR: An invalid or illegal XML character is specified. 
-    *  
+    * Caused by: org.w3c.dom.DOMException: INVALID_CHARACTER_ERR: An invalid or illegal XML character is specified.
+    *
     */
-   @Test
-   public void shouldBeAbleToImportXMLWithComments() throws Exception
-   {
-      Node root = load(XML_WITH_COMMENT);
-      
-      Assert.assertNotNull("Obtaining comment should not be null",root.getSingle("#comment"));
-      Assert.assertNotNull("Obtaining child should not be null",root.getSingle("child"));
-   }
-   
-   @Test
-   public void shouldBeAbleToImportSingleNodeXmlWithAttributesAndText() throws Exception
-   {
-      // given
-      XmlDomNodeDescriptorImporterImpl<NodeDescriptor> xmlDomNodeDescriptorImporter = new XmlDomNodeDescriptorImporterImpl<NodeDescriptor>(NodeDescriptor.class, "test-descriptor");
-      Node expectedRoot = new Node("root");
-      expectedRoot.attribute("id", "1")
-                  .attribute("name", "root")
-                  .text("doovde");
-      
-      // when
-      Node root = xmlDomNodeDescriptorImporter.getNodeImporter().importAsNode(new FileInputStream("src/test/resources/single.xml"), true);
+    @Test
+    public void shouldBeAbleToImportXMLWithComments() throws Exception {
+        Node root = load(XML_WITH_COMMENT);
 
-      // then
-      Assert.assertEquals(expectedRoot.toString(true), root.toString(true));
-   }
-   
-   @Test
-   public void shouldBeAbleToImportFromXmlString() throws Exception
-   {
-      // given
-      XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor> xmlDomNodeDescriptorImporter = new XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor>(DummyNodeDescriptor.class, "test-descriptor");
-      
-      // when
-      DummyNodeDescriptor nodeDescriptor = xmlDomNodeDescriptorImporter.fromString(SINGLE_NODE);
+        Assert.assertNotNull("Obtaining comment should not be null", root.getSingle("#comment"));
+        Assert.assertNotNull("Obtaining child should not be null", root.getSingle("child"));
+    }
 
-      // then
-      XmlAssert.assertIdentical(SINGLE_NODE, nodeDescriptor.exportAsString());
-   }
-   
-   @Test
-   public void shouldCreateSingleNodeWithGivenNameWhenEmptyStringPassedToImport() throws Exception
-   {
-      // given
-      XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor> xmlDomNodeDescriptorImporter = new XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor>(DummyNodeDescriptor.class, "test-descriptor");
-      Node expectedRoot = new Node("dummy");
-      
-      // when
-      Node importedRoot = xmlDomNodeDescriptorImporter.fromString("").getRootNode();
+    @Test
+    public void shouldBeAbleToImportSingleNodeXmlWithAttributesAndText() throws Exception {
+        // given
+        XmlDomNodeDescriptorImporterImpl<NodeDescriptor> xmlDomNodeDescriptorImporter = new XmlDomNodeDescriptorImporterImpl<NodeDescriptor>(
+            NodeDescriptor.class, "test-descriptor");
+        Node expectedRoot = new Node("root");
+        expectedRoot.attribute("id", "1").attribute("name", "root").text("doovde");
 
-      // then
-      Assert.assertEquals(expectedRoot.getName(), importedRoot.getName());
-      Assert.assertTrue(importedRoot.getChildren().isEmpty());
-   }
-   
-   @Test
-   public void shouldBeAbleToImportXmlFileWithSingleNodeDescriptorWithAttributesAndText() throws Exception
-   {
-      // given
-      XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor> xmlDomNodeDescriptorImporter = new XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor>(DummyNodeDescriptor.class, "test-descriptor");
-      
-      Node expectedRoot = new Node("root");
-      expectedRoot.attribute("id", "1")
-                  .attribute("name", "root")
-                  .text("doovde");
-      
-      // when
-      Node root = xmlDomNodeDescriptorImporter.fromFile(new File("src/test/resources/single.xml")).getRootNode();
+        // when
+        Node root = xmlDomNodeDescriptorImporter.getNodeImporter().importAsNode(
+            new FileInputStream("src/test/resources/single.xml"), true);
 
-      // then
-      Assert.assertEquals(expectedRoot.toString(true), root.toString(true));
-   }
-   
-   @Test(expected = IllegalArgumentException.class)
-   public void shouldThrowExceptionWhenTryingToImportFromNonExistingFile() throws Exception
-   {
-      // given
-      XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor> xmlDomNodeDescriptorImporter = new XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor>(DummyNodeDescriptor.class, "test-descriptor");
-      
-      // when
-      Node root = xmlDomNodeDescriptorImporter.fromFile(new File("not-existing-file.xml")).getRootNode();
+        // then
+        Assert.assertEquals(expectedRoot.toString(true), root.toString(true));
+    }
 
-      // then
-      // exception should be thrown
-   }
+    @Test
+    public void shouldBeAbleToImportFromXmlString() throws Exception {
+        // given
+        XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor> xmlDomNodeDescriptorImporter = new XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor>(
+            DummyNodeDescriptor.class, "test-descriptor");
 
-   @Test(expected = IllegalArgumentException.class)
-   public void shouldThrowExceptionWhenEndUserViewNotSpecified() throws Exception
-   {
-      XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor> xmlDomNodeDescriptorImporter = new XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor>(null, "test-descriptor");
-   }
-   
-   @Test(expected = IllegalArgumentException.class)
-   public void shouldThrowExceptionWhenDescriptorNameNotSpecified() throws Exception
-   {
-      XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor> xmlDomNodeDescriptorImporter = new XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor>(DummyNodeDescriptor.class, null);
-   }
-   
-   @Test(expected = IllegalArgumentException.class)
-   public void shouldThrowExceptionWhenDescriptorsNameIsEmpty() throws Exception
-   {
-      XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor> xmlDomNodeDescriptorImporter = new XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor>(DummyNodeDescriptor.class, "");
-   }
-   
-   @Test(expected = IllegalArgumentException.class)
-   public void shouldThrowExceptionWhenDescriptorsNameIsBlank() throws Exception
-   {
-      XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor> xmlDomNodeDescriptorImporter = new XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor>(DummyNodeDescriptor.class, "    ");
-   }
-   
-   // Utility methods
-   
-   private Node load(String xml)
-   {
-      return XmlDomNodeImporter.INSTANCE.importAsNode(new ByteArrayInputStream(xml.getBytes()), true);
-   }
-   
-   
+        // when
+        DummyNodeDescriptor nodeDescriptor = xmlDomNodeDescriptorImporter.fromString(SINGLE_NODE);
+
+        // then
+        XmlAssert.assertIdentical(SINGLE_NODE, nodeDescriptor.exportAsString());
+    }
+
+    @Test
+    public void shouldCreateSingleNodeWithGivenNameWhenEmptyStringPassedToImport() throws Exception {
+        // given
+        XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor> xmlDomNodeDescriptorImporter = new XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor>(
+            DummyNodeDescriptor.class, "test-descriptor");
+        Node expectedRoot = new Node("dummy");
+
+        // when
+        Node importedRoot = xmlDomNodeDescriptorImporter.fromString("").getRootNode();
+
+        // then
+        Assert.assertEquals(expectedRoot.getName(), importedRoot.getName());
+        Assert.assertTrue(importedRoot.getChildren().isEmpty());
+    }
+
+    @Test
+    public void shouldBeAbleToImportXmlFileWithSingleNodeDescriptorWithAttributesAndText() throws Exception {
+        // given
+        XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor> xmlDomNodeDescriptorImporter = new XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor>(
+            DummyNodeDescriptor.class, "test-descriptor");
+
+        Node expectedRoot = new Node("root");
+        expectedRoot.attribute("id", "1").attribute("name", "root").text("doovde");
+
+        // when
+        Node root = xmlDomNodeDescriptorImporter.fromFile(new File("src/test/resources/single.xml")).getRootNode();
+
+        // then
+        Assert.assertEquals(expectedRoot.toString(true), root.toString(true));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionWhenTryingToImportFromNonExistingFile() throws Exception {
+        // given
+        XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor> xmlDomNodeDescriptorImporter = new XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor>(
+            DummyNodeDescriptor.class, "test-descriptor");
+
+        // when
+        Node root = xmlDomNodeDescriptorImporter.fromFile(new File("not-existing-file.xml")).getRootNode();
+
+        // then
+        // exception should be thrown
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionWhenEndUserViewNotSpecified() throws Exception {
+        XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor> xmlDomNodeDescriptorImporter = new XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor>(
+            null, "test-descriptor");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionWhenDescriptorNameNotSpecified() throws Exception {
+        XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor> xmlDomNodeDescriptorImporter = new XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor>(
+            DummyNodeDescriptor.class, null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionWhenDescriptorsNameIsEmpty() throws Exception {
+        XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor> xmlDomNodeDescriptorImporter = new XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor>(
+            DummyNodeDescriptor.class, "");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionWhenDescriptorsNameIsBlank() throws Exception {
+        XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor> xmlDomNodeDescriptorImporter = new XmlDomNodeDescriptorImporterImpl<DummyNodeDescriptor>(
+            DummyNodeDescriptor.class, "    ");
+    }
+
+    // Utility methods
+
+    private Node load(String xml) {
+        return XmlDomNodeImporter.INSTANCE.importAsNode(new ByteArrayInputStream(xml.getBytes()), true);
+    }
+
 }

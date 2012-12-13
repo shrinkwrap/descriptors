@@ -25,30 +25,30 @@ import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorExporter;
 import org.w3c.dom.Document;
 
 /**
- * Singleton publicly-visible view of the {@link DescriptorExporter}
- * capable of handling {@link NodeDescriptor} exports by using a {@link Document}
- * API strategy.
- * 
+ * Singleton publicly-visible view of the {@link DescriptorExporter} capable of handling {@link NodeDescriptor} exports
+ * by using a {@link Document} API strategy.
+ *
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
  */
 public enum XmlDomDescriptorExporter implements NodeDescriptorExporter {
-   INSTANCE;
+    INSTANCE;
 
-   /**
-    * Internal delegate, singleton
-    */
-   private final NodeDescriptorExporter delegate = new XmlDomDescriptorExporterImpl();
+    /**
+     * Internal delegate, singleton
+     */
+    private final NodeDescriptorExporter delegate = new XmlDomDescriptorExporterImpl();
 
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorExporter#to(org.jboss.shrinkwrap.descriptor.api.Descriptor, java.io.OutputStream)
-    */
-   @Override
-   public void to(final NodeDescriptor descriptor, final OutputStream out) throws DescriptorExportException,
-         IllegalArgumentException
-   {
-      // Delegate
-      delegate.to(descriptor, out);
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.jboss.shrinkwrap.descriptor.api.DescriptorExporter#to(org.jboss.shrinkwrap.descriptor.api.Descriptor,
+     *      java.io.OutputStream)
+     */
+    @Override
+    public void to(final NodeDescriptor descriptor, final OutputStream out) throws DescriptorExportException,
+        IllegalArgumentException {
+        // Delegate
+        delegate.to(descriptor, out);
 
-   }
+    }
 }

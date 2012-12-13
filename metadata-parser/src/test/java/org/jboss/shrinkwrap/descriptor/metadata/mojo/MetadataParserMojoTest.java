@@ -7,15 +7,13 @@ import org.jboss.shrinkwrap.descriptor.metadata.MetadataParserConfiguration;
 import org.junit.Assert;
 import org.junit.Test;
 
-
 /**
- * This class is able to test the metadata-parser-plugin as maven plugin using
- * the maven-plugin-testing-harness plugin. This test plugin cannot be used for an
- * integration test.
+ * This class is able to test the metadata-parser-plugin as maven plugin using the maven-plugin-testing-harness plugin.
+ * This test plugin cannot be used for an integration test.
  */
 public class MetadataParserMojoTest extends AbstractMojoTestCase {
 
-	protected void setUp() throws Exception {
+    protected void setUp() throws Exception {
         super.setUp();
     }
 
@@ -23,14 +21,15 @@ public class MetadataParserMojoTest extends AbstractMojoTestCase {
         super.tearDown();
     }
 
-	/**
-	 * Tests the configuration value mapping from pom.xml to the internal objects.
-	 * @throws Exception
-	 */
-	@Test
+    /**
+     * Tests the configuration value mapping from pom.xml to the internal objects.
+     *
+     * @throws Exception
+     */
+    @Test
     public void testConfiguration() throws Exception {
-		final String pathToTestPom = getBasedir() + "/src/test/resources/mojo-test-harness-pom.xml";
-		final File pom = new File(pathToTestPom);
+        final String pathToTestPom = getBasedir() + "/src/test/resources/mojo-test-harness-pom.xml";
+        final File pom = new File(pathToTestPom);
         Assert.assertNotNull(pom);
         Assert.assertTrue(pom.exists());
 
@@ -38,7 +37,7 @@ public class MetadataParserMojoTest extends AbstractMojoTestCase {
         Assert.assertNotNull(myMojo);
         Assert.assertTrue(myMojo.descriptors.size() == 1);
         final MetadataParserConfiguration metadataConf = (MetadataParserConfiguration) myMojo.descriptors.get(0);
-        
+
         Assert.assertTrue(myMojo.verbose);
         Assert.assertTrue(myMojo.path.getPathToApi().indexOf("/mojo-test/test-api/src/main/java") > 0);
         Assert.assertTrue(myMojo.path.getPathToImpl().indexOf("/mojo-test/test-impl/src/main/java") > 0);
@@ -51,7 +50,9 @@ public class MetadataParserMojoTest extends AbstractMojoTestCase {
         Assert.assertEquals(metadataConf.getElementName(), "mojo");
         Assert.assertEquals(metadataConf.getElementType(), "j2ee:mojo");
         Assert.assertEquals(metadataConf.getNamespaces().getProperty("xmlns"), "http://java.sun.com/xml/ns/j2ee");
-        Assert.assertEquals(metadataConf.getNamespaces().getProperty("xmlns:xsi"), "http://www.w3.org/2001/XMLSchema-instance");
-        Assert.assertEquals(metadataConf.getNamespaces().getProperty("xsi:schemaLocation"), "http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd");
+        Assert.assertEquals(metadataConf.getNamespaces().getProperty("xmlns:xsi"),
+            "http://www.w3.org/2001/XMLSchema-instance");
+        Assert.assertEquals(metadataConf.getNamespaces().getProperty("xsi:schemaLocation"),
+            "http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd");
     }
 }

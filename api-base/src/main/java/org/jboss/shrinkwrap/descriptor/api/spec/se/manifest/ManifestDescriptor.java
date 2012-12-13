@@ -23,9 +23,8 @@ import org.jboss.shrinkwrap.descriptor.api.Descriptor;
  *
  * @author Davide D'Alto
  */
-public interface ManifestDescriptor extends ManifestCommonDef<ManifestDescriptor>, Descriptor
-{
-   ManifestDescriptor extensionName(String name);
+public interface ManifestDescriptor extends ManifestCommonDef<ManifestDescriptor>, Descriptor {
+    ManifestDescriptor extensionName(String name);
 
-   ManifestDescriptor extensionInstallation(String installation);
+    ManifestDescriptor extensionInstallation(String installation);
 }

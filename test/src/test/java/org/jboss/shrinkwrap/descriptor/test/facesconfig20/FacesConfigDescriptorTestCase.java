@@ -27,22 +27,22 @@ public class FacesConfigDescriptorTestCase {
          "      xmlns=\"http://java.sun.com/xml/ns/javaee\" " +
          "      xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" " +
          "      version=\"2.0\" " +
-         "      xsi:schemaLocation=\"http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd\">\n" + 
+         "      xsi:schemaLocation=\"http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd\">\n" +
          "    <name>SeamBooking</name>\n" +
          "    <navigation-rule>\n" +
-         "        <from-view-id>*</from-view-id>\n" + 
-         "        <navigation-case>\n" + 
-         "            <from-action>#{identity.logout}</from-action>\n" + 
-         "            <if>#{true}</if>\n" + 
-         "            <to-view-id>/home.xhtml</to-view-id>\n" + 
-         "            <redirect/>\n" + 
-         "        </navigation-case>\n" + 
-         "        <navigation-case>\n" + 
-         "            <from-action>#{bookingAgent.cancel}</from-action>\n" + 
-         "            <if>#{true}</if>\n" + 
-         "            <to-view-id>/search.xhtml</to-view-id>\n" + 
-         "            <redirect/>\n" + 
-         "        </navigation-case>\n" + 
+         "        <from-view-id>*</from-view-id>\n" +
+         "        <navigation-case>\n" +
+         "            <from-action>#{identity.logout}</from-action>\n" +
+         "            <if>#{true}</if>\n" +
+         "            <to-view-id>/home.xhtml</to-view-id>\n" +
+         "            <redirect/>\n" +
+         "        </navigation-case>\n" +
+         "        <navigation-case>\n" +
+         "            <from-action>#{bookingAgent.cancel}</from-action>\n" +
+         "            <if>#{true}</if>\n" +
+         "            <to-view-id>/search.xhtml</to-view-id>\n" +
+         "            <redirect/>\n" +
+         "        </navigation-case>\n" +
          "    </navigation-rule>\n" +
          "    <application>\n" +
          "        <resource-bundle>\n" +
@@ -50,7 +50,7 @@ public class FacesConfigDescriptorTestCase {
          "            <var>messages</var>\n" +
          "        </resource-bundle>\n" +
          "    </application>\n" +
-         "</faces-config>"; 
+         "</faces-config>";
 
     @Test
     public void shouldCreateDefaultName() throws Exception {
