@@ -47,6 +47,19 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<verbose>true</verbose>
+					<source>1.5</source>
+					<target>1.5</target>
+					<compilerArguments>
+						<bootclasspath>${env.JAVA5_HOME}/jre/lib/rt.jar${path.separator}${env.JAVA5_HOME}/jre/lib/jce.jar</bootclasspath>
+					</compilerArguments>
+				</configuration>
+			</plugin>
+			
 			<!-- Surefire -->
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -54,8 +67,8 @@
 					<!-- Run in Java5; be build with a JDK6 compiler so ensure we don't 
 						use any JDK6 libs -->
 					<jvm>${env.JAVA5_HOME}/bin/java</jvm>
-          <!-- Speeeeeeed -->
-          <forkMode>once</forkMode>
+         			<!-- Speeeeeeed -->
+          			<forkMode>once</forkMode>
 				</configuration>
 			</plugin>
 		</plugins>

@@ -169,12 +169,12 @@ public void parse(final MetadataParserPath path, final List<?> confList, final L
    public void generateCode(final MetadataParserPath path, final boolean verbose) throws TransformerException
    {
       /** initialize the map which will overwrite global parameters as defined in metadata.xsl/ddJava.xsl */
-      final Map<String, String> xsltParameters = new HashMap<String, String>();
-      xsltParameters.put("gOutputFolder", path.getPathToImpl());
-      xsltParameters.put("gOutputFolderApi", path.getPathToApi());
-      xsltParameters.put("gOutputFolderTest", path.getPathToTest());
-      xsltParameters.put("gOutputFolderService", path.getPathToServices());
-      xsltParameters.put("gVerbose", Boolean.toString(verbose));
+      final Map<String, Object> xsltParameters = new HashMap<String, Object>();
+      xsltParameters.put("gOutputFolder", "file:///" + path.getPathToImpl());
+      xsltParameters.put("gOutputFolderApi", "file:///" + path.getPathToApi());
+      xsltParameters.put("gOutputFolderTest", "file:///" + path.getPathToTest());
+      xsltParameters.put("gOutputFolderService", "file:///" + path.getPathToServices());
+      xsltParameters.put("gVerbose", verbose);
 
       final InputStream is = MetadataParser.class.getResourceAsStream("/META-INF/ddJavaAll.xsl");
       if(log.isLoggable(Level.FINE)){

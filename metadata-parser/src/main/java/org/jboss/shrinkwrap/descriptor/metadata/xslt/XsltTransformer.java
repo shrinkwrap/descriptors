@@ -29,6 +29,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
+import net.sf.saxon.TransformerFactoryImpl;
+
 /**
  * Executes a xslt transformation process.
  * 
@@ -45,7 +47,7 @@ public class XsltTransformer
     * @throws TransformerException 
     */
    public static void simpleTransform(final String sourcePath, final String xsltPath, final String resultDir,
-         final Map<String, String> parameters) throws TransformerException
+         final Map<String, Object> parameters) throws TransformerException
    {
       final TransformerFactory tFactory = TransformerFactory.newInstance("net.sf.saxon.TransformerFactoryImpl", null);
       final Transformer transformer = tFactory.newTransformer(new StreamSource(new File(xsltPath)));
@@ -62,7 +64,7 @@ public class XsltTransformer
     * @throws TransformerException 
     */
    public static void simpleTransform(final String sourcePath, final StreamSource xsltSource, 
-         final String resultDir, final Map<String, String> parameters) throws TransformerException
+         final String resultDir, final Map<String, Object> parameters) throws TransformerException
    {
       final TransformerFactory tFactory = TransformerFactory.newInstance("net.sf.saxon.TransformerFactoryImpl", null);
       final Transformer transformer = tFactory.newTransformer(xsltSource);
@@ -79,9 +81,9 @@ public class XsltTransformer
     * @throws TransformerException 
     */
    public static void simpleTransform(final String contextFile, final InputStream xsltSource, 
-         final File result, final Map<String, String> parameters) throws TransformerException
+         final File result, final Map<String, Object> parameters) throws TransformerException
    {
-      final TransformerFactory tFactory = TransformerFactory.newInstance("net.sf.saxon.TransformerFactoryImpl", null);
+      final TransformerFactory tFactory = TransformerFactoryImpl.newInstance();
       final Transformer transformer = tFactory.newTransformer(new StreamSource(xsltSource));
       applyParameters(transformer, parameters);
       transformer.transform(new StreamSource(new File(contextFile)), new StreamResult(result));
@@ -92,7 +94,7 @@ public class XsltTransformer
     * @param transformer
     * @param parameters
     */
-   private static void applyParameters(final Transformer transformer, final Map<String, String> parameters)
+   private static void applyParameters(final Transformer transformer, final Map<String, Object> parameters)
    {
       final Set<String> keys = parameters.keySet();
       for (Iterator<String> iterator = keys.iterator(); iterator.hasNext();)
