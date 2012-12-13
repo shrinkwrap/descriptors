@@ -10,7 +10,7 @@
  * You may obtain a copy of the License at
  * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,  
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -25,87 +25,83 @@ import org.jboss.shrinkwrap.descriptor.api.DescriptorExportException;
 import org.jboss.shrinkwrap.descriptor.api.DescriptorExporter;
 
 /**
- * Base implementation for a {@link Descriptor}. 
- * 
- * Enforces descriptor name constructor argument contract 
- * from extension loading.
+ * Base implementation for a {@link Descriptor}.
  *
- * @param <T> Concrete descriptor type
+ * Enforces descriptor name constructor argument contract from extension loading.
+ *
+ * @param <T>
+ *            Concrete descriptor type
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public abstract class DescriptorImplBase<T extends Descriptor> implements Descriptor
-{
+public abstract class DescriptorImplBase<T extends Descriptor> implements Descriptor {
 
-   //-------------------------------------------------------------------------------------||
-   // Instance Members -------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+    // Instance Members -------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-   /**
-    * Name of the descriptor
-    */
-   private final String name;
+    /**
+     * Name of the descriptor
+     */
+    private final String name;
 
-   //-------------------------------------------------------------------------------------||
-   // Constructor ------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+    // Constructor ------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-   /**
-    * Create a named Descriptor. 
-    */
-   public DescriptorImplBase(final String name)
-   {
-      this.name = name;
-   }
+    /**
+     * Create a named Descriptor.
+     */
+    public DescriptorImplBase(final String name) {
+        this.name = name;
+    }
 
-   //-------------------------------------------------------------------------------------||
-   // Implemented Methods ----------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+    // Implemented Methods ----------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.api.Descriptor#getDescriptorName()
-    */
-   @Override
-   public String getDescriptorName()
-   {
-      return name;
-   }
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.jboss.shrinkwrap.descriptor.api.Descriptor#getDescriptorName()
+     */
+    @Override
+    public String getDescriptorName() {
+        return name;
+    }
 
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.api.Descriptor#exportAsString()
-    */
-   @Override
-   public String exportAsString() throws DescriptorExportException
-   {
-      // Export as bytes
-      final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-      this.exportTo(baos);
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.jboss.shrinkwrap.descriptor.api.Descriptor#exportAsString()
+     */
+    @Override
+    public String exportAsString() throws DescriptorExportException {
+        // Export as bytes
+        final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        this.exportTo(baos);
 
-      // Make a String out of the bytes
-      final String content;
-      try
-      {
-         content = baos.toString(Charset.UTF8.name());
-      }
-      catch (final UnsupportedEncodingException e)
-      {
-         throw new DescriptorExportException("Inconsistent encoding used during export", e);
-      }
+        // Make a String out of the bytes
+        final String content;
+        try {
+            content = baos.toString(Charset.UTF8.name());
+        } catch (final UnsupportedEncodingException e) {
+            throw new DescriptorExportException("Inconsistent encoding used during export", e);
+        }
 
-      // Return
-      return content;
-   }
+        // Return
+        return content;
+    }
 
-   //-------------------------------------------------------------------------------------||
-   // Contracts --------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+    // Contracts --------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-   /**
-    * Obtains the {@link DescriptorExporter} implementation to be used
-    * by default in {@link Descriptor#exportTo(java.io.OutputStream)}
-    * @return
-    */
-   protected abstract DescriptorExporter<T> getExporter();
+    /**
+     * Obtains the {@link DescriptorExporter} implementation to be used by default in
+     * {@link Descriptor#exportTo(java.io.OutputStream)}
+     *
+     * @return
+     */
+    protected abstract DescriptorExporter<T> getExporter();
 }

@@ -17,14 +17,12 @@
 
 package org.jboss.shrinkwrap.descriptor.metadata.filter;
 
-
 /**
  * Enum class which defines all specified XSD simple data types.
- * 
- *  @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ *
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
-public enum XsdDatatypeEnum
-{
+public enum XsdDatatypeEnum {
     normalizedString("normalizedString"),
     token("token"),
     language("language"),
@@ -50,22 +48,18 @@ public enum XsdDatatypeEnum
     unsignedShort("unsignedShort"),
     unsignedByte("unsignedByte"),
     positiveInteger("positiveInteger");
-    
-    
+
     private String description;
 
-    XsdDatatypeEnum(final String description)
-    {
+    XsdDatatypeEnum(final String description) {
         this.description = description;
     }
 
-    public String getDescription()
-    {
+    public String getDescription() {
         return description;
     }
 
-    public boolean isTagNameEqual(final String tagName)
-    {
+    public boolean isTagNameEqual(final String tagName) {
         if (tagName != null) {
             final String[] items = tagName.split(":", -1);
             if (items.length == 2 && items[1].equals(getDescription())) {
@@ -74,16 +68,13 @@ public enum XsdDatatypeEnum
         }
         return false;
     }
-    
-    public boolean isDataType(final String tagName)
-    {
+
+    public boolean isDataType(final String tagName) {
         if (tagName != null) {
             final String[] items = tagName.split(":", -1);
             if (items.length == 2) {
-                for (XsdDatatypeEnum value: XsdDatatypeEnum.values())
-                {
-                    if (items[1].equals(value.getDescription()))
-                    {
+                for (XsdDatatypeEnum value : XsdDatatypeEnum.values()) {
+                    if (items[1].equals(value.getDescription())) {
                         return true;
                     }
                 }

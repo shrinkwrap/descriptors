@@ -28,87 +28,78 @@ import org.jboss.shrinkwrap.descriptor.api.connector10.ConnectorDescriptor;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Test;
 
+public class ConnectorDescriptorTestCase {
 
-public class ConnectorDescriptorTestCase
-{
-   
-   //-------------------------------------------------------------------------------------||
-   // Basic API --------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+    // Basic API --------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-   @Test
-   public void testDefaultName() throws Exception
-   {
-      Assert.assertEquals("ra.xml", create().getDescriptorName());
-   }
+    @Test
+    public void testDefaultName() throws Exception {
+        Assert.assertEquals("ra.xml", create().getDescriptorName());
+    }
 
-   @Test
-   public void testSetName() throws Exception
-   {
-      Assert.assertEquals("test.xml", Descriptors.create(ConnectorDescriptor.class, "test.xml").getDescriptorName());
-   }
-   
-   @Test
-   public void testHornetQExample() throws Exception 
-   {
-      ConnectorDescriptor jca10Generated = create()
-      	.displayName("Sample Adapter")
-      	.description("It is a sample resource adapter")
-      	.vendorName("JBoss")
-      	.specVersion("1.0")
-      	.eisType("Sample")
-      	.version("1.0")
-      	.getOrCreateLicense()
-      		.description("description0")
-      		.licenseRequired("true")
-      		.up()
-      	.getOrCreateResourceadapter()
-      		.managedconnectionfactoryClass("org.jboss.messaging.adapters.jcasample.SampleManagedConnectionFactory")
-      		.connectionfactoryInterface("javax.resource.cci.ConnectionFactory")
-      		.connectionfactoryImplClass("org.jboss.messaging.adapters.jcasample.SampleConnectionFactory")
-      		.connectionInterface("javax.resource.cci.Connection")
-      		.connectionImplClass("org.jboss.messaging.adapters.jcasample.SampleConnection")
-      		.transactionSupport("NoTransaction")
-      		.createConfigProperty()
-      			.configPropertyName("Input")
-      			.configPropertyType("java.lang.String")
-      			.configPropertyValue("test messages").up()
-      		.createAuthenticationMechanism()
-      			.authenticationMechanismType("BasicPassword")
-      			.credentialInterface("javax.resource.security.PasswordCredential").up()
-      		.reauthenticationSupport("false")
-      	.up();
-      	        
-       String generatedRaXml = jca10Generated.exportAsString();
-       String originalRaXml = this.getResourceContents("src/test/resources/test-orig-connector10.xml");
- 
-//       System.out.println(generatedRaXml);
-       
-       XmlAssert.assertIdentical(originalRaXml, generatedRaXml);       
-   }
-   
- 
-   //-------------------------------------------------------------------------------------||
-   // Internal Helper --------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+    @Test
+    public void testSetName() throws Exception {
+        Assert.assertEquals("test.xml", Descriptors.create(ConnectorDescriptor.class, "test.xml").getDescriptorName());
+    }
 
-   private String getResourceContents(String resource) throws Exception
-   {
-      assert resource != null && resource.length() > 0 : "Resource must be specified";
-      final BufferedReader reader = new BufferedReader(new FileReader(resource));
-      final StringBuilder builder = new StringBuilder();
-      String line;
-      while ((line = reader.readLine()) != null)
-      {
-         builder.append(line);
-         builder.append("\n");
-      }
-      return builder.toString();
-   }
-   
-   private ConnectorDescriptor create()
-   {
-      return Descriptors.create(ConnectorDescriptor.class);
-   }
-   
+    @Test
+    public void testHornetQExample() throws Exception {
+        ConnectorDescriptor jca10Generated = create()
+            .displayName("Sample Adapter")
+            .description("It is a sample resource adapter")
+            .vendorName("JBoss")
+            .specVersion("1.0")
+            .eisType("Sample")
+            .version("1.0")
+            .getOrCreateLicense()
+                .description("description0")
+                .licenseRequired("true")
+                .up()
+            .getOrCreateResourceadapter()
+                .managedconnectionfactoryClass("org.jboss.messaging.adapters.jcasample.SampleManagedConnectionFactory")
+                .connectionfactoryInterface("javax.resource.cci.ConnectionFactory")
+                .connectionfactoryImplClass("org.jboss.messaging.adapters.jcasample.SampleConnectionFactory")
+                .connectionInterface("javax.resource.cci.Connection")
+                .connectionImplClass("org.jboss.messaging.adapters.jcasample.SampleConnection")
+                .transactionSupport("NoTransaction")
+                .createConfigProperty()
+                    .configPropertyName("Input")
+                    .configPropertyType("java.lang.String")
+                    .configPropertyValue("test messages").up()
+                .createAuthenticationMechanism()
+                    .authenticationMechanismType("BasicPassword")
+                    .credentialInterface("javax.resource.security.PasswordCredential").up()
+                .reauthenticationSupport("false")
+            .up();
+
+        String generatedRaXml = jca10Generated.exportAsString();
+        String originalRaXml = this.getResourceContents("src/test/resources/test-orig-connector10.xml");
+
+        // System.out.println(generatedRaXml);
+
+        XmlAssert.assertIdentical(originalRaXml, generatedRaXml);
+    }
+
+    // -------------------------------------------------------------------------------------||
+    // Internal Helper --------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+
+    private String getResourceContents(String resource) throws Exception {
+        assert resource != null && resource.length() > 0 : "Resource must be specified";
+        final BufferedReader reader = new BufferedReader(new FileReader(resource));
+        final StringBuilder builder = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            builder.append(line);
+            builder.append("\n");
+        }
+        return builder.toString();
+    }
+
+    private ConnectorDescriptor create() {
+        return Descriptors.create(ConnectorDescriptor.class);
+    }
+
 }

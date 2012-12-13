@@ -17,38 +17,36 @@
 
 package org.jboss.shrinkwrap.descriptor.metadata;
 
-
 /**
  * This class holds optionally javadoc informations used by class header documentation.
- * 
+ *
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
 public class MetadataJavaDoc {
-	
-	/**
-	 * Defines the name of the tag.
-	 */
-	private String tag;
-	
-	/**
-	 * Defines the tag value.
-	 */
-	private String value;
 
-	
-	public String getTag() {
-		return tag;
-	}
+    /**
+     * Defines the name of the tag.
+     */
+    private String tag;
 
-	public void setTag(String tag) {
-		this.tag = tag;
-	}
+    /**
+     * Defines the tag value.
+     */
+    private String value;
 
-	public String getValue() {
-		return value;
-	}
+    public String getTag() {
+        return tag;
+    }
 
-	public void setValue(String value) {
-		this.value = value;
-	}
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
 }

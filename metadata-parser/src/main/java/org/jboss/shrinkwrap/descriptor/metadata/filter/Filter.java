@@ -22,10 +22,9 @@ import org.w3c.dom.traversal.TreeWalker;
 
 /**
  * This interface defines the contract all w3c elements have to implement.
- * 
+ *
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
-public interface Filter
-{
-   public boolean filter(final Metadata metadata, final TreeWalker walker);
+public interface Filter {
+    boolean filter(final Metadata metadata, final TreeWalker walker);
 }

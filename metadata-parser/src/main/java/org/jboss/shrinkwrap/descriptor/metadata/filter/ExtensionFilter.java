@@ -25,71 +25,59 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.traversal.TreeWalker;
 
-
 /**
  * This class analyzes <code>Extension</code> w3c elements.
- * 
+ *
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
-public class ExtensionFilter implements Filter
-{
-   public boolean filter(final Metadata metadata, final TreeWalker walker)
-   {
-      final Node parent = walker.getCurrentNode();
-      final Element element = (Element) parent;
-      
-      if (XsdElementEnum.extension.isTagNameEqual(element.getTagName())) 
-      {
-         final String baseStr = MetadataUtil.getAttributeValue(element, "base");
-         if (baseStr != null)
-         {
-            for (MetadataItem metadataClass: metadata.getClassList())
-            {
-               if (metadataClass.getName().equals(baseStr))
-               {
-                  final Node parentNodeWithName = MetadataUtil.getNextParentNodeWithAttr(parent.getParentNode(), "name");
-                  if (parentNodeWithName != null)
-                  {
-                     final Element parentElementWithName = (Element) parentNodeWithName;
-                     final String className = MetadataUtil.getAttributeValue(parentElementWithName, "name");
-                     if (className != null)
-                     {
-                        for (MetadataElement metadataElement: metadataClass.getElements())
-                        {                     
-                           metadata.addClassElement(className, metadataElement);
-                        }
-                     }
-                  }
-                  
-                  return true;
-               }
-            }
-            
-            final Node parentNodeWithName = MetadataUtil.getNextParentNodeWithAttr(parent.getParentNode(), "name");
-            if (parentNodeWithName != null)
-            {
-               final Element parentElementWithName = (Element) parentNodeWithName;
-               final String mixedStr = MetadataUtil.getAttributeValue(parentElementWithName, "mixed"); 
-               final boolean isTextOnlyElement = MetadataUtil.hasParentOf(element, XsdElementEnum.simpleContent);
-               if (!isTextOnlyElement || parentElementWithName.hasChildNodes() || baseStr.indexOf(":string") > 0) {
-	               if (mixedStr == null || mixedStr.equals("false"))
-	               {
-	                  final String dataTypeName = MetadataUtil.getAttributeValue(parentElementWithName, "name");
-	                  final String typeStr = MetadataUtil.getAttributeValue(element, "base");               
-	                  final MetadataItem dataType = new MetadataItem(dataTypeName);
-	                  dataType.setMappedTo(typeStr);
-	                  dataType.setNamespace(metadata.getCurrentNamespace());
-	                  dataType.setSchemaName(metadata.getCurrentSchmema());
-	                  metadata.getDataTypeList().add(dataType);     
-	               }
-               }
-            }
-            
-         }  
-      }
-      
-      return false;
-   }
-   
-}
+public class ExtensionFilter implements Filter {
+    public boolean filter(final Metadata metadata, final TreeWalker walker) {
+        final Node parent = walker.getCurrentNode();
+        final Element element = (Element) parent;
 
+        if (XsdElementEnum.extension.isTagNameEqual(element.getTagName())) {
+            final String baseStr = MetadataUtil.getAttributeValue(element, "base");
+            if (baseStr != null) {
+                for (MetadataItem metadataClass : metadata.getClassList()) {
+                    if (metadataClass.getName().equals(baseStr)) {
+                        final Node parentNodeWithName = MetadataUtil.getNextParentNodeWithAttr(parent.getParentNode(),
+                            "name");
+                        if (parentNodeWithName != null) {
+                            final Element parentElementWithName = (Element) parentNodeWithName;
+                            final String className = MetadataUtil.getAttributeValue(parentElementWithName, "name");
+                            if (className != null) {
+                                for (MetadataElement metadataElement : metadataClass.getElements()) {
+                                    metadata.addClassElement(className, metadataElement);
+                                }
+                            }
+                        }
+
+                        return true;
+                    }
+                }
+
+                final Node parentNodeWithName = MetadataUtil.getNextParentNodeWithAttr(parent.getParentNode(), "name");
+                if (parentNodeWithName != null) {
+                    final Element parentElementWithName = (Element) parentNodeWithName;
+                    final String mixedStr = MetadataUtil.getAttributeValue(parentElementWithName, "mixed");
+                    final boolean isTextOnlyElement = MetadataUtil.hasParentOf(element, XsdElementEnum.simpleContent);
+                    if (!isTextOnlyElement || parentElementWithName.hasChildNodes() || baseStr.indexOf(":string") > 0) {
+                        if (mixedStr == null || mixedStr.equals("false")) {
+                            final String dataTypeName = MetadataUtil.getAttributeValue(parentElementWithName, "name");
+                            final String typeStr = MetadataUtil.getAttributeValue(element, "base");
+                            final MetadataItem dataType = new MetadataItem(dataTypeName);
+                            dataType.setMappedTo(typeStr);
+                            dataType.setNamespace(metadata.getCurrentNamespace());
+                            dataType.setSchemaName(metadata.getCurrentSchmema());
+                            metadata.getDataTypeList().add(dataType);
+                        }
+                    }
+                }
+
+            }
+        }
+
+        return false;
+    }
+
+}

@@ -21,15 +21,14 @@ package org.jboss.shrinkwrap.descriptor.api.spec.se.manifest;
  *
  * @author Davide D'Alto
  */
-public interface ManifestEntryDef extends ManifestCommonDef<ManifestEntryDef>
-{
-   ManifestEntryDef contentType(String contentType);
+public interface ManifestEntryDef extends ManifestCommonDef<ManifestEntryDef> {
+    ManifestEntryDef contentType(String contentType);
 
-   ManifestEntryDef javaBean();
+    ManifestEntryDef javaBean();
 
-   ManifestEntryDef notJavaBean();
+    ManifestEntryDef notJavaBean();
 
-   ManifestEntryDef xDigestY(String digestAlgorithm);
+    ManifestEntryDef xDigestY(String digestAlgorithm);
 
-   ManifestEntryDef magic(String magic);
+    ManifestEntryDef magic(String magic);
 }

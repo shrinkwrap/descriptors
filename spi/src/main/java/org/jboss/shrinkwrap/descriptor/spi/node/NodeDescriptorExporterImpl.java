@@ -21,46 +21,44 @@ import java.io.OutputStream;
 import org.jboss.shrinkwrap.descriptor.api.DescriptorExportException;
 
 /**
- * {@link NodeDescriptorExporter} base implementation which provides base
- * support for building a full implementation.
+ * {@link NodeDescriptorExporter} base implementation which provides base support for building a full implementation.
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
  */
-public abstract class NodeDescriptorExporterImpl implements NodeDescriptorExporter
-{
+public abstract class NodeDescriptorExporterImpl implements NodeDescriptorExporter {
 
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorExporter#to(org.jboss.shrinkwrap.descriptor.api.Descriptor, java.io.OutputStream)
-    */
-   @Override
-   public void to(final NodeDescriptor descriptor, final OutputStream output) throws DescriptorExportException,
-         IllegalArgumentException
-   {
-      // Precondition checks
-      if (descriptor == null)
-      {
-         throw new IllegalArgumentException("descriptor must be specified");
-      }
-      if (output == null)
-      {
-         throw new IllegalArgumentException("stream must be specified");
-      }
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.jboss.shrinkwrap.descriptor.api.DescriptorExporter#to(org.jboss.shrinkwrap.descriptor.api.Descriptor,
+     *      java.io.OutputStream)
+     */
+    @Override
+    public void to(final NodeDescriptor descriptor, final OutputStream output) throws DescriptorExportException,
+        IllegalArgumentException {
+        // Precondition checks
+        if (descriptor == null) {
+            throw new IllegalArgumentException("descriptor must be specified");
+        }
+        if (output == null) {
+            throw new IllegalArgumentException("stream must be specified");
+        }
 
-      // Get the root node
-      final Node root = descriptor.getRootNode();
+        // Get the root node
+        final Node root = descriptor.getRootNode();
 
-      // Delegate
-      this.to(root, output);
-   }
+        // Delegate
+        this.to(root, output);
+    }
 
-   /**
-    * Exports the specified {@link Node} to the
-    * specified {@link OutputStream}
-    * @param node
-    * @param output
-    * @throws IllegalArgumentException If either argument is not specified
-    */
-   public abstract void to(Node node, OutputStream output) throws IllegalArgumentException;
+    /**
+     * Exports the specified {@link Node} to the specified {@link OutputStream}
+     *
+     * @param node
+     * @param output
+     * @throws IllegalArgumentException
+     *             If either argument is not specified
+     */
+    public abstract void to(Node node, OutputStream output) throws IllegalArgumentException;
 }

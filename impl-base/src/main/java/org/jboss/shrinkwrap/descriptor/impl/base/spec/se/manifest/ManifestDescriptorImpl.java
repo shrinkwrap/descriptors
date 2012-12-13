@@ -23,94 +23,80 @@ import org.jboss.shrinkwrap.descriptor.api.spec.se.manifest.ManifestDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.spec.se.manifest.ManifestEntryDef;
 
 /**
- * Implementation of the DSL grammar to construct/alter a MANIFEST.MF file.
- * <br>
+ * Implementation of the DSL grammar to construct/alter a MANIFEST.MF file. <br>
  * Default manifest main version is 1.0
  *
  * @author Davide D'Alto
  */
-public class ManifestDescriptorImpl extends ManifestCommonDefImpl<ManifestDescriptor> implements ManifestDescriptor
-{
+public class ManifestDescriptorImpl extends ManifestCommonDefImpl<ManifestDescriptor> implements ManifestDescriptor {
 
-   private final String descriptorName;
+    private final String descriptorName;
 
-   private final ManifestModel manifest;
+    private final ManifestModel manifest;
 
-   public ManifestDescriptorImpl(String descriptionName)
-   {
-      this(descriptionName, new ManifestModel());
-   }
+    public ManifestDescriptorImpl(String descriptionName) {
+        this(descriptionName, new ManifestModel());
+    }
 
-   public ManifestDescriptorImpl(String descriptorName, ManifestModel manifest)
-   {
-      this.descriptorName = descriptorName;
-      this.manifest = manifest;
+    public ManifestDescriptorImpl(String descriptorName, ManifestModel manifest) {
+        this.descriptorName = descriptorName;
+        this.manifest = manifest;
 
-      // Export requires a manifest main version
-      if (!manifest.getMainAttributes().containsValue(Name.MANIFEST_VERSION))
-         manifest.getMainAttributes().put(Name.MANIFEST_VERSION, "1.0");
-   }
+        // Export requires a manifest main version
+        if (!manifest.getMainAttributes().containsValue(Name.MANIFEST_VERSION))
+            manifest.getMainAttributes().put(Name.MANIFEST_VERSION, "1.0");
+    }
 
-   @Override
-   ManifestDescriptor getDescriptor()
-   {
-      return this;
-   }
+    @Override
+    ManifestDescriptor getDescriptor() {
+        return this;
+    }
 
-   @Override
-   public ManifestDescriptor main()
-   {
-      return this;
-   }
+    @Override
+    public ManifestDescriptor main() {
+        return this;
+    }
 
-   @Override
-   public ManifestEntryDef entry(String name)
-   {
-      return new ManifestEntryDefImpl(this, manifest, name);
-   }
+    @Override
+    public ManifestEntryDef entry(String name) {
+        return new ManifestEntryDefImpl(this, manifest, name);
+    }
 
-   @Override
-   public ManifestAppletDef applet(String name)
-   {
-      return new ManifestAppletDefImpl(descriptorName, manifest, name);
-   }
+    @Override
+    public ManifestAppletDef applet(String name) {
+        return new ManifestAppletDefImpl(descriptorName, manifest, name);
+    }
 
-   @Override
-   public ManifestDescriptor extensionName(String name)
-   {
-      includeAttribute(Name.EXTENSION_NAME, name);
-      return this;
-   }
+    @Override
+    public ManifestDescriptor extensionName(String name) {
+        includeAttribute(Name.EXTENSION_NAME, name);
+        return this;
+    }
 
-   @Override
-   public ManifestDescriptor extensionInstallation(String installation)
-   {
-      includeAttribute(Name.EXTENSION_INSTALLATION, installation);
-      return this;
-   }
+    @Override
+    public ManifestDescriptor extensionInstallation(String installation) {
+        includeAttribute(Name.EXTENSION_INSTALLATION, installation);
+        return this;
+    }
 
-   @Override
-   void includeAttribute(Name name, String value)
-   {
-      manifest.getMainAttributes().put(name, value);
-   }
+    @Override
+    void includeAttribute(Name name, String value) {
+        manifest.getMainAttributes().put(name, value);
+    }
 
-   @Override
-   String findAttribute(Name name)
-   {
-      return manifest.getMainAttributes().getValue(name);
-   }
+    @Override
+    String findAttribute(Name name) {
+        return manifest.getMainAttributes().getValue(name);
+    }
 
-   @Override
-   public String getDescriptorName()
-   {
-      return descriptorName;
-   }
+    @Override
+    public String getDescriptorName() {
+        return descriptorName;
+    }
 
-   @Override
-   ManifestModel getManifestModel()
-   {
-      return manifest;
-   }
+    @Override
+    ManifestModel getManifestModel() {
+        return manifest;
+    }
 
 }

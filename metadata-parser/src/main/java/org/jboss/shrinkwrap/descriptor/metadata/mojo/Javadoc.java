@@ -15,19 +15,16 @@
  * limitations under the License.
  */
 
-
 package org.jboss.shrinkwrap.descriptor.metadata.mojo;
 
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataJavaDoc;
 
-
 /**
- * Javadoc configuration class for writing class header comments. 
+ * Javadoc configuration class for writing class header comments.
  * <p>
  * This class must be in the same package as the mojo class according the plugin requirement.
- * 
+ *
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
-public class Javadoc extends MetadataJavaDoc 
-{
+public class Javadoc extends MetadataJavaDoc {
 }

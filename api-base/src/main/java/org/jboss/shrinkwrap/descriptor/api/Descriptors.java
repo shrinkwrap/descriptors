@@ -18,93 +18,89 @@ package org.jboss.shrinkwrap.descriptor.api;
 
 /**
  * Main entry point into the ShrinkWrap Descriptors project.
- * 
+ *
  * @author Dan Allen
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public final class Descriptors
-{
+public final class Descriptors {
 
-   /**
-    * Internal Constructor; not to be called
-    */
-   private Descriptors()
-   {
-      throw new UnsupportedOperationException("No instances permitted");
-   }
+    /**
+     * Internal Constructor; not to be called
+     */
+    private Descriptors() {
+        throw new UnsupportedOperationException("No instances permitted");
+    }
 
-   /**
-    * Creates a new Descriptor instance; the predefined default descriptor 
-    * name for this type will be used.
-    * 
-    * @param <T>
-    * @param type
-    * @return
-    * @see #create(Class, String)
-    * @throws IllegalArgumentException If the type is not specified
-    */
-   public static <T extends Descriptor> T create(final Class<T> type) throws IllegalArgumentException
-   {
-      return create(type, null);
-   }
+    /**
+     * Creates a new Descriptor instance; the predefined default descriptor name for this type will be used.
+     *
+     * @param <T>
+     * @param type
+     * @return
+     * @see #create(Class, String)
+     * @throws IllegalArgumentException
+     *             If the type is not specified
+     */
+    public static <T extends Descriptor> T create(final Class<T> type) throws IllegalArgumentException {
+        return create(type, null);
+    }
 
-   /**
-    * Creates a new named {@link Descriptor} instance.  If the name specified is null, 
-    * the default name for this type will be assigned.
-    * 
-    * @param <T>
-    * @param type
-    * @param descriptorName the descriptor name 
-    * @return
-    * @throws IllegalArgumentException If the type is not specified
-    */
-   public static <T extends Descriptor> T create(final Class<T> type, final String descriptorName)
-         throws IllegalArgumentException
-   {
-      // Precondition checks
-      if (type == null)
-      {
-         throw new IllegalArgumentException("type must be specified");
-      }
+    /**
+     * Creates a new named {@link Descriptor} instance. If the name specified is null, the default name for this type
+     * will be assigned.
+     *
+     * @param <T>
+     * @param type
+     * @param descriptorName
+     *            the descriptor name
+     * @return
+     * @throws IllegalArgumentException
+     *             If the type is not specified
+     */
+    public static <T extends Descriptor> T create(final Class<T> type, final String descriptorName)
+        throws IllegalArgumentException {
+        // Precondition checks
+        if (type == null) {
+            throw new IllegalArgumentException("type must be specified");
+        }
 
-      // Create
-      return DescriptorInstantiator.createFromUserView(type, descriptorName);
-   }
+        // Create
+        return DescriptorInstantiator.createFromUserView(type, descriptorName);
+    }
 
-   /**
-    * Returns a new {@link DescriptorImporter} instance, ready to import as a 
-    * new {@link Descriptor} instance of the given type
-    * @param type
-    * @return
-    * @throws IllegalArgumentException If the type is not specified
-    */
-   public static <T extends Descriptor> DescriptorImporter<T> importAs(final Class<T> type)
-         throws IllegalArgumentException
-   {
-      return importAs(type, null);
-   }
+    /**
+     * Returns a new {@link DescriptorImporter} instance, ready to import as a new {@link Descriptor} instance of the
+     * given type
+     *
+     * @param type
+     * @return
+     * @throws IllegalArgumentException
+     *             If the type is not specified
+     */
+    public static <T extends Descriptor> DescriptorImporter<T> importAs(final Class<T> type)
+        throws IllegalArgumentException {
+        return importAs(type, null);
+    }
 
-   /**
-    * Returns a new named {@link DescriptorImporter} instance, ready to import as a 
-    * new {@link Descriptor} instance of the given type.  If the name specified is null, 
-    * the default name for this type will be assigned. 
-    * 
-    * @param type
-    * @param descriptorName
-    * @return
-    * @throws IllegalArgumentException If the type is not specified
-    */
-   public static <T extends Descriptor> DescriptorImporter<T> importAs(final Class<T> type, final String descriptorName)
-         throws IllegalArgumentException
-   {
-      // Precondition checks
-      if (type == null)
-      {
-         throw new IllegalArgumentException("type must be specified");
-      }
+    /**
+     * Returns a new named {@link DescriptorImporter} instance, ready to import as a new {@link Descriptor} instance of
+     * the given type. If the name specified is null, the default name for this type will be assigned.
+     *
+     * @param type
+     * @param descriptorName
+     * @return
+     * @throws IllegalArgumentException
+     *             If the type is not specified
+     */
+    public static <T extends Descriptor> DescriptorImporter<T> importAs(final Class<T> type, final String descriptorName)
+        throws IllegalArgumentException {
+        // Precondition checks
+        if (type == null) {
+            throw new IllegalArgumentException("type must be specified");
+        }
 
-      // Create new importer
-      return DescriptorInstantiator.createImporterFromUserView(type, descriptorName);
-   }
+        // Create new importer
+        return DescriptorInstantiator.createImporterFromUserView(type, descriptorName);
+    }
 }

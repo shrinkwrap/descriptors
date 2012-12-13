@@ -24,44 +24,42 @@ import org.jboss.shrinkwrap.descriptor.spi.DescriptorImplBase;
 import org.jboss.shrinkwrap.descriptor.spi.node.dom.XmlDomDescriptorExporter;
 
 /**
- * Base implementation of a {@link NodeDescriptor}
- * for simple extension by more specialized types.
+ * Base implementation of a {@link NodeDescriptor} for simple extension by more specialized types.
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public abstract class NodeDescriptorImplBase extends DescriptorImplBase<NodeDescriptor> implements NodeDescriptor
-{
-   /**
-    * Creates a new instance
-    * @param name
-    */
-   public NodeDescriptorImplBase(final String name)
-   {
-      super(name);
-   }
+public abstract class NodeDescriptorImplBase extends DescriptorImplBase<NodeDescriptor> implements NodeDescriptor {
 
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.api.Descriptor#exportTo(java.io.OutputStream)
-    */
-   @Override
-   public void exportTo(final OutputStream output) throws DescriptorExportException, IllegalArgumentException
-   {
-      if (output == null)
-      {
-         throw new IllegalArgumentException("Can not export to null stream");
-      }
-      this.getExporter().to(this, output);
-   }
+    /**
+     * Creates a new instance
+     *
+     * @param name
+     */
+    public NodeDescriptorImplBase(final String name) {
+        super(name);
+    }
 
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.spi.DescriptorImplBase#getExporter()
-    */
-   @Override
-   protected final DescriptorExporter<NodeDescriptor> getExporter()
-   {
-      return XmlDomDescriptorExporter.INSTANCE;
-   }
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.jboss.shrinkwrap.descriptor.api.Descriptor#exportTo(java.io.OutputStream)
+     */
+    @Override
+    public void exportTo(final OutputStream output) throws DescriptorExportException, IllegalArgumentException {
+        if (output == null) {
+            throw new IllegalArgumentException("Can not export to null stream");
+        }
+        this.getExporter().to(this, output);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.jboss.shrinkwrap.descriptor.spi.DescriptorImplBase#getExporter()
+     */
+    @Override
+    protected final DescriptorExporter<NodeDescriptor> getExporter() {
+        return XmlDomDescriptorExporter.INSTANCE;
+    }
 }

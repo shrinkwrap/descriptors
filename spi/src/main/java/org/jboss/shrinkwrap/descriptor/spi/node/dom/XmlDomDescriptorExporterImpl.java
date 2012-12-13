@@ -36,86 +36,74 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 
 /**
- * {@link NodeDescriptorExporterImpl} implementation backed by
- * the {@link Document} API
- * 
+ * {@link NodeDescriptorExporterImpl} implementation backed by the {@link Document} API
+ *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-final class XmlDomDescriptorExporterImpl extends NodeDescriptorExporterImpl
-      implements
-         DescriptorExporter<NodeDescriptor>
-{
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorExporterImpl#to(org.jboss.shrinkwrap.descriptor.spi.node.Node, java.io.OutputStream)
-    */
-   @Override
-   public void to(final Node node, final OutputStream out) throws DescriptorExportException
-   {
-      try
-      {
-         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-         factory.setNamespaceAware(true);
-         DocumentBuilder builder = factory.newDocumentBuilder();
-         Document root = builder.newDocument();
-         root.setXmlStandalone(true);
+final class XmlDomDescriptorExporterImpl extends NodeDescriptorExporterImpl implements
+    DescriptorExporter<NodeDescriptor> {
 
-         writeRecursive(root, node);
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorExporterImpl#to(org.jboss.shrinkwrap.descriptor.spi.node.Node,
+     *      java.io.OutputStream)
+     */
+    @Override
+    public void to(final Node node, final OutputStream out) throws DescriptorExportException {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            factory.setNamespaceAware(true);
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document root = builder.newDocument();
+            root.setXmlStandalone(true);
 
-         Transformer transformer = TransformerFactory.newInstance().newTransformer();
-         transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
-         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-         transformer.setOutputProperty(OutputKeys.STANDALONE, "yes");
+            writeRecursive(root, node);
 
-         StreamResult result = new StreamResult(out);
-         transformer.transform(new DOMSource(root), result);
-      }
-      catch (Exception e)
-      {
-         throw new DescriptorExportException("Could not export Node structure to XML", e);
-      }
-   }
+            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty(OutputKeys.STANDALONE, "yes");
 
-   /**
-    * @param root
-    * @param node
-    */
-   private void writeRecursive(final org.w3c.dom.Node target, final Node source)
-   {
-      Document owned = target.getOwnerDocument();
-      if (owned == null)
-      {
-         owned = (Document) target;
-      }
-      org.w3c.dom.Node targetChild = null;
-      // Comment node
-      if (source.isComment())
-      {
-         targetChild = owned.createComment(source.getText());
-      }
-      else if (source.getText() != null)
-      {
-         targetChild = owned.createElement(source.getName());
-         targetChild.appendChild(owned.createTextNode(source.getText()));
-      }
-      else
-      {
-         targetChild = owned.createElement(source.getName());
-      }
+            StreamResult result = new StreamResult(out);
+            transformer.transform(new DOMSource(root), result);
+        } catch (Exception e) {
+            throw new DescriptorExportException("Could not export Node structure to XML", e);
+        }
+    }
 
-      target.appendChild(targetChild);
+    /**
+     * @param root
+     * @param node
+     */
+    private void writeRecursive(final org.w3c.dom.Node target, final Node source) {
+        Document owned = target.getOwnerDocument();
+        if (owned == null) {
+            owned = (Document) target;
+        }
+        org.w3c.dom.Node targetChild = null;
+        // Comment node
+        if (source.isComment()) {
+            targetChild = owned.createComment(source.getText());
+        } else if (source.getText() != null) {
+            targetChild = owned.createElement(source.getName());
+            targetChild.appendChild(owned.createTextNode(source.getText()));
+        } else {
+            targetChild = owned.createElement(source.getName());
+        }
 
-      for (Map.Entry<String, String> attribute : source.getAttributes().entrySet())
-      {
-         Attr attr = owned.createAttribute(attribute.getKey());
-         attr.setValue(attribute.getValue());
+        target.appendChild(targetChild);
 
-         targetChild.getAttributes().setNamedItem(attr);
-      }
-      for (Node sourceChild : source.getChildren())
-      {
-         writeRecursive(targetChild, sourceChild);
-      }
-   }
+        for (Map.Entry<String, String> attribute : source.getAttributes().entrySet()) {
+            Attr attr = owned.createAttribute(attribute.getKey());
+            attr.setValue(attribute.getValue());
+
+            targetChild.getAttributes().setNamedItem(attr);
+        }
+
+        for (Node sourceChild : source.getChildren()) {
+            writeRecursive(targetChild, sourceChild);
+        }
+    }
 }

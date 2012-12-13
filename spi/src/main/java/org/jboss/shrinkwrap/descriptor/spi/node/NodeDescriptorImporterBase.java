@@ -25,89 +25,82 @@ import org.jboss.shrinkwrap.descriptor.api.DescriptorImporter;
 import org.jboss.shrinkwrap.descriptor.spi.DescriptorImporterBase;
 
 /**
- * Base implementation of a {@link DescriptorImporter} for {@link Node}-based
- * content
- * 
+ * Base implementation of a {@link DescriptorImporter} for {@link Node}-based content
+ *
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
  */
-public abstract class NodeDescriptorImporterBase<T extends Descriptor> extends DescriptorImporterBase<T>
-      implements
-         DescriptorImporter<T>
-{
-   //-------------------------------------------------------------------------------------||
-   // Constructor ------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+public abstract class NodeDescriptorImporterBase<T extends Descriptor> extends DescriptorImporterBase<T> implements
+    DescriptorImporter<T> {
+    // -------------------------------------------------------------------------------------||
+    // Constructor ------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-   /**
-    * Creates a new instance representing the specified backing model
-    * type
-    * 
-    * @param The type of the backing object model for the descriptor
-    * @throws IllegalArgumentException If the model type is not specified
-    * @throws IllegalArgumentException If the descriptorName not specified
-    */
-   public NodeDescriptorImporterBase(final Class<T> endUserViewImplType, final String descriptorName)
-         throws IllegalArgumentException
-   {
-      super(endUserViewImplType, descriptorName);
-   }
-   
-   //-------------------------------------------------------------------------------------||
-   // Required Implementations -----------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+    /**
+     * Creates a new instance representing the specified backing model type
+     *
+     * @param The
+     *            type of the backing object model for the descriptor
+     * @throws IllegalArgumentException
+     *             If the model type is not specified
+     * @throws IllegalArgumentException
+     *             If the descriptorName not specified
+     */
+    public NodeDescriptorImporterBase(final Class<T> endUserViewImplType, final String descriptorName)
+        throws IllegalArgumentException {
+        super(endUserViewImplType, descriptorName);
+    }
 
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#fromStream(java.io.InputStream)
-    */
-   @Override
-   public T fromStream(final InputStream in, final boolean close) throws IllegalArgumentException, DescriptorImportException
-   {
-      // Precondition check
-      if (in == null)
-      {
-         throw new IllegalArgumentException("InputStream must be specified");
-      }
+    // -------------------------------------------------------------------------------------||
+    // Required Implementations -----------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-      final Node rootNode = this.getNodeImporter().importAsNode(in, close);
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#fromStream(java.io.InputStream)
+     */
+    @Override
+    public T fromStream(final InputStream in, final boolean close) throws IllegalArgumentException,
+        DescriptorImportException {
+        // Precondition check
+        if (in == null) {
+            throw new IllegalArgumentException("InputStream must be specified");
+        }
 
-      // Create the end-user view
-      final Constructor<T> constructor;
-      try
-      {
-         constructor = endUserViewImplType.getConstructor(String.class, Node.class);
-      }
-      catch (final NoSuchMethodException e)
-      {
-         throw new DescriptorImportException("Descriptor impl " + endUserViewImplType.getName()
-               + " does not have a constructor accepting " + String.class.getName() + " and " + Node.class.getName(), e);
-      }
-      final T descriptor;
-      try
-      {
-         descriptor = constructor.newInstance(descriptorName, rootNode);
-      }
-      catch (final Exception e)
-      {
-         throw new DescriptorImportException("Could not create new instance using " + constructor + " with arg: "
-               + rootNode);
-      }
+        final Node rootNode = this.getNodeImporter().importAsNode(in, close);
 
-      // Return
-      return descriptor;
-   }
+        // Create the end-user view
+        final Constructor<T> constructor;
+        try {
+            constructor = endUserViewImplType.getConstructor(String.class, Node.class);
+        } catch (final NoSuchMethodException e) {
+            throw new DescriptorImportException("Descriptor impl " + endUserViewImplType.getName()
+                + " does not have a constructor accepting " + String.class.getName() + " and " + Node.class.getName(),
+                e);
+        }
+        final T descriptor;
+        try {
+            descriptor = constructor.newInstance(descriptorName, rootNode);
+        } catch (final Exception e) {
+            throw new DescriptorImportException("Could not create new instance using " + constructor + " with arg: "
+                + rootNode);
+        }
 
-   
-   //-------------------------------------------------------------------------------------||
-   // Contracts --------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+        // Return
+        return descriptor;
+    }
 
-   /**
-    * Importer specific behavior. Convert {@link InputStream} to Node. Will close the specified stream by default.
-    * If the stream should remain open, consider using the method importRootNode(InputStream, boolean) instead.
-    *  
-    * @param stream The Stream of data.
-    * @return The Root node extracted.
-    */
-   public abstract NodeImporter getNodeImporter();
+    // -------------------------------------------------------------------------------------||
+    // Contracts --------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+
+    /**
+     * Importer specific behavior. Convert {@link InputStream} to Node. Will close the specified stream by default. If
+     * the stream should remain open, consider using the method importRootNode(InputStream, boolean) instead.
+     *
+     * @param stream
+     *            The Stream of data.
+     * @return The Root node extracted.
+     */
+    public abstract NodeImporter getNodeImporter();
 }

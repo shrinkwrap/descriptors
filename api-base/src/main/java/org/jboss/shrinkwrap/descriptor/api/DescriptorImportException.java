@@ -21,23 +21,20 @@ package org.jboss.shrinkwrap.descriptor.api;
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  */
-public class DescriptorImportException extends RuntimeException
-{
-   private static final long serialVersionUID = 1L;
+public class DescriptorImportException extends RuntimeException {
+    private static final long serialVersionUID = 1L;
 
-   /**
-    * 
+    /**
+    *
     */
-   public DescriptorImportException(final String message, final Throwable cause)
-   {
-      super(message, cause);
-   }
+    public DescriptorImportException(final String message, final Throwable cause) {
+        super(message, cause);
+    }
 
-   /**
-    * 
+    /**
+    *
     */
-   public DescriptorImportException(final String message)
-   {
-      super(message);
-   }
+    public DescriptorImportException(final String message) {
+        super(message);
+    }
 }

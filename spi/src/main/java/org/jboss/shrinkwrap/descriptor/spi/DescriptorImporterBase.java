@@ -33,132 +33,125 @@ import org.jboss.shrinkwrap.descriptor.api.DescriptorImporter;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-public abstract class DescriptorImporterBase<T extends Descriptor> implements DescriptorImporter<T>
-{
-   //-------------------------------------------------------------------------------------||
-   // Instance Members -------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+public abstract class DescriptorImporterBase<T extends Descriptor> implements DescriptorImporter<T> {
+    // -------------------------------------------------------------------------------------||
+    // Instance Members -------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-   /**
-    * Class representing the implementation of the end-user view (to which we'll supply
-    * the model during construction)
-    */
-   protected final Class<T> endUserViewImplType;
+    /**
+     * Class representing the implementation of the end-user view (to which we'll supply the model during construction)
+     */
+    protected final Class<T> endUserViewImplType;
 
-   /**
-    * Name to pass along to the new {@link Descriptor}
-    */
-   protected final String descriptorName;
+    /**
+     * Name to pass along to the new {@link Descriptor}
+     */
+    protected final String descriptorName;
 
-   //-------------------------------------------------------------------------------------||
-   // Constructor ------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+    // Constructor ------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-   /**
-    * Creates a new instance representing the specified backing model
-    * type
-    * 
-    * @param endUserViewImplType The type of the backing object model for the descriptor
-    * @param descriptorName Thename of the descriptor
-    * 
-    * @throws IllegalArgumentException If the model type is not specified
-    * @throws IllegalArgumentException If the descriptorName not specified
-    */
-   public DescriptorImporterBase(final Class<T> endUserViewImplType, final String descriptorName)
-         throws IllegalArgumentException
-   {
-      // Precondition checks
-      if (endUserViewImplType == null)
-      {
-         throw new IllegalArgumentException("End user view impl type must be specified");
-      }
-      if (descriptorName == null || descriptorName.trim().length() == 0)
-      {
-         throw new IllegalArgumentException("Descriptor name must be specified");
-      }
+    /**
+     * Creates a new instance representing the specified backing model type
+     *
+     * @param endUserViewImplType
+     *            The type of the backing object model for the descriptor
+     * @param descriptorName
+     *            Thename of the descriptor
+     *
+     * @throws IllegalArgumentException
+     *             If the model type is not specified
+     * @throws IllegalArgumentException
+     *             If the descriptorName not specified
+     */
+    public DescriptorImporterBase(final Class<T> endUserViewImplType, final String descriptorName)
+        throws IllegalArgumentException {
+        // Precondition checks
+        if (endUserViewImplType == null) {
+            throw new IllegalArgumentException("End user view impl type must be specified");
+        }
+        if (descriptorName == null || descriptorName.trim().length() == 0) {
+            throw new IllegalArgumentException("Descriptor name must be specified");
+        }
 
-      // Set
-      this.endUserViewImplType = endUserViewImplType;
-      this.descriptorName = descriptorName;
-   }
-
-   //-------------------------------------------------------------------------------------||
-   // Implemented Methods ----------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
-
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#fromFile(java.io.File)
-    */
-   @Override
-   public T fromFile(final File file) throws IllegalArgumentException, DescriptorImportException
-   {
-      // Precondition checks
-      if (file == null)
-      {
-         throw new IllegalArgumentException("File not specified");
-      }
-
-      // Delegate
-      try
-      {
-         return this.fromStream(new FileInputStream(file));
-      }
-      catch (final FileNotFoundException e)
-      {
-         throw new IllegalArgumentException("Specified file does not exist or is a directory: "
-               + file.getAbsolutePath());
-      }
-   }
-
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.lang.String)
-    */
-   @Override
-   @Deprecated
-   public T from(final String string) throws IllegalArgumentException, DescriptorImportException
-   {
-       return fromString(string);
-   }
-
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.lang.String)
-    */
-   @Override
-   public T fromString(final String string) throws IllegalArgumentException, DescriptorImportException
-   {
-      // Precondition check
-      if (string == null)
-      {
-         throw new IllegalArgumentException("Input must be specified");
-      }
-
-      // Check if empty String
-      if (string.trim().length() == 0)
-      {
-         return endUserViewImplType.cast(ApiExposition.createFromImplModelType(endUserViewImplType, descriptorName));
-      }
-
-      // Return
-      return this.fromStream(new ByteArrayInputStream(string.getBytes()));
-   }
-
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#fromStream(java.io.InputStream)
-    */
-   @Override
-   public T fromStream(final InputStream in) throws IllegalArgumentException, DescriptorImportException
-   {
-      return fromStream(in, true);
+        // Set
+        this.endUserViewImplType = endUserViewImplType;
+        this.descriptorName = descriptorName;
     }
 
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.io.File)
-    */
+    // -------------------------------------------------------------------------------------||
+    // Implemented Methods ----------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#fromFile(java.io.File)
+     */
+    @Override
+    public T fromFile(final File file) throws IllegalArgumentException, DescriptorImportException {
+        // Precondition checks
+        if (file == null) {
+            throw new IllegalArgumentException("File not specified");
+        }
+
+        // Delegate
+        try {
+            return this.fromStream(new FileInputStream(file));
+        } catch (final FileNotFoundException e) {
+            throw new IllegalArgumentException("Specified file does not exist or is a directory: "
+                + file.getAbsolutePath());
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.lang.String)
+     */
+    @Override
+    @Deprecated
+    public T from(final String string) throws IllegalArgumentException, DescriptorImportException {
+        return fromString(string);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.lang.String)
+     */
+    @Override
+    public T fromString(final String string) throws IllegalArgumentException, DescriptorImportException {
+        // Precondition check
+        if (string == null) {
+            throw new IllegalArgumentException("Input must be specified");
+        }
+
+        // Check if empty String
+        if (string.trim().length() == 0) {
+            return endUserViewImplType.cast(ApiExposition.createFromImplModelType(endUserViewImplType, descriptorName));
+        }
+
+        // Return
+        return this.fromStream(new ByteArrayInputStream(string.getBytes()));
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#fromStream(java.io.InputStream)
+     */
+    @Override
+    public T fromStream(final InputStream in) throws IllegalArgumentException, DescriptorImportException {
+        return fromStream(in, true);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.io.File)
+     */
     @Override
     public T from(final File file) throws IllegalArgumentException, DescriptorImportException {
         return this.fromFile(file);
@@ -166,6 +159,7 @@ public abstract class DescriptorImporterBase<T extends Descriptor> implements De
 
     /**
      * {@inheritDoc}
+     *
      * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#fromFile(java.lang.String)
      */
     @Override
@@ -175,6 +169,7 @@ public abstract class DescriptorImporterBase<T extends Descriptor> implements De
 
     /**
      * {@inheritDoc}
+     *
      * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.io.InputStream)
      */
     @Override
@@ -184,6 +179,7 @@ public abstract class DescriptorImporterBase<T extends Descriptor> implements De
 
     /**
      * {@inheritDoc}
+     *
      * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.io.InputStream, boolean)
      */
     @Override

@@ -21,52 +21,53 @@ import java.util.List;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
+import org.jboss.shrinkwrap.descriptor.metadata.MetadataJavaDoc;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataParser;
+import org.jboss.shrinkwrap.descriptor.metadata.MetadataParserConfiguration;
 
 /**
  * Implementation class for the Shrinkwrap Descriptors CLI Mojo task.
- * 
+ *
  * @goal parse
- * 
+ *
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
-public class MetadataParserMojo extends AbstractMojo
-{
-   /**
-    * Path settings used for generating the interfaces and implementation classes.
-    * @parameter
-    */
-	protected Path path;
-   
-   /**
-    * List of descriptors specifying the descriptor details.
-    * @parameter
-    */
-   protected List<?> descriptors;
-   
-   /**
-    * List of javadoc tags used for class header comments.
-    * @parameter
-    */
-   protected List<?> javadocs;
-   
-   /**
-    * Trace flag
-    * @parameter
-    */
-   protected boolean verbose;
+public class MetadataParserMojo extends AbstractMojo {
+    /**
+     * Path settings used for generating the interfaces and implementation classes.
+     *
+     * @parameter
+     */
+    protected Path path;
 
-   @Override
-   public void execute() throws MojoExecutionException, MojoFailureException
-   {
-      try
-      {
-         final MetadataParser metadataParser = new MetadataParser();
-         metadataParser.parse(path, descriptors, javadocs, verbose);
-      }
-      catch (final Throwable t)
-      {
-         throw new MojoFailureException(t.getMessage(), t);
-      }
-   }
+    /**
+     * List of descriptors specifying the descriptor details.
+     *
+     * @parameter
+     */
+    protected List<? extends MetadataParserConfiguration> descriptors;
+
+    /**
+     * List of javadoc tags used for class header comments.
+     *
+     * @parameter
+     */
+    protected List<? extends MetadataJavaDoc> javadocs;
+
+    /**
+     * Trace flag
+     *
+     * @parameter
+     */
+    protected boolean verbose;
+
+    @Override
+    public void execute() throws MojoExecutionException, MojoFailureException {
+        try {
+            final MetadataParser metadataParser = new MetadataParser();
+            metadataParser.parse(path, descriptors, javadocs, verbose);
+        } catch (final Throwable t) {
+            throw new MojoFailureException(t.getMessage(), t);
+        }
+    }
 }

@@ -24,21 +24,16 @@ import java.nio.charset.UnsupportedCharsetException;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-class Charset
-{
-   public static final java.nio.charset.Charset UTF8;
-   
-   private static final String NAME_UTF_8 = "UTF-8";
+class Charset {
+    public static final java.nio.charset.Charset UTF8;
 
-   static
-   {
-      try
-      {
-         UTF8 = java.nio.charset.Charset.forName(NAME_UTF_8);
-      }
-      catch (final UnsupportedCharsetException e)
-      {
-         throw new RuntimeException(e);
-      }
-   }
+    private static final String NAME_UTF_8 = "UTF-8";
+
+    static {
+        try {
+            UTF8 = java.nio.charset.Charset.forName(NAME_UTF_8);
+        } catch (final UnsupportedCharsetException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

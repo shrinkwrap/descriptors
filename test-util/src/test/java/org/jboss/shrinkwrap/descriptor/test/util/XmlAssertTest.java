@@ -20,16 +20,13 @@ import junit.framework.AssertionFailedError;
 
 import org.junit.Test;
 
-public class XmlAssertTest
-{
-   @Test(expected = AssertionFailedError.class)
-   public void shouldFailIfGivenXpathExpressionDoesNotMatch()
-   {
-      XmlAssert.assertPresenceUsingXPath("<persistence><persistence-unit name=\"hibernate-unit\">" +
-                                         "<transaction-type>JTA</transaction-type>" +
-                                         "</persistence-unit></persistence>",
-                  "/persistence/persistence-unit[@name='eclipselink-unit']/transaction-type",
-                  "JTA");
-   }
+public class XmlAssertTest {
+
+    @Test(expected = AssertionFailedError.class)
+    public void shouldFailIfGivenXpathExpressionDoesNotMatch() {
+        XmlAssert.assertPresenceUsingXPath("<persistence><persistence-unit name=\"hibernate-unit\">"
+            + "<transaction-type>JTA</transaction-type>" + "</persistence-unit></persistence>",
+            "/persistence/persistence-unit[@name='eclipselink-unit']/transaction-type", "JTA");
+    }
 
 }

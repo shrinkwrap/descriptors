@@ -1,23 +1,18 @@
 package org.jboss.shrinkwrap.descriptor.test.application6;
 
-import static org.junit.Assert.assertTrue;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.application6.ApplicationDescriptor;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
-import org.junit.Before;
 import org.junit.Test;
 
-public class ApplicationDescriptorTestCase
-{
+public class ApplicationDescriptorTestCase {
 
-   @Test
-   public void testImportGeneratedApplicationXml() throws Exception
-   {
-      ApplicationDescriptor app6Descr = create()
+    @Test
+    public void testImportGeneratedApplicationXml() throws Exception {
+        ApplicationDescriptor app6Descr = create()
          .addDefaultNamespaces()
          .version("6")
          .applicationName("application-name0")
@@ -144,7 +139,7 @@ public class ApplicationDescriptorTestCase
             .lookupName("lookup-name6").up()
          .createPersistenceContextRef()
             .description("description11")
-            .persistenceContextRefName("persistence-context-ref-name0")            
+            .persistenceContextRefName("persistence-context-ref-name0")
             .persistenceUnitName("persistence-unit-name0")
             .persistenceContextType("Transaction")
             .createPersistenceProperty()
@@ -192,35 +187,31 @@ public class ApplicationDescriptorTestCase
              .minPoolSize(0)
              .maxIdleTime(0)
              .maxStatements(0).up();
-      
-      String appXmlOriginal = getResourceContents("src/test/resources/test-gen-application6.xml");
-      String appXmlGenerated = app6Descr.exportAsString();
-       
-      XmlAssert.assertIdentical(appXmlOriginal, appXmlGenerated);       
-   }
-     
- 
-   // -------------------------------------------------------------------------------------||
-   // Helper Methods ----------------------------------------------------------------------||
-   // -------------------------------------------------------------------------------------||
-   
-   private String getResourceContents(String resource) throws Exception
-   {
-      assert resource != null && resource.length() > 0 : "Resource must be specified";
-      final BufferedReader reader = new BufferedReader(new FileReader(resource));
-      final StringBuilder builder = new StringBuilder();
-      String line;
-      while ((line = reader.readLine()) != null)
-      {
-         builder.append(line);
-         builder.append("\n");
-      }
-      return builder.toString();
-   }
-   
-   private ApplicationDescriptor create()
-   {
-      return Descriptors.create(ApplicationDescriptor.class);
-   }
+
+        String appXmlOriginal = getResourceContents("src/test/resources/test-gen-application6.xml");
+        String appXmlGenerated = app6Descr.exportAsString();
+
+        XmlAssert.assertIdentical(appXmlOriginal, appXmlGenerated);
+    }
+
+    // -------------------------------------------------------------------------------------||
+    // Helper Methods ----------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+
+    private String getResourceContents(String resource) throws Exception {
+        assert resource != null && resource.length() > 0 : "Resource must be specified";
+        final BufferedReader reader = new BufferedReader(new FileReader(resource));
+        final StringBuilder builder = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            builder.append(line);
+            builder.append("\n");
+        }
+        return builder.toString();
+    }
+
+    private ApplicationDescriptor create() {
+        return Descriptors.create(ApplicationDescriptor.class);
+    }
 
 }

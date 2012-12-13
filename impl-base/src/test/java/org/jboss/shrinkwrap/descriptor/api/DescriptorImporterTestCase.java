@@ -25,230 +25,204 @@ import java.net.URISyntaxException;
 import org.junit.Assert;
 import org.junit.Test;
 
-
 /**
  * Verify behavior of {@link DescriptorImporter}
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
  */
-public class DescriptorImporterTestCase
-{
-   private static final String SOURCE = "" +
-                     "<test></test>"; 
+public class DescriptorImporterTestCase {
+    private static final String SOURCE = "" + "<test></test>";
 
-   @Test
-   public void shouldBeAbleToImportFromStream() throws Exception
-   {
-      
-      TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).fromStream(new ByteArrayInputStream(SOURCE.getBytes()));
-      
-      Assert.assertNotNull(
-            "Verify the descriptor was created", 
-            descriptor);
-   }
-   
-   @Test
-   public void deprecatedFromStream(){
-       // Use from(Stream); may be removed in Major Version 3 of SHRINKDESC
-       @SuppressWarnings("deprecation")
-       final TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).from(new ByteArrayInputStream(SOURCE.getBytes()));
-       Assert.assertNotNull(
-             "Verify the descriptor was created", 
-             descriptor); 
-   }
-   
-   @Test
-   public void deprecatedFromString(){
-       // Use from(String); may be removed in Major Version 3 of SHRINKDESC
-       @SuppressWarnings("deprecation")
-       final TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).from(new String(SOURCE.getBytes()));
-       Assert.assertNotNull(
-             "Verify the descriptor was created", 
-             descriptor); 
-   }
-   
-   @Test
-   public void deprecatedFromFile() throws IllegalArgumentException, DescriptorImportException, URISyntaxException{
-       // Use from(File); may be removed in Major Version 3 of SHRINKDESC
-       @SuppressWarnings("deprecation")
+    @Test
+    public void shouldBeAbleToImportFromStream() throws Exception {
+
+        TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).fromStream(
+            new ByteArrayInputStream(SOURCE.getBytes()));
+
+        Assert.assertNotNull("Verify the descriptor was created", descriptor);
+    }
+
+    @Test
+    public void deprecatedFromStream() {
+        // Use from(Stream); may be removed in Major Version 3 of SHRINKDESC
+        @SuppressWarnings("deprecation")
         final TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).from(
-            new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI().getPath() + "test.xml"));
-       Assert.assertNotNull(
-             "Verify the descriptor was created", 
-             descriptor); 
-   }
-   
-   @Test(expected = IllegalArgumentException.class)
-   public void shouldThrowExceptionOnMissingDescriptor() throws Exception
-   {
-      Descriptors.importAs(null);
-   }
+            new ByteArrayInputStream(SOURCE.getBytes()));
+        Assert.assertNotNull("Verify the descriptor was created", descriptor);
+    }
 
-   @Test(expected = IllegalArgumentException.class)
-   public void shouldThrowExceptionOnMissingInputStream() throws Exception
-   {
-      Descriptors.importAs(TestDescriptor.class).fromStream((InputStream) null);
-   }
+    @Test
+    public void deprecatedFromString() {
+        // Use from(String); may be removed in Major Version 3 of SHRINKDESC
+        @SuppressWarnings("deprecation")
+        final TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class)
+            .from(new String(SOURCE.getBytes()));
+        Assert.assertNotNull("Verify the descriptor was created", descriptor);
+    }
 
-   /*
-    * SHRINKDESC-18
-    */
-   @Test
-   public void shouldCloseStreamAfterImport() throws Exception
-   {
-      StubInputStream mis = new StubInputStream();
-      Descriptors.importAs(TestDescriptor.class).fromStream(mis); // close as default behaviour
-      Assert.assertFalse(mis.isOpen());
+    @Test
+    public void deprecatedFromFile() throws IllegalArgumentException, DescriptorImportException, URISyntaxException {
+        // Use from(File); may be removed in Major Version 3 of SHRINKDESC
+        @SuppressWarnings("deprecation")
+        final TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class)
+            .from(
+                new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI().getPath()
+                    + "test.xml"));
+        Assert.assertNotNull("Verify the descriptor was created", descriptor);
+    }
 
-      mis = new StubInputStream();
-      Descriptors.importAs(TestDescriptor.class).fromStream(mis, true);
-      Assert.assertFalse(mis.isOpen());
-   }
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionOnMissingDescriptor() throws Exception {
+        Descriptors.importAs(null);
+    }
 
-   /*
-    * SHRINKDESC-18
-    */
-   @Test
-   public void shouldNotCloseStreamAfterImport() throws Exception
-   {
-      StubInputStream mis = new StubInputStream();
-      Descriptors.importAs(TestDescriptor.class).fromStream(mis, false);
-      Assert.assertTrue(mis.isOpen());
-   }
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionOnMissingInputStream() throws Exception {
+        Descriptors.importAs(TestDescriptor.class).fromStream((InputStream) null);
+    }
 
-   /*
-    * SHRINKDESC-18
-    */
-   @Test
-   public void shouldHandleUncloseableStreamsGently() throws Exception
-   {
-      FirstCloseAttemptFailingStubInputStream fmis = new FirstCloseAttemptFailingStubInputStream();
-      Assert.assertEquals("Mock object not properly initialized?", 0, fmis.getCloseAttempts());
-      Descriptors.importAs(TestDescriptor.class).fromStream(fmis, true);
-      Assert.assertTrue(fmis.getCloseAttempts() > 0);
+    /*
+     * SHRINKDESC-18
+     */
+    @Test
+    public void shouldCloseStreamAfterImport() throws Exception {
+        StubInputStream mis = new StubInputStream();
+        Descriptors.importAs(TestDescriptor.class).fromStream(mis); // close as default behaviour
+        Assert.assertFalse(mis.isOpen());
 
-      UncloseableStubInputStream umis = new UncloseableStubInputStream();
-      Assert.assertEquals("Mock object not properly initialized?", 0, umis.getCloseAttempts());
-      Descriptors.importAs(TestDescriptor.class).fromStream(umis, true);
-      Assert.assertTrue(umis.isOpen());
-      Assert.assertTrue(umis.getCloseAttempts() > 0);
-   }
-   
-   /**
-    * SHRINKDESC-20
-    */
-   @Test(expected = IllegalArgumentException.class)
-   public void shouldThrowExceptionOnMissingString() throws Exception
-   {
-      Descriptors.importAs(TestDescriptor.class).fromString(null);
-   }
+        mis = new StubInputStream();
+        Descriptors.importAs(TestDescriptor.class).fromStream(mis, true);
+        Assert.assertFalse(mis.isOpen());
+    }
 
-   /**
-    * SHRINKDESC-20
-    */
-   @Test
-   public void shouldBeAbleToImportWhiteSpaceString()
-   {
-      TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).fromString("  \n  \n  ");
-      Assert.assertNotNull("Verify the descriptor was created from an empty string", descriptor);
-   }
+    /*
+     * SHRINKDESC-18
+     */
+    @Test
+    public void shouldNotCloseStreamAfterImport() throws Exception {
+        StubInputStream mis = new StubInputStream();
+        Descriptors.importAs(TestDescriptor.class).fromStream(mis, false);
+        Assert.assertTrue(mis.isOpen());
+    }
 
-   /**
-    * SHRINKDESC-20
-    */
-   @Test
-   public void shouldBeAbleToImportEmptyString()
-   {
-      TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).fromString("");
-      Assert.assertNotNull("Verify the descriptor was created from an empty string", descriptor);
-   }
-   
-   /**
-    * SHRINKDESC-20
-    */
-   @Test
-   public void shouldBeAbleToImportEmptyInputStream()
-   {
-      TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).fromStream(getClass().getResourceAsStream("/empty.xml"));
-      Assert.assertNotNull("Verify the descriptor was created from and empty file", descriptor);
-   }
-   
-   @Test
-   public void shouldBeAbleToImportEmptyFile()
-   {
-      TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).fromFile(new File("src/test/resources/empty.xml"));
-      Assert.assertNotNull("Verify the descriptor was created from and empty file", descriptor);
-   }
-   
-   @Test(expected = IllegalArgumentException.class)
-   public void shouldThrowExceptionForNonExistingFile()
-   {
-      TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).fromFile(new File("non-existing.xml"));
-      Assert.assertNotNull("Verify the descriptor was created from and empty file", descriptor);
-   }
-   
-   @Test(expected = IllegalArgumentException.class)
-   public void shouldThrowExceptionForNonExistingResource()
-   {
-      TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).fromStream(getClass().getResourceAsStream("non-existing.xml"));
-      Assert.assertNotNull("Verify the descriptor was created from and empty file", descriptor);
-   }
+    /*
+     * SHRINKDESC-18
+     */
+    @Test
+    public void shouldHandleUncloseableStreamsGently() throws Exception {
+        FirstCloseAttemptFailingStubInputStream fmis = new FirstCloseAttemptFailingStubInputStream();
+        Assert.assertEquals("Mock object not properly initialized?", 0, fmis.getCloseAttempts());
+        Descriptors.importAs(TestDescriptor.class).fromStream(fmis, true);
+        Assert.assertTrue(fmis.getCloseAttempts() > 0);
 
-   //-------------------------------------------------------------------------------------||
-   // Private stubs ----------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+        UncloseableStubInputStream umis = new UncloseableStubInputStream();
+        Assert.assertEquals("Mock object not properly initialized?", 0, umis.getCloseAttempts());
+        Descriptors.importAs(TestDescriptor.class).fromStream(umis, true);
+        Assert.assertTrue(umis.isOpen());
+        Assert.assertTrue(umis.getCloseAttempts() > 0);
+    }
 
-   private class StubInputStream extends InputStream
-   {
-      boolean isOpen = true;
+    /**
+     * SHRINKDESC-20
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionOnMissingString() throws Exception {
+        Descriptors.importAs(TestDescriptor.class).fromString(null);
+    }
 
-      @Override
-      public int read() throws IOException
-      {
-         return 0;
-      }
+    /**
+     * SHRINKDESC-20
+     */
+    @Test
+    public void shouldBeAbleToImportWhiteSpaceString() {
+        TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).fromString("  \n  \n  ");
+        Assert.assertNotNull("Verify the descriptor was created from an empty string", descriptor);
+    }
 
-      @Override
-      public void close() throws IOException
-      {
-         super.close();
-         isOpen = false;
-      }
+    /**
+     * SHRINKDESC-20
+     */
+    @Test
+    public void shouldBeAbleToImportEmptyString() {
+        TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).fromString("");
+        Assert.assertNotNull("Verify the descriptor was created from an empty string", descriptor);
+    }
 
-      public boolean isOpen()
-      {
-         return isOpen;
-      }
-   }
+    /**
+     * SHRINKDESC-20
+     */
+    @Test
+    public void shouldBeAbleToImportEmptyInputStream() {
+        TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).fromStream(
+            getClass().getResourceAsStream("/empty.xml"));
+        Assert.assertNotNull("Verify the descriptor was created from and empty file", descriptor);
+    }
 
-   private class UncloseableStubInputStream extends StubInputStream
-   {
-      protected int closeAttempts = 0;
+    @Test
+    public void shouldBeAbleToImportEmptyFile() {
+        TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).fromFile(
+            new File("src/test/resources/empty.xml"));
+        Assert.assertNotNull("Verify the descriptor was created from and empty file", descriptor);
+    }
 
-      @Override
-      public void close() throws IOException
-      {
-         closeAttempts = closeAttempts + 1;
-         throw new IOException("This is an uncloseable input stream");
-      }
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionForNonExistingFile() {
+        TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).fromFile(new File("non-existing.xml"));
+        Assert.assertNotNull("Verify the descriptor was created from and empty file", descriptor);
+    }
 
-      public int getCloseAttempts()
-      {
-         return closeAttempts;
-      }
-   }
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionForNonExistingResource() {
+        TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).fromStream(
+            getClass().getResourceAsStream("non-existing.xml"));
+        Assert.assertNotNull("Verify the descriptor was created from and empty file", descriptor);
+    }
 
-   private class FirstCloseAttemptFailingStubInputStream extends UncloseableStubInputStream
-   {
-      @Override
-      public void close() throws IOException
-      {
-         closeAttempts = closeAttempts + 1;
-         if(getCloseAttempts() == 1)
-         {
-            throw new IOException("Failing first close attempt");
-         }
-      }
-   }
+    // -------------------------------------------------------------------------------------||
+    // Private stubs ----------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+
+    private class StubInputStream extends InputStream {
+        boolean isOpen = true;
+
+        @Override
+        public int read() throws IOException {
+            return 0;
+        }
+
+        @Override
+        public void close() throws IOException {
+            super.close();
+            isOpen = false;
+        }
+
+        public boolean isOpen() {
+            return isOpen;
+        }
+    }
+
+    private class UncloseableStubInputStream extends StubInputStream {
+        protected int closeAttempts = 0;
+
+        @Override
+        public void close() throws IOException {
+            closeAttempts = closeAttempts + 1;
+            throw new IOException("This is an uncloseable input stream");
+        }
+
+        public int getCloseAttempts() {
+            return closeAttempts;
+        }
+    }
+
+    private class FirstCloseAttemptFailingStubInputStream extends UncloseableStubInputStream {
+        @Override
+        public void close() throws IOException {
+            closeAttempts = closeAttempts + 1;
+            if (getCloseAttempts() == 1) {
+                throw new IOException("Failing first close attempt");
+            }
+        }
+    }
 }

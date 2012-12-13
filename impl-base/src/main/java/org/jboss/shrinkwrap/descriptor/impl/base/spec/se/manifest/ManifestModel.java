@@ -18,7 +18,6 @@ package org.jboss.shrinkwrap.descriptor.impl.base.spec.se.manifest;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.jar.Manifest;
@@ -29,27 +28,22 @@ import java.util.jar.Manifest;
  * @author Davide D'Alto
  * @see java.util.jar.Manifest
  */
-public class ManifestModel extends Manifest
-{
+public class ManifestModel extends Manifest {
 
-   public ManifestModel()
-   {
-      this(new Manifest());
-   }
+    public ManifestModel() {
+        this(new Manifest());
+    }
 
-   public ManifestModel(Manifest man)
-   {
-      super(man);
-   }
+    public ManifestModel(Manifest man) {
+        super(man);
+    }
 
-   public ManifestModel(File file) throws FileNotFoundException, IOException
-   {
-      this(new FileInputStream(file));
-   }
+    public ManifestModel(File file) throws IOException {
+        this(new FileInputStream(file));
+    }
 
-   public ManifestModel(InputStream is) throws IOException
-   {
-      super(is);
-   }
+    public ManifestModel(InputStream is) throws IOException {
+        super(is);
+    }
 
 }

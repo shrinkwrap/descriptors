@@ -18,10 +18,9 @@ package org.jboss.shrinkwrap.descriptor.api;
 
 /**
  * Base {@link Descriptor} for use in testing
- * 
+ *
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
  */
-public interface TestDescriptor extends Descriptor
-{
+public interface TestDescriptor extends Descriptor {
 
 }

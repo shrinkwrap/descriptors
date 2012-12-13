@@ -19,172 +19,141 @@ package org.jboss.shrinkwrap.descriptor.metadata;
 
 import java.util.Properties;
 
-
 /**
  * Mojo configuration class for the Shrinkwrap Descriptors CLI Mojo task.
- * 
+ *
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
-public class MetadataParserConfiguration
-{
-   /**
-    * Path to the XSD file to be parsed
-    * 
-    */
-   protected String pathToXsd;
+public class MetadataParserConfiguration {
+    /**
+     * Path to the XSD file to be parsed
+     */
+    protected String pathToXsd;
 
-   /**
-    * The namespace for the given XSD.
-    * 
-    */
-   protected String nameSpace;
+    /**
+     * The namespace for the given XSD.
+     */
+    protected String nameSpace;
 
-   /**
-    * The package name for the API classes.
-    * 
-    */
-   protected String packageApi;
+    /**
+     * The package name for the API classes.
+     */
+    protected String packageApi;
 
-   /**
-    * The package name for the Implementation classes.
-    * 
-    */
-   protected String packageImpl;
+    /**
+     * The package name for the Implementation classes.
+     */
+    protected String packageImpl;
 
-   /**
-    * The name of the descriptor.
-    * 
-    */
-   protected String descriptorName;
+    /**
+     * The name of the descriptor.
+     */
+    protected String descriptorName;
 
-   /**
-    * The name of the root element.
-    * 
-    */
-   protected String elementName;
+    /**
+     * The name of the root element.
+     */
+    protected String elementName;
 
-   /**
-    * The type of the root element.
-    * 
-    */
-   protected String elementType;
+    /**
+     * The type of the root element.
+     */
+    protected String elementType;
 
-   /**
-    * If true, then the classes for this descriptor are generated, otherwise this descriptor
-    * is only used for the import section.
-    * 
-    */
-   protected boolean generateClasses = true;
-   
-   /**
-    * Trace flag
-    * 
-    */
-   protected boolean verbose;
+    /**
+     * If true, then the classes for this descriptor are generated, otherwise this descriptor is only used for the
+     * import section.
+     */
+    protected boolean generateClasses = true;
 
-   /**
-    * The map declaring the name spaces for the given descriptor.
-    */
-   protected Properties namespaces = new Properties();
+    /**
+     * Trace flag
+     */
+    protected boolean verbose;
 
-   public String getNameSpace()
-   {
-      return nameSpace;
-   }
+    /**
+     * The map declaring the name spaces for the given descriptor.
+     */
+    protected Properties namespaces = new Properties();
 
-   public void setNameSpace(final String nameSpace)
-   {
-      this.nameSpace = nameSpace;
-   }
+    public String getNameSpace() {
+        return nameSpace;
+    }
 
-   public String getPackageApi()
-   {
-      return packageApi;
-   }
+    public void setNameSpace(final String nameSpace) {
+        this.nameSpace = nameSpace;
+    }
 
-   public void setPackageApi(final String packageApi)
-   {
-      this.packageApi = packageApi;
-   }
+    public String getPackageApi() {
+        return packageApi;
+    }
 
-   public String getPackageImpl()
-   {
-      return packageImpl;
-   }
+    public void setPackageApi(final String packageApi) {
+        this.packageApi = packageApi;
+    }
 
-   public void setPackageImpl(final String packageImpl)
-   {
-      this.packageImpl = packageImpl;
-   }
+    public String getPackageImpl() {
+        return packageImpl;
+    }
 
-   public String getPathToXsd()
-   {
-      return pathToXsd;
-   }
+    public void setPackageImpl(final String packageImpl) {
+        this.packageImpl = packageImpl;
+    }
 
-   public void setPathToXsd(final String pathToXsd)
-   {
-      this.pathToXsd = pathToXsd;
-   }
+    public String getPathToXsd() {
+        return pathToXsd;
+    }
 
-   public String getElementName()
-   {
-      return elementName;
-   }
+    public void setPathToXsd(final String pathToXsd) {
+        this.pathToXsd = pathToXsd;
+    }
 
-   public void setElementName(final String elementName)
-   {
-      this.elementName = elementName;
-   }
+    public String getElementName() {
+        return elementName;
+    }
 
-   public String getElementType()
-   {
-      return elementType;
-   }
+    public void setElementName(final String elementName) {
+        this.elementName = elementName;
+    }
 
-   public void setElementType(final String elementType)
-   {
-      this.elementType = elementType;
-   }
+    public String getElementType() {
+        return elementType;
+    }
 
-   public boolean isVerbose()
-   {
-      return verbose;
-   }
+    public void setElementType(final String elementType) {
+        this.elementType = elementType;
+    }
 
-   public void setVerbose(final boolean verbose)
-   {
-      this.verbose = verbose;
-   }
+    public boolean isVerbose() {
+        return verbose;
+    }
 
-   public String getDescriptorName()
-   {
-      return descriptorName;
-   }
+    public void setVerbose(final boolean verbose) {
+        this.verbose = verbose;
+    }
 
-   public void setDescriptorName(final String descriptorName)
-   {
-      this.descriptorName = descriptorName;
-   }
+    public String getDescriptorName() {
+        return descriptorName;
+    }
 
-   public Properties getNamespaces()
-   {
-      return namespaces;
-   }
+    public void setDescriptorName(final String descriptorName) {
+        this.descriptorName = descriptorName;
+    }
 
-   public void setNamespaces(final Properties namespaces)
-   {
-      this.namespaces = namespaces;
-   }
+    public Properties getNamespaces() {
+        return namespaces;
+    }
 
-   public boolean isGenerateClasses()
-   {
-      return generateClasses;
-   }
+    public void setNamespaces(final Properties namespaces) {
+        this.namespaces = namespaces;
+    }
 
-   public void setGenerateClasses(final boolean generateClasses)
-   {
-      this.generateClasses = generateClasses;
-   }
-   
+    public boolean isGenerateClasses() {
+        return generateClasses;
+    }
+
+    public void setGenerateClasses(final boolean generateClasses) {
+        this.generateClasses = generateClasses;
+    }
+
 }

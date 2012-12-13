@@ -24,60 +24,51 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.traversal.TreeWalker;
 
-
 /**
  * Class which is responsible for <code>Union</code> w3c elements.
- * 
- *  @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ *
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
-public class UnionFilter implements Filter
-{
-   @Override
-   public boolean filter(final Metadata metadata, final TreeWalker walker)
-   {
-      final Node parent = walker.getCurrentNode();
-      final Element element = (Element) parent;
+public class UnionFilter implements Filter {
+    @Override
+    public boolean filter(final Metadata metadata, final TreeWalker walker) {
+        final Node parent = walker.getCurrentNode();
+        final Element element = (Element) parent;
 
-      if (XsdElementEnum.union.isTagNameEqual(element.getTagName()))
-      {
-         final String memberTypesStr = MetadataUtil.getAttributeValue(element, "memberTypes");
-         if (memberTypesStr != null)
-         {
-            final Node parentNodeWithName = MetadataUtil.getNextParentNodeWithAttr(parent.getParentNode(), "name");
-            if (parentNodeWithName != null)
-            {
-               final Element parentElementWithName = (Element)parentNodeWithName;
-               final String parentName = MetadataUtil.getAttributeValue(parentElementWithName, "name");
-               final String[] items = memberTypesStr.split(" ", -1);
-               if (items != null && items.length > 1)
-               {
-                  final MetadataItem dataType = new MetadataItem(parentName);
-                  dataType.setMappedTo(getDataType(items));
-                  dataType.setNamespace(metadata.getCurrentNamespace());
-                  dataType.setSchemaName(metadata.getCurrentSchmema());
-                  metadata.getDataTypeList().add(dataType); 
-               }
+        if (XsdElementEnum.union.isTagNameEqual(element.getTagName())) {
+            final String memberTypesStr = MetadataUtil.getAttributeValue(element, "memberTypes");
+            if (memberTypesStr != null) {
+                final Node parentNodeWithName = MetadataUtil.getNextParentNodeWithAttr(parent.getParentNode(), "name");
+                if (parentNodeWithName != null) {
+                    final Element parentElementWithName = (Element) parentNodeWithName;
+                    final String parentName = MetadataUtil.getAttributeValue(parentElementWithName, "name");
+                    final String[] items = memberTypesStr.split(" ", -1);
+                    if (items != null && items.length > 1) {
+                        final MetadataItem dataType = new MetadataItem(parentName);
+                        dataType.setMappedTo(getDataType(items));
+                        dataType.setNamespace(metadata.getCurrentNamespace());
+                        dataType.setSchemaName(metadata.getCurrentSchmema());
+                        metadata.getDataTypeList().add(dataType);
+                    }
+                }
             }
-         }
-      }
-      return false;
-   }
+        }
+        return false;
+    }
 
-   /**
-    * Returns first data type which is a standard xsd data type. 
-    * If no such data type found, then the first one will be returned.
-    * @param items
-    * @return
-    */
-   private String getDataType(String[] items)
-   {
-      for (String item: items)
-      {
-         if (XsdDatatypeEnum.ENTITIES.isDataType(item))
-         {
-            return item;
-         }
-      }
-      return items[0];
-   }
+    /**
+     * Returns first data type which is a standard xsd data type. If no such data type found, then the first one will be
+     * returned.
+     *
+     * @param items
+     * @return
+     */
+    private String getDataType(String[] items) {
+        for (String item : items) {
+            if (XsdDatatypeEnum.ENTITIES.isDataType(item)) {
+                return item;
+            }
+        }
+        return items[0];
+    }
 }

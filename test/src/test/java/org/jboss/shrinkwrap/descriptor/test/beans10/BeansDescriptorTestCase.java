@@ -19,28 +19,23 @@ package org.jboss.shrinkwrap.descriptor.test.beans10;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-import junit.framework.Assert;
-
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.beans10.BeansDescriptor;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Test;
 
 /**
- * Test Case to verify that {@link BeansDescriptor} impl produce the correct 
- * XML Descriptor output.
+ * Test Case to verify that {@link BeansDescriptor} impl produce the correct XML Descriptor output.
  *
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  * @version $Revision: $
  */
 
-public class BeansDescriptorTestCase
-{
-  
-   @Test
-   public void testGeneratedXml() throws Exception
-   {
-      final BeansDescriptor beansDescr = create()
+public class BeansDescriptorTestCase {
+
+    @Test
+    public void testGeneratedXml() throws Exception {
+        final BeansDescriptor beansDescr = create()
             .addDefaultNamespaces()
             .getOrCreateInterceptors()
                .clazz("class0")
@@ -60,33 +55,30 @@ public class BeansDescriptorTestCase
                .stereotype("stereotype0")
                .stereotype("stereotype1")
                .stereotype("stereotype2").up();
-     
-      String webXmlGenerated = beansDescr.exportAsString();
-      String webXmlOriginal = getResourceContents("src/test/resources/test-gen-beans10.xml");
-      
-      XmlAssert.assertIdentical(webXmlOriginal, webXmlGenerated);   
-   }
-   
-   //-------------------------------------------------------------------------------------||
-   // Internal Helper --------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
 
-   private String getResourceContents(String resource) throws Exception
-   {
-      assert resource != null && resource.length() > 0 : "Resource must be specified";
-      final BufferedReader reader = new BufferedReader(new FileReader(resource));
-      final StringBuilder builder = new StringBuilder();
-      String line;
-      while ((line = reader.readLine()) != null)
-      {
-         builder.append(line);
-         builder.append("\n");
-      }
-      return builder.toString();
-   }
+        String webXmlGenerated = beansDescr.exportAsString();
+        String webXmlOriginal = getResourceContents("src/test/resources/test-gen-beans10.xml");
 
-   private BeansDescriptor create()
-   {
-      return Descriptors.create(BeansDescriptor.class);
-   }
+        XmlAssert.assertIdentical(webXmlOriginal, webXmlGenerated);
+    }
+
+    // -------------------------------------------------------------------------------------||
+    // Internal Helper --------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+
+    private String getResourceContents(String resource) throws Exception {
+        assert resource != null && resource.length() > 0 : "Resource must be specified";
+        final BufferedReader reader = new BufferedReader(new FileReader(resource));
+        final StringBuilder builder = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            builder.append(line);
+            builder.append("\n");
+        }
+        return builder.toString();
+    }
+
+    private BeansDescriptor create() {
+        return Descriptors.create(BeansDescriptor.class);
+    }
 }

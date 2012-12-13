@@ -27,112 +27,95 @@ import org.jboss.shrinkwrap.descriptor.api.spec.se.manifest.ManifestEntryDef;
 /**
  * @author Davide D'Alto
  */
-public class ManifestEntryDefImpl extends ManifestCommonDefImpl<ManifestEntryDef> implements ManifestEntryDef
-{
+public class ManifestEntryDefImpl extends ManifestCommonDefImpl<ManifestEntryDef> implements ManifestEntryDef {
 
-   private final ManifestModel manifest;
+    private final ManifestModel manifest;
 
-   private final ManifestDescriptor manifestDescriptor;
+    private final ManifestDescriptor manifestDescriptor;
 
-   private final String entryName;
-   
-   public ManifestEntryDefImpl(ManifestDescriptor manifestDescriptor, ManifestModel manifest, String name)
-   {
-      this.manifestDescriptor = manifestDescriptor;
-      this.manifest = manifest;
-      this.entryName = name;
-   }
+    private final String entryName;
 
-   @Override
-   ManifestEntryDef getDescriptor()
-   {
-      return this;
-   }
+    public ManifestEntryDefImpl(ManifestDescriptor manifestDescriptor, ManifestModel manifest, String name) {
+        this.manifestDescriptor = manifestDescriptor;
+        this.manifest = manifest;
+        this.entryName = name;
+    }
 
-   @Override
-   public ManifestDescriptor main()
-   {
-      return manifestDescriptor;
-   }
+    @Override
+    ManifestEntryDef getDescriptor() {
+        return this;
+    }
 
-   @Override
-   public ManifestAppletDef applet(String name)
-   {
-      return manifestDescriptor.applet(name);
-   }
+    @Override
+    public ManifestDescriptor main() {
+        return manifestDescriptor;
+    }
 
-   @Override
-   public ManifestEntryDef entry(String name)
-   {
-      return manifestDescriptor.entry(name);
-   }
+    @Override
+    public ManifestAppletDef applet(String name) {
+        return manifestDescriptor.applet(name);
+    }
 
-   @Override
-   public ManifestEntryDef contentType(String contentType)
-   {
-      includeAttribute(Name.CONTENT_TYPE, contentType);
-      return this;
-   }
+    @Override
+    public ManifestEntryDef entry(String name) {
+        return manifestDescriptor.entry(name);
+    }
 
-   @Override
-   public ManifestEntryDef javaBean()
-   {
-      includeAttribute(JAVA_BEAN, TRUE);
-      return this;
-   }
+    @Override
+    public ManifestEntryDef contentType(String contentType) {
+        includeAttribute(Name.CONTENT_TYPE, contentType);
+        return this;
+    }
 
-   @Override
-   public ManifestEntryDef notJavaBean()
-   {
-      includeAttribute(JAVA_BEAN, FALSE);
-      return this;
-   }
+    @Override
+    public ManifestEntryDef javaBean() {
+        includeAttribute(JAVA_BEAN, TRUE);
+        return this;
+    }
 
-   @Override
-   public ManifestEntryDef xDigestY(String digestAlgorithm)
-   {
-      includeAttribute(X_DIGEST_Y, digestAlgorithm);
-      return this;
-   }
+    @Override
+    public ManifestEntryDef notJavaBean() {
+        includeAttribute(JAVA_BEAN, FALSE);
+        return this;
+    }
 
-   @Override
-   public ManifestEntryDef magic(String magic)
-   {
-      includeAttribute(MAGIC, magic);
-      return this;
-   }
+    @Override
+    public ManifestEntryDef xDigestY(String digestAlgorithm) {
+        includeAttribute(X_DIGEST_Y, digestAlgorithm);
+        return this;
+    }
 
-   @Override
-   void includeAttribute(Name attribute, String value)
-   {
-      Map<String, Attributes> entries = manifest.getEntries();
-      Attributes attributes = entries.containsKey(entryName)
-            ? manifest.getAttributes(entryName)
-            : new Attributes();
-      attributes.put(attribute, value);
-      entries.put(entryName, attributes);
-   }
+    @Override
+    public ManifestEntryDef magic(String magic) {
+        includeAttribute(MAGIC, magic);
+        return this;
+    }
 
-   @Override
-   String findAttribute(Name name)
-   {
-      Map<String, Attributes> entries = manifest.getEntries();
-      if (entries.containsKey(entryName))
-         return manifest.getAttributes(entryName).getValue(name);
+    @Override
+    void includeAttribute(Name attribute, String value) {
+        Map<String, Attributes> entries = manifest.getEntries();
+        Attributes attributes = entries.containsKey(entryName) ? manifest.getAttributes(entryName) : new Attributes();
+        attributes.put(attribute, value);
+        entries.put(entryName, attributes);
+    }
 
-      return null;
-   }
+    @Override
+    String findAttribute(Name name) {
+        Map<String, Attributes> entries = manifest.getEntries();
+        if (entries.containsKey(entryName))
+            return manifest.getAttributes(entryName).getValue(name);
 
-   @Override
-   ManifestModel getManifestModel()
-   {
-      return manifest;
-   }
+        return null;
+    }
 
-   @Override
-   public String getDescriptorName()
-   {
-      return manifestDescriptor.getDescriptorName();
-   }
+    @Override
+    ManifestModel getManifestModel() {
+        return manifest;
+    }
+
+    @Override
+    public String getDescriptorName() {
+        return manifestDescriptor.getDescriptorName();
+    }
 
 }

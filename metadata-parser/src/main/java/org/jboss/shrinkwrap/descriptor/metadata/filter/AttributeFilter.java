@@ -25,125 +25,100 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.traversal.TreeWalker;
 
-
 /**
  * This class analyzes <code>Attribute</code> w3c elements.
- * 
+ *
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
-public class AttributeFilter implements Filter
-{
-   public boolean filter(final Metadata metadata, final TreeWalker walker)
-   {
-      final Node parent = walker.getCurrentNode();
-      final Element element = (Element) parent;
-      
-      if (XsdElementEnum.attribute.isTagNameEqual(element.getTagName())) 
-      {
-         final Node parentNodeWithName = MetadataUtil.getNextParentNodeWithAttr(parent.getParentNode(), "name");
-         if (parentNodeWithName != null)
-         {
-            final Element parentElementWithName = (Element) parentNodeWithName;
-            final String groupOrClassName = MetadataUtil.getAttributeValue(parentElementWithName, "name");
-            if(groupOrClassName != null)
-            {
-               final String ref = MetadataUtil.getAttributeValue(element, "ref");
-               if (XsdElementEnum.group.isTagNameEqual(parentElementWithName.getTagName()) ||
-            	   XsdElementEnum.attributeGroup.isTagNameEqual(parentElementWithName.getTagName())) 
-               {
-            	   if (ref != null) 
-            	   {
-                  	  for (MetadataItem dataType: metadata.getDataTypeList()) {
-                  		 if (dataType.getName().equals(ref)) {
-                  			 final MetadataElement classElement = new MetadataElement();
-                  			 classElement.setName(ref);
-                  			 classElement.setType(dataType.getMappedTo());
-      	                     classElement.setIsAttribute(true);
-      	                     metadata.addClassElement(groupOrClassName, classElement);
-      	                     return true;
-                  		 }
-                  	  }
-                   }
-            	   else 
-            	   {
-                      final MetadataElement groupElement = new MetadataElement(element);
-                      String type = MetadataUtil.getAttributeValue(element, "type");
-                      if (type == null)
-                      {
-                         groupElement.setType("xsd:string");
-                      }
-                      groupElement.setIsAttribute(true);
-                      metadata.addGroupElement(groupOrClassName, groupElement);
-                      return true;
-            	  }
-               }
-               else
-               {
-            	  if (ref != null) 
-            	  {
-                     for (MetadataItem dataType: metadata.getDataTypeList()) 
-                     {
-                        if (dataType.getName().equals(ref)) 
-                        {
-                  		   final MetadataElement classElement = new MetadataElement();
-                  		   classElement.setName(ref);
-                  		   classElement.setType(dataType.getMappedTo());
-      	                   classElement.setIsAttribute(true);
-      	                   metadata.addClassElement(groupOrClassName, classElement);
-      	                   return true;
-                  	    }
-                     }
-                  }
-            	  else 
-            	  {
-                     final Node node = element.getAttributes().getNamedItem("type");
-                     if(node != null)
-                     {
-                    	final boolean isTextOnlyElement = MetadataUtil.hasParentOf(element, XsdElementEnum.simpleContent);
-                        if (node.getNodeValue().endsWith(":ID"))
-                        {
-                        	if (isTextOnlyElement) {
-                                return false;
-                        	}
-                        }                  
-                   
-	                    final MetadataElement classElement = new MetadataElement(element);
-	                    String type = MetadataUtil.getAttributeValue(element, "type");
-	                    if (type == null)
-	                    {
-	                       classElement.setType("xsd:string");
-	                    }
-	                    classElement.setIsAttribute(true);
-	                    metadata.addClassElement(groupOrClassName, classElement);
-	                    return true;
-                     }
-                  }
-               }
-            }
-            else 
-            {
-               // check a global declaration
-               final Element rootElement = (Element) parentNodeWithName;
-               if (XsdElementEnum.schema.isTagNameEqual(rootElement.getTagName())) 
-               {
-            	  final String attrName = MetadataUtil.getAttributeValue(element, "name");
-            	  String type = MetadataUtil.getAttributeValue(element, "type");
-            	  final MetadataItem dataType = new MetadataItem(attrName);
-                  dataType.setMappedTo(type);
-                  if (type == null)
-                  {
-                     dataType.setMappedTo("xsd:string");
-                  }
-                  dataType.setNamespace(metadata.getCurrentNamespace());
-                  dataType.setSchemaName(metadata.getCurrentSchmema());
-                  metadata.getDataTypeList().add(dataType);
-                  return true;
-               }
-            }
-         }
-      }
-      return false;
-   }
-   
-}
+public class AttributeFilter implements Filter {
+    public boolean filter(final Metadata metadata, final TreeWalker walker) {
+        final Node parent = walker.getCurrentNode();
+        final Element element = (Element) parent;
 
+        if (XsdElementEnum.attribute.isTagNameEqual(element.getTagName())) {
+            final Node parentNodeWithName = MetadataUtil.getNextParentNodeWithAttr(parent.getParentNode(), "name");
+            if (parentNodeWithName != null) {
+                final Element parentElementWithName = (Element) parentNodeWithName;
+                final String groupOrClassName = MetadataUtil.getAttributeValue(parentElementWithName, "name");
+                if (groupOrClassName != null) {
+                    final String ref = MetadataUtil.getAttributeValue(element, "ref");
+                    if (XsdElementEnum.group.isTagNameEqual(parentElementWithName.getTagName())
+                        || XsdElementEnum.attributeGroup.isTagNameEqual(parentElementWithName.getTagName())) {
+                        if (ref != null) {
+                            for (MetadataItem dataType : metadata.getDataTypeList()) {
+                                if (dataType.getName().equals(ref)) {
+                                    final MetadataElement classElement = new MetadataElement();
+                                    classElement.setName(ref);
+                                    classElement.setType(dataType.getMappedTo());
+                                    classElement.setIsAttribute(true);
+                                    metadata.addClassElement(groupOrClassName, classElement);
+                                    return true;
+                                }
+                            }
+                        } else {
+                            final MetadataElement groupElement = new MetadataElement(element);
+                            String type = MetadataUtil.getAttributeValue(element, "type");
+                            if (type == null) {
+                                groupElement.setType("xsd:string");
+                            }
+                            groupElement.setIsAttribute(true);
+                            metadata.addGroupElement(groupOrClassName, groupElement);
+                            return true;
+                        }
+                    } else {
+                        if (ref != null) {
+                            for (MetadataItem dataType : metadata.getDataTypeList()) {
+                                if (dataType.getName().equals(ref)) {
+                                    final MetadataElement classElement = new MetadataElement();
+                                    classElement.setName(ref);
+                                    classElement.setType(dataType.getMappedTo());
+                                    classElement.setIsAttribute(true);
+                                    metadata.addClassElement(groupOrClassName, classElement);
+                                    return true;
+                                }
+                            }
+                        } else {
+                            final Node node = element.getAttributes().getNamedItem("type");
+                            if (node != null) {
+                                final boolean isTextOnlyElement = MetadataUtil.hasParentOf(element,
+                                    XsdElementEnum.simpleContent);
+                                if (node.getNodeValue().endsWith(":ID")) {
+                                    if (isTextOnlyElement) {
+                                        return false;
+                                    }
+                                }
+
+                                final MetadataElement classElement = new MetadataElement(element);
+                                String type = MetadataUtil.getAttributeValue(element, "type");
+                                if (type == null) {
+                                    classElement.setType("xsd:string");
+                                }
+                                classElement.setIsAttribute(true);
+                                metadata.addClassElement(groupOrClassName, classElement);
+                                return true;
+                            }
+                        }
+                    }
+                } else {
+                    // check a global declaration
+                    final Element rootElement = (Element) parentNodeWithName;
+                    if (XsdElementEnum.schema.isTagNameEqual(rootElement.getTagName())) {
+                        final String attrName = MetadataUtil.getAttributeValue(element, "name");
+                        String type = MetadataUtil.getAttributeValue(element, "type");
+                        final MetadataItem dataType = new MetadataItem(attrName);
+                        dataType.setMappedTo(type);
+                        if (type == null) {
+                            dataType.setMappedTo("xsd:string");
+                        }
+                        dataType.setNamespace(metadata.getCurrentNamespace());
+                        dataType.setSchemaName(metadata.getCurrentSchmema());
+                        metadata.getDataTypeList().add(dataType);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+}

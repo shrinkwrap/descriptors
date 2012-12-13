@@ -24,66 +24,55 @@ import org.jboss.shrinkwrap.descriptor.api.spec.se.manifest.ManifestAppletDef;
 /**
  * @author Davide D'Alto
  */
-public class ManifestAppletDefImpl extends ManifestDescriptorImpl implements ManifestAppletDef
-{
+public class ManifestAppletDefImpl extends ManifestDescriptorImpl implements ManifestAppletDef {
 
-   private final String appletName;
+    private final String appletName;
 
-   public ManifestAppletDefImpl(String descriptorName, ManifestModel manifest, String appletName)
-   {
-      super(descriptorName, manifest);
-      this.appletName = appletName;
-      Attributes mainAttributes = manifest.getMainAttributes();
-      String extensionListValue = (
-            mainAttributes.containsKey(Name.EXTENSION_LIST)
-                  ? String.valueOf(mainAttributes.get(Name.EXTENSION_LIST)) + " " + appletName
-                  : appletName);
-      manifest.getMainAttributes().put(Name.EXTENSION_LIST, extensionListValue);
-   }
+    public ManifestAppletDefImpl(String descriptorName, ManifestModel manifest, String appletName) {
+        super(descriptorName, manifest);
+        this.appletName = appletName;
+        Attributes mainAttributes = manifest.getMainAttributes();
+        String extensionListValue = (mainAttributes.containsKey(Name.EXTENSION_LIST) ? String.valueOf(mainAttributes
+            .get(Name.EXTENSION_LIST)) + " " + appletName : appletName);
+        manifest.getMainAttributes().put(Name.EXTENSION_LIST, extensionListValue);
+    }
 
-   @Override
-   public ManifestAppletDef appletExtensionName(String name)
-   {
-      includeAttributeWithPrefix(Name.EXTENSION_NAME, name);
-      return this;
-   }
+    @Override
+    public ManifestAppletDef appletExtensionName(String name) {
+        includeAttributeWithPrefix(Name.EXTENSION_NAME, name);
+        return this;
+    }
 
-   @Override
-   public ManifestAppletDef appletSpecificationVersion(String version)
-   {
-      includeAttributeWithPrefix(Name.SPECIFICATION_VERSION, version);
-      return this;
-   }
+    @Override
+    public ManifestAppletDef appletSpecificationVersion(String version) {
+        includeAttributeWithPrefix(Name.SPECIFICATION_VERSION, version);
+        return this;
+    }
 
-   @Override
-   public ManifestAppletDef appletImplementationVersion(String version)
-   {
-      includeAttributeWithPrefix(Name.IMPLEMENTATION_VERSION, version);
-      return this;
-   }
+    @Override
+    public ManifestAppletDef appletImplementationVersion(String version) {
+        includeAttributeWithPrefix(Name.IMPLEMENTATION_VERSION, version);
+        return this;
+    }
 
-   @Override
-   public ManifestAppletDef appletImplementationVendorId(String vendorId)
-   {
-      includeAttributeWithPrefix(Name.IMPLEMENTATION_VENDOR_ID, vendorId);
-      return this;
-   }
+    @Override
+    public ManifestAppletDef appletImplementationVendorId(String vendorId) {
+        includeAttributeWithPrefix(Name.IMPLEMENTATION_VENDOR_ID, vendorId);
+        return this;
+    }
 
-   @Override
-   public ManifestAppletDef appletImplementationUrl(String url)
-   {
-      includeAttributeWithPrefix(Name.IMPLEMENTATION_URL, url);
-      return this;
-   }
+    @Override
+    public ManifestAppletDef appletImplementationUrl(String url) {
+        includeAttributeWithPrefix(Name.IMPLEMENTATION_URL, url);
+        return this;
+    }
 
-   private void includeAttributeWithPrefix(Name name, String value)
-   {
-      super.attribute(addPrefix(name), value);
-   }
+    private void includeAttributeWithPrefix(Name name, String value) {
+        super.attribute(addPrefix(name), value);
+    }
 
-   private String addPrefix(Name extensionName)
-   {
-      return appletName + "-" + extensionName.toString();
-   }
+    private String addPrefix(Name extensionName) {
+        return appletName + "-" + extensionName.toString();
+    }
 
 }
