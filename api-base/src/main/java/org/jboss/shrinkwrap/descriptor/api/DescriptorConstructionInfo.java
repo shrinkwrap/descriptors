@@ -19,76 +19,69 @@ package org.jboss.shrinkwrap.descriptor.api;
 import java.security.AccessController;
 
 /**
- * Value object encompassing data needed to create new {@link Descriptor}
- * instances
- * 
+ * Value object encompassing data needed to create new {@link Descriptor} instances
+ *
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-class DescriptorConstructionInfo
-{
-   //-------------------------------------------------------------------------------------||
-   // Instance Members -------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+class DescriptorConstructionInfo {
+    // -------------------------------------------------------------------------------------||
+    // Instance Members -------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-   /**
-    * Implementation Class of the end-user view
-    */
-   final Class<?> implClass;
+    /**
+     * Implementation Class of the end-user view
+     */
+    final Class<?> implClass;
 
-   /**
-    * Implementation class for the importer
-    */
-   final Class<? extends DescriptorImporter<?>> importerClass;
+    /**
+     * Implementation class for the importer
+     */
+    final Class<? extends DescriptorImporter<?>> importerClass;
 
-   /**
-    * The default name of the Descriptor 
-    */
-   final String defaultName;
+    /**
+     * The default name of the Descriptor
+     */
+    final String defaultName;
 
-   //-------------------------------------------------------------------------------------||
-   // Constructor ------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+    // Constructor ------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-   /**
-    * Creates a new instance using the specified 
-    * @param implClassName
-    * @param modelClassName
-    * @param defaultName The default name for this Descriptor
-    */
-   @SuppressWarnings("unchecked")
-   DescriptorConstructionInfo(final String implClassName, String importerClassName, String defaultName)
-   {
-      // Get the TCCL
-      final ClassLoader tccl = AccessController.doPrivileged(GetTcclAction.INSTANCE);
+    /**
+     * Creates a new instance using the specified
+     *
+     * @param implClassName
+     * @param modelClassName
+     * @param defaultName
+     *            The default name for this Descriptor
+     */
+    @SuppressWarnings("unchecked")
+    DescriptorConstructionInfo(final String implClassName, String importerClassName, String defaultName) {
+        // Get the TCCL
+        final ClassLoader tccl = AccessController.doPrivileged(GetTcclAction.INSTANCE);
 
-      // Load the Implementation class
-      final Class<?> implClass;
-      try
-      {
+        // Load the Implementation class
+        final Class<?> implClass;
+        try {
 
-         implClass = (Class<?>) Class.forName(implClassName, false, tccl);
-      }
-      catch (final ClassNotFoundException e)
-      {
-         throw new IllegalArgumentException("Could not load specified implementation class from " + tccl + ": "
-               + implClassName, e);
-      }
-      this.implClass = implClass;
+            implClass = (Class<?>) Class.forName(implClassName, false, tccl);
+        } catch (final ClassNotFoundException e) {
+            throw new IllegalArgumentException("Could not load specified implementation class from " + tccl + ": "
+                + implClassName, e);
+        }
+        this.implClass = implClass;
 
-      // Load the Implementation class
-      final Class<? extends DescriptorImporter<?>> importerClass;
-      try
-      {
+        // Load the Implementation class
+        final Class<? extends DescriptorImporter<?>> importerClass;
+        try {
 
-         importerClass = (Class<? extends DescriptorImporter<?>>) Class.forName(importerClassName, false, tccl);
-      }
-      catch (final ClassNotFoundException e)
-      {
-         throw new IllegalArgumentException("Could not load specified importer class from " + tccl + ": "
-               + importerClassName, e);
-      }
+            importerClass = (Class<? extends DescriptorImporter<?>>) Class.forName(importerClassName, false, tccl);
+        } catch (final ClassNotFoundException e) {
+            throw new IllegalArgumentException("Could not load specified importer class from " + tccl + ": "
+                + importerClassName, e);
+        }
 
-      this.importerClass = importerClass;
-      this.defaultName = defaultName;
-   }
+        this.importerClass = importerClass;
+        this.defaultName = defaultName;
+    }
 }

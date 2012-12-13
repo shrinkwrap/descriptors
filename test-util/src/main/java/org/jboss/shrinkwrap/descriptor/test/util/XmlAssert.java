@@ -45,256 +45,230 @@ import org.xml.sax.SAXException;
  * @author <a href="mailto:bartosz.majsak@gmail.com">Bartosz Majsak</a>
  * @version $Revision: $
  */
-public final class XmlAssert
-{
-   private static final String XPATH_SCHEMA_LOCATION = "//@*[local-name()='schemaLocation' and namespace-uri()='%s']";
-   private static final String SCHEMA_LOCATION_NOT_DEFINED = "Schema location not defined for %s";
+public final class XmlAssert {
+    private static final String XPATH_SCHEMA_LOCATION = "//@*[local-name()='schemaLocation' and namespace-uri()='%s']";
+    private static final String SCHEMA_LOCATION_NOT_DEFINED = "Schema location not defined for %s";
 
-   /**
-    * Util class, should not be constructed. 
-    */
-   private XmlAssert() {}
-   
-   /**
-    * Verifies if given namespace has proper URI defined using ns:schemaLocation attribute.
-    * 
-    * @param xml The XML to assert against
-    * @param namespaceUri The namespace URI to assert against
-    * @param expectedLocation The expected location for given namespace
-    * @throws Exception Assertion error or XML related parse exceptions
-    */
-   public static void assertSchemaLocation(String xml, String namespaceUri, String expectedLocation) 
-   {
-      final Document doc = create(xml, true);
-      NodeList nodes = extractMatchingNodes(doc, String.format(XPATH_SCHEMA_LOCATION, namespaceUri));
-      Assert.assertFalse(String.format(SCHEMA_LOCATION_NOT_DEFINED, namespaceUri), nodes.getLength() == 0);
-      Assert.assertEquals("Expected schema location is different", expectedLocation, nodes.item(0).getNodeValue());
-   }
-   
-   /**
-    * Verifies if default namespace (xmlns attribute of the root element)
-    * has expected URI.
-    * 
-    * @param xml to be verified
-    * @param expectedNamespace expected value of xmlns attribute
-    * 
-    * @throws Exception Assertion error or XML related parse exceptions.
-    */
-   public static void assertDefaultNamespace(String xml, String expectedURI) 
-   {
-      final Document doc = create(xml, true);
-      Attr xmlnsAttribute = doc.getDocumentElement().getAttributeNode("xmlns");
-      Assert.assertEquals("Expected URI for default namespace is different.", expectedURI, xmlnsAttribute.getValue());
-   }
-   
-   /**
-    * Verifies if given namespace has URI defined.
-    * 
-    * @param xml to be verified
-    * @param namespace
-    * @param expectedURI expected value of xmlns attribute
-    * 
-    * @throws Exception Assertion error or XML related parse exceptions.
-    */
-   public static void assertNamespaceURIDefined(String xml, String namespace, String expectedURI) 
-   {
-      final Document doc = create(xml, true);
-      String actualURI = doc.getDocumentElement().getAttributeNode("xmlns:" + namespace).getValue();
-      Assert.assertEquals("Expected URI is different", expectedURI, actualURI);
-   }
-   
-   /**
-    * Assert that the specified XPath Expression resolves to the specified values.
-    * <br/><br/>
-    * Assertions:<br/>
-    * "XPath expressions doesn't match with given XML" <br/>
-    * "ExpectedValue count should match found Node count" <br/> 
-    * "XPath content should match expected value" <br/>
-    * 
-    * @param xml The XML to assert against
-    * @param expression XPath expression to extract
-    * @param expectedValues The Expected values found by expression
-    * @throws Exception Assertion error or XML/XPath related parse exceptions
-    */
-   public static void assertPresenceUsingXPath(String xml, String expression, String... expectedValues)
-   {
-      
-      if (expectedValues.length == 0) 
-      {
-         throw new IllegalArgumentException("Expected values not specified!");
-      }
-      
-      final Document doc = create(xml, false);
-      
-      final NodeList nodes = extractMatchingNodes(doc, expression);
+    /**
+     * Util class, should not be constructed.
+     */
+    private XmlAssert() {
+    }
 
-      if (nodes.getLength() == 0)
-      {
-          Assert.fail("XPath expressions " + expression + " doesn't match with given XML");
-      }
-      
-      // If not looking for an attribute, count found Node matches
-      if (!expression.contains("@"))
-      {
-         Assert.assertEquals("ExpectedValue count should match found Node count", expectedValues.length,
-               nodes.getLength());
-      }
-      
-      for(int i = 0; i < nodes.getLength(); i++)
-      {
-         Node node = nodes.item(i);
-         Assert.assertEquals(
-               "XPath content should match expected value",
-               expectedValues[i], 
-               node.getTextContent());
-      }
-   }
+    /**
+     * Verifies if given namespace has proper URI defined using ns:schemaLocation attribute.
+     *
+     * @param xml
+     *            The XML to assert against
+     * @param namespaceUri
+     *            The namespace URI to assert against
+     * @param expectedLocation
+     *            The expected location for given namespace
+     * @throws Exception
+     *             Assertion error or XML related parse exceptions
+     */
+    public static void assertSchemaLocation(String xml, String namespaceUri, String expectedLocation) {
+        final Document doc = create(xml, true);
+        NodeList nodes = extractMatchingNodes(doc, String.format(XPATH_SCHEMA_LOCATION, namespaceUri));
+        Assert.assertFalse(String.format(SCHEMA_LOCATION_NOT_DEFINED, namespaceUri), nodes.getLength() == 0);
+        Assert.assertEquals("Expected schema location is different", expectedLocation, nodes.item(0).getNodeValue());
+    }
 
-   public static void assertPresenceUsingXPath(String xml, String expression, Object... expectedValue)
-      throws Exception
-   {
-      String[] strExpectedValue = new String[expectedValue.length];
-      for(int i = 0; i < expectedValue.length; i++)
-      {
-         strExpectedValue[i] = String.valueOf(expectedValue[i]);
-      }
-      assertPresenceUsingXPath(xml, expression, strExpectedValue);
-   }
+    /**
+     * Verifies if default namespace (xmlns attribute of the root element) has expected URI.
+     *
+     * @param xml
+     *            to be verified
+     * @param expectedNamespace
+     *            expected value of xmlns attribute
+     *
+     * @throws Exception
+     *             Assertion error or XML related parse exceptions.
+     */
+    public static void assertDefaultNamespace(String xml, String expectedURI) {
+        final Document doc = create(xml, true);
+        Attr xmlnsAttribute = doc.getDocumentElement().getAttributeNode("xmlns");
+        Assert.assertEquals("Expected URI for default namespace is different.", expectedURI, xmlnsAttribute.getValue());
+    }
 
-   /**
-    * Verifies if XML file does not contain elements matching
-    * given XPath expression.
-    * 
-    * @param xml The XML file to verify.
-    * @param expression The XPath expression to evaluate.
-    * @throws Exception Assertion error or XML/XPath related parse exceptions
-    */
-   public static void assertAbsenceUsingXPath(String xml, String expression)
-   {
-      final Document doc = create(xml, false);
-      
-      final NodeList nodes = extractMatchingNodes(doc, expression);
+    /**
+     * Verifies if given namespace has URI defined.
+     *
+     * @param xml
+     *            to be verified
+     * @param namespace
+     * @param expectedURI
+     *            expected value of xmlns attribute
+     *
+     * @throws Exception
+     *             Assertion error or XML related parse exceptions.
+     */
+    public static void assertNamespaceURIDefined(String xml, String namespace, String expectedURI) {
+        final Document doc = create(xml, true);
+        String actualURI = doc.getDocumentElement().getAttributeNode("xmlns:" + namespace).getValue();
+        Assert.assertEquals("Expected URI is different", expectedURI, actualURI);
+    }
 
-      int nodesAmount = nodes.getLength();
-      if (nodesAmount != 0)
-      {
-          Assert.fail("XPath expressions " + expression + " matches with given XML." + nodesAmount + " node(s) found.");
-      }
-   }
-   
-   /**
-    * Asserts equality of two XML files comparing flatten versions - 
-    * stripped from leading and trailing whitespaces and those between xml nodes.
-    *  
-    * @param expected
-    * @param actual
-    * 
-    * @throws Exception Assertion error when given string don't match
-    */
-   public static void assertIdentical(String expected, String actual)
-   {
-      XMLUnit.setIgnoreWhitespace(true);
-      XMLUnit.setIgnoreComments(true);
-      XMLUnit.setNormalizeWhitespace(true);
+    /**
+     * Assert that the specified XPath Expression resolves to the specified values. <br/>
+     * <br/>
+     * Assertions:<br/>
+     * "XPath expressions doesn't match with given XML" <br/>
+     * "ExpectedValue count should match found Node count" <br/>
+     * "XPath content should match expected value" <br/>
+     *
+     * @param xml
+     *            The XML to assert against
+     * @param expression
+     *            XPath expression to extract
+     * @param expectedValues
+     *            The Expected values found by expression
+     * @throws Exception
+     *             Assertion error or XML/XPath related parse exceptions
+     */
+    public static void assertPresenceUsingXPath(String xml, String expression, String... expectedValues) {
 
-      try
-      {
-         Diff diff = new Diff(expected, actual);
-         assertTrue("pieces of XML are similar " + diff, diff.similar());
-         assertTrue("but are they identical? " + diff, diff.identical());
-      }
-      catch (SAXException e)
-      {
-         throw new RuntimeException(e);
-      }
-      catch (IOException e)
-      {
-         throw new RuntimeException(e);
-      }
-      
-   }
-   
-   /**
-    * Asserts similarity of two XML files comparing flatten versions - 
-    * stripped from leading and trailing whitespaces and those between xml nodes.
-    * Two XMLs are considered similar when they contain the same element but
-    * they might be present in different order. 
-    *  
-    * @param firstXml
-    * @param secondXml
-    * 
-    * @throws Exception Assertion error when given string don't match
-    */
-   public static void assertSimilar(String firstXml, String secondXml)
-   {
-      XMLUnit.setIgnoreWhitespace(true);
-      XMLUnit.setIgnoreComments(true);
-      XMLUnit.setNormalizeWhitespace(true);
+        if (expectedValues.length == 0) {
+            throw new IllegalArgumentException("Expected values not specified!");
+        }
 
-      try
-      {
-         Diff diff = new Diff(firstXml, secondXml);
-         assertTrue("but are they identical? " + diff, diff.identical());
-      }
-      catch (SAXException e)
-      {
-         throw new RuntimeException(e);
-      }
-      catch (IOException e)
-      {
-         throw new RuntimeException(e);
-      }
-      
-   }
-   
-   // private
-   
-   private static Document create(String xml, boolean namespaceAware) 
-   {
-       try
-       {
-          DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-          documentBuilderFactory.setNamespaceAware(namespaceAware);
-          return documentBuilderFactory.newDocumentBuilder()
-                                       .parse(new ByteArrayInputStream(xml.getBytes()));
-       }
-       catch (final IOException ioe)
-       {
-          throw new RuntimeException(ioe);
-       }
-       catch (final SAXException se)
-       {
-          throw new RuntimeException(se);
-       }
-       catch (final ParserConfigurationException pce)
-       {
-          throw new RuntimeException(pce);
-       }
-       
-   }
-   
-   private static NodeList extractMatchingNodes(final Document doc, String xpathExpression) 
-   {
+        final Document doc = create(xml, false);
+
+        final NodeList nodes = extractMatchingNodes(doc, expression);
+
+        if (nodes.getLength() == 0) {
+            Assert.fail("XPath expressions " + expression + " doesn't match with given XML");
+        }
+
+        // If not looking for an attribute, count found Node matches
+        if (!expression.contains("@")) {
+            Assert.assertEquals("ExpectedValue count should match found Node count", expectedValues.length,
+                nodes.getLength());
+        }
+
+        for (int i = 0; i < nodes.getLength(); i++) {
+            Node node = nodes.item(i);
+            Assert.assertEquals("XPath content should match expected value", expectedValues[i], node.getTextContent());
+        }
+    }
+
+    public static void assertPresenceUsingXPath(String xml, String expression, Object... expectedValue)
+        throws Exception {
+        String[] strExpectedValue = new String[expectedValue.length];
+        for (int i = 0; i < expectedValue.length; i++) {
+            strExpectedValue[i] = String.valueOf(expectedValue[i]);
+        }
+        assertPresenceUsingXPath(xml, expression, strExpectedValue);
+    }
+
+    /**
+     * Verifies if XML file does not contain elements matching given XPath expression.
+     *
+     * @param xml
+     *            The XML file to verify.
+     * @param expression
+     *            The XPath expression to evaluate.
+     * @throws Exception
+     *             Assertion error or XML/XPath related parse exceptions
+     */
+    public static void assertAbsenceUsingXPath(String xml, String expression) {
+        final Document doc = create(xml, false);
+
+        final NodeList nodes = extractMatchingNodes(doc, expression);
+
+        int nodesAmount = nodes.getLength();
+        if (nodesAmount != 0) {
+            Assert.fail("XPath expressions " + expression + " matches with given XML." + nodesAmount
+                + " node(s) found.");
+        }
+    }
+
+    /**
+     * Asserts equality of two XML files comparing flatten versions - stripped from leading and trailing whitespaces and
+     * those between xml nodes.
+     *
+     * @param expected
+     * @param actual
+     *
+     * @throws Exception
+     *             Assertion error when given string don't match
+     */
+    public static void assertIdentical(String expected, String actual) {
+        XMLUnit.setIgnoreWhitespace(true);
+        XMLUnit.setIgnoreComments(true);
+        XMLUnit.setNormalizeWhitespace(true);
+
+        try {
+            Diff diff = new Diff(expected, actual);
+            assertTrue("pieces of XML are similar " + diff, diff.similar());
+            assertTrue("but are they identical? " + diff, diff.identical());
+        } catch (SAXException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    /**
+     * Asserts similarity of two XML files comparing flatten versions - stripped from leading and trailing whitespaces
+     * and those between xml nodes. Two XMLs are considered similar when they contain the same element but they might be
+     * present in different order.
+     *
+     * @param firstXml
+     * @param secondXml
+     *
+     * @throws Exception
+     *             Assertion error when given string don't match
+     */
+    public static void assertSimilar(String firstXml, String secondXml) {
+        XMLUnit.setIgnoreWhitespace(true);
+        XMLUnit.setIgnoreComments(true);
+        XMLUnit.setNormalizeWhitespace(true);
+
+        try {
+            Diff diff = new Diff(firstXml, secondXml);
+            assertTrue("but are they identical? " + diff, diff.identical());
+        } catch (SAXException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    // private
+
+    private static Document create(String xml, boolean namespaceAware) {
+        try {
+            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            documentBuilderFactory.setNamespaceAware(namespaceAware);
+            return documentBuilderFactory.newDocumentBuilder().parse(new ByteArrayInputStream(xml.getBytes()));
+        } catch (final IOException ioe) {
+            throw new RuntimeException(ioe);
+        } catch (final SAXException se) {
+            throw new RuntimeException(se);
+        } catch (final ParserConfigurationException pce) {
+            throw new RuntimeException(pce);
+        }
+
+    }
+
+    private static NodeList extractMatchingNodes(final Document doc, String xpathExpression) {
         final XPathExpression xPathExpression;
-        try 
-        {
-            xPathExpression = XPathFactory.newInstance().newXPath()
-                                          .compile(xpathExpression);
-        } catch (final XPathExpressionException xee) 
-        {
+        try {
+            xPathExpression = XPathFactory.newInstance().newXPath().compile(xpathExpression);
+        } catch (final XPathExpressionException xee) {
             throw new RuntimeException(xee);
         }
 
         final NodeList nodes;
-        try 
-        {
-            nodes = (NodeList) xPathExpression.evaluate(doc,
-                    XPathConstants.NODESET);
-        } catch (final XPathExpressionException xee) 
-        {
+        try {
+            nodes = (NodeList) xPathExpression.evaluate(doc, XPathConstants.NODESET);
+        } catch (final XPathExpressionException xee) {
             throw new RuntimeException(xee);
         }
         return nodes;
-   }
+    }
 
 }

@@ -26,8 +26,8 @@ import org.w3c.dom.traversal.TreeWalker;
 
 /**
  * Class which is responsible for <code>Group</code> w3c elements.
- * 
- <p>
+ *
+ * <p>
  * <code>
     <group
       id = ID
@@ -39,53 +39,43 @@ import org.w3c.dom.traversal.TreeWalker;
       Content: (annotation?, (all | choice | sequence)?)
     </group>
  * </code>
- * 
+ *
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
-public class GroupFilter implements Filter
-{
-   public boolean filter(final Metadata metadata, final TreeWalker walker)
-   {
-      final Node parent = walker.getCurrentNode();
-      final Element element = (Element) parent;
-      
-      if (XsdElementEnum.group.isTagNameEqual(element.getTagName())) 
-      {
-         final Node refNode  = element.getAttributes().getNamedItem("ref");
-     
-         if (refNode != null)
-         {
-            final MetadataElement refElement = new MetadataElement(element);  
-            refElement.setIsRef(true);
-                             
-            final Node parentNodeWithMaxOccurs = MetadataUtil.getNextParentNodeWithAttr(parent, "maxOccurs");
-            final Element p = (Element) parentNodeWithMaxOccurs;
-            final String maxOccurs = MetadataUtil.getAttributeValue(p, "maxOccurs");
-            if (maxOccurs != null && !maxOccurs.equals("1"))
-            {
-               refElement.setMaxOccurs("unbounded");
-            }
-            
-            final Node parentNodeWithName = MetadataUtil.getNextParentNodeWithAttr(parent.getParentNode(), "name");
-            if (parentNodeWithName != null)
-            {
-               final Element parentElementWithName = (Element) parentNodeWithName;
-               final String groupOrClassName = MetadataUtil.getAttributeValue(parentElementWithName, "name");
-               if (XsdElementEnum.group.isTagNameEqual(parentElementWithName.getTagName())) 
-               {                  
-                  metadata.addGroupReference(groupOrClassName, refElement);
-                  return true;
-               }
-               else
-               {
-                  metadata.addClassReference(groupOrClassName, refElement);
-                  return true;
-               }
-            }
-         }         
-      }
-      
-      return false;
-   }
-}
+public class GroupFilter implements Filter {
+    public boolean filter(final Metadata metadata, final TreeWalker walker) {
+        final Node parent = walker.getCurrentNode();
+        final Element element = (Element) parent;
 
+        if (XsdElementEnum.group.isTagNameEqual(element.getTagName())) {
+            final Node refNode = element.getAttributes().getNamedItem("ref");
+
+            if (refNode != null) {
+                final MetadataElement refElement = new MetadataElement(element);
+                refElement.setIsRef(true);
+
+                final Node parentNodeWithMaxOccurs = MetadataUtil.getNextParentNodeWithAttr(parent, "maxOccurs");
+                final Element p = (Element) parentNodeWithMaxOccurs;
+                final String maxOccurs = MetadataUtil.getAttributeValue(p, "maxOccurs");
+                if (maxOccurs != null && !maxOccurs.equals("1")) {
+                    refElement.setMaxOccurs("unbounded");
+                }
+
+                final Node parentNodeWithName = MetadataUtil.getNextParentNodeWithAttr(parent.getParentNode(), "name");
+                if (parentNodeWithName != null) {
+                    final Element parentElementWithName = (Element) parentNodeWithName;
+                    final String groupOrClassName = MetadataUtil.getAttributeValue(parentElementWithName, "name");
+                    if (XsdElementEnum.group.isTagNameEqual(parentElementWithName.getTagName())) {
+                        metadata.addGroupReference(groupOrClassName, refElement);
+                        return true;
+                    } else {
+                        metadata.addClassReference(groupOrClassName, refElement);
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+}

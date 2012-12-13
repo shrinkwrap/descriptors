@@ -16,52 +16,46 @@
  */
 package org.jboss.shrinkwrap.descriptor.spi.node;
 
-
 /**
  * Helper util for building {@link Query} implementations
  *
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-final class QueryUtil
-{
+final class QueryUtil {
 
-   //-------------------------------------------------------------------------------------||
-   // Constructor ------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+    // Constructor ------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-   /**
-    * No instances allowed
-    */
-   private QueryUtil()
-   {
-      throw new UnsupportedOperationException("No instances");
-   }
+    /**
+     * No instances allowed
+     */
+    private QueryUtil() {
+        throw new UnsupportedOperationException("No instances");
+    }
 
-   //-------------------------------------------------------------------------------------||
-   // Functional Methods -----------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+    // Functional Methods -----------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-   /**
-    * Validates input
-    * 
-    * @param node
-    * @param patterns
-    * @throws IllegalArgumentException If the {@link Node} is not
-    *    specified or no {@link Pattern}s are specified
-    */
-   public static void validateNodeAndPatterns(final Node node, final Pattern... patterns)
-         throws IllegalArgumentException
-   {
-      // Precondition checks
-      if (node == null)
-      {
-         throw new IllegalArgumentException("node must be specified");
-      }
-      if (patterns == null || patterns.length == 0)
-      {
-         throw new IllegalArgumentException("At least one pattern must be specified");
-      }
+    /**
+     * Validates input
+     *
+     * @param node
+     * @param patterns
+     * @throws IllegalArgumentException
+     *             If the {@link Node} is not specified or no {@link Pattern}s are specified
+     */
+    public static void validateNodeAndPatterns(final Node node, final Pattern... patterns)
+        throws IllegalArgumentException {
+        // Precondition checks
+        if (node == null) {
+            throw new IllegalArgumentException("node must be specified");
+        }
+        if (patterns == null || patterns.length == 0) {
+            throw new IllegalArgumentException("At least one pattern must be specified");
+        }
 
-      // OK
-   }
+        // OK
+    }
 }

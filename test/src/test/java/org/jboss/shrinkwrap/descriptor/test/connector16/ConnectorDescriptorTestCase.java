@@ -26,29 +26,24 @@ import org.jboss.shrinkwrap.descriptor.api.connector16.ConnectorDescriptor;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Test;
 
+public class ConnectorDescriptorTestCase {
 
-public class ConnectorDescriptorTestCase
-{
-   
-   //-------------------------------------------------------------------------------------||
-   // Basic API --------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+    // Basic API --------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-   @Test
-   public void testDefaultName() throws Exception
-   {
-      Assert.assertEquals("ra.xml", create().getDescriptorName());
-   }
+    @Test
+    public void testDefaultName() throws Exception {
+        Assert.assertEquals("ra.xml", create().getDescriptorName());
+    }
 
-   @Test
-   public void testSetName() throws Exception
-   {
-      Assert.assertEquals("test.xml", Descriptors.create(ConnectorDescriptor.class, "test.xml").getDescriptorName());
-   }
-   
-   @Test
-   public void testGenExample() throws Exception 
-   {
+    @Test
+    public void testSetName() throws Exception {
+        Assert.assertEquals("test.xml", Descriptors.create(ConnectorDescriptor.class, "test.xml").getDescriptorName());
+    }
+
+    @Test
+    public void testGenExample() throws Exception {
       ConnectorDescriptor jca16Descr = create()
          .addDefaultNamespaces()
          .version("1.6")
@@ -116,35 +111,31 @@ public class ConnectorDescriptorTestCase
                .description("description6")
                .securityPermissionSpec("security-permission-spec0").up().up()
         .requiredWorkContext("required-work-context0");
-         
-       String createdRaXml = jca16Descr.exportAsString();
-       String generatedRaXml = getResourceContents("src/test/resources/test-gen-connector16.xml");
- 
-       XmlAssert.assertIdentical(createdRaXml, generatedRaXml);       
-   }
-   
- 
-   //-------------------------------------------------------------------------------------||
-   // Internal Helper --------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
 
-   private String getResourceContents(String resource) throws Exception
-   {
-      assert resource != null && resource.length() > 0 : "Resource must be specified";
-      final BufferedReader reader = new BufferedReader(new FileReader(resource));
-      final StringBuilder builder = new StringBuilder();
-      String line;
-      while ((line = reader.readLine()) != null)
-      {
-         builder.append(line);
-         builder.append("\n");
-      }
-      return builder.toString();
-   }
-   
-   private ConnectorDescriptor create()
-   {
-      return Descriptors.create(ConnectorDescriptor.class);
-   }
-   
+        String createdRaXml = jca16Descr.exportAsString();
+        String generatedRaXml = getResourceContents("src/test/resources/test-gen-connector16.xml");
+
+        XmlAssert.assertIdentical(createdRaXml, generatedRaXml);
+    }
+
+    // -------------------------------------------------------------------------------------||
+    // Internal Helper --------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+
+    private String getResourceContents(String resource) throws Exception {
+        assert resource != null && resource.length() > 0 : "Resource must be specified";
+        final BufferedReader reader = new BufferedReader(new FileReader(resource));
+        final StringBuilder builder = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            builder.append(line);
+            builder.append("\n");
+        }
+        return builder.toString();
+    }
+
+    private ConnectorDescriptor create() {
+        return Descriptors.create(ConnectorDescriptor.class);
+    }
+
 }

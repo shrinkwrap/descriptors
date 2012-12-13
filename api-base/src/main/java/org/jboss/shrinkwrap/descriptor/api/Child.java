@@ -17,17 +17,18 @@
 package org.jboss.shrinkwrap.descriptor.api;
 
 /**
- * Represents a child element in a hierarchial {@link Descriptor} structure
- * capable of navigating up a level to its parent
- * 
+ * Represents a child element in a hierarchial {@link Descriptor} structure capable of navigating up a level to its
+ * parent
+ *
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public interface Child<T>
-{
-   /**
-    * Returns the parent of this {@link Child}
-    * @return The parent of this {@link Child}
-    */
-   public T up();
+public interface Child<T> {
+
+    /**
+     * Returns the parent of this {@link Child}
+     *
+     * @return The parent of this {@link Child}
+     */
+    T up();
 }

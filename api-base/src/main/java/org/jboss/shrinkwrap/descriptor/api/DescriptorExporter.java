@@ -19,23 +19,23 @@ package org.jboss.shrinkwrap.descriptor.api;
 import java.io.OutputStream;
 
 /**
- * An entity capable of exporting a {@link Descriptor} to 
- * an {@link OutputStream}.
- * 
- * @param <T> {@link Descriptor} type supported
+ * An entity capable of exporting a {@link Descriptor} to an {@link OutputStream}.
+ *
+ * @param <T>
+ *            {@link Descriptor} type supported
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
  */
-public interface DescriptorExporter<T extends Descriptor>
-{
+public interface DescriptorExporter<T extends Descriptor> {
 
-   /**
-    * Exports the specified {@link Descriptor} to the specified
-    * {@link OutputStream}.
-    * 
-    * @param descriptor
-    * @param out
-    * @throws DescriptorExportException If an error occurred during export
-    * @throws IllegalArgumentException If either argument is not specified
-    */
-   void to(T descriptor, OutputStream out) throws DescriptorExportException, IllegalArgumentException;
+    /**
+     * Exports the specified {@link Descriptor} to the specified {@link OutputStream}.
+     *
+     * @param descriptor
+     * @param out
+     * @throws DescriptorExportException
+     *             If an error occurred during export
+     * @throws IllegalArgumentException
+     *             If either argument is not specified
+     */
+    void to(T descriptor, OutputStream out) throws DescriptorExportException, IllegalArgumentException;
 }

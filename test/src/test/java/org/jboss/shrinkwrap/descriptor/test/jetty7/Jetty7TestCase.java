@@ -15,13 +15,11 @@ import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-public class Jetty7TestCase
-{
-   private static final Logger log = Logger.getLogger(Jetty7TestCase.class.getName());
-   
-   @Test
-   public void testJettyConfiguration() throws Exception 
-   {
+public class Jetty7TestCase {
+    private static final Logger log = Logger.getLogger(Jetty7TestCase.class.getName());
+
+    @Test
+    public void testJettyConfiguration() throws Exception {
       final JettyDescriptor jetty7Generated = create().clazz("class0").id("id0")
         .getOrCreateNew().clazz("class1").id("id1")
            .createArg().type("type0")

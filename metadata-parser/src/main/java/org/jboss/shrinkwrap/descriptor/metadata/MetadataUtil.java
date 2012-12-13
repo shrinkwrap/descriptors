@@ -29,232 +29,216 @@ import org.w3c.dom.NodeList;
  *
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
-public class MetadataUtil
-{
+public class MetadataUtil {
     private static final Logger log = Logger.getLogger(MetadataUtil.class.getName());
     private static final char NEWLINE = '\n';
     private static final String LINE = "--------------------------------------------";
-    
-   /**
-    * Returns the attribute value for the given attribute name.
-    * @param element the w3c dom element.
-    * @param name the attribute name
-    * @return if present, the the extracted attribute value, otherwise null.
-    */
-   public static String getAttributeValue(final Element element, final String name)
-   {
-      final Node node = element.getAttributes().getNamedItem(name);
-      if (node != null)
-      {
-         return node.getNodeValue();
-      }
 
-      return null;
-   }
+    /**
+     * Returns the attribute value for the given attribute name.
+     *
+     * @param element
+     *            the w3c dom element.
+     * @param name
+     *            the attribute name
+     * @return if present, the the extracted attribute value, otherwise null.
+     */
+    public static String getAttributeValue(final Element element, final String name) {
+        final Node node = element.getAttributes().getNamedItem(name);
+        if (node != null) {
+            return node.getNodeValue();
+        }
 
-   /**
-    * Returns the next parent node which has the specific attribute name defined.
-    * @param parent the w3c node from which the search will start.
-    * @param attrName the attribute name which is searched for.
-    * @return a parent node, if the attribute is found, otherwise null.
-    */
-   public static Node getNextParentNodeWithAttr(final Node parent, final String attrName)
-   {
-      Node parentNode = parent;
-      Element parendElement = (Element) parentNode;
-      Node valueNode = parendElement.getAttributes().getNamedItem(attrName);
-      while (valueNode == null)
-      {
-         parentNode = parentNode.getParentNode();
-         if (parentNode != null)
-         {
-            if (parentNode.getNodeType() == Node.ELEMENT_NODE)
-            {
-               parendElement = (Element) parentNode;
-               valueNode = parendElement.getAttributes().getNamedItem(attrName);
+        return null;
+    }
+
+    /**
+     * Returns the next parent node which has the specific attribute name defined.
+     *
+     * @param parent
+     *            the w3c node from which the search will start.
+     * @param attrName
+     *            the attribute name which is searched for.
+     * @return a parent node, if the attribute is found, otherwise null.
+     */
+    public static Node getNextParentNodeWithAttr(final Node parent, final String attrName) {
+        Node parentNode = parent;
+        Element parendElement = (Element) parentNode;
+        Node valueNode = parendElement.getAttributes().getNamedItem(attrName);
+        while (valueNode == null) {
+            parentNode = parentNode.getParentNode();
+            if (parentNode != null) {
+                if (parentNode.getNodeType() == Node.ELEMENT_NODE) {
+                    parendElement = (Element) parentNode;
+                    valueNode = parendElement.getAttributes().getNamedItem(attrName);
+                }
+            } else {
+                break;
             }
-         }
-         else
-         {
-            break;
-         }
-      }
+        }
 
-      return parendElement;
-   }
+        return parendElement;
+    }
 
-   /**
-    * Checks the existence of a w3c child element.
-    * @param parentElement the element from which the search starts.
-    * @param child the <code>XsdElementEnum</code> specifying the child element.
-    * @return true, if found, otherwise false.
-    */
-   public static boolean hasChildOf(final Element parentElement, XsdElementEnum child )
-   {
-      NodeList nodeList = parentElement.getChildNodes();   
-      for (int i=0; i<nodeList.getLength(); i++)
-      {
-         final Node childNode = nodeList.item(i);
-         if (childNode.getNodeType() == Node.ELEMENT_NODE)
-         {
-            final Element childElement = (Element) childNode;
-            if (child.isTagNameEqual(childElement.getTagName())) 
-            {
-               return true;
+    /**
+     * Checks the existence of a w3c child element.
+     *
+     * @param parentElement
+     *            the element from which the search starts.
+     * @param child
+     *            the <code>XsdElementEnum</code> specifying the child element.
+     * @return true, if found, otherwise false.
+     */
+    public static boolean hasChildOf(final Element parentElement, XsdElementEnum child) {
+        NodeList nodeList = parentElement.getChildNodes();
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            final Node childNode = nodeList.item(i);
+            if (childNode.getNodeType() == Node.ELEMENT_NODE) {
+                final Element childElement = (Element) childNode;
+                if (child.isTagNameEqual(childElement.getTagName())) {
+                    return true;
+                }
             }
-         }
-      }
-      return false;      
-   }
-   
-   /**
-    * Checks the existence of a w3c child element.
-    * @param parentElement the element from which the search starts.
-    * @param child the <code>XsdElementEnum</code> specifying the child element.
-    * @return true, if found, otherwise false.
-    */
-   public static boolean hasChildsOf(final Element parentElement, XsdElementEnum child )
-   {
-      NodeList nodeList = parentElement.getChildNodes();   
-      for (int i=0; i<nodeList.getLength(); i++)
-      {
-         final Node childNode = nodeList.item(i);
-         if (childNode.getNodeType() == Node.ELEMENT_NODE)
-         {
-            final Element childElement = (Element) childNode;
-            if (child.isTagNameEqual(childElement.getTagName())) 
-            {
-               return true;
+        }
+        return false;
+    }
+
+    /**
+     * Checks the existence of a w3c child element.
+     *
+     * @param parentElement
+     *            the element from which the search starts.
+     * @param child
+     *            the <code>XsdElementEnum</code> specifying the child element.
+     * @return true, if found, otherwise false.
+     */
+    public static boolean hasChildsOf(final Element parentElement, XsdElementEnum child) {
+        NodeList nodeList = parentElement.getChildNodes();
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            final Node childNode = nodeList.item(i);
+            if (childNode.getNodeType() == Node.ELEMENT_NODE) {
+                final Element childElement = (Element) childNode;
+                if (child.isTagNameEqual(childElement.getTagName())) {
+                    return true;
+                }
+
+                if (childElement.hasChildNodes()) {
+                    if (hasChildsOf(childElement, child)) {
+                        return true;
+                    }
+                }
             }
-            
-            if (childElement.hasChildNodes())
-            {
-            	if (hasChildsOf(childElement, child)) {
-            		return true;
-            	}
+        }
+        return false;
+    }
+
+    /**
+     * Checks for the first parent node occurrence of the a w3c parentEnum element.
+     *
+     * @param parentElement
+     *            the element from which the search starts.
+     * @param parentEnum
+     *            the <code>XsdElementEnum</code> specifying the parent element.
+     * @return true, if found, otherwise false.
+     */
+    public static boolean hasParentOf(final Element parentElement, XsdElementEnum parentEnum) {
+        Node parent = parentElement.getParentNode();
+        while (parent != null) {
+            if (parent.getNodeType() == Node.ELEMENT_NODE) {
+                final Element parentElm = (Element) parent;
+                if (parentEnum.isTagNameEqual(parentElm.getTagName())) {
+                    return true;
+                }
             }
-         }
-      }
-      return false;      
-   }
-   
+            parent = parent.getParentNode();
+        }
+        return false;
+    }
 
-   /**
-    * Checks for the first parent node occurrence of the a w3c parentEnum element.
-    * @param parentElement the element from which the search starts.
-    * @param parentEnum the <code>XsdElementEnum</code> specifying the parent element.
-    * @return true, if found, otherwise false.
-    */
-   public static boolean hasParentOf(final Element parentElement, XsdElementEnum parentEnum )
-   {
-      Node parent = parentElement.getParentNode();   
-      while (parent != null) {
-    	  if (parent.getNodeType() == Node.ELEMENT_NODE)
-          {
-             final Element parentElm = (Element) parent;
-             if (parentEnum.isTagNameEqual(parentElm.getTagName())) 
-             {
-                return true;
-             }             
-          }
-    	  parent = parent.getParentNode();
-      }
-      return false;      
-   }
-   
-   /**
-    * Logs out metadata information.
-    * @param metadata
-    */
-   public void log(final Metadata metadata)
-   {
-      final StringBuilder sb = new StringBuilder();
-       
-      for (final MetadataItem item : metadata.getGroupList())
-      {   
-         sb.append(LINE);
-         sb.append(NEWLINE);
-         sb.append(LINE);
-         sb.append("Group: " + item.getName());
-         sb.append(NEWLINE);
-         for (MetadataElement element : item.getElements())
-         {
-            sb.append("  Element  : " + element.getName());
-            sb.append(NEWLINE);
-            sb.append("  Type     : " + element.getType());
-            sb.append(NEWLINE);
-            sb.append("  MinOccurs: " + element.getMinOccurs());
-            sb.append(NEWLINE);
-            sb.append("  MaxOccurs: " + element.getMaxOccurs());
-            sb.append(NEWLINE);
-            sb.append("  IsAttr   : " + element.getIsAttribute());
-            sb.append(NEWLINE);
-            sb.append(NEWLINE);
-         }
+    /**
+     * Logs out metadata information.
+     *
+     * @param metadata
+     */
+    public void log(final Metadata metadata) {
+        final StringBuilder sb = new StringBuilder();
 
-         for (MetadataElement element : item.getReferences())
-         {
-           sb.append("  Ref      : " + element.getRef());
-           sb.append(NEWLINE);
-         }
-         sb.append(NEWLINE);
-         
-      }
+        for (final MetadataItem item : metadata.getGroupList()) {
+            sb.append(LINE);
+            sb.append(NEWLINE);
+            sb.append(LINE);
+            sb.append("Group: " + item.getName());
+            sb.append(NEWLINE);
+            for (MetadataElement element : item.getElements()) {
+                sb.append("  Element  : " + element.getName());
+                sb.append(NEWLINE);
+                sb.append("  Type     : " + element.getType());
+                sb.append(NEWLINE);
+                sb.append("  MinOccurs: " + element.getMinOccurs());
+                sb.append(NEWLINE);
+                sb.append("  MaxOccurs: " + element.getMaxOccurs());
+                sb.append(NEWLINE);
+                sb.append("  IsAttr   : " + element.getIsAttribute());
+                sb.append(NEWLINE);
+                sb.append(NEWLINE);
+            }
 
-      for (MetadataEnum enumItem : metadata.getEnumList())
-      {
-         sb.append(LINE);
-         sb.append(NEWLINE);
-         sb.append("Enum: " + enumItem.getName());
-         sb.append(NEWLINE);
-         for (String enumValue : enumItem.getValueList())
-         {
-             sb.append("  Value    : " + enumValue);
-             sb.append(NEWLINE);
-         }
-         sb.append(NEWLINE);
-      }
+            for (MetadataElement element : item.getReferences()) {
+                sb.append("  Ref      : " + element.getRef());
+                sb.append(NEWLINE);
+            }
+            sb.append(NEWLINE);
 
-      for (MetadataItem item : metadata.getClassList())
-      {
-         sb.append(LINE);
-         sb.append(NEWLINE);
-         sb.append("Class: " + item.getName());
-         sb.append(NEWLINE);
-         for (MetadataElement element : item.getElements())
-         {
-            sb.append("  Element  : " + element.getName());
-            sb.append(NEWLINE);
-            sb.append("  Type     : " + element.getType());
-            sb.append(NEWLINE);
-            sb.append("  MinOccurs: " + element.getMinOccurs());
-            sb.append(NEWLINE);
-            sb.append("  MaxOccurs: " + element.getMaxOccurs());
-            sb.append(NEWLINE);
-            sb.append("  IsAttr   : " + element.getIsAttribute());
-            sb.append(NEWLINE);
-            sb.append(NEWLINE);
-         }
+        }
 
-         for (MetadataElement element : item.getReferences())
-         {
-             sb.append("  Ref      : " + element.getRef());
-             sb.append(NEWLINE);
-         }
-         sb.append(NEWLINE);
-      }
+        for (MetadataEnum enumItem : metadata.getEnumList()) {
+            sb.append(LINE);
+            sb.append(NEWLINE);
+            sb.append("Enum: " + enumItem.getName());
+            sb.append(NEWLINE);
+            for (String enumValue : enumItem.getValueList()) {
+                sb.append("  Value    : " + enumValue);
+                sb.append(NEWLINE);
+            }
+            sb.append(NEWLINE);
+        }
 
-      for (MetadataItem dataType : metadata.getDataTypeList())
-      {
-         sb.append(LINE);
-         sb.append(NEWLINE);
-         sb.append("Name    : " + dataType.getName());
-         sb.append(NEWLINE);
-         sb.append("MappedTo: " + dataType.getMappedTo());
-         sb.append(NEWLINE);
-      }
-      
-      // Log
-      log.info(sb.toString());
-   }
+        for (MetadataItem item : metadata.getClassList()) {
+            sb.append(LINE);
+            sb.append(NEWLINE);
+            sb.append("Class: " + item.getName());
+            sb.append(NEWLINE);
+            for (MetadataElement element : item.getElements()) {
+                sb.append("  Element  : " + element.getName());
+                sb.append(NEWLINE);
+                sb.append("  Type     : " + element.getType());
+                sb.append(NEWLINE);
+                sb.append("  MinOccurs: " + element.getMinOccurs());
+                sb.append(NEWLINE);
+                sb.append("  MaxOccurs: " + element.getMaxOccurs());
+                sb.append(NEWLINE);
+                sb.append("  IsAttr   : " + element.getIsAttribute());
+                sb.append(NEWLINE);
+                sb.append(NEWLINE);
+            }
+
+            for (MetadataElement element : item.getReferences()) {
+                sb.append("  Ref      : " + element.getRef());
+                sb.append(NEWLINE);
+            }
+            sb.append(NEWLINE);
+        }
+
+        for (MetadataItem dataType : metadata.getDataTypeList()) {
+            sb.append(LINE);
+            sb.append(NEWLINE);
+            sb.append("Name    : " + dataType.getName());
+            sb.append(NEWLINE);
+            sb.append("MappedTo: " + dataType.getMappedTo());
+            sb.append(NEWLINE);
+        }
+
+        // Log
+        log.info(sb.toString());
+    }
 }

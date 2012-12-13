@@ -19,25 +19,23 @@ package org.jboss.shrinkwrap.descriptor.spi.node;
 import java.io.InputStream;
 
 /**
- * Imports a {@link InputStream} into a hierarchal 
- * {@link Node} structure 
- * 
+ * Imports a {@link InputStream} into a hierarchal {@link Node} structure
+ *
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
  */
-public interface NodeImporter
-{
+public interface NodeImporter {
 
-   /**
-    * Imports the specified {@link InputStream} into 
-    * a {@link Node} structure, returning the root
-    * {@link Node}.
-    * 
-    * @param stream The stream to be read
-    * @param close Whether or not the specified stream should be closed
-    *   as a convenience to the caller
-    * @return
-    * @throws IllegalArgumentException If the stream is not specified
-    */
-   Node importAsNode(InputStream stream, boolean close) throws IllegalArgumentException;
+    /**
+     * Imports the specified {@link InputStream} into a {@link Node} structure, returning the root {@link Node}.
+     *
+     * @param stream
+     *            The stream to be read
+     * @param close
+     *            Whether or not the specified stream should be closed as a convenience to the caller
+     * @return
+     * @throws IllegalArgumentException
+     *             If the stream is not specified
+     */
+    Node importAsNode(InputStream stream, boolean close) throws IllegalArgumentException;
 
 }

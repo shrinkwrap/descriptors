@@ -26,46 +26,43 @@ import org.junit.Test;
 
 /**
  * Test Cases to ensure the {@link EjbJar30Descriptor} is working as contracted
- * 
+ *
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
  */
 @Ignore
-public class EjbJarDescriptorTestCase
-{
+public class EjbJarDescriptorTestCase {
 
-   /**
-    * Logger
-    */
-   private static final Logger log = Logger.getLogger(EjbJarDescriptorTestCase.class.getName());
+    /**
+     * Logger
+     */
+    private static final Logger log = Logger.getLogger(EjbJarDescriptorTestCase.class.getName());
 
-   /**
-    * Name of the fully-populated XML
-    */
-   private static final String NAME_EJB_JAR = "xml/ejb30/EjbJar3xEverything_testEverything.xml";
+    /**
+     * Name of the fully-populated XML
+     */
+    private static final String NAME_EJB_JAR = "xml/ejb30/EjbJar3xEverything_testEverything.xml";
 
-   /**
-    * Descriptor under test
-    */
-   private EjbJarDescriptor fullyPopulatedDescriptor;
+    /**
+     * Descriptor under test
+     */
+    private EjbJarDescriptor fullyPopulatedDescriptor;
 
-   /**
-    * Creates the fully-populated descriptor
-    */
-   @Before
-   public void createDescriptor()
-   {
-      fullyPopulatedDescriptor = Descriptors.importAs(EjbJarDescriptor.class).fromStream(
+    /**
+     * Creates the fully-populated descriptor
+     */
+    @Before
+    public void createDescriptor() {
+        fullyPopulatedDescriptor = Descriptors.importAs(EjbJarDescriptor.class).fromStream(
             Thread.currentThread().getContextClassLoader().getResourceAsStream(NAME_EJB_JAR));
-      log.info(fullyPopulatedDescriptor.exportAsString());
-   }
+        log.info(fullyPopulatedDescriptor.exportAsString());
+    }
 
-   @Test
-   public void test()
-   {
-      //TODO Placeholder for porting tests // SHRINKDESC-61
-      @SuppressWarnings("unused")
-      final EjbJarDescriptor d = Descriptors.create(EjbJarDescriptor.class);
-      log.info(fullyPopulatedDescriptor.exportAsString());
-   }
+    @Test
+    public void test() {
+        // TODO Placeholder for porting tests // SHRINKDESC-61
+        @SuppressWarnings("unused")
+        final EjbJarDescriptor d = Descriptors.create(EjbJarDescriptor.class);
+        log.info(fullyPopulatedDescriptor.exportAsString());
+    }
 
 }

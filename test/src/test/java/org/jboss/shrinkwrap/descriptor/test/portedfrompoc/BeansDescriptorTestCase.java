@@ -34,235 +34,218 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 /**
- * Test Case to verify that {@link BeansDescriptor} impl produce the correct 
- * XML Descriptor output.
+ * Test Case to verify that {@link BeansDescriptor} impl produce the correct XML Descriptor output.
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-public class BeansDescriptorTestCase
-{
-   /**
-    * Logger
-    */
-   private static final Logger log = Logger.getLogger(BeansDescriptorTestCase.class.getName());
-   
-   @Stereotype
-   @Alternative
-   private @interface TestAlternativeStereoType {
-   }
+public class BeansDescriptorTestCase {
+    /**
+     * Logger
+     */
+    private static final Logger log = Logger.getLogger(BeansDescriptorTestCase.class.getName());
 
-   @Alternative
-   private class TestAlternativeClass
-   {
-   }
+    @Stereotype
+    @Alternative
+    private @interface TestAlternativeStereoType {
+    }
 
-   @Interceptor
-   private class TestInterceptor {}
-   
-   @Interceptor
-   private class TestAnotherInterceptor {}
-   
-   @Decorator
-   private class TestDecorator
-   {
-   }
+    @Alternative
+    private class TestAlternativeClass {
+    }
 
-   //-------------------------------------------------------------------------------------||
-   // Basic API --------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+    @Interceptor
+    private class TestInterceptor {
+    }
 
-   @Test
-   public void shouldCreateDefaultName() throws Exception
-   {
-      Assert.assertEquals("beans.xml", create().getDescriptorName());
-   }
+    @Interceptor
+    private class TestAnotherInterceptor {
+    }
 
-   @Test
-   public void shouldBeAbleToSetName() throws Exception
-   {
-      Assert.assertEquals("test.xml", Descriptors.create(BeansDescriptor.class, "test.xml").getDescriptorName());
-   }
-   
-   @Test
-   public void shouldHaveCorrectSchemaLocation()
-   {
-      // given
-      final String expectedSchemaLocation = "http://java.sun.com/xml/ns/javaee " +
-      		"http://java.sun.com/xml/ns/javaee/beans_1_0.xsd";
-      
-      // when
-      final String descriptorXml = create().getOrCreateAlternatives()
-                                           .stereotype(TestAlternativeStereoType.class.getName())
-                                           .up()
-                                           .exportAsString();
-      
-      // then
-      assertSchemaLocation(descriptorXml, "http://www.w3.org/2001/XMLSchema-instance", expectedSchemaLocation);
-   }
-   
-   //-------------------------------------------------------------------------------------||
-   // Alternative StereoTypes ------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+    @Decorator
+    private class TestDecorator {
+    }
 
-   //TODO We don't do validation on metadata.  Should we open a JIRA to do some validation
-   // extension (which would need ClassLoading)?
-   @Ignore
-   @Test(expected = IllegalArgumentException.class)
-   public void shouldNotBeAbleToAddNonAlternativeStereoType()
-   {
-      create().getOrCreateAlternatives().clazz(Override.class.getName());
-   }
+    // -------------------------------------------------------------------------------------||
+    // Basic API --------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-   @Test
-   public void shouldBeAbleToAddAlternativeStereoType() throws Exception
-   {
-      final String desc = create().getOrCreateAlternatives().stereotype(TestAlternativeStereoType.class.getName()).up()
-            .exportAsString();
-      log.info(desc);      
-      
-      assertPresenceUsingXPath(desc, "/beans/alternatives/stereotype", TestAlternativeStereoType.class.getName());
-   }
+    @Test
+    public void shouldCreateDefaultName() throws Exception {
+        Assert.assertEquals("beans.xml", create().getDescriptorName());
+    }
 
-   @Test
-   public void shouldBeAbleToAddAlternativeStereoTypes() throws Exception
-   {
-      final String desc = create().getOrCreateAlternatives()
+    @Test
+    public void shouldBeAbleToSetName() throws Exception {
+        Assert.assertEquals("test.xml", Descriptors.create(BeansDescriptor.class, "test.xml").getDescriptorName());
+    }
+
+    @Test
+    public void shouldHaveCorrectSchemaLocation() {
+        // given
+        final String expectedSchemaLocation = "http://java.sun.com/xml/ns/javaee "
+            + "http://java.sun.com/xml/ns/javaee/beans_1_0.xsd";
+
+        // when
+        final String descriptorXml = create().getOrCreateAlternatives()
+            .stereotype(TestAlternativeStereoType.class.getName()).up().exportAsString();
+
+        // then
+        assertSchemaLocation(descriptorXml, "http://www.w3.org/2001/XMLSchema-instance", expectedSchemaLocation);
+    }
+
+    // -------------------------------------------------------------------------------------||
+    // Alternative StereoTypes ------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+
+    // TODO We don't do validation on metadata. Should we open a JIRA to do some validation
+    // extension (which would need ClassLoading)?
+    @Ignore
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldNotBeAbleToAddNonAlternativeStereoType() {
+        create().getOrCreateAlternatives().clazz(Override.class.getName());
+    }
+
+    @Test
+    public void shouldBeAbleToAddAlternativeStereoType() throws Exception {
+        final String desc = create().getOrCreateAlternatives().stereotype(TestAlternativeStereoType.class.getName())
+            .up().exportAsString();
+        log.info(desc);
+
+        assertPresenceUsingXPath(desc, "/beans/alternatives/stereotype", TestAlternativeStereoType.class.getName());
+    }
+
+    @Test
+    public void shouldBeAbleToAddAlternativeStereoTypes() throws Exception {
+        final String desc = create().getOrCreateAlternatives()
             .stereotype(TestAlternativeStereoType.class.getName(), TestAlternativeStereoType.class.getName()).up()
             .exportAsString();
-      log.info(desc);
-      assertPresenceUsingXPath(desc, "/beans/alternatives/stereotype", TestAlternativeStereoType.class.getName(), TestAlternativeStereoType.class.getName());
-   }
+        log.info(desc);
+        assertPresenceUsingXPath(desc, "/beans/alternatives/stereotype", TestAlternativeStereoType.class.getName(),
+            TestAlternativeStereoType.class.getName());
+    }
 
-   //-------------------------------------------------------------------------------------||
-   // Alternative Classes ----------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+    // Alternative Classes ----------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-   //TODO We don't do validation on metadata.  Should we open a JIRA to do some validation
-   // extension (which would need ClassLoading)?
-   @Ignore
-   @Test(expected = IllegalArgumentException.class)
-   public void shouldNotBeAbleToAddNonAlternativeClass()
-   {
-      create().getOrCreateAlternatives()
-      .clazz(String.class.getName());
-   }
+    // TODO We don't do validation on metadata. Should we open a JIRA to do some validation
+    // extension (which would need ClassLoading)?
+    @Ignore
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldNotBeAbleToAddNonAlternativeClass() {
+        create().getOrCreateAlternatives().clazz(String.class.getName());
+    }
 
-   @Test
-   public void shouldBeAbleToAddAlternativeClass() throws Exception
-   {
-      final String desc = create().getOrCreateAlternatives().clazz(TestAlternativeClass.class.getName()).up()
+    @Test
+    public void shouldBeAbleToAddAlternativeClass() throws Exception {
+        final String desc = create().getOrCreateAlternatives().clazz(TestAlternativeClass.class.getName()).up()
             .exportAsString();
-      
-      assertPresenceUsingXPath(desc, "/beans/alternatives/class", TestAlternativeClass.class.getName());
-   }
 
-   @Test
-   public void shouldBeAbleToAddAlternativeClasses() throws Exception
-   {
-      final String desc = create().getOrCreateAlternatives()
-            .clazz(TestAlternativeClass.class.getName(), TestAlternativeClass.class.getName()).up().exportAsString(); 
-      assertPresenceUsingXPath(desc, "/beans/alternatives/class", TestAlternativeClass.class.getName(), TestAlternativeClass.class.getName());
-   }
+        assertPresenceUsingXPath(desc, "/beans/alternatives/class", TestAlternativeClass.class.getName());
+    }
 
-   //-------------------------------------------------------------------------------------||
-   // Interceptors -----------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+    @Test
+    public void shouldBeAbleToAddAlternativeClasses() throws Exception {
+        final String desc = create().getOrCreateAlternatives()
+            .clazz(TestAlternativeClass.class.getName(), TestAlternativeClass.class.getName()).up().exportAsString();
+        assertPresenceUsingXPath(desc, "/beans/alternatives/class", TestAlternativeClass.class.getName(),
+            TestAlternativeClass.class.getName());
+    }
 
-   //TODO We don't do validation on metadata.  Should we open a JIRA to do some validation
-   // extension (which would need ClassLoading)?
-   @Ignore
-   @Test(expected = IllegalArgumentException.class)
-   public void shouldNotBeAbleToAddNonInterceptor() throws Exception
-   {
-      create().getOrCreateInterceptors().clazz(String.class.getName());
-   }
+    // -------------------------------------------------------------------------------------||
+    // Interceptors -----------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-   @Test
-   public void shouldBeAbleToAddInterceptor() throws Exception
-   {
-      final String desc = create().getOrCreateInterceptors().clazz(TestInterceptor.class.getName()).up()
+    // TODO We don't do validation on metadata. Should we open a JIRA to do some validation
+    // extension (which would need ClassLoading)?
+    @Ignore
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldNotBeAbleToAddNonInterceptor() throws Exception {
+        create().getOrCreateInterceptors().clazz(String.class.getName());
+    }
+
+    @Test
+    public void shouldBeAbleToAddInterceptor() throws Exception {
+        final String desc = create().getOrCreateInterceptors().clazz(TestInterceptor.class.getName()).up()
             .exportAsString();
-      
-      assertPresenceUsingXPath(desc, "/beans/interceptors/class", TestInterceptor.class.getName());
-   }
 
-   @Test
-   public void shouldBeAbleToAddInterceptors() throws Exception
-   {
-      final String desc = create().getOrCreateInterceptors()
-            .clazz(TestInterceptor.class.getName(), TestInterceptor.class.getName()).up().exportAsString(); 
-      assertPresenceUsingXPath(desc, "/beans/interceptors/class", TestInterceptor.class.getName(), TestInterceptor.class.getName());
-   }
+        assertPresenceUsingXPath(desc, "/beans/interceptors/class", TestInterceptor.class.getName());
+    }
 
-   //-------------------------------------------------------------------------------------||
-   // Decorators -------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+    @Test
+    public void shouldBeAbleToAddInterceptors() throws Exception {
+        final String desc = create().getOrCreateInterceptors()
+            .clazz(TestInterceptor.class.getName(), TestInterceptor.class.getName()).up().exportAsString();
+        assertPresenceUsingXPath(desc, "/beans/interceptors/class", TestInterceptor.class.getName(),
+            TestInterceptor.class.getName());
+    }
 
-   //TODO We don't do validation on metadata.  Should we open a JIRA to do some validation
-   // extension (which would need ClassLoading)?
-   @Ignore
-   @Test(expected = IllegalArgumentException.class)
-   public void shouldNotBeAbleToAddNonDecorator() throws Exception
-   {
-      create().getOrCreateDecorators().clazz(String.class.getName());
-   }
+    // -------------------------------------------------------------------------------------||
+    // Decorators -------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-   @Test
-   public void shouldBeAbleToAddDescorator() throws Exception
-   {
-      String desc = create().getOrCreateDecorators().clazz(TestDecorator.class.getName()).up().exportAsString();   
-      assertPresenceUsingXPath(desc, "/beans/decorators/class", TestDecorator.class.getName());
-   }
+    // TODO We don't do validation on metadata. Should we open a JIRA to do some validation
+    // extension (which would need ClassLoading)?
+    @Ignore
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldNotBeAbleToAddNonDecorator() throws Exception {
+        create().getOrCreateDecorators().clazz(String.class.getName());
+    }
 
-   @Test
-   public void shouldBeAbleToAddDescorators() throws Exception
-   {
-      final String desc = create().getOrCreateDecorators()
+    @Test
+    public void shouldBeAbleToAddDescorator() throws Exception {
+        String desc = create().getOrCreateDecorators().clazz(TestDecorator.class.getName()).up().exportAsString();
+        assertPresenceUsingXPath(desc, "/beans/decorators/class", TestDecorator.class.getName());
+    }
+
+    @Test
+    public void shouldBeAbleToAddDescorators() throws Exception {
+        final String desc = create().getOrCreateDecorators()
             .clazz(TestDecorator.class.getName(), TestDecorator.class.getName()).up().exportAsString();
-      assertPresenceUsingXPath(desc, "/beans/decorators/class", TestDecorator.class.getName(), TestDecorator.class.getName());
-   }
+        assertPresenceUsingXPath(desc, "/beans/decorators/class", TestDecorator.class.getName(),
+            TestDecorator.class.getName());
+    }
 
-   //-------------------------------------------------------------------------------------||
-   // Export / Import round trip ---------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+    // Export / Import round trip ---------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-   @Test
-   public void shouldBeAbleToReadWhatWasExported() throws Exception
-   {
-      final String desc = create().getOrCreateDecorators()
+    @Test
+    public void shouldBeAbleToReadWhatWasExported() throws Exception {
+        final String desc = create().getOrCreateDecorators()
             .clazz(TestDecorator.class.getName(), TestDecorator.class.getName()).up().exportAsString();
 
-      final String roundtrip = Descriptors.importAs(BeansDescriptor.class).fromString(desc).exportAsString();
-      
-      assertPresenceUsingXPath(roundtrip, "/beans/decorators/class", TestDecorator.class.getName(), TestDecorator.class.getName());
-      
-   }
+        final String roundtrip = Descriptors.importAs(BeansDescriptor.class).fromString(desc).exportAsString();
 
-   //-------------------------------------------------------------------------------------||
-   // Complex Scenario -------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+        assertPresenceUsingXPath(roundtrip, "/beans/decorators/class", TestDecorator.class.getName(),
+            TestDecorator.class.getName());
 
-   @Test
-   public void shouldBeAbleToGenerateComplexDescriptor() throws Exception
-   {
-      final BeansDescriptor beans = Descriptors.create(BeansDescriptor.class).getOrCreateInterceptors()
+    }
+
+    // -------------------------------------------------------------------------------------||
+    // Complex Scenario -------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+
+    @Test
+    public void shouldBeAbleToGenerateComplexDescriptor() throws Exception {
+        final BeansDescriptor beans = Descriptors.create(BeansDescriptor.class).getOrCreateInterceptors()
             .clazz(TestInterceptor.class.getName(), TestAnotherInterceptor.class.getName()).up()
             .getOrCreateDecorators().clazz(TestDecorator.class.getName()).up().getOrCreateAlternatives()
             .stereotype(TestAlternativeStereoType.class.getName()).up();
-      String xml = beans.exportAsString();
+        String xml = beans.exportAsString();
 
-      assertPresenceUsingXPath(xml, "/beans/interceptors/class", TestInterceptor.class.getName(), TestAnotherInterceptor.class.getName());
-      assertPresenceUsingXPath(xml, "/beans/decorators/class", TestDecorator.class.getName());
-      assertPresenceUsingXPath(xml, "/beans/alternatives/stereotype", TestAlternativeStereoType.class.getName());
-   }
+        assertPresenceUsingXPath(xml, "/beans/interceptors/class", TestInterceptor.class.getName(),
+            TestAnotherInterceptor.class.getName());
+        assertPresenceUsingXPath(xml, "/beans/decorators/class", TestDecorator.class.getName());
+        assertPresenceUsingXPath(xml, "/beans/alternatives/stereotype", TestAlternativeStereoType.class.getName());
+    }
 
-   //-------------------------------------------------------------------------------------||
-   // Internal Helper --------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+    // Internal Helper --------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-   private BeansDescriptor create()
-   {
-      return Descriptors.create(BeansDescriptor.class);
-   }
+    private BeansDescriptor create() {
+        return Descriptors.create(BeansDescriptor.class);
+    }
 }

@@ -30,114 +30,101 @@ import org.jboss.shrinkwrap.descriptor.api.spec.se.manifest.ManifestDescriptor;
  *
  * @author Davide D'Alto
  */
-public class ManifestDescriptorImporter implements DescriptorImporter<ManifestDescriptor>
-{
+public class ManifestDescriptorImporter implements DescriptorImporter<ManifestDescriptor> {
 
-   private final String descriptorName;
+    private final String descriptorName;
 
-   public ManifestDescriptorImporter(String descriptorName)
-   {
-      this.descriptorName = descriptorName;
-   }
+    public ManifestDescriptorImporter(String descriptorName) {
+        this.descriptorName = descriptorName;
+    }
 
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#fromFile(java.io.File)
-    */
-   @Override
-   public ManifestDescriptor fromFile(File file) throws IllegalArgumentException, DescriptorImportException
-   {
-      if (file == null)
-         throw new IllegalArgumentException("File cannot be null");
-      
-      try
-      {
-         return new ManifestDescriptorImpl(descriptorName, new ManifestModel(file));
-      }
-      catch (Exception e)
-      {
-         throw new DescriptorImportException(e.getMessage(), e);
-      }
-   }
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#fromFile(java.io.File)
+     */
+    @Override
+    public ManifestDescriptor fromFile(File file) throws IllegalArgumentException, DescriptorImportException {
+        if (file == null)
+            throw new IllegalArgumentException("File cannot be null");
 
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#fromStream(java.io.InputStream)
-    */
-   @Override
-   public ManifestDescriptor fromStream(InputStream in) throws IllegalArgumentException, DescriptorImportException
-   {
-      return fromStream(in, true);
-   }
+        try {
+            return new ManifestDescriptorImpl(descriptorName, new ManifestModel(file));
+        } catch (Exception e) {
+            throw new DescriptorImportException(e.getMessage(), e);
+        }
+    }
 
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#fromStream(java.io.InputStream, boolean)
-    */
-   @Override
-   public ManifestDescriptor fromStream(InputStream in, boolean close) throws IllegalArgumentException, DescriptorImportException
-   {
-      if (in == null)
-         throw new IllegalArgumentException("Stream cannot be null");
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#fromStream(java.io.InputStream)
+     */
+    @Override
+    public ManifestDescriptor fromStream(InputStream in) throws IllegalArgumentException, DescriptorImportException {
+        return fromStream(in, true);
+    }
 
-      try
-      {
-         return new ManifestDescriptorImpl(descriptorName, new ManifestModel(in));
-      }
-      catch (Exception e)
-      {
-         throw new DescriptorImportException(e.getMessage(), e);
-      }
-      finally {
-         if (close) {
-            try
-            {
-               in.close();
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#fromStream(java.io.InputStream, boolean)
+     */
+    @Override
+    public ManifestDescriptor fromStream(InputStream in, boolean close) throws IllegalArgumentException,
+        DescriptorImportException {
+        if (in == null)
+            throw new IllegalArgumentException("Stream cannot be null");
+
+        try {
+            return new ManifestDescriptorImpl(descriptorName, new ManifestModel(in));
+        } catch (Exception e) {
+            throw new DescriptorImportException(e.getMessage(), e);
+        } finally {
+            if (close) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    throw new DescriptorImportException("Input stream not closed", e);
+                }
             }
-            catch (IOException e)
-            {
-               throw new DescriptorImportException("Input stream not closed", e);
-            }
-         }
-      }
-   }
-   
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.lang.String)
-    */
-   @Override
-   @Deprecated
-   public ManifestDescriptor from(String manifest) throws IllegalArgumentException, DescriptorImportException
-   {
-       return fromString(manifest);
-   }
+        }
+    }
 
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#fromString(java.lang.String)
-    */
-   @Override
-   public ManifestDescriptor fromString(String manifest) throws IllegalArgumentException, DescriptorImportException
-   {
-      if (manifest == null)
-         throw new IllegalArgumentException("Manifest cannot be null");
-      
-      InputStream inputStream = new ByteArrayInputStream(manifest.getBytes());
-      try
-      {
-         return new ManifestDescriptorImpl(descriptorName, new ManifestModel(inputStream));
-      }
-      catch (IOException e)
-      {
-         throw new DescriptorImportException(e.getMessage(), e);
-      }
-   }
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.lang.String)
+     */
+    @Override
+    @Deprecated
+    public ManifestDescriptor from(String manifest) throws IllegalArgumentException, DescriptorImportException {
+        return fromString(manifest);
+    }
 
-   /**
-    * {@inheritDoc}
-    * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.io.File)
-    */
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#fromString(java.lang.String)
+     */
+    @Override
+    public ManifestDescriptor fromString(String manifest) throws IllegalArgumentException, DescriptorImportException {
+        if (manifest == null)
+            throw new IllegalArgumentException("Manifest cannot be null");
+
+        InputStream inputStream = new ByteArrayInputStream(manifest.getBytes());
+        try {
+            return new ManifestDescriptorImpl(descriptorName, new ManifestModel(inputStream));
+        } catch (IOException e) {
+            throw new DescriptorImportException(e.getMessage(), e);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.io.File)
+     */
     @Override
     public ManifestDescriptor from(final File file) throws IllegalArgumentException, DescriptorImportException {
         return this.fromFile(file);
@@ -145,6 +132,7 @@ public class ManifestDescriptorImporter implements DescriptorImporter<ManifestDe
 
     /**
      * {@inheritDoc}
+     *
      * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#fromFile(java.lang.String)
      */
     @Override
@@ -154,6 +142,7 @@ public class ManifestDescriptorImporter implements DescriptorImporter<ManifestDe
 
     /**
      * {@inheritDoc}
+     *
      * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.io.InputStream)
      */
     @Override
@@ -163,6 +152,7 @@ public class ManifestDescriptorImporter implements DescriptorImporter<ManifestDe
 
     /**
      * {@inheritDoc}
+     *
      * @see org.jboss.shrinkwrap.descriptor.api.DescriptorImporter#from(java.io.InputStream, boolean)
      */
     @Override

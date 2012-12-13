@@ -30,28 +30,26 @@ import org.junit.Test;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-@Ignore // To be moved, reworked
-public class DescriptorExporterTestCase
-{
+@Ignore
+// To be moved, reworked
+public class DescriptorExporterTestCase {
 
-   @Test
-   public void shouldBeAbleToExportToStream() throws Exception
-   {
-      final String name = DescriptorExporterTestCase.class.getName();
-      final WebAppDescriptor descriptor = Descriptors.create(WebAppDescriptor.class).displayName(name);
+    @Test
+    public void shouldBeAbleToExportToStream() throws Exception {
+        final String name = DescriptorExporterTestCase.class.getName();
+        final WebAppDescriptor descriptor = Descriptors.create(WebAppDescriptor.class).displayName(name);
 
-      final ByteArrayOutputStream output = new ByteArrayOutputStream();
-      descriptor.exportTo(output);
+        final ByteArrayOutputStream output = new ByteArrayOutputStream();
+        descriptor.exportTo(output);
 
-      Assert.assertTrue("Verify content has been exported", output.size() > 0);
+        Assert.assertTrue("Verify content has been exported", output.size() > 0);
 
-      Assert.assertTrue("Verify name is a part of content", output.toString().contains(name));
-   }
+        Assert.assertTrue("Verify name is a part of content", output.toString().contains(name));
+    }
 
-   @Test(expected = IllegalArgumentException.class)
-   public void shouldThrowExceptionOnMissingOutputStream() throws Exception
-   {
-      final WebAppDescriptor descriptor = Descriptors.create(WebAppDescriptor.class);
-      descriptor.exportTo(null);
-   }
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionOnMissingOutputStream() throws Exception {
+        final WebAppDescriptor descriptor = Descriptors.create(WebAppDescriptor.class);
+        descriptor.exportTo(null);
+    }
 }

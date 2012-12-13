@@ -19,64 +19,53 @@ package org.jboss.shrinkwrap.descriptor.metadata;
 
 import java.util.Properties;
 
-
 /**
  * This class holds the information used for generating a descriptor interface and implementation class.
  *
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
-public class MetadataDescriptor extends BaseMetadataItem
-{
-   private String rootElementName;
+public class MetadataDescriptor extends BaseMetadataItem {
+    private String rootElementName;
 
-   private String rootElementType;
-   
-   private boolean generateClasses;
+    private String rootElementType;
 
-   private Properties namespaces = new Properties();
+    private boolean generateClasses;
 
-   public MetadataDescriptor(String name)
-   {
-      super(name);
-   }
-   
-   public String getRootElementName()
-   {
-      return rootElementName;
-   }
+    private Properties namespaces = new Properties();
 
-   public void setRootElementName(String rootElementName)
-   {
-      this.rootElementName = rootElementName;
-   }
+    public MetadataDescriptor(String name) {
+        super(name);
+    }
 
-   public String getRootElementType()
-   {
-      return rootElementType;
-   }
+    public String getRootElementName() {
+        return rootElementName;
+    }
 
-   public void setRootElementType(String rootElementType)
-   {
-      this.rootElementType = rootElementType;
-   }
+    public void setRootElementName(String rootElementName) {
+        this.rootElementName = rootElementName;
+    }
 
-   public Properties getNamespaces()
-   {
-      return namespaces;
-   }
-   
-   public void setNamespaces(final Properties namespaces)
-   {
-      this.namespaces = namespaces;
-   }
+    public String getRootElementType() {
+        return rootElementType;
+    }
 
-   public boolean isGenerateClasses()
-   {
-      return generateClasses;
-   }
+    public void setRootElementType(String rootElementType) {
+        this.rootElementType = rootElementType;
+    }
 
-   public void setGenerateClasses(final boolean generateClasses)
-   {
-      this.generateClasses = generateClasses;
-   }   
+    public Properties getNamespaces() {
+        return namespaces;
+    }
+
+    public void setNamespaces(final Properties namespaces) {
+        this.namespaces = namespaces;
+    }
+
+    public boolean isGenerateClasses() {
+        return generateClasses;
+    }
+
+    public void setGenerateClasses(final boolean generateClasses) {
+        this.generateClasses = generateClasses;
+    }
 }

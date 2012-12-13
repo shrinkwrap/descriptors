@@ -27,57 +27,46 @@ import org.w3c.dom.traversal.TreeWalker;
 /**
  * Class which is responsible for <code>SimpleContent</code> w3c elements.
  * <p>
- * The simpleContent element contains extensions or restrictions on a text-only complex type or on a simple type as content and contains no elements.
+ * The simpleContent element contains extensions or restrictions on a text-only complex type or on a simple type as
+ * content and contains no elements.
  * <p>
- * <simpleContent
- *    id=ID
- *   any attributes
- *   >
- *   (annotation?,(restriction|extension))
+ * <simpleContent id=ID any attributes > (annotation?,(restriction|extension))
  *
- *  </simpleContent> 
- *  
- *  @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
+ * </simpleContent>
+ *
+ * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
-public class SimpleContentFilter implements Filter
-{
-   @Override
-   public boolean filter(final Metadata metadata, final TreeWalker walker)
-   {
-      final Node parent = walker.getCurrentNode();
-      final Element element = (Element) parent;
-      
-      if (XsdElementEnum.simpleContent.isTagNameEqual(element.getTagName())) 
-      {
-    	  final Node parentNodeWithName = MetadataUtil.getNextParentNodeWithAttr(parent.getParentNode(), "name");
-    	  
-    	  if (parentNodeWithName != null)
-          {
-             final Element parentElementWithName = (Element) parentNodeWithName;
-             final String groupOrClassName = MetadataUtil.getAttributeValue(parentElementWithName, "name");
-             
-             if (groupOrClassName != null)
-             {
-            	 if (!element.hasChildNodes()  ||
-            		(MetadataUtil.hasChildOf(element, XsdElementEnum.extension) || MetadataUtil.hasChildOf(element, XsdElementEnum.restriction))) 
-            	 {
-            		 if (!MetadataUtil.hasChildsOf(element, XsdElementEnum.enumeration))
-            		 {
-		                final MetadataElement classElement = new MetadataElement();
-		                classElement.setName(groupOrClassName);
-		                classElement.setType("text");
-		                classElement.setIsRef(false);
-		                classElement.setIsAttribute(false);
-		                metadata.addClassElement(groupOrClassName, classElement);
-		                return true;
-            		 }
-            	 }
-              }
-          }
-      }
-      return false;
-   }
-   
-   
-}
+public class SimpleContentFilter implements Filter {
+    @Override
+    public boolean filter(final Metadata metadata, final TreeWalker walker) {
+        final Node parent = walker.getCurrentNode();
+        final Element element = (Element) parent;
 
+        if (XsdElementEnum.simpleContent.isTagNameEqual(element.getTagName())) {
+            final Node parentNodeWithName = MetadataUtil.getNextParentNodeWithAttr(parent.getParentNode(), "name");
+
+            if (parentNodeWithName != null) {
+                final Element parentElementWithName = (Element) parentNodeWithName;
+                final String groupOrClassName = MetadataUtil.getAttributeValue(parentElementWithName, "name");
+
+                if (groupOrClassName != null) {
+                    if (!element.hasChildNodes()
+                        || (MetadataUtil.hasChildOf(element, XsdElementEnum.extension) || MetadataUtil.hasChildOf(
+                            element, XsdElementEnum.restriction))) {
+                        if (!MetadataUtil.hasChildsOf(element, XsdElementEnum.enumeration)) {
+                            final MetadataElement classElement = new MetadataElement();
+                            classElement.setName(groupOrClassName);
+                            classElement.setType("text");
+                            classElement.setIsRef(false);
+                            classElement.setIsAttribute(false);
+                            metadata.addClassElement(groupOrClassName, classElement);
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+}

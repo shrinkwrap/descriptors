@@ -25,26 +25,21 @@ import java.util.List;
  *
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
-public class MetadataItem extends BaseMetadataItem
-{
-   private final List<MetadataElement> elements = new ArrayList<MetadataElement>();
+public class MetadataItem extends BaseMetadataItem {
+    private final List<MetadataElement> elements = new ArrayList<MetadataElement>();
 
-   private final List<MetadataElement> references = new ArrayList<MetadataElement>();
+    private final List<MetadataElement> references = new ArrayList<MetadataElement>();
 
+    public MetadataItem(final String name) {
+        super(name);
+    }
 
-   public MetadataItem(final String name)
-   {
-      super(name);
-   }
+    public List<MetadataElement> getElements() {
+        return elements;
+    }
 
-   public List<MetadataElement> getElements()
-   {
-      return elements;
-   }
-
-   public List<MetadataElement> getReferences()
-   {
-      return references;
-   }
+    public List<MetadataElement> getReferences() {
+        return references;
+    }
 
 }

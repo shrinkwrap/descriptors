@@ -16,8 +16,6 @@
  */
 package org.jboss.shrinkwrap.descriptor.test.connector15;
 
-import static org.junit.Assert.assertTrue;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 
@@ -28,29 +26,24 @@ import org.jboss.shrinkwrap.descriptor.api.connector15.ConnectorDescriptor;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Test;
 
+public class ConnectorDescriptorTestCase {
 
-public class ConnectorDescriptorTestCase
-{
-   
-   //-------------------------------------------------------------------------------------||
-   // Basic API --------------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+    // Basic API --------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-   @Test
-   public void testDefaultName() throws Exception
-   {
-      Assert.assertEquals("ra.xml", create().getDescriptorName());
-   }
+    @Test
+    public void testDefaultName() throws Exception {
+        Assert.assertEquals("ra.xml", create().getDescriptorName());
+    }
 
-   @Test
-   public void testSetName() throws Exception
-   {
-      Assert.assertEquals("test.xml", Descriptors.create(ConnectorDescriptor.class, "test.xml").getDescriptorName());
-   }
-   
-   @Test
-   public void testHornetQExample() throws Exception 
-   {
+    @Test
+    public void testSetName() throws Exception {
+        Assert.assertEquals("test.xml", Descriptors.create(ConnectorDescriptor.class, "test.xml").getDescriptorName());
+    }
+
+    @Test
+    public void testHornetQExample() throws Exception {
       ConnectorDescriptor jca15Generated = create()
          .addDefaultNamespaces()
          .version("1.5")
@@ -70,7 +63,7 @@ public class ConnectorDescriptorTestCase
  "WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or " +
  "implied.  See the License for the specific language governing " +
  "permissions and limitations under the License.")
-            .licenseRequired(true).up()         
+            .licenseRequired(true).up()
          .getOrCreateResourceadapter()
             .resourceadapterClass("org.hornetq.ra.HornetQResourceAdapter")
             .createConfigProperty()
@@ -124,35 +117,31 @@ public class ConnectorDescriptorTestCase
               .up()
            .up()
        .up();
-        
-       String generatedRaXml = jca15Generated.exportAsString();
-       String hornetQRaXml = this.getResourceContents("src/test/resources/test-orig-connector15.xml");
- 
-       XmlAssert.assertIdentical(hornetQRaXml, generatedRaXml);       
-   }
-   
- 
-   //-------------------------------------------------------------------------------------||
-   // Internal Helper --------------------------------------------------------------------||
-   //-------------------------------------------------------------------------------------||
 
-   private String getResourceContents(String resource) throws Exception
-   {
-      assert resource != null && resource.length() > 0 : "Resource must be specified";
-      final BufferedReader reader = new BufferedReader(new FileReader(resource));
-      final StringBuilder builder = new StringBuilder();
-      String line;
-      while ((line = reader.readLine()) != null)
-      {
-         builder.append(line);
-         builder.append("\n");
-      }
-      return builder.toString();
-   }
-   
-   private ConnectorDescriptor create()
-   {
-      return Descriptors.create(ConnectorDescriptor.class);
-   }
-   
+        String generatedRaXml = jca15Generated.exportAsString();
+        String hornetQRaXml = this.getResourceContents("src/test/resources/test-orig-connector15.xml");
+
+        XmlAssert.assertIdentical(hornetQRaXml, generatedRaXml);
+    }
+
+    // -------------------------------------------------------------------------------------||
+    // Internal Helper --------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+
+    private String getResourceContents(String resource) throws Exception {
+        assert resource != null && resource.length() > 0 : "Resource must be specified";
+        final BufferedReader reader = new BufferedReader(new FileReader(resource));
+        final StringBuilder builder = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            builder.append(line);
+            builder.append("\n");
+        }
+        return builder.toString();
+    }
+
+    private ConnectorDescriptor create() {
+        return Descriptors.create(ConnectorDescriptor.class);
+    }
+
 }
