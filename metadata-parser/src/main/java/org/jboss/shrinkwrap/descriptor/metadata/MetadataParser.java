@@ -55,8 +55,6 @@ public class MetadataParser
 {
    private static final Logger log = Logger.getLogger(MetadataParser.class.getName());
 
-   private static final String FILE_PROTOCOL = "file:///";
-
    private final FilterChain filterChain = new FilterChain();
    
    private final Metadata metadata = new Metadata();
@@ -172,10 +170,10 @@ public void parse(final MetadataParserPath path, final List<?> confList, final L
    {
       /** initialize the map which will overwrite global parameters as defined in metadata.xsl/ddJava.xsl */
       final Map<String, String> xsltParameters = new HashMap<String, String>();
-      xsltParameters.put("gOutputFolder", FILE_PROTOCOL + path.getPathToImpl());
-      xsltParameters.put("gOutputFolderApi", FILE_PROTOCOL + path.getPathToApi());
-      xsltParameters.put("gOutputFolderTest", FILE_PROTOCOL + path.getPathToTest());
-      xsltParameters.put("gOutputFolderService", FILE_PROTOCOL + path.getPathToServices());
+      xsltParameters.put("gOutputFolder", getURIPath(path.getPathToImpl()) );
+      xsltParameters.put("gOutputFolderApi", getURIPath(path.getPathToApi()));
+      xsltParameters.put("gOutputFolderTest", getURIPath(path.getPathToTest()));
+      xsltParameters.put("gOutputFolderService", getURIPath(path.getPathToServices()));
       xsltParameters.put("gVerbose", Boolean.toString(verbose));
 
       final InputStream is = MetadataParser.class.getResourceAsStream("/META-INF/ddJavaAll.xsl");
@@ -185,6 +183,15 @@ public void parse(final MetadataParserPath path, final List<?> confList, final L
 
       XsltTransformer.simpleTransform(pathToMetadata, is, new File("./tempddJava.xml"), xsltParameters);
    }
+
+    private String getURIPath(final String path) {
+        if(path != null) {
+            return new File(path).toURI().getPath();
+        }
+        else {
+            return "";
+        }
+    }
 
    /**
     * Returns the path and name of the generated metadata xml file, if configured to produce it and the <code>parse</code>
