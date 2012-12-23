@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.jboss</groupId>
         <artifactId>jboss-parent</artifactId>
-        <version>8</version>
+        <version>9</version>
     </parent>
 
     <!-- Model Information -->
@@ -184,7 +184,6 @@
                     <configuration>
                         <source>1.6</source>
                         <target>1.6</target>
-                        <showDeprecation>false</showDeprecation>
                         <showWarnings>true</showWarnings>
                         <optimize>true</optimize>
                         <compilerVersion>1.6</compilerVersion>
@@ -193,8 +192,6 @@
                             <source>1.5</source>
                             <target>1.5</target>
                         </compilerArguments>
-                        <argLine>-Xmx512M</argLine>
-                        <executable>${JAVA_HOME}/bin/javac</executable>
                     </configuration>
                 </plugin>
 
