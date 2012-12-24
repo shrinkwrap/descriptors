@@ -27,7 +27,7 @@
 
         <!-- Versioning -->
         <version.junit>4.11</version.junit>
-        <version.fest-assert-core>2.0M8</version.fest-assert-core>
+        <version.fest-assert>1.4</version.fest-assert>
         <version.mockito-all>1.9.5</version.mockito-all>
     </properties>
 
@@ -269,8 +269,8 @@
 
             <dependency>
                 <groupId>org.easytesting</groupId>
-                <artifactId>fest-assert-core</artifactId>
-                <version>${version.fest-assert-core}</version>
+                <artifactId>fest-assert</artifactId>
+                <version>${version.fest-assert}</version>
             </dependency>
 
             <dependency>
