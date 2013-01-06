@@ -33,6 +33,9 @@ public class MetadataElement {
     private String minOccurs;
     private String maxOccurs;
     private String mappedTo;
+    private String fixedValue;
+    private String defaultValue;
+    private String use;
 
     /**
      * Creates a new and empty instance.
@@ -52,6 +55,9 @@ public class MetadataElement {
         ref = MetadataUtil.getAttributeValue(element, "ref");
         minOccurs = MetadataUtil.getAttributeValue(element, "minOccurs");
         maxOccurs = MetadataUtil.getAttributeValue(element, "maxOccurs");
+        fixedValue = MetadataUtil.getAttributeValue(element, "fixed");
+        defaultValue = MetadataUtil.getAttributeValue(element, "default");
+        use = MetadataUtil.getAttributeValue(element, "use");
 
         if (type == null) {
             type = name; // will be later added with the name-space
@@ -123,4 +129,27 @@ public class MetadataElement {
         this.mappedTo = mappedTo;
     }
 
+    public String getFixedValue() {
+        return fixedValue;
+    }
+
+    public void setFixedValue(final String fixedValue) {
+        this.fixedValue = fixedValue;
+    }
+
+    public String getDefaultValue() {
+        return defaultValue;
+    }
+
+    public void setDefaultValue(final String defaultValue) {
+        this.defaultValue = defaultValue;
+    }
+
+    public String getUse() {
+        return use;
+    }
+
+    public void setUse(final String use) {
+        this.use = use;
+    }
 }
