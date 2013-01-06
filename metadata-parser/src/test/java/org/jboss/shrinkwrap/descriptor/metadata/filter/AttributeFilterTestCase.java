@@ -2,11 +2,10 @@ package org.jboss.shrinkwrap.descriptor.metadata.filter;
 
 import java.util.List;
 
-import junit.framework.Assert;
-
 import org.jboss.shrinkwrap.descriptor.metadata.DomTestUtil;
 import org.jboss.shrinkwrap.descriptor.metadata.Metadata;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataElement;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -98,4 +97,59 @@ public class AttributeFilterTestCase {
         DomTestUtil.assertClassAttribute(e.get(1), "<xsd:attribute name=\"space\" type=\"xsd:string\"/>");
         DomTestUtil.assertClassAttribute(e.get(2), "<xs:attribute name=\"version\" type=\"xs:string\" fixed=\"1.0\"/>");
     }
+    
+    @Test
+    public void testFixedDeclaration() throws Exception {
+        final boolean isLogging = false;
+        final String xmlFragment =
+        "<xs:schema xmlns=\"http://www.w3.org/2001/XMLSchema\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" >" + 
+        "   <xs:complexType name=\"attrType\">" +
+        "      <xs:attribute name=\"version\" type=\"xs:string\" fixed=\"1.0\"/>" +
+        "   </xs:complexType>" +
+        "</xs:schema>";
+
+        final Metadata metadata = DomTestUtil.parse(xmlFragment, isLogging);
+        Assert.assertEquals("attrType", metadata.getClassList().get(0).getName(), "attrType");
+        final List<MetadataElement> e = metadata.getClassList().get(0).getElements();
+        Assert.assertEquals("1.0", e.get(0).getFixedValue());
+        Assert.assertNull(e.get(0).getDefaultValue());
+        Assert.assertNull(e.get(0).getUse());
+    }
+    
+    @Test
+    public void testDefaultDeclaration() throws Exception {
+        final boolean isLogging = false;
+        final String xmlFragment =
+        "<xs:schema xmlns=\"http://www.w3.org/2001/XMLSchema\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" >" + 
+        "   <xs:complexType name=\"attrType\">" +
+        "      <xs:attribute name=\"version\" type=\"xs:string\" default=\"2.0\"/>" +
+        "   </xs:complexType>" +
+        "</xs:schema>";
+
+        final Metadata metadata = DomTestUtil.parse(xmlFragment, isLogging);
+        Assert.assertEquals("attrType", metadata.getClassList().get(0).getName(), "attrType");
+        final List<MetadataElement> e = metadata.getClassList().get(0).getElements();
+        Assert.assertEquals("2.0", e.get(0).getDefaultValue());
+        Assert.assertNull(e.get(0).getFixedValue());
+        Assert.assertNull(e.get(0).getUse());
+    }
+    
+    @Test
+    public void testUseDeclaration() throws Exception {
+        final boolean isLogging = false;
+        final String xmlFragment =
+        "<xs:schema xmlns=\"http://www.w3.org/2001/XMLSchema\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" >" + 
+        "   <xs:complexType name=\"attrType\">" +
+        "      <xs:attribute name=\"version\" type=\"xs:string\" use=\"required\"/>" +
+        "   </xs:complexType>" +
+        "</xs:schema>";
+
+        final Metadata metadata = DomTestUtil.parse(xmlFragment, isLogging);
+        Assert.assertEquals("attrType", metadata.getClassList().get(0).getName(), "attrType");
+        final List<MetadataElement> e = metadata.getClassList().get(0).getElements();
+        Assert.assertEquals("required", e.get(0).getUse());
+        Assert.assertNull(e.get(0).getDefaultValue());
+        Assert.assertNull(e.get(0).getFixedValue());
+    }
+    
 }
