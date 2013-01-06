@@ -224,6 +224,24 @@ public class DomWriter {
                         childElement.setAttributeNode(elAttribute);
                     }
 
+                    if (element.getDefaultValue() != null) {
+                        final Attr elAttribute = doc.createAttribute("default");
+                        elAttribute.setValue(element.getDefaultValue());
+                        childElement.setAttributeNode(elAttribute);
+                    }
+
+                    if (element.getFixedValue() != null) {
+                        final Attr elAttribute = doc.createAttribute("fixed");
+                        elAttribute.setValue(element.getFixedValue());
+                        childElement.setAttributeNode(elAttribute);
+                    }
+
+                    if (element.getUse() != null) {
+                        final Attr elAttribute = doc.createAttribute("use");
+                        elAttribute.setValue(element.getUse());
+                        childElement.setAttributeNode(elAttribute);
+                    }
+
                     if (element.getMaxOccurs() != null) {
                         final Attr elMaxOccurs = doc.createAttribute("maxOccurs");
                         elMaxOccurs.setValue(element.getMaxOccurs());
@@ -295,6 +313,24 @@ public class DomWriter {
                     if (element.getIsAttribute() == true) {
                         final Attr elAttribute = doc.createAttribute("attribute");
                         elAttribute.setValue(Boolean.toString(element.getIsAttribute()));
+                        childElement.setAttributeNode(elAttribute);
+                    }
+
+                    if (element.getDefaultValue() != null) {
+                        final Attr elAttribute = doc.createAttribute("default");
+                        elAttribute.setValue(element.getDefaultValue());
+                        childElement.setAttributeNode(elAttribute);
+                    }
+
+                    if (element.getFixedValue() != null) {
+                        final Attr elAttribute = doc.createAttribute("fixed");
+                        elAttribute.setValue(element.getFixedValue());
+                        childElement.setAttributeNode(elAttribute);
+                    }
+
+                    if (element.getUse() != null) {
+                        final Attr elAttribute = doc.createAttribute("use");
+                        elAttribute.setValue(element.getUse());
                         childElement.setAttributeNode(elAttribute);
                     }
 

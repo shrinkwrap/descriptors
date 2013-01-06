@@ -6,6 +6,7 @@ import java.io.FileReader;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.application6.ApplicationDescriptor;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class ApplicationDescriptorTestCase {
@@ -192,6 +193,13 @@ public class ApplicationDescriptorTestCase {
         String appXmlGenerated = app6Descr.exportAsString();
 
         XmlAssert.assertIdentical(appXmlOriginal, appXmlGenerated);
+    }
+
+    @Test
+    public void testFixedAttribute() {
+        final ApplicationDescriptor app6Descr = create();
+        app6Descr.version(ApplicationDescriptor.VERSION);
+        Assert.assertEquals(ApplicationDescriptor.VERSION, app6Descr.getVersion());
     }
 
     // -------------------------------------------------------------------------------------||
