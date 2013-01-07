@@ -420,6 +420,28 @@
 									</namespaces>
 								</descriptor>
 
+                                <descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/jsp_2_1.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.jsp21</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jsp21</packageImpl>
+									<generateClasses>true</generateClasses>
+								</descriptor>
+								
+                                <descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/web-app_2_5.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.webapp25</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.webapp25</packageImpl>
+									<descriptorName>WebAppDescriptor</descriptorName>
+									<elementName>web-app</elementName>
+									<elementType>javaee:web-appType</elementType>
+									<namespaces>
+										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd</value></property>
+									</namespaces>
+								</descriptor>
 							</descriptors>
 						</configuration>
 						<goals>
