@@ -1,12 +1,11 @@
 <?xml version="1.0"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <!-- Parent -->
     <parent>
         <groupId>org.jboss.shrinkwrap.descriptors</groupId>
         <artifactId>shrinkwrap-descriptors-parent</artifactId>
-        <version>2.0.0-alpha-5-SNAPSHOT</version>
+        <version>2.0.0-alpha-5</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -116,11 +115,11 @@
 							<javadocs>
 								<javadoc>
 									<tag>@author</tag>
-									<value>&lt;a href=&quot;mailto:ralf.battenfeld@bluewin.ch&quot;&gt;Ralf Battenfeld&lt;/a&gt;</value>
+									<value>&lt;a href="mailto:ralf.battenfeld@bluewin.ch"&gt;Ralf Battenfeld&lt;/a&gt;</value>
 								</javadoc>
 								<javadoc>
 									<tag>@author</tag>
-									<value>&lt;a href=&quot;mailto:alr@jboss.org&quot;&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
+									<value>&lt;a href="mailto:alr@jboss.org"&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
 								</javadoc>
 							</javadocs>
 							<path>
@@ -152,11 +151,11 @@
 							<javadocs>
 								<javadoc>
 									<tag>@author</tag>
-									<value>&lt;a href=&quot;mailto:ralf.battenfeld@bluewin.ch&quot;&gt;Ralf Battenfeld&lt;/a&gt;</value>
+									<value>&lt;a href="mailto:ralf.battenfeld@bluewin.ch"&gt;Ralf Battenfeld&lt;/a&gt;</value>
 								</javadoc>
 								<javadoc>
 									<tag>@author</tag>
-									<value>&lt;a href=&quot;mailto:alr@jboss.org&quot;&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
+									<value>&lt;a href="mailto:alr@jboss.org"&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
 								</javadoc>
 							</javadocs>
 							<path>
@@ -241,11 +240,11 @@
 							<javadocs>
 								<javadoc>
 									<tag>@author</tag>
-									<value>&lt;a href=&quot;mailto:ralf.battenfeld@bluewin.ch&quot;&gt;Ralf Battenfeld&lt;/a&gt;</value>
+									<value>&lt;a href="mailto:ralf.battenfeld@bluewin.ch"&gt;Ralf Battenfeld&lt;/a&gt;</value>
 								</javadoc>
 								<javadoc>
 									<tag>@author</tag>
-									<value>&lt;a href=&quot;mailto:alr@jboss.org&quot;&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
+									<value>&lt;a href="mailto:alr@jboss.org"&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
 								</javadoc>
 							</javadocs>
 							<path>
@@ -457,11 +456,11 @@
 							<javadocs>
 								<javadoc>
 									<tag>@author</tag>
-									<value>&lt;a href=&quot;mailto:ralf.battenfeld@bluewin.ch&quot;&gt;Ralf Battenfeld&lt;/a&gt;</value>
+									<value>&lt;a href="mailto:ralf.battenfeld@bluewin.ch"&gt;Ralf Battenfeld&lt;/a&gt;</value>
 								</javadoc>
 								<javadoc>
 									<tag>@author</tag>
-									<value>&lt;a href=&quot;mailto:alr@jboss.org&quot;&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
+									<value>&lt;a href="mailto:alr@jboss.org"&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
 								</javadoc>
 							</javadocs>
 							<path>
@@ -636,11 +635,11 @@
 							<javadocs>
 								<javadoc>
 									<tag>@author</tag>
-									<value>&lt;a href=&quot;mailto:ralf.battenfeld@bluewin.ch&quot;&gt;Ralf Battenfeld&lt;/a&gt;</value>
+									<value>&lt;a href="mailto:ralf.battenfeld@bluewin.ch"&gt;Ralf Battenfeld&lt;/a&gt;</value>
 								</javadoc>
 								<javadoc>
 									<tag>@author</tag>
-									<value>&lt;a href=&quot;mailto:alr@jboss.org&quot;&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
+									<value>&lt;a href="mailto:alr@jboss.org"&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
 								</javadoc>
 							</javadocs>
 							<path>
@@ -709,11 +708,11 @@
 							<javadocs>
 								<javadoc>
 									<tag>@author</tag>
-									<value>&lt;a href=&quot;mailto:ralf.battenfeld@bluewin.ch&quot;&gt;Ralf Battenfeld&lt;/a&gt;</value>
+									<value>&lt;a href="mailto:ralf.battenfeld@bluewin.ch"&gt;Ralf Battenfeld&lt;/a&gt;</value>
 								</javadoc>
 								<javadoc>
 									<tag>@author</tag>
-									<value>&lt;a href=&quot;mailto:alr@jboss.org&quot;&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
+									<value>&lt;a href="mailto:alr@jboss.org"&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
 								</javadoc>
 							</javadocs>
 							<path>
@@ -782,11 +781,11 @@
 							<javadocs>
 								<javadoc>
 									<tag>@author</tag>
-									<value>&lt;a href=&quot;mailto:ralf.battenfeld@bluewin.ch&quot;&gt;Ralf Battenfeld&lt;/a&gt;</value>
+									<value>&lt;a href="mailto:ralf.battenfeld@bluewin.ch"&gt;Ralf Battenfeld&lt;/a&gt;</value>
 								</javadoc>
 								<javadoc>
 									<tag>@author</tag>
-									<value>&lt;a href=&quot;mailto:alr@jboss.org&quot;&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
+									<value>&lt;a href="mailto:alr@jboss.org"&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
 								</javadoc>
 							</javadocs>
 							<path>
@@ -841,7 +840,7 @@
                                         <!-- 										</goals> -->
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore/>
+                                        <ignore />
                                     </action>
                                 </pluginExecution>
                             </pluginExecutions>
