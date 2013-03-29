@@ -585,4 +585,37 @@ public class NodeTestCase {
         Assert.assertEquals("Verify correct value set", child3ValueNotEscaped, found.getText());
     }
 
+    @Test
+    public void deepCopyUnequalByReference() {
+        final Node node = new Node("ALR");
+        final Node copy = node.deepCopy();
+        Assert.assertTrue("Deep copy should be unequal by reference to original", node != copy);
+    }
+
+    @Test
+    public void deepCopyEqualityByValue() {
+
+        // Make a node with some child content
+        final Node node = new Node("ALR");
+        final Node child = node.createChild("child");
+        node.createChild("secondChild");
+        child.attribute("key", "value");
+        child.text("text");
+        final Node grandChild = child.createChild("grandChild");
+        grandChild.text("grandText");
+
+        // Copy it
+        final Node copy = node.deepCopy();
+        final Node copyChild = copy.getChildren().get(0);
+
+        // Check values
+        Assert.assertEquals(2, copy.getChildren().size());
+        Assert.assertEquals("ALR", copy.getName());
+        Assert.assertEquals("text", copyChild.getText());
+        Assert.assertEquals("value", copyChild.getAttributes().get("key"));
+        Assert.assertEquals(1, copyChild.getAttributes().keySet().size());
+        final Node copyGrandChild = copyChild.getChildren().get(0);
+        Assert.assertEquals("grandText", copyGrandChild.getText());
+    }
+
 }
