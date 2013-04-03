@@ -481,6 +481,7 @@
                     <xsl:variable name="vNamespace" select=" substring-before(./@type, ':')"/>
                     <xsl:value-of select="xdd:writeDynamicImports($vType, $vNamespace, $vPackage, false())"/>
                 </xsl:for-each>
+                <xsl:text>import java.util.Map.Entry;&#10;&#10;</xsl:text>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.api.DescriptorNamespace;&#10;&#10;</xsl:text>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase;&#10;</xsl:text>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;&#10;</xsl:text>
@@ -2761,9 +2762,10 @@
         <xsl:text>   {&#10;</xsl:text>
         <xsl:value-of select="concat('      List&lt;String&gt; namespaceList = new ArrayList&lt;String&gt;();', '&#10;')"/>
         <xsl:value-of select="concat('      java.util.Map&lt;String, String&gt; attributes = model.getAttributes();', '&#10;')"/>
-        <xsl:value-of select="concat('      for (String name: attributes.keySet())', '&#10;')"/>
+        <xsl:value-of select="concat('      for (Entry&lt;String, String&gt; e : attributes.entrySet())', '&#10;')"/>
         <xsl:value-of select="concat('      {', '&#10;')"/>
-        <xsl:value-of select="concat('         String value = attributes.get(name);', '&#10;')"/>
+        <xsl:value-of select="concat('         final String name = e.getKey();', '&#10;')"/>
+        <xsl:value-of select="concat('         final String value = e.getValue();', '&#10;')"/>
         <xsl:value-of select="concat('         if (value != null &amp;&amp; value.startsWith(&quot;http://&quot;)) ', '&#10;')"/>
         <xsl:value-of select="concat('         {', '&#10;')"/>
         <xsl:value-of select="concat('            namespaceList.add(name + &quot;=&quot; + value);', '&#10;')"/>
@@ -2780,9 +2782,10 @@
         <xsl:text>   {&#10;</xsl:text>
         <xsl:value-of select="concat('      List&lt;String&gt; nameSpaceKeys = new ArrayList&lt;String&gt;();', '&#10;')"/>
         <xsl:value-of select="concat('      java.util.Map&lt;String, String&gt; attributes = model.getAttributes();', '&#10;')"/>
-        <xsl:value-of select="concat('      for (String name: attributes.keySet())', '&#10;')"/>
+        <xsl:value-of select="concat('      for (Entry&lt;String, String&gt; e : attributes.entrySet())', '&#10;')"/>
         <xsl:value-of select="concat('      {', '&#10;')"/>
-        <xsl:value-of select="concat('         String value = attributes.get(name);', '&#10;')"/>
+        <xsl:value-of select="concat('         final String name = e.getKey();', '&#10;')"/>
+        <xsl:value-of select="concat('         final String value = e.getValue();', '&#10;')"/>
         <xsl:value-of select="concat('         if (value != null &amp;&amp; value.startsWith(&quot;http://&quot;)) ', '&#10;')"/>
         <xsl:value-of select="concat('         {', '&#10;')"/>
         <xsl:value-of select="concat('            nameSpaceKeys.add(name);', '&#10;')"/>
