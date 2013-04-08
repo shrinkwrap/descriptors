@@ -59,7 +59,7 @@
                         <id>execution1</id>
                         <phase>validate</phase>
                         <configuration>
-                            <verbose>false</verbose>
+                            <verbose>true</verbose>
                             <path>
                                 <pathToApi>${basedir}/src/main/java</pathToApi>
                                 <pathToImpl>${basedir}/src/main/java</pathToImpl>
@@ -67,7 +67,7 @@
                             </path>
                             <descriptors>
                                 <descriptor>
-                                    <pathToXsd>${basedir}/src/test/resources/xsd/ironjacamar_1_0.xsd</pathToXsd>
+                                    <pathToXsd>${basedir}/src/test/resources/xsd/ironjacamar_1_0.xsd</pathToXsd>                                    
                                     <nameSpace>ironjacamar</nameSpace>
                                     <packageApi>org.jboss.ironjacamar.api</packageApi>
                                     <packageImpl>org.jboss.ironjacamar.impl</packageImpl>
@@ -81,6 +81,8 @@
                                     <nameSpace>datasources</nameSpace>
                                     <packageApi>org.jboss.datasources.api</packageApi>
                                     <packageImpl>org.jboss.datasources.impl</packageImpl>
+                                    <pathToPackageInfoApi>${basedir}/src/test/resources/packageInfo/datasourceApi/package-info.java</pathToPackageInfoApi>
+                                    <pathToPackageInfoImpl>${basedir}/src/test/resources/packageInfo/datasourceImpl/package-info.java</pathToPackageInfoImpl>
                                     <descriptorName>DatasourcesDescriptor</descriptorName>
                                     <elementName>datasources</elementName>
                                     <elementType>datasources:datasourcesType</elementType>
