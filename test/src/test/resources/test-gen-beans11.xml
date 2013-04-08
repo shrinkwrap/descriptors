@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
+       version="1.1" bean-discovery-mode="all">
+
+    <interceptors>
+        <class>class0</class>
+        <class>class1</class>
+        <class>class2</class>
+        <class>class3</class>
+        <class>class4</class>
+    </interceptors>
+    
+    <decorators>
+        <class>class5</class>
+        <class>class6</class>
+        <class>class7</class>
+        <class>class8</class>
+        <class>class9</class>
+    </decorators>
+    
+    <alternatives>
+        <class>class10</class>
+        <class>class11</class>
+        <stereotype>stereotype0</stereotype>
+        <stereotype>stereotype1</stereotype>
+        <stereotype>stereotype2</stereotype>
+    </alternatives>
+
+</beans>
