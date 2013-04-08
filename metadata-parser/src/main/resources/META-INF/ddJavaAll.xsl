@@ -3156,7 +3156,7 @@
                 <xsl:sequence select="'java.util.Date'"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:sequence select="''"/>
+                <xsl:sequence select="'String'"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
