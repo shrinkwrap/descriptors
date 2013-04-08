@@ -81,6 +81,8 @@
                                     <nameSpace>datasources</nameSpace>
                                     <packageApi>org.jboss.datasources.api</packageApi>
                                     <packageImpl>org.jboss.datasources.impl</packageImpl>
+                                    <pathToPackageInfoApi>${basedir}/src/test/resources/packageInfo/datasourceApi/package-info.java</pathToPackageInfoApi>
+                                    <pathToPackageInfoImpl>${basedir}/src/test/resources/packageInfo/datasourceImpl/package-info.java</pathToPackageInfoImpl>
                                     <descriptorName>DatasourcesDescriptor</descriptorName>
                                     <elementName>datasources</elementName>
                                     <elementType>datasources:datasourcesType</elementType>

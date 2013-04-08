@@ -31,6 +31,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.TransformerException;
 
+import org.apache.commons.io.FileUtils;
 import org.jboss.shrinkwrap.descriptor.metadata.dom.DomWriter;
 import org.jboss.shrinkwrap.descriptor.metadata.dtd.MetadataDtdEventListener;
 import org.jboss.shrinkwrap.descriptor.metadata.xslt.XsltTransformer;
@@ -103,6 +104,9 @@ public class MetadataParser {
             metadataDescriptor.setNamespace(metadataConf.getNameSpace());
             metadataDescriptor.setNamespaces(metadataConf.getNamespaces());
             metadataDescriptor.setGenerateClasses(metadataConf.generateClasses);
+            metadataDescriptor.setPathToPackageInfoApi(metadataConf.getPathToPackageInfoApi());
+            metadataDescriptor.setPathToPackageInfoImpl(metadataConf.getPathToPackageInfoImpl());
+
             metadata.getMetadataDescriptorList().add(metadataDescriptor);
 
             if (log.isLoggable(Level.FINE)) {
@@ -155,6 +159,7 @@ public class MetadataParser {
 
         if (path.getPathToApi() != null && path.getPathToImpl() != null) {
             generateCode(path, verbose);
+            PackageInfo.copyPackageInfo(path, metadata, verbose);
         }
     }
 

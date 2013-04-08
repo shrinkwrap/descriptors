@@ -72,6 +72,16 @@ public class MetadataParserConfiguration {
     protected boolean verbose;
 
     /**
+     * Optional file for package.html or package-info.java
+     */
+    protected String pathToPackageInfoApi;
+
+    /**
+     * Optional file for package.html or package-info.java
+     */
+    protected String pathToPackageInfoImpl;
+
+    /**
      * The map declaring the name spaces for the given descriptor.
      */
     protected Properties namespaces = new Properties();
@@ -156,4 +166,19 @@ public class MetadataParserConfiguration {
         this.generateClasses = generateClasses;
     }
 
+    public String getPathToPackageInfoApi() {
+        return pathToPackageInfoApi;
+    }
+
+    public void setPathToPackageInfoApi(final String pathToPackageInfoApi) {
+        this.pathToPackageInfoApi = pathToPackageInfoApi;
+    }
+
+    public String getPathToPackageInfoImpl() {
+        return pathToPackageInfoImpl;
+    }
+
+    public void setPathToPackageInfoImpl(final String pathToPackageInfoImpl) {
+        this.pathToPackageInfoImpl = pathToPackageInfoImpl;
+    }
 }
