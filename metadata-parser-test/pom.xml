@@ -59,7 +59,7 @@
                         <id>execution1</id>
                         <phase>validate</phase>
                         <configuration>
-                            <verbose>true</verbose>
+                            <verbose>false</verbose>
                             <path>
                                 <pathToApi>${basedir}/src/main/java</pathToApi>
                                 <pathToImpl>${basedir}/src/main/java</pathToImpl>
