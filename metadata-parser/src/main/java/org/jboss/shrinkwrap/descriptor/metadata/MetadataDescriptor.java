@@ -31,6 +31,10 @@ public class MetadataDescriptor extends BaseMetadataItem {
 
     private boolean generateClasses;
 
+    private String pathToPackageInfoApi;
+
+    private String pathToPackageInfoImpl;
+
     private Properties namespaces = new Properties();
 
     public MetadataDescriptor(String name) {
@@ -67,5 +71,21 @@ public class MetadataDescriptor extends BaseMetadataItem {
 
     public void setGenerateClasses(final boolean generateClasses) {
         this.generateClasses = generateClasses;
+    }
+
+    public String getPathToPackageInfoApi() {
+        return pathToPackageInfoApi;
+    }
+
+    public void setPathToPackageInfoApi(final String pathToPackageInfoApi) {
+       this.pathToPackageInfoApi = pathToPackageInfoApi;
+    }
+
+    public String getPathToPackageInfoImpl() {
+       return pathToPackageInfoImpl;
+    }
+
+    public void setPathToPackageInfoImpl(final String pathToPackageInfoImpl) {
+       this.pathToPackageInfoImpl = pathToPackageInfoImpl;
     }
 }
