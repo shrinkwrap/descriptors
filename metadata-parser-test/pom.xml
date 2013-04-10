@@ -67,7 +67,7 @@
                             </path>
                             <descriptors>
                                 <descriptor>
-                                    <pathToXsd>${basedir}/src/test/resources/xsd/ironjacamar_1_0.xsd</pathToXsd>                                    
+                                    <pathToXsd>${basedir}/src/test/resources/xsd/ironjacamar_1_0.xsd</pathToXsd>
                                     <nameSpace>ironjacamar</nameSpace>
                                     <packageApi>org.jboss.ironjacamar.api</packageApi>
                                     <packageImpl>org.jboss.ironjacamar.impl</packageImpl>
