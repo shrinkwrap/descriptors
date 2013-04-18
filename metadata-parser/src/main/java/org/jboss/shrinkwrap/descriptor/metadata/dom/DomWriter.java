@@ -106,6 +106,12 @@ public class DomWriter {
                 generateClassApi.setValue(Boolean.toString(descriptor.isGenerateClasses()));
                 packageApi.setAttributeNode(generateClassApi);
 
+                if (descriptor.getPathToPackageInfoApi() != null) {
+                    final Attr pathToPackageInfoApi = doc.createAttribute("packageInfo");
+                    pathToPackageInfoApi.setValue(descriptor.getPathToPackageInfoApi());
+                    packageApi.setAttributeNode(pathToPackageInfoApi);
+                }
+
                 packages.appendChild(packageApi);
             }
 
@@ -122,6 +128,13 @@ public class DomWriter {
                 final Attr generateClassImpl = doc.createAttribute("generateClass");
                 generateClassImpl.setValue(Boolean.toString(descriptor.isGenerateClasses()));
                 packageImpl.setAttributeNode(generateClassImpl);
+
+                if (descriptor.getPathToPackageInfoImpl() != null) {
+                    final Attr pathToPackageInfoImpl = doc.createAttribute("packageInfo");
+                    pathToPackageInfoImpl.setValue(descriptor.getPathToPackageInfoImpl());
+                    packageImpl.setAttributeNode(pathToPackageInfoImpl);
+                }
+
                 packages.appendChild(packageImpl);
             }
 
