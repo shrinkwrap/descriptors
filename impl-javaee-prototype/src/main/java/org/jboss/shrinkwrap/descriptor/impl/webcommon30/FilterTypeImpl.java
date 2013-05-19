@@ -38,4 +38,10 @@ public final class FilterTypeImpl extends FilterTypeImplBase<FilterType, WebAppD
     public FilterTypeImpl(final WebAppDescriptor parent, final Node model) throws IllegalArgumentException {
         super(parent, model);
     }
+
+	@Override
+	public String exportAsString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

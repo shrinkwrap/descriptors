@@ -704,7 +704,7 @@
 						<id>executionJBossEE6</id>
 						<phase>validate</phase>
 						<configuration>
-							<verbose>true</verbose>
+							<verbose>false</verbose>
 							<javadocs>
 								<javadoc>
 									<tag>@author</tag>

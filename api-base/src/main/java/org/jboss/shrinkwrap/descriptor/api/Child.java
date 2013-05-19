@@ -31,4 +31,11 @@ public interface Child<T> {
      * @return The parent of this {@link Child}
      */
     T up();
+
+    /**
+     * Returns the node and child nodes as XML string.
+     *
+     * @return XML string
+     */
+    String exportAsString();
 }

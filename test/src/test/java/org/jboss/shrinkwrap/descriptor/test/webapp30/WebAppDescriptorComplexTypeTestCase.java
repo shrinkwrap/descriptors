@@ -132,6 +132,8 @@ public class WebAppDescriptorComplexTypeTestCase {
         assertPresenceUsingXPath(webApp.exportAsString(),
             "/web-app/locale-encoding-mapping-list/locale-encoding-mapping[2]/encoding", "encoding2");
 
+        System.out.println(webApp.getAllLocaleEncodingMappingList().get(0).exportAsString());
+        
         webApp.getAllLocaleEncodingMappingList().get(0).getAllLocaleEncodingMapping().get(0).removeLocale();
         webApp.getAllLocaleEncodingMappingList().get(0).getAllLocaleEncodingMapping().get(1).removeLocale();
         assertTrue(webApp.exportAsString().indexOf("<locale>") == -1);
