@@ -1470,7 +1470,7 @@
         <xsl:value-of select="concat('', '&#10;')"/>
         <xsl:value-of select="concat('   /**', '&#10;')"/>
         <xsl:value-of select="concat('    * Sets the body text for the element &lt;code&gt;', $pElementName,'&lt;/code&gt; &#10;')"/>
-        <xsl:value-of select="concat('    * @param ', xdd:checkForReservedKeywords(xdd:createCamelizedName($pElementName)), ' the value for the body text &lt;code&gt;', $pElementName,'&lt;/code&gt; &#10;')"/>
+        <xsl:value-of select="concat('    * @param ', 'value', ' the value for the body text &lt;code&gt;', $pElementName,'&lt;/code&gt; &#10;')"/>
         <xsl:value-of select="concat('    * @return ', 'the current instance of &lt;code&gt;', $pReturnTypeName, '&lt;/code&gt; &#10;')"/>
         <xsl:value-of select="concat('    */', '&#10;')"/>
         <xsl:choose>
