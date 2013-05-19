@@ -429,7 +429,7 @@
                 <xsl:value-of select=" xdd:writeAttribute('T', 't', true())"/>
                 <xsl:value-of select=" xdd:writeAttribute('Node', 'childNode', false())"/>
                 <xsl:value-of select=" xdd:writeImplClassConstructor($vClassnameImpl, 'nodeName', 'childNode')"/>
-                <xsl:value-of select="xdd:writeChildUp()"/>
+                <xsl:value-of select="xdd:writeChildUp('childNode')"/>
                 <xsl:for-each select="include">
                     <xsl:value-of select="xdd:includeGroupRefs($vInterfaceName, @name, false(), false(), true(), 'childNode', @maxOccurs='unbounded')"/>
                 </xsl:for-each>
@@ -2698,11 +2698,17 @@
     <!-- ****** Function which writes the Child interface ***** -->
     <!-- ****************************************************** -->
     <xsl:function name="xdd:writeChildUp">
+        <xsl:param name="pNodeNameLocal"/>
         <xsl:value-of select="'   public T up()&#10;'"/>
         <xsl:value-of select="'   {&#10;'"/>
         <xsl:value-of select="'      return t;&#10;'"/>
         <xsl:value-of select="'   }&#10;'"/>
         <xsl:text>&#10;</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:value-of select="'   public String exportAsString()&#10;'"/>
+        <xsl:value-of select="'   {&#10;'"/>
+        <xsl:value-of select="concat('      return ', $pNodeNameLocal, '.exportAsString()',  ';&#10;')"/>
+        <xsl:value-of select="'   }&#10;'"/>
         <xsl:text>&#10;</xsl:text>
     </xsl:function>
 

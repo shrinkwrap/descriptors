@@ -57,6 +57,12 @@ public class WebAppDescriptorTestCase {
             public List<String> getAllDescription() {
                 return null;
             }
+
+			@Override
+			public String exportAsString() {
+				// TODO Auto-generated method stub
+				return null;
+			}
         });
 
         // Ensure that the filters in the descriptor are still empty even

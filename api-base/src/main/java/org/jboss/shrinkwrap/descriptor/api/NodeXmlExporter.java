@@ -17,25 +17,16 @@
 package org.jboss.shrinkwrap.descriptor.api;
 
 /**
- * Represents a child element in a hierarchial {@link Descriptor} structure capable of navigating up a level to its
- * parent
+ * Class allows to export a node as XML string.
  *
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
- * @author <a href="mailto:andrew.rubinger@jboss.org">ALR</a>
  */
-public interface Child<T> {
-
-    /**
-     * Returns the parent of this {@link Child}
-     *
-     * @return The parent of this {@link Child}
-     */
-    T up();
+public interface NodeXmlExporter {
 
     /**
      * Returns the node and child nodes as XML string.
      *
      * @return XML string
      */
-    String exportAsString();
+    String asXml();
 }

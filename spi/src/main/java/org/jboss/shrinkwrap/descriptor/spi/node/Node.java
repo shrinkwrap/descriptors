@@ -16,12 +16,28 @@
  */
 package org.jboss.shrinkwrap.descriptor.spi.node;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.jboss.shrinkwrap.descriptor.api.DescriptorExportException;
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
 
 /**
  * {@link Node} is a data structure representing a container in a classic tree. May sometimes be synonymous with the
@@ -581,6 +597,72 @@ public class Node {
         this.appendNodeInfo(sb, 0, this);
 
         return sb.toString();
+    }
+
+    public String exportAsString() {
+        try {
+            final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            this.exportTo(baos);
+            return baos.toString("UTF-8");
+        } catch (final UnsupportedEncodingException e) {
+            throw new DescriptorExportException("Inconsistent encoding used during export", e);
+        }
+    }
+
+    public void exportTo(final OutputStream out) {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            factory.setNamespaceAware(true);
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document root = builder.newDocument();
+            root.setXmlStandalone(true);
+
+            writeRecursive(root, this);
+
+            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty(OutputKeys.STANDALONE, "yes");
+
+            StreamResult result = new StreamResult(out);
+            transformer.transform(new DOMSource(root), result);
+        } catch (Exception e) {
+            throw new RuntimeException("Could not export Node structure to XML", e);
+        }
+    }
+
+    /**
+     * @param root
+     * @param node
+     */
+    private void writeRecursive(final org.w3c.dom.Node target, final Node source) {
+        Document owned = target.getOwnerDocument();
+        if (owned == null) {
+            owned = (Document) target;
+        }
+        org.w3c.dom.Node targetChild = null;
+        // Comment node
+        if (source.isComment()) {
+            targetChild = owned.createComment(source.getText());
+        } else if (source.getText() != null) {
+            targetChild = owned.createElement(source.getName());
+            targetChild.appendChild(owned.createTextNode(source.getText()));
+        } else {
+            targetChild = owned.createElement(source.getName());
+        }
+
+        target.appendChild(targetChild);
+
+        for (Map.Entry<String, String> attribute : source.getAttributes().entrySet()) {
+            Attr attr = owned.createAttribute(attribute.getKey());
+            attr.setValue(attribute.getValue());
+
+            targetChild.getAttributes().setNamedItem(attr);
+        }
+
+        for (Node sourceChild : source.getChildren()) {
+            writeRecursive(targetChild, sourceChild);
+        }
     }
 
     private void appendNodeInfo(final StringBuilder builder, final int level, final Node node) {

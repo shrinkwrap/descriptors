@@ -121,4 +121,10 @@ public final class FilterTypeMutableImpl extends FilterTypeImplBase<FilterMutabl
         return this;
     }
 
+	@Override
+	public String exportAsString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
