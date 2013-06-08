@@ -16,11 +16,16 @@
  */
 package org.jboss.shrinkwrap.descriptor.test.connector10;
 
+import java.util.List;
+
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.connector10.ConfigProperty;
 import org.jboss.shrinkwrap.descriptor.api.connector10.ConnectorDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.connector10.Factory;
 import org.jboss.shrinkwrap.descriptor.api.connector10.Resourceadapter;
+import org.jboss.shrinkwrap.descriptor.impl.connector10.ChildNodeInitializer;
+import org.jboss.shrinkwrap.descriptor.impl.connector10.ResourceadapterImpl;
+import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 import org.junit.Test;
 
 public class ConnectorDescriptorTestCase {
@@ -62,6 +67,27 @@ public class ConnectorDescriptorTestCase {
         System.out.println(generatedRaXml);
     }
     
+
+    @Test
+    public void testConvenientResourceAdapter() throws Exception {
+    	final ConnectorDescriptor jca10Generated = create();
+    	final Factory factory = jca10Generated.getFactory();
+    			
+    	final ConvenientResourceAdapter resourceAdapter = new ConvenientResourceAdapter();
+    	
+    	final ConfigProperty property = factory.ConfigProperty()
+                .configPropertyName("Input")
+                .configPropertyType("java.lang.String")
+                .configPropertyValue("test messages");
+    	
+    	jca10Generated
+    		.description("It is a sample resource adapter")
+            .setResourceadapter(resourceAdapter.addConfigProperty(property));
+
+        String generatedRaXml = jca10Generated.exportAsString();
+        System.out.println(generatedRaXml);
+    }
+    
     // -------------------------------------------------------------------------------------||
     // Internal Helper --------------------------------------------------------------------||
     // -------------------------------------------------------------------------------------||
@@ -70,4 +96,39 @@ public class ConnectorDescriptorTestCase {
         return Descriptors.create(ConnectorDescriptor.class);
     }
 
+    private class ConvenientResourceAdapter implements Resourceadapter, ChildNodeInitializer {
+    	final ResourceadapterImpl resourceAdapter = new ResourceadapterImpl();
+    	
+		@Override
+		public void initialize(String nodeName, Node node) {
+			node.attribute("attr", "val");
+			final Node myNode = node.createChild("my-node");
+			myNode.attribute("my-attribute", "great");
+			myNode.text("my-text");
+			resourceAdapter.initialize(nodeName, node);
+		}
+
+		@Override
+		public void assign(String nodeName, Node node) {
+			resourceAdapter.assign(nodeName, node);
+		}
+
+		@Override
+		public Resourceadapter addConfigProperty(ConfigProperty configProperty) {
+			resourceAdapter.addConfigProperty(configProperty);
+			return this;
+		}
+
+		@Override
+		public List<ConfigProperty> getAllConfigProperty() {
+			return resourceAdapter.getAllConfigProperty();
+		}
+
+		@Override
+		public Resourceadapter removeAllConfigProperty() {
+			resourceAdapter.removeAllConfigProperty();
+			return this;
+		}
+    	
+    }
 }
