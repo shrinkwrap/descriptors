@@ -37,8 +37,8 @@ public class ConnectorDescriptorTestCase {
     			
     	jca10Generated
     		.description("It is a sample resource adapter")
-            .setResourceadapter(factory.Resourceadapter()
-                .addConfigProperty(factory.ConfigProperty()
+            .setResourceadapter(factory.resourceadapter()
+                .addConfigProperty(factory.configProperty()
                     .configPropertyName("Input")
                     .configPropertyType("java.lang.String")
                     .configPropertyValue("test messages")));
@@ -52,9 +52,9 @@ public class ConnectorDescriptorTestCase {
     	final ConnectorDescriptor jca10Generated = create();
     	final Factory factory = jca10Generated.getFactory();
     			
-    	final Resourceadapter resourceAdapter = factory.Resourceadapter();
+    	final Resourceadapter resourceAdapter = factory.resourceadapter();
     	
-    	final ConfigProperty property = factory.ConfigProperty()
+    	final ConfigProperty property = factory.configProperty()
                 .configPropertyName("Input")
                 .configPropertyType("java.lang.String")
                 .configPropertyValue("test messages");
@@ -75,7 +75,7 @@ public class ConnectorDescriptorTestCase {
     			
     	final ConvenientResourceAdapter resourceAdapter = new ConvenientResourceAdapter();
     	
-    	final ConfigProperty property = factory.ConfigProperty()
+    	final ConfigProperty property = factory.configProperty()
                 .configPropertyName("Input")
                 .configPropertyType("java.lang.String")
                 .configPropertyValue("test messages");

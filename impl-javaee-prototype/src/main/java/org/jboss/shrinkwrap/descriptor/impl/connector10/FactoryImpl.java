@@ -6,12 +6,12 @@ public class FactoryImpl implements Factory {
 
 
 	@Override
-	public org.jboss.shrinkwrap.descriptor.api.connector10.ConfigProperty ConfigProperty() {
+	public org.jboss.shrinkwrap.descriptor.api.connector10.ConfigProperty configProperty() {
 		return new ConfigPropertyImpl();
 	}
 
 	@Override
-	public org.jboss.shrinkwrap.descriptor.api.connector10.Resourceadapter Resourceadapter() {
+	public org.jboss.shrinkwrap.descriptor.api.connector10.Resourceadapter resourceadapter() {
 		return new ResourceadapterImpl();
 	}
 

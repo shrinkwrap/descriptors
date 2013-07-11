@@ -11,42 +11,42 @@ import java.util.List;
  */
 public interface Resourceadapter {
 
-//	public Resourceadapter connectionInterface(String connectionInterface);
-//	public String getConnectionInterface();
-//	public Resourceadapter removeConnectionInterface();
+	public Resourceadapter connectionInterface(String connectionInterface);
+	public String getConnectionInterface();
+	public Resourceadapter removeConnectionInterface();
 
 	public Resourceadapter addConfigProperty(final ConfigProperty configProperty);
 	public List<ConfigProperty> getAllConfigProperty();
 	public Resourceadapter removeAllConfigProperty();
 
-//	public Resourceadapter connectionImplClass(String connectionImplClass);
-//	public String getConnectionImplClass();
-//	public Resourceadapter removeConnectionImplClass();
-//
-//	public Resourceadapter connectionfactoryInterface(String connectionfactoryInterface);
-//	public String getConnectionfactoryInterface();
-//	public Resourceadapter removeConnectionfactoryInterface();
-//
-//	public Resourceadapter reauthenticationSupport(String reauthenticationSupport);
-//	public String getReauthenticationSupport();
-//	public Resourceadapter removeReauthenticationSupport();
-//
+	public Resourceadapter connectionImplClass(String connectionImplClass);
+	public String getConnectionImplClass();
+	public Resourceadapter removeConnectionImplClass();
+
+	public Resourceadapter connectionfactoryInterface(String connectionfactoryInterface);
+	public String getConnectionfactoryInterface();
+	public Resourceadapter removeConnectionfactoryInterface();
+
+	public Resourceadapter reauthenticationSupport(String reauthenticationSupport);
+	public String getReauthenticationSupport();
+	public Resourceadapter removeReauthenticationSupport();
+
 //	
 //	public Resourceadapter addAuthenticationMechanism(final AuthenticationMechanism authenticationMechanism);
 //	public List<AuthenticationMechanism> getAllAuthenticationMechanism();
 //	public Resourceadapter removeAllAuthenticationMechanism();
-//
-//	public Resourceadapter managedconnectionfactoryClass(String managedconnectionfactoryClass);
-//	public String getManagedconnectionfactoryClass();
-//	public Resourceadapter removeManagedconnectionfactoryClass();
-//	
-//	public Resourceadapter connectionfactoryImplClass(String connectionfactoryImplClass);
-//	public String getConnectionfactoryImplClass();
-//	public Resourceadapter removeConnectionfactoryImplClass();
-//
-//	public Resourceadapter transactionSupport(String transactionSupport);
-//	public String getTransactionSupport();
-//	public Resourceadapter removeTransactionSupport();
+
+	public Resourceadapter managedconnectionfactoryClass(String managedconnectionfactoryClass);
+	public String getManagedconnectionfactoryClass();
+	public Resourceadapter removeManagedconnectionfactoryClass();
+	
+	public Resourceadapter connectionfactoryImplClass(String connectionfactoryImplClass);
+	public String getConnectionfactoryImplClass();
+	public Resourceadapter removeConnectionfactoryImplClass();
+
+	public Resourceadapter transactionSupport(String transactionSupport);
+	public String getTransactionSupport();
+	public Resourceadapter removeTransactionSupport();
 //
 //	public Resourceadapter addSecurityPermission(final SecurityPermission securityPermission);
 //	public List<SecurityPermission> getAllSecurityPermission();

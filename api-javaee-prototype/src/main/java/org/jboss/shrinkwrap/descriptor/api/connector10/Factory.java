@@ -3,9 +3,9 @@ package org.jboss.shrinkwrap.descriptor.api.connector10;
 public interface Factory {
 
 //	public AuthenticationMechanism AuthenticationMechanism();
-	public ConfigProperty ConfigProperty();
+	public ConfigProperty configProperty();
 //	public Icon Icon();
 //	public License License();
-	public Resourceadapter Resourceadapter();
+	public Resourceadapter resourceadapter();
 //	public SecurityPermission SecurityPermission();
 }
