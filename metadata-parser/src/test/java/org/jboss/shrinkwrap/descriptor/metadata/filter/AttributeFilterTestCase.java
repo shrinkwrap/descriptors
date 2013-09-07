@@ -152,4 +152,50 @@ public class AttributeFilterTestCase {
         Assert.assertNull(e.get(0).getFixedValue());
     }
     
+    @Test
+    public void testBeansAttributes() throws Exception {
+        final boolean isLogging = false;
+        final String xmlFragment =
+        "<xs:schema xmlns=\"http://www.w3.org/2001/XMLSchema\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" >" + 
+        "  <xs:element name=\"beans\">" + 
+        "     <xs:complexType>" + 
+        "        <xs:choice minOccurs=\"0\" maxOccurs=\"unbounded\">" + 
+        "           <xs:element ref=\"javaee:interceptors\" />" + 
+        "           <xs:element ref=\"javaee:decorators\" />" + 
+        "           <xs:element ref=\"javaee:alternatives\" />" + 
+        "           <xs:element ref=\"javaee:scan\" />" + 
+        "           <xs:any namespace=\"##other\" processContents=\"lax\"/>" + 
+        "        </xs:choice>" + 
+        "        <xs:attribute name=\"version\" default=\"1.1\">" + 
+        "          <xs:simpleType>" + 
+        "            <xs:restriction base=\"xs:token\">" + 
+        "              <xs:pattern value=\"\\.?[0-9]+(\\.[0-9]+)*\"/> " + 
+        "            </xs:restriction>" + 
+        "          </xs:simpleType>   " + 
+        "        </xs:attribute>" + 
+        "        <xs:attribute name=\"bean-discovery-mode\" use=\"required\">" + 
+        "          <xs:simpleType>" + 
+        "            <xs:restriction base=\"xs:string\">" + 
+        "              <xs:enumeration value=\"annotated\">" + 
+        "              </xs:enumeration>" + 
+        "              <xs:enumeration value=\"all\">" + 
+        "              </xs:enumeration>" + 
+        "              <xs:enumeration value=\"none\">" + 
+        "              </xs:enumeration>" + 
+        "            </xs:restriction>" + 
+        "          </xs:simpleType>" + 
+        "        </xs:attribute>" + 
+        "      </xs:complexType>" + 
+        "   </xs:element>" + 
+        "</xs:schema>";
+        
+        final Metadata metadata = DomTestUtil.parse(xmlFragment, isLogging);
+        Assert.assertEquals("beans", metadata.getClassList().get(0).getName(), "beans");
+        final List<MetadataElement> e = metadata.getClassList().get(0).getElements();
+        Assert.assertTrue(e.size() == 6);
+        Assert.assertEquals("version", e.get(4).getName());
+        Assert.assertTrue(e.get(4).getIsAttribute());
+        Assert.assertEquals("bean-discovery-mode", e.get(5).getName());
+        Assert.assertTrue(e.get(5).getIsAttribute());
+    }
 }

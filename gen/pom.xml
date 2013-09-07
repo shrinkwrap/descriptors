@@ -628,6 +628,276 @@
 					</execution>
 
 					<execution>
+						<id>executionJavaEE7</id>
+						<phase>validate</phase>
+						<configuration>
+							<verbose>false</verbose>
+							<javadocs>
+								<javadoc>
+									<tag>@author</tag>
+									<value>&lt;a href=&quot;mailto:ralf.battenfeld@bluewin.ch&quot;&gt;Ralf Battenfeld&lt;/a&gt;</value>
+								</javadoc>
+								<javadoc>
+									<tag>@author</tag>
+									<value>&lt;a href=&quot;mailto:alr@jboss.org&quot;&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
+								</javadoc>
+							</javadocs>
+							<path>
+								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
+								<pathToImpl>${basedir}/../impl-javaee/src/main/java</pathToImpl>
+<!--								<pathToServices>${basedir}/../impl-javaee/src/main/resources/META-INF/services</pathToServices>-->
+							</path>
+							<descriptors>
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/javaee_7.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.javaee7</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaee7</packageImpl>
+									<generateClasses>true</generateClasses>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/web-common_3_1.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.webcommon31</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.webcommon31</packageImpl>
+									<generateClasses>true</generateClasses>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/jsp_2_3.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.jsp23</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jsp23</packageImpl>
+									<generateClasses>true</generateClasses>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/javaee_web_services_client_1_4.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient14</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient14</packageImpl>
+									<generateClasses>true</generateClasses>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/application_7.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.application7</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.application7</packageImpl>
+									<descriptorName>ApplicationDescriptor</descriptorName>
+									<elementName>application</elementName>
+									<elementType>javaee:applicationType</elementType>
+									<namespaces>
+										<property><name>xmlns</name><value>http://xmlns.jcp.org/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/application_7.xsd</value></property>
+									</namespaces>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/web-app_3_1.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.webapp31</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.webapp31</packageImpl>
+									<descriptorName>WebAppDescriptor</descriptorName>
+									<elementName>web-app</elementName>
+									<elementType>javaee:web-appType</elementType>
+									<namespaces>
+										<property><name>xmlns</name><value>http://xmlns.jcp.org/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd</value></property>
+									</namespaces>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/persistence_2_1.xsd</pathToXsd>
+									<nameSpace>persistence</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.persistence21</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.persistence21</packageImpl>
+									<descriptorName>PersistenceDescriptor</descriptorName>
+									<elementName>persistence</elementName>
+									<elementType>persistence:persistence</elementType>
+									<namespaces>
+										<property><name>xmlns</name><value>http://xmlns.jcp.org/xml/ns/persistence</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd</value></property>
+									</namespaces>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/orm_2_1.xsd</pathToXsd>
+									<nameSpace>orm</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.orm21</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.orm21</packageImpl>
+									<descriptorName>OrmDescriptor</descriptorName>
+									<elementName>entity-mappings</elementName>
+									<elementType>orm:entity-mappings</elementType>
+									<namespaces>
+										<property><name>xmlns</name><value>http://xmlns.jcp.org/xml/ns/persistence/orm</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd</value></property>
+									</namespaces>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/web-fragment_3_1.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.webfragment31</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.webfragment31</packageImpl>
+									<descriptorName>WebFragmentDescriptor</descriptorName>
+									<elementName>web-fragment</elementName>
+									<elementType>javaee:web-fragmentType</elementType>
+									<namespaces>
+										<property><name>xmlns</name><value>http://xmlns.jcp.org/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-fragment_3_1.xsd</value></property>
+									</namespaces>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/ejb-jar_3_2.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.ejbjar32</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.ejbjar32</packageImpl>
+									<descriptorName>EjbJarDescriptor</descriptorName>
+									<elementName>ejb-jar</elementName>
+									<elementType>javaee:ejb-jarType</elementType>
+									<namespaces>
+										<property><name>xmlns</name><value>http://xmlns.jcp.org/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/ejb-jar_3_2.xsd</value></property>
+									</namespaces>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/connector_1_7.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.connector17</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.connector17</packageImpl>
+									<descriptorName>ConnectorDescriptor</descriptorName>
+									<elementName>connector</elementName>
+									<elementType>javaee:connectorType</elementType>
+									<namespaces>
+										<property><name>xmlns</name><value>http://xmlns.jcp.org/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/connector_1_7.xsd</value></property>
+									</namespaces>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/beans_1_1.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.beans11</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.beans11</packageImpl>
+									<descriptorName>BeansDescriptor</descriptorName>
+									<elementName>beans</elementName>
+									<elementType>javaee:beans</elementType>
+									<namespaces>
+										<property><name>xmlns</name><value>http://xmlns.jcp.org/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd</value></property>
+									</namespaces>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/web-facesconfig_2_2.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.facesconfig22</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.facesconfig22</packageImpl>
+									<descriptorName>WebFacesConfigDescriptor</descriptorName>
+									<elementName>faces-config</elementName>
+									<elementType>javaee:faces-configType</elementType>
+									<namespaces>
+										<property><name>xmlns</name><value>http://xmlns.jcp.org/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd</value></property>
+									</namespaces>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/web-partialresponse_2_2.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.facespartialresponse22</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.facespartialresponse22</packageImpl>
+									<descriptorName>WebFacesPartialResponseDescriptor</descriptorName>
+									<elementName>partial-response</elementName>
+									<elementType>javaee:partial-responseType</elementType>
+									<namespaces>
+										<property><name>xmlns</name><value>http://xmlns.jcp.org/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-partialresponse_2_2.xsd</value></property>
+									</namespaces>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/web-facelettaglibrary_2_2.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.facelettaglibrary22</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.facelettaglibrary22</packageImpl>
+									<descriptorName>WebFacelettaglibraryDescriptor</descriptorName>
+									<elementName>facelet-taglib</elementName>
+									<elementType>javaee:facelet-taglibType</elementType>
+									<namespaces>
+										<property><name>xmlns</name><value>http://xmlns.jcp.org/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facelettaglibrary_2_2.xsd</value></property>
+									</namespaces>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/permissions_7.xsd</pathToXsd>
+									<nameSpace>permissions</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.permissions7</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.permissions7</packageImpl>
+									<descriptorName>PermissionsDescriptor</descriptorName>
+									<elementName>permissions</elementName>
+									<elementType>permissions:permissions</elementType>
+									<namespaces>
+										<property><name>xmlns</name><value>http://xmlns.jcp.org/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/permissions_7.xsd</value></property>
+									</namespaces>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/jobXML_1_0.xsd</pathToXsd>
+									<nameSpace>jsl</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.jobXML10</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jobXML10</packageImpl>
+									<descriptorName>JobXMLDescriptor</descriptorName>
+									<elementName>job</elementName>
+									<elementType>jsl:Job</elementType>
+									<namespaces>
+										<property><name>xmlns</name><value>http://xmlns.jcp.org/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/jobXML_1_0.xsd</value></property>
+									</namespaces>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/batchXML_1_0.xsd</pathToXsd>
+									<nameSpace>jbatch</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.batchXML10</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.batchXML10</packageImpl>
+									<descriptorName>BatchXMLDescriptor</descriptorName>
+									<elementName>batch-artifacts</elementName>
+									<elementType>jbatch:BatchArtifacts</elementType>
+									<namespaces>
+										<property><name>xmlns</name><value>http://xmlns.jcp.org/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/batchXML_1_0.xsd</value></property>
+									</namespaces>
+								</descriptor>
+								
+							</descriptors>
+						</configuration>
+						<goals>
+							<goal>parse</goal>
+						</goals>
+					</execution>
+					
+					<execution>
 						<id>executionJBossEE5</id>
 						<phase>validate</phase>
 						<configuration>
@@ -704,7 +974,7 @@
 						<id>executionJBossEE6</id>
 						<phase>validate</phase>
 						<configuration>
-							<verbose>true</verbose>
+							<verbose>false</verbose>
 							<javadocs>
 								<javadoc>
 									<tag>@author</tag>

@@ -195,6 +195,11 @@ public class Metadata {
      */
     public void addClassElement(final String className, final MetadataElement classElement) {
         classElement.setType(getNamespaceValue(classElement.getType()));
+
+        if (classElement.getMaxOccurs() != null && !classElement.getMaxOccurs().equals("1")) {
+            classElement.setMaxOccurs("unbounded");
+        }
+
         for (MetadataItem item : classList) {
             if (item.getName().equals(className) && item.getNamespace().equals(getCurrentNamespace())
                 && item.getPackageApi().equals(getCurrentPackageApi())) {

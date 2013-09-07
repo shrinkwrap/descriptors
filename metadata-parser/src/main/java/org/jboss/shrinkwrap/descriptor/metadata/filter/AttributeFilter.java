@@ -97,6 +97,23 @@ public class AttributeFilter implements Filter {
                                 metadata.addClassElement(groupOrClassName, classElement);
                                 return true;
                             }
+
+                            final Node defaultNode = element.getAttributes().getNamedItem("default");
+                            if (defaultNode != null) {
+                                final MetadataElement classElement = new MetadataElement(element);
+                                classElement.setType("xsd:string");
+                                classElement.setIsAttribute(true);
+                                metadata.addClassElement(groupOrClassName, classElement);
+                                return true;
+                            }
+
+                            if (MetadataUtil.hasChildOf(element, XsdElementEnum.simpleType)) {
+                                final MetadataElement classElement = new MetadataElement(element);
+                                classElement.setType("xsd:string");
+                                classElement.setIsAttribute(true);
+                                metadata.addClassElement(groupOrClassName, classElement);
+                                return true;
+                            }
                         }
                     }
                 } else {
