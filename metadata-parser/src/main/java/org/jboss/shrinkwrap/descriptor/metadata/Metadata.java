@@ -205,7 +205,7 @@ public class Metadata {
                 && item.getPackageApi().equals(getCurrentPackageApi())) {
                 // check for a element with the same name, if found then set 'maxOccurs = unbounded'
                 for (MetadataElement element : item.getElements()) {
-                    if (element.getName().equals(classElement.getName())) {
+                    if (element.getName().equals(classElement.getName()) && !classElement.getIsAttribute()) {
                         element.setMaxOccurs("unbounded");
                         return;
                     }
