@@ -49,4 +49,37 @@ public class RestrictionFilterTestCase {
         Assert.assertEquals("javaee:string", metadata.getDataTypeList().get(0).getMappedTo(), "javaee:string");
     }
 
+    @Test
+    public void testRestrictionBaseFilterWithComplexTypeAsParentUnbound() throws Exception {        
+        final boolean isLogging = true;        
+        final String xmlFragment = 
+        "<xs:schema xmlns=\"http://www.w3.org/2001/XMLSchema\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" >" + 
+        "<xs:complexType name=\"executable-validationType\">" +
+        "  <xs:sequence>" +
+        "    <xs:element type=\"config:default-validated-executable-typesType\" name=\"default-validated-executable-types\" minOccurs=\"0\"/>" +
+        "  </xs:sequence>" +
+        "  <xs:attribute name=\"enabled\" use=\"optional\" type=\"xs:boolean\" default=\"true\"/>" +
+        "</xs:complexType>" +
+        "<xs:complexType name=\"default-validated-executable-typesType\">" + 
+        "  <xs:sequence>" + 
+        "    <xs:element name=\"executable-type\" maxOccurs=\"unbounded\" minOccurs=\"1\">" + 
+        "      <xs:simpleType>" + 
+        "        <xs:restriction base=\"xs:string\">" + 
+        "            <xs:enumeration value=\"NONE\"/>" + 
+        "            <xs:enumeration value=\"CONSTRUCTORS\"/>" + 
+        "            <xs:enumeration value=\"NON_GETTER_METHODS\"/>" + 
+        "            <xs:enumeration value=\"GETTER_METHODS\"/>" + 
+        "            <xs:enumeration value=\"ALL\"/>" + 
+        "        </xs:restriction>" + 
+        "      </xs:simpleType>" + 
+        "    </xs:element>" + 
+        "  </xs:sequence>" + 
+        "</xs:complexType>" +
+        "</xs:schema>";
+
+	    final Metadata metadata = DomTestUtil.parse(xmlFragment, isLogging);
+	
+	    Assert.assertEquals("executable-validationType", metadata.getClassList().get(0).getName(), "executable-validationType");
+	    Assert.assertEquals("default-validated-executable-typesType", metadata.getClassList().get(1).getName(), "default-validated-executable-typesType");
+    }
 }

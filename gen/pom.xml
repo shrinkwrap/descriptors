@@ -897,6 +897,65 @@
 						</goals>
 					</execution>
 					
+					<!-- The beans validation must be done in a seperate task since it clashes with a persistence class definition -->
+					<execution>
+						<id>executionJavaEE7BeansValidation</id>
+						<phase>validate</phase>
+						<configuration>
+							<verbose>false</verbose>
+							<javadocs>
+								<javadoc>
+									<tag>@author</tag>
+									<value>&lt;a href="mailto:ralf.battenfeld@bluewin.ch"&gt;Ralf Battenfeld&lt;/a&gt;</value>
+								</javadoc>
+								<javadoc>
+									<tag>@author</tag>
+									<value>&lt;a href="mailto:alr@jboss.org"&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
+								</javadoc>
+							</javadocs>
+							<path>
+								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
+								<pathToImpl>${basedir}/../impl-javaee/src/main/java</pathToImpl>
+<!--								<pathToServices>${basedir}/../impl-javaee/src/main/resources/META-INF/services</pathToServices>-->
+							</path>
+							<descriptors>								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/validation-mapping-1.1.xsd</pathToXsd>
+									<nameSpace>map</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.validationMapping11</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.validationMapping11</packageImpl>
+									<descriptorName>ValidationMappingDescriptor</descriptorName>
+									<elementName>constraint-mappings</elementName>
+									<elementType>map:constraint-mappingsType</elementType>
+									<namespaces>
+										<property><name>xmlns</name><value>http://jboss.org/xml/ns/javax/validation/mapping</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://jboss.org/xml/ns/javax/validation/mapping validation-mapping-1.1.xsd</value></property>
+									</namespaces>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/validation-configuration-1.1.xsd</pathToXsd>
+									<nameSpace>config</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.validationConfiguration11</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.validationConfiguration11</packageImpl>
+									<descriptorName>ValidationConfigurationDescriptor</descriptorName>
+									<elementName>validation-config</elementName>
+									<elementType>config:validation-configType</elementType>
+									<namespaces>
+										<property><name>xmlns</name><value>http://jboss.org/xml/ns/javax/validation/configuration</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://jboss.org/xml/ns/javax/validation/configuration validation-configuration-1.1.xsd</value></property>
+									</namespaces>
+								</descriptor>
+					
+							</descriptors>
+						</configuration>
+						<goals>
+							<goal>parse</goal>
+						</goals>
+					</execution>
+					
 					<execution>
 						<id>executionJBossEE5</id>
 						<phase>validate</phase>

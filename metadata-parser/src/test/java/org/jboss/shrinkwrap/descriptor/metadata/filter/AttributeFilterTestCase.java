@@ -72,7 +72,7 @@ public class AttributeFilterTestCase {
 
     @Test
     public void testAttributeFilterWithGlobalDeclaration() throws Exception {
-        final boolean isLogging = false;
+        final boolean isLogging = true;
         final String xmlFragment =
 		"<xs:schema xmlns=\"http://www.w3.org/2001/XMLSchema\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" >" + 
 		"   <xs:attribute name=\"lang\"/>" +
@@ -81,6 +81,7 @@ public class AttributeFilterTestCase {
 		"      <xs:attribute ref=\"lang\" use=\"required\"/>" +
 		"      <xs:attribute ref=\"space\" default=\"preserve\"/>" +
 		"      <xs:attribute name=\"version\" type=\"xs:string\" fixed=\"1.0\"/>" +
+		"      <xs:attribute type=\"xs:string\" name=\"class\" use=\"required\"/>" +
 		"   </xs:complexType>" +
 		"</xs:schema>";
 
@@ -96,6 +97,7 @@ public class AttributeFilterTestCase {
         DomTestUtil.assertClassAttribute(e.get(0), "<xsd:attribute name=\"lang\" type=\"xsd:string\"/>");
         DomTestUtil.assertClassAttribute(e.get(1), "<xsd:attribute name=\"space\" type=\"xsd:string\"/>");
         DomTestUtil.assertClassAttribute(e.get(2), "<xs:attribute name=\"version\" type=\"xs:string\" fixed=\"1.0\"/>");
+        DomTestUtil.assertClassAttribute(e.get(3), "<xs:attribute name=\"class\" type=\"xs:string\"/>");
     }
     
     @Test
@@ -197,5 +199,33 @@ public class AttributeFilterTestCase {
         Assert.assertTrue(e.get(4).getIsAttribute());
         Assert.assertEquals("bean-discovery-mode", e.get(5).getName());
         Assert.assertTrue(e.get(5).getIsAttribute());
+    }
+    
+    @Test
+    public void testClassAttributeWithClassElement() throws Exception {
+    	final boolean isLogging = true;
+        final String xmlFragment =
+        "<xs:schema xmlns=\"http://www.w3.org/2001/XMLSchema\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" >" + 
+        "<xs:complexType name=\"beanType\">" + 
+        "  <xs:sequence>" + 
+        "    <xs:element type=\"map:classType\"" + 
+        "                name=\"class\"" + 
+        "                minOccurs=\"0\">" + 
+        "    </xs:element>" + 
+        "    <xs:element type=\"map:fieldType\"" + 
+        "                name=\"field\"" + 
+        "                minOccurs=\"0\"" + 
+        "                maxOccurs=\"unbounded\"/>" + 
+        "  </xs:sequence>" + 
+        "<xs:attribute type=\"xs:string\" name=\"class\" use=\"required\"/>" + 
+        "<xs:attribute type=\"xs:boolean\" name=\"ignore-annotations\" use=\"optional\"/>" + 
+        "</xs:complexType>" +
+        "</xs:schema>";
+        
+        final Metadata metadata = DomTestUtil.parse(xmlFragment, isLogging);
+        
+        final List<MetadataElement> e = metadata.getClassList().get(0).getElements();
+        DomTestUtil.assertClassAttribute(e.get(2), "<xs:attribute name=\"class\" type=\"xs:string\"/>");
+        DomTestUtil.assertClassAttribute(e.get(3), "<xs:attribute name=\"ignore-annotations\" type=\"xs:boolean\"/>");
     }
 }
