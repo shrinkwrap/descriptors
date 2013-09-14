@@ -7,7 +7,6 @@ import junit.framework.Assert;
 import org.jboss.shrinkwrap.descriptor.metadata.DomTestUtil;
 import org.jboss.shrinkwrap.descriptor.metadata.Metadata;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataElement;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -22,29 +21,26 @@ public class SimpleContentFilterTestCase {
      */
 
     @Test
-    @Ignore
     public void testSimpleContent() throws Exception {
         final boolean isLogging = false;
         final String xmlFragment =
         "<xs:schema xmlns=\"http://www.w3.org/2001/XMLSchema\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" >" +
-        "   <xs:element name=\"shoesize\">" +
-        "      <xs:complexType>" +
+        "   <xs:complexType name=\"propertyType\">" +        
         "         <xs:simpleContent>" +
-        "            <xs:extension base=\"xs:integer\">" +
-        "               <xs:attribute name=\"country\" type=\"xs:string\" />" +
+        "            <xs:extension base=\"xs:string\">" +
+        "               <xs:attribute name=\"name\" use=\"required\" type=\"xs:string\" />" +
         "            </xs:extension>" +
         "         </xs:simpleContent>" +
-        "      </xs:complexType>" +
-        "   </xs:element>" +
+        "   </xs:complexType>" +       
         "</xs:schema>";
 
         final Metadata metadata = DomTestUtil.parse(xmlFragment, isLogging);
 
-        Assert.assertEquals("shoesize", metadata.getClassList().get(0).getName(), "shoesize");
+        Assert.assertEquals("propertyType", metadata.getClassList().get(0).getName(), "propertyType");
 
         final List<MetadataElement> e = metadata.getClassList().get(0).getElements();
-        DomTestUtil.assertElement(e.get(0), "<xs:element name=\"shoesize\" type=\"text\">");
-        DomTestUtil.assertClassAttribute(e.get(1), "<xs:attribute name=\"country\" type=\"xs:string\" />");
+        DomTestUtil.assertElement(e.get(0), "<xs:complexType name=\"propertyType\">");
+        DomTestUtil.assertClassAttribute(e.get(1), "<xs:attribute name=\"name\" type=\"xs:string\" />");
     }
 
     @Test

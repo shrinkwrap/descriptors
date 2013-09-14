@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<constraint-mappings xmlns="http://jboss.org/xml/ns/javax/validation/mapping"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping validation-mapping-1.1.xsd"
+	version="1.1">
+	<default-package>default-package0</default-package>
+	<bean class="class1" ignore-annotations="false">
+		<class ignore-annotations="false">
+			<group-sequence>
+				<value>value0</value>
+			</group-sequence>
+			<constraint annotation="annotation1">
+				<message>message0</message>
+				<groups>
+					<value>value1</value>
+				</groups>
+				<payload>
+					<value>value2</value>
+				</payload>
+				<element name="name1">
+					<value>value3</value>
+					<annotation>
+					</annotation>
+				</element>
+			</constraint>
+		</class>
+		<field name="name3" ignore-annotations="false">
+			<valid></valid>
+			<convert-group from="from1" to="to1" />
+			<constraint annotation="annotation3">
+				<message>message1</message>
+				<groups>
+					<value>value4</value>
+				</groups>
+				<payload>
+					<value>value5</value>
+				</payload>
+				<element name="name5">
+					<value>value6</value>
+					<annotation>
+					</annotation>
+				</element>
+			</constraint>
+		</field>
+		<getter name="name7" ignore-annotations="false">
+			<valid></valid>
+			<convert-group from="from3" to="to3" />
+			<constraint annotation="annotation5">
+				<message>message2</message>
+				<groups>
+					<value>value7</value>
+				</groups>
+				<payload>
+					<value>value8</value>
+				</payload>
+				<element name="name9">
+					<value>value9</value>
+					<annotation>
+					</annotation>
+				</element>
+			</constraint>
+		</getter>
+		<constructor ignore-annotations="false">
+			<parameter type="type1" ignore-annotations="false">
+				<valid></valid>
+				<convert-group from="from5" to="to5" />
+				<constraint annotation="annotation7">
+					<message>message3</message>
+					<groups>
+					</groups>
+					<payload>
+					</payload>
+					<element name="name11">
+					</element>
+				</constraint>
+			</parameter>
+			<cross-parameter ignore-annotations="false">
+				<constraint annotation="annotation9">
+					<message>message4</message>
+					<groups>
+					</groups>
+					<payload>
+					</payload>
+					<element name="name13">
+					</element>
+				</constraint>
+			</cross-parameter>
+			<return-value ignore-annotations="false">
+				<valid></valid>
+				<convert-group from="from7" to="to7" />
+				<constraint annotation="annotation11">
+					<message>message5</message>
+					<groups>
+					</groups>
+					<payload>
+					</payload>
+					<element name="name15">
+					</element>
+				</constraint>
+			</return-value>
+		</constructor>
+<!-- 		<method name="name17" ignore-annotations="false"> -->
+<!-- 			<parameter type="type3" ignore-annotations="false"> -->
+<!-- 				<valid></valid> -->
+<!-- 				<convert-group from="from9" to="to9" /> -->
+<!-- 				<constraint annotation="annotation13"> -->
+<!-- 					<message>message6</message> -->
+<!-- 					<groups> -->
+<!-- 					</groups> -->
+<!-- 					<payload> -->
+<!-- 					</payload> -->
+<!-- 					<element name="name19"> -->
+<!-- 					</element> -->
+<!-- 				</constraint> -->
+<!-- 			</parameter> -->
+<!-- 			<cross-parameter ignore-annotations="false"> -->
+<!-- 				<constraint annotation="annotation15"> -->
+<!-- 					<message>message7</message> -->
+<!-- 					<groups> -->
+<!-- 					</groups> -->
+<!-- 					<payload> -->
+<!-- 					</payload> -->
+<!-- 					<element name="name21"> -->
+<!-- 					</element> -->
+<!-- 				</constraint> -->
+<!-- 			</cross-parameter> -->
+<!-- 			<return-value ignore-annotations="false"> -->
+<!-- 				<valid></valid> -->
+<!-- 				<convert-group from="from11" to="to11" /> -->
+<!-- 				<constraint annotation="annotation17"> -->
+<!-- 					<message>message8</message> -->
+<!-- 					<groups> -->
+<!-- 					</groups> -->
+<!-- 					<payload> -->
+<!-- 					</payload> -->
+<!-- 					<element name="name23"> -->
+<!-- 					</element> -->
+<!-- 				</constraint> -->
+<!-- 			</return-value> -->
+<!-- 		</method> -->
+	</bean>
+	<constraint-definition annotation="annotation19">
+		<validated-by include-existing-validators="false">
+			<value>value10</value>
+		</validated-by>
+	</constraint-definition>
+</constraint-mappings>

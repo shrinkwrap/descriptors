@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<validation-config xmlns="http://jboss.org/xml/ns/javax/validation/configuration"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/configuration validation-configuration-1.1.xsd" version="1.1">
+    <default-provider>default-provider0</default-provider>
+    <message-interpolator>message-interpolator0</message-interpolator>
+    <traversable-resolver>traversable-resolver0</traversable-resolver>
+    <constraint-validator-factory>constraint-validator-factory0</constraint-validator-factory>
+    <parameter-name-provider>parameter-name-provider0</parameter-name-provider>
+    <executable-validation enabled="true">
+        <default-validated-executable-types>
+            <executable-type>NONE</executable-type>
+            <executable-type>NONE</executable-type>
+            <executable-type>NONE</executable-type>
+        </default-validated-executable-types>
+    </executable-validation>
+    <constraint-mapping>constraint-mapping0</constraint-mapping>
+    <constraint-mapping>constraint-mapping1</constraint-mapping>
+    <constraint-mapping>constraint-mapping2</constraint-mapping>
+    <property name="name1">property0</property>
+    <property name="name3">property1</property>
+    <property name="name5">property2</property>
+</validation-config>
