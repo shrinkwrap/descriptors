@@ -902,7 +902,7 @@
             </xsl:when>
 
             <xsl:when test="xdd:isEnumType($pElementType)">
-                <xsl:value-of select="xdd:printEnums($vReturn, $pElementType, $vMethodName, $pNodeNameLocal, $pElementName, $vReturn, $pWriteInterface, xdd:isEnumType($pElementType), $pIsAttribute, $pDefault, $pFixed, $pUse)"/>
+                <xsl:value-of select="xdd:printEnums($vReturn, $pElementType, $vMethodName, $pNodeNameLocal, $pElementName, $vReturn, $pWriteInterface, xdd:isEnumType($pElementType), $pIsAttribute, $pDefault, $pFixed, $pUse, contains($pMaxOccurs, 'unbounded'))"/>
             </xsl:when>
 
             <xsl:when test="$pIsAttribute">
@@ -1222,7 +1222,7 @@
                 <xsl:value-of select="concat('   {', '&#10;')"/>
                 <xsl:value-of select="concat('      Node node = ', $pNodeNameLocal, '.getOrCreate(&quot;', $pElementName, '&quot;);',  '&#10;')"/>
                 <xsl:value-of select="concat('      ', xdd:createPascalizedName($pElementType,''), ' ', xdd:checkForReservedKeywords(xdd:createCamelizedName($pElementName)), ' = new ', $vConstructor, '(this, &quot;', $pElementName, '&quot;, ', $pNodeNameLocal, ', node);', '&#10;')"/>
-                <xsl:value-of select="concat('      return ', xdd:createCamelizedName($pElementName), ';&#10;')"/>
+                <xsl:value-of select="concat('      return ', xdd:checkForReservedKeywords(xdd:createCamelizedName($pElementName)), ';&#10;')"/>
                 <xsl:value-of select="concat('   }', '&#10;')"/>
             </xsl:otherwise>
         </xsl:choose>
@@ -1852,7 +1852,7 @@
         <xsl:param name="pElementName"/>
         <xsl:param name="pReturnTypeName"/>
         <xsl:param name="pIsInterface" as="xs:boolean"/>
-        <xsl:variable name="vRemoveSignature" select="concat('   public ', $pClassType, ' remove', xdd:checkForReservedKeywords($pMethodName), '()')"/>
+        <xsl:variable name="vRemoveSignature" select="concat('   public ', $pClassType, ' remove', xdd:checkForReservedKeywordsAttr($pMethodName), '()')"/>
         <xsl:value-of select="concat('', '&#10;')"/>
         <xsl:value-of select="concat('   /**', '&#10;')"/>
         <xsl:value-of select="concat('    * Removes the &lt;code&gt;', $pElementName,'&lt;/code&gt; attribute &#10;')"/>
@@ -1897,6 +1897,7 @@
         <xsl:param name="pDefault" as="xs:string"/>
         <xsl:param name="pFixed" as="xs:string"/>
         <xsl:param name="pUse" as="xs:string"/>
+        <xsl:param name="pIsUnbounded" as="xs:boolean"/>
         <xsl:choose>
             <xsl:when test="$pIsAttribute=true()">
                 <xsl:value-of select="xdd:printSetAttribute($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface, $pDefault, $pFixed, $pUse)"/>
@@ -1904,6 +1905,12 @@
                 <xsl:value-of select="xdd:printGetEnumAttribute($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
                 <xsl:value-of select="xdd:printGetEnumAttributeAsString($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
                 <xsl:value-of select="xdd:printRemoveAttribute($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+            </xsl:when>
+            <xsl:when test="$pIsUnbounded = true()">
+                <xsl:value-of select=" xdd:printSetVarArgUnboundedDataType($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                <xsl:value-of select=" xdd:printSetVarArgUnboundedDataType($pClassType, 'String', $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                <xsl:value-of select=" xdd:printGetUnboundedDataType($pClassType, 'String', $pMethodName, $pNodeNameLocal, $pElementName, 'String', $pIsInterface)"/>
+                <xsl:value-of select=" xdd:printRemoveUnboundedDataType($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="xdd:printSetEnum($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
@@ -3176,6 +3183,40 @@
             </xsl:when>
             <xsl:when test="$vMethodName='Class'">
                 <xsl:sequence select="'Clazz'"/>
+            </xsl:when>
+            <xsl:when test="$vMethodName='default'">
+                <xsl:sequence select="'_default'"/>
+            </xsl:when>
+            <xsl:when test="$vMethodName='Default'">
+                <xsl:sequence select="'_Default'"/>
+            </xsl:when>
+            <xsl:when test="$vMethodName='package'">
+                <xsl:sequence select="'_package'"/>
+            </xsl:when>
+            <xsl:when test="$vMethodName='if'">
+                <xsl:sequence select="'_if'"/>
+            </xsl:when>
+           <!-- <xsl:when test="$vMethodName='Set'">
+                <xsl:sequence select="'_Set'"/>
+            </xsl:when>-->
+            <xsl:otherwise>
+                <xsl:sequence select="$vMethodName"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
+    
+    <!-- ****************************************************** -->
+    <!-- ****** Function which checks for 'class' type      *** -->
+    <!-- ****************************************************** -->
+    <xsl:function name="xdd:checkForReservedKeywordsAttr">
+        <xsl:param name="vMethodName"/>
+        <xsl:choose>
+            <xsl:when test="$vMethodName='class'">
+                <xsl:sequence select="'clazzAttr'"/>
+            </xsl:when>
+            <xsl:when test="$vMethodName='Class'">
+                <xsl:sequence select="'ClazzAttr'"/>
             </xsl:when>
             <xsl:when test="$vMethodName='default'">
                 <xsl:sequence select="'_default'"/>

@@ -88,13 +88,34 @@ public class AttributeFilter implements Filter {
                                     }
                                 }
 
-                                final MetadataElement classElement = new MetadataElement(element);
+                                if (isTextOnlyElement) {
+                                    final MetadataElement classElement = new MetadataElement();
+                                    classElement.setName(groupOrClassName);
+                                    classElement.setType("text");
+                                    classElement.setIsRef(false);
+                                    classElement.setIsAttribute(false);
+                                    metadata.addClassElement(groupOrClassName, classElement);
+
+                                    MetadataItem removableItem = null;
+                                    for (MetadataItem item : metadata.getDataTypeList()) {
+                                        if (item.getName().equals(groupOrClassName)) {
+                                            removableItem = item;
+                                            break;
+                                        }
+                                    }
+
+                                    if (removableItem != null) {
+                                        metadata.getDataTypeList().remove(removableItem);
+                                    }
+                                }
+
+                                final MetadataElement classAttr = new MetadataElement(element);
                                 String type = MetadataUtil.getAttributeValue(element, "type");
                                 if (type == null) {
-                                    classElement.setType("xsd:string");
+                                    classAttr.setType("xsd:string");
                                 }
-                                classElement.setIsAttribute(true);
-                                metadata.addClassElement(groupOrClassName, classElement);
+                                classAttr.setIsAttribute(true);
+                                metadata.addClassElement(groupOrClassName, classAttr);
                                 return true;
                             }
 

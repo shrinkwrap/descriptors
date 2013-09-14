@@ -32,7 +32,7 @@ public class ComplexTypeFilterTestCase {
 	
 	@Test
 	public void testComplexTypeFilterWithMixedContent() throws Exception {		
-		final boolean isLogging = true;		
+		final boolean isLogging = false;		
 		final String xmlFragment = 
 		"<xsd:schema xmlns=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" >" + 
 		"   <xsd:complexType name=\"loader-repositoryType\" mixed=\"true\">" +
