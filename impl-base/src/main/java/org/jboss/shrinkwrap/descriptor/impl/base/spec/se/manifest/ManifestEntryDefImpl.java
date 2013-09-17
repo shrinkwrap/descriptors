@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.jar.Attributes;
 import java.util.jar.Attributes.Name;
 
+import org.jboss.shrinkwrap.descriptor.api.formatter.Formatter;
 import org.jboss.shrinkwrap.descriptor.api.spec.se.manifest.ManifestAppletDef;
 import org.jboss.shrinkwrap.descriptor.api.spec.se.manifest.ManifestDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.spec.se.manifest.ManifestEntryDef;
@@ -116,6 +117,16 @@ public class ManifestEntryDefImpl extends ManifestCommonDefImpl<ManifestEntryDef
     @Override
     public String getDescriptorName() {
         return manifestDescriptor.getDescriptorName();
+    }
+
+    @Override
+    public String toString(boolean verbose) {
+        return this.toString(); // ignores the boolean
+    }
+
+    @Override
+    public String toString(Formatter formatter) throws IllegalArgumentException {
+	    return this.toString(); // ignores the formatter
     }
 
 }

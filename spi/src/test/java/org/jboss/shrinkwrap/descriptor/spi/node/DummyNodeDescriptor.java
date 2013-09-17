@@ -1,5 +1,8 @@
 package org.jboss.shrinkwrap.descriptor.spi.node;
 
+import org.jboss.shrinkwrap.descriptor.api.formatter.Formatter;
+import org.jboss.shrinkwrap.descriptor.api.formatter.Formatters;
+
 public class DummyNodeDescriptor extends NodeDescriptorImplBase {
 
     private Node node;
@@ -17,4 +20,14 @@ public class DummyNodeDescriptor extends NodeDescriptorImplBase {
     public Node getRootNode() {
         return node;
     }
+
+	@Override
+	public String toString(boolean verbose) {
+		return Formatters.XML.format(this);
+	}
+
+	@Override
+	public String toString(Formatter formatter) throws IllegalArgumentException {
+		return formatter.format(this);
+	}
 }

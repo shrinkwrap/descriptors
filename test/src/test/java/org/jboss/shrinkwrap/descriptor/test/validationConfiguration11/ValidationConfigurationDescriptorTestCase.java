@@ -59,6 +59,10 @@ public class ValidationConfigurationDescriptorTestCase {
         String xmlGenerated = validationConfDescr.exportAsString();
         String xmlOriginal = getResourceContents("src/test/resources/test-gen-validation-configuration11.xml");
 
+        System.out.println(validationConfDescr.toString(true));
+        System.out.println(validationConfDescr.toString(false));
+        System.out.println(validationConfDescr.toString());
+        
         XmlAssert.assertIdentical(xmlOriginal, xmlGenerated);
     }
 

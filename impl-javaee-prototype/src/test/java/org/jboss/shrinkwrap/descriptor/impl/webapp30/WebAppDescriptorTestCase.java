@@ -19,6 +19,7 @@ package org.jboss.shrinkwrap.descriptor.impl.webapp30;
 import java.util.List;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
+import org.jboss.shrinkwrap.descriptor.api.formatter.Formatter;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppMutableDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.FilterType;
@@ -57,6 +58,19 @@ public class WebAppDescriptorTestCase {
             public List<String> getAllDescription() {
                 return null;
             }
+
+			@Override
+			public String toString(boolean verbose) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public String toString(Formatter formatter)
+					throws IllegalArgumentException {
+				// TODO Auto-generated method stub
+				return null;
+			}
         });
 
         // Ensure that the filters in the descriptor are still empty even

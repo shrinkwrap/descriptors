@@ -18,6 +18,8 @@ package org.jboss.shrinkwrap.descriptor.api;
 
 import java.io.OutputStream;
 
+import org.jboss.shrinkwrap.descriptor.api.formatter.Formatter;
+
 /**
  * End-user domain-specific language (DSL) view of a metadata Descriptor.
  *
@@ -54,5 +56,19 @@ public interface Descriptor {
      *             if problems exporting
      */
     void exportTo(OutputStream output) throws DescriptorExportException, IllegalArgumentException;
+
+    /**
+     * If "true" is specified, acts as a shorthand for {@link Descriptor#toString(Formatter)} where the
+     * {@link Formatters#XML} is default.
+     *
+     * @return
+     */
+    String toString(boolean verbose);
+
+    /**
+     * Returns a pretty formatted XML string as returned from the specified {@link Formatter}. Common options may be to
+     * use the predefined formatters located in {@link Formatters}.
+     */
+    String toString(Formatter formatter) throws IllegalArgumentException;
 
 }

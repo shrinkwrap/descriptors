@@ -251,6 +251,7 @@
                 <xsl:value-of select="xdd:writePackageLine(@packageApi)"/>
                 <xsl:value-of select="xdd:writeImports(true())"/>
                 <xsl:value-of select="xdd:writeDynamicImports($pClassNode/@name, $pClassNode/@namespace, $pClassNode/@packageApi, true())"/>
+                <xsl:text>import org.jboss.shrinkwrap.descriptor.api.formatter.Formatter;&#10;</xsl:text> 
                 <xsl:value-of select="xdd:writeClassJavaDoc(@documentation, $pClassNode/@name, true(), true(), $gJavaDocs)"/>
                 <xsl:value-of select="xdd:classHeaderDeclaration('interface', $vClassname)"/>
                 <xsl:text>&lt;T&gt;</xsl:text>
@@ -273,6 +274,7 @@
                         <xsl:text>&#10;</xsl:text>
                     </xsl:if>
                 </xsl:for-each>
+                <xsl:value-of select="xdd:writeNodeToString(true())"/>
                 <xsl:text>}</xsl:text>
                 <xsl:text>&#10;</xsl:text>
             </xsl:result-document>
@@ -373,8 +375,8 @@
                     <xsl:value-of select="xdd:writeDynamicImports($vType, $vNamespace, $vPackage, true())"/>
                 </xsl:for-each>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.api.Descriptor;&#10;</xsl:text>
-                <xsl:text>import org.jboss.shrinkwrap.descriptor.api.DescriptorNamespace;&#10;&#10;</xsl:text>
-                <xsl:value-of select=" xdd:writeDescriptorJavaDoc($vClassname, $vSchema, $gJavaDocs)"/>
+                <xsl:text>import org.jboss.shrinkwrap.descriptor.api.DescriptorNamespace;&#10;</xsl:text>           
+                <xsl:value-of select="xdd:writeDescriptorJavaDoc($vClassname, $vSchema, $gJavaDocs)"/>
                 <xsl:value-of select="xdd:classHeaderDeclaration('interface', $vClassname)"/>
                 <xsl:value-of select="concat(' extends Descriptor, DescriptorNamespace', '&lt;', $vClassname, '&gt;')"/>
                 <xsl:text>&#10;{&#10;</xsl:text>
@@ -416,6 +418,8 @@
                 <xsl:value-of select="xdd:writeImports(true())"/>
                 <xsl:value-of select="xdd:writeImports(false())"/>
                 <xsl:value-of select="xdd:writeDynamicImports($pClass/@name, $pClass/@namespace, $vPackage, false())"/>
+                <xsl:text>import org.jboss.shrinkwrap.descriptor.api.formatter.Formatter;&#10;</xsl:text>  
+                <xsl:text>import org.jboss.shrinkwrap.descriptor.api.formatter.Formatters;&#10;</xsl:text>  
                 <xsl:text>&#10;</xsl:text>
                 <xsl:value-of select="xdd:writeClassJavaDoc(@documentation, $pClass/@name, false(), true(), $gJavaDocs)"/>
                 <xsl:variable name="vName" select="@name"/>
@@ -445,6 +449,7 @@
                         <xsl:text>&#10;</xsl:text>
                     </xsl:if>
                 </xsl:for-each>
+                 <xsl:value-of select="xdd:writeNodeToString(false())"/>
                 <xsl:text>}</xsl:text>
                 <xsl:text>&#10;</xsl:text>
             </xsl:result-document>
@@ -482,7 +487,9 @@
                     <xsl:value-of select="xdd:writeDynamicImports($vType, $vNamespace, $vPackage, false())"/>
                 </xsl:for-each>
                 <xsl:text>import java.util.Map.Entry;&#10;&#10;</xsl:text>
-                <xsl:text>import org.jboss.shrinkwrap.descriptor.api.DescriptorNamespace;&#10;&#10;</xsl:text>
+                <xsl:text>import org.jboss.shrinkwrap.descriptor.api.formatter.Formatter;&#10;</xsl:text>  
+                <xsl:text>import org.jboss.shrinkwrap.descriptor.api.formatter.Formatters;&#10;</xsl:text>  
+                <xsl:text>import org.jboss.shrinkwrap.descriptor.api.DescriptorNamespace;&#10;</xsl:text>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase;&#10;</xsl:text>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.impl.base.XMLDate;&#10;</xsl:text>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.spi.node.Node;&#10;</xsl:text>
@@ -501,6 +508,7 @@
                 <xsl:value-of select="xdd:writeMethodComment()"/>
                 <!-- write all methods -->
                 <xsl:value-of select="xdd:writeNodeProviderMethods($vNodeName)"/>
+                <xsl:value-of select="xdd:writeFormatterMethods()"/>
                 <xsl:value-of select="xdd:writeDescriptorNamespaceMethods($pDescriptor, $vInterfaceName)"/>
                 <xsl:for-each select="element">
                     <xsl:variable name="vType" select=" substring-after(@type, ':')"/>
@@ -1172,7 +1180,51 @@
         </xsl:choose>
     </xsl:function>
 
-  <!-- *********************************************************** -->
+    <!-- *********************************************************** -->
+    <!-- ****** Function which writes the printGetOrCreateXX    *** -->
+    <!-- *********************************************************** -->
+    <xsl:function name="xdd:writeNodeToString">
+        <xsl:param name="pIsInterface" as="xs:boolean"/>        
+        <xsl:variable name="vToStringWithArgument" select="'public String toString(final boolean verbose)'"/>
+        <xsl:variable name="vToStringWithFormatter" select="'public String toString(final Formatter formatter) throws IllegalArgumentException'"/>   
+    
+        <xsl:value-of select="concat('', '&#10;')"/>
+        <xsl:value-of select="concat('   /**', '&#10;')"/>
+        <xsl:value-of select="concat('    * If &quot;true&quot; is specified, acts as a shorthand for {@link Child#toString(Formatter)} where the', '&#10;')"/>
+        <xsl:value-of select="concat('    * {@link Formatters#XML} is default.', '&#10;')"/>
+        <xsl:value-of select="concat('    */', '&#10;')"/>
+        <xsl:choose>
+            <xsl:when test="$pIsInterface=true()">
+                 <xsl:value-of select="concat('   ', $vToStringWithArgument, ';&#10;')"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="concat('   ', $vToStringWithArgument, ' {&#10;')"/>
+                <xsl:value-of select="concat('       ', 'return verbose ? this.toString(Formatters.XML) : this.toString();', '&#10;')"/>
+                <xsl:value-of select="concat('   }', '&#10;&#10;')"/>
+            </xsl:otherwise>
+        </xsl:choose>
+     
+        <xsl:value-of select="concat('', '&#10;')"/>
+        <xsl:value-of select="concat('   /**', '&#10;')"/>
+        <xsl:value-of select="concat('    * Returns a pretty formatted XML string as returned from the specified {@link Formatter}. Common options may be to', '&#10;')"/>
+        <xsl:value-of select="concat('    * use the predefined formatters located in {@link Formatters}', '&#10;')"/>
+        <xsl:value-of select="concat('    */', '&#10;')"/>
+        <xsl:choose>
+            <xsl:when test="$pIsInterface=true()">
+                <xsl:value-of select="concat('   ', $vToStringWithFormatter, ';&#10;')"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="concat('   ', $vToStringWithFormatter, ' {&#10;')"/>
+                <xsl:value-of select="concat('       ', 'if (formatter == null) {', '&#10;')"/>
+                <xsl:value-of select="concat('       ', '    throw new IllegalArgumentException(&quot;Formatter must be specified&quot;);', '&#10;')"/>
+                <xsl:value-of select="concat('       ', '}', '&#10;')"/>
+                <xsl:value-of select="concat('       ', 'return formatter.format(childNode.exportAsString());', '&#10;')"/>
+                <xsl:value-of select="concat('   }', '&#10;&#10;')"/>
+            </xsl:otherwise>
+        </xsl:choose>        
+    </xsl:function>
+    
+    <!-- *********************************************************** -->
     <!-- *********************************************************** -->
     <!-- ****** Single    Elements ********************************* -->
     <!-- *********************************************************** -->
@@ -2725,6 +2777,27 @@
         <xsl:text>   {&#10;</xsl:text>
         <xsl:value-of select="concat('      return ', $pNodeNameLocal, ';&#10;')"/>
         <xsl:text>   }&#10;&#10;</xsl:text>
+    </xsl:function>
+    
+    
+    <!-- ****************************************************** -->
+    <!-- ****** Function which writes the formatter methods     -->
+    <!-- ****************************************************** -->
+    <xsl:function name="xdd:writeFormatterMethods">
+        <xsl:text>&#10;</xsl:text>        
+        <xsl:text>   @Override&#10;</xsl:text>
+        <xsl:text>   public String toString(final boolean verbose) {&#10;</xsl:text>
+        <xsl:text>       return verbose ? this.toString(Formatters.XML) : this.toString();&#10;</xsl:text>
+        <xsl:text>   }&#10;&#10;</xsl:text>
+        <xsl:text>   @Override&#10;</xsl:text>
+        <xsl:text>   public String toString(final Formatter formatter) throws IllegalArgumentException {&#10;</xsl:text>
+        <xsl:text>       // Precondition check&#10;</xsl:text>
+        <xsl:text>       if (formatter == null) {&#10;</xsl:text>
+        <xsl:text>           throw new IllegalArgumentException("Formatter must be specified");&#10;</xsl:text>
+        <xsl:text>       }&#10;&#10;</xsl:text>
+        <xsl:text>       // Delegate&#10;</xsl:text>
+        <xsl:text>       return formatter.format(this);&#10;</xsl:text>
+        <xsl:text>   }&#10;</xsl:text>
     </xsl:function>
 
     <!-- ************************************************************ -->
