@@ -65,7 +65,7 @@ public enum Formatters implements Formatter {
     /**
      * {@inheritDoc}
      *
-     * @see org.jboss.shrinkwrap.api.formatter.Formatter#format(org.jboss.shrinkwrap.api.Archive)
+     * @see org.jboss.shrinkwrap.descriptor.api.formatter.Formatter#format(org.jboss.shrinkwrap.descriptor.api.Descriptor)
      */
     @Override
     public String format(final Descriptor descriptor) throws IllegalArgumentException {
@@ -75,7 +75,7 @@ public enum Formatters implements Formatter {
     /**
      * {@inheritDoc}
      *
-     * @see org.jboss.shrinkwrap.api.formatter.Formatter#format(org.jboss.shrinkwrap.api.Archive)
+     * @see org.jboss.shrinkwrap.descriptor.api.formatter.Formatter#format(java.lang.String)
      */
     @Override
     public String format(final String xmlString) throws IllegalArgumentException {

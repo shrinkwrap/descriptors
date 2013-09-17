@@ -636,7 +636,7 @@ public class Node {
 
     public void exportTo(final OutputStream out) {
         try {
-        	final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             factory.setNamespaceAware(true);
             final DocumentBuilder builder = factory.newDocumentBuilder();
             final Document root = builder.newDocument();
