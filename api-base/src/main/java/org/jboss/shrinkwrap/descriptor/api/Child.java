@@ -16,6 +16,9 @@
  */
 package org.jboss.shrinkwrap.descriptor.api;
 
+import org.jboss.shrinkwrap.descriptor.api.formatter.Formatter;
+import org.jboss.shrinkwrap.descriptor.api.formatter.Formatters;
+
 /**
  * Represents a child element in a hierarchial {@link Descriptor} structure capable of navigating up a level to its
  * parent
@@ -31,4 +34,16 @@ public interface Child<T> {
      * @return The parent of this {@link Child}
      */
     T up();
+
+    /**
+     * If "true" is specified, acts as a shorthand for {@link Child#toString(Formatter)} where the
+     * {@link Formatters#XML} is default.
+     */
+    String toString(final boolean verbose);
+
+    /**
+     * Returns a pretty formatted XML string as returned from the specified {@link Formatter}. Common options may be to
+     * use the predefined formatters located in {@link Formatters}
+     */
+    String toString(final Formatter formatter) throws IllegalArgumentException;
 }

@@ -3,6 +3,9 @@ package org.jboss.shrinkwrap.descriptor.impl.webcommon30;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jboss.shrinkwrap.descriptor.api.Child;
+import org.jboss.shrinkwrap.descriptor.api.formatter.Formatter;
+import org.jboss.shrinkwrap.descriptor.api.formatter.Formatters;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptorBase;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.FilterMutableType;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.FilterType;
@@ -84,4 +87,25 @@ abstract class FilterTypeImplBase<FILTERTYPE extends FilterTypeBase<FILTERTYPE, 
     public Node getRootNode() {
         return this.model;
     }
+
+    /**
+     * If "true" is specified, acts as a shorthand for {@link Child#toString(Formatter)} where the
+     * {@link Formatters#XML} is default.
+     */
+    public String toString(final boolean verbose) {
+        return verbose ? this.toString(Formatters.XML) : this.toString();
+    }
+
+
+    /**
+     * Returns a pretty formatted XML string as returned from the specified {@link Formatter}. Common options may be to
+     * use the predefined formatters located in {@link Formatters}
+     */
+    public String toString(final Formatter formatter) throws IllegalArgumentException {
+        if (formatter == null) {
+            throw new IllegalArgumentException("Formatter must be specified");
+        }
+        return formatter.format(model.exportAsString());
+    }
+
 }

@@ -16,6 +16,8 @@
  */
 package org.jboss.shrinkwrap.descriptor.impl.webapp30;
 
+import org.jboss.shrinkwrap.descriptor.api.formatter.Formatter;
+import org.jboss.shrinkwrap.descriptor.api.formatter.Formatters;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppMutableDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.webcommon30.FilterType;

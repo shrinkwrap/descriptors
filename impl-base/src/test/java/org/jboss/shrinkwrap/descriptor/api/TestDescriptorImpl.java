@@ -16,6 +16,8 @@
  */
 package org.jboss.shrinkwrap.descriptor.api;
 
+import org.jboss.shrinkwrap.descriptor.api.formatter.Formatter;
+import org.jboss.shrinkwrap.descriptor.api.formatter.Formatters;
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase;
 
@@ -60,4 +62,14 @@ public class TestDescriptorImpl extends NodeDescriptorImplBase implements TestDe
     public Node getRootNode() {
         return root;
     }
+
+	@Override
+	public String toString(boolean verbose) {
+		return Formatters.XML.format(this);
+	}
+
+	@Override
+	public String toString(Formatter formatter) throws IllegalArgumentException {
+		return formatter.format(this);
+	}
 }

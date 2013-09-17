@@ -2,6 +2,8 @@ package org.jboss.shrinkwrap.descriptor.gen;
 
 import java.lang.reflect.Method;
 
+import org.jboss.shrinkwrap.descriptor.api.formatter.Formatter;
+import org.jboss.shrinkwrap.descriptor.api.formatter.Formatters;
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 import org.jboss.shrinkwrap.descriptor.spi.node.NodeDescriptorImplBase;
 
@@ -43,4 +45,14 @@ public class TestDescriptorImpl extends NodeDescriptorImplBase {
             }
         }
     }
+    
+    @Override
+	public String toString(boolean verbose) {
+		return Formatters.XML.format(this);
+	}
+
+	@Override
+	public String toString(Formatter formatter) throws IllegalArgumentException {
+		return formatter.format(this);
+	}
 }

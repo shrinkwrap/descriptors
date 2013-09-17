@@ -19,6 +19,8 @@ package org.jboss.shrinkwrap.descriptor.impl.webapp30;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jboss.shrinkwrap.descriptor.api.formatter.Formatter;
+import org.jboss.shrinkwrap.descriptor.api.formatter.Formatters;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptorBase;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppMutableDescriptor;
@@ -91,4 +93,21 @@ abstract class WebAppDescriptorImplBase<FILTERTYPE extends FilterTypeBase<FILTER
      * @return
      */
     abstract FILTERTYPE createNewFilterViewForModel(final Node filterModel);
+    
+
+
+    @Override
+    public String toString(final boolean verbose) {
+        return verbose ? this.toString(Formatters.XML) : this.toString();   }
+
+    @Override
+    public String toString(final Formatter formatter) throws IllegalArgumentException {
+        // Precondition check
+        if (formatter == null) {
+            throw new IllegalArgumentException("Formatter must be specified");
+        }
+
+        // Delegate
+        return formatter.format(this);
+    }
 }

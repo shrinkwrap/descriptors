@@ -18,6 +18,7 @@ package org.jboss.shrinkwrap.descriptor.impl.base.spec.se.manifest;
 
 import java.util.jar.Attributes.Name;
 
+import org.jboss.shrinkwrap.descriptor.api.formatter.Formatter;
 import org.jboss.shrinkwrap.descriptor.api.spec.se.manifest.ManifestAppletDef;
 import org.jboss.shrinkwrap.descriptor.api.spec.se.manifest.ManifestDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.spec.se.manifest.ManifestEntryDef;
@@ -98,5 +99,15 @@ public class ManifestDescriptorImpl extends ManifestCommonDefImpl<ManifestDescri
     ManifestModel getManifestModel() {
         return manifest;
     }
+
+	@Override
+	public String toString(boolean verbose) {
+		return this.toString(); // ignores the boolean
+	}
+
+	@Override
+	public String toString(Formatter formatter) throws IllegalArgumentException {
+		return this.toString(); // ignores the formatter
+	}
 
 }
