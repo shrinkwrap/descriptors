@@ -18,6 +18,7 @@ package org.jboss.shrinkwrap.descriptor.spi.node.dom;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PushbackInputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -53,8 +54,11 @@ public final class XmlDomNodeImporterImpl implements NodeImporter {
      */
     @Override
     public Node importAsNode(final InputStream stream, final boolean close) throws DescriptorImportException {
+        return importAsNode(new PushbackInputStream(stream), close);
+    }
+
+    private Node importAsNode(final PushbackInputStream stream, final boolean close) throws DescriptorImportException {
         try {
-            // Empty contents? If so, no root Node
             if (stream.available() == 0) {
                 return null;
             }

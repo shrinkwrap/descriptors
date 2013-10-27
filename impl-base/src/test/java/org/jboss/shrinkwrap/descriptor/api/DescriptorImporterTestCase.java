@@ -16,8 +16,11 @@
  */
 package org.jboss.shrinkwrap.descriptor.api;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -122,7 +125,7 @@ public class DescriptorImporterTestCase {
         Assert.assertTrue(umis.isOpen());
         Assert.assertTrue(umis.getCloseAttempts() > 0);
     }
-
+    
     /**
      * SHRINKDESC-20
      */
@@ -166,6 +169,14 @@ public class DescriptorImporterTestCase {
         Assert.assertNotNull("Verify the descriptor was created from and empty file", descriptor);
     }
 
+    @Test
+    public void shouldBeAbleToImportEmptyFileInputStream() throws FileNotFoundException {    	
+    	final InputStream stream = new BufferedInputStream(
+                new FileInputStream("src/test/resources/empty.xml"));    	
+        TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).fromStream(stream);
+        Assert.assertNotNull("Verify the descriptor was created from and empty file", descriptor);
+    }
+    
     @Test(expected = IllegalArgumentException.class)
     public void shouldThrowExceptionForNonExistingFile() {
         TestDescriptor descriptor = Descriptors.importAs(TestDescriptor.class).fromFile(new File("non-existing.xml"));
