@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:functx="http://www.functx.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0" xmlns:xdd="http://org.jboss/shrinkwrap">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+    xmlns:functx="http://www.functx.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0" xmlns:xdd="http://org.jboss/shrinkwrap">
     <!--    <xsl:output method="text"/>-->
 
     <xsl:output method="text" indent="yes" media-type="text/plain"/>
@@ -17,8 +18,10 @@
     <xsl:variable name="gClasses" select="//classes"/>
     <xsl:variable name="gPackageApis" select="//packages/api"/>
     <xsl:variable name="gPackageImpls" select="//packages/impl"/>
+    <xsl:variable name="gDescriptors" select="//descriptors/descriptor"/>
+    <xsl:variable name="gGenerateCommonPackages" select="//commonPackages"/>
+    <xsl:variable name="gGeneratedClasses" select="//generatedClasses"/>
     <xsl:variable name="gCopyright" select="//copyright"/>
-  <!--  <xsl:variable name="gContributors" select="//contributors"/>-->
     <xsl:variable name="gJavaDocs" select="//javadocs/tag"/>
 
     <xsl:variable name="vBooleanMethodTypes">
@@ -48,14 +51,16 @@
         javaee:faces-config-renderer-extensionType;
         javaee:faces-config-validator-extensionType;
         javaee:partial-response-extensionType;
-        extensibleType;
+        javaee:extensibleType;
     </xsl:variable>
 
 <!--    <xsl:include href="../lib/xdd-printElement.xsl"/>-->
-
+   
     <xsl:template match="/">
         <xsl:call-template name="GenerateEnums"/>
+        <xsl:call-template name="GenerateCommonInterfaces"/>
         <xsl:call-template name="GenerateInterfaces"/>
+        <xsl:call-template name="GenerateCommonDescriptors"/>
         <xsl:call-template name="GenerateDescriptors"/>
         <xsl:call-template name="GenerateDescriptorsImpl"/>
         <xsl:call-template name="GenerateImplClasses"/>
@@ -70,8 +75,8 @@
     <!-- ****************************************************** -->
     <xsl:template name="GenerateInterfaces">
         <xsl:for-each select="//classes/class">
-            <xsl:if test="xdd:isGenerateClassTrue(@packageApi)">
-                <xsl:call-template name="WriteInterface2">
+            <xsl:if test="xdd:isGenerateClassTrue(@packageApi) and xdd:isRootElement(@name, @namespace) = false() and contains($vBooleanMethodTypes, concat(@namespace, ':', @name, ';')) = false()">
+                <xsl:call-template name="WriteInterface">
                     <xsl:with-param name="pClassNode" select="."/>
                 </xsl:call-template>
             </xsl:if>
@@ -203,7 +208,6 @@
             </xsl:if>
             <xsl:result-document href="{$vFileName}">
                 <xsl:variable name="vPackageImpl" select="@packageImpl"/>
-<!--                <xsl:variable name="vClassnameImpl" select="xdd:createPascalizedName($pDescriptor/@schemaName, 'DescriptorImpl')"/>-->
                 <xsl:variable name="vClassnameImpl" select=" concat(@name, 'Impl')"/>
                 <xsl:variable name="vImplClass" select="concat($vPackageImpl, '.' , $vClassnameImpl)"/>
                 <xsl:value-of select="concat('implClass=', $vImplClass, '&#10;')"/>
@@ -223,7 +227,7 @@
         <!-- **** loop through all elements **** -->
         <xsl:for-each select="//groups/class">
             <xsl:if test="xdd:isGenerateClassTrue(@package)">
-                <xsl:call-template name="WriteInterface2">
+                <xsl:call-template name="WriteInterface">
                     <xsl:with-param name="pClassNode" select="."/>
                 </xsl:call-template>
             </xsl:if>
@@ -234,30 +238,125 @@
     <!-- ******************************************************* -->
     <!-- ****** Template which generates the interfaces2  ****** -->
     <!-- ******************************************************* -->
-    <xsl:template name="WriteInterface2">
+    <xsl:template name="WriteInterface">
         <xsl:param name="pClassNode" select="."/>
         <xsl:variable name="vClassname" select="xdd:createPascalizedName(xdd:checkForReservedKeywords($pClassNode/@name), '')"/>
-        <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolderApi, @packageApi, $vClassname, 'java')"/>
+        <xsl:variable name="vNamespace" select="xdd:createPascalizedName(xdd:checkForReservedKeywords($pClassNode/@namespace), '')"/>
+        <xsl:variable name="vPackageApi" select="@packageApi"/>
+        <xsl:variable name="vPackage" select="@package"/> <!-- when called from groups -->
+        <xsl:variable name="vCommonNamespace" select="//descriptor[@packageApi=$vPackageApi]/common/@commonNamespace"/>          
+        
+        <xsl:variable name="vCommonPackageName">
+            <xsl:choose>
+                <xsl:when test="exists(@packageApi)">
+                    <xsl:value-of select="xdd:getCommonPackage(@packageApi)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="xdd:getCommonPackage(@package)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="vCommonName">
+        <xsl:choose>
+             <xsl:when test="$vCommonNamespace != ''">
+                 <xsl:value-of select="xdd:createPascalizedName(xdd:getCommonName($vClassname, $vCommonNamespace), '')"/>
+             </xsl:when>
+             <xsl:otherwise>
+                 <xsl:value-of select="xdd:createPascalizedName(xdd:getCommonName($vClassname, $vNamespace), '')"/>
+             </xsl:otherwise>
+         </xsl:choose>
+        </xsl:variable>
+        
+        <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolderApi, @packageApi, $vClassname, 'java')"/>        
         <xsl:if test="$vClassname=''">
             <xsl:value-of select="'cannot process'"/>: <xsl:value-of select=" name()"/>: <xsl:value-of select="position()"/>
             <xsl:text>&#10;</xsl:text>
         </xsl:if>
-        <xsl:if test="$vClassname">
+        <xsl:if test="$vClassname != ''">
             <xsl:if test="$gVerbose">
                 <xsl:message select="concat('Generating Interface: ', $vClassname)"/>
             </xsl:if>
             <xsl:result-document href="{$vFilename}">
                 <xsl:value-of select="xdd:writeCopyright()"/>
                 <xsl:value-of select="xdd:writePackageLine(@packageApi)"/>
-                <xsl:value-of select="xdd:writeImports(true())"/>
-                <xsl:value-of select="xdd:writeDynamicImports($pClassNode/@name, $pClassNode/@namespace, $pClassNode/@packageApi, true())"/>
+                <xsl:value-of select="xdd:writeImports(true())"/>                
+                <xsl:variable name="vName" select="$pClassNode/@name"/>
+                <xsl:variable name="vNamespace" select="$pClassNode/@namespace"/>                
+                <xsl:variable name="vCommonJavaName" select="concat($vCommonName, '.java')"/>
+                <xsl:value-of select="xdd:writeDynamicImports($pClassNode/@name, $pClassNode/@namespace, $pClassNode/@packageApi, true())"/> 
+                <!--<xsl:if test="xdd:isCommonPackageDisabled($vPackageApi) = false()">
+                    <xsl:value-of select="concat('import ', $vCommonPackageName, '.', $vCommonName, ';&#10;')"/>
+                </xsl:if>-->
+                <xsl:if test="xdd:isCommonPackageDisabled($vPackageApi) = false() and xdd:isCommonPackageDisabled($vPackage) = false()">
+                    <xsl:value-of select="concat('import ', xdd:getCommonPackage($vPackageApi), '.*;', '&#10;')"/>
+                    <xsl:for-each select="$gPackageApis[@name=$vPackageApi]/commonImport/import">
+                          <xsl:value-of select="concat('import ', xdd:getCommonPackage(@package), '.*;', '&#10;')"/>
+                     </xsl:for-each>
+                      
+                     <xsl:for-each select="$gPackageApis[@name=$vPackage]/commonImport/import">
+                          <xsl:value-of select="concat('import ', xdd:getCommonPackage(@package), '.*;', '&#10;')"/>
+                     </xsl:for-each>
+                </xsl:if>
+                
+                <xsl:choose>
+                    <xsl:when test="exists(//generatedClass[@name=$vCommonJavaName])">
+                        <xsl:value-of select="concat('import ', //generatedClass[@name=$vCommonJavaName]/@commonPackage, '.', $vCommonName, ';&#10;')"/>
+                        <xsl:for-each select="//generatedClass[@name=$vCommonJavaName]/commonExtends">
+                              <xsl:if test="@extends != 'dummy'">
+                                  <xsl:variable name="vExtends" select="@extends"/>
+                                  <xsl:for-each select="//class[@name=$vExtends and @namespace=$vNamespace]"> 
+                                      <xsl:variable name="vElementName" select="xdd:createPascalizedName(xdd:checkForReservedKeywords($vExtends), '')"/>
+                                      <xsl:if test="$vElementName != ''">
+                                          <xsl:value-of select="concat('&#10;', 'import ', @packageApi, '.', $vElementName, ';')"/>
+                                      </xsl:if>
+                                  </xsl:for-each>
+                              </xsl:if>
+                          </xsl:for-each>
+                    </xsl:when> 
+                </xsl:choose>
+                
                 <xsl:value-of select="xdd:writeClassJavaDoc(@documentation, $pClassNode/@name, true(), true(), $gJavaDocs)"/>
-                <xsl:value-of select="xdd:classHeaderDeclaration('interface', $vClassname)"/>
-                <xsl:text>&lt;T&gt;</xsl:text>
-                <xsl:text> extends Child&lt;T&gt;</xsl:text>
-                <xsl:text>&#10;</xsl:text>
-                <xsl:text>{</xsl:text>
-                <xsl:text>&#10;</xsl:text>
+                <xsl:value-of select="xdd:classHeaderDeclaration('interface', $vClassname)"/>                
+                <xsl:value-of select="concat('&lt;', 'T', '&gt;', ' extends Child', '&lt;', 'T', '&gt;')"/>                              
+                <xsl:variable name="vDecl">
+                    <xsl:choose>
+                        <xsl:when test="exists(//generatedClass[@name=$vCommonJavaName])">
+                            <xsl:for-each select="//generatedClass[@name=$vCommonJavaName]/commonExtends">
+                                  <xsl:if test="@extends != 'dummy' and contains($vBooleanMethodTypes, concat(':', @extends, ';')) = false()">
+                                      <xsl:variable name="vElementName" select="xdd:createPascalizedName(xdd:checkForReservedKeywords(@extends), '')"/>
+                                      <xsl:value-of select="concat(',&#10;    ', $vElementName, '&lt;', $vClassname, '&lt;T&gt;&gt;')"/>
+                                  </xsl:if>
+                              </xsl:for-each>
+                        </xsl:when>
+                        <xsl:otherwise>
+                             <xsl:for-each select="element">
+                                  <xsl:variable name="vElementType" select=" substring-after(@type, ':')"/>
+                                  <xsl:variable name="vElementNamespace" select=" substring-before(@type, ':')"/> 
+                                  <xsl:variable name="vCommonElementName" select="xdd:createPascalizedName(xdd:getCommonName($vElementType, $vElementNamespace), '')"/>                                  
+                                  <xsl:variable name="vCommonJavaName" select="concat($vCommonName, '.java')"/>
+                                  <xsl:if test="xdd:isClass($vElementType) = true() and exists(//datatype[@name=$vElementType]) = false() and contains($vBooleanMethodTypes, concat(':', $vElementType, ';')) = false()"> 
+                                      <xsl:variable name="vElementName" select="xdd:createPascalizedName(xdd:checkForReservedKeywords($vElementType), '')"/>
+                                      <xsl:value-of select="concat(',&#10;    ', $vElementName, '&lt;', $vClassname, '&lt;T&gt;&gt;')"/>
+                                  </xsl:if>
+                            </xsl:for-each>                            
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>            
+                
+                <xsl:choose>
+                    <xsl:when test="xdd:isCommonPackageDisabled($vPackageApi) = true()">
+                    </xsl:when>
+                    <xsl:when test="$vDecl = ''">
+                        <xsl:value-of select="concat(', &#10;    ', $vCommonName, '&lt;', 'T, ', $vClassname, '&lt;T&gt;&gt;')"/>
+                    </xsl:when>
+                  
+                    <xsl:otherwise>
+                        <xsl:value-of select="concat(', &#10;    ', $vCommonName, '&lt;', 'T, ', $vClassname, '&lt;T&gt;')"/>
+                        <xsl:value-of select="concat($vDecl, '&gt;')"/>                        
+                    </xsl:otherwise>
+                </xsl:choose>
+                <xsl:value-of select="concat(' { &#10;', '&#10;')"/>
+                
                 <xsl:for-each select="include">
                     <xsl:value-of select="xdd:includeGroupRefs($vClassname, @name, false(), true(), true(), '', @maxOccurs='unbounded')"/>
                 </xsl:for-each>
@@ -293,7 +392,7 @@
 
 
     <!-- ****************************************************** -->
-    <!-- ****** Template which generates the descriptorsimpl * -->
+    <!-- ****** Template which generates the descriptorsimpl ** -->
     <!-- ****************************************************** -->
     <xsl:template name="GenerateDescriptorsImpl">
         <xsl:for-each select="//descriptors/descriptor">
@@ -305,11 +404,11 @@
 
 
     <!-- ****************************************************** -->
-    <!-- ****** Template which generates theimpl classes  * -->
+    <!-- ****** Template which generates theimpl classes  ***** -->
     <!-- ****************************************************** -->
     <xsl:template name="GenerateImplClasses">
         <xsl:for-each select="//classes/class">
-            <xsl:if test="xdd:isGenerateClassTrue(@packageApi)">
+            <xsl:if test="xdd:isGenerateClassTrue(@packageApi) and xdd:isRootElement(@name, @namespace) = false() and contains($vBooleanMethodTypes, concat(@namespace, ':', @name, ';')) = false()">
                 <xsl:call-template name="WriteImplClasses">
                     <xsl:with-param name="pClass" select="."/>
                 </xsl:call-template>
@@ -318,6 +417,263 @@
         </xsl:for-each>
     </xsl:template>
 
+
+    <!-- ****************************************************** -->
+    <!-- ****** Template which write generic extends      ***** -->
+    <!-- ****************************************************** -->
+    <xsl:template name="writeGenericDeclaration"> 
+        <xsl:param name="pName" as="xs:string"/> 
+        <xsl:param name="pNamespace" as="xs:string"/> 
+        <xsl:param name="pPosition"/>
+        <xsl:variable name="vGenericType" select="concat(upper-case(xdd:createCamelizedName(@name)), $pPosition)"/>
+        <xsl:variable name="vCommonName" select="xdd:createPascalizedName(xdd:getCommonName(@name, $pNamespace), '')"/>
+        <xsl:value-of select="concat(', ', '&#10;    ', $vGenericType, ' extends ', xdd:createPascalizedName(xdd:checkForReservedKeywords($vCommonName), ''), '&lt;', 'T, ', $vGenericType)"/> 
+        
+        <xsl:for-each select="//class[@name=$pName and @namespace=$pNamespace]">  
+            <xsl:for-each select="element">
+                 <xsl:variable name="vElementType" select=" substring-after(@type, ':')"/>
+                 <xsl:variable name="vElementNamespace" select=" substring-before(@type, ':')"/>
+                 <xsl:if test="xdd:isClass($vElementType) = true() and exists(//datatype[@name=$vElementType]) = false() and contains($vBooleanMethodTypes, concat($vElementType, ';')) = false()">
+                     <xsl:value-of select="', ?'"/>
+                 </xsl:if>
+            </xsl:for-each>
+        </xsl:for-each>
+        
+        <xsl:value-of select="'&gt;'"/>
+    </xsl:template>
+    
+    
+    <!-- ****************************************************** -->
+    <!-- ****** Template which generates common classes   ***** -->
+    <!-- ****************************************************** -->
+    <xsl:template name="GenerateCommonInterfaces">        
+        <xsl:for-each select="//commonClasses/typeName/@name">
+            <xsl:variable name="vName" select="."/>
+            <xsl:variable name="vElementType" select=" substring-after($vName, ':')"/>
+            <xsl:variable name="vElementNamespace" select=" substring-before($vName, ':')"/>
+            <xsl:if test="contains($vBooleanMethodTypes, concat($vElementNamespace, ':', $vElementType, ';')) = false()">
+                <xsl:call-template name="WriteNestedCommonInterfaces">
+                    <xsl:with-param name="pClassname" select="$vElementType"/>
+                    <xsl:with-param name="pClassType" select="$vElementType"/>
+                    <xsl:with-param name="pClassNamespace" select="$vElementNamespace"/>
+                    <xsl:with-param name="pCommonPackage" select="'org.jboss.shrinkwrap.descriptor.api.common'"/>                
+                </xsl:call-template>   
+             </xsl:if>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <!-- ***************************************************************** -->
+    <!-- ****** Function returning the common name of a class name ******* -->
+    <!-- ***************************************************************** -->
+    <xsl:function name="xdd:getCommonName" as="xs:string">
+        <xsl:param name="vName" as="xs:string?"/>  
+        <xsl:param name="vNamespace" as="xs:string?"/> 
+        <xsl:variable name="vCommonName" select="xdd:createPascalizedName(concat($vNamespace, xdd:createPascalizedName($vName, '')), '')"/>
+        <xsl:choose>
+            <xsl:when test="ends-with($vCommonName, 'Type')">
+                <xsl:sequence select=" replace($vCommonName, 'Type', 'CommonType')"/>
+            </xsl:when>
+            <xsl:when test=" ends-with($vCommonName, 'type')">
+                <xsl:sequence select="replace($vCommonName, 'type', 'CommonType')"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:sequence select="concat($vCommonName, 'CommType')"/>
+            </xsl:otherwise>
+        </xsl:choose>         
+    </xsl:function>
+    
+    
+    <!-- ********************************************************** -->
+    <!-- ****** Function returning the common package  name ******* -->
+    <!-- ********************************************************** -->
+    <xsl:function name="xdd:getCommonPackage" as="xs:string">
+        <xsl:param name="vPackage" as="xs:string?"/>         
+        <xsl:sequence select=" replace($vPackage, '[0-9]+$', '')"/>
+    </xsl:function>
+
+    <!-- ****************************************************** -->
+    <!-- ****** Template which write common interfaces  ******* -->
+    <!-- ****************************************************** -->
+    <xsl:template name="WriteNestedCommonInterfaces">
+        <xsl:param name="pClassname" as="xs:string"/>
+        <xsl:param name="pClassType" as="xs:string"/>
+        <xsl:param name="pClassNamespace" as="xs:string"/>
+        <xsl:param name="pCommonPackage" as="xs:string"/>
+        <xsl:for-each select="//class[@name=$pClassname and @namespace=$pClassNamespace]"> 
+            <xsl:variable name="vPackageApi" select="@packageApi"/>
+            <xsl:variable name="vPackage" select="@package"/>
+            
+            <xsl:if test="xdd:isCommonPackageDisabled(@packageApi) = false() and xdd:isCommonPackageDisabled(@package) = false()">             
+                <xsl:variable name="vCommonPackageName">
+                    <xsl:choose>
+                        <xsl:when test="exists(@packageApi)">
+                            <xsl:value-of select="xdd:getCommonPackage(@packageApi)"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="xdd:getCommonPackage(@package)"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:variable name="vCommonName" select="xdd:getCommonName($pClassname, $pClassNamespace)"/>
+                <xsl:variable name="vCommonElementName" select="xdd:createPascalizedName(xdd:checkForReservedKeywords($vCommonName), '')"/>
+                <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolderApi, $vCommonPackageName, $vCommonElementName, 'java')"/> 
+               
+                <xsl:variable name="vCommonExtends">
+                        <xsl:value-of select="'&quot;dummy&quot;'"/>
+                        <xsl:for-each select="element">
+                            <xsl:variable name="vElementType" select=" substring-after(@type, ':')"/>
+                            <xsl:variable name="vElementNamespace" select=" substring-before(@type, ':')"/>
+                            <xsl:if test="xdd:isClass($vElementType) = true() and exists(//datatype[@name=$vElementType]) = false() and contains($vBooleanMethodTypes, concat($vElementType, ';')) = false()">
+                                <xsl:variable name="vGenericType" select="concat(upper-case(xdd:createCamelizedName($vElementType)), position())"/>
+                                <xsl:variable name="vCommonName" select="xdd:createPascalizedName(xdd:getCommonName($vElementType, $vElementNamespace), '')"/>
+                                <xsl:value-of select="concat(', &quot;', $vElementType, '&quot;')"/>
+                            </xsl:if>
+                        </xsl:for-each>
+                </xsl:variable>
+               
+                <xsl:variable name="vClassDeclaration">
+                    <xsl:value-of select="concat('&lt;PARENT, ORIGIN extends ', $vCommonElementName, '&lt;PARENT, ORIGIN')"/>
+                        
+                       <xsl:for-each select="element">
+                            <xsl:variable name="vElementType" select=" substring-after(@type, ':')"/>
+                            <xsl:if test="xdd:isClass($vElementType) = true() and exists(//datatype[@name=$vElementType]) = false() and contains($vBooleanMethodTypes, concat($vElementType, ';')) = false()">
+                                <xsl:variable name="vGenericType" select="concat(upper-case(xdd:createCamelizedName($vElementType)), position())"/>
+                                <xsl:variable name="vElementName" select="xdd:createPascalizedName(xdd:checkForReservedKeywords($vElementType), '')"/>
+                                <xsl:value-of select="concat(', ', $vGenericType)"/>
+                            </xsl:if>
+                       </xsl:for-each>
+                       <xsl:value-of select="concat('', '&gt;')"/>
+                                       
+                        <xsl:for-each select="element">
+                            <xsl:variable name="vElementType" select=" substring-after(@type, ':')"/>
+                            <xsl:variable name="vElementNamespace" select=" substring-before(@type, ':')"/>
+                            <xsl:if test="xdd:isClass($vElementType) = true() and exists(//datatype[@name=$vElementType]) = false() and contains($vBooleanMethodTypes, concat($vElementType, ';')) = false()">
+                                <xsl:variable name="vGenericType" select="concat(upper-case(xdd:createCamelizedName($vElementType)), position())"/>
+                                <xsl:variable name="vCommonName" select="xdd:createPascalizedName(xdd:getCommonName($vElementType, $vElementNamespace), '')"/>
+                                <xsl:value-of select="concat(', ', '&#10;    ',$vGenericType, ' extends ', $vCommonName)"/>
+                            </xsl:if>
+                        </xsl:for-each>
+                       <xsl:value-of select="concat('&gt;', '&#10;    extends Child', '&lt;', 'PARENT', '&gt;')"/>
+                </xsl:variable>
+                  
+                <xsl:if test="xdd:isAlreadyGenerated($vCommonElementName) = false()">
+                   <xsl:result-document href="{$vFilename}">
+                        <xsl:value-of select="xdd:writeCopyright()"/>
+                        <xsl:value-of select="xdd:writePackageLine($vCommonPackageName)"/>
+                        <xsl:value-of select="xdd:writeImports(true())"/>
+                       
+                        <xsl:for-each select="//descriptor/common[@commonApi=$vCommonPackageName]/commonImport/import">
+                            <xsl:value-of select="concat('import ', xdd:getCommonPackage(@package), '.*;', '&#10;')"/>  
+                        </xsl:for-each>
+                       
+                        <xsl:for-each select="$gPackageApis[@name=$vPackageApi]/commonImport/import">
+                            <xsl:value-of select="concat('import ', xdd:getCommonPackage(@package), '.*;', '&#10;')"/>
+                        </xsl:for-each>                       
+                       
+                        <xsl:for-each select="$gPackageApis[@name=$vPackage]/commonImport/import">
+                            <xsl:value-of select="concat('import ', xdd:getCommonPackage(@package), '.*;', '&#10;')"/>
+                        </xsl:for-each>
+                    
+                        <xsl:value-of select="concat('import org.jboss.shrinkwrap.descriptor.api.CommonExtends;','&#10;')"/>
+                        <xsl:value-of select="concat('&#10;', '@CommonExtends(common = { ', $vCommonExtends, ' })','&#10;')"/>                                         
+                        <xsl:value-of select="xdd:classHeaderDeclaration('interface', $vCommonElementName)"/>  
+                        <xsl:value-of select="concat($vClassDeclaration, ' { &#10;')"/>
+                        <xsl:for-each select="element">
+                            <xsl:variable name="vLocalName" select="substring-after(@type, ':')"/>
+                            <xsl:variable name="vLocalNamespace" select="substring-before(@type, ':')"/>
+                            <xsl:if test="xdd:isClass($vLocalName) = false() and exists(//datatype[@name=$vLocalName]) = false() and xdd:isExcludedCommonElement($vLocalName, $vLocalNamespace)">                            
+                                  <xsl:variable name="vMaxOccurs" select="concat('-',  @maxOccurs)"/>                                                       
+                                  <xsl:value-of select="xdd:writeMethodOrAttribute('ORIGIN', @name, @type, $vMaxOccurs, false(), true(), false(), '', exists(@attribute), xdd:checkEmptySequence(@default), xdd:checkEmptySequence(@fixed), xdd:checkEmptySequence(@use))"/>
+                            </xsl:if>
+                        </xsl:for-each>
+                      <xsl:value-of select=" concat('}', '&#10;')"/>
+                   </xsl:result-document>
+                </xsl:if>                   
+             </xsl:if>
+        </xsl:for-each>        
+    </xsl:template>
+    
+    <!-- ****************************************************************************** -->
+    <!-- ****** Template which generates the generic descriptors child interfaces ***** -->
+    <!-- ****************************************************************************** -->
+    <xsl:template name="GenerateCommonDescriptors">        
+        <xsl:for-each select="//descriptors/descriptor/common[@generate=true()]">
+            <xsl:variable name="vPath" select="@pathToCommonApi"/>
+            <xsl:variable name="vCommonDescrName" select="@commonDescriptorName"/>
+            <xsl:variable name="vElementType" select=" substring-after(../element/@type, ':')"/>
+            <xsl:variable name="vElementNamespace" select=" substring-before(../element/@type, ':')"/> 
+            <xsl:variable name="vCommonPackage" select="xdd:getCommonPackage(@commonApi)"/>
+            <xsl:variable name="vCommon" select="."/>
+                      
+            <xsl:variable name="vFilename" select="xdd:createPath($gOutputFolderApi, $vCommonPackage, $vCommonDescrName, 'java')"/>
+            <xsl:result-document href="{$vFilename}">
+                <xsl:if test="$gVerbose">
+                    <xsl:message select=" concat('Generating common descriptor: ', $vFilename)"/> 
+                </xsl:if>
+                <xsl:value-of select="xdd:writeCopyright()"/>
+                <xsl:value-of select="xdd:writePackageLine($vCommonPackage)"/>
+                <xsl:for-each select="commonImport/import">
+                    <xsl:value-of select="concat('import ', xdd:getCommonPackage(@package), '.*;', '&#10;')"/>     
+                </xsl:for-each>
+                <xsl:value-of select="concat('import java.util.List;', '&#10;')"/>
+                <xsl:value-of select="concat('import org.jboss.shrinkwrap.descriptor.api.Descriptor;', '&#10;&#10;')"/>
+                <xsl:value-of select="concat('','&#10;')"/>
+                
+                <xsl:variable name="vClassDeclaration">
+                    <xsl:value-of select="concat('public interface ', $vCommonDescrName, '&lt;T extends ', $vCommonDescrName ,'&lt;T')"/>
+                    <xsl:for-each select="commonTypes/type">
+                        <xsl:variable name="vGenericType" select="concat(upper-case(xdd:createCamelizedName(@name)), position())"/>
+                        <xsl:value-of select=" concat(', ', $vGenericType)"/>
+                    </xsl:for-each>
+                    
+                    <xsl:value-of select="'&gt;'"/>   
+                    <xsl:for-each select="commonTypes/type">
+                        <xsl:call-template name="writeGenericDeclaration">
+                            <xsl:with-param name="pNamespace" select="@namespace"/>
+                            <xsl:with-param name="pName" select="@name"/>
+                            <xsl:with-param name="pPosition" select="position()"/>
+                        </xsl:call-template>    
+                    </xsl:for-each>
+                    
+                    <xsl:value-of select="'&gt;', '&#10;    extends Descriptor'"/>
+                </xsl:variable>
+                
+                <xsl:value-of select=" concat($vClassDeclaration, ' {', '&#10;&#10;')"/>
+                
+                <xsl:for-each select="//class[@name=$vElementType and @namespace=$vElementNamespace]">
+                    <xsl:for-each select="element">
+                        <xsl:choose>
+                            <xsl:when test="@attribute = true() and xdd:isEnumType(@type) = false()">
+                                 <xsl:variable name="vMethodName" select="xdd:createPascalizedName(@name,'')"/>
+                                 <xsl:variable name="vDataType" select="xdd:CheckDataType(@type)"/>
+                                 <xsl:value-of select="xdd:printAttributes('T', $vDataType, $vMethodName, '', $vMethodName, 'T', true(), false(), '', '', xdd:checkEmptySequence(@use))"/>    
+                            </xsl:when>
+                            
+                            <xsl:when test="xdd:isClass($vElementType) = true() and exists(//datatype[@name=$vElementType]) = false() and @attribute = false()">  
+                                 <xsl:variable name="vElementType" select=" substring-after(@type, ':')"/>
+                                 <xsl:variable name="vElementNamespace" select=" substring-before(@type, ':')"/> 
+                                 <xsl:variable name="vMethodName" select="xdd:createPascalizedName(@name,'')"/>
+                                 <xsl:variable name="vGenericType" select="upper-case(xdd:createCamelizedName(@name))"/>
+                                 <xsl:variable name="vCommonName" select=" xdd:getCommonName(@name, @namespace)"/>
+                                 <xsl:variable name="vReturnGeneric" select="'T'"/>
+                                 <xsl:variable name="vMaxOccurs" select="concat('-',  @maxOccurs)"/> 
+                                 <xsl:choose>
+                                      <xsl:when test="contains($vMaxOccurs, 'unbounded')">
+                                          <xsl:value-of select="xdd:printComplexTypeUnboundedXX($vReturnGeneric, $vGenericType, $vMethodName, '', $vMethodName, $vReturnGeneric, true())"/>
+                                      </xsl:when>
+                                      <xsl:otherwise>
+                                          <xsl:value-of select="xdd:printComplexTypeSingleXX($vReturnGeneric, $vGenericType, $vMethodName, '', $vMethodName, $vReturnGeneric, true())"/>
+                                      </xsl:otherwise>
+                                 </xsl:choose>
+                             </xsl:when>
+                        </xsl:choose>                        
+                    </xsl:for-each>
+                </xsl:for-each>
+                <xsl:text>}&#10;</xsl:text>
+            </xsl:result-document>        
+        </xsl:for-each>        
+    </xsl:template>
+    
 
     <!-- ****************************************************** -->
     <!-- ****** Template which generates the test classes  **** -->
@@ -356,8 +712,8 @@
         <xsl:param name="pDescriptor" select="."/>
         <xsl:variable name="vPackage" select="./@packageApi"/>
         <xsl:variable name="vSchema" select=" substring-after(@schemaName, '../xsd/')"/>
-<!--        <xsl:variable name="vClassname" select="xdd:createPascalizedName(xdd:checkForReservedKeywords($pDescriptor/@schemaName), 'Descriptor')"/>-->
         <xsl:variable name="vClassname" select="@name"/>
+        <xsl:variable name="vCommonPackage" select="xdd:getCommonPackage($vPackage)"/>
         <xsl:if test="$gVerbose">
             <xsl:message select="concat('Generating Descriptor Api: ', $vClassname)"/>
         </xsl:if>
@@ -374,12 +730,26 @@
                 </xsl:for-each>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.api.Descriptor;&#10;</xsl:text>
                 <xsl:text>import org.jboss.shrinkwrap.descriptor.api.DescriptorNamespace;&#10;&#10;</xsl:text>
-                <xsl:value-of select=" xdd:writeDescriptorJavaDoc($vClassname, $vSchema, $gJavaDocs)"/>
+                
+                <xsl:if test="exists(common)">
+                    <xsl:value-of select="concat('import ', common/@commonApi, '.*;', '&#10;')"/>  
+                </xsl:if>
+                
+                <xsl:value-of select="xdd:writeDescriptorJavaDoc($vClassname, $vSchema, $gJavaDocs)"/>
                 <xsl:value-of select="xdd:classHeaderDeclaration('interface', $vClassname)"/>
-                <xsl:value-of select="concat(' extends Descriptor, DescriptorNamespace', '&lt;', $vClassname, '&gt;')"/>
-                <xsl:text>&#10;{&#10;</xsl:text>
+                <xsl:value-of select="concat(' extends Descriptor, DescriptorNamespace', '&lt;', $vClassname, '&gt;')"/>                
+                <xsl:if test="exists(common)">
+                    <xsl:variable name="vCommonDesrName" select="replace($vClassname, 'Descriptor', 'CommonDescriptor')"/>
+                    <xsl:value-of select="concat(', ', '&#10;    ',$vCommonDesrName, '&lt;', $vClassname)"/>
+                    <xsl:for-each select="common/commonTypes/type">
+                        <xsl:variable name="vTypeName" select="xdd:createPascalizedName(@name, '')"/>
+                        <xsl:value-of select="concat(', ', '&#10;    ',$vTypeName, '&lt;', $vClassname,  '&gt;')"/>
+                    </xsl:for-each>
+                    <xsl:value-of select="'&gt;'"/>
+                </xsl:if>
+                <xsl:value-of select="concat(' {', '&#10;&#10;')"/>                
                 <xsl:variable name="vType" select=" substring-after($pDescriptor/element/@type, ':')"/>
-                <xsl:variable name="vNamespace" select=" substring-before($pDescriptor/element/@type, ':')"/>
+                <xsl:variable name="vNamespace" select=" substring-before($pDescriptor/element/@type, ':')"/>                   
                 <xsl:for-each select="//classes/class[@name=$vType and @namespace=$vNamespace and (@packageApi=$vPackage or not(xdd:versionLessPackageName(@packageApi) = xdd:versionLessPackageName($vPackage)))]">
                     <xsl:for-each select="include">
                         <xsl:value-of select="xdd:includeGroupRefs($vClassname, @name, false(), true(), false(), '', @maxOccurs='unbounded')"/>
@@ -393,7 +763,6 @@
             </xsl:result-document>
         </xsl:if>
     </xsl:template>
-
 
     <!-- ******************************************************* -->
     <!-- ****** Template which generates the impl classes  ***** -->
@@ -459,10 +828,7 @@
         <xsl:param name="pDescriptor" select="."/>
         <xsl:variable name="vPackage" select="@packageImpl"/>
         <xsl:variable name="vNodeName" select="'model'"/>
-        <xsl:variable name="vSchema" select=" substring-after(@schemaName, '../xsd/')"/>
-        <!--<xsl:variable name="vInterfaceName" select="xdd:createPascalizedName($pDescriptor/@schemaName, 'Descriptor')"/>
-        <xsl:variable name="vClassnameImpl" select="xdd:createPascalizedName($pDescriptor/@schemaName, 'DescriptorImpl')"/>-->
-        
+        <xsl:variable name="vSchema" select=" substring-after(@schemaName, '../xsd/')"/>        
         <xsl:variable name="vInterfaceName" select="@name"/>
         <xsl:variable name="vClassnameImpl" select=" concat(@name, 'Impl')"/>
         <xsl:if test="$gVerbose">
@@ -956,39 +1322,39 @@
         <xsl:param name="pPackage" as="xs:string"/>
         <xsl:param name="pIsApi" as="xs:boolean"/>
 
-        <xsl:for-each select="$gClasses/class[@name=$pClassName and @namespace=$pNamespace]">
-            <xsl:for-each select="element">
-                <xsl:choose>
-                    <xsl:when test="$pNamespace != 'xsd'">
-                        <xsl:value-of select="xdd:writeDynamicImport(@type, $pPackage, $pIsApi)"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="xdd:writeDynamicImport(@type, $pIsApi)"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:for-each>
-            <xsl:for-each select="include">
-                <xsl:variable name="vName" select=" substring-after(@name, ':')"/>
-                <xsl:variable name="vNamespace" select=" substring-before(@name, ':')"/>
-                <xsl:value-of select="xdd:writeDynamicImports($vName, $vNamespace, $pPackage, $pIsApi)"/>
-            </xsl:for-each>
-        </xsl:for-each>
-
-        <xsl:for-each select="$gGroups/class[@name=$pClassName and @namespace=$pNamespace]">
-            <xsl:for-each select="element">
-                <xsl:value-of select="xdd:writeDynamicImport(@type, $pIsApi)"/>
-            </xsl:for-each>
-            <xsl:for-each select="include">
-                <xsl:variable name="vName" select=" substring-after(@name, ':')"/>
-                <xsl:variable name="vNamespace" select=" substring-before(@name, ':')"/>
-                <xsl:value-of select="xdd:writeDynamicImports($vName, $vNamespace, $pPackage, $pIsApi)"/>
-            </xsl:for-each>
-        </xsl:for-each>
-
-        <xsl:for-each select="$gEnums/enum[@name=$pClassName and @namespace=$pNamespace]">
-            <xsl:value-of select="xdd:writeDynamicImport(@type, $pIsApi)"/>
-        </xsl:for-each>
-
+             <xsl:for-each select="$gClasses/class[@name=$pClassName and @namespace=$pNamespace]">
+                 <xsl:for-each select="element">
+                     <xsl:choose>
+                         <xsl:when test="$pNamespace != 'xsd'">
+                             <xsl:value-of select="xdd:writeDynamicImport(@type, $pPackage, $pIsApi)"/>
+                         </xsl:when>
+                         <xsl:otherwise>
+                             <xsl:value-of select="xdd:writeDynamicImport(@type, $pIsApi)"/>
+                         </xsl:otherwise>
+                     </xsl:choose>
+                 </xsl:for-each>
+                 <xsl:for-each select="include">
+                     <xsl:variable name="vName" select=" substring-after(@name, ':')"/>
+                     <xsl:variable name="vNamespace" select=" substring-before(@name, ':')"/>
+                     <xsl:value-of select="xdd:writeDynamicImports($vName, $vNamespace, $pPackage, $pIsApi)"/>
+                 </xsl:for-each>
+             </xsl:for-each>
+     
+             <xsl:for-each select="$gGroups/class[@name=$pClassName and @namespace=$pNamespace]">
+                 <xsl:for-each select="element">
+                     <xsl:value-of select="xdd:writeDynamicImport(@type, $pIsApi)"/>
+                 </xsl:for-each>
+                 <xsl:for-each select="include">
+                     <xsl:variable name="vName" select=" substring-after(@name, ':')"/>
+                     <xsl:variable name="vNamespace" select=" substring-before(@name, ':')"/>
+                     <xsl:value-of select="xdd:writeDynamicImports($vName, $vNamespace, $pPackage, $pIsApi)"/>
+                 </xsl:for-each>
+             </xsl:for-each>
+     
+             <xsl:for-each select="$gEnums/enum[@name=$pClassName and @namespace=$pNamespace]">
+                 <xsl:value-of select="xdd:writeDynamicImport(@type, $pIsApi)"/>
+             </xsl:for-each>
+<!--        </xsl:if>-->
     </xsl:function>
 
     <!-- ****************************************************** -->
@@ -1002,17 +1368,21 @@
         <xsl:variable name="vNamespace" select=" substring-before($pType, ':')"/>
 
         <xsl:for-each select="$gClasses/class[@name=$vType and @namespace=$vNamespace]">
-            <xsl:variable name="vPackageApi" select="@packageApi"/>
-            <xsl:variable name="vPackageImpl" select="@packageImpl"/>
-            <xsl:value-of select="concat('import ', $vPackageApi, '.', xdd:createPascalizedName(@name, ''), ';&#10;')"/>
-            <xsl:if test="$pIsApi=false()">
-                <xsl:value-of select="concat('import ', $vPackageImpl, '.', xdd:createPascalizedName(@name, 'Impl'), ';&#10;')"/>
+            <xsl:if test="contains($vBooleanMethodTypes, concat(@namespace, ':', @name, ';')) = false()">
+                 <xsl:variable name="vPackageApi" select="@packageApi"/>
+                 <xsl:variable name="vPackageImpl" select="@packageImpl"/>
+                 <xsl:value-of select="concat('import ', $vPackageApi, '.', xdd:createPascalizedName(@name, ''), ';&#10;')"/>
+                 <xsl:if test="$pIsApi=false()">
+                     <xsl:value-of select="concat('import ', $vPackageImpl, '.', xdd:createPascalizedName(@name, 'Impl'), ';&#10;')"/>
+                 </xsl:if>
             </xsl:if>
         </xsl:for-each>
 
         <xsl:for-each select="$gEnums/enum[@name=$vType and @namespace=$vNamespace]">
-            <xsl:variable name="vPackageApi" select="@package"/>
-            <xsl:value-of select="concat('import ', $vPackageApi, '.', xdd:createPascalizedName($vType, ''), ';&#10;')"/>
+            <xsl:if test="contains($vBooleanMethodTypes, concat(@name, ';')) = false()">
+                 <xsl:variable name="vPackageApi" select="@package"/>
+                 <xsl:value-of select="concat('import ', $vPackageApi, '.', xdd:createPascalizedName($vType, ''), ';&#10;')"/>
+            </xsl:if>
         </xsl:for-each>
 
     </xsl:function>
@@ -1029,24 +1399,25 @@
         <xsl:variable name="vNamespace" select=" substring-before($pType, ':')"/>
 
         <xsl:for-each select="$gClasses/class[@name=$vType and @namespace=$vNamespace]">
-            <xsl:variable name="vPackageApi" select="@packageApi"/>
-            <xsl:variable name="vPackageImpl" select="@packageImpl"/>
-            <xsl:variable name="vPackage">
-                <xsl:choose>
-                    <xsl:when test="$pIsApi=true()">
-                        <xsl:value-of select="$vPackageApi"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="$vPackageImpl"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:variable>
-            <xsl:if test="$pPackage = $vPackageApi or $pPackage = $vPackageImpl or
-                          not(xdd:versionLessPackageName($pPackage) = xdd:versionLessPackageName($vPackage))">
-                <xsl:value-of select="concat('import ', $vPackageApi, '.', xdd:createPascalizedName(@name, ''), ';&#10;')"/>
-            <xsl:if test="$pIsApi=false()">
-                <xsl:value-of select="concat('import ', $vPackageImpl, '.', xdd:createPascalizedName(@name, 'Impl'), ';&#10;')"/>
-            </xsl:if>
+            <xsl:if test="contains($vBooleanMethodTypes, concat(@namespace, ':', @name, ';')) = false()">
+                 <xsl:variable name="vPackageApi" select="@packageApi"/>
+                 <xsl:variable name="vPackageImpl" select="@packageImpl"/>
+                 <xsl:variable name="vPackage">
+                     <xsl:choose>
+                         <xsl:when test="$pIsApi=true()">
+                             <xsl:value-of select="$vPackageApi"/>
+                         </xsl:when>
+                         <xsl:otherwise>
+                             <xsl:value-of select="$vPackageImpl"/>
+                         </xsl:otherwise>
+                     </xsl:choose>
+                 </xsl:variable>
+                 <xsl:if test="$pPackage = $vPackageApi or $pPackage = $vPackageImpl or not(xdd:versionLessPackageName($pPackage) = xdd:versionLessPackageName($vPackage))">
+                     <xsl:value-of select="concat('import ', $vPackageApi, '.', xdd:createPascalizedName(@name, ''), ';&#10;')"/>
+                     <xsl:if test="$pIsApi=false()">
+                         <xsl:value-of select="concat('import ', $vPackageImpl, '.', xdd:createPascalizedName(@name, 'Impl'), ';&#10;')"/>
+                     </xsl:if>
+                 </xsl:if>
             </xsl:if>
         </xsl:for-each>
 
@@ -1116,6 +1487,64 @@
         <xsl:param name="pPackageApi" as="xs:string"/>
         <xsl:choose>
             <xsl:when test="$gPackageApis[@name=$pPackageApi]/@generateClass='true'">
+                <xsl:sequence select="boolean(true())"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:sequence select="boolean(false())"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+
+
+    <!-- ****************************************************** -->
+    <!-- ****** Function which checks a data type           *** -->
+    <!-- ****************************************************** -->
+    <xsl:function name="xdd:isRootElement" as="xs:boolean">
+        <xsl:param name="pClassName" as="xs:string"/>
+        <xsl:param name="pNamespace" as="xs:string"/>
+        <xsl:variable name="vType" select="concat($pNamespace, ':', $pClassName)"/>
+        <xsl:choose>
+            <xsl:when test="$gDescriptors/element[@type=$vType]">
+                <xsl:choose>
+                    <xsl:when test="$gClasses/class/element[@type=$vType]">
+                        <xsl:sequence select="boolean(false())"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:sequence select="boolean(true())"/>
+                    </xsl:otherwise>
+                </xsl:choose>                
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:sequence select="boolean(false())"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+
+
+    <!-- ********************************************************************************** -->
+    <!-- ****** Function which checks if the give element is an excluded common element *** -->
+    <!-- ********************************************************************************** -->
+    <xsl:function name="xdd:isExcludedCommonElement" as="xs:boolean">
+        <xsl:param name="pClassName" as="xs:string"/>
+        <xsl:param name="pNamespace" as="xs:string"/>
+        <xsl:choose>
+            <xsl:when test="$gDescriptors/common/commonExcludes/exclude[@namespace=$pNamespace and @name=$pClassName]">
+               <xsl:sequence select="boolean(true())"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:sequence select="boolean(false())"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
+    <!-- ****************************************************** -->
+    <!-- ****** Function which checks a data type           *** -->
+    <!-- ****************************************************** -->
+    <xsl:function name="xdd:isAlreadyGenerated" as="xs:boolean">
+        <xsl:param name="pClassName" as="xs:string"/>
+        <xsl:variable name="vName" select="concat($pClassName, '.', 'java')"/>
+        <xsl:choose>
+            <xsl:when test="$gGeneratedClasses/generatedClass[@name=$vName]">
                 <xsl:sequence select="boolean(true())"/>
             </xsl:when>
             <xsl:otherwise>
@@ -1899,6 +2328,10 @@
         <xsl:param name="pUse" as="xs:string"/>
         <xsl:param name="pIsUnbounded" as="xs:boolean"/>
         <xsl:choose>
+            <xsl:when test="$pClassType = 'ORIGIN'">
+               <!-- <xsl:value-of select="xdd:printSetEnumAsString($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+                <xsl:value-of select="xdd:printGetEnumAsString($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>-->
+            </xsl:when>
             <xsl:when test="$pIsAttribute=true()">
                 <xsl:value-of select="xdd:printSetAttribute($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface, $pDefault, $pFixed, $pUse)"/>
                 <xsl:value-of select="xdd:printSetEnumAttribute($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
@@ -2954,7 +3387,54 @@
             "/>
     </xsl:function>
 
+    <!-- **************************************************************** -->
+    <!-- ******  Function which checks the name against the class names * -->
+    <!-- **************************************************************** -->
+    <xsl:function name="xdd:isClass" as="xs:boolean">
+        <xsl:param name="vNname" as="xs:string?"/>        
+        <xsl:choose>
+            <xsl:when test="$gClasses/class[@name = $vNname]">
+                <xsl:sequence select="true()"></xsl:sequence>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:sequence select="false()"></xsl:sequence>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
 
+    <!-- **************************************************************** -->
+    <!-- ******  Function which checks the name against the class names * -->
+    <!-- **************************************************************** -->
+    <xsl:function name="xdd:isEnum" as="xs:boolean">
+        <xsl:param name="vNname" as="xs:string?"/>        
+        <xsl:choose>
+            <xsl:when test="$gEnums/enum[@name = $vNname]">
+                <xsl:sequence select="true()"></xsl:sequence>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:sequence select="false()"></xsl:sequence>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
+    
+    <!-- **************************************************************** -->
+    <!-- ******  Function which checks the name against the class names * -->
+    <!-- **************************************************************** -->
+    <xsl:function name="xdd:isCommonPackageDisabled" as="xs:boolean">
+        <xsl:param name="vPackageApi" as="xs:string?"/>        
+        <xsl:choose>
+            <xsl:when test="$gGenerateCommonPackages/package[@packageApi=$vPackageApi]/@generate = false()">
+                <xsl:sequence select="true()"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:sequence select="false()"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
+    
+    
     <!-- ****************************************************** -->
     <!-- ******  Function which capitalize tje first char     * -->
     <!-- ****************************************************** -->

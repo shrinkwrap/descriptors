@@ -106,6 +106,10 @@ public class MetadataParser {
             metadataDescriptor.setGenerateClasses(metadataConf.generateClasses);
             metadataDescriptor.setPathToPackageInfoApi(metadataConf.getPathToPackageInfoApi());
             metadataDescriptor.setPathToPackageInfoImpl(metadataConf.getPathToPackageInfoImpl());
+            metadataDescriptor.setCommon(metadataConf.getCommon());
+            metadataDescriptor.setCommonRef(metadataConf.getCommonRef());
+            metadataDescriptor.setGenerateCommonClasses(metadataConf.generateCommonClasses);
+            metadataDescriptor.setCommonImports(metadataConf.getCommonImports());
 
             metadata.getMetadataDescriptorList().add(metadataDescriptor);
 

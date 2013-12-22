@@ -54,5 +54,12 @@ public class MetadataParserMojoTest extends AbstractMojoTestCase {
             "http://www.w3.org/2001/XMLSchema-instance");
         Assert.assertEquals(metadataConf.getNamespaces().getProperty("xsi:schemaLocation"),
             "http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd");
+        Assert.assertEquals(metadataConf.getCommon().getPathToCommonApi(), "pathToCommon");
+//        Assert.assertTrue(metadataConf.getCommon().getElements().size() == 3);
+//        Assert.assertEquals(metadataConf.getCommon().getElements().get(0).getNamespace(), "javaee");
+//        Assert.assertEquals(metadataConf.getCommon().getElements().get(0).getName(), "iconType");
+//        Assert.assertEquals(metadataConf.getCommon().getElements().get(0).getCommonName(), "IconCommonType");
+        
+//        myMojo.execute();
     }
 }

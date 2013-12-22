@@ -1,6 +1,9 @@
 package org.jboss.shrinkwrap.descriptor.metadata;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.net.URL;
 import java.util.ArrayList;
@@ -9,12 +12,13 @@ import java.util.Properties;
 
 import junit.framework.Assert;
 
+import org.jboss.shrinkwrap.descriptor.metadata.dom.DomWriter;
 import org.jboss.shrinkwrap.descriptor.test.util.XmlAssert;
 import org.junit.Test;
 
 public class MetadataParserTest {
 
-	@Test
+    @Test
 	public void testParseWithNullArguments() throws Exception {
 		final MetadataParser parser = new MetadataParser();
 		boolean isRuntimeExceptionThrown = false;
@@ -25,7 +29,7 @@ public class MetadataParserTest {
 			isRuntimeExceptionThrown = true;
 		}
 		
-		Assert.assertTrue(isRuntimeExceptionThrown);
+		assertTrue(isRuntimeExceptionThrown);
 	}
 	
 	@Test

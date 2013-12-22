@@ -59,7 +59,7 @@
             <artifactId>shrinkwrap-descriptors-api-base</artifactId>
             <version>${project.version}</version>
         </dependency>
-
+        
         <dependency>
             <groupId>org.jboss.shrinkwrap.descriptors</groupId>
             <artifactId>shrinkwrap-descriptors-impl-base</artifactId>
@@ -108,6 +108,12 @@
             <artifactId>saxon-dom</artifactId>
             <version>8.7</version>
         </dependency>
+
+		<dependency>
+		    <groupId>com.thoughtworks.qdox</groupId>
+		    <artifactId>qdox</artifactId>
+		    <version>2.0-M1</version>
+		</dependency>
 
         <dependency>
             <groupId>com.sun.codemodel</groupId>

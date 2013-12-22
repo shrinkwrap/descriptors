@@ -17,6 +17,25 @@
 
 package org.jboss.shrinkwrap.descriptor.metadata.dom;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
 import org.jboss.shrinkwrap.descriptor.metadata.Metadata;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataDescriptor;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataElement;
@@ -27,19 +46,11 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import java.io.File;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import com.thoughtworks.qdox.JavaProjectBuilder;
+import com.thoughtworks.qdox.model.JavaAnnotation;
+import com.thoughtworks.qdox.model.JavaClass;
+import com.thoughtworks.qdox.model.JavaSource;
+import com.thoughtworks.qdox.model.expression.AnnotationValue;
 
 /**
  * This class writes an XML file based on the meta-data information.
@@ -71,6 +82,62 @@ public class DomWriter {
 
             final Element javadocsElement = doc.createElement("javadocs");
             rootElement.appendChild(javadocsElement);
+
+            final Set<String> commonPathSet = new HashSet<String>();
+            final List<File> fileList = new ArrayList<File>();
+            for (final MetadataDescriptor descr : metadata.getMetadataDescriptorList()) {
+                if (descr.getCommon() != null) {
+                    final String pathTo = descr.getCommon().getPathToCommonApi();
+                    final String commonApi = descr.getCommon().getCommonApi().replace('.', '/');
+                    commonPathSet.add(pathTo + "/" + commonApi);
+                }
+            }
+
+            for (final String pathCommonApi : commonPathSet) {
+                listFiles(fileList, pathCommonApi);
+            }
+
+            final JavaProjectBuilder builder = new JavaProjectBuilder();
+            final Element generatedElement = doc.createElement("generatedClasses");
+            rootElement.appendChild(generatedElement);
+            for (final File file : fileList) {
+                final Element generatedClassElement = doc.createElement("generatedClass");
+                generatedClassElement.setAttribute("name", file.getName());
+                generatedElement.appendChild(generatedClassElement);
+                final JavaSource src = builder.addSource(file);
+                final JavaClass class1  = src.getClasses().get(0);
+                generatedClassElement.setAttribute("commonPackage", class1.getPackageName());
+                final List<JavaAnnotation> annotationList = class1.getAnnotations();
+                for (JavaAnnotation annotation : annotationList) {
+                    final  AnnotationValue value = annotation.getProperty("common");
+                    final List<String> commonExtendsList = (List<String>)value.getParameterValue();
+                    for (String commonClass : commonExtendsList) {
+                        final Element extendsElement = doc.createElement("commonExtends");
+                        extendsElement.setAttribute("extends", commonClass.replace('"', ' ').trim());
+                        generatedClassElement.appendChild(extendsElement);
+                    }
+                }
+            }
+
+            final Element commonPackagesElement = doc.createElement("commonPackages");
+            rootElement.appendChild(commonPackagesElement);
+            for (final MetadataDescriptor descr : metadata.getMetadataDescriptorList()) {
+                if (descr.isGenerateCommonClasses() != null && !descr.isGenerateCommonClasses()) {
+                    final Element generateElement = doc.createElement("package");
+                    generateElement.setAttribute("packageApi", descr.getPackageApi());
+                    generateElement.setAttribute("generate", Boolean.toString(descr.isGenerateCommonClasses()));
+                    commonPackagesElement.appendChild(generateElement);
+                }
+            }
+
+            final List<String> commonNewFiles = findCommonClasses(metadata);
+            final Element commonNewFilesElement = doc.createElement("commonClasses");
+            rootElement.appendChild(commonNewFilesElement);
+            for (final String type : commonNewFiles) {
+                final Element commonType = doc.createElement("typeName");
+                commonType.setAttribute("name", type);
+                commonNewFilesElement.appendChild(commonType);
+            }
 
             if (javadocTags != null) {
                 for (final MetadataJavaDoc javaDoc : javadocTags) {
@@ -110,6 +177,16 @@ public class DomWriter {
                     final Attr pathToPackageInfoApi = doc.createAttribute("packageInfo");
                     pathToPackageInfoApi.setValue(descriptor.getPathToPackageInfoApi());
                     packageApi.setAttributeNode(pathToPackageInfoApi);
+                }
+
+                if (descriptor.getCommonImports() != null) {
+                    final Element commonImport = doc.createElement("commonImport");
+                    for (String importDescl : descriptor.getCommonImports()) {
+                        final Element importElement = doc.createElement("import");
+                        importElement.setAttribute("package", importDescl);
+                        commonImport.appendChild(importElement);
+                    }
+                    packageApi.appendChild(commonImport);
                 }
 
                 packages.appendChild(packageApi);
@@ -420,14 +497,70 @@ public class DomWriter {
 
                         descriptorElement.appendChild(namespaceElement);
                     }
+
+                    if (descriptor.getCommonRef() != null) {
+                        final Element commonRefElement = doc.createElement("commonRef");
+                        commonRefElement.setAttribute("refid", descriptor.getCommonRef().getRefid());
+                        descriptorElement.appendChild(commonRefElement);
+                    }
+
+                    if (descriptor.getCommon() != null) {
+                        final Element commonElement = doc.createElement("common");
+                        commonElement.setAttribute("pathToCommonApi", descriptor.getCommon().getPathToCommonApi());
+                        commonElement.setAttribute("commonDescriptorName", descriptor.getCommon().getCommonDescriptorName());
+                        commonElement.setAttribute("commonApi", descriptor.getCommon().getCommonApi());
+                        commonElement.setAttribute("commonNamespace", descriptor.getCommon().getCommonNamespace());
+                        commonElement.setAttribute("id", descriptor.getCommon().getId());
+                        commonElement.setAttribute("generate", descriptor.getCommon().getGenerate().toString());
+
+                        if (descriptor.getCommon().getCommonImports() != null) {
+                            final Element commonImport = doc.createElement("commonImport");
+                            for (String importDescl : descriptor.getCommon().getCommonImports()) {
+                                final Element importElement = doc.createElement("import");
+                                importElement.setAttribute("package", importDescl);
+                                commonImport.appendChild(importElement);
+                            }
+                            commonElement.appendChild(commonImport);
+                        }
+
+                        if (descriptor.getCommon().getTypes() != null) {
+                            final Element commonTypes = doc.createElement("commonTypes");
+                            for (String type : descriptor.getCommon().getTypes()) {
+                                final Element typeElement = doc.createElement("type");
+                                final String[] items = type.split(":", -1);
+                                if (items.length == 2) {
+                                    typeElement.setAttribute("namespace", items[0]);
+                                    typeElement.setAttribute("name", items[1]);
+                                    commonTypes.appendChild(typeElement);
+                                }
+                            }
+                            commonElement.appendChild(commonTypes);
+                        }
+
+                        if (descriptor.getCommon().getExcludes() != null) {
+                            final Element excludeTypes = doc.createElement("commonExcludes");
+                            for (String exclude : descriptor.getCommon().getExcludes()) {
+                                final Element excludeElement = doc.createElement("exclude");
+                                final String[] items = exclude.split(":", -1);
+                                if (items.length == 2) {
+                                    excludeElement.setAttribute("namespace", items[0]);
+                                    excludeElement.setAttribute("name", items[1]);
+                                    excludeTypes.appendChild(excludeElement);
+                                }
+                            }
+                            commonElement.appendChild(excludeTypes);
+                        }
+
+                        descriptorElement.appendChild(commonElement);
+                    }
                 }
             }
 
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(doc);
+            final TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            final Transformer transformer = transformerFactory.newTransformer();
+            final DOMSource source = new DOMSource(doc);
             final File file = new File(pathToMetadata);
-            StreamResult result = new StreamResult(file);
+            final StreamResult result = new StreamResult(file);
 
             // Output to console for testing
             // StreamResult result = new StreamResult(System.out);
@@ -442,6 +575,99 @@ public class DomWriter {
             pce.printStackTrace();
         } catch (TransformerException tfe) {
             tfe.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
+
+    private void listFiles(final List<File> list, final String directoryName) {
+        final File directory = new File(directoryName);
+        if (directory.isDirectory()) {
+            final File[] fList = directory.listFiles();
+            for (final File file : fList) {
+                if (file.isFile()) {
+                    list.add(file);
+                } else if (file.isDirectory()) {
+                    listFiles(list, file.getAbsolutePath());
+                }
+            }
+        }
+    }
+
+    private List<String> findCommonClasses(final Metadata metadata) {
+        final List<String> classList = new ArrayList<String>();
+        for (MetadataDescriptor descr : metadata.getMetadataDescriptorList()) {
+            if (descr.getCommon() != null) {
+                traverseClasses(metadata, classList, descr.getRootElementType());
+            } else {
+                if (descr.isGenerateClasses()) {
+                    final String packageApi = descr.getPackageApi();
+                    for (MetadataItem item : metadata.getClassList()) {
+                        if (packageApi.equals(item.getPackageApi())) {
+                            final String type = item.getNamespace() + ":" + item.getName();
+                            if (!classList.contains(type)) {
+                                classList.add(type);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return classList;
+    }
+
+    private void traverseClasses(final Metadata metadata, final List<String> classList, final String elementType) {
+        final String[] elItems = elementType.split(":", -1);
+        if (elItems.length == 2) {
+            for (MetadataItem item : metadata.getClassList()) {
+                if (item.getNamespace().equals(elItems[0]) && item.getName().equals(elItems[1])) {
+                    for (MetadataElement element : item.getElements()) {
+                        if (!isDataType(element.getType(), metadata)) {
+                            if (!classList.contains(element.getType())) {
+                                classList.add(element.getType());
+                                traverseClasses(metadata, classList, element.getType());
+                            }
+                        }
+                    }
+                    for (MetadataElement element : item.getReferences()) {
+                        if (!isDataType(element.getType(), metadata)) {
+                            if (!classList.contains(element.getRef())) {
+                                classList.add(element.getRef());
+                                traverseClasses(metadata, classList, element.getRef());
+                            }
+                        }
+                    }
+                }
+            }
+            for (MetadataItem item : metadata.getGroupList()) {
+                if (item.getNamespace().equals(elItems[0]) && item.getName().equals(elItems[1])) {
+                    for (MetadataElement element : item.getElements()) {
+                        if (!isDataType(element.getType(), metadata)) {
+                            if (!classList.contains(element.getType())) {
+                                classList.add(element.getType());
+                                traverseClasses(metadata, classList, element.getType());
+                            }
+                        }
+                    }
+                    for (MetadataElement element : item.getReferences()) {
+                        if (!isDataType(element.getType(), metadata)) {
+                            if (!classList.contains(element.getRef())) {
+                                classList.add(element.getRef());
+                                traverseClasses(metadata, classList, element.getRef());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private boolean isDataType(final String type, final Metadata metadata) {
+        for (MetadataItem item : metadata.getDataTypeList()) {
+            if (item.getMappedTo().equals(type) || item.getName().equals(type)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

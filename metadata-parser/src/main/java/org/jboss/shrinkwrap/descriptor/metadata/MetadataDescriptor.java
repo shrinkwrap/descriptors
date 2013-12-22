@@ -31,11 +31,19 @@ public class MetadataDescriptor extends BaseMetadataItem {
 
     private boolean generateClasses;
 
+    private Boolean generateCommonClasses;
+
     private String pathToPackageInfoApi;
 
     private String pathToPackageInfoImpl;
 
     private Properties namespaces = new Properties();
+
+    protected String[] commonImports;
+
+    protected MetadataParserCommon common;
+
+    protected MetadataParserCommonRef commonRef;
 
     public MetadataDescriptor(String name) {
         super(name);
@@ -73,6 +81,14 @@ public class MetadataDescriptor extends BaseMetadataItem {
         this.generateClasses = generateClasses;
     }
 
+    public String[] getCommonImports() {
+        return commonImports;
+    }
+
+    public void setCommonImports(String[] imports) {
+        this.commonImports = imports;
+    }
+
     public String getPathToPackageInfoApi() {
         return pathToPackageInfoApi;
     }
@@ -88,4 +104,29 @@ public class MetadataDescriptor extends BaseMetadataItem {
     public void setPathToPackageInfoImpl(final String pathToPackageInfoImpl) {
        this.pathToPackageInfoImpl = pathToPackageInfoImpl;
     }
+
+    public MetadataParserCommon getCommon() {
+        return common;
+    }
+
+    public void setCommon(MetadataParserCommon common) {
+        this.common = common;
+    }
+
+    public MetadataParserCommonRef getCommonRef() {
+        return commonRef;
+    }
+
+    public void setCommonRef(MetadataParserCommonRef commonRef) {
+        this.commonRef = commonRef;
+    }
+
+    public Boolean isGenerateCommonClasses() {
+        return generateCommonClasses;
+    }
+
+    public void setGenerateCommonClasses(Boolean generateCommonClasses) {
+        this.generateCommonClasses = generateCommonClasses;
+    }
+
 }
