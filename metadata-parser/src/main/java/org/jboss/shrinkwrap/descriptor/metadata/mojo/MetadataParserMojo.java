@@ -33,6 +33,7 @@ import org.jboss.shrinkwrap.descriptor.metadata.MetadataParserConfiguration;
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
 public class MetadataParserMojo extends AbstractMojo {
+
     /**
      * Path settings used for generating the interfaces and implementation classes.
      *

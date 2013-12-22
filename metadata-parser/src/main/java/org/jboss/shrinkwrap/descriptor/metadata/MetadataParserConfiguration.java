@@ -25,6 +25,7 @@ import java.util.Properties;
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
 public class MetadataParserConfiguration {
+
     /**
      * Path to the XSD file to be parsed
      */
@@ -67,6 +68,14 @@ public class MetadataParserConfiguration {
     protected boolean generateClasses = true;
 
     /**
+     * If true, then the for stand-alone descriptors, the common classes are generated as well
+     * import section.
+     */
+    protected boolean generateCommonClasses = true;
+
+    protected String[] commonImports;
+
+    /**
      * Trace flag
      */
     protected boolean verbose;
@@ -80,6 +89,16 @@ public class MetadataParserConfiguration {
      * Optional file for package.html or package-info.java
      */
     protected String pathToPackageInfoImpl;
+
+    /**
+     * Common settings used for generating the interfaces and implementation classes.
+     */
+    protected MetadataParserCommon common;
+
+    /**
+     * Reference to a common descriptor configuration.
+     */
+    protected MetadataParserCommonRef commonRef;
 
     /**
      * The map declaring the name spaces for the given descriptor.
@@ -180,5 +199,37 @@ public class MetadataParserConfiguration {
 
     public void setPathToPackageInfoImpl(final String pathToPackageInfoImpl) {
         this.pathToPackageInfoImpl = pathToPackageInfoImpl;
+    }
+
+    public MetadataParserCommon getCommon() {
+        return common;
+    }
+
+    public void setCommon(MetadataParserCommon common) {
+        this.common = common;
+    }
+
+    public MetadataParserCommonRef getCommonRef() {
+        return commonRef;
+    }
+
+    public void setCommonRef(MetadataParserCommonRef commonRef) {
+        this.commonRef = commonRef;
+    }
+
+    public boolean isGenerateCommonClasses() {
+        return generateCommonClasses;
+    }
+
+    public void setGenerateCommonClasses(boolean generateCommonClasses) {
+        this.generateCommonClasses = generateCommonClasses;
+    }
+
+    public String[] getCommonImports() {
+        return commonImports;
+    }
+
+    public void setCommonImports(String[] imports) {
+        this.commonImports = imports;
     }
 }

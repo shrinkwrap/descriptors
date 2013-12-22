@@ -121,6 +121,10 @@
 									<tag>@author</tag>
 									<value>&lt;a href="mailto:alr@jboss.org"&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
 								</javadoc>
+								<javadoc>
+									<tag>@author</tag>
+									<value>&lt;a href="mailto:ggastald@redhat.com"&gt;George Gastaldi&lt;/a&gt;</value>
+								</javadoc>
 							</javadocs>
 							<path>
 								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
@@ -135,6 +139,7 @@
 									<descriptorName>ConnectorDescriptor</descriptorName>
 									<elementName>connector</elementName>
 									<elementType>j2ee:connector</elementType>
+									<generateCommonClasses>false</generateCommonClasses>
 								</descriptor>
 							</descriptors>
 						</configuration>
@@ -156,6 +161,10 @@
 								<javadoc>
 									<tag>@author</tag>
 									<value>&lt;a href="mailto:alr@jboss.org"&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
+								</javadoc>
+								<javadoc>
+									<tag>@author</tag>
+									<value>&lt;a href="mailto:ggastald@redhat.com"&gt;George Gastaldi&lt;/a&gt;</value>
 								</javadoc>
 							</javadocs>
 							<path>
@@ -179,6 +188,7 @@
 									<packageApi>org.jboss.shrinkwrap.descriptor.api.j2eewebservicesclient11</packageApi>
 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.j2eewebservicesclient11</packageImpl>
 									<generateClasses>true</generateClasses>
+									<generateCommonClasses>false</generateCommonClasses>
 								</descriptor>
 
 								<descriptor>
@@ -194,6 +204,17 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/connector_1_5.xsd</value></property>
 									</namespaces>
+									<common>
+										<id>connector15</id>
+										<generate>true</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>ConnectorCommonDescriptor</commonDescriptorName>
+										<commonNamespace>j2ee</commonNamespace>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.connector</commonApi>
+										<types>
+											<type>j2ee:resourceadapterType</type>
+										</types>
+									</common>
 								</descriptor>
 
 								<descriptor>
@@ -209,6 +230,7 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd</value></property>
 									</namespaces>
+									<generateCommonClasses>false</generateCommonClasses>
 								</descriptor>
 
 								<descriptor>
@@ -224,6 +246,26 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd</value></property>
 									</namespaces>
+									<common>
+										<id>portletapp20</id>
+										<generate>true</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>PortletCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.portletapp</commonApi>
+										<types>
+											<type>portlet:portletType</type>
+											<type>portlet:custom-portlet-modeType</type>											
+											<type>portlet:custom-window-stateType</type>
+											<type>portlet:user-attributeType</type>
+											<type>portlet:security-constraintType</type>
+											<type>portlet:filterType</type>
+											<type>portlet:filter-mappingType</type>
+											<type>portlet:event-definitionType</type>
+											<type>portlet:public-render-parameterType</type>
+											<type>portlet:listenerType</type>
+											<type>portlet:container-runtime-optionType</type>
+										</types>
+									</common>
 								</descriptor>
 							</descriptors>
 						</configuration>
@@ -246,6 +288,10 @@
 									<tag>@author</tag>
 									<value>&lt;a href="mailto:alr@jboss.org"&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
 								</javadoc>
+								<javadoc>
+									<tag>@author</tag>
+									<value>&lt;a href="mailto:ggastald@redhat.com"&gt;George Gastaldi&lt;/a&gt;</value>
+								</javadoc>
 							</javadocs>
 							<path>
 								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
@@ -267,6 +313,7 @@
 									<packageApi>org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient12</packageApi>
 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient12</packageImpl>
 									<generateClasses>true</generateClasses>
+									<generateCommonClasses>false</generateCommonClasses>
 								</descriptor>
 
 								<descriptor>
@@ -282,6 +329,20 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_5.xsd</value></property>
 									</namespaces>
+									<common>
+										<id>Application5</id>
+										<generate>true</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>ApplicationCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.application</commonApi>
+										<commonImports>
+											<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
+										</commonImports>
+										<types>
+											<type>javaee:moduleType</type> 
+											<type>javaee:security-roleType</type>
+										</types>
+									</common>
 								</descriptor>
 
 								<descriptor>
@@ -297,6 +358,19 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd</value></property>
 									</namespaces>
+									<commonRef>
+										<refid>Pesistence10</refid>
+									</commonRef>
+									<common>
+										<id>Pesistence10</id>
+										<generate>true</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>PersistenceCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.persistence</commonApi>
+										<types>
+											<type>persistence:persistence-unit</type> 
+										</types>
+									</common>
 								</descriptor>
 
 								<descriptor>
@@ -312,6 +386,24 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd</value></property>
 									</namespaces>
+									<common>
+										<id>orm10</id>
+										<generate>true</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>OrmCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.orm</commonApi>
+										<types>
+											<type>orm:persistence-unit-metadata</type> 
+											<type>orm:sequence-generator</type> 
+											<type>orm:table-generator</type> 
+											<type>orm:table-generator</type> 
+											<type>orm:named-query</type> 
+											<type>orm:named-query</type> 
+											<type>orm:named-native-query</type> 
+											<type>orm:sql-result-set-mapping</type> 
+											<type>orm:embeddable</type> 
+										</types>
+									</common>
 								</descriptor>
 
 								<descriptor>
@@ -327,6 +419,19 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_0.xsd</value></property>
 									</namespaces>
+									<common>
+										<id>ejbjar30</id>
+										<generate>true</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>EjbJarCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.ejbjar</commonApi>
+										<commonImports>
+											<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
+										</commonImports>
+										<types>
+											<type>javaee:enterprise-beansType</type>
+										</types>
+									</common>
 								</descriptor>
 
 								<descriptor>
@@ -342,6 +447,7 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd</value></property>
 									</namespaces>
+									<generateCommonClasses>false</generateCommonClasses>
 								</descriptor>
 
 								<descriptor>
@@ -357,6 +463,17 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd</value></property>
 									</namespaces>
+									<common>
+										<id>facelettaglibrary20</id>
+										<generate>true</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>WebFacelettaglibraryCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.facelettaglibrary</commonApi>
+										<types>
+											<type>javaee:facelet-taglib-tagType</type>
+											<type>javaee:facelet-taglib-functionType</type>
+										</types>
+									</common>
 								</descriptor>
 
 								<descriptor>
@@ -372,21 +489,16 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd</value></property>
 									</namespaces>
-								</descriptor>
-
-								<descriptor>
-									<pathToXsd>${basedir}/src/main/resources/xsd/web-facesconfig_2_1.xsd</pathToXsd>
-									<nameSpace>javaee</nameSpace>
-									<packageApi>org.jboss.shrinkwrap.descriptor.api.facesconfig21</packageApi>
-									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.facesconfig21</packageImpl>
-									<descriptorName>WebFacesConfigDescriptor</descriptorName>
-									<elementName>faces-config</elementName>
-									<elementType>javaee:faces-configType</elementType>
-									<namespaces>
-										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
-										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
-										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd</value></property>
-									</namespaces>
+									<common>
+										<id>facesconfig20</id>
+										<generate>true</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>WebFacesConfigCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.facesconfig</commonApi>
+										<types>											
+											<type>javaee:faces-config-applicationType</type>
+										</types>
+									</common>									
 								</descriptor>
 
 								<descriptor>
@@ -402,6 +514,7 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesuicomponent_2_0.xsd</value></property>
 									</namespaces>
+									<generateCommonClasses>false</generateCommonClasses>
 								</descriptor>
 
 								<descriptor>
@@ -417,6 +530,21 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-partialresponse_2_0.xsd</value></property>
 									</namespaces>
+									<common>
+										<id>partialresponse20</id>
+										<generate>true</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>WebFacesPartialResponseCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.facespartialresponse</commonApi>
+										<types>
+											<type>javaee:partial-response-changesType</type>
+											<type>javaee:partial-response-redirectType</type>
+											<type>javaee:partial-response-errorType</type>
+										</types>
+										<excludes>
+											<exclude>javaee:partial-response-updateType</exclude>
+										</excludes>
+									</common>			
 								</descriptor>
 
                                 <descriptor>
@@ -440,6 +568,38 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd</value></property>
 									</namespaces>
+                                	<commonRef>
+                                		<refid>WebApp25</refid>
+                                	</commonRef>
+                                	<common>
+                                		<id>WebApp25</id>
+                                		<generate>true</generate>
+                                		<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+                                		<commonApi>org.jboss.shrinkwrap.descriptor.api.webapp</commonApi>
+                                		<commonDescriptorName>WebAppCommonDescriptor</commonDescriptorName> 
+                                		<commonImports>
+                                			<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
+                                			<commonImport>org.jboss.shrinkwrap.descriptor.api.jsp</commonImport>
+                                		</commonImports>                               		
+                                		<types>
+                                			<type>javaee:param-valueType</type> 
+                                			<type>javaee:error-pageType</type> 
+                                			<type>javaee:servletType</type> 
+                                			<type>javaee:servlet-mappingType</type> 
+                                			<type>javaee:filterType</type> 
+                                			<type>javaee:filter-mappingType</type> 
+                                			<type>javaee:listenerType</type> 
+                                			<type>javaee:session-configType</type> 
+                                			<type>javaee:mime-mappingType</type> 
+                                			<type>javaee:welcome-file-listType</type> 
+                                			<type>javaee:jsp-configType</type> 
+                                			<type>javaee:security-constraintType</type> 
+                                			<type>javaee:login-configType</type> 
+                                			<type>javaee:security-roleType</type> 
+                                			<type>javaee:message-destinationType</type> 
+                                			<type>javaee:locale-encoding-mapping-listType</type> 
+                                		</types>
+                                	</common>
 								</descriptor>
 							</descriptors>
 						</configuration>
@@ -462,6 +622,10 @@
 									<tag>@author</tag>
 									<value>&lt;a href="mailto:alr@jboss.org"&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
 								</javadoc>
+								<javadoc>
+									<tag>@author</tag>
+									<value>&lt;a href="mailto:ggastald@redhat.com"&gt;George Gastaldi&lt;/a&gt;</value>
+								</javadoc>
 							</javadocs>
 							<path>
 								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
@@ -483,6 +647,11 @@
 									<packageApi>org.jboss.shrinkwrap.descriptor.api.webcommon30</packageApi>
 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.webcommon30</packageImpl>
 									<generateClasses>true</generateClasses>
+									<commonImports>
+										<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
+<!--										<commonImport>org.jboss.shrinkwrap.descriptor.api.webapp</commonImport>-->
+										<commonImport>org.jboss.shrinkwrap.descriptor.api.jsp</commonImport>
+									</commonImports>
 								</descriptor>
 
 								<descriptor>
@@ -499,6 +668,7 @@
 									<packageApi>org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient13</packageApi>
 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient13</packageImpl>
 									<generateClasses>true</generateClasses>
+									<generateCommonClasses>false</generateCommonClasses>
 								</descriptor>
 
 								<descriptor>
@@ -514,6 +684,20 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd</value></property>
 									</namespaces>
+									<common>
+										<id>Application6</id>
+										<generate>false</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>ApplicationCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.application</commonApi>										
+										<commonImports>
+											<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
+										</commonImports>
+										<types>
+											<type>javaee:moduleType</type> 
+											<type>javaee:security-roleType</type>
+										</types>
+									</common>
 								</descriptor>
 
 								<descriptor>
@@ -529,8 +713,65 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd</value></property>
 									</namespaces>
+									<commonRef>
+										<refid>WebApp30</refid>
+									</commonRef>
+									<common>
+										<id>WebApp30</id>
+										<generate>false</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>WebAppCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.webapp</commonApi>
+										<commonImports>
+											<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
+											<commonImport>org.jboss.shrinkwrap.descriptor.api.jsp</commonImport>
+										</commonImports>
+										<types>
+											<type>javaee:param-valueType</type> 
+											<type>javaee:error-pageType</type> 
+											<type>javaee:servletType</type> 
+											<type>javaee:servlet-mappingType</type> 
+											<type>javaee:filterType</type> 
+											<type>javaee:filter-mappingType</type> 
+											<type>javaee:listenerType</type> 
+											<type>javaee:session-configType</type> 
+											<type>javaee:mime-mappingType</type> 
+											<type>javaee:welcome-file-listType</type> 
+											<type>javaee:jsp-configType</type> 
+											<type>javaee:security-constraintType</type> 
+											<type>javaee:login-configType</type> 
+											<type>javaee:security-roleType</type> 
+											<type>javaee:message-destinationType</type> 
+											<type>javaee:locale-encoding-mapping-listType</type> 
+										</types>
+									</common>
 								</descriptor>
 
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/web-facesconfig_2_1.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.facesconfig21</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.facesconfig21</packageImpl>
+									<descriptorName>WebFacesConfigDescriptor</descriptorName>
+									<elementName>faces-config</elementName>
+									<elementType>javaee:faces-configType</elementType>
+									<namespaces>
+										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd</value></property>
+									</namespaces>
+								    <common>
+										<id>facesconfig21</id>
+										<generate>false</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+								    	<commonDescriptorName>WebFacesConfigCommonDescriptor</commonDescriptorName>
+								    	<commonApi>org.jboss.shrinkwrap.descriptor.api.facesconfig</commonApi>
+										<types>											
+										    <type>javaee:faces-config-applicationType</type>									
+										</types>
+									</common>					
+								</descriptor>
+								
 								<descriptor>
 									<pathToXsd>${basedir}/src/main/resources/xsd/persistence_2_0.xsd</pathToXsd>
 									<nameSpace>persistence</nameSpace>
@@ -544,6 +785,19 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd</value></property>
 									</namespaces>
+									<commonRef>
+										<refid>Pesistence20</refid>
+									</commonRef>
+									<common>
+										<id>Pesistence20</id>
+										<generate>false</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>PersistenceCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.persistence</commonApi>
+										<types>
+											<type>persistence:persistence-unit</type> 
+										</types>
+									</common>
 								</descriptor>
 
 								<descriptor>
@@ -559,7 +813,26 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd</value></property>
 									</namespaces>
+									<common>
+										<id>orm20</id>
+										<generate>false</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>OrmCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.orm</commonApi>
+										<types>
+											<type>orm:persistence-unit-metadata</type> 
+											<type>orm:sequence-generator</type> 
+											<type>orm:table-generator</type> 
+											<type>orm:table-generator</type> 
+											<type>orm:named-query</type> 
+											<type>orm:named-query</type> 
+											<type>orm:named-native-query</type> 
+											<type>orm:sql-result-set-mapping</type> 
+											<type>orm:embeddable</type> 
+										</types>
+									</common>
 								</descriptor>
+								
 								<descriptor>
 									<pathToXsd>${basedir}/src/main/resources/xsd/web-fragment_3_0.xsd</pathToXsd>
 									<nameSpace>javaee</nameSpace>
@@ -573,6 +846,23 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-fragment_3_0.xsd</value></property>
 									</namespaces>
+									<common>
+										<id>WebFragment30</id>
+										<generate>true</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>WebFragmentCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.webfragment</commonApi>
+										<commonImports>
+											<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
+											<commonImport>org.jboss.shrinkwrap.descriptor.api.webapp</commonImport>
+										</commonImports>
+										<types>
+											<type>javaee:servlet-mappingType</type> 
+											<type>javaee:filterType</type> 
+											<type>javaee:filter-mappingType</type> 
+											<type>javaee:listenerType</type> 
+										</types>
+									</common>
 								</descriptor>
 
 								<descriptor>
@@ -588,6 +878,19 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd</value></property>
 									</namespaces>
+									<common>
+										<id>ejbjar31</id>
+										<generate>false</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>EjbJarCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.ejbjar</commonApi>
+										<commonImports>
+											<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
+										</commonImports>
+										<types>
+											<type>javaee:enterprise-beansType</type>
+										</types>
+									</common>
 								</descriptor>
 
 								<descriptor>
@@ -603,6 +906,17 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/connector_1_6.xsd</value></property>
 									</namespaces>
+									<common>
+										<id>connector16</id>
+										<generate>false</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>ConnectorCommonDescriptor</commonDescriptorName>
+										<commonNamespace>j2ee</commonNamespace>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.connector</commonApi>
+										<types>
+											<type>javaee:resourceadapterType</type>
+										</types>
+									</common>
 								</descriptor>
 
 								<descriptor>
@@ -618,6 +932,16 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/beans_1_0.xsd</value></property>
 									</namespaces>
+									<commonRef>
+										<refid>beans10</refid>
+									</commonRef>
+									<common>
+										<id>beans10</id>
+										<generate>true</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>BeansCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.beans</commonApi>
+									</common>
 								</descriptor>
 
 							</descriptors>
@@ -662,6 +986,11 @@
 									<packageApi>org.jboss.shrinkwrap.descriptor.api.webcommon31</packageApi>
 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.webcommon31</packageImpl>
 									<generateClasses>true</generateClasses>
+									<commonImports>
+										<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
+										<commonImport>org.jboss.shrinkwrap.descriptor.api.webapp</commonImport>
+										<commonImport>org.jboss.shrinkwrap.descriptor.api.jsp</commonImport>
+									</commonImports>
 								</descriptor>
 								
 								<descriptor>
@@ -678,6 +1007,7 @@
 									<packageApi>org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient14</packageApi>
 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient14</packageImpl>
 									<generateClasses>true</generateClasses>
+									<generateCommonClasses>false</generateCommonClasses>
 								</descriptor>
 								
 								<descriptor>
@@ -693,6 +1023,20 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/application_7.xsd</value></property>
 									</namespaces>
+									<common>
+										<id>Application7</id>
+										<generate>false</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>ApplicationCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.application</commonApi>
+										<commonImports>
+											<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
+										</commonImports>
+										<types>
+											<type>javaee:moduleType</type> 
+											<type>javaee:security-roleType</type>
+										</types>
+									</common>
 								</descriptor>
 								
 								<descriptor>
@@ -708,6 +1052,38 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd</value></property>
 									</namespaces>
+									<commonRef>
+										<refid>WebApp31</refid>
+									</commonRef>
+									<common>
+										<id>WebApp31</id>
+										<generate>false</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>WebAppCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.webapp</commonApi>
+										<commonImports>
+											<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
+											<commonImport>org.jboss.shrinkwrap.descriptor.api.jsp</commonImport>
+										</commonImports>
+										<types>
+											<type>javaee:param-valueType</type> 
+											<type>javaee:error-pageType</type> 
+											<type>javaee:servletType</type> 
+											<type>javaee:servlet-mappingType</type> 
+											<type>javaee:filterType</type> 
+											<type>javaee:filter-mappingType</type> 
+											<type>javaee:listenerType</type> 
+											<type>javaee:session-configType</type> 
+											<type>javaee:mime-mappingType</type> 
+											<type>javaee:welcome-file-listType</type> 
+											<type>javaee:jsp-configType</type> 
+											<type>javaee:security-constraintType</type> 
+											<type>javaee:login-configType</type> 
+											<type>javaee:security-roleType</type> 
+											<type>javaee:message-destinationType</type> 
+											<type>javaee:locale-encoding-mapping-listType</type> 
+										</types>
+									</common>
 								</descriptor>
 								
 								<descriptor>
@@ -723,6 +1099,19 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd</value></property>
 									</namespaces>
+									<commonRef>
+										<refid>Pesistence21</refid>
+									</commonRef>
+									<common>
+										<id>Pesistence21</id>
+										<generate>false</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>PersistenceCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.persistence</commonApi>
+										<types>
+											<type>persistence:persistence-unit</type> 
+										</types>
+									</common>
 								</descriptor>
 								
 								<descriptor>
@@ -738,6 +1127,24 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd</value></property>
 									</namespaces>
+									<common>
+										<id>orm21</id>
+										<generate>false</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>OrmCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.orm</commonApi>
+										<types>
+											<type>orm:persistence-unit-metadata</type> 
+											<type>orm:sequence-generator</type> 
+											<type>orm:table-generator</type> 
+											<type>orm:table-generator</type> 
+											<type>orm:named-query</type> 
+											<type>orm:named-query</type> 
+											<type>orm:named-native-query</type> 
+											<type>orm:sql-result-set-mapping</type> 
+											<type>orm:embeddable</type> 
+										</types>
+									</common>
 								</descriptor>
 								
 								<descriptor>
@@ -753,6 +1160,23 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-fragment_3_1.xsd</value></property>
 									</namespaces>
+									<common>
+										<id>WebFragment31</id>
+										<generate>false</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>WebFragmentCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.webfragment</commonApi>
+										<commonImports>
+											<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
+											<commonImport>org.jboss.shrinkwrap.descriptor.api.webapp</commonImport>
+										</commonImports>
+										<types>
+											<type>javaee:servlet-mappingType</type> 
+											<type>javaee:filterType</type> 
+											<type>javaee:filter-mappingType</type> 
+											<type>javaee:listenerType</type> 
+										</types>
+									</common>
 								</descriptor>
 								
 								<descriptor>
@@ -768,6 +1192,19 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/ejb-jar_3_2.xsd</value></property>
 									</namespaces>
+									<common>
+										<id>ejbjar32</id>
+										<generate>false</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>EjbJarCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.ejbjar</commonApi>
+										<commonImports>
+											<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
+										</commonImports>
+										<types>
+											<type>javaee:enterprise-beansType</type>
+										</types>
+									</common>
 								</descriptor>
 								
 								<descriptor>
@@ -783,6 +1220,17 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/connector_1_7.xsd</value></property>
 									</namespaces>
+									<common>
+										<id>connector17</id>
+										<generate>false</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>ConnectorCommonDescriptor</commonDescriptorName>
+										<commonNamespace>j2ee</commonNamespace>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.connector</commonApi>
+										<types>
+											<type>javaee:resourceadapterType</type>
+										</types>
+									</common>
 								</descriptor>
 								
 								<descriptor>
@@ -798,6 +1246,16 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd</value></property>
 									</namespaces>
+									<commonRef>
+										<refid>beans11</refid>
+									</commonRef>
+									<common>
+										<id>beans11</id>
+										<generate>false</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>BeansCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.beans</commonApi>
+									</common>
 								</descriptor>
 								
 								<descriptor>
@@ -813,6 +1271,16 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd</value></property>
 									</namespaces>
+									<common>
+										<id>facesconfig22</id>
+										<generate>false</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>WebFacesConfigCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.facesconfig</commonApi>
+										<types>											
+											<type>javaee:faces-config-applicationType</type>
+										</types>
+									</common>			
 								</descriptor>
 								
 								<descriptor>
@@ -828,6 +1296,18 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-partialresponse_2_2.xsd</value></property>
 									</namespaces>
+									<common>
+										<id>partialresponse22</id>
+										<generate>false</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>WebFacesPartialResponseCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.facespartialresponse</commonApi>
+										<types>
+											<type>javaee:partial-response-changesType</type>
+											<type>javaee:partial-response-redirectType</type>
+											<type>javaee:partial-response-errorType</type>
+										</types>
+									</common>			
 								</descriptor>
 								
 								<descriptor>
@@ -843,6 +1323,17 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facelettaglibrary_2_2.xsd</value></property>
 									</namespaces>
+									<common>
+										<id>facelettaglibrary22</id>
+										<generate>false</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>WebFacelettaglibraryCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.facelettaglibrary</commonApi>
+										<types>
+											<type>javaee:facelet-taglib-tagType</type>
+											<type>javaee:facelet-taglib-functionType</type>
+										</types>
+									</common>
 								</descriptor>
 								
 								<descriptor>
@@ -858,6 +1349,14 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/permissions_7.xsd</value></property>
 									</namespaces>
+									<common>
+										<id>permissions7</id>
+										<generate>true</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>PermissionsCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.permission</commonApi>
+										<types/>
+									</common>
 								</descriptor>
 								
 								<descriptor>
@@ -873,6 +1372,21 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/jobXML_1_0.xsd</value></property>
 									</namespaces>
+									<common>
+										<id>jobXML10</id>
+										<generate>true</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>JobXMLCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.jobXML</commonApi>
+										<types>
+											<type>jsl:Properties</type>
+											<type>jsl:Listeners</type>
+											<type>jsl:Decision</type>
+											<type>jsl:Flow</type>
+											<type>jsl:Split</type>
+											<type>jsl:Step</type>
+										</types>
+									</common>
 								</descriptor>
 								
 								<descriptor>
@@ -888,6 +1402,100 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/batchXML_1_0.xsd</value></property>
 									</namespaces>
+									<common>
+										<id>batch10</id>
+										<generate>true</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>BatchXMLCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.batchXML</commonApi>
+										<types>
+											<type>jbatch:BatchArtifactRef</type> 
+										</types>
+									</common>
+								</descriptor>
+							</descriptors>
+						</configuration>
+						<goals>
+							<goal>parse</goal>
+						</goals>
+					</execution>
+					
+					<!-- The beans validation must be done in a seperate task since it clashes with a persistence class definition -->
+					<execution>
+						<id>executionJavaEE6BeansValidation</id>
+						<phase>validate</phase>
+						<configuration>
+							<verbose>false</verbose>
+							<javadocs>
+								<javadoc>
+									<tag>@author</tag>
+									<value>&lt;a href="mailto:ralf.battenfeld@bluewin.ch"&gt;Ralf Battenfeld&lt;/a&gt;</value>
+								</javadoc>
+								<javadoc>
+									<tag>@author</tag>
+									<value>&lt;a href="mailto:alr@jboss.org"&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
+								</javadoc>
+								<javadoc>
+									<tag>@author</tag>
+									<value>&lt;a href="mailto:ggastald@redhat.com"&gt;George Gastaldi&lt;/a&gt;</value>
+								</javadoc>
+							</javadocs>
+							<path>
+								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
+								<pathToImpl>${basedir}/../impl-javaee/src/main/java</pathToImpl>
+								<!--<pathToServices>${basedir}/../impl-javaee/src/main/resources/META-INF/services</pathToServices>-->
+							</path>
+							<descriptors>								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/validation-mapping-1.0.xsd</pathToXsd>
+									<nameSpace>map</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.validationMapping10</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.validationMapping10</packageImpl>
+									<descriptorName>ValidationMappingDescriptor</descriptorName>
+									<elementName>constraint-mappings</elementName>
+									<elementType>map:constraint-mappingsType</elementType>
+									<namespaces>
+										<property><name>xmlns</name><value>http://jboss.org/xml/ns/javax/validation/mapping</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://jboss.org/xml/ns/javax/validation/mapping validation-mapping-1.0.xsd</value></property>
+									</namespaces>
+									<common>
+										<id>validationMapping10</id>
+										<generate>true</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>ValidationMappingCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.validationMapping</commonApi>
+										<types>
+											<type>map:beanType</type> 
+											<type>map:constraint-definitionType</type> 
+										</types>
+									</common>
+								</descriptor>
+								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/validation-configuration-1.0.xsd</pathToXsd>
+									<nameSpace>config</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.validationConfiguration10</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.validationConfiguration10</packageImpl>
+									<descriptorName>ValidationConfigurationDescriptor</descriptorName>
+									<elementName>validation-config</elementName>
+									<elementType>config:validation-configType</elementType>
+									<namespaces>
+										<property><name>xmlns</name><value>http://jboss.org/xml/ns/javax/validation/configuration</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://jboss.org/xml/ns/javax/validation/configuration validation-configuration-1.0.xsd</value></property>
+									</namespaces>
+									<common>
+										<id>validationConfiguration10</id>
+										<generate>true</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>ValidationConfigurationCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.validationConfiguration</commonApi>
+										<types>
+<!--											<type>config:executable-validationType</type> -->
+											<type>config:propertyType</type> 
+										</types>
+									</common>
 								</descriptor>
 								
 							</descriptors>
@@ -912,6 +1520,10 @@
 									<tag>@author</tag>
 									<value>&lt;a href="mailto:alr@jboss.org"&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
 								</javadoc>
+								<javadoc>
+									<tag>@author</tag>
+									<value>&lt;a href="mailto:ggastald@redhat.com"&gt;George Gastaldi&lt;/a&gt;</value>
+								</javadoc>
 							</javadocs>
 							<path>
 								<pathToApi>${basedir}/../api-javaee/src/main/java</pathToApi>
@@ -932,6 +1544,17 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://jboss.org/xml/ns/javax/validation/mapping validation-mapping-1.1.xsd</value></property>
 									</namespaces>
+									<common>
+										<id>validationMapping11</id>
+										<generate>false</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>ValidationMappingCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.validationMapping</commonApi>
+										<types>
+											<type>map:beanType</type> 
+											<type>map:constraint-definitionType</type> 
+										</types>
+									</common>
 								</descriptor>
 								
 								<descriptor>
@@ -947,6 +1570,17 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://jboss.org/xml/ns/javax/validation/configuration validation-configuration-1.1.xsd</value></property>
 									</namespaces>
+									<common>
+										<id>validationConfiguration11</id>
+										<generate>false</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>ValidationConfigurationCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.validationConfiguration</commonApi>
+										<types>
+<!--											<type>config:executable-validationType</type> -->
+											<type>config:propertyType</type> 
+										</types>
+									</common>
 								</descriptor>
 					
 							</descriptors>
@@ -982,6 +1616,7 @@
 									<nameSpace>jboss</nameSpace>
 									<packageApi>org.jboss.shrinkwrap.descriptor.api.jbosscommon51</packageApi>
 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jbosscommon51</packageImpl>
+									<generateCommonClasses>false</generateCommonClasses>
 								</descriptor>
 
 								<descriptor>
@@ -998,6 +1633,7 @@
 									<packageApi>org.jboss.shrinkwrap.descriptor.api.javaeewebservicesclient12</packageApi>
 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaeewebservicesclient12</packageImpl>
 									<generateClasses>false</generateClasses>
+									<generateCommonClasses>false</generateCommonClasses>
 								</descriptor>
 
 								<descriptor>
@@ -1006,6 +1642,7 @@
 									<packageApi>org.jboss.shrinkwrap.descriptor.api.ejbjar30</packageApi>
 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.ejbjar30</packageImpl>
 									<generateClasses>false</generateClasses>
+									<generateCommonClasses>false</generateCommonClasses>
 								</descriptor>
 
 								<descriptor>
@@ -1021,6 +1658,7 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://www.jboss.com/xml/ns/javaee http://www.jboss.org/j2ee/schema/jboss_5_1.xsd</value></property>
 									</namespaces>
+									<generateCommonClasses>false</generateCommonClasses>
 								</descriptor>
 							</descriptors>
 						</configuration>
@@ -1055,6 +1693,7 @@
 									<nameSpace>jboss</nameSpace>
 									<packageApi>org.jboss.shrinkwrap.descriptor.api.jbosscommon60</packageApi>
 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jbosscommon60</packageImpl>
+									<generateCommonClasses>false</generateCommonClasses>
 								</descriptor>
 
 								<descriptor>
@@ -1063,6 +1702,7 @@
 									<packageApi>org.jboss.shrinkwrap.descriptor.api.javaee6</packageApi>
 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaee6</packageImpl>
 									<generateClasses>false</generateClasses>
+									<generateCommonClasses>false</generateCommonClasses>
 								</descriptor>
 
 								<descriptor>
@@ -1071,6 +1711,12 @@
 									<packageApi>org.jboss.shrinkwrap.descriptor.api.webcommon30</packageApi>
 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.webcommon30</packageImpl>
 									<generateClasses>false</generateClasses>
+									<generateCommonClasses>false</generateCommonClasses>
+									<commonImports>
+										<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
+										<commonImport>org.jboss.shrinkwrap.descriptor.api.webapp</commonImport>
+										<commonImport>org.jboss.shrinkwrap.descriptor.api.jsp</commonImport>
+									</commonImports>
 								</descriptor>
 
 								<descriptor>
@@ -1079,6 +1725,7 @@
 									<packageApi>org.jboss.shrinkwrap.descriptor.api.webapp30</packageApi>
 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.webapp30</packageImpl>
 									<generateClasses>false</generateClasses>
+									<generateCommonClasses>false</generateCommonClasses>
 								</descriptor>
 
 								<descriptor>
@@ -1094,6 +1741,7 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://www.jboss.com/xml/ns/javaee http://www.jboss.org/j2ee/schema/jboss-web_6_0.xsd</value></property>
 									</namespaces>
+									<generateCommonClasses>false</generateCommonClasses>
 								</descriptor>
 							</descriptors>
 						</configuration>
@@ -1131,6 +1779,7 @@
 									<descriptorName>JettyDescriptor</descriptorName>
 									<elementName>Configure</elementName>
 									<elementType>jetty7:Configure</elementType>
+									<generateCommonClasses>false</generateCommonClasses>
 								</descriptor>
 							</descriptors>
 						</configuration>
