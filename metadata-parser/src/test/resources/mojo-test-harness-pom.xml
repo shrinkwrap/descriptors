@@ -44,6 +44,20 @@
 								<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 								<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd</value></property>
 							</namespaces>
+							<common>
+								<pathToCommonApi>pathToCommon</pathToCommonApi>
+<!-- 								<replacements> -->
+<!--                            			<replacement> -->
+<!--                            			     <pattern>javaee</pattern> -->
+<!--                            			     <replaceWith>jsp21</replaceWith> -->
+<!--                            			</replacement> -->
+<!--                            		</replacements> -->
+<!-- 								<elements> -->
+<!-- 									<element> <namespace>javaee</namespace> <name>iconType</name> <commonName>IconCommonType</commonName></element> -->
+<!-- 									<element> <namespace>javaee</namespace> <name>param-valueType</name> <commonName>ParamValueCommonType</commonName></element> -->
+<!-- 									<element> <namespace>javaee</namespace> <name>security-role-refType</name> <commonName>SecurityRoleRefCommonType</commonName></element> -->
+<!-- 								</elements> -->
+							</common>
 						</descriptor>
 					</descriptors>
 				</configuration>
