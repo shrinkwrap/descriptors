@@ -92,6 +92,13 @@
                 <artifactId>shrinkwrap-descriptors-spi</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+                <artifactId>shrinkwrap-descriptors-depchain</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+            </dependency>
         </dependencies>
 
     </dependencyManagement>
