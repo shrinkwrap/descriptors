@@ -524,7 +524,7 @@
                             <xsl:variable name="vElementType" select=" substring-after(@type, ':')"/>
                             <xsl:variable name="vElementNamespace" select=" substring-before(@type, ':')"/>
                             <xsl:if test="xdd:isClass($vElementType) = true() and exists(//datatype[@name=$vElementType]) = false() and contains($vBooleanMethodTypes, concat($vElementType, ';')) = false()">
-                                <xsl:variable name="vGenericType" select="concat(upper-case(xdd:createCamelizedName($vElementType)), position())"/>
+                                <xsl:variable name="vGenericType" select="concat(upper-case(xdd:createCamelizedName($vElementType)), substring($vUpper,position(), 1))"/>
                                 <xsl:variable name="vCommonName" select="xdd:createPascalizedName(xdd:getCommonName($vElementType, $vElementNamespace), '')"/>
                                 <xsl:value-of select="concat(', &quot;', $vElementType, '&quot;')"/>
                             </xsl:if>
@@ -532,12 +532,11 @@
                 </xsl:variable>
                
                 <xsl:variable name="vClassDeclaration">
-                    <xsl:value-of select="concat('&lt;PARENT, ORIGIN extends ', $vCommonElementName, '&lt;PARENT, ORIGIN')"/>
-                        
+                    <xsl:value-of select="concat('&lt;PARENT, ORIGIN extends ', $vCommonElementName, '&lt;PARENT, ORIGIN')"/>                        
                        <xsl:for-each select="element">
                             <xsl:variable name="vElementType" select=" substring-after(@type, ':')"/>
                             <xsl:if test="xdd:isClass($vElementType) = true() and exists(//datatype[@name=$vElementType]) = false() and contains($vBooleanMethodTypes, concat($vElementType, ';')) = false()">
-                                <xsl:variable name="vGenericType" select="concat(upper-case(xdd:createCamelizedName($vElementType)), position())"/>
+                                <xsl:variable name="vGenericType" select="concat(upper-case(xdd:createCamelizedName($vElementType)), substring($vUpper,position(), 1))"/>
                                 <xsl:variable name="vElementName" select="xdd:createPascalizedName(xdd:checkForReservedKeywords($vElementType), '')"/>
                                 <xsl:value-of select="concat(', ', $vGenericType)"/>
                             </xsl:if>
@@ -548,7 +547,7 @@
                             <xsl:variable name="vElementType" select=" substring-after(@type, ':')"/>
                             <xsl:variable name="vElementNamespace" select=" substring-before(@type, ':')"/>
                             <xsl:if test="xdd:isClass($vElementType) = true() and exists(//datatype[@name=$vElementType]) = false() and contains($vBooleanMethodTypes, concat($vElementType, ';')) = false()">
-                                <xsl:variable name="vGenericType" select="concat(upper-case(xdd:createCamelizedName($vElementType)), position())"/>
+                                <xsl:variable name="vGenericType" select="concat(upper-case(xdd:createCamelizedName($vElementType)), substring($vUpper,position(), 1))"/>
                                 <xsl:variable name="vCommonName" select="xdd:createPascalizedName(xdd:getCommonName($vElementType, $vElementNamespace), '')"/>
                                 <xsl:value-of select="concat(', ', '&#10;    ',$vGenericType, ' extends ', $vCommonName)"/>
                             </xsl:if>
@@ -572,7 +571,7 @@
                        
                         <xsl:for-each select="$gPackageApis[@name=$vPackage]/commonImport/import">
                             <xsl:value-of select="concat('import ', xdd:getCommonPackage(@package), '.*;', '&#10;')"/>
-                        </xsl:for-each>
+                        </xsl:for-each> 
                     
                         <xsl:value-of select="concat('import org.jboss.shrinkwrap.descriptor.api.CommonExtends;','&#10;')"/>
                         <xsl:value-of select="concat('&#10;', '@CommonExtends(common = { ', $vCommonExtends, ' })','&#10;')"/>                                         
@@ -581,9 +580,18 @@
                         <xsl:for-each select="element">
                             <xsl:variable name="vLocalName" select="substring-after(@type, ':')"/>
                             <xsl:variable name="vLocalNamespace" select="substring-before(@type, ':')"/>
-                            <xsl:if test="xdd:isClass($vLocalName) = false() and exists(//datatype[@name=$vLocalName]) = false() and xdd:isExcludedCommonElement($vLocalName, $vLocalNamespace)">                            
-                                  <xsl:variable name="vMaxOccurs" select="concat('-',  @maxOccurs)"/>                                                       
-                                  <xsl:value-of select="xdd:writeMethodOrAttribute('ORIGIN', @name, @type, $vMaxOccurs, false(), true(), false(), '', exists(@attribute), xdd:checkEmptySequence(@default), xdd:checkEmptySequence(@fixed), xdd:checkEmptySequence(@use))"/>
+                            <xsl:variable name="vGenericType" select="concat(upper-case(xdd:createCamelizedName($vLocalName)), substring($vUpper,position(), 1))"/>
+                            <xsl:if test="xdd:isClass($vLocalName) = true() and exists(//datatype[@name=$vLocalName]) = false() and contains($vBooleanMethodTypes, concat($vLocalName, ';')) = false()">
+                                  <xsl:variable name="vMaxOccurs" select="concat('-',  @maxOccurs)"/>    
+                                  <xsl:variable name="vMethodName" select="xdd:createPascalizedName(@name,'')"/>
+                                  <xsl:choose>
+                                     <xsl:when test="contains($vMaxOccurs, 'unbounded')">
+                                         <xsl:value-of select="xdd:printComplexTypeUnboundedCommon($vGenericType, $vGenericType, $vMethodName, '', @name, $vGenericType, true(), 'ORIGIN')"/>
+                                     </xsl:when>
+                                     <xsl:otherwise>
+                                         <xsl:value-of select="xdd:printComplexTypeSingleCommon($vGenericType, $vGenericType, $vMethodName, '', @name, $vGenericType, true(), 'ORIGIN')"/>
+                                     </xsl:otherwise>
+                                  </xsl:choose>
                             </xsl:if>
                         </xsl:for-each>
                       <xsl:value-of select=" concat('}', '&#10;')"/>
@@ -622,7 +630,7 @@
                 <xsl:variable name="vClassDeclaration">
                     <xsl:value-of select="concat('public interface ', $vCommonDescrName, '&lt;T extends ', $vCommonDescrName ,'&lt;T')"/>
                     <xsl:for-each select="commonTypes/type">
-                        <xsl:variable name="vGenericType" select="concat(upper-case(xdd:createCamelizedName(@name)), position())"/>
+                        <xsl:variable name="vGenericType" select="concat(upper-case(xdd:createCamelizedName(@name)), substring($vUpper,position(), 1))"/>
                         <xsl:value-of select=" concat(', ', $vGenericType)"/>
                     </xsl:for-each>
                     
@@ -631,7 +639,7 @@
                         <xsl:call-template name="writeGenericDeclaration">
                             <xsl:with-param name="pNamespace" select="@namespace"/>
                             <xsl:with-param name="pName" select="@name"/>
-                            <xsl:with-param name="pPosition" select="position()"/>
+                            <xsl:with-param name="pPosition" select="substring($vUpper,position(), 1)"/>
                         </xsl:call-template>    
                     </xsl:for-each>
                     
@@ -648,27 +656,28 @@
                                  <xsl:variable name="vDataType" select="xdd:CheckDataType(@type)"/>
                                  <xsl:value-of select="xdd:printAttributes('T', $vDataType, $vMethodName, '', $vMethodName, 'T', true(), false(), '', '', xdd:checkEmptySequence(@use))"/>    
                             </xsl:when>
-                            
-                            <xsl:when test="xdd:isClass($vElementType) = true() and exists(//datatype[@name=$vElementType]) = false() and @attribute = false()">  
-                                 <xsl:variable name="vElementType" select=" substring-after(@type, ':')"/>
-                                 <xsl:variable name="vElementNamespace" select=" substring-before(@type, ':')"/> 
-                                 <xsl:variable name="vMethodName" select="xdd:createPascalizedName(@name,'')"/>
-                                 <xsl:variable name="vGenericType" select="upper-case(xdd:createCamelizedName(@name))"/>
-                                 <xsl:variable name="vCommonName" select=" xdd:getCommonName(@name, @namespace)"/>
-                                 <xsl:variable name="vReturnGeneric" select="'T'"/>
-                                 <xsl:variable name="vMaxOccurs" select="concat('-',  @maxOccurs)"/> 
-                                 <xsl:choose>
-                                      <xsl:when test="contains($vMaxOccurs, 'unbounded')">
-                                          <xsl:value-of select="xdd:printComplexTypeUnboundedXX($vReturnGeneric, $vGenericType, $vMethodName, '', $vMethodName, $vReturnGeneric, true())"/>
-                                      </xsl:when>
-                                      <xsl:otherwise>
-                                          <xsl:value-of select="xdd:printComplexTypeSingleXX($vReturnGeneric, $vGenericType, $vMethodName, '', $vMethodName, $vReturnGeneric, true())"/>
-                                      </xsl:otherwise>
-                                 </xsl:choose>
-                             </xsl:when>
                         </xsl:choose>                        
                     </xsl:for-each>
                 </xsl:for-each>
+                <xsl:for-each select="commonTypes/type">
+                        <xsl:variable name="vGenericType" select="concat(upper-case(xdd:createCamelizedName(@name)), substring($vUpper,position(), 1))"/>
+                        <xsl:variable name="vElementType" select="@name"/>
+                        <xsl:variable name="vElementNamespace" select="@namespace"/> 
+                        <xsl:variable name="vMaxOccurs" select="concat('-',  @maxOccurs)"/>
+                        <xsl:variable name="vMethodName" select="xdd:createPascalizedName(@methodName, '')"/>                          
+                        <xsl:for-each select="//class[@name=$vElementType and @namespace=$vElementNamespace]">
+                             <xsl:if test="xdd:isClass($vElementType) = true() and exists(//datatype[@name=$vElementType]) = false() and contains($vBooleanMethodTypes, concat($vElementType, ';')) = false()">
+                                   <xsl:choose>
+                                      <xsl:when test="contains($vMaxOccurs, 'unbounded')">
+                                          <xsl:value-of select="xdd:printComplexTypeUnboundedCommon($vGenericType, $vGenericType, $vMethodName, '', @name, $vGenericType, true(), 'T')"/>
+                                      </xsl:when>
+                                      <xsl:otherwise>
+                                          <xsl:value-of select="xdd:printComplexTypeSingleCommon($vGenericType, $vGenericType, $vMethodName, '', @name, $vGenericType, true(), 'T')"/>
+                                      </xsl:otherwise>
+                                   </xsl:choose>
+                              </xsl:if>
+                         </xsl:for-each>
+                    </xsl:for-each>
                 <xsl:text>}&#10;</xsl:text>
             </xsl:result-document>        
         </xsl:for-each>        
@@ -1466,18 +1475,32 @@
     <xsl:function name="xdd:isDataType" as="xs:boolean">
         <xsl:param name="pType" as="xs:string"/>
         <xsl:choose>
+            <xsl:when test="$pType = 'orm:version'">
+                <xsl:sequence select="boolean(false())"/>
+            </xsl:when>
             <xsl:when test="starts-with($pType, 'xsd:')">
                 <xsl:sequence select="boolean(true())"/>
             </xsl:when>
+            <xsl:when test="exists($gDataTypes[@mappedTo = $pType])">
+                <xsl:sequence select="true()"/>
+            </xsl:when>
             <xsl:when test="contains($pType, ':')">
                 <xsl:sequence select="$gDataTypes/descendant-or-self::node()/@name = substring-after($pType, ':')"/>
+                <!--
+                <xsl:choose>
+                    <xsl:when test="exists($gDataTypes[@name = substring-after($pType, ':') and @namespace = substring-before($pType, ':')])">
+                        <xsl:sequence select="true()"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:sequence select="false()"/>
+                    </xsl:otherwise>
+                </xsl:choose>-->
             </xsl:when>
             <xsl:otherwise>
                 <xsl:sequence select="boolean($gDataTypes/descendant-or-self::node()/@name = $pType)"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-
 
 
     <!-- ****************************************************** -->
@@ -1607,6 +1630,22 @@
     <!-- *********************************************************** -->
     <!-- *********************************************************** -->
 
+     <!-- *********************************************************** -->
+    <!-- ****** Function which prints complex types unbounded    *** -->
+    <!-- *********************************************************** -->
+    <xsl:function name="xdd:printComplexTypeSingleCommon">
+        <xsl:param name="pClassType"/>
+        <xsl:param name="pElementType"/>
+        <xsl:param name="pMethodName"/>
+        <xsl:param name="pNodeNameLocal"/>
+        <xsl:param name="pElementName"/>
+        <xsl:param name="pReturnTypeName"/>
+        <xsl:param name="pIsInterface" as="xs:boolean"/>
+        <xsl:param name="pRemovetype"/>
+        <xsl:value-of select=" xdd:printGetOrCreateSingleXX($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+        <xsl:value-of select=" xdd:printRemoveSingleXX($pRemovetype, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+    </xsl:function>
+    
     <!-- *********************************************************** -->
     <!-- ****** Function which prints complex types unbounded    *** -->
     <!-- *********************************************************** -->
@@ -1696,6 +1735,24 @@
     <!-- *********************************************************** -->
     <!-- *********************************************************** -->
 
+    
+    <!-- *********************************************************** -->
+    <!-- ****** ENTRY FUNCTION - prints complex types unbounded  *** -->
+    <!-- *********************************************************** -->
+    <xsl:function name="xdd:printComplexTypeUnboundedCommon">
+        <xsl:param name="pClassType"/>
+        <xsl:param name="pElementType"/>
+        <xsl:param name="pMethodName"/>
+        <xsl:param name="pNodeNameLocal"/>
+        <xsl:param name="pElementName"/>
+        <xsl:param name="pReturnTypeName"/>
+        <xsl:param name="pIsInterface" as="xs:boolean"/>
+        <xsl:param name="pRemovetype"/>
+        <xsl:value-of select=" xdd:printGetOrCreateXX($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+        <xsl:value-of select=" xdd:printCreateXX($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+        <xsl:value-of select=" xdd:printGetAllXX($pClassType, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+        <xsl:value-of select=" xdd:printRemoveAllXX($pRemovetype, $pElementType, $pMethodName, $pNodeNameLocal, $pElementName, $pReturnTypeName, $pIsInterface)"/>
+    </xsl:function>
 
     <!-- *********************************************************** -->
     <!-- ****** ENTRY FUNCTION - prints complex types unbounded  *** -->

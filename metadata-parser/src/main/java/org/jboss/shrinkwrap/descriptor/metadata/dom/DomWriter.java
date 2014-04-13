@@ -532,6 +532,17 @@ public class DomWriter {
                                     typeElement.setAttribute("namespace", items[0]);
                                     typeElement.setAttribute("name", items[1]);
                                     commonTypes.appendChild(typeElement);
+                                } else if (items.length == 3) {
+                                    typeElement.setAttribute("namespace", items[0]);
+                                    typeElement.setAttribute("name", items[1]);
+                                    typeElement.setAttribute("maxOccurs", items[2]);
+                                    commonTypes.appendChild(typeElement);
+                                } else if (items.length == 4) {
+                                    typeElement.setAttribute("namespace", items[0]);
+                                    typeElement.setAttribute("name", items[1]);
+                                    typeElement.setAttribute("maxOccurs", items[2]);
+                                    typeElement.setAttribute("methodName", items[3]);
+                                    commonTypes.appendChild(typeElement);
                                 }
                             }
                             commonElement.appendChild(commonTypes);

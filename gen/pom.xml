@@ -212,7 +212,7 @@
 										<commonNamespace>j2ee</commonNamespace>
 										<commonApi>org.jboss.shrinkwrap.descriptor.api.connector</commonApi>
 										<types>
-											<type>j2ee:resourceadapterType</type>
+											<type>j2ee:resourceadapterType:single:resourceadapter</type>
 										</types>
 									</common>
 								</descriptor>
@@ -246,7 +246,8 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd</value></property>
 									</namespaces>
-									<common>
+									<generateCommonClasses>false</generateCommonClasses>
+									<!--<common>
 										<id>portletapp20</id>
 										<generate>true</generate>
 										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
@@ -265,7 +266,7 @@
 											<type>portlet:listenerType</type>
 											<type>portlet:container-runtime-optionType</type>
 										</types>
-									</common>
+									</common>-->
 								</descriptor>
 							</descriptors>
 						</configuration>
@@ -339,8 +340,8 @@
 											<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
 										</commonImports>
 										<types>
-											<type>javaee:moduleType</type> 
-											<type>javaee:security-roleType</type>
+											<type>javaee:moduleType:unbounded:module</type> 
+											<type>javaee:security-roleType:unbounded:security-role</type>
 										</types>
 									</common>
 								</descriptor>
@@ -368,7 +369,7 @@
 										<commonDescriptorName>PersistenceCommonDescriptor</commonDescriptorName>
 										<commonApi>org.jboss.shrinkwrap.descriptor.api.persistence</commonApi>
 										<types>
-											<type>persistence:persistence-unit</type> 
+											<type>persistence:persistence-unit:unbounded:persistence-unit</type> 
 										</types>
 									</common>
 								</descriptor>
@@ -393,15 +394,13 @@
 										<commonDescriptorName>OrmCommonDescriptor</commonDescriptorName>
 										<commonApi>org.jboss.shrinkwrap.descriptor.api.orm</commonApi>
 										<types>
-											<type>orm:persistence-unit-metadata</type> 
-											<type>orm:sequence-generator</type> 
-											<type>orm:table-generator</type> 
-											<type>orm:table-generator</type> 
-											<type>orm:named-query</type> 
-											<type>orm:named-query</type> 
-											<type>orm:named-native-query</type> 
-											<type>orm:sql-result-set-mapping</type> 
-											<type>orm:embeddable</type> 
+											<type>orm:persistence-unit-metadata:single:persistence-unit-metadata</type> 
+											<type>orm:sequence-generator:unbounded:sequence-generator</type> 
+											<type>orm:table-generator:unbounded:table-generator</type> 
+											<type>orm:named-query:unbounded:named-query</type> 
+											<type>orm:named-native-query:unbounded:named-native-query</type> 
+											<type>orm:sql-result-set-mapping:unbounded:sql-result-set-mapping</type> 
+											<type>orm:embeddable:unbounded:embeddable</type> 
 										</types>
 									</common>
 								</descriptor>
@@ -429,7 +428,7 @@
 											<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
 										</commonImports>
 										<types>
-											<type>javaee:enterprise-beansType</type>
+											<type>javaee:enterprise-beansType:single:enterprise-beans</type>
 										</types>
 									</common>
 								</descriptor>
@@ -470,8 +469,8 @@
 										<commonDescriptorName>WebFacelettaglibraryCommonDescriptor</commonDescriptorName>
 										<commonApi>org.jboss.shrinkwrap.descriptor.api.facelettaglibrary</commonApi>
 										<types>
-											<type>javaee:facelet-taglib-tagType</type>
-											<type>javaee:facelet-taglib-functionType</type>
+											<type>javaee:facelet-taglib-tagType:unbounded:tag</type>
+											<type>javaee:facelet-taglib-functionType:unbounded:function</type>
 										</types>
 									</common>
 								</descriptor>
@@ -489,7 +488,8 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd</value></property>
 									</namespaces>
-									<common>
+									<generateCommonClasses>false</generateCommonClasses>
+								<!--	<common>
 										<id>facesconfig20</id>
 										<generate>true</generate>
 										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
@@ -498,7 +498,7 @@
 										<types>											
 											<type>javaee:faces-config-applicationType</type>
 										</types>
-									</common>									
+									</common>	-->								
 								</descriptor>
 
 								<descriptor>
@@ -537,9 +537,9 @@
 										<commonDescriptorName>WebFacesPartialResponseCommonDescriptor</commonDescriptorName>
 										<commonApi>org.jboss.shrinkwrap.descriptor.api.facespartialresponse</commonApi>
 										<types>
-											<type>javaee:partial-response-changesType</type>
-											<type>javaee:partial-response-redirectType</type>
-											<type>javaee:partial-response-errorType</type>
+											<type>javaee:partial-response-changesType:single:changes</type>
+											<type>javaee:partial-response-redirectType:single:redirect</type>
+											<type>javaee:partial-response-errorType:single:error</type>
 										</types>
 										<excludes>
 											<exclude>javaee:partial-response-updateType</exclude>
@@ -582,22 +582,22 @@
                                 			<commonImport>org.jboss.shrinkwrap.descriptor.api.jsp</commonImport>
                                 		</commonImports>                               		
                                 		<types>
-                                			<type>javaee:param-valueType</type> 
-                                			<type>javaee:error-pageType</type> 
-                                			<type>javaee:servletType</type> 
-                                			<type>javaee:servlet-mappingType</type> 
-                                			<type>javaee:filterType</type> 
-                                			<type>javaee:filter-mappingType</type> 
-                                			<type>javaee:listenerType</type> 
-                                			<type>javaee:session-configType</type> 
-                                			<type>javaee:mime-mappingType</type> 
-                                			<type>javaee:welcome-file-listType</type> 
-                                			<type>javaee:jsp-configType</type> 
-                                			<type>javaee:security-constraintType</type> 
-                                			<type>javaee:login-configType</type> 
-                                			<type>javaee:security-roleType</type> 
-                                			<type>javaee:message-destinationType</type> 
-                                			<type>javaee:locale-encoding-mapping-listType</type> 
+                                			<type>javaee:param-valueType:unbounded:context-param</type> 
+                                			<type>javaee:error-pageType:unbounded:error-page</type> 
+                                			<type>javaee:servletType:unbounded:servlet</type> 
+                                			<type>javaee:servlet-mappingType:unbounded:servlet-mapping</type> 
+                                			<type>javaee:filterType:unbounded:filter</type> 
+                                			<type>javaee:filter-mappingType:unbounded:filter-mapping</type> 
+                                			<type>javaee:listenerType:unbounded:listener</type> 
+                                			<type>javaee:session-configType:unbounded:session-config</type> 
+                                			<type>javaee:mime-mappingType:unbounded:mime-mapping</type> 
+                                			<type>javaee:welcome-file-listType:unbounded:welcome-file-list</type> 
+                                			<type>javaee:jsp-configType:unbounded:jsp-config</type> 
+                                			<type>javaee:security-constraintType:unbounded:security-constraint</type> 
+                                			<type>javaee:login-configType:unbounded:login-config</type> 
+                                			<type>javaee:security-roleType:unbounded:security-role</type> 
+                                			<type>javaee:message-destinationType:unbounded:message-destination</type> 
+                                			<type>javaee:locale-encoding-mapping-listType:unbounded:locale-encoding-mapping-list</type> 
                                 		</types>
                                 	</common>
 								</descriptor>
@@ -694,8 +694,8 @@
 											<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
 										</commonImports>
 										<types>
-											<type>javaee:moduleType</type> 
-											<type>javaee:security-roleType</type>
+											<type>javaee:moduleType:unbounded:module</type> 
+											<type>javaee:security-roleType:unbounded:security-role</type>
 										</types>
 									</common>
 								</descriptor>
@@ -727,22 +727,22 @@
 											<commonImport>org.jboss.shrinkwrap.descriptor.api.jsp</commonImport>
 										</commonImports>
 										<types>
-											<type>javaee:param-valueType</type> 
-											<type>javaee:error-pageType</type> 
-											<type>javaee:servletType</type> 
-											<type>javaee:servlet-mappingType</type> 
-											<type>javaee:filterType</type> 
-											<type>javaee:filter-mappingType</type> 
-											<type>javaee:listenerType</type> 
-											<type>javaee:session-configType</type> 
-											<type>javaee:mime-mappingType</type> 
-											<type>javaee:welcome-file-listType</type> 
-											<type>javaee:jsp-configType</type> 
-											<type>javaee:security-constraintType</type> 
-											<type>javaee:login-configType</type> 
-											<type>javaee:security-roleType</type> 
-											<type>javaee:message-destinationType</type> 
-											<type>javaee:locale-encoding-mapping-listType</type> 
+											<type>javaee:param-valueType:unbounded:context-param</type> 
+											<type>javaee:error-pageType:unbounded:error-page</type> 
+											<type>javaee:servletType:unbounded:servlet</type> 
+											<type>javaee:servlet-mappingType:unbounded:servlet-mapping</type> 
+											<type>javaee:filterType:unbounded:filter</type> 
+											<type>javaee:filter-mappingType:unbounded:filter-mapping</type> 
+											<type>javaee:listenerType:unbounded:listener</type> 
+											<type>javaee:session-configType:unbounded:session-config</type> 
+											<type>javaee:mime-mappingType:unbounded:mime-mapping</type> 
+											<type>javaee:welcome-file-listType:unbounded:welcome-file-list</type> 
+											<type>javaee:jsp-configType:unbounded:jsp-config</type> 
+											<type>javaee:security-constraintType:unbounded:security-constraint</type> 
+											<type>javaee:login-configType:unbounded:login-config</type> 
+											<type>javaee:security-roleType:unbounded:security-role</type> 
+											<type>javaee:message-destinationType:unbounded:message-destination</type> 
+											<type>javaee:locale-encoding-mapping-listType:unbounded:locale-encoding-mapping-list</type> 
 										</types>
 									</common>
 								</descriptor>
@@ -760,7 +760,8 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd</value></property>
 									</namespaces>
-								    <common>
+									<generateCommonClasses>false</generateCommonClasses>
+								   <!-- <common>
 										<id>facesconfig21</id>
 										<generate>false</generate>
 										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
@@ -769,7 +770,7 @@
 										<types>											
 										    <type>javaee:faces-config-applicationType</type>									
 										</types>
-									</common>					
+									</common>			-->		
 								</descriptor>
 								
 								<descriptor>
@@ -795,7 +796,7 @@
 										<commonDescriptorName>PersistenceCommonDescriptor</commonDescriptorName>
 										<commonApi>org.jboss.shrinkwrap.descriptor.api.persistence</commonApi>
 										<types>
-											<type>persistence:persistence-unit</type> 
+											<type>persistence:persistence-unit:unbounded:persistence-unit</type> 
 										</types>
 									</common>
 								</descriptor>
@@ -820,15 +821,13 @@
 										<commonDescriptorName>OrmCommonDescriptor</commonDescriptorName>
 										<commonApi>org.jboss.shrinkwrap.descriptor.api.orm</commonApi>
 										<types>
-											<type>orm:persistence-unit-metadata</type> 
-											<type>orm:sequence-generator</type> 
-											<type>orm:table-generator</type> 
-											<type>orm:table-generator</type> 
-											<type>orm:named-query</type> 
-											<type>orm:named-query</type> 
-											<type>orm:named-native-query</type> 
-											<type>orm:sql-result-set-mapping</type> 
-											<type>orm:embeddable</type> 
+											<type>orm:persistence-unit-metadata:single:persistence-unit-metadata</type> 
+											<type>orm:sequence-generator:unbounded:sequence-generator</type> 
+											<type>orm:table-generator:unbounded:table-generator</type> 
+											<type>orm:named-query:unbounded:named-query</type> 
+											<type>orm:named-native-query:unbounded:named-native-query</type> 
+											<type>orm:sql-result-set-mapping:unbounded:sql-result-set-mapping</type> 
+											<type>orm:embeddable:unbounded:embeddable</type> 
 										</types>
 									</common>
 								</descriptor>
@@ -857,10 +856,10 @@
 											<commonImport>org.jboss.shrinkwrap.descriptor.api.webapp</commonImport>
 										</commonImports>
 										<types>
-											<type>javaee:servlet-mappingType</type> 
-											<type>javaee:filterType</type> 
-											<type>javaee:filter-mappingType</type> 
-											<type>javaee:listenerType</type> 
+											<type>javaee:servlet-mappingType:unbounded:servlet-mapping</type>
+											<type>javaee:filterType:unbounded:filter</type> 
+											<type>javaee:filter-mappingType:unbounded:filter-mapping</type> 
+											<type>javaee:listenerType:unbounded:listener</type>
 										</types>
 									</common>
 								</descriptor>
@@ -888,7 +887,7 @@
 											<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
 										</commonImports>
 										<types>
-											<type>javaee:enterprise-beansType</type>
+											<type>javaee:enterprise-beansType:single:enterprise-beans</type>
 										</types>
 									</common>
 								</descriptor>
@@ -914,7 +913,7 @@
 										<commonNamespace>j2ee</commonNamespace>
 										<commonApi>org.jboss.shrinkwrap.descriptor.api.connector</commonApi>
 										<types>
-											<type>javaee:resourceadapterType</type>
+											<type>javaee:resourceadapterType:single:resourceadapter</type>
 										</types>
 									</common>
 								</descriptor>
@@ -1033,8 +1032,8 @@
 											<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
 										</commonImports>
 										<types>
-											<type>javaee:moduleType</type> 
-											<type>javaee:security-roleType</type>
+											<type>javaee:moduleType:unbounded:module</type> 
+											<type>javaee:security-roleType:unbounded:security-role</type>
 										</types>
 									</common>
 								</descriptor>
@@ -1066,22 +1065,22 @@
 											<commonImport>org.jboss.shrinkwrap.descriptor.api.jsp</commonImport>
 										</commonImports>
 										<types>
-											<type>javaee:param-valueType</type> 
-											<type>javaee:error-pageType</type> 
-											<type>javaee:servletType</type> 
-											<type>javaee:servlet-mappingType</type> 
-											<type>javaee:filterType</type> 
-											<type>javaee:filter-mappingType</type> 
-											<type>javaee:listenerType</type> 
-											<type>javaee:session-configType</type> 
-											<type>javaee:mime-mappingType</type> 
-											<type>javaee:welcome-file-listType</type> 
-											<type>javaee:jsp-configType</type> 
-											<type>javaee:security-constraintType</type> 
-											<type>javaee:login-configType</type> 
-											<type>javaee:security-roleType</type> 
-											<type>javaee:message-destinationType</type> 
-											<type>javaee:locale-encoding-mapping-listType</type> 
+											<type>javaee:param-valueType:unbounded:context-param</type> 
+											<type>javaee:error-pageType:unbounded:error-page</type> 
+											<type>javaee:servletType:unbounded:servlet</type> 
+											<type>javaee:servlet-mappingType:unbounded:servlet-mapping</type> 
+											<type>javaee:filterType:unbounded:filter</type> 
+											<type>javaee:filter-mappingType:unbounded:filter-mapping</type> 
+											<type>javaee:listenerType:unbounded:listener</type> 
+											<type>javaee:session-configType:unbounded:session-config</type> 
+											<type>javaee:mime-mappingType:unbounded:mime-mapping</type> 
+											<type>javaee:welcome-file-listType:unbounded:welcome-file-list</type> 
+											<type>javaee:jsp-configType:unbounded:jsp-config</type> 
+											<type>javaee:security-constraintType:unbounded:security-constraint</type> 
+											<type>javaee:login-configType:unbounded:login-config</type> 
+											<type>javaee:security-roleType:unbounded:security-role</type> 
+											<type>javaee:message-destinationType:unbounded:message-destination</type> 
+											<type>javaee:locale-encoding-mapping-listType:unbounded:locale-encoding-mapping-list</type> 
 										</types>
 									</common>
 								</descriptor>
@@ -1109,7 +1108,7 @@
 										<commonDescriptorName>PersistenceCommonDescriptor</commonDescriptorName>
 										<commonApi>org.jboss.shrinkwrap.descriptor.api.persistence</commonApi>
 										<types>
-											<type>persistence:persistence-unit</type> 
+											<type>persistence:persistence-unit:unbounded:persistence-unit</type> 
 										</types>
 									</common>
 								</descriptor>
@@ -1134,15 +1133,13 @@
 										<commonDescriptorName>OrmCommonDescriptor</commonDescriptorName>
 										<commonApi>org.jboss.shrinkwrap.descriptor.api.orm</commonApi>
 										<types>
-											<type>orm:persistence-unit-metadata</type> 
-											<type>orm:sequence-generator</type> 
-											<type>orm:table-generator</type> 
-											<type>orm:table-generator</type> 
-											<type>orm:named-query</type> 
-											<type>orm:named-query</type> 
-											<type>orm:named-native-query</type> 
-											<type>orm:sql-result-set-mapping</type> 
-											<type>orm:embeddable</type> 
+											<type>orm:persistence-unit-metadata:single:persistence-unit-metadata</type> 
+											<type>orm:sequence-generator:unbounded:sequence-generator</type> 
+											<type>orm:table-generator:unbounded:table-generator</type> 
+											<type>orm:named-query:unbounded:named-query</type> 
+											<type>orm:named-native-query:unbounded:named-native-query</type> 
+											<type>orm:sql-result-set-mapping:unbounded:sql-result-set-mapping</type> 
+											<type>orm:embeddable:unbounded:embeddable</type> 
 										</types>
 									</common>
 								</descriptor>
@@ -1171,10 +1168,10 @@
 											<commonImport>org.jboss.shrinkwrap.descriptor.api.webapp</commonImport>
 										</commonImports>
 										<types>
-											<type>javaee:servlet-mappingType</type> 
-											<type>javaee:filterType</type> 
-											<type>javaee:filter-mappingType</type> 
-											<type>javaee:listenerType</type> 
+											<type>javaee:servlet-mappingType:unbounded:servlet-mapping</type>
+											<type>javaee:filterType:unbounded:filter</type> 
+											<type>javaee:filter-mappingType:unbounded:filter-mapping</type> 
+											<type>javaee:listenerType:unbounded:listener</type>
 										</types>
 									</common>
 								</descriptor>
@@ -1202,7 +1199,7 @@
 											<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
 										</commonImports>
 										<types>
-											<type>javaee:enterprise-beansType</type>
+											<type>javaee:enterprise-beansType:single:enterprise-beans</type>
 										</types>
 									</common>
 								</descriptor>
@@ -1228,7 +1225,7 @@
 										<commonNamespace>j2ee</commonNamespace>
 										<commonApi>org.jboss.shrinkwrap.descriptor.api.connector</commonApi>
 										<types>
-											<type>javaee:resourceadapterType</type>
+											<type>javaee:resourceadapterType:single:resourceadapter</type>
 										</types>
 									</common>
 								</descriptor>
@@ -1271,7 +1268,8 @@
 										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
 										<property><name>xsi:schemaLocation</name><value>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd</value></property>
 									</namespaces>
-									<common>
+									<generateCommonClasses>false</generateCommonClasses>
+									<!--<common>
 										<id>facesconfig22</id>
 										<generate>false</generate>
 										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
@@ -1280,7 +1278,7 @@
 										<types>											
 											<type>javaee:faces-config-applicationType</type>
 										</types>
-									</common>			
+									</common>		-->	
 								</descriptor>
 								
 								<descriptor>
@@ -1303,9 +1301,9 @@
 										<commonDescriptorName>WebFacesPartialResponseCommonDescriptor</commonDescriptorName>
 										<commonApi>org.jboss.shrinkwrap.descriptor.api.facespartialresponse</commonApi>
 										<types>
-											<type>javaee:partial-response-changesType</type>
-											<type>javaee:partial-response-redirectType</type>
-											<type>javaee:partial-response-errorType</type>
+											<type>javaee:partial-response-changesType:single:changes</type>
+											<type>javaee:partial-response-redirectType:single:redirect</type>
+											<type>javaee:partial-response-errorType:single:error</type>
 										</types>
 									</common>			
 								</descriptor>
@@ -1330,8 +1328,8 @@
 										<commonDescriptorName>WebFacelettaglibraryCommonDescriptor</commonDescriptorName>
 										<commonApi>org.jboss.shrinkwrap.descriptor.api.facelettaglibrary</commonApi>
 										<types>
-											<type>javaee:facelet-taglib-tagType</type>
-											<type>javaee:facelet-taglib-functionType</type>
+											<type>javaee:facelet-taglib-tagType:unbounded:tag</type>
+											<type>javaee:facelet-taglib-functionType:unbounded:function</type>
 										</types>
 									</common>
 								</descriptor>
@@ -1379,12 +1377,12 @@
 										<commonDescriptorName>JobXMLCommonDescriptor</commonDescriptorName>
 										<commonApi>org.jboss.shrinkwrap.descriptor.api.jobXML</commonApi>
 										<types>
-											<type>jsl:Properties</type>
-											<type>jsl:Listeners</type>
-											<type>jsl:Decision</type>
-											<type>jsl:Flow</type>
-											<type>jsl:Split</type>
-											<type>jsl:Step</type>
+											<type>jsl:Properties:single:properties</type>
+											<type>jsl:Listeners:single:listeners</type>
+											<type>jsl:Decision:unbounded:decision</type>
+											<type>jsl:Flow:unbounded:flow</type>
+											<type>jsl:Split:unbounded:split</type>
+											<type>jsl:Step:unbounded:step</type>
 										</types>
 									</common>
 								</descriptor>
@@ -1409,7 +1407,7 @@
 										<commonDescriptorName>BatchXMLCommonDescriptor</commonDescriptorName>
 										<commonApi>org.jboss.shrinkwrap.descriptor.api.batchXML</commonApi>
 										<types>
-											<type>jbatch:BatchArtifactRef</type> 
+											<type>jbatch:BatchArtifactRef:unbounded:ref</type> 
 										</types>
 									</common>
 								</descriptor>
@@ -1466,8 +1464,8 @@
 										<commonDescriptorName>ValidationMappingCommonDescriptor</commonDescriptorName>
 										<commonApi>org.jboss.shrinkwrap.descriptor.api.validationMapping</commonApi>
 										<types>
-											<type>map:beanType</type> 
-											<type>map:constraint-definitionType</type> 
+											<type>map:beanType:unbounded:bean</type> 
+											<type>map:constraint-definitionType:unbounded:constraint-definition</type> 
 										</types>
 									</common>
 								</descriptor>
@@ -1492,8 +1490,7 @@
 										<commonDescriptorName>ValidationConfigurationCommonDescriptor</commonDescriptorName>
 										<commonApi>org.jboss.shrinkwrap.descriptor.api.validationConfiguration</commonApi>
 										<types>
-<!--											<type>config:executable-validationType</type> -->
-											<type>config:propertyType</type> 
+											<type>config:propertyType:unbounded:property</type> 
 										</types>
 									</common>
 								</descriptor>
@@ -1551,8 +1548,8 @@
 										<commonDescriptorName>ValidationMappingCommonDescriptor</commonDescriptorName>
 										<commonApi>org.jboss.shrinkwrap.descriptor.api.validationMapping</commonApi>
 										<types>
-											<type>map:beanType</type> 
-											<type>map:constraint-definitionType</type> 
+											<type>map:beanType:unbounded:bean</type> 
+											<type>map:constraint-definitionType:unbounded:constraint-definition</type> 
 										</types>
 									</common>
 								</descriptor>
@@ -1577,8 +1574,7 @@
 										<commonDescriptorName>ValidationConfigurationCommonDescriptor</commonDescriptorName>
 										<commonApi>org.jboss.shrinkwrap.descriptor.api.validationConfiguration</commonApi>
 										<types>
-<!--											<type>config:executable-validationType</type> -->
-											<type>config:propertyType</type> 
+											<type>config:propertyType:unbounded:property</type> 
 										</types>
 									</common>
 								</descriptor>
@@ -1806,7 +1802,7 @@
                                     <pluginExecutionFilter>
                                         <groupId>org.jboss.shrinkwrap.descriptors</groupId>
                                         <artifactId>shrinkwrap-descriptors-metadata-parser</artifactId>
-                                        <versionRange>[1.0.0,)</versionRange>
+                                        <versionRange>[1.0.0orm)</versionRange>
                                         <goals>
                                             <goal>parse</goal>
                                         </goals>
