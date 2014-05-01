@@ -154,7 +154,7 @@ public class MetadataParser {
         metadata.preResolveDataTypes();
 
         if (pathToMetadata != null) {
-            new DomWriter().write(metadata, pathToMetadata, (List<MetadataJavaDoc>) javadocTags);
+            new DomWriter().write(metadata, pathToMetadata, (List<MetadataJavaDoc>) javadocTags, path);
         }
 
         if (verbose) {

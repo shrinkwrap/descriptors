@@ -5,7 +5,7 @@ import java.io.FileReader;
 import org.jboss.shrinkwrap.descriptor.metadata.Metadata;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataDescriptor;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataElement;
-import org.jboss.shrinkwrap.descriptor.metadata.MetadataParser;
+import org.jboss.shrinkwrap.descriptor.metadata.MetadataParserPath;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataUtil;
 import org.jboss.shrinkwrap.descriptor.metadata.dom.DomWriter;
 import org.junit.Ignore;
@@ -105,10 +105,16 @@ public class DtdParserTest
       metadataDescriptor.setPackageImpl("org.jboss.shrinkwrap.descriptor.test.impl.connector10");
       metadataDescriptor.setNamespace("j2ee");
 
+      final MetadataParserPath path = new MetadataParserPath();
+      path.setPathToApi("");
+      path.setPathToImpl("");
+      path.setPathToServices("");
+      path.setPathToTest("");
+      
       metadata.getMetadataDescriptorList().add(metadataDescriptor);
       metadata.preResolveDataTypes();
       new MetadataUtil().log(metadata);
-      new DomWriter().write(metadata, "/tmp/connector_1_0.xml", null);
+      new DomWriter().write(metadata, "/tmp/connector_1_0.xml", null, path);
       //
       // if (verbose) {
       // new MetadataUtil().print(metadata);

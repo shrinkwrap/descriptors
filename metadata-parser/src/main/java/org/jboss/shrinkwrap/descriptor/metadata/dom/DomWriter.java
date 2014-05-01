@@ -42,6 +42,7 @@ import org.jboss.shrinkwrap.descriptor.metadata.MetadataElement;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataEnum;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataItem;
 import org.jboss.shrinkwrap.descriptor.metadata.MetadataJavaDoc;
+import org.jboss.shrinkwrap.descriptor.metadata.MetadataParserPath;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -70,7 +71,7 @@ public class DomWriter {
      * @param pathToMetadata
      */
     public void write(final Metadata metadata, final String pathToMetadata,
-        final List<? extends MetadataJavaDoc> javadocTags) {
+        final List<? extends MetadataJavaDoc> javadocTags, final MetadataParserPath path) {
         try {
             final DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             final DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -89,6 +90,10 @@ public class DomWriter {
                 if (descr.getCommon() != null) {
                     final String pathTo = descr.getCommon().getPathToCommonApi();
                     final String commonApi = descr.getCommon().getCommonApi().replace('.', '/');
+                    commonPathSet.add(pathTo + "/" + commonApi);
+                } else if (descr.isGenerateCommonClasses()) {
+                    final String pathTo = path.getPathToApi();
+                    final String commonApi = descr.getPackageApi().replaceAll("[0-9]*$", "").replace('.', '/');
                     commonPathSet.add(pathTo + "/" + commonApi);
                 }
             }

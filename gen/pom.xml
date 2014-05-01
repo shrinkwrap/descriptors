@@ -306,6 +306,7 @@
 									<packageApi>org.jboss.shrinkwrap.descriptor.api.javaee5</packageApi>
 									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.javaee5</packageImpl>
 									<generateClasses>true</generateClasses>
+									<generateCommonClasses>true</generateCommonClasses>
 								</descriptor>
 
 								<descriptor>
@@ -317,6 +318,35 @@
 									<generateCommonClasses>false</generateCommonClasses>
 								</descriptor>
 
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/ejb-jar_3_0.xsd</pathToXsd>
+									<nameSpace>javaee</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.ejbjar30</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.ejbjar30</packageImpl>
+									<descriptorName>EjbJarDescriptor</descriptorName>
+									<elementName>ejb-jar</elementName>
+									<elementType>javaee:ejb-jarType</elementType>
+									<namespaces>
+										<property><name>xmlns</name><value>http://java.sun.com/xml/ns/javaee</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_0.xsd</value></property>
+									</namespaces>
+									<common>
+										<id>ejbjar30</id>
+										<generate>true</generate>
+										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
+										<commonDescriptorName>EjbJarCommonDescriptor</commonDescriptorName>
+										<commonApi>org.jboss.shrinkwrap.descriptor.api.ejbjar</commonApi>
+										<commonImports>
+											<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
+										</commonImports>
+										<types>
+											<type>javaee:enterprise-beansType:single:enterprise-beans</type>											
+											<type>javaee:assembly-descriptorType:single:assembly-descriptor</type>	
+										</types>
+									</common>
+								</descriptor>
+								
 								<descriptor>
 									<pathToXsd>${basedir}/src/main/resources/xsd/application_5.xsd</pathToXsd>
 									<nameSpace>javaee</nameSpace>
@@ -405,7 +435,7 @@
 									</common>
 								</descriptor>
 
-								<descriptor>
+							<!--	<descriptor>
 									<pathToXsd>${basedir}/src/main/resources/xsd/ejb-jar_3_0.xsd</pathToXsd>
 									<nameSpace>javaee</nameSpace>
 									<packageApi>org.jboss.shrinkwrap.descriptor.api.ejbjar30</packageApi>
@@ -428,10 +458,11 @@
 											<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
 										</commonImports>
 										<types>
-											<type>javaee:enterprise-beansType:single:enterprise-beans</type>
+											<type>javaee:enterprise-beansType:single:enterprise-beans</type>											
+											<type>javaee:assembly-descriptorType:single:assembly-descriptor</type>	
 										</types>
 									</common>
-								</descriptor>
+								</descriptor>-->
 
 								<descriptor>
 									<pathToXsd>${basedir}/src/main/resources/xsd/web-jsptaglibrary_2_1.xsd</pathToXsd>
@@ -489,16 +520,6 @@
 										<property><name>xsi:schemaLocation</name><value>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd</value></property>
 									</namespaces>
 									<generateCommonClasses>false</generateCommonClasses>
-								<!--	<common>
-										<id>facesconfig20</id>
-										<generate>true</generate>
-										<pathToCommonApi>${basedir}/../api-javaee/src/main/java</pathToCommonApi>
-										<commonDescriptorName>WebFacesConfigCommonDescriptor</commonDescriptorName>
-										<commonApi>org.jboss.shrinkwrap.descriptor.api.facesconfig</commonApi>
-										<types>											
-											<type>javaee:faces-config-applicationType</type>
-										</types>
-									</common>	-->								
 								</descriptor>
 
 								<descriptor>
@@ -579,6 +600,7 @@
                                 		<commonDescriptorName>WebAppCommonDescriptor</commonDescriptorName> 
                                 		<commonImports>
                                 			<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
+                                			<commonImport>org.jboss.shrinkwrap.descriptor.api.webapp</commonImport>
                                 			<commonImport>org.jboss.shrinkwrap.descriptor.api.jsp</commonImport>
                                 		</commonImports>                               		
                                 		<types>
@@ -649,7 +671,7 @@
 									<generateClasses>true</generateClasses>
 									<commonImports>
 										<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
-<!--										<commonImport>org.jboss.shrinkwrap.descriptor.api.webapp</commonImport>-->
+										<commonImport>org.jboss.shrinkwrap.descriptor.api.webapp</commonImport>
 										<commonImport>org.jboss.shrinkwrap.descriptor.api.jsp</commonImport>
 									</commonImports>
 								</descriptor>
@@ -724,8 +746,9 @@
 										<commonApi>org.jboss.shrinkwrap.descriptor.api.webapp</commonApi>
 										<commonImports>
 											<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
+											<commonImport>org.jboss.shrinkwrap.descriptor.api.webapp</commonImport>
 											<commonImport>org.jboss.shrinkwrap.descriptor.api.jsp</commonImport>
-										</commonImports>
+										</commonImports>      
 										<types>
 											<type>javaee:param-valueType:unbounded:context-param</type> 
 											<type>javaee:error-pageType:unbounded:error-page</type> 
@@ -887,8 +910,9 @@
 											<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
 										</commonImports>
 										<types>
-											<type>javaee:enterprise-beansType:single:enterprise-beans</type>
-										</types>
+											<type>javaee:enterprise-beansType:single:enterprise-beans</type>											
+											<type>javaee:assembly-descriptorType:single:assembly-descriptor</type>											
+										</types>>
 									</common>
 								</descriptor>
 
@@ -1062,8 +1086,9 @@
 										<commonApi>org.jboss.shrinkwrap.descriptor.api.webapp</commonApi>
 										<commonImports>
 											<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
+											<commonImport>org.jboss.shrinkwrap.descriptor.api.webapp</commonImport>
 											<commonImport>org.jboss.shrinkwrap.descriptor.api.jsp</commonImport>
-										</commonImports>
+										</commonImports>      
 										<types>
 											<type>javaee:param-valueType:unbounded:context-param</type> 
 											<type>javaee:error-pageType:unbounded:error-page</type> 
@@ -1199,7 +1224,8 @@
 											<commonImport>org.jboss.shrinkwrap.descriptor.api.javaee</commonImport>
 										</commonImports>
 										<types>
-											<type>javaee:enterprise-beansType:single:enterprise-beans</type>
+											<type>javaee:enterprise-beansType:single:enterprise-beans</type>											
+											<type>javaee:assembly-descriptorType:single:assembly-descriptor</type>											
 										</types>
 									</common>
 								</descriptor>
