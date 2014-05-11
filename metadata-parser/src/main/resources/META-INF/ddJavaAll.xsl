@@ -583,8 +583,9 @@
                         <xsl:for-each select="element">
                             <xsl:variable name="vLocalName" select="substring-after(@type, ':')"/>
                             <xsl:variable name="vLocalNamespace" select="substring-before(@type, ':')"/>
-                            <xsl:variable name="vGenericType" select="concat(upper-case(xdd:createCamelizedName($vLocalName)), substring($vUpper,position(), 1))"/>                           
-                            <xsl:choose>
+                            <xsl:variable name="vGenericType" select="concat(upper-case(xdd:createCamelizedName($vLocalName)), substring($vUpper,position(), 1))"/>    
+                            
+                            <xsl:choose>                                
                                  <xsl:when test="xdd:isClass($vLocalName) = true() and exists(//datatype[@name=$vLocalName]) = false() and contains($vBooleanMethodTypes, concat($vLocalName, ';')) = false()">
                                        <xsl:variable name="vMaxOccurs" select="concat('-',  @maxOccurs)"/>    
                                        <xsl:variable name="vMethodName" select="xdd:createPascalizedName(@name,'')"/>
@@ -610,6 +611,28 @@
                                      <xsl:variable name="vMaxOccurs" select="concat('-',  @maxOccurs)"/>
                                      <xsl:value-of select="xdd:printDataType('ORIGIN', $vDataType, $vMethodName, '', $vMethodName, 'ORIGIN', true(), contains($vMaxOccurs, 'unbounded'))"/>
                                  </xsl:when>
+                               
+                                 <xsl:when test="xdd:isDataType(@type) and xdd:getJavaDataType(@type) = 'Boolean'">
+                                     <xsl:variable name="vMethodName" select="xdd:createPascalizedName(@name,'')"/>
+                                     <xsl:variable name="vDataType" select="xdd:CheckDataType(@type)"/>
+                                     <xsl:variable name="vMaxOccurs" select="concat('-',  @maxOccurs)"/>
+                                     <xsl:value-of select="xdd:printDataType('ORIGIN', $vDataType, $vMethodName, '', $vMethodName, 'ORIGIN', true(), contains($vMaxOccurs, 'unbounded'))"/>
+                                 </xsl:when>
+                                
+                                 <xsl:when test="@attribute = false() and xdd:isEnumType(@type)">
+                                     <xsl:variable name="vMethodName" select="xdd:createPascalizedName(@name,'')"/>
+                                     <xsl:variable name="vDataType" select="xdd:CheckDataType(@type)"/>
+                                     <xsl:value-of select="xdd:printSetEnumAsString('ORIGIN', $vDataType, $vMethodName, '', $vMethodName, 'ORIGIN', true())"/>
+                                     <xsl:value-of select="xdd:printGetEnumAsString('ORIGIN', $vDataType, $vMethodName, '', $vMethodName, 'ORIGIN', true())"/>
+                                 </xsl:when>
+                                
+                                 <xsl:when test="@attribute = true() and xdd:isEnumType(@type)">                                     
+                                     <xsl:variable name="vMethodName" select="xdd:createPascalizedName(@name,'')"/>
+                                     <xsl:variable name="vDataType" select="xdd:CheckDataType(@type)"/>
+                                     <xsl:value-of select="xdd:printSetEnumAsString('ORIGIN', $vDataType, $vMethodName, '', $vMethodName, 'ORIGIN', true())"/>
+                                     <xsl:value-of select="xdd:printGetEnumAttributeAsString('ORIGIN', $vDataType, $vMethodName, '', $vMethodName, 'ORIGIN', true())"/>
+                                 </xsl:when> 
+               
                              </xsl:choose>
                         </xsl:for-each>
                       <xsl:value-of select=" concat('}', '&#10;')"/>
