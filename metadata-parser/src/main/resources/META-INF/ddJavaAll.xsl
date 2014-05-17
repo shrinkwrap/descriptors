@@ -605,7 +605,7 @@
                                       <xsl:value-of select="xdd:printAttributes('ORIGIN', $vDataType, $vMethodName, '', $vMethodName, 'ORIGIN', true(), xdd:isEnumType(@type), '', '', xdd:checkEmptySequence(@use))"/>    
                                  </xsl:when>
                                  
-                                 <xsl:when test="xdd:isDataType($vLocalName) and xdd:isEnumType($vLocalName) = false() and xdd:isClass($vLocalName) = false()">
+                                 <xsl:when test="xdd:isDataType(@type) and xdd:isEnumType(@type) = false() and xdd:isClass($vLocalName) = false()">
                                      <xsl:variable name="vMethodName" select="xdd:createPascalizedName(@name,'')"/>
                                      <xsl:variable name="vDataType" select="xdd:CheckDataType(@type)"/>
                                      <xsl:variable name="vMaxOccurs" select="concat('-',  @maxOccurs)"/>
