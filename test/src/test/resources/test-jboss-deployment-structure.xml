@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:jboss:deployment-structure:1.2 jboss-deployment-structure-1_2.xsd">
+	<ear-subdeployments-isolated>false</ear-subdeployments-isolated>
+	<deployment>
+		<module-alias name="name1" slot="slot1"/>
+		<exports>
+			<exclude path="path1"/>
+		</exports>
+		<dependencies>
+			<module name="name3" slot="slot3" export="false" services="none" optional="false" annotations="false" meta-inf="none">
+				<exports>
+					<include path="path3"/>
+				</exports>
+			</module>
+		</dependencies>
+		<exclusions>
+			<module name="name5" slot="slot5"/>
+		</exclusions>
+		<resources>
+			<resource-root name="name7" path="path5" use-physical-code-source="false">
+				<filter>
+					<include-set>
+					</include-set>
+				</filter>
+			</resource-root>
+		</resources>
+		<transformers>
+			<transformer class="class1"/>
+		</transformers>
+		<local-last value="false"/>
+		<exclude-subsystems>
+			<subsystem name="name9"/>
+		</exclude-subsystems>
+	</deployment>
+</jboss-deployment-structure>
