@@ -1751,6 +1751,132 @@
 					</execution>
 
 					<execution>
+						<id>executionJBossDeploymentStructure10</id>
+						<phase>validate</phase>
+						<configuration>
+							<verbose>false</verbose>
+							<javadocs>
+								<javadoc>
+									<tag>@author</tag>
+									<value>&lt;a href="mailto:ralf.battenfeld@bluewin.ch"&gt;Ralf Battenfeld&lt;/a&gt;</value>
+								</javadoc>
+								<javadoc>
+									<tag>@author</tag>
+									<value>&lt;a href="mailto:alr@jboss.org"&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
+								</javadoc>
+							</javadocs>
+							<path>
+								<pathToApi>${basedir}/../api-jboss/src/main/java</pathToApi>
+								<pathToImpl>${basedir}/../impl-jboss/src/main/java</pathToImpl>
+							</path>
+							<descriptors>								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/jboss-deployment-structure-1_0.xsd</pathToXsd>
+									<nameSpace>jboss</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.jbossdeployment10</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jbossdeployment10</packageImpl>
+									<descriptorName>JBossDeploymentStructureDescriptor</descriptorName>
+									<elementName>jboss-deployment-structure</elementName>
+									<elementType>jboss:jbossStructureType</elementType>
+									<namespaces>
+										<property><name>xmlns</name><value>urn:jboss:deployment-structure:1.0</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>urn:jboss:deployment-structure:1.0 jboss-deployment-structure-1_0.xsd</value></property>
+									</namespaces>
+									<generateCommonClasses>false</generateCommonClasses>
+								</descriptor>								
+							</descriptors>
+						</configuration>
+						<goals>
+							<goal>parse</goal>
+						</goals>
+					</execution>
+
+					<execution>
+						<id>executionJBossDeploymentStructure11</id>
+						<phase>validate</phase>
+						<configuration>
+							<verbose>false</verbose>
+							<javadocs>
+								<javadoc>
+									<tag>@author</tag>
+									<value>&lt;a href="mailto:ralf.battenfeld@bluewin.ch"&gt;Ralf Battenfeld&lt;/a&gt;</value>
+								</javadoc>
+								<javadoc>
+									<tag>@author</tag>
+									<value>&lt;a href="mailto:alr@jboss.org"&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
+								</javadoc>
+							</javadocs>
+							<path>
+								<pathToApi>${basedir}/../api-jboss/src/main/java</pathToApi>
+								<pathToImpl>${basedir}/../impl-jboss/src/main/java</pathToImpl>
+							</path>
+							<descriptors>								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/jboss-deployment-structure-1_1.xsd</pathToXsd>
+									<nameSpace>jboss</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.jbossdeployment11</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jbossdeployment11</packageImpl>
+									<descriptorName>JBossDeploymentStructureDescriptor</descriptorName>
+									<elementName>jboss-deployment-structure</elementName>
+									<elementType>jboss:jbossStructureType</elementType>
+									<namespaces>
+										<property><name>xmlns</name><value>urn:jboss:deployment-structure:1.1</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>urn:jboss:deployment-structure:1.1 jboss-deployment-structure-1_1.xsd</value></property>
+									</namespaces>
+									<generateCommonClasses>false</generateCommonClasses>
+								</descriptor>								
+							</descriptors>
+						</configuration>
+						<goals>
+							<goal>parse</goal>
+						</goals>
+					</execution>
+					
+					<execution>
+						<id>executionJBossDeploymentStructure12</id>
+						<phase>validate</phase>
+						<configuration>
+							<verbose>false</verbose>
+							<javadocs>
+								<javadoc>
+									<tag>@author</tag>
+									<value>&lt;a href="mailto:ralf.battenfeld@bluewin.ch"&gt;Ralf Battenfeld&lt;/a&gt;</value>
+								</javadoc>
+								<javadoc>
+									<tag>@author</tag>
+									<value>&lt;a href="mailto:alr@jboss.org"&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
+								</javadoc>
+							</javadocs>
+							<path>
+								<pathToApi>${basedir}/../api-jboss/src/main/java</pathToApi>
+								<pathToImpl>${basedir}/../impl-jboss/src/main/java</pathToImpl>
+							</path>
+							<descriptors>								
+								<descriptor>
+									<pathToXsd>${basedir}/src/main/resources/xsd/jboss-deployment-structure-1_2.xsd</pathToXsd>
+									<nameSpace>jboss</nameSpace>
+									<packageApi>org.jboss.shrinkwrap.descriptor.api.jbossdeployment12</packageApi>
+									<packageImpl>org.jboss.shrinkwrap.descriptor.impl.jbossdeployment12</packageImpl>
+									<descriptorName>JBossDeploymentStructureDescriptor</descriptorName>
+									<elementName>jboss-deployment-structure</elementName>
+									<elementType>jboss:jbossStructureType</elementType>
+									<namespaces>
+										<property><name>xmlns</name><value>urn:jboss:deployment-structure:1.2</value></property>
+										<property><name>xmlns:xsi</name><value>http://www.w3.org/2001/XMLSchema-instance</value></property>
+										<property><name>xsi:schemaLocation</name><value>urn:jboss:deployment-structure:1.2 jboss-deployment-structure-1_2.xsd</value></property>
+									</namespaces>
+									<generateCommonClasses>false</generateCommonClasses>
+								</descriptor>								
+							</descriptors>
+						</configuration>
+						<goals>
+							<goal>parse</goal>
+						</goals>
+					</execution>
+					
+					<execution>
 						<id>executionMisc</id>
 						<phase>validate</phase>
 						<configuration>
@@ -1780,7 +1906,7 @@
 									<elementName>Configure</elementName>
 									<elementType>jetty7:Configure</elementType>
 									<generateCommonClasses>false</generateCommonClasses>
-								</descriptor>
+								</descriptor>								
 							</descriptors>
 						</configuration>
 						<goals>
