@@ -56,7 +56,17 @@ public class BeansDescriptorTestCase {
                .clazz("class11")
                .stereotype("stereotype0")
                .stereotype("stereotype1")
-               .stereotype("stereotype2").up();
+               .stereotype("stereotype2").up()
+            .createScan()
+               .createExclude().name("name1")
+                   .createIfClassAvailable().name("name3").up()
+                   .createIfClassAvailable().name("name5").up()
+                   .up()
+               .createExclude().name("name7")
+                   .createIfClassAvailable().name("name9").up()
+                   .createIfClassAvailable().name("name11").up()
+                   .up()
+            .up();
 
         String webXmlGenerated = beansDescr.exportAsString();
         String webXmlOriginal = getResourceContents("src/test/resources/test-gen-beans11.xml");

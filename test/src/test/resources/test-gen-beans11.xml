@@ -27,5 +27,16 @@
         <stereotype>stereotype1</stereotype>
         <stereotype>stereotype2</stereotype>
     </alternatives>
+    
+    <scan>
+        <exclude name="name1">
+            <if-class-available name="name3"/>
+            <if-class-available name="name5"/>
+        </exclude>
+        <exclude name="name7">
+            <if-class-available name="name9"/>
+            <if-class-available name="name11"/>
+        </exclude>
+    </scan>
 
 </beans>

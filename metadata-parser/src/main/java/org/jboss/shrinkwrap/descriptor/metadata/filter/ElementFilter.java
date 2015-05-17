@@ -131,7 +131,7 @@ public class ElementFilter implements Filter {
 
                 boolean isUnbounded = false;
                 final Element p = (Element) parent.getParentNode();
-                if (p != null && XsdElementEnum.choice.isTagNameEqual(p.getTagName())) {
+                if (p != null && (XsdElementEnum.choice.isTagNameEqual(p.getTagName()) || XsdElementEnum.sequence.isTagNameEqual(p.getTagName()))) {
                     final String maxOccurs = MetadataUtil.getAttributeValue(p, "maxOccurs");
                     if (maxOccurs != null && !maxOccurs.equals("1")) {
                         isUnbounded = true;
