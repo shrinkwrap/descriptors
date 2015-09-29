@@ -1875,7 +1875,125 @@
 							<goal>parse</goal>
 						</goals>
 					</execution>
-					
+
+					<execution>
+                                          <id>executionJBossModule13</id>
+                                          <phase>validate</phase>
+                                          <configuration>
+                                            <verbose>false</verbose>
+                                            <javadocs>
+                                              <javadoc>
+                                                <tag>@author</tag>
+                                                <value>&lt;a href="mailto:tcrawley@redhat.com"&gt;Toby Crawley&lt;/a&gt;</value>
+                                              </javadoc>
+                                              <javadoc>
+                                                <tag>@author</tag>
+                                                <value>&lt;a href="mailto:alr@jboss.org"&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
+                                              </javadoc>
+                                            </javadocs>
+                                            <path>
+                                              <pathToApi>${basedir}/../api-jboss/src/main/java</pathToApi>
+                                              <pathToImpl>${basedir}/../impl-jboss/src/main/java</pathToImpl>
+                                            </path>
+                                            <descriptors>
+                                              <descriptor>
+                                                <pathToXsd>${basedir}/src/main/resources/xsd/module-1_3.xsd</pathToXsd>
+                                                <nameSpace>jboss</nameSpace>
+                                                <packageApi>org.jboss.shrinkwrap.descriptor.api.jbossmodule13</packageApi>
+                                                <packageImpl>org.jboss.shrinkwrap.descriptor.impl.jbossmodule13</packageImpl>
+                                                <descriptorName>ModuleDescriptor</descriptorName>
+                                                <elementName>module</elementName>
+                                                <elementType>jboss:moduleType</elementType>
+                                                <namespaces>
+                                                  <property><name>xmlns</name><value>urn:jboss:module:1.3</value></property>
+                                                </namespaces>
+                                                <generateCommonClasses>false</generateCommonClasses>
+                                              </descriptor>
+                                            </descriptors>
+                                          </configuration>
+                                          <goals>
+                                            <goal>parse</goal>
+                                          </goals>
+                                        </execution>
+                                        <execution>
+                                          <id>executionJBossModuleAlias13</id>
+                                          <phase>validate</phase>
+                                          <configuration>
+                                            <verbose>false</verbose>
+                                            <javadocs>
+                                              <javadoc>
+                                                <tag>@author</tag>
+                                                <value>&lt;a href="mailto:tcrawley@redhat.com"&gt;Toby Crawley&lt;/a&gt;</value>
+                                              </javadoc>
+                                              <javadoc>
+                                                <tag>@author</tag>
+                                                <value>&lt;a href="mailto:alr@jboss.org"&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
+                                              </javadoc>
+                                            </javadocs>
+                                            <path>
+                                              <pathToApi>${basedir}/../api-jboss/src/main/java</pathToApi>
+                                              <pathToImpl>${basedir}/../impl-jboss/src/main/java</pathToImpl>
+                                            </path>
+                                            <descriptors>
+                                              <descriptor>
+                                                <pathToXsd>${basedir}/src/main/resources/xsd/module-1_3.xsd</pathToXsd>
+                                                <nameSpace>jboss</nameSpace>
+                                                <packageApi>org.jboss.shrinkwrap.descriptor.api.jbossmodule13</packageApi>
+                                                <packageImpl>org.jboss.shrinkwrap.descriptor.impl.jbossmodule13</packageImpl>
+                                                <descriptorName>ModuleAliasDescriptor</descriptorName>
+                                                <elementName>module-alias</elementName>
+                                                <elementType>jboss:moduleAliasType</elementType>
+                                                <namespaces>
+                                                  <property><name>xmlns</name><value>urn:jboss:module:1.3</value></property>
+                                                </namespaces>
+                                                <generateCommonClasses>false</generateCommonClasses>
+                                              </descriptor>
+                                            </descriptors>
+                                          </configuration>
+                                          <goals>
+                                            <goal>parse</goal>
+                                          </goals>
+                                        </execution>
+                                        <execution>
+                                          <id>executionJBossModuleAbsent13</id>
+                                          <phase>validate</phase>
+                                          <configuration>
+                                            <verbose>false</verbose>
+                                            <javadocs>
+                                              <javadoc>
+                                                <tag>@author</tag>
+                                                <value>&lt;a href="mailto:tcrawley@redhat.com"&gt;Toby Crawley&lt;/a&gt;</value>
+                                              </javadoc>
+                                              <javadoc>
+                                                <tag>@author</tag>
+                                                <value>&lt;a href="mailto:alr@jboss.org"&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
+                                              </javadoc>
+                                            </javadocs>
+                                            <path>
+                                              <pathToApi>${basedir}/../api-jboss/src/main/java</pathToApi>
+                                              <pathToImpl>${basedir}/../impl-jboss/src/main/java</pathToImpl>
+                                            </path>
+                                            <descriptors>
+                                              <descriptor>
+                                                <pathToXsd>${basedir}/src/main/resources/xsd/module-1_3.xsd</pathToXsd>
+                                                <nameSpace>jboss</nameSpace>
+                                                <packageApi>org.jboss.shrinkwrap.descriptor.api.jbossmodule13</packageApi>
+                                                <packageImpl>org.jboss.shrinkwrap.descriptor.impl.jbossmodule13</packageImpl>
+                                                <descriptorName>ModuleAbsentDescriptor</descriptorName>
+                                                <elementName>module-absent</elementName>
+                                                <elementType>jboss:moduleAbsentType</elementType>
+                                                <namespaces>
+                                                  <property><name>xmlns</name><value>urn:jboss:module:1.3</value></property>
+                                                </namespaces>
+                                                <generateCommonClasses>false</generateCommonClasses>
+                                              </descriptor>
+                                            </descriptors>
+                                          </configuration>
+                                          <goals>
+                                            <goal>parse</goal>
+                                          </goals>
+                                        </execution>
+                                        
 					<execution>
 						<id>executionMisc</id>
 						<phase>validate</phase>
