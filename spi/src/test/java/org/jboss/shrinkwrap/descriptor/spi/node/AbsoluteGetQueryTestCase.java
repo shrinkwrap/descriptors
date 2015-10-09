@@ -28,7 +28,7 @@ import static org.jboss.shrinkwrap.descriptor.test.util.TestTreeBuilder.createTr
 
 import java.util.List;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.jboss.shrinkwrap.descriptor.test.util.NodeAssert;
 import org.junit.Test;

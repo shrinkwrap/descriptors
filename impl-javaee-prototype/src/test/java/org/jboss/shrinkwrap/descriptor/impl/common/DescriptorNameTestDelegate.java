@@ -16,21 +16,21 @@
  */
 package org.jboss.shrinkwrap.descriptor.impl.common;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptor;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 
 /**
  * Centralizes name-based assertions for {@link Descriptor} tests
- * 
+ *
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
  */
 public class DescriptorNameTestDelegate {
 
     /**
      * Ensures that a newly-created {@link Descriptor} of the specified type defaults to the specified name
-     * 
+     *
      * @param descriptorType
      * @param expectedDefaultName
      * @throws IllegalArgumentException
@@ -50,7 +50,7 @@ public class DescriptorNameTestDelegate {
 
     /**
      * Ensures that a newly-created {@link Descriptor} of the specified type is assigned the specified name
-     * 
+     *
      * @param descriptorType
      * @param explicitName
      * @throws IllegalArgumentException

@@ -18,7 +18,7 @@ package org.jboss.shrinkwrap.descriptor.impl.webcommon30;
 
 import java.util.List;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
@@ -28,7 +28,7 @@ import org.junit.Test;
 
 /**
  * Test cases asserting the validity of {@link FilterType} operations
- * 
+ *
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
  */
 public class FilterTypeTestCase {

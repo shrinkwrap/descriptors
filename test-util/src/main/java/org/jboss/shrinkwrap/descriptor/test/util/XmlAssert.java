@@ -28,7 +28,7 @@ import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.custommonkey.xmlunit.Diff;
 import org.custommonkey.xmlunit.XMLUnit;
@@ -79,7 +79,7 @@ public final class XmlAssert {
      *
      * @param xml
      *            to be verified
-     * @param expectedNamespace
+     * @param expectedURI
      *            expected value of xmlns attribute
      *
      * @throws Exception

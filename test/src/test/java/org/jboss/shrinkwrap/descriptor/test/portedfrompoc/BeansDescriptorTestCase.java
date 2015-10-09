@@ -26,7 +26,7 @@ import javax.enterprise.inject.Alternative;
 import javax.enterprise.inject.Stereotype;
 import javax.interceptor.Interceptor;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.beans10.BeansDescriptor;

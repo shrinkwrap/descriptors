@@ -19,7 +19,7 @@ package org.jboss.shrinkwrap.descriptor.test.connector16;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.connector16.ConnectorDescriptor;

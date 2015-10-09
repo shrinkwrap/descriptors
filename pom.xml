@@ -190,7 +190,7 @@
                         <showWarnings>true</showWarnings>
                         <optimize>true</optimize>
                         <compilerVersion>1.6</compilerVersion>
-                        <fork>true</fork>
+                        <fork>false</fork>
                         <compilerArguments>
                             <source>1.5</source>
                             <target>1.5</target>

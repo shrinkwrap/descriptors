@@ -18,7 +18,7 @@ package org.jboss.shrinkwrap.descriptor.spi.node;
 
 import java.util.logging.Logger;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 import org.jboss.shrinkwrap.descriptor.spi.node.Pattern;
@@ -28,7 +28,7 @@ import org.junit.Test;
 
 /**
  * Test cases to ensure that {@link Pattern} is working as contracted
- * 
+ *
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
  */
 public class PatternTestCase
@@ -107,7 +107,7 @@ public class PatternTestCase
       final String oneAttributeValue = pattern.getAttribute(ONE);
       Assert.assertEquals("Attribute value not as expected", TWO, oneAttributeValue);
    }
-   
+
    @Test
    public void attributeFromObjectRoundtrip()
    {

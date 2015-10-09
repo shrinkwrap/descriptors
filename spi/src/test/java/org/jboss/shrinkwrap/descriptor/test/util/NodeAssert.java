@@ -18,7 +18,7 @@ package org.jboss.shrinkwrap.descriptor.test.util;
 
 import java.util.Arrays;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 
@@ -26,7 +26,7 @@ import org.jboss.shrinkwrap.descriptor.spi.node.Node;
  * {@link Node} related assertions.
  *
  * @author <a href="mailto:bartosz.majsak@gmail.com">Bartosz Majsak</a>
- * 
+ *
  */
 public final class NodeAssert {
 
@@ -51,7 +51,7 @@ public final class NodeAssert {
     /**
      * Verifies if node has expected name.
      *
-     * @param nodes
+     * @param node
      * @param expectedName
      *
      * @throws Exception
@@ -69,7 +69,7 @@ public final class NodeAssert {
      * @param name
      *            Name of the node attribute
      * @param expectedValue
-     * 
+     *
      * @throws Exception
      *             Assertion error when one of node does not match
      */

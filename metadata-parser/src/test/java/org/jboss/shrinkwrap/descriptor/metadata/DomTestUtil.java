@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
@@ -58,7 +58,7 @@ public class DomTestUtil {
 
     /**
      * Tests the given xmlFragement against the given MetadataElement.
-     * 
+     *
      * @param element
      *            contains the parsed element information.
      * @param xmlFragment
@@ -90,7 +90,7 @@ public class DomTestUtil {
 
     /**
      * Tests the given xmlFragement against the given MetadataElement.
-     * 
+     *
      * @param element
      *            contains the parsed element information.
      * @param xmlFragment
@@ -117,7 +117,7 @@ public class DomTestUtil {
 
     /**
      * Tests the given xmlFragement against the given MetadataElement.
-     * 
+     *
      * @param group
      *            contains the parsed element information.
      * @param xmlFragment

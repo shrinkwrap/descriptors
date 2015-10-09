@@ -9,7 +9,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.logging.Logger;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.javaee7.IconType;
@@ -39,7 +39,7 @@ public class WebAppDescriptorTestCase {
         "        <filter-name>UrlRewriteFilter</filter-name>\n" +
         "    </filter-mapping>\n" +
         "</web-app>";
- 
+
     @Test
     public void shouldCreateDefaultName() throws Exception {
         Assert.assertEquals("web.xml", create().getDescriptorName());

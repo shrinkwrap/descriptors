@@ -25,13 +25,13 @@ import static org.jboss.shrinkwrap.descriptor.test.util.TestTreeBuilder.CHILD_3_
 import static org.jboss.shrinkwrap.descriptor.test.util.TestTreeBuilder.CHILD_3_TEXT;
 import static org.jboss.shrinkwrap.descriptor.test.util.TestTreeBuilder.ROOT_NODE;
 import static org.jboss.shrinkwrap.descriptor.test.util.TestTreeBuilder.createTree;
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.jboss.shrinkwrap.descriptor.test.util.NodeAssert;
 import org.junit.Test;
 
 /**
- * 
+ *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  * @version $Revision: $
