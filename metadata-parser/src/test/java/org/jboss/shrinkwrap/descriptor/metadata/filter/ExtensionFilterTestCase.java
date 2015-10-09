@@ -2,7 +2,7 @@ package org.jboss.shrinkwrap.descriptor.metadata.filter;
 
 import java.util.List;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.jboss.shrinkwrap.descriptor.metadata.DomTestUtil;
 import org.jboss.shrinkwrap.descriptor.metadata.Metadata;
@@ -20,7 +20,7 @@ public class ExtensionFilterTestCase {
     public void testExtensionWithComplexTypeAsExtension() throws Exception {
         final boolean isLogging = false;
         final String xmlFragment =
-        "<xs:schema xmlns=\"http://www.w3.org/2001/XMLSchema\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" >" + 
+        "<xs:schema xmlns=\"http://www.w3.org/2001/XMLSchema\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" >" +
         "   <xs:complexType name=\"poolType\">" +
         "      <xs:sequence>" +
         "         <xs:element name=\"min-pool-size\" type=\"xs:nonNegativeInteger\" minOccurs=\"0\"></xs:element>" +
@@ -29,7 +29,7 @@ public class ExtensionFilterTestCase {
         "         <xs:element name=\"use-strict-min\" type=\"xs:boolean\" minOccurs=\"0\" maxOccurs=\"1\"> </xs:element>" +
         "         <xs:element name=\"flush-strategy\" type=\"xs:token\" minOccurs=\"0\" maxOccurs=\"1\"></xs:element>" +
         "      </xs:sequence>" +
-        "   </xs:complexType>" +         
+        "   </xs:complexType>" +
         "   <xs:complexType name=\"xa-poolType\">" +
         "      <xs:complexContent>" +
         "         <xs:extension base=\"poolType\">" +

@@ -20,7 +20,7 @@ import static org.jboss.shrinkwrap.descriptor.test.util.XmlAssert.assertPresence
 
 import java.util.logging.Logger;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.application5.ApplicationDescriptor;

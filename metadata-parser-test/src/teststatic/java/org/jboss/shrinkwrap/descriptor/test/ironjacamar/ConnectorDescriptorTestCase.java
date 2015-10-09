@@ -19,7 +19,7 @@ package org.jboss.shrinkwrap.descriptor.test.ironjacamar;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.connector10.ConnectorDescriptor;
@@ -29,7 +29,7 @@ import org.junit.Test;
 
 public class ConnectorDescriptorTestCase
 {
-   
+
    //-------------------------------------------------------------------------------------||
    // Basic API --------------------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||
@@ -39,9 +39,9 @@ public class ConnectorDescriptorTestCase
    {
       Assert.assertEquals("test.xml", Descriptors.create(ConnectorDescriptor.class, "test.xml").getDescriptorName());
    }
-   
+
    @Test
-   public void testHornetQExample() throws Exception 
+   public void testHornetQExample() throws Exception
    {
       ConnectorDescriptor jca10Generated = create()
       	.displayName("Sample Adapter")
@@ -70,16 +70,16 @@ public class ConnectorDescriptorTestCase
       			.credentialInterface("javax.resource.security.PasswordCredential").up()
       		.reauthenticationSupport("false")
       	.up();
-      	        
+
        String generatedRaXml = jca10Generated.exportAsString();
        String originalRaXml = this.getResourceContents("src/test/resources/test-orig-connector10.xml");
- 
+
 //       System.out.println(generatedRaXml);
-       
-       XmlAssert.assertIdentical(originalRaXml, generatedRaXml);       
+
+       XmlAssert.assertIdentical(originalRaXml, generatedRaXml);
    }
-   
- 
+
+
    //-------------------------------------------------------------------------------------||
    // Internal Helper --------------------------------------------------------------------||
    //-------------------------------------------------------------------------------------||
@@ -97,10 +97,10 @@ public class ConnectorDescriptorTestCase
       }
       return builder.toString();
    }
-   
+
    private ConnectorDescriptor create()
    {
       return Descriptors.create(ConnectorDescriptor.class);
    }
-   
+
 }

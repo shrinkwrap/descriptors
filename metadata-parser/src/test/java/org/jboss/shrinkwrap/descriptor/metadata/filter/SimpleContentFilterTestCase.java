@@ -2,7 +2,7 @@ package org.jboss.shrinkwrap.descriptor.metadata.filter;
 
 import java.util.List;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.jboss.shrinkwrap.descriptor.metadata.DomTestUtil;
 import org.jboss.shrinkwrap.descriptor.metadata.Metadata;
@@ -11,7 +11,7 @@ import org.junit.Test;
 
 /**
  * Test class testing the {@link UnionFilter} class.
- * 
+ *
  * @author <a href="mailto:ralf.battenfeld@bluewin.ch">Ralf Battenfeld</a>
  */
 public class SimpleContentFilterTestCase {
@@ -25,13 +25,13 @@ public class SimpleContentFilterTestCase {
         final boolean isLogging = false;
         final String xmlFragment =
         "<xs:schema xmlns=\"http://www.w3.org/2001/XMLSchema\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" >" +
-        "   <xs:complexType name=\"propertyType\">" +        
+        "   <xs:complexType name=\"propertyType\">" +
         "         <xs:simpleContent>" +
         "            <xs:extension base=\"xs:string\">" +
         "               <xs:attribute name=\"name\" use=\"required\" type=\"xs:string\" />" +
         "            </xs:extension>" +
         "         </xs:simpleContent>" +
-        "   </xs:complexType>" +       
+        "   </xs:complexType>" +
         "</xs:schema>";
 
         final Metadata metadata = DomTestUtil.parse(xmlFragment, isLogging);
@@ -44,10 +44,10 @@ public class SimpleContentFilterTestCase {
     }
 
     @Test
-    public void testSimpleContentWithEnumeration() throws Exception {        
-        final boolean isLogging = false;        
-        final String xmlFragment = 
-        "<xsd:schema xmlns=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" >" + 
+    public void testSimpleContentWithEnumeration() throws Exception {
+        final boolean isLogging = false;
+        final String xmlFragment =
+        "<xsd:schema xmlns=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" >" +
         "   <xsd:complexType name=\"ejb-ref-typeType\">" +
         "      <xsd:simpleContent>" +
         "          <xsd:restriction base=\"j2ee:string\">" +
