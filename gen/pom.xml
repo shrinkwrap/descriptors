@@ -1993,6 +1993,45 @@
                                             <goal>parse</goal>
                                           </goals>
                                         </execution>
+                                        <execution>
+                                          <id>executionWildFlyFeaturePack11</id>
+                                          <phase>validate</phase>
+                                          <configuration>
+                                            <verbose>false</verbose>
+                                            <javadocs>
+                                              <javadoc>
+                                                <tag>@author</tag>
+                                                <value>&lt;a href="mailto:bmcwhirt@redhat.com"&gt;Bob McWhirter&lt;/a&gt;</value>
+                                              </javadoc>
+                                              <javadoc>
+                                                <tag>@author</tag>
+                                                <value>&lt;a href="mailto:alr@jboss.org"&gt;Andrew Lee Rubinger&lt;/a&gt;</value>
+                                              </javadoc>
+                                            </javadocs>
+                                            <path>
+                                              <pathToApi>${basedir}/../api-jboss/src/main/java</pathToApi>
+                                              <pathToImpl>${basedir}/../impl-jboss/src/main/java</pathToImpl>
+                                            </path>
+                                            <descriptors>
+                                              <descriptor>
+                                                <pathToXsd>${basedir}/src/main/resources/xsd/wildfly-feature-pack-1_1.xsd</pathToXsd>
+                                                <nameSpace>wildfly</nameSpace>
+                                                <packageApi>org.jboss.shrinkwrap.descriptor.api.wildflyfeaturepack11</packageApi>
+                                                <packageImpl>org.jboss.shrinkwrap.descriptor.impl.wildflyfeaturepack11</packageImpl>
+                                                <descriptorName>WildFlyFeaturePackDescriptor</descriptorName>
+                                                <elementName>feature-pack</elementName>
+                                                <elementType>wildfly:feature-pack-type</elementType>
+                                                <namespaces>
+                                                  <property><name>xmlns</name><value>urn:wildfly:feature-pack:1.1</value></property>
+                                                </namespaces>
+                                                <generateCommonClasses>false</generateCommonClasses>
+                                              </descriptor>
+                                            </descriptors>
+                                          </configuration>
+                                          <goals>
+                                            <goal>parse</goal>
+                                          </goals>
+                                        </execution>
                                         
 					<execution>
 						<id>executionMisc</id>

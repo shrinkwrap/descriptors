@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+
+<feature-pack xmlns="urn:wildfly:feature-pack:1.1">
+    <artifact-versions>
+        <artifact groupId="io.undertow" artifactId="undertow-core" version="1.3.0.CR2"/>
+        <artifact groupId="org.codehaus.woodstox" artifactId="stax2-api" version="3.1.4"/>
+        <artifact groupId="org.codehaus.woodstox" artifactId="woodstox-core-asl" version="4.4.1"/>
+    </artifact-versions>
+    <config>
+        <standalone template="configuration/standalone/template.xml" subsystems="configuration/standalone/subsystems.xml" output-file="standalone/configuration/standalone.xml"/>
+        <domain template="configuration/domain/template.xml" subsystems="configuration/domain/subsystems.xml" output-file="domain/configuration/domain.xml"/>
+        <host template="configuration/host/host.xml" subsystems="configuration/host/subsystems.xml" output-file="domain/configuration/host.xml"/>
+    </config>
+    <copy-artifacts>
+        <copy-artifact artifact="org.jboss.modules:jboss-modules" to-location="jboss-modules.jar"/>
+        <copy-artifact artifact="org.wildfly.core:wildfly-launcher" to-location="bin/wildfly-launcher.jar"/>
+    </copy-artifacts>
+    <file-permissions>
+        <permission value="755">
+            <filter pattern="*.sh" include="true"/>
+        </permission>
+        <permission value="700">
+            <filter pattern="*/tmp/auth" include="true"/>
+        </permission>
+        <permission value="600">
+            <filter pattern="*-users.properties" include="true"/>
+            <filter pattern="*/.installation" include="true"/>
+        </permission>
+    </file-permissions>
+</feature-pack>
