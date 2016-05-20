@@ -510,7 +510,32 @@ public class Node {
         // Return
         return newRoot;
     }
+	
+    public static void copyFromTo(final Node fromNode, final Node toNode){
 
+        // Precondition checks
+        assert toNode != null : "Node to copy information into must be specified";
+
+        // Set attributes
+        final Map<String, String> attributes = fromNode.getAttributes();
+        final Set<String> attributeKeys = attributes.keySet();
+        for (final String key : attributeKeys) {
+            final String value = attributes.get(key);
+            toNode.attribute(key, value);
+        }
+
+        // Set text
+        toNode.text(fromNode.getText());
+
+        // Set children
+        final List<Node> children = fromNode.getChildren();
+        for (final Node child : children) {
+            final Node newChild = toNode.createChild(child.getName());
+            // Recurse in
+            copyFromTo(child, newChild);
+        }
+    }
+	
     /**
      * Copies <code>this</code> reference to the specified {@link Node}
      * @param copyTarget
