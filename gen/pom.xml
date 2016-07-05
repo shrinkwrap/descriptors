@@ -1951,6 +1951,19 @@
                                                 </namespaces>
                                                 <generateCommonClasses>false</generateCommonClasses>
                                               </descriptor>
+                                              <descriptor>
+                                                <pathToXsd>${basedir}/src/main/resources/xsd/module-1_5.xsd</pathToXsd>
+                                                <nameSpace>jboss</nameSpace>
+                                                <packageApi>org.jboss.shrinkwrap.descriptor.api.jbossmodule15</packageApi>
+                                                <packageImpl>org.jboss.shrinkwrap.descriptor.impl.jbossmodule15</packageImpl>
+                                                <descriptorName>ModuleDescriptor</descriptorName>
+                                                <elementName>module</elementName>
+                                                <elementType>jboss:moduleType</elementType>
+                                                <namespaces>
+                                                  <property><name>xmlns</name><value>urn:jboss:module:1.5</value></property>
+                                                </namespaces>
+                                                <generateCommonClasses>false</generateCommonClasses>
+                                              </descriptor>
                                             </descriptors>
                                           </configuration>
                                           <goals>
