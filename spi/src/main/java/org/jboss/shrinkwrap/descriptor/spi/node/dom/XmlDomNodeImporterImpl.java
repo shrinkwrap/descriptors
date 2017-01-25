@@ -102,6 +102,8 @@ public final class XmlDomNodeImporterImpl implements NodeImporter {
                         // See if we're dealing with a comment and mark specifically
                         if (child.getNodeType() == org.w3c.dom.Node.COMMENT_NODE) {
                             newTarget.setComment(true);
+                        } else if(child.getNodeType() == org.w3c.dom.Node.CDATA_SECTION_NODE) {
+                            newTarget.setCDATASection(true);
                         }
 
                         // Set text

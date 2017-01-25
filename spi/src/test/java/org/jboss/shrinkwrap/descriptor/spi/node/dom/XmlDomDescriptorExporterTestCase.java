@@ -43,6 +43,13 @@ public class XmlDomDescriptorExporterTestCase {
    		"  <child>test</child>" +
    		"</root>";
 
+   private static final String XML_WITH_CDATA_SECTION = "" +
+   		XML_HEADER +
+   		"<root>" +
+   		"  <![CDATA[ CDATA section ]]>" +
+   		"  <child>test</child>" +
+   		"</root>";
+
     /*
      * SHRINKDESC-31 - Comments in XML input Cause Export error
      * 
@@ -73,6 +80,26 @@ public class XmlDomDescriptorExporterTestCase {
 
         // then
         XmlAssert.assertIdentical(XML_WITH_COMMENT, exportedXml);
+    }
+
+    @Test
+    public void shouldBeAbleToImportXMLWithCDATASection() throws Exception {
+        Node root = load(XML_WITH_CDATA_SECTION);
+
+        Assert.assertNotNull("Obtaining comment should not be null", root.getSingle("#cdata-section"));
+        Assert.assertNotNull("Obtaining child should not be null", root.getSingle("child"));
+    }
+
+    @Test
+    public void shouldBeAbleExportXMLWithCDATASection() throws Exception {
+        // given
+        Node root = load(XML_WITH_CDATA_SECTION);
+
+        // when
+        String exportedXml = exportAsString(root);
+
+        // then
+        XmlAssert.assertIdentical(XML_WITH_CDATA_SECTION, exportedXml);
     }
 
     @Test

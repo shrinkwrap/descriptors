@@ -44,6 +44,13 @@ public class XmlDomNodeImporterTestCase {
    		"  <!-- comment -->" +
    		"  <child>test</child>" +
    		"</root>";
+    
+    public static final String XML_WITH_CDATA_SECTION = "" +
+   		XML_HEADER +
+   		"<root>" +
+   		"  <![CDATA[ CDATA section ]]>" +
+   		"  <child>test</child>" +
+   		"</root>";
    
    private static final String SINGLE_NODE = XML_HEADER + "<root></root>";
 
@@ -59,6 +66,14 @@ public class XmlDomNodeImporterTestCase {
         Node root = load(XML_WITH_COMMENT);
 
         Assert.assertNotNull("Obtaining comment should not be null", root.getSingle("#comment"));
+        Assert.assertNotNull("Obtaining child should not be null", root.getSingle("child"));
+    }
+    
+    @Test
+    public void shouldBeAbleToImportXMLWithCDATASection() throws Exception {
+        Node root = load(XML_WITH_CDATA_SECTION);
+
+        Assert.assertNotNull("Obtaining CDATA section should not be null", root.getSingle("#cdata-section"));
         Assert.assertNotNull("Obtaining child should not be null", root.getSingle("child"));
     }
 

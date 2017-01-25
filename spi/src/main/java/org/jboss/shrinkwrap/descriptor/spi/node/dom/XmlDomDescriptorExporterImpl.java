@@ -86,6 +86,8 @@ final class XmlDomDescriptorExporterImpl extends NodeDescriptorExporterImpl impl
         // Comment node
         if (source.isComment()) {
             targetChild = owned.createComment(source.getText());
+        } else if(source.isCDATASection()) {
+            targetChild = owned.createCDATASection(source.getText());
         } else if (source.getText() != null) {
             targetChild = owned.createElement(source.getName());
             targetChild.appendChild(owned.createTextNode(source.getText()));
