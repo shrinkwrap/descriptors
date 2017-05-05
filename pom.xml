@@ -15,7 +15,7 @@
     <!-- Artifact Information -->
     <groupId>org.jboss.shrinkwrap.descriptors</groupId>
     <artifactId>shrinkwrap-descriptors-parent</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>ShrinkWrap Descriptors Aggregator</name>
     <url>http://www.jboss.org</url>
@@ -35,7 +35,7 @@
         <connection>scm:git:git://github.com/shrinkwrap/descriptors.git</connection>
         <developerConnection>scm:git:git@github.com:shrinkwrap/descriptors.git</developerConnection>
         <url>http://github.com/shrinkwrap/descriptors</url>
-      <tag>2.0.0</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <!-- Issues -->
