@@ -244,13 +244,11 @@ public class Node {
      *             If this node has children
      */
     public void setCDATASection(final boolean cdataSection) throws IllegalArgumentException {
-        // Cannot have children
         if (this.children.size() > 0) {
             throw new IllegalArgumentException("Cannot mark a " + Node.class.getSimpleName()
                 + " with children as a CDATA section");
         }
 
-        // Set
         this.cdataSection = cdataSection;
     }
 
