@@ -76,6 +76,11 @@ public class Node {
      */
     private boolean comment;
 
+    /**
+     * Denotes whether this is a CDATA section (ie. <!CDATA[ X ]]>)
+     */
+    private boolean cdataSection;
+
     // -------------------------------------------------------------------------------------||
     // Constructor -------------------------------------------------------------------------||
     // -------------------------------------------------------------------------------------||
@@ -219,6 +224,32 @@ public class Node {
 
         // Set
         this.comment = comment;
+    }
+
+    /**
+     * Returns whether or not this {@link Node} represents a CDATA section
+     *
+     * @return
+     */
+    public boolean isCDATASection() {
+        return cdataSection;
+    }
+
+    /**
+     * Marks this {@link Node} as a CDATA section
+     *
+     * @param cdataSection
+     *            Whether or not this is a CDATA section
+     * @throws IllegalArgumentException
+     *             If this node has children
+     */
+    public void setCDATASection(final boolean cdataSection) throws IllegalArgumentException {
+        if (this.children.size() > 0) {
+            throw new IllegalArgumentException("Cannot mark a " + Node.class.getSimpleName()
+                + " with children as a CDATA section");
+        }
+
+        this.cdataSection = cdataSection;
     }
 
     /**
